@@ -1,0 +1,358 @@
+# Basque translation for uberwriter
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the uberwriter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: uberwriter\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-10-01 15:02+0200\n"
+"PO-Revision-Date: 2012-10-20 19:35+0000\n"
+"Last-Translator: Asier Iturralde Sarasola <Unknown>\n"
+"Language-Team: Basque <eu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-10-27 09:20+0000\n"
+"X-Generator: Launchpad (build 16194)\n"
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:472
+msgid "(no suggestions)"
+msgstr "(iradokizunik ez)"
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:494
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:497
+msgid "Add \"{}\" to Dictionary"
+msgstr "Gehitu \"{}\" hiztegira"
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:501
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:503
+msgid "Ignore All"
+msgstr "Ez ikusi egin guztiei"
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:518
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:520
+msgid "Languages"
+msgstr "Hizkuntzak"
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:536
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:539
+msgid "Suggestions"
+msgstr "Iradokizunak"
+
+#: ../uberwriter.desktop.in.h:1
+msgid "UberWriter"
+msgstr "UberWriter"
+
+#: ../uberwriter.desktop.in.h:2
+msgid "UberWriter, a simple and distraction free Markdown Editor"
+msgstr "UberWriter, markaketa-editore sinple eta arreta-galtzerik gabea"
+
+#: ../uberwriter/UberwriterWindow.py:400
+msgid "Save your File"
+msgstr "Gorde zure fitxategia"
+
+#: ../uberwriter/UberwriterWindow.py:543
+msgid "You can not export to PDF."
+msgstr "Ezin duzu PDFra esportatu."
+
+#: ../uberwriter/UberwriterWindow.py:545
+msgid ""
+"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
+msgstr ""
+"Mesedez instalatu  <a href=\"apt:texlive\">texlive</a> software-zentrotik."
+
+#: ../uberwriter/UberwriterWindow.py:573
+msgid "MarkDown or Plain Text"
+msgstr "Markaketa edo testu-laua"
+
+#: ../uberwriter/UberwriterWindow.py:576
+msgid "Open a .md-File"
+msgstr "Ireki .md fitxategi bat"
+
+#: ../uberwriter/UberwriterWindow.py:598
+msgid "You have not saved your changes."
+msgstr "Ez dituzu gorde zure aldaketak."
+
+#: ../uberwriter/UberwriterWindow.py:600
+msgid "Close without Saving"
+msgstr "Itxi gorde gabe"
+
+#: ../uberwriter/UberwriterWindow.py:601
+msgid "Cancel"
+msgstr "Utzi"
+
+#: ../uberwriter/UberwriterWindow.py:602
+msgid "Save now"
+msgstr "Gorde orain"
+
+#: ../uberwriter/UberwriterWindow.py:603
+msgid "Unsaved changes"
+msgstr "Gorde gabeko aldaketak"
+
+#: ../uberwriter/UberwriterWindow.py:660
+msgid "You can not enable the Spell Checker."
+msgstr "Ezin duzu zuzentzaile ortografikoa gaitu."
+
+#: ../uberwriter/UberwriterWindow.py:662
+msgid ""
+"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
+"software center."
+msgstr ""
+"Mesedez instalatu zure hizkuntzaren 'hunspell' edo 'aspell' hiztegiak "
+"software-zentrotik."
+
+#: ../data/ui/UberwriterWindow.ui.h:1
+msgid "_File"
+msgstr "_Fitxategia"
+
+#: ../data/ui/UberwriterWindow.ui.h:2
+msgid "Open Recent File"
+msgstr "Ireki oraintsuko fitxategia"
+
+#: ../data/ui/UberwriterWindow.ui.h:3
+msgid "Export as ODT"
+msgstr "Esportatu ODT bezala"
+
+#: ../data/ui/UberwriterWindow.ui.h:4
+msgid "Advanced Export..."
+msgstr "Esportatze aurreratua..."
+
+#: ../data/ui/UberwriterWindow.ui.h:5
+msgid "Copy raw HTML to clipboard"
+msgstr "Kopiatu HTML gordina arbelera"
+
+#: ../data/ui/UberwriterWindow.ui.h:6
+msgid "_Edit"
+msgstr "_Editatu"
+
+#: ../data/ui/UberwriterWindow.ui.h:7
+msgid "_View"
+msgstr "_Ikusi"
+
+#: ../data/ui/UberwriterWindow.ui.h:8
+msgid "Light text on  a dark background"
+msgstr "Testu argia atzeko plano ilunean"
+
+#: ../data/ui/UberwriterWindow.ui.h:9
+msgid "Dark Mode"
+msgstr "Modu iluna"
+
+#: ../data/ui/UberwriterWindow.ui.h:10
+msgid "Auto _Spellcheck"
+msgstr "_Egiaztatu ortografia automatikoki"
+
+#: ../data/ui/UberwriterWindow.ui.h:11
+msgid "F_ormat"
+msgstr "F_ormatua"
+
+#: ../data/ui/UberwriterWindow.ui.h:12
+msgid "Unordered List Item"
+msgstr "Ordenatu gabeko zerrendako elementua"
+
+#: ../data/ui/UberwriterWindow.ui.h:13
+msgid "Horizontal Rule"
+msgstr "Marra horizontala"
+
+#: ../data/ui/UberwriterWindow.ui.h:14 ../uberwriter/FormatShortcuts.py:182
+msgid "Heading"
+msgstr "Izenburua"
+
+#: ../data/ui/UberwriterWindow.ui.h:15
+msgid "_Help"
+msgstr "_Laguntza"
+
+#: ../data/ui/UberwriterWindow.ui.h:16
+msgid "Contents"
+msgstr "Edukiak"
+
+#: ../data/ui/UberwriterWindow.ui.h:17
+msgid "Get Help Online..."
+msgstr "Lortu laguntza linean..."
+
+#: ../data/ui/UberwriterWindow.ui.h:18
+msgid "Translate This Application..."
+msgstr "Itzuli aplikazio hau..."
+
+#: ../data/ui/UberwriterWindow.ui.h:19
+msgid "Focus Mode"
+msgstr "Fokuaren modua"
+
+#: ../data/ui/UberwriterWindow.ui.h:20
+msgid "Go into focus mode"
+msgstr "Joan fokuaren modura"
+
+#: ../data/ui/UberwriterWindow.ui.h:21
+msgid "Fullscreen"
+msgstr "Pantaila osoa"
+
+#: ../data/ui/UberwriterWindow.ui.h:22
+msgid "Go into fullscreen mode"
+msgstr "Joan pantaila osoko modura"
+
+#: ../data/ui/UberwriterWindow.ui.h:23
+msgid "Words:"
+msgstr "Hitzak:"
+
+#: ../data/ui/UberwriterWindow.ui.h:24
+msgid "Characters:"
+msgstr "Karaktereak:"
+
+#: ../uberwriter/__init__.py:34
+msgid "Show debug messages (-vv debugs uberwriter_lib also)"
+msgstr ""
+"Erakutsi arazketako mezuak (-vv erabiliz uberwriter_lib ere arazten da)"
+
+#: ../uberwriter/FormatShortcuts.py:85
+msgid "emphasized text"
+msgstr "nabarmendutako testua"
+
+#: ../uberwriter/FormatShortcuts.py:87
+msgid "strong text"
+msgstr "testu lodia"
+
+#: ../uberwriter/FormatShortcuts.py:101
+msgid "List item"
+msgstr "Zerrendako elementua"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:1
+msgid "Export"
+msgstr "Esportatu"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:2
+msgid "Smart"
+msgstr "Adimentsua"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:3
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr ""
+"Pandoc-ek automatikoki bihur dezake \"--\" marra luzean eta gauza gehiago"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:4
+msgid "Normalize"
+msgstr "Normalizatu"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:5
+msgid ""
+"Removes things like double spaces or spaces at the beginning of a paragraph"
+msgstr ""
+"Zuriune bikoitzak edo paragrafo hasierako zuriuneak bezalako gauzak kentzen "
+"ditu"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:6
+msgid "Table of Contents"
+msgstr "Edukien aurkibidea"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:7
+msgid "Standalone"
+msgstr "Autonomoa"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:8
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+"Erabili goiburua eta  orri-oina estilo-orriak eta meta-informazioa bezalako "
+"gauzak gehitzeko"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:9
+msgid "Number Sections"
+msgstr "Zenbakitu atalak"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:10
+msgid "Strict Markdown"
+msgstr "Markaketa zorrotza"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:11
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr "Erabili \"strict\" markaketa \"pandoc\" markaketaren ordez"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:12
+msgid "Slideshow incremental bullets"
+msgstr "Buleta inkrementalak diapositiba-aurkezpenetan"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:13
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Erakutsi buleta bat bestearen atzetik diapositiba-aurkezpenetan"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:14
+msgid "<b>General Options</b>"
+msgstr "<b>Aukera orokorrak</b>"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:15
+msgid "Highlight syntax"
+msgstr "Nabarmendu sintaxia"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:16
+msgid "Choose a color theme for syntax highlighting"
+msgstr "Aukeratu kolore-gai bat sintaxia nabarmentzeko"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:17
+msgid "Highlight style  "
+msgstr "Nabarmentze-estiloa  "
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:18
+msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
+msgstr "<b>Sintaxiaren nabarmentzea</b> (HTML, LaTeX)"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:19
+msgid "Self Contained"
+msgstr "Beregaina"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:20
+msgid ""
+"Produces a HTML that has no external dependencies (all images and "
+"stylesheets are included)"
+msgstr ""
+"Kanpoko menpekotasunik gabeko HTMLa sortzen du (irudi eta estilo-orri "
+"guztiak erantsita daude)"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:21
+msgid "HTML 5"
+msgstr "HTML 5"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:22
+msgid "Use HTML 5 syntax"
+msgstr "Erabili HTML 5 sintaxia"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:23
+msgid "Choose a CSS File that you want to use"
+msgstr "Aukeratu erabili nahi duzun CSS fitxategi bat"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:24
+msgid "CSS File"
+msgstr "CSS fitxategia"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:25
+msgid "<b>HTML Options</b>"
+msgstr "<b>HTML aukerak</b>"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:26
+msgid "<b>Bibliography File</b>"
+msgstr "<b>Bibliografia-fitxategia</b>"
+
+#: ../data/ui/UberwriterAdvancedExportDialog.ui.h:27
+msgid "Commandline Reference"
+msgstr "Komando-lerroko erreferentzia"
+
+#: ../data/ui/AboutUberwriterDialog.ui.h:1
+msgid ""
+"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+"# This program is free software: you can redistribute it and/or modify it \n"
+"# under the terms of the GNU General Public License version 3, as published "
+"\n"
+"# by the Free Software Foundation.\n"
+"# \n"
+"# This program is distributed in the hope that it will be useful, but \n"
+"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
+"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
+"# PURPOSE.  See the GNU General Public License for more details.\n"
+"# \n"
+"# You should have received a copy of the GNU General Public License along \n"
+"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+msgstr ""
+
+#: ../data/ui/AboutUberwriterDialog.ui.h:14
+msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+msgstr "Copyright-a (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"

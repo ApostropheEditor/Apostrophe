@@ -1,0 +1,33 @@
+Source: uberwriter
+Section: python
+Priority: extra
+Build-Depends: debhelper (>= 8),
+ python3 (>= 3.2.3-3~),
+ python3-distutils-extra (>= 2.37-1~)
+Maintainer: Wolf Vollprecht <w.vollprecht@gmail.com>
+Standards-Version: 3.9.3
+X-Python-Version: >= 3.2.3
+
+Package: uberwriter
+Architecture: all
+Depends: ${misc:Depends},
+ ${python3:Depends},
+ python3-enchant, 
+ gir1.2-gtk-3.0,
+ gir1.2-pango-1.0,
+ gir1.2-glib-2.0,
+ python3-cairo,
+ gir1.2-gdkpixbuf-2.0,
+ python3-apt,
+ gir1.2-webkit-3.0,
+ pandoc,
+ yelp,
+ gnome-web-photo,
+ ttf-ubuntu-font-family
+Suggests: texlive
+Description: UberWriter, beautiful distraction free writing
+ With UberWriter you get only one thing: An empty textbox, that is to
+ fill with your ideas. There are no settings, you don't have to choose a
+ font, it is only for writing.You can use markdown for all your markup
+ needs. PDF, RTF and HTML are generated with pandoc. For PDF generation it
+ is also required that you choose to install the texlive-luatex package.
