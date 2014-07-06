@@ -147,7 +147,7 @@ DistUtilsExtra.auto.setup(
  font, it is only for writing.You can use markdown for all your markup \
  needs. PDF, RTF and HTML are generated with pandoc. For PDF generation it \
  is also required that you choose to install the texlive-luatex package.",
-    url='https://launchpad.com/uberwriter',
+    url='https://launchpad.net/uberwriter',
     cmdclass={'install': InstallAndUpdateDataDirectory},
     package_dir = {
         'gtkspellcheck': 'uberwriter_lib/gtkspellcheck',
