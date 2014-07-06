@@ -5,3 +5,4 @@ build/share
 debian/uberwriter/DEBIAN
 debian/uberwriter/opt
 debian/uberwriter/usr
+bin/
