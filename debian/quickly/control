@@ -1,0 +1,29 @@
+Source: uberwriter
+Section: python
+Priority: extra
+Build-Depends: debhelper (>= 8),
+ python (>= 2.6.6-3~),
+ python-distutils-extra (>= 2.10)
+Maintainer: Wolf Vollprecht <w.vollprecht@gmail.com>
+Standards-Version: 3.9.3
+X-Python-Version: >= 2.6
+
+Package: uberwriter
+Architecture: all
+Depends: ${misc:Depends},
+ ${python:Depends},
+ gir1.2-gtk-3.0,
+ gir1.2-pango-1.0,
+ gir1.2-glib-2.0,
+ uberwriter,
+ python-cairo,
+ python-enchant,
+ python-apt,
+ yelp
+Description: A beautiful, simple and distraction free markdown editor.
+ UberWriter, beautiful distraction free writing  With UberWriter you get
+ only one thing: An empty textbox, that is to  fill with your ideas.
+ There are no settings, you don't have to choose a  font, it is only for
+ writing.You can use markdown for all your markup  needs. PDF, RTF and
+ HTML are generated with pandoc. For PDF generation it  is also required
+ that you choose to install the texlive-luatex package.

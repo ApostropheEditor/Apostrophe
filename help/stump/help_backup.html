@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="John MacFarlane, Wolf Vollprecht" />
+  <title>UberWriter &amp; Pandoc User Guide</title>
+  <link rel="stylesheet" href="file:////home/wolf/Programme/uberwriter/data/media/uberwriter.css" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">UberWriter &amp; Pandoc User Guide</h1>
+<h2 class="author">John MacFarlane, Wolf Vollprecht</h2>
+<h3 class="date">01.08.2012</h3>
+</div>
+<h2 id="uberwriters-goals">UberWriter’s goals</h2>
+<p>UberWriter aims to make the writing process very easy and beautiful. The editor offers inline highlighting for a specific subset of markdown, which is used to do the formatting of your text.</p>
+<p>A short explanation of the core markdown features you’ll find below. Pandoc is used to generate PDF, HTML or RTF files from markdown. Please note that Pandoc’s syntax offers many, many more features which are well documented on the (pandoc homepage)[http://johnmacfarlane.net/pandoc/README.html].<br />However, please note that not all of the advanced features play well with inline highlighting of UberWriter.</p>
+<p>But for a quick start, this will be sufficient.</p>
+<h2 id="pandocs-markdown">Pandoc’s markdown</h2>
+<p>Pandoc understands an extended and slightly revised version of John Gruber’s [markdown] syntax. This document explains the syntax, noting differences from standard markdown.</p>
+<h3 id="philosophy">Philosophy</h3>
+<p>Markdown is designed to be easy to write, and, even more importantly, easy to read:</p>
+<blockquote>
+<p>A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. – <a href="http://daringfireball.net/projects/markdown/syntax#philosophy">John Gruber</a></p>
+</blockquote>
+<p>This principle has guided pandoc’s decisions in finding syntax for tables, footnotes, and other extensions.</p>
+<h3 id="paragraphs">Paragraphs</h3>
+<p>A paragraph is one or more lines of text followed by one or more blank line. Newlines are treated as spaces, so you can reflow your paragraphs as you like. If you need a hard line break, put two or more spaces at the end of a line.</p>
+<p>A backslash followed by a newline is also a hard line break.</p>
+<h3 id="headers">Headers</h3>
+<p>An header consists of one to six <code>#</code> signs and a line of text, optionally followed by any number of <code>#</code> signs. The number of <code>#</code> signs at the beginning of the line is the header level:</p>
+<pre><code>## A level-two header
+
+### A level-three header ###</code></pre>
+<p>As with setext-style headers, the header text can contain formatting:</p>
+<pre><code># A level-one header with a [link](/url) and *emphasis*</code></pre>
+<p>Standard markdown syntax does not require a blank line before a header. Pandoc does require this (except, of course, at the beginning of the document).</p>
+<h3 id="inline-formatting">Inline formatting</h3>
+<p>To <em>emphasize</em> some text, surround it with <code>*</code>s or <code>_</code>, like this:</p>
+<pre><code>This text is _emphasized with underscores_, and this
+is *emphasized with asterisks*.</code></pre>
+<p>Double <code>*</code> or <code>_</code> produces <strong>strong emphasis</strong>:</p>
+<pre><code>This is **strong emphasis** and __with underscores__.</code></pre>
+<p>A <code>*</code> or <code>_</code> character surrounded by spaces, or backslash-escaped, will not trigger emphasis:</p>
+<pre><code>This is * not emphasized *, and \*neither is this\*.</code></pre>
+<p>Because <code>_</code> is sometimes used inside words and identifiers, pandoc does not interpret a <code>_</code> surrounded by alphanumeric characters as an emphasis marker. If you want to emphasize just part of a word, use <code>*</code>:</p>
+<pre><code>feas*ible*, not feas*able*.</code></pre>
+<h4 id="strikeout">Strikeout</h4>
+<p>To strikeout a section of text with a horizontal line, begin and end it with <code>~~</code>. Thus, for example,</p>
+<pre><code>This ~~is deleted text.~~</code></pre>
+<h3 id="block-quotations">Block quotations</h3>
+<p>Markdown uses email conventions for quoting blocks of text. A block quotation is one or more paragraphs or other block elements (such as lists or headers), with each line preceded by a <code>&gt;</code> character and a space.</p>
+<blockquote>
+<p>This is a block quote. This paragraph does indeed have more than one line.</p>
+<ol style="list-style-type: decimal">
+<li>This is a list inside a block quote.</li>
+<li>Second item.</li>
+</ol>
+</blockquote>
+<p>Among the block elements that can be contained in a block quote are other block quotes. That is, block quotes can be nested:</p>
+<blockquote>
+<p>This is a block quote.</p>
+<blockquote>
+<p>A block quote within a block quote.</p>
+</blockquote>
+</blockquote>
+<p><strong>Standard markdown syntax does not require a blank line before a block quote. Pandoc does require this (except, of course, at the beginning of the document).</strong></p>
+<p>The following does not produce a nested block quote in pandoc:</p>
+<blockquote>
+<p>This is a block quote. &gt; Nested.</p>
+</blockquote>
+<h3 id="verbatim-code-blocks">Verbatim (code) blocks</h3>
+<h4 id="indented-code-blocks">Indented code blocks</h4>
+<p>A block of text indented four spaces (or one tab) is treated as verbatim text: that is, special characters do not trigger special formatting, and all spaces and line breaks are preserved. For example,</p>
+<pre><code>    if (a &gt; 3) {
+      moveShip(5 * gravity, DOWN);
+    }</code></pre>
+<p>The initial (four space or one tab) indentation is not considered part of the verbatim text, and is removed in the output.</p>
+<p>Note: blank lines in the verbatim text need not begin with four spaces.</p>
+<h3 id="lists">Lists</h3>
+<h4 id="bullet-lists">Bullet lists</h4>
+<p>A bullet list is a list of bulleted list items. A bulleted list item begins with a bullet (<code>*</code>, <code>+</code>, or <code>-</code>). Here is a simple example:</p>
+<ul>
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ul>
+<h3 id="the-four-space-rule">The four-space rule</h3>
+<p>A list item may contain multiple paragraphs and other block-level content. However, subsequent paragraphs must be preceded by a blank line and indented four spaces or a tab. The list will look better if the first paragraph is aligned with the rest:</p>
+<ul>
+<li>First paragraph.</li>
+</ul>
+<p>Continued.</p>
+<ul>
+<li><p>Second paragraph. With a code block, which must be indented two tabs:</p>
+<pre><code>{ code }</code></pre></li>
+</ul>
+<p>List items may include other lists. In this case the preceding blank line is optional. The nested list must be indented one tab:</p>
+<ul>
+<li>fruits
+<ul>
+<li>apples
+<ul>
+<li>macintosh</li>
+<li>red delicious</li>
+</ul></li>
+<li>pears</li>
+<li>peaches</li>
+</ul></li>
+<li>vegetables
+<ul>
+<li>brocolli</li>
+<li>chard</li>
+</ul></li>
+</ul>
+<h3 id="ordered-lists">Ordered lists</h3>
+<p>Ordered lists work just like bulleted lists, except that the items begin with enumerators rather than bullets.</p>
+<p>In standard markdown, enumerators are decimal numbers followed by a period and a space. The numbers themselves are ignored, so there is no difference between this list:</p>
+<ol style="list-style-type: decimal">
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ol>
+<p>and this one:</p>
+<ol start="5" style="list-style-type: decimal">
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ol>
+<p>Unlike standard markdown, Pandoc allows ordered list items to be marked with uppercase and lowercase letters and roman numerals, in addition to arabic numerals. List markers may be enclosed in parentheses or followed by a single right-parentheses or period. They must be separated from the text that follows by at least one space, and, if the list marker is a capital letter with a period, by at least two spaces.</p>
+<p>Pandoc also pays attention to the type of list marker used, and to the starting number, and both of these are preserved where possible in the output format. Thus, the following yields a list with numbers followed by a single parenthesis, starting with 9, and a sublist with lowercase roman numerals:</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Ninth</li>
+<li>Tenth</li>
+<li>Eleventh
+<ol style="list-style-type: lower-roman">
+<li>subone</li>
+<li>subtwo</li>
+<li>subthree</li>
+</ol></li>
+</ol>
+<p>Pandoc will start a new list each time a different type of list marker is used. So, the following will create three lists:</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Two</li>
+<li>Three</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>Four</li>
+</ol>
+<ul>
+<li>Five</li>
+</ul>
+<p>If default list markers are desired, use <code>#.</code>:</p>
+<ol>
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ol>
+<h3 id="definition-lists">Definition lists</h3>
+<p>Pandoc supports definition lists:</p>
+<dl>
+<dt>Term 1</dt>
+<dd><p>Definition 1</p>
+</dd>
+<dt>Term 2 with <em>inline markup</em></dt>
+<dd><p>Definition 2</p>
+<pre><code>{ some code, part of Definition 2 }
+
+Third paragraph of definition 2.</code></pre>
+</dd>
+</dl>
+<p>Each term must fit on one line, which may optionally be followed by a blank line, and must be followed by one or more definitions. A definition begins with a colon or tilde, which may be indented one or two spaces. The body of the definition (including the first line, aside from the colon or tilde) should be indented four spaces. A term may have multiple definitions, and each definition may consist of one or more block elements (paragraph, code block, list, etc.), each indented four spaces or one tab stop.</p>
+<p>If you leave space after the definition (as in the example above), the blocks of the definitions will be considered paragraphs. In some output formats, this will mean greater spacing between term/definition pairs. For a compact definition list, do not leave space between the definition and the next term:</p>
+<pre><code>Term 1
+  ~ Definition 1
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b</code></pre>
+<h3 id="numbered-example-lists">Numbered example lists</h3>
+<p>The special list marker <code>@</code> can be used for sequentially numbered examples. The first list item with a <code>@</code> marker will be numbered ‘1’, the next ‘2’, and so on, throughout the document. The numbered examples need not occur in a single list; each new list using <code>@</code> will take up where the last stopped. So, for example:</p>
+<pre><code>(@)  My first example will be numbered (1).
+(@)  My second example will be numbered (2).
+
+Explanation of examples.
+
+(@)  My third example will be numbered (3).</code></pre>
+<p>Numbered examples can be labeled and referred to elsewhere in the document:</p>
+<pre><code>(@good)  This is a good example.
+
+As (@good) illustrates, ...</code></pre>
+<p>The label can be any string of alphanumeric characters, underscores, or hyphens.</p>
+<h3 id="ending-a-list">Ending a list</h3>
+<p>What if you want to put an indented code block after a list?</p>
+<pre><code>-   item one
+-   item two
+
+    { my code block }</code></pre>
+<p>Trouble! Here pandoc (like other markdown implementations) will treat <code>{ my code block }</code> as the second paragraph of item two, and not as a code block.</p>
+<p>To “cut off” the list after item two, you can insert some non-indented content, like an HTML comment, which won’t produce visible output in any format:</p>
+<pre><code>-   item one
+-   item two
+
+&lt;!-- end of list --&gt;
+
+    { my code block }</code></pre>
+<p>You can use the same trick if you want two consecutive lists instead of one big list:</p>
+<pre><code>1.  one
+2.  two
+3.  three
+
+&lt;!-- --&gt;
+
+1.  uno
+2.  dos
+3.  tres</code></pre>
+<h3 id="horizontal-rules">Horizontal rules</h3>
+<p>A line containing a row of three or more <code>*</code>, <code>-</code>, or <code>_</code> characters (optionally separated by spaces) produces a horizontal rule:</p>
+<hr />
+<h3 id="title-block">Title block</h3>
+<p>If the file begins with a title block</p>
+<pre><code>% title
+% author(s) (separated by semicolons)
+% date</code></pre>
+<p>it will be parsed as bibliographic information, not regular text. The block may contain just a title, a title and an author, or all three elements. If you want to include an author but no title, or a title and a date but no author, you need a blank line:</p>
+<pre><code>%
+% Author</code></pre>
+<p>or</p>
+<pre><code>% My title
+%
+% June 15, 2006</code></pre>
+<p>If a document has multiple authors, the authors may be separated by semicolons.</p>
+<pre><code>% Author One; Author Two</code></pre>
+<p>All three metadata fields may contain standard inline formatting (italics, links, footnotes, etc.).</p>
+<h3 id="backslash-escapes">Backslash escapes</h3>
+<p>Except inside a code block or inline code, any punctuation or space character preceded by a backslash will be treated literally, even if it would normally indicate formatting.</p>
+<p>Thus, for example, if one writes</p>
+<pre><code>*\*hello\**</code></pre>
+<p>one will get</p>
+<pre><code>&lt;em&gt;*hello*&lt;/em&gt;</code></pre>
+<p>instead of</p>
+<pre><code>&lt;strong&gt;hello&lt;/strong&gt;</code></pre>
+<p>A backslash-escaped space is parsed as a nonbreaking space.</p>
+<p>A backslash-escaped newline (i.e. a backslash occurring at the end of a line) is parsed as a hard line break.</p>
+<p>Backslash escapes do not work in verbatim contexts.</p>
+<h3 id="smart-punctuation">Smart punctuation</h3>
+<p>Pandoc will produce typographically correct output, converting straight quotes to curly quotes, <code>---</code> to em-dashes, <code>--</code> to en-dashes, and <code>...</code> to ellipses. Nonbreaking spaces are inserted after certain abbreviations, such as “Mr.”</p>
+<h3 id="delimited-code-blocks">Delimited code blocks</h3>
+<p>In addition to standard indented code blocks, Pandoc supports <em>delimited</em> code blocks. These begin with a row of three or more tildes (<code>~</code>) or backticks (<code>`</code>) and end with a row of tildes or backticks that must be at least as long as the starting row. Everything between these lines is treated as code. No indentation is necessary:</p>
+<pre><code>~~~~~~~
+if (a &gt; 3) {
+  moveShip(5 * gravity, DOWN);
+}
+~~~~~~~</code></pre>
+<p>Like regular code blocks, delimited code blocks must be separated from surrounding text by blank lines.</p>
+<p>To specify the language of the code block:</p>
+<pre><code>```haskell
+qsort [] = []
+```</code></pre>
+<p>which yields:</p>
+<pre><code>&lt;pre id=&quot;mycode&quot; class=&quot;haskell&quot;&gt;
+  &lt;code&gt;
+  ...
+  &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+<h3 id="verbatim">Verbatim</h3>
+<p>To make a short span of text verbatim, put it inside backticks:</p>
+<pre><code>What is the difference between `&gt;&gt;=` and `&gt;&gt;`?</code></pre>
+<p>If the verbatim text includes a backtick, use double backticks:</p>
+<pre><code>Here is a literal backtick `` ` ``.</code></pre>
+<p>(The spaces after the opening backticks and before the closing backticks will be ignored.)</p>
+<p>The general rule is that a verbatim span starts with a string of consecutive backticks (optionally followed by a space) and ends with a string of the same number of backticks (optionally preceded by a space).</p>
+<p>Note that backslash-escapes (and other markdown constructs) do not work in verbatim contexts:</p>
+<pre><code>This is a backslash followed by an asterisk: `\*`.</code></pre>
+<h3 id="superscripts-and-subscripts">Superscripts and subscripts</h3>
+<p>Superscripts may be written by surrounding the superscripted text by <code>^</code> characters; subscripts may be written by surrounding the subscripted text by <code>~</code> characters.</p>
+<p>Thus, for example,</p>
+<pre><code>H~2~O is a liquid.  2^10^ is 1024.</code></pre>
+<p>If the superscripted or subscripted text contains spaces, these spaces must be escaped with backslashes. (This is to prevent accidental superscripting and subscripting through the ordinary use of <code>~</code> and <code>^</code>.)</p>
+<p>Thus, if you want the letter P with ‘a cat’ in subscripts, use <code>P~a\ cat~</code>, not <code>P~a cat~</code>.</p>
+<h3 id="math">Math</h3>
+<p>Anything between two <code>$</code> characters will be treated as TeX math. The opening <code>$</code> must have a character immediately to its right, while the closing <code>$</code> must have a character immediately to its left. Thus, <code>$20,000 and $30,000</code> won’t parse as math. If for some reason you need to enclose text in literal <code>$</code> characters, backslash-escape them and they won’t be treated as math delimiters.</p>
+<p>TeX math will be printed in all output formats. How it is rendered depends on the output format:</p>
+<ul>
+<li>HTML: with (mathjax)[http://www.mathjax.org/]</li>
+<li>Latex: with Latex</li>
+</ul>
+<h3 id="raw-html">Raw HTML</h3>
+<p>Markdown allows you to insert raw HTML anywhere in a document (except verbatim contexts, where <code>&lt;</code>, <code>&gt;</code>, and <code>&amp;</code> are interpreted literally).</p>
+<p>Standard markdown allows you to include HTML “blocks”: blocks of HTML between balanced tags that are separated from the surrounding text with blank lines, and start and end at the left margin.</p>
+<p>Within these blocks, everything is interpreted as HTML, not markdown; so (for example), <code>*</code> does not signify emphasis.</p>
+<p>Pandoc interprets material between HTML block tags as markdown. Thus, for example, Pandoc will turn</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;*one*&lt;/td&gt;
+        &lt;td&gt;[a link](http://google.com)&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<p>into</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;em&gt;one&lt;/em&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;a href=&quot;http://google.com&quot;&gt;a link&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<p>There is one exception to this rule: text between <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags is not interpreted as markdown.</p>
+<h3 id="raw-tex">Raw TeX</h3>
+<p>In addition to raw HTML, pandoc allows raw LaTeX, TeX, and ConTeXt to be included in a document. Inline TeX commands will be preserved and passed unchanged to the LaTeX and ConTeXt writers. Thus, for example, you can use LaTeX to include BibTeX citations:</p>
+<pre><code>This result was proved in \cite{jones.1967}.</code></pre>
+<p>Note that in LaTeX environments, like</p>
+<pre><code>\begin{tabular}{|l|l|}\hline
+Age &amp; Frequency \\ \hline
+18--25  &amp; 15 \\
+26--35  &amp; 33 \\
+36--45  &amp; 22 \\ \hline
+\end{tabular}</code></pre>
+<p>the material between the begin and end tags will be interpreted as raw LaTeX, not as markdown.</p>
+<p>Inline LaTeX is ignored in output formats other than Markdown, LaTeX, and ConTeXt.</p>
+<h3 id="latex-macros">LaTeX macros</h3>
+<p>For output formats other than LaTeX, pandoc will parse LaTeX <code>\newcommand</code> and <code>\renewcommand</code> definitions and apply the resulting macros to all LaTeX math. So, for example, the following will work in all output formats, not just LaTeX:</p>
+<pre><code>\newcommand{\tuple}[1]{\langle #1 \rangle}
+
+$\tuple{a, b, c}$</code></pre>
+<p>In LaTeX output, the <code>\newcommand</code> definition will simply be passed unchanged to the output.</p>
+<h3 id="links">Links</h3>
+<p>Markdown allows links to be specified in several ways.</p>
+<h4 id="automatic-links">Automatic links</h4>
+<p>If you enclose a URL or email address in pointy brackets, it will become a link:</p>
+<pre><code>&lt;http://google.com&gt;
+&lt;sam@green.eggs.ham&gt;</code></pre>
+<p>Pandoc will render autolinked URLs and email addresses as inline code.</p>
+<h4 id="inline-links">Inline links</h4>
+<p>An inline link consists of the link text in square brackets, followed by the URL in parentheses. (Optionally, the URL can be followed by a link title, in quotes.)</p>
+<pre><code>This is an [inline link](/url), and here&#39;s [one with
+a title](http://fsf.org &quot;click here for a good time!&quot;).</code></pre>
+<p>There can be no space between the bracketed part and the parenthesized part. The link text can contain formatting (such as emphasis), but the title cannot.</p>
+<h3 id="reference-links">Reference links</h3>
+<p>An <em>explicit</em> reference link has two parts, the link itself and the link definition, which may occur elsewhere in the document (either before or after the link).</p>
+<p>The link consists of link text in square brackets, followed by a label in square brackets. (There can be space between the two.) The link definition must begin at the left margin or indented no more than three spaces. It consists of the bracketed label, followed by a colon and a space, followed by the URL, and optionally (after a space) a link title either in quotes or in parentheses.</p>
+<p>Here are some examples:</p>
+<pre><code>[my label 1]: /foo/bar.html  &quot;My title, optional&quot;
+[my label 2]: /foo
+[my label 3]: http://fsf.org (The free software foundation)
+[my label 4]: /bar#special  &#39;A title in single quotes&#39;</code></pre>
+<p>The URL may optionally be surrounded by angle brackets:</p>
+<pre><code>[my label 5]: &lt;http://foo.bar.baz&gt;</code></pre>
+<p>The title may go on the next line:</p>
+<pre><code>[my label 3]: http://fsf.org
+  &quot;The free software foundation&quot;</code></pre>
+<p>Note that link labels are not case sensitive. So, this will work:</p>
+<pre><code>Here is [my link][FOO]
+
+[Foo]: /bar/baz</code></pre>
+<p>In an <em>implicit</em> reference link, the second pair of brackets is empty, or omitted entirely:</p>
+<pre><code>See [my website][], or [my website].
+
+[my website]: http://foo.bar.baz</code></pre>
+<h3 id="internal-links">Internal links</h3>
+<p>To link to another section of the same document, use the automatically generated identifier (see <a href="#header-identifiers-in-html-latex-and-context">Header identifiers in HTML, LaTeX, and ConTeXt</a>, below). For example:</p>
+<pre><code>See the [Introduction](#introduction).</code></pre>
+<p>or</p>
+<pre><code>See the [Introduction].
+
+[Introduction]: #introduction</code></pre>
+<p>Internal links are currently supported for HTML formats (including HTML slide shows and EPUB), LaTeX, and ConTeXt.</p>
+<h3 id="images">Images</h3>
+<p>A link immediately preceded by a <code>!</code> will be treated as an image. The link text will be used as the image’s alt text:</p>
+<pre><code>![la lune](lalune.jpg &quot;Voyage to the moon&quot;)
+
+![movie reel]
+
+[movie reel]: movie.gif</code></pre>
+<h3 id="pictures-with-captions">Pictures with captions</h3>
+<p>An image occurring by itself in a paragraph will be rendered as a figure with a caption.[^5] (In LaTeX, a figure environment will be used; in HTML, the image will be placed in a <code>&lt;div&gt;</code> with class <code>.figure</code>, together with a caption in a <code>p</code> with class <code>caption</code>.) The image’s alt text will be used as the caption.</p>
+<pre><code>![This is the caption](/url/of/image.png)</code></pre>
+<p>If you just want a regular inline image, just make sure it is not the only thing in the paragraph. One way to do this is to insert a nonbreaking space after the image:</p>
+<pre><code>![This image won&#39;t be a figure](/url/of/image.png)\</code></pre>
+<h3 id="footnotes">Footnotes</h3>
+<p>Pandoc’s markdown allows footnotes, using the following syntax:</p>
+<pre><code>Here is a footnote reference,[^1] and another.[^longnote]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here&#39;s one with multiple blocks.
+
+    Subsequent paragraphs are indented to show that they
+belong to the previous footnote.
+
+        { some.code }
+
+    The whole paragraph can be indented, or just the first
+    line.  In this way, multi-paragraph footnotes work like
+    multi-paragraph list items.
+
+This paragraph won&#39;t be part of the note, because it
+isn&#39;t indented.</code></pre>
+<p>The identifiers in footnote references may not contain spaces, tabs, or newlines. These identifiers are used only to correlate the footnote reference with the note itself; in the output, footnotes will be numbered sequentially.</p>
+<p>The footnotes themselves need not be placed at the end of the document. They may appear anywhere except inside other block elements (lists, block quotes, tables, etc.).</p>
+<p>Inline footnotes are also allowed (though, unlike regular notes, they cannot contain multiple paragraphs).</p>
+<p>The syntax is as follows:</p>
+<pre><code>Here is an inline note.^[Inlines notes are easier to write, since you don&#39;t have to pick an identifier and move down to type the note.]</code></pre>
+<p>Inline and regular footnotes may be mixed freely.</p>
+<h2 id="authors-of-this-documentation">Authors of this documentation</h2>
+<p>© 2006-2012 John MacFarlane (jgm at berkeley dot edu). Released under the [GPL], version 2 or greater. This software carries no warranty of any kind. (See COPYRIGHT for full copyright and warranty notices.) Other contributors include Recai Oktaş, Paulo Tanimoto, Peter Wang, Andrea Rossato, Eric Kow, infinity0x, Luke Plant, shreevatsa.public, Puneeth Chaganti, Paul Rivier, rodja.trappe, Bradley Kuhn, thsutton, Nathan Gass, Jonathan Daugherty, Jérémy Bobbio, Justin Bogner, qerub, Christopher Sawicki, Kelsey Hightower, Masayoshi Takahashi, Antoine Latter, Ralf Stephan, Eric Seidel, B. Scott Michel, Gavin Beatty, Sergey Astanin.</p>
+<p>© Reworked for UberWriter: Wolf Vollprecht</p>
+</body>
+</html>

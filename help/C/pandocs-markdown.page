@@ -1,0 +1,128 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="topic1">
+
+<info>
+  <link type="guide" xref="index#contents"/>
+  <credit type="author">
+    <name>Wolf Vollprecht</name>
+    <email>w.vollprecht@gmail.com</email>
+    <years>2012</years>
+  </credit>
+  <desc>Introducing Pandoc's Markdown</desc>
+</info>
+
+<title>Pandoc's Markdown</title>
+<h1 id="markdown-tutorial-for-uberwriter">Markdown Tutorial for UberWriter</h1>
+<p>I will try to give a short impressions on how I use markdown/pandocs capabilities to greatly reduce the time spent on formatting anything – from websites to PDF Documents.</p>
+<p>You can find a much more exhaustive documentation for all features pandoc offers on pandoc’s help page: <a href="http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown">Link</a></p>
+<h3 id="headers">Headers</h3>
+<p>There are two styles for headers. One looks like this:</p>
+<h1 id="header-level-one">Header Level One</h1>
+<h2 id="header-level-two">Header Level Two</h2>
+<pre><code>        ...</code></pre>
+<h6 id="header-level-six">Header Level Six</h6>
+<p>And another one, that has only »two« levels:</p>
+<h1 id="header-one">Header One</h1>
+<h2 id="header-two">Header Two</h2>
+<p>You can use both styles, whichever you prefer. Additionally, pandoc requires you to have a blank line before a header.</p>
+<h3 id="paragraphs">Paragraphs</h3>
+<p>A paragraph is one or more lines of text followed by one or more blank line. Newlines are treated as spaces. If you need a hard line break, put two or more spaces at the end of a line, or type a backslash at the end of a line.</p>
+<h3 id="block-quotations">Block quotations</h3>
+<p>Block quotations in markdown use the same convention as in emails. A generic block quote looks like this:</p>
+<blockquote>
+<p>This is a block quote. This paragraph has two lines.</p>
+<blockquote>
+<p>And block quotes can be nested, as well.</p>
+</blockquote>
+</blockquote>
+<p>Note the empty line you need to leave before the second level blockquote.</p>
+<h3 id="code-blocks">Code blocks</h3>
+<p>There are two ways of creating a code block. You can indent your code four spaces or one tab.</p>
+<pre><code>Code</code></pre>
+<p>Or use a fenced code block:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">a = <span class="kw">function</span>() {
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>Which works as well. You can identify the language of your code block to add syntax highlighting to the resulting document.</p>
+<p>Short code examples can be surrounded by backticks to make them appear verbatim: <code>this.code() == true</code>.</p>
+<h3 id="lists">Lists</h3>
+<h4 id="bullet-list">Bullet List:</h4>
+<ul>
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ul>
+<h4 id="nested-lists">Nested Lists:</h4>
+<ul>
+<li>fruits
+<ul>
+<li>pears</li>
+<li>peaches</li>
+</ul></li>
+<li>vegetables
+<ul>
+<li>broccoli</li>
+<li>ubuntu
+<ul>
+<li>mint</li>
+<li>lubuntu</li>
+<li>kubuntu</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="numbered-lists">Numbered Lists:</h4>
+<ol style="list-style-type: decimal">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+<h3 id="title-blocks">Title blocks</h3>
+<p>To give your document some meta-information and a nice title, you can use title blocks at the top of your document:</p>
+<pre><code>% title
+% author(s) (separated by semicolons)
+% date</code></pre>
+<h3 id="inline-formatting">Inline formatting</h3>
+<p>Emphasizing some text is done by surrounding it with *s:</p>
+<p>This is <em>emphasized with asterisks</em>, and this will be a <strong>bold text</strong>. And even more <strong><em>krass</em></strong>. And if you want to erase something: <del>completely gone</del> (sorrounded by ~)</p>
+<h3 id="horizontal-rules">Horizontal Rules</h3>
+<p>Horizontal rules are easily created by putting three or more <code>***</code> or <code>---</code> on a line:</p>
+<hr />
+<h3 id="super--and-subscripts">Super- and subscripts</h3>
+<p>Superscripts may be written by surrounding the superscripted text by ^ characters; subscripts may be written by surrounding the subscripted text by ~ characters. Thus, for example,</p>
+<p>H<sub>2</sub>O is a liquid. 2<sup>10</sup> is 1024.</p>
+<h3 id="math">Math</h3>
+<p>There are two ways to generate math type setting in pandoc: Inline math looks like this:</p>
+<p>This is inline <span class="math">1 + 2 = 3</span> math.</p>
+<p>Note that there are no spaces allowed next to the dollar signs.</p>
+<p>And there is also another format:</p>
+<p>This is a beautiful equation: <br /><span class="math">∣∑ <sub><em>i</em> = 1</sub><sup><em>n</em></sup><em>x</em><sub><em>i</em></sub><em>ȳ</em><sub><em>i</em></sub>∣<sup>2</sup> ≤ ∑ <sub><em>j</em> = 1</sub><sup><em>n</em></sup>∣<em>x</em><sub><em>j</em></sub>∣<sup>2</sup>∑ <sub><em>k</em> = 1</sub><sup><em>n</em></sup>∣<em>y</em><sub><em>k</em></sub>∣<sup>2</sup></span><br /> And it stands on it’s own.</p>
+<h3 id="links">Links</h3>
+<p>Enclosing an URL in pointy brackets transforms them into links:</p>
+<p><a href="http://johnmacfarlane.net/pandoc"><code class="url">http://johnmacfarlane.net/pandoc</code></a> <script type="text/javascript">
+<!--
+h='&#x6d;&#x75;&#x73;&#116;&#x65;&#114;&#x6d;&#x61;&#110;&#110;&#46;&#100;&#x65;';a='&#64;';n='&#x6d;&#x61;&#120;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x6d;&#x61;&#120;&#32;&#x61;&#116;&#32;&#x6d;&#x75;&#x73;&#116;&#x65;&#114;&#x6d;&#x61;&#110;&#110;&#32;&#100;&#x6f;&#116;&#32;&#100;&#x65;</noscript></p>
+<h4 id="inline-links">Inline Links:</h4>
+<p>This is an <a href="/url">inline link</a>, and here’s <a href="http://fsf.org" title="click here for a good time!">one with a title</a>.</p>
+<h3 id="images">Images</h3>
+<div class="figure">
+<img src="/url/of/image.png" alt="This is the caption" /><p class="caption">This is the caption</p>
+</div>
+<h3 id="footnotes">Footnotes</h3>
+<p>An example for footnotes (you can place the referenced footnote wherever you want, e.g. at the bottom of your document):</p>
+<p>Here is a footnote reference,<sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup> and another.<sup><a href="#fn2" class="footnoteRef" id="fnref2">2</a></sup></p>
+<p>There is also a different format for inline footnotes, that are easier to write:</p>
+<p>Here is an inline note.<sup><a href="#fn3" class="footnoteRef" id="fnref3">3</a></sup></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Here is the footnote.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Here’s one with multiple blocks. Subsequent paragraphs are indented to show that they belong to the previous footnote. The whole paragraph can be indented, or just the first line. In this way, multi-paragraph footnotes work like multi-paragraph list items.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Inlines notes are easier to write, since you don’t have to pick an identifier and move down to type the note.<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+</page>

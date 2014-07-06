@@ -1,0 +1,96 @@
+#UberwriterWindow {
+    background: #333;
+}
+#UberwriterWindow GtkTextView {
+    border: none;
+    -GtkWidget-cursor-color: #FA5B0F;
+    -GtkWidget-cursor-aspect-ratio: 0.05;
+    background-color: transparent;
+    color: #F3F3F3;
+}
+#UberwriterWindow GtkTextView:selected {
+    background-color: #888;
+    color: #DDD;
+}
+#fullscreen_toggle:hover, 
+#fullscreen_toggle:active:hover,
+#focus_toggle:hover,
+#focus_toggle:active:hover {
+    color: #999;
+    background-color: #222;
+    background-image: none;
+    text-shadow: none;
+    -unico-border-gradient: none;
+    -unico-glow-radius: 0;
+    -unico-glow-color: #000;
+    -unico-outer-stroke-color: #000;
+    -unico-outer-stroke-gradient: none;
+    -unico-outer-stroke-width: 0; 
+    -unico-inner-stroke-gradient: none;
+    -unico-inner-stroke-width: 1px;
+    -unico-border-gradient: none;
+    -unico-focus-outer-stroke-color: #000;
+    -unico-outer-stroke-width: 0 0 0 0;
+    -GtkButton-default-border: 0;
+    -GtkButton-image-spacing: 0;
+    -GtkButton-interior-focus: false;
+    -unico-focus-border-color: #000;
+    -unico-focus-outer-stroke-color: #000;
+    -unico-inner-stroke-color: #000;
+    -unico-inner-stroke-width: 0;
+
+}
+#fullscreen_toggle, 
+#focus_toggle {
+    border-style: none;
+    -unico-border-gradient: none;
+    -GtkButton-images: true;
+    transition: 0s ease-in-out;
+    color: #666;
+    padding: 3px 5px;
+    text-shadow: none;    
+    -GtkButton-child-displacement-y: 0px;
+    -GtkButton-child-displacement-x: 0;            
+    -GtkButton-default-border: 0;
+    -GtkButton-image-spacing: 5px;
+    -GtkButton-interior-focus: false;
+    -GtkButton-inner-border: 0;         
+
+}
+#fullscreen_toggle:active, 
+#focus_toggle:active {
+    color: #666;
+    box-shadow: inset 0 0 3 #000;
+    background-color: #111;
+    background-image: none;
+    border: 0px solid #000;
+    border-color: #333;
+    -unico-border-gradient: none;
+    -unico-glow-radius: 0;
+    -unico-glow-color: #000;
+    -unico-outer-stroke-color: #000;
+    -unico-outer-stroke-gradient: none;
+    -unico-outer-stroke-width: 0; 
+    -unico-inner-stroke-gradient: none;
+    -unico-inner-stroke-width: 1px;
+    -unico-border-gradient: none;
+    -unico-focus-outer-stroke-color: #000;
+    -unico-outer-stroke-width: 0 0 0 0;
+    -GtkButton-default-border: 0;
+    -GtkButton-image-spacing: 0;
+    -GtkButton-interior-focus: false;
+    -unico-focus-border-color: #000;
+    -unico-focus-outer-stroke-color: #000;
+    -unico-inner-stroke-color: #000;
+    -unico-inner-stroke-width: 1;
+
+}
+
+.separator {
+    border-color: #444;
+    border-style: solid;
+
+    -unico-border-gradient: none;
+    -unico-inner-stroke-color: alpha (#444, 0.6);
+    -unico-inner-stroke-gradient: none;
+}

@@ -1,0 +1,82 @@
+/************************************
+	
+	uberwriter.css
+	A simple and clean stylesheet
+	for pure text and stuff
+
+************************************/
+
+body {
+	font-family: Georgia, Times, serif;
+	font-size: 1.em;
+
+	color: #333;
+        
+    width: 550px;
+    margin: 0 auto;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 2em;
+}
+
+h1 {
+	margin-bottom: 2em;
+}
+blockquote {
+    border-left: 5px solid #666;
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+p, li {
+    line-height: 1.8em;
+    margin-top: 10px;
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: none;
+    width: 80%;
+    border-top: 1px solid #222;
+}
+   
+ol, ul {
+    margin-left: 0px;
+    padding-left: 0px;
+    li {
+        margin-left: 0;
+        
+	}
+}
+
+li ol, li ul{ 
+    margin-left: 30px;
+}
+
+.title {
+	margin-bottom: 0px;
+}
+.author, .date {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	display: inline-block;
+	color: #777;
+	margin-bottom: 30px;
+}
+
+.author::after {
+	content: ' ,';
+}
+.figure {
+	display: inline-block;
+}
+img {
+	max-width: 600px;
+}
+.caption {
+	text-align: center;
+	background: #F6F6F6;
+}

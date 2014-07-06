@@ -1,0 +1,9 @@
+<glade-catalog name="uberwriter_advanced_export_dialog" domain="glade-3" 
+               depends="gtk+" version="1.0">
+  <glade-widget-classes>
+    <glade-widget-class title="Advanced Export Dialog" name="UberwriterAdvancedExportDialog" 
+                        generic-name="uberwriter_advanced_export_dialog" parent="GtkDialog"
+                        icon-name="widget-gtk-dialog"/>
+  </glade-widget-classes>
+
+</glade-catalog>
