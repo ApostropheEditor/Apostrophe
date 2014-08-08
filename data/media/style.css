@@ -32,8 +32,8 @@
 }
 
 #UberwriterWindow GtkTextView:selected {
-  background-color: @selected_bg_color;
-  color: @selected_fg_color;
+  background-color: #4D9FCE;
+  color: #FFF;
 }
 
 #UberwriterWindow GtkPaned, #UberwriterWindow GtkScrolledWindow,
@@ -88,7 +88,6 @@
 
 #status_bar_box GtkButton:hover,
 #status_bar_box GtkButton:active:hover {
-
   transition: 0s ease-in;
   color: #333;
   background: #EEE;
@@ -136,8 +135,4 @@
 #UberwriterWindow GtkTreeView {
   color: #333;
   font-size: 10;
-}
-
-#UberwriterWindow GtkBox {
-  background: #FFF;
 }

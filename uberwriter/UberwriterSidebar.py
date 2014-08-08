@@ -66,7 +66,7 @@ class UberwriterSidebar():
         self.parentwindow = parentwindow
         self.paned_window = parentwindow.paned_window
         self.sidebar_box  = parentwindow.sidebar_box
-
+        self.sidebar_open = True
         #         (GtkBox *box,
         # GtkWidget *child,
         # gboolean expand,
@@ -84,7 +84,7 @@ class UberwriterSidebar():
         self.sidebar_scrolledwindow.set_vexpand(True)
 
         self.store = Gtk.TreeStore(str, str)
-        self.active_shelf = Shelve("testshelve", ["/home/wolf/Documents/Texte"])
+        self.active_shelf = Shelve("testshelve", ["/home/wolf/Documents"])
         self.active_shelf.get_tree(self.store)
 
         self.treeview = Gtk.TreeView(self.store)
@@ -165,6 +165,7 @@ class UberwriterSidebar():
         """
         return self.treeview
 
+
     def context_menu_open_file(self, widget, data=None):
         """
         Open selected file with xdg-open
@@ -172,5 +173,20 @@ class UberwriterSidebar():
         selected_file = widget.filename
         subprocess.call(["xdg-open", selected_file])
 
+    def toggle_sidebar(self):
+        if self.sidebar_open:
+            self.close_sidebar()
+        else:
+            self.open_sidebar()
+
+
+    def open_sidebar(self):
+        # self.paned_window.set_property('min-position', 0)
+        self.paned_window.set_position(200)
+        self.sidebar_open = True
+
+
     def close_sidebar(self):
-        pass
+        # self.paned_window.set_property('min-position', 0)
+        self.paned_window.set_position(0)
+        self.sidebar_open = False

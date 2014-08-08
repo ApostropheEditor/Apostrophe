@@ -27,7 +27,7 @@ locale.textdomain('uberwriter')
 
 import mimetypes
 
-from gi.repository import Gtk, Gdk, GObject, WebKit  # pylint: disable=E0611
+from gi.repository import Gtk, Gdk, GObject, WebKit, Gio  # pylint: disable=E0611
 from gi.repository import Pango  # pylint: disable=E0611
 
 import cairo
@@ -50,6 +50,7 @@ print('This file is imported')
 # Spellcheck
 
 import locale
+
 try:
     from gtkspellcheck import SpellChecker
 except ImportError:
@@ -282,7 +283,7 @@ class UberwriterWindow(Window):
         if self.did_change == False:
             self.did_change = True
             title = self.get_title()
-            self.set_title("* " + title)
+            self.set_headerbar_title("* " + title)
 
         self.MarkupBuffer.markup_buffer(1)
         self.textchange = True
@@ -386,19 +387,19 @@ class UberwriterWindow(Window):
 
         if(w_width < 900):
             self.MarkupBuffer.set_multiplier(8)
-            pango_font = Pango.FontDescription("Ubuntu Mono 12px")
+            pango_font = Pango.FontDescription("Inconsolata 12px")
             self.TextEditor.modify_font(pango_font)
             lm = (widget.get_size()[0] - 600) / 2
 
         elif(w_width < 1400):
             self.MarkupBuffer.set_multiplier(10)
-            pango_font = Pango.FontDescription("Ubuntu Mono 15px")
+            pango_font = Pango.FontDescription("Inconsolata 15px")
             self.TextEditor.modify_font(pango_font)
             lm = (widget.get_size()[0] - 700) / 2
 
         else:
             self.MarkupBuffer.set_multiplier(13)
-            pango_font = Pango.FontDescription("Ubuntu Mono 17px")
+            pango_font = Pango.FontDescription("Inconsolata 17px")
             self.TextEditor.modify_font(pango_font)
             lm = (widget.get_size()[0] - 1000) / 2
 
@@ -425,7 +426,7 @@ class UberwriterWindow(Window):
             if self.did_change:
                 self.did_change = False
                 title = self.get_title()
-                self.set_title(title[2:])
+                self.set_headerbar_title(title[2:])
             return Gtk.ResponseType.OK
 
         else:
@@ -461,7 +462,7 @@ class UberwriterWindow(Window):
                 f.close()
                
                 self.filename = filename
-                self.set_title(os.path.basename(filename) + self.title_end)
+                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
                
                 self.did_change = False
                 filechooser.destroy()
@@ -499,7 +500,7 @@ class UberwriterWindow(Window):
             f.close()
            
             self.filename = filename
-            self.set_title(os.path.basename(filename) + self.title_end)
+            self.set_headerbar_title(os.path.basename(filename) + self.title_end)
 
             try:
                 self.recent_manager.add_item(filename)
@@ -579,7 +580,7 @@ class UberwriterWindow(Window):
                 dialog = Gtk.MessageDialog(self,
                     Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                     Gtk.MessageType.INFO,
-                    None,
+                    Gtk.ButtonsType.NONE,
                     _("You can not export to PDF.")
                 )
                 dialog.format_secondary_markup(_("Please install <a href=\"apt:texlive\">texlive</a> from the software center."))
@@ -605,6 +606,9 @@ class UberwriterWindow(Window):
     def open_document(self, widget):
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
+
+        if self.focusmode:
+            self.focusmode_button.set_active(False)
 
         filefilter = Gtk.FileFilter.new()
         filefilter.add_mime_type('text/x-markdown')
@@ -633,7 +637,7 @@ class UberwriterWindow(Window):
             dialog = Gtk.MessageDialog(self,
                 Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.WARNING,
-                None,
+                Gtk.ButtonsType.NONE,
                 _("You have not saved your changes.")
                 )
             dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
@@ -667,13 +671,16 @@ class UberwriterWindow(Window):
 
             self.did_change = False
             self.filename = None
-            self.set_title("New File" + self.title_end)
+            self.set_headerbar_title("New File" + self.title_end)
 
     def menu_activate_focusmode(self, widget):
         self.focusmode_button.emit('activate')
 
     def menu_activate_fullscreen(self, widget):
         self.fullscreen_button.emit('activate')
+
+    def menu_toggle_sidebar(self, widget):
+        self.sidebar.toggle_sidebar()
 
     def menu_activate_preview(self, widget):
         self.preview_button.emit('activate')
@@ -698,7 +705,7 @@ class UberwriterWindow(Window):
                 dialog = Gtk.MessageDialog(self,
                     Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                     Gtk.MessageType.INFO,
-                    None,
+                    Gtk.ButtonsType.NONE,
                     _("You can not enable the Spell Checker.")
                 )
                 dialog.format_secondary_text(_("Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."))
@@ -776,10 +783,10 @@ class UberwriterWindow(Window):
 
             # Making the background white
 
-            white_background = helpers.get_media_path('white.png')
-            surface = cairo.ImageSurface.create_from_png(white_background)
-            self.background_pattern = cairo.SurfacePattern(surface)
-            self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
+            # white_background = helpers.get_media_path('white.png')
+            # surface = cairo.ImageSurface.create_from_png(white_background)
+            # self.background_pattern = cairo.SurfacePattern(surface)
+            # self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
             # This saying that all links will be opened in default browser, but local files are opened in appropriate apps:
             self.webview.connect("navigation-requested", self.on_click_link)
         else:
@@ -787,9 +794,9 @@ class UberwriterWindow(Window):
             self.webview.destroy()
             self.ScrolledWindow.add(self.TextEditor)
             self.TextEditor.show()
-            surface = cairo.ImageSurface.create_from_png(self.background_image)
-            self.background_pattern = cairo.SurfacePattern(surface)
-            self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
+            # surface = cairo.ImageSurface.create_from_png(self.background_image)
+            # self.background_pattern = cairo.SurfacePattern(surface)
+            # self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
         self.queue_draw()
 
     def on_click_link(self, view, frame, req, data=None):
@@ -807,7 +814,7 @@ class UberwriterWindow(Window):
             css_data = css.read()
             css.close()
             self.style_provider.load_from_data(css_data)
-            self.background_image = helpers.get_media_path('bg_dark.png')
+            # self.background_image = helpers.get_media_path('bg_dark.png')
             self.MarkupBuffer.dark_mode(True)
 
         else:
@@ -816,12 +823,12 @@ class UberwriterWindow(Window):
             css_data = css.read()
             css.close()
             self.style_provider.load_from_data(css_data)
-            self.background_image = helpers.get_media_path('bg_light.png')
+            # self.background_image = helpers.get_media_path('bg_light.png')
             self.MarkupBuffer.dark_mode(False)
 
-        surface = cairo.ImageSurface.create_from_png(self.background_image)
-        self.background_pattern = cairo.SurfacePattern(surface)
-        self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
+        # surface = cairo.ImageSurface.create_from_png(self.background_image)
+        # self.background_pattern = cairo.SurfacePattern(surface)
+        # self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
 
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), self.style_provider,
@@ -843,7 +850,7 @@ class UberwriterWindow(Window):
                 self.TextBuffer.set_text(f.read())
                 f.close()
                 self.MarkupBuffer.markup_buffer(0)
-                self.set_title(os.path.basename(filename) + self.title_end)
+                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
                 self.TextEditor.undo_stack = []
                 self.TextEditor.redo_stack = []
                 # ei = self.TextBuffer.get_end_iter()
@@ -859,9 +866,9 @@ class UberwriterWindow(Window):
         else:
             logger.warning("No File arg")
 
-    def draw_bg(self, widget, context):
-        context.set_source(self.background_pattern)
-        context.paint()
+    # def draw_bg(self, widget, context):
+    #     context.set_source(self.background_pattern)
+    #     context.paint()
 
     # Help Menu
     def open_launchpad_translation(self, widget, data=None):
@@ -958,8 +965,24 @@ class UberwriterWindow(Window):
 
         self.set_name('UberwriterWindow')
 
+        self.use_headerbar = False
+
+        if self.use_headerbar == True:
+            self.hb = Gtk.HeaderBar()
+            self.hb.props.show_close_button = True
+            self.set_titlebar(self.hb)
+            self.hb.show()
+
+            bbtn = Gtk.MenuButton()
+            # icon = Gio.ThemedIcon(name="mail-send-receive-symbolic")
+            # image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+            # bbtn.add(image)
+            bbtn.set_popup(self.builder.get_object("menu1"))
+            self.hb.pack_start(bbtn)
+            self.hb.show_all()
+
         self.title_end = "  –  UberWriter"
-        self.set_title("New File" + self.title_end)
+        self.set_headerbar_title("New File" + self.title_end)
 
         # Drag and drop
         self.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
@@ -1000,7 +1023,6 @@ class UberwriterWindow(Window):
 
         # Setup light background
 
-
         self.TextEditor = TextEditor()
 
         base_leftmargin = 100
@@ -1016,16 +1038,17 @@ class UberwriterWindow(Window):
 
         # Draw background
         self.background_image = helpers.get_media_path('bg_light.png')
-        self.ScrolledWindow.connect('draw', self.draw_bg)
+        # self.ScrolledWindow.connect('draw', self.draw_bg)
         surface = cairo.ImageSurface.create_from_png(self.background_image)
         self.background_pattern = cairo.SurfacePattern(surface)
         self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
 
 
+        # self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(1,1,1))
+
         self.PreviewPane = builder.get_object('preview_scrolledwindow')
 
         pangoFont = Pango.FontDescription("Ubuntu Mono 15px")
-
 
         # self.scw = builder.get_object('scrolledwindow1')
         # self.scw.add(self.sidebar.get_treeview())
@@ -1136,14 +1159,13 @@ class UberwriterWindow(Window):
         self.paned_window = builder.get_object("main_pained")
         self.sidebar_box = builder.get_object("sidebar_box")
         self.sidebar = UberwriterSidebar(self)
-
+        self.sidebar_box.hide()
         ###
         #   Search and replace initialization
         #   Same interface as Sidebar ;)
         ###
 
         self.searchreplace = UberwriterSearchAndReplace(self)
-
 
         # Window resize
         self.connect("configure-event", self.window_resize)
@@ -1181,8 +1203,13 @@ class UberwriterWindow(Window):
         self.save_settings()
         Gtk.main_quit()
 
-    def save_settings(self):
+    def set_headerbar_title(self, title):
+        if self.use_headerbar:
+            self.hb.props.title = title
+        else:
+            self.set_title(title)
 
+    def save_settings(self):
         if not os.path.exists(CONFIG_PATH):
             try:
                 os.makedirs(CONFIG_PATH)

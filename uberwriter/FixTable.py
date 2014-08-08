@@ -3,7 +3,6 @@ from gi.repository import Gtk
 
 import logging
 logger = logging.getLogger('uberwriter')
-logger.critical("RASDAOD JKJD ASJD SJ")
 
 class FixTable():
 

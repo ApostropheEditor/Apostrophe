@@ -39,8 +39,8 @@
     </mime-types>
   </object>
   <object class="UberwriterWindow" id="uberwriter_window">
-    <property name="app_paintable">True</property>
-    <property name="can_focus">False</property>
+    <property name="app_paintable">False</property>
+    <property name="can_focus">True</property>
     <property name="title">UberWriter</property>
     <property name="default_width">800</property>
     <property name="default_height">500</property>
@@ -303,6 +303,15 @@
                         <property name="label">Fullscreen</property>
                         <accelerator key="F11" signal="activate"/>
                         <signal name="activate" handler="menu_activate_fullscreen" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mnu_sidebar">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label">Sidebar</property>
+                        <accelerator key="F12" signal="activate"/>
+                        <signal name="activate" handler="menu_toggle_sidebar" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -760,6 +769,7 @@
             <property name="visible">True</property>
             <property name="app_paintable">True</property>
             <property name="can_focus">True</property>
+            <property name="expand">True</property>
             <child>
               <object class="GtkBox" id="sidebar_box">
                 <property name="width_request">200</property>
