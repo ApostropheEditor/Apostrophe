@@ -7,23 +7,26 @@
 ************************************/
 
 body {
-	font-family: Georgia, Times, serif;
+	font-family: 'Alegreya Sans', Times, serif;
 	font-size: 1.em;
-
 	color: #333;
-        
+    font-weight: 400;
     width: 550px;
     margin: 0 auto;
 }
 
 
 h1, h2, h3, h4, h5, h6 {
-	margin-top: 2em;
+	margin-top: 1em;
+	font-family: 'Alegreya Sans', Times, serif;
+	font-weight: 600;
 }
 
 h1 {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
+
+
 blockquote {
     border-left: 5px solid #666;
     padding-left: 20px;

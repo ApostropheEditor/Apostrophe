@@ -84,7 +84,7 @@ class UberwriterSidebar():
         self.sidebar_scrolledwindow.set_vexpand(True)
 
         self.store = Gtk.TreeStore(str, str)
-        self.active_shelf = Shelve("testshelve", ["/home/wolf/Documents"])
+        self.active_shelf = Shelve("testshelve", ["/home/wolf/Documents/asd/"])
         self.active_shelf.get_tree(self.store)
 
         self.treeview = Gtk.TreeView(self.store)

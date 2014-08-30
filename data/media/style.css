@@ -4,29 +4,64 @@
   inclusion in templates
 */
 
-#UberwriterWindow {
-  background: #FFF;
+@binding-set window-bindings {
+  bind "<ctl>n" { "new-file" () };
+  bind "<ctl>o" { "open-file" () };
+  bind "<ctl>s" { "save-file" () };
+  bind "<ctl><shift>s" { "save-file-as" () };
+  bind "<ctl>d" { "toggle-focusmode" () };
+  bind "<ctl>p" { "toggle-preview" () };
+  bind "<ctl>w" { "close-window" () };
+  bind "F11" { "toggle-fullscreen" () };
 }
+
+@binding-set editor-bindings {
+  bind "<ctl>i" { "insert-italic" () };
+  bind "<ctl>b" { "insert-bold" () };
+  bind "<ctl>r" { "insert-hrule" () };
+  bind "<ctl>u" { "insert-ulistitem" () };
+  bind "<ctl>h" { "insert-heading" () };
+  bind "<ctl>z" { "undo" () };
+  bind "<ctl>y" { "redo" () };
+  bind "<ctl><shift>z" { "redo" () };
+
+
+}
+
+GtkRevealer {
+}
+
+#UberwriterWindow {
+  gtk-key-bindings: window-bindings;
+  background: #FFF;
+  border-radius: 7px 7px 5px 5px;
+}
+
+.scrollbars-junction,
+.scrollbar.trough {
+    background-image: none;
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    border-image: none;
+}
+
 #UberwriterWindow GtkTextView {
   border: none;
-  -GtkWidget-cursor-color: shade(@selected_bg_color, 0.9);
-  -GtkWidget-cursor-aspect-ratio: 0.05;
-  background: transparent ;
   color: #222;
+  -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
+  -GtkWidget-cursor-aspect-ratio: 0.1;
+  gtk-key-bindings: editor-bindings;
 }
 
 #UberwriterWindow GtkTextView GtkButton {
   margin: 0;
   padding: 0;
-  background: #CCC;
-}
-
-#UberwriterWindow GtkScrolledWindow {
-  background: white;
+  /*background: #CCC;*/
 }
 
 #UberwriterWindow GtkToolbar {
-  background: transparent;
+  /*background: transparent;*/
   border: none;
   padding: 0;
 }
@@ -36,20 +71,8 @@
   color: #FFF;
 }
 
-#UberwriterWindow GtkPaned, #UberwriterWindow GtkScrolledWindow,
-#UberwriterWindow GtkScrolledWindow:backdrop {
-  background-color: white;
-  background-clip: initial;
-  background-origin: initial;
-  background-size: initial;
-  background-position: initial;
-  background-repeat: initial;
-  background-image: initial;
-}
-
 #status_bar_box GtkLabel {
   color: #666;
-  transition: 500ms ease-in-out;
 }
 
 #status_bar_box GtkButton {
@@ -81,9 +104,7 @@
   -GtkButton-image-spacing: 5px;
   -GtkButton-interior-focus: false;
   -GtkButton-inner-border: 0;
-  
   transition: 500ms ease-in;
-
 }
 
 #status_bar_box GtkButton:hover,
@@ -101,26 +122,9 @@
   box-shadow: 0 0 2px rgba(0,0,0,0.4)
 }
 
-#status_bar_box GtkLabel:insensitive {
-  color: rgba(255,255,255,0);
-  transition: 500ms ease-in-out;
-}
-
-#status_bar_box GtkButton:insensitive {
-  background: rgba(255,255,255,0);
-  transition: 500ms ease-in-out;
-  box-shadow: 0 0 0 #FFF;  
-}
 #status_bar_box GtkSeparator {
   border-color: #999;
   border-right: none;
-  transition: 500ms ease-in-out;
-
-}
-#status_bar_box GtkSeparator:insensitive {
-  background: rgba(255,255,255,0);
-  border-color: rgba(255,255,255,0);
-  transition: 500ms ease-in-out;
 }
 
 #PreviewMenuItem GtkImage {
@@ -131,8 +135,7 @@
   background: #FFF;
 }
 
-
 #UberwriterWindow GtkTreeView {
   color: #333;
-  font-size: 10;
+  font-size: 10px;
 }

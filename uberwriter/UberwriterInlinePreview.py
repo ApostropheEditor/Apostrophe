@@ -120,6 +120,10 @@ class UberwriterInlinePreview():
         f.fix_table()
 
     def populate_popup(self, editor, menu, data=None):
+        popover = Gtk.Popover.new(editor)
+        # pop_cont = Gtk.Container.new()
+        # popover.add(pop_cont)
+        popover.show_all()
 
         item = Gtk.MenuItem.new()
         item.set_name("PreviewMenuItem")
@@ -163,8 +167,12 @@ class UberwriterInlinePreview():
                 if success:
                     image = Gtk.Image.new_from_file(result)
                     image.show()
-                    item.add(image)
+                    logger.debug("logging image")
+                    # item.add(image)
+                    popover.add(image)
+                    popover.show_all()
                     item.set_property('width-request', 50)
+                    popover.set_property('width-request', 50)
                 else:
                     label = Gtk.Label()
                     msg = 'Formula looks incorrect:\n' + result
@@ -241,13 +249,18 @@ class UberwriterInlinePreview():
                     pb = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 400, 300)
                     image = Gtk.Image.new_from_pixbuf(pb)
                     image.show()
-                    item.add(image)
+                    popover.add(image)
+                    popover.show_all()
                     item.set_property('width-request', 50)
-                    item.show()
-                    menu.prepend(separator)
-                    separator.show()
-                    menu.prepend(item)
-                    menu.show()
+                    popover.set_property('width-request', 50)
+
+                    # item.add(image)
+                    # item.set_property('width-request', 50)
+                    # item.show()
+                    # menu.prepend(separator)
+                    # separator.show()
+                    # menu.prepend(item)
+                    # menu.show()
                     found_match = True
                     break
 

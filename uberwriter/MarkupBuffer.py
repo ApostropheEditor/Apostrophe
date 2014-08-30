@@ -106,6 +106,8 @@ class MarkupBuffer():
         # self.table_env.set_property('font', 'Ubuntu Mono 13px')
         self.table_env.set_property('pixels-above-lines', 0)
         self.table_env.set_property('pixels-below-lines', 0)
+
+        # self.ftag = self.TextBuffer.create_tag("pix_front", pixels_above_lines = 100)
     regex = {
         "ITALIC": re.compile(r"\*\w(.+?)\*| _\w(.+?)_ ", re.UNICODE),   # *asdasd* // _asdasd asd asd_
         "STRONG": re.compile(r"\*{2}\w(.+?)\*{2}| [_]{2}\w(.+?)[_]{2} ", re.UNICODE),   # **as das** // __asdasdasd asd ad a__
@@ -126,6 +128,12 @@ class MarkupBuffer():
 
     def markup_buffer(self, mode=0):
         buf = self.TextBuffer
+
+        # Test for shifting first line
+        # bbs = buf.get_start_iter()
+        # bbb = buf.get_iter_at_offset(3)
+
+        # buf.apply_tag(self.ftag, bbs, bbb)
 
         # Modes:
         # 0 -> start to end

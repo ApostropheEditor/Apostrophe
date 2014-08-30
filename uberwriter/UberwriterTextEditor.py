@@ -49,9 +49,13 @@ A TextEditor is Gtk.TextView
 try:
     from gi.repository import Gtk
     from gi.repository import Gdk
+    from gi.repository import GObject
+    from .FormatShortcuts import FormatShortcuts
 
 except:
     print("couldn't load depencies")
+
+
 
 import logging
 logger = logging.getLogger('uberwriter')
@@ -59,8 +63,8 @@ logger = logging.getLogger('uberwriter')
 
 class UndoableInsert(object):
     """something that has been inserted into our textbuffer"""
-    def __init__(self, text_iter, text, length, fflines):
-        self.offset = text_iter.get_offset() - fflines
+    def __init__(self, text_iter, text, length):
+        self.offset = text_iter.get_offset() 
         self.text = text
         self.length = length
         if self.length > 1 or self.text in ("\r", "\n", " "):
@@ -71,10 +75,10 @@ class UndoableInsert(object):
 
 class UndoableDelete(object):
     """something that has ben deleted from our textbuffer"""
-    def __init__(self, text_buffer, start_iter, end_iter, fflines):
+    def __init__(self, text_buffer, start_iter, end_iter):
         self.text = text_buffer.get_text(start_iter, end_iter, False)
-        self.start = start_iter.get_offset() - fflines
-        self.end = end_iter.get_offset() - fflines
+        self.start = start_iter.get_offset()
+        self.end = end_iter.get_offset()
         # need to find out if backspace or delete key has been used
         # so we don't mess up during redo
         insert_iter = text_buffer.get_iter_at_mark(text_buffer.get_insert())
@@ -95,9 +99,19 @@ class TextEditor(Gtk.TextView):
 
     """
 
-    def __init__(self):
-        """Create a TextEditor
+    __gsignals__ = {
+        'insert-italic': (GObject.SIGNAL_ACTION, None, ()),
+        'insert-bold': (GObject.SIGNAL_ACTION, None, ()),
+        'insert-hrule': (GObject.SIGNAL_ACTION, None, ()),
+        'insert-ulistitem': (GObject.SIGNAL_ACTION, None, ()),
+        'insert-heading': (GObject.SIGNAL_ACTION, None, ()),
+        'undo': (GObject.SIGNAL_ACTION, None, ()),
+        'redo': (GObject.SIGNAL_ACTION, None, ())
+    }
 
+    def __init__(self):
+        """
+            Create a TextEditor
         """
 
         Gtk.TextView.__init__(self)
@@ -108,12 +122,21 @@ class TextEditor(Gtk.TextView):
         display = self.get_display()
         self.clipboard = Gtk.Clipboard.get_for_display(display, Gdk.SELECTION_CLIPBOARD)
 
-        self.fflines = 0
-
         self.undo_stack = []
         self.redo_stack = []
         self.not_undoable_action = False
         self.undo_in_progress = False
+
+        self.FormatShortcuts = FormatShortcuts(self.get_buffer(), self)
+
+        self.connect('insert-italic', self.set_italic)
+        self.connect('insert-bold', self.set_bold)
+        self.connect('insert-hrule', self.insert_horizontal_rule)
+        self.connect('insert-ulistitem', self.insert_unordered_list_item)
+        self.connect('insert-heading', self.insert_heading)
+        self.connect('redo', self.redo)
+        self.connect('undo', self.undo)
+
 
     @property
     def text(self):
@@ -223,7 +246,7 @@ class TextEditor(Gtk.TextView):
         self.redo_stack.append(undo_action)
         buf = self.get_buffer()
         if isinstance(undo_action, UndoableInsert):
-            offset = undo_action.offset + self.fflines
+            offset = undo_action.offset
             start = buf.get_iter_at_offset(offset)
             stop = buf.get_iter_at_offset(
                 offset + undo_action.length
@@ -231,12 +254,12 @@ class TextEditor(Gtk.TextView):
             buf.delete(start, stop)
             buf.place_cursor(start)
         else:
-            start = buf.get_iter_at_offset(undo_action.start + self.fflines)
+            start = buf.get_iter_at_offset(undo_action.start)
             buf.insert(start, undo_action.text)
             if undo_action.delete_key_used:
                 buf.place_cursor(start)
             else:
-                stop = buf.get_iter_at_offset(undo_action.end + self.fflines)
+                stop = buf.get_iter_at_offset(undo_action.end)
                 buf.place_cursor(stop)
         self.end_not_undoable_action()
         self.undo_in_progress = False
@@ -297,7 +320,7 @@ class TextEditor(Gtk.TextView):
 
         logger.debug(text)
         logger.debug("b: %i, l: %i" % (length, len(text)))
-        undo_action = UndoableInsert(text_iter, text, len(text), self.fflines)
+        undo_action = UndoableInsert(text_iter, text, len(text))
         try:
             prev_insert = self.undo_stack.pop()
         except IndexError:
@@ -346,7 +369,7 @@ class TextEditor(Gtk.TextView):
             self.redo_stack = []
         if self.not_undoable_action:
             return
-        undo_action = UndoableDelete(text_buffer, start_iter, end_iter, self.fflines)
+        undo_action = UndoableDelete(text_buffer, start_iter, end_iter)
         try:
             prev_delete = self.undo_stack.pop()
         except IndexError:
@@ -371,15 +394,38 @@ class TextEditor(Gtk.TextView):
 
     def begin_not_undoable_action(self):
         """don't record the next actions
-        
         toggles self.not_undoable_action"""
         self.not_undoable_action = True        
 
     def end_not_undoable_action(self):
         """record next actions
-        
         toggles self.not_undoable_action"""
         self.not_undoable_action = False
+
+    def set_italic(self, widget, data=None):
+        """Ctrl + I"""
+        self.FormatShortcuts.italic()
+
+    def set_bold(self, widget, data=None):
+        """Ctrl + B"""
+        self.FormatShortcuts.bold()
+
+    def insert_horizontal_rule(self, widget, data=None):
+        """Ctrl + R"""
+        self.FormatShortcuts.rule()
+
+    def insert_unordered_list_item(self, widget, data=None):
+        """Ctrl + U"""
+        self.FormatShortcuts.unordered_list_item()
+
+    def insert_ordered_list(self, widget, data=None):
+        """CTRL + O"""
+        self.FormatShortcuts.ordered_list_item()
+
+    def insert_heading(self, widget, data=None):
+        """CTRL + H"""
+        self.FormatShortcuts.heading()
+
 
 class TestWindow(Gtk.Window):
     """For testing and demonstrating AsycnTaskProgressBox.

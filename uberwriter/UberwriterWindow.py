@@ -31,12 +31,11 @@ from gi.repository import Gtk, Gdk, GObject, WebKit, Gio  # pylint: disable=E061
 from gi.repository import Pango  # pylint: disable=E0611
 
 import cairo
+# import cairo.Pattern, cairo.SolidPattern
 
 import re
 
-
 from .MarkupBuffer import MarkupBuffer
-from .FormatShortcuts import FormatShortcuts
 from .UberwriterTextEditor import TextEditor
 from .UberwriterInlinePreview import UberwriterInlinePreview
 from .UberwriterSidebar import UberwriterSidebar
@@ -44,8 +43,6 @@ from .UberwriterSearchAndReplace import UberwriterSearchAndReplace
 
 import logging
 logger = logging.getLogger('uberwriter')
-
-print('This file is imported')
 
 # Spellcheck
 
@@ -73,114 +70,61 @@ from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
 
 CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
-# gtk_text_view_forward_display_line_end () !! !
-# move-viewport signal
 # See texteditor_lib.Window.py for more details about how this class works
 class UberwriterWindow(Window):
 
     __gtype_name__ = "UberwriterWindow"
 
+    __gsignals__ = {
+        'save-file': (GObject.SIGNAL_ACTION, None, ()),
+        'open-file': (GObject.SIGNAL_ACTION, None, ()),
+        'save-file-as': (GObject.SIGNAL_ACTION, None, ()),
+        'new-file': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-focusmode': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-fullscreen': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-spellcheck': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
+        'close-window': (GObject.SIGNAL_ACTION, None, ())
+    }
+
     def scrolled(self, widget):
         """if window scrolled + focusmode make font black again"""
-        if self.focusmode:
-            if self.textchange == False:
-                if self.scroll_count >= 1:
-                    self.TextBuffer.apply_tag(
-                        self.MarkupBuffer.blackfont,
-                        self.TextBuffer.get_start_iter(),
-                        self.TextBuffer.get_end_iter())
-                else:
-                    self.scroll_count += 1
-            else:
-                self.scroll_count = 0
-                self.typewriter()
-                self.textchange = False
-
-    def after_modify_text(self, *arg):
-        if self.focusmode:
-            self.typewriter()
-
-    def after_insert_at_cursor(self, *arg):
-        if self.focusmode:
-            self.typewriter()
+        # if self.focusmode:
+            # if self.textchange == False:
+            #     if self.scroll_count >= 4:
+            #         self.TextBuffer.apply_tag(
+            #             self.MarkupBuffer.blackfont,
+            #             self.TextBuffer.get_start_iter(),
+            #             self.TextBuffer.get_end_iter())
+            #     else:
+            #         self.scroll_count += 1
+            # else:
+            #     self.scroll_count = 0
+            #     self.textchange = False
 
     def paste_done(self, *args):
         self.MarkupBuffer.markup_buffer(0)
 
     def init_typewriter(self):
-
-        self.TextEditor.begin_not_undoable_action()
-
-        ci = self.TextBuffer.get_iter_at_mark(self.TextBuffer.get_mark('insert'))
-        co = ci.get_offset()
-
-        fflines = int(round((self.window_height - 55) / (2 * 30)))
-        self.fflines = fflines
-        self.TextEditor.fflines = fflines
-
-        s = '\n' * fflines
-
-        start_iter = self.TextBuffer.get_iter_at_offset(0)
-        self.TextBuffer.insert(start_iter, s)
-
-        end_iter = self.TextBuffer.get_iter_at_offset(-1)
-        self.TextBuffer.insert(end_iter, s)
-
-        ne_ci = self.TextBuffer.get_iter_at_offset(co + fflines)
-        self.TextBuffer.place_cursor(ne_ci)
-
-        # Scroll it to the center
-        self.TextEditor.scroll_to_mark(self.TextBuffer.get_mark('insert'), 0.0, True, 0.0, 0.5)
-
-        self.TextEditor.end_not_undoable_action()
-
-        self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
-
+        self.EditorAlignment.props.top_padding = self.window_height / 2
+        self.EditorAlignment.props.bottom_padding = self.window_height / 2
         self.typewriter_initiated = True
 
-    def typewriter(self):
-        cursor = self.TextBuffer.get_mark("insert")
-        cursor_iter = self.TextBuffer.get_iter_at_mark(cursor)
-        self.TextEditor.scroll_to_iter(cursor_iter, 0.0, True, 0.0, 0.5)
-
     def remove_typewriter(self):
-        # self.TextBuffer.disconnect(self.TextEditor.delete_event)
-        # self.TextBuffer.disconnect(self.TextEditor.insert_event)
-        self.TextEditor.begin_not_undoable_action()
-
-        startIter = self.TextBuffer.get_start_iter()
-        endLineIter = startIter.copy()
-        endLineIter.forward_lines(self.fflines)
-        self.TextBuffer.delete(startIter, endLineIter)
-        startIter = self.TextBuffer.get_end_iter()
-        endLineIter = startIter.copy()
-
-        # Move to line before last line
-        endLineIter.backward_lines(self.fflines - 1)
-
-        # Move to last char in last line
-        endLineIter.backward_char()
-        self.TextBuffer.delete(startIter, endLineIter)
-
-        self.fflines = 0
-        self.TextEditor.fflines = 0
-
-        self.TextEditor.end_not_undoable_action()
-
-        # self.TextEditor.insert_event = self.TextBuffer.connect("insert-text",self.TextEditor._on_insert)
-        # self.TextEditor.delete_event = self.TextBuffer.connect("delete-range",self.TextEditor._on_delete)
+        self.EditorAlignment.props.top_padding = self.alignment_padding
+        self.EditorAlignment.props.bottom_padding = self.alignment_padding
         self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
 
-
+    def get_text(self):
+        start_iter = self.TextBuffer.get_start_iter()
+        end_iter = self.TextBuffer.get_end_iter()
+        return self.TextBuffer.get_text(start_iter, end_iter, False)
 
     WORDCOUNT = re.compile(r"[\s#*\+\-]+", re.UNICODE)
     def update_line_and_char_count(self):
         if self.status_bar_visible == False:
             return
-
-        self.char_count.set_text(str(self.TextBuffer.get_char_count() -
-                (2 * self.fflines)))
-
+        self.char_count.set_text(str(self.TextBuffer.get_char_count()))
         text = self.get_text()
         words = re.split(self.WORDCOUNT, text)
         length = len(words)
@@ -194,90 +138,10 @@ class UberwriterWindow(Window):
             length = 0
         self.word_count.set_text(str(length))
 
-        # TODO rename line_count to word_count
-
-    def get_text(self):
-        if self.focusmode == False:
-            start_iter = self.TextBuffer.get_start_iter()
-            end_iter = self.TextBuffer.get_end_iter()
-
-        else:
-            start_iter = self.TextBuffer.get_iter_at_line(self.fflines)
-            rbline =  self.TextBuffer.get_line_count() - self.fflines
-            end_iter = self.TextBuffer.get_iter_at_line(rbline)
-
-        return self.TextBuffer.get_text(start_iter, end_iter, False)
 
     def mark_set(self, buffer, location, mark, data=None):
-        if self.focusmode and (mark.get_name() == 'insert' or
-            mark.get_name() == 'selection_bound'):
-            akt_lines = self.TextBuffer.get_line_count()
-            lb = self.fflines
-            rb = akt_lines - self.fflines
-            #print "a %d, lb %d, rb %d" % (akt_lines, lb, rb)
-            #lb = self.TextBuffer.get_iter_at_line(self.fflines)
-            #rbline =  self.TextBuffer.get_line_count() - self.fflines
-            #rb = self.TextBuffer.get_iter_at_line(
-            #   rbline)
-            #rb.backward_line()
-           
-
-            linecount = location.get_line()
-            #print "a %d, lb %d, rb %d, lc %d" % (akt_lines, lb, rb, linecount)
-
-            if linecount < lb:
-                move_to_line = self.TextBuffer.get_iter_at_line(lb)
-                self.TextBuffer.move_mark(mark, move_to_line)
-            elif linecount >= rb:
-                move_to_line = self.TextBuffer.get_iter_at_line(rb)
-                move_to_line.backward_char()
-                self.TextBuffer.move_mark(mark, move_to_line)
-
-    def after_mark_set(self, buffer, location, mark, data=None):
-        if self.focusmode and mark.get_name() == 'insert':
-            self.typewriter()
-
-
-    def delete_from_cursor(self, editor, typ, count, Data=None):
-        if not self.focusmode:
-            return
-        cursor = self.TextBuffer.get_mark("insert")
-        cursor_iter = self.TextBuffer.get_iter_at_mark(cursor)
-        if count < 0 and cursor_iter.starts_line():
-            lb = self.fflines
-            linecount = cursor_iter.get_line()
-            #print "lb %d, lc %d" % (lb, linecount)
-            if linecount <= lb:
-                self.TextEditor.emit_stop_by_name('delete-from-cursor')
-        elif count > 0 and cursor_iter.ends_line():
-            akt_lines = self.TextBuffer.get_line_count()
-            rb = akt_lines - self.fflines
-            linecount = cursor_iter.get_line() + 1
-            #print "rb %d, lc %d" % (rb, linecount)
-            if linecount >= rb:
-                self.TextEditor.emit_stop_by_name('delete-from-cursor')
-
-    def backspace(self, data=None):
-        if not self.focusmode:
-            return
-
-        cursor = self.TextBuffer.get_mark("insert")
-        cursor_iter = self.TextBuffer.get_iter_at_mark(cursor)
-        if cursor_iter.starts_line():
-            lb = self.fflines
-            linecount = cursor_iter.get_line()
-            #print "lb %d, lc %d" % (lb, linecount)
-
-            if linecount <= lb:
-                self.TextEditor.emit_stop_by_name('backspace')
-
-
-    def cursor_moved(self, widget, a, b, data=None):
-        pass
-
-    def after_cursor_moved(self, widget, step, count, extend_selection, data=None):
-        if self.focusmode:
-            self.typewriter()
+        if mark.get_name() == 'insert':
+            self.check_scroll()
 
     def text_changed(self, widget, data=None):
         if self.did_change == False:
@@ -290,17 +154,16 @@ class UberwriterWindow(Window):
 
         self.buffer_modified_for_status_bar = True
         self.update_line_and_char_count()
+        self.check_scroll()
 
     def toggle_fullscreen(self, widget, data=None):
         if widget.get_active():
             self.fullscreen()
             key, mod = Gtk.accelerator_parse("Escape")
             self.fullscreen_button.add_accelerator("activate",
-            self.accel_group, key, mod, Gtk.AccelFlags.VISIBLE)
-           
+                self.accel_group, key, mod, Gtk.AccelFlags.VISIBLE)
             # Hide Menu
             self.menubar.hide()
-
         else:
             self.unfullscreen()
             key, mod = Gtk.accelerator_parse("Escape")
@@ -310,55 +173,13 @@ class UberwriterWindow(Window):
 
         self.TextEditor.grab_focus()
 
-    def delete_text(self, widget):
-        pass
-
-    def cut_text(self, widget, data=None):
-        self.TextEditor.cut()
-
-    def paste_text(self, widget, data=None):
-        self.TextEditor.paste()
-
-    def copy_text(self, widget, data=None):
-        self.TextEditor.copy()
-
-    def undo(self, widget, data=None):
-        self.TextEditor.undo()
-
-    def redo(self, widget, data=None):
-        self.TextEditor.redo()
-
-    def set_italic(self, widget, data=None):
-        """Ctrl + I"""
-        self.FormatShortcuts.italic()
-
-    def set_bold(self, widget, data=None):
-        """Ctrl + B"""
-        self.FormatShortcuts.bold()
-
-    def insert_horizontal_rule(self, widget, data=None):
-        """Ctrl + R"""
-        self.FormatShortcuts.rule()
-
-    def insert_unordered_list_item(self, widget, data=None):
-        """Ctrl + U"""
-        self.FormatShortcuts.unordered_list_item()
-
-    def insert_ordered_list(self, widget, data=None):
-        """CTRL + O"""
-        self.FormatShortcuts.ordered_list_item()
-
-    def insert_heading(self, widget, data=None):
-        """CTRL + H"""
-        self.FormatShortcuts.heading()
-
     def set_focusmode(self, widget, data=None):
         if widget.get_active():
             self.init_typewriter()
             self.MarkupBuffer.focusmode_highlight()
             self.focusmode = True
             self.TextEditor.grab_focus()
-
+            self.check_scroll()
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 0)
 
@@ -375,34 +196,99 @@ class UberwriterWindow(Window):
             self.MarkupBuffer.markup_buffer(1)
             self.TextEditor.grab_focus()
             self.update_line_and_char_count()
-
+            self.check_scroll()
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 4)
+
+    def scroll_smoothly(self, widget, frame_clock, data = None):
+        if self.smooth_scroll_data['target_pos'] == -1:
+            return True
+        def ease_out_cubic(t):
+          p = t - 1;
+          return p * p * p + 1;
+        now = frame_clock.get_frame_time()
+        if self.smooth_scroll_acttarget != self.smooth_scroll_data['target_pos']:
+            self.smooth_scroll_starttime = now
+            self.smooth_scroll_endtime = now + self.smooth_scroll_data['duration'] * 100
+            self.smooth_scroll_acttarget = self.smooth_scroll_data['target_pos']
+
+        if(now < self.smooth_scroll_endtime):
+            t = float(now - self.smooth_scroll_starttime) / float(self.smooth_scroll_endtime - self.smooth_scroll_starttime)
+        else:
+            t = 1
+        t = ease_out_cubic(t)
+        pos = self.smooth_scroll_data['source_pos'] + (t * (self.smooth_scroll_data['target_pos'] - self.smooth_scroll_data['source_pos']))
+        # print("n %i, t %f, p %i, st %i, et %i" % (now, t, pos, self.smooth_scroll_starttime, self.smooth_scroll_endtime))
+        widget.get_vadjustment().props.value = pos
+        return True # continue ticking
+
+    def check_scroll(self):
+        gradient_offset = 80
+        buf = self.TextEditor.get_buffer()
+        ins = buf.get_insert()
+        ins_it = buf.get_iter_at_mark(ins)
+        loc_rect = self.TextEditor.get_iter_location(ins_it)
+
+        # alignment offset added from top
+        pos_y = loc_rect.y + loc_rect.height + self.EditorAlignment.props.top_padding 
+        
+        ha = self.ScrolledWindow.get_vadjustment()
+        if ha.props.page_size < gradient_offset:
+            return
+        pos = pos_y - ha.props.value
+        # print("pos: %i, pos_y %i, page_sz: %i, val: %i" % (pos, pos_y, ha.props.page_size - gradient_offset, ha.props.value))
+        # global t, amount, initvadjustment
+        target_pos = -1
+        if self.focusmode:
+            print("pos: %i > %i" % (pos, ha.props.page_size * 0.5))
+            if pos != (ha.props.page_size * 0.5):
+                target_pos = pos_y - (ha.props.page_size * 0.5)
+            print("focusmode")
+        elif pos > ha.props.page_size - gradient_offset:
+            target_pos = pos_y - ha.props.page_size + gradient_offset
+        elif pos < gradient_offset:
+            target_pos = pos_y - gradient_offset
+        self.smooth_scroll_data = {
+            'target_pos': target_pos,
+            'source_pos': ha.props.value, 
+            'duration': 2000
+        }
+        if self.smooth_scroll_tickid == -1:
+            self.smooth_scroll_tickid = self.ScrolledWindow.add_tick_callback(self.scroll_smoothly)
 
     def window_resize(self, widget, data=None):
         # To calc padding top / bottom
         self.window_height = widget.get_size()[1]
         w_width = widget.get_size()[0]
         # Calculate left / right margin
-
+        width_request = 600
         if(w_width < 900):
             self.MarkupBuffer.set_multiplier(8)
             pango_font = Pango.FontDescription("Inconsolata 12px")
             self.TextEditor.modify_font(pango_font)
-            lm = (widget.get_size()[0] - 600) / 2
+            self.current_font_size = 12
+            self.alignment_padding = 30
+            lm = 7 * 8
 
         elif(w_width < 1400):
             self.MarkupBuffer.set_multiplier(10)
             pango_font = Pango.FontDescription("Inconsolata 15px")
             self.TextEditor.modify_font(pango_font)
-            lm = (widget.get_size()[0] - 700) / 2
+            width_request = 800
+            self.current_font_size = 15
+            self.alignment_padding = 40
+            lm = 7 * 10
 
         else:
             self.MarkupBuffer.set_multiplier(13)
             pango_font = Pango.FontDescription("Inconsolata 17px")
             self.TextEditor.modify_font(pango_font)
-            lm = (widget.get_size()[0] - 1000) / 2
-
+            self.current_font_size = 17
+            width_request = 1000
+            self.alignment_padding = 60
+            lm = 7 * 13
+        self.EditorAlignment.props.top_padding = self.alignment_padding
+        self.EditorAlignment.props.bottom_padding = self.alignment_padding
         self.TextEditor.set_left_margin(lm)
         self.TextEditor.set_right_margin(lm)
 
@@ -412,9 +298,11 @@ class UberwriterWindow(Window):
             self.remove_typewriter()
             self.init_typewriter()
 
-    def window_close(self, widget, data=None):
-        return True
-
+        if self.TextEditor.props.width_request != width_request:
+            self.TextEditor.props.width_request = width_request
+            alloc = self.TextEditor.get_allocation()
+            alloc.width = width_request
+            self.TextEditor.size_allocate(alloc)
 
     def save_document(self, widget, data=None):
         if self.filename:
@@ -673,21 +561,21 @@ class UberwriterWindow(Window):
             self.filename = None
             self.set_headerbar_title("New File" + self.title_end)
 
-    def menu_activate_focusmode(self, widget):
+    def menu_activate_focusmode(self, widget=None):
         self.focusmode_button.emit('activate')
 
-    def menu_activate_fullscreen(self, widget):
+    def menu_activate_fullscreen(self, widget=None):
         self.fullscreen_button.emit('activate')
 
-    def menu_toggle_sidebar(self, widget):
+    def menu_toggle_sidebar(self, widget=None):
         self.sidebar.toggle_sidebar()
 
-    def menu_activate_preview(self, widget):
+    def menu_activate_preview(self, widget=None):
         self.preview_button.emit('activate')
 
-    # Not added as menu button as of now. Standard is typewriter active.
-    def toggle_typewriter(self, widget, data=None):
-        self.typewriter_active = widget.get_active()
+    # # Not added as menu button as of now. Standard is typewriter active.
+    # def toggle_typewriter(self, widget, data=None):
+    #     self.typewriter_active = widget.get_active()
 
     def toggle_spellcheck(self, widget, data=None):
         if self.spellcheck:
@@ -725,6 +613,8 @@ class UberwriterWindow(Window):
                 mime = mimetypes.guess_type(uri)
 
                 if mime[0] is not None and mime[0].startswith('image'):
+                    if uri.startswith("file://"):
+                        uri = uri[7:]
                     text = "![Insert image title here](%s)" % uri
                     ll = 2
                     lr = 23
@@ -777,26 +667,18 @@ class UberwriterWindow(Window):
             # begin_del.backward_chars(30)
             # self.TextBuffer.delete(begin_del, cursor_iter)
 
-            self.ScrolledWindow.remove(self.TextEditor)
+            self.ScrolledWindow.remove(self.EditorViewport)
             self.ScrolledWindow.add(self.webview)
             self.webview.show()
 
-            # Making the background white
-
-            # white_background = helpers.get_media_path('white.png')
-            # surface = cairo.ImageSurface.create_from_png(white_background)
-            # self.background_pattern = cairo.SurfacePattern(surface)
-            # self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
             # This saying that all links will be opened in default browser, but local files are opened in appropriate apps:
             self.webview.connect("navigation-requested", self.on_click_link)
         else:
             self.ScrolledWindow.remove(self.webview)
             self.webview.destroy()
-            self.ScrolledWindow.add(self.TextEditor)
+            self.ScrolledWindow.add(self.EditorViewport)
             self.TextEditor.show()
-            # surface = cairo.ImageSurface.create_from_png(self.background_image)
-            # self.background_pattern = cairo.SurfacePattern(surface)
-            # self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
+
         self.queue_draw()
 
     def on_click_link(self, view, frame, req, data=None):
@@ -866,10 +748,6 @@ class UberwriterWindow(Window):
         else:
             logger.warning("No File arg")
 
-    # def draw_bg(self, widget, context):
-    #     context.set_source(self.background_pattern)
-    #     context.paint()
-
     # Help Menu
     def open_launchpad_translation(self, widget, data=None):
         webbrowser.open("https://translations.launchpad.net/uberwriter")
@@ -930,7 +808,10 @@ class UberwriterWindow(Window):
         if (self.was_motion == False
                 and self.status_bar_visible
                 and self.buffer_modified_for_status_bar):
-            self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
+            # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
+            self.statusbar_revealer.set_reveal_child(False)
+            self.hb_revealer.set_reveal_child(False)
+            self.hb.props.opacity = 0.0
             self.status_bar_visible = False
             self.buffer_modified_for_status_bar = False
             return False
@@ -938,17 +819,42 @@ class UberwriterWindow(Window):
         self.was_motion = False
         return True
 
-    def on_motion_notify(self, widget, data=None):
-        self.was_motion = True
-        if self.status_bar_visible == False:
-            self.status_bar_visible = True
-            self.buffer_modified_for_status_bar = False
-            self.update_line_and_char_count()
-            self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
-            GObject.timeout_add(3000, self.poll_for_motion)
+    def on_motion_notify(self, widget, event, data=None):
+        now = event.get_time()
+        if now - self.timestamp_last_mouse_motion > 150:
+            self.timestamp_last_mouse_motion = now
+            return
+        if now - self.timestamp_last_mouse_motion < 100:
+            return
+        if now - self.timestamp_last_mouse_motion > 100:
+            if self.status_bar_visible == False:
+                self.statusbar_revealer.set_reveal_child(True)
+                self.hb_revealer.set_reveal_child(True)
+                self.hb.props.opacity = 1
+                self.status_bar_visible = True
+                self.buffer_modified_for_status_bar = False
+                self.update_line_and_char_count()
+                # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
+                GObject.timeout_add(3000, self.poll_for_motion)
+            self.was_motion = True
 
-    def move_popup(self, widget, data=None):
-        pass
+    def draw_gradient(self, widget, cr):
+        lg_top = cairo.LinearGradient(0, 0, 0, 80)
+        lg_top.add_color_stop_rgba(0, 1, 1, 1, 1)
+        lg_top.add_color_stop_rgba(1, 1, 1, 1, 0)
+        width = widget.get_allocation().width
+        height = widget.get_allocation().height
+        cr.rectangle(0, 0, width, 80)
+        cr.set_source(lg_top)
+        cr.fill()
+        cr.rectangle(0, height - 80, width, height)
+        
+        lg_btm = cairo.LinearGradient(0, height - 80, 0, height)
+        lg_btm.add_color_stop_rgba(1, 1, 1, 1, 1)
+        lg_btm.add_color_stop_rgba(0, 1, 1, 1, 0)
+
+        cr.set_source(lg_btm)
+        cr.fill()
 
     def finish_initializing(self, builder):  # pylint: disable=E1002
         """Set up the main window"""
@@ -958,6 +864,16 @@ class UberwriterWindow(Window):
         self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
 
+        self.connect('save-file', self.save_document)
+        self.connect('save-file-as', self.save_document_as)
+        self.connect('new-file', self.new_document)
+        self.connect('open-file', self.open_document)
+        self.connect('toggle-fullscreen', self.menu_activate_fullscreen)
+        self.connect('toggle-focusmode', self.menu_activate_focusmode)
+        self.connect('toggle-preview', self.menu_activate_preview)
+        self.connect('toggle-spellcheck', self.toggle_spellcheck)
+        self.connect('close-window', self.on_mnu_close_activate)
+        self.scroll_adjusted = False
         # Code for other initialization actions should be added here.
 
         # Texlive checker
@@ -965,39 +881,40 @@ class UberwriterWindow(Window):
 
         self.set_name('UberwriterWindow')
 
-        self.use_headerbar = False
-
+        self.use_headerbar = True
         if self.use_headerbar == True:
+            self.hb_revealer = Gtk.Revealer()
             self.hb = Gtk.HeaderBar()
+            self.hb_revealer.add(self.hb)
+            self.hb_revealer.props.transition_duration = 1000
             self.hb.props.show_close_button = True
-            self.set_titlebar(self.hb)
+            self.hb.get_style_context().add_class("titlebar")
+            self.set_titlebar(self.hb_revealer)
+            self.hb_revealer.show()
+            self.hb_revealer.set_reveal_child(True)
             self.hb.show()
 
             bbtn = Gtk.MenuButton()
-            # icon = Gio.ThemedIcon(name="mail-send-receive-symbolic")
+            btn_settings = Gtk.MenuButton()
+            btn_settings.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
+            btn_settings.set_popup(self.builder.get_object("menu4"))
+            # icon = Gio.ThemedIcon(name="mail-sendm receive-symbolic")
             # image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
             # bbtn.add(image)
             bbtn.set_popup(self.builder.get_object("menu1"))
             self.hb.pack_start(bbtn)
+            self.hb.pack_end(btn_settings)
             self.hb.show_all()
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
-
-        # Drag and drop
-        self.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-
-        self.target_list = Gtk.TargetList.new([])
-        self.target_list.add_uri_targets(1)
-        self.target_list.add_text_targets(2)
-
-        self.drag_dest_set_target_list(self.target_list)
 
         self.focusmode = False
 
         self.word_count = builder.get_object('word_count')
         self.char_count = builder.get_object('char_count')
         self.menubar = builder.get_object('menubar1')
+        self.menubar.hide()
 
         # Wire up buttons
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
@@ -1011,6 +928,7 @@ class UberwriterWindow(Window):
         # Setup status bar hide after 3 seconds
 
         self.status_bar = builder.get_object('status_bar_box')
+        self.statusbar_revealer = builder.get_object('status_bar_revealer')
         self.status_bar.set_name('status_bar_box')
         self.status_bar_visible = True
         self.was_motion = True
@@ -1022,44 +940,39 @@ class UberwriterWindow(Window):
         self.add_accel_group(self.accel_group)
 
         # Setup light background
-
         self.TextEditor = TextEditor()
 
-        base_leftmargin = 100
-        self.TextEditor.set_left_margin(base_leftmargin)
+        base_leftmargin = 40
+        # self.TextEditor.set_left_margin(base_leftmargin)
         self.TextEditor.set_left_margin(40)
-
+        self.TextEditor.props.width_request = 600
+        self.TextEditor.props.halign = Gtk.Align.CENTER
+        self.TextEditor.set_vadjustment(builder.get_object('vadjustment1'))
         self.TextEditor.set_wrap_mode(Gtk.WrapMode.WORD)
 
         self.TextEditor.show()
+        self.TextEditor.grab_focus()
 
         self.ScrolledWindow = builder.get_object('editor_scrolledwindow')
-        self.ScrolledWindow.add(self.TextEditor)
+        self.EditorAlignment = builder.get_object('editor_alignment')
+        self.EditorAlignment.add(self.TextEditor)
+        self.alignment_padding = 40
+        self.EditorViewport = builder.get_object('editor_viewport')
+        self.EditorViewport.connect_after("draw", self.draw_gradient)
 
-        # Draw background
-        self.background_image = helpers.get_media_path('bg_light.png')
-        # self.ScrolledWindow.connect('draw', self.draw_bg)
-        surface = cairo.ImageSurface.create_from_png(self.background_image)
-        self.background_pattern = cairo.SurfacePattern(surface)
-        self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
-
-
-        # self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(1,1,1))
+        self.smooth_scroll_starttime = 0
+        self.smooth_scroll_endtime = 0
+        self.smooth_scroll_acttarget = 0
+        self.smooth_scroll_data = {
+            'target_pos': -1,
+            'source_pos': -1, 
+            'duration': 0
+        }
+        self.smooth_scroll_tickid = -1
 
         self.PreviewPane = builder.get_object('preview_scrolledwindow')
 
-        pangoFont = Pango.FontDescription("Ubuntu Mono 15px")
-
-        # self.scw = builder.get_object('scrolledwindow1')
-        # self.scw.add(self.sidebar.get_treeview())
-
-        # http://nullege.com/codes/show/src%40c%40o%40comix-HEAD%40trunk%40src%40labels.py/31/gtk.Label.set_attributes/python
-        # ## TODO
-        # attr_list = Pango.AttrList.new()
-        # attr_list.insert(Pango.Attribute.LetterSpacing.new(100))
-
-        # self.TextEditor.set_attributes(attr_list)
-
+        pangoFont = Pango.FontDescription("Inconsolata 12px")
         self.TextEditor.modify_font(pangoFont)
 
         self.TextEditor.set_margin_top(38)
@@ -1077,12 +990,9 @@ class UberwriterWindow(Window):
         self.TextBuffer.set_text('')
 
         # Init Window height for top/bottom padding
-
         self.window_height = self.get_size()[1]
 
         self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
-
-        self.TextEditor.connect('move-cursor', self.cursor_moved)
 
         # Init file name with None
         self.filename = None
@@ -1090,52 +1000,45 @@ class UberwriterWindow(Window):
         self.generate_recent_files_menu(self.builder.get_object('recent'))
 
         self.style_provider = Gtk.CssProvider()
-
-        css = open(helpers.get_media_path('style.css'), 'rb')
-        css_data = css.read()
-        css.close()
-
-        self.style_provider.load_from_data(css_data)
+        self.style_provider.load_from_path(helpers.get_media_path('style.css'))
 
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), self.style_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
 
-        # Still needed.
-        self.fflines = 0
-
         # Markup and Shortcuts for the TextBuffer
         self.MarkupBuffer = MarkupBuffer(self, self.TextBuffer, base_leftmargin)
         self.MarkupBuffer.markup_buffer()
-        self.FormatShortcuts = FormatShortcuts(self.TextBuffer, self.TextEditor)
 
         # Scrolling -> Dark or not?
         self.textchange = False
         self.scroll_count = 0
-
+        self.timestamp_last_mouse_motion = 0
         self.TextBuffer.connect('mark-set', self.mark_set)
 
-        self.TextEditor.drag_dest_unset()
+        # self.TextEditor.drag_dest_unset()
+        # Drag and drop
+        self.TextEditor.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
 
-        # Events to preserve margin. (To be deleted.)
-        self.TextEditor.connect('delete-from-cursor', self.delete_from_cursor)
-        self.TextEditor.connect('backspace', self.backspace)
+        self.target_list = Gtk.TargetList.new([])
+        self.target_list.add_uri_targets(1)
+        self.target_list.add_text_targets(2)
+
+        self.TextEditor.drag_dest_set_target_list(self.target_list)
+        self.TextEditor.connect('drag-data-received', self.on_drag_data_received)
+
 
         self.TextBuffer.connect('paste-done', self.paste_done)
         # self.connect('key-press-event', self.alt_mod)
 
         # Events for Typewriter mode
-        self.TextBuffer.connect_after('mark-set', self.after_mark_set)
-        self.TextBuffer.connect_after('changed', self.after_modify_text)
-        self.TextEditor.connect_after('move-cursor', self.after_cursor_moved)
-        self.TextEditor.connect_after('insert-at-cursor', self.after_insert_at_cursor)
 
         # Setting up inline preview
         self.InlinePreview = UberwriterInlinePreview(self.TextEditor, self.TextBuffer)
 
         # Vertical scrolling
-        self.vadjustment = self.TextEditor.get_vadjustment()
+        self.vadjustment = self.ScrolledWindow.get_vadjustment()
         self.vadjustment.connect('value-changed', self.scrolled)
 
         # Setting up spellcheck
@@ -1160,16 +1063,18 @@ class UberwriterWindow(Window):
         self.sidebar_box = builder.get_object("sidebar_box")
         self.sidebar = UberwriterSidebar(self)
         self.sidebar_box.hide()
+
         ###
         #   Search and replace initialization
         #   Same interface as Sidebar ;)
         ###
-
         self.searchreplace = UberwriterSearchAndReplace(self)
 
         # Window resize
+        self.window_resize(self)
         self.connect("configure-event", self.window_resize)
         self.connect("delete-event", self.on_delete_called)
+
         self.load_settings(builder)
 
     def alt_mod(self, widget, event, data=None):
@@ -1199,15 +1104,13 @@ class UberwriterWindow(Window):
     def on_destroy(self, widget, data=None):
         """Called when the TexteditorWindow is closed."""
         # Clean up code for saving application state should be added here.
-        self.window_close(widget)
         self.save_settings()
         Gtk.main_quit()
 
     def set_headerbar_title(self, title):
         if self.use_headerbar:
             self.hb.props.title = title
-        else:
-            self.set_title(title)
+        self.set_title(title)
 
     def save_settings(self):
         if not os.path.exists(CONFIG_PATH):
@@ -1241,4 +1144,4 @@ class UberwriterWindow(Window):
         except Exception as e:
             logger.debug("(First Run?) Error loading settings from home dir. \
                 Error: %r", e)
-        return 1
+        return True

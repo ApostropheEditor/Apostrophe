@@ -45,6 +45,7 @@ class Window(Gtk.Window):
         """
         builder = get_builder('UberwriterWindow')
         new_object = builder.get_object("uberwriter_window")
+        print(new_object)
         new_object.finish_initializing(builder)
         return new_object
 
