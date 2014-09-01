@@ -46,6 +46,115 @@ GObject.threads_init() # Still needed?
 #   A jumping URL from that (for preview)
 #   Also, after going to preview, set cursor back to where it was
 
+import telnetlib
+
+class DictAccessor(object):
+    def __init__( self, host='localhost', port=2628, timeout=60 ):
+        self.tn = telnetlib.Telnet( host, port )
+        self.timeout = timeout
+        self.login_response = self.tn.expect( [ self.reEndResponse ], self.timeout )[ 2 ]
+        bytes
+    def runCommand( self, cmd ):
+        self.tn.write( cmd.encode('utf-8') + b'\r\n' )
+        return self.tn.expect( [ self.reEndResponse ], self.timeout )[ 2 ]
+
+    def getMatches( self, database, strategy, word ):
+        if database in [ '', 'all' ]:
+            d = '*'
+        else:
+            d = database
+        if strategy in [ '', 'default' ]:
+            s = '.'
+        else:
+            s = strategy
+        w = word.replace( '"', r'\"' )
+        tsplit = self.runCommand( 'MATCH %s %s "%s"' % ( d, s, w ) ).splitlines( )
+        mlist = list( )
+        if  tsplit[ -1 ].startswith( b'250 ok' ) and tsplit[ 0 ].startswith( b'1' ):
+            mlines = tsplit[ 1:-2 ]
+            for line in mlines:
+                lsplit = line.strip( ).split( )
+                db = lsplit[ 0 ]
+                word = unquote( ' '.join( lsplit[ 1: ] ) )
+                mlist.append( ( db, word ) )
+        return mlist
+
+    reEndResponse = re.compile( b'^[2-5][0-58][0-9] .*\r\n$', re.DOTALL + re.MULTILINE )
+    reDefinition = re.compile( b'^151(.*?)^\.', re.DOTALL + re.MULTILINE )
+
+    def getDefinition( self, database, word ):
+        if database in [ '', 'all' ]:
+            d = '*'
+        else:
+            d = database
+        w = word.replace( '"', r'\"' )
+        dsplit = self.runCommand( 'DEFINE %s "%s"' % ( d, w ) ).splitlines( True )
+        dlist = list( )
+        if  dsplit[ -1 ].startswith( b'250 ok' ) and dsplit[ 0 ].startswith( b'1' ):
+            dlines = dsplit[ 1:-1 ]
+            dtext = b''.join( dlines )
+            dlist = self.reDefinition.findall( dtext )
+            #dlist = [ dtext ]
+        return dlist
+
+    def close( self ):
+        t = self.runCommand( 'QUIT' )
+        self.tn.close( )
+        return t
+
+    def parse_wordnet(self, response):
+        # consisting of group (n,v,adj,adv)
+        # number, description, examples, synonyms, antonyms
+        capture = {}
+        lines = response.splitlines()
+        lines = lines[2:]
+        lines = ' '.join(lines)
+        lines = re.sub('\s+', ' ', lines).strip()
+        lines = re.split(r'( adv | adj | n | v |^adv |^adj |^n |^v )', lines)
+        res = {}
+        for l in lines:
+            l = l.strip()
+            act_res = {}
+            act_res['defs'] = []
+            if len(l) == 0:
+                continue
+            if l  in ['adv', 'adj','n','v']:
+                act_res['class'] = l
+            else:
+                ll = re.split('(?: |^)(\d): ', l)
+                # print(ll)
+                act_def = {}
+                for lll in ll:
+                    # print (lll)
+                    if lll.strip().isdigit() or not lll.strip():
+                        if 'description' in act_def and act_def['description']:
+                            act_res['defs'].append(act_def.copy())
+                        act_def = {'num': lll}
+                        continue
+                    a = re.findall(r'(\[(syn|ant): (.+?)\] ??)+', lll)
+                    for n in a:
+                        if n[1] == 'syn':
+                            act_def['syn'] = re.findall(r'\{(.*?)\}.*?', n[2])
+                        else:
+                            act_def['ant'] = re.findall(r'\{(.*?)\}.*?', n[2])
+                    tbr = re.search(r'\[.+\]', lll)
+                    if tbr:
+                        lll = lll[:tbr.start()]
+                    lll = lll.split(';')
+                    act_def['examples'] = []
+                    act_def['description'] = []
+                    for llll in lll:
+                        llll = llll.strip()
+                        if(llll.strip().startswith('"')):
+                            act_def['examples'].append(llll)
+                        else:
+                            act_def['description'].append(llll)
+
+                if act_def and 'description' in act_def:
+                    act_res['defs'].append(act_def.copy())
+
+            print(act_res)
+            return act_res
 def check_url(url, item, spinner):
     logger.debug("thread started, checking url")
     error = False
@@ -65,6 +174,22 @@ def check_url(url, item, spinner):
     spinner.destroy()
     item.set_label(text)
 
+def get_dictionary(term):
+    def parse_response(response):
+        # consisting of group (n,v,adj,adv)
+        # number, description, examples, synonyms, antonyms
+        lines = response.split('\n')
+        lines = lines[2:]
+        for l in lines:
+            l = l.lstrip()
+            print(l)
+
+    da = DictAccessor()
+    output = da.getDefinition('wn', term)
+    print (output)
+
+    output = output[0]
+    return da.parse_wordnet(output.decode(encoding='UTF-8'))
 
 def get_web_thumbnail(url, item, spinner):
     logger.debug("thread started, generating thumb")
@@ -91,6 +216,15 @@ def get_web_thumbnail(url, item, spinner):
     item.add(image)
     item.show()
 
+def fill_lexikon_bubble(vocab, lexikon_dict):
+    grid = Gtk.Grid.new()
+    i = 0
+    for entry in lexikon_dict:
+        grid.attach(Gtk.Label.new(vocab + ' ~ ' + entry['class']), i, i, 3, 1)
+    grid.show_all()
+    return grid
+
+
 
 class UberwriterInlinePreview():
 
@@ -106,6 +240,19 @@ class UberwriterInlinePreview():
         self.TextView.connect_after('popup-menu', self.move_popup)
         self.TextView.connect('button-press-event', self.click_move_button)
 
+    def open_popover_with_widget(self, widget):
+        a = self.TextBuffer.create_child_anchor(self.TextBuffer.get_iter_at_mark(self.ClickMark))
+        b = Gtk.Grid.new()
+        self.TextView.add_child_at_anchor(b, a)
+        b.show()
+        popover = Gtk.Popover.new(b)
+        dismiss, rect = popover.get_pointing_to()
+        rect.y = rect.y - 20
+        popover.set_pointing_to(rect)
+        popover.add(widget)
+        popover.show_all()
+        popover.set_property('width-request', 50)
+
     def click_move_button(self, widget, event):
         if event.button == 3:
             x, y = self.TextView.window_to_buffer_coords(2,
@@ -120,10 +267,10 @@ class UberwriterInlinePreview():
         f.fix_table()
 
     def populate_popup(self, editor, menu, data=None):
-        popover = Gtk.Popover.new(editor)
+        # popover = Gtk.Popover.new(editor)
         # pop_cont = Gtk.Container.new()
         # popover.add(pop_cont)
-        popover.show_all()
+        # popover.show_all()
 
         item = Gtk.MenuItem.new()
         item.set_name("PreviewMenuItem")
@@ -169,10 +316,7 @@ class UberwriterInlinePreview():
                     image.show()
                     logger.debug("logging image")
                     # item.add(image)
-                    popover.add(image)
-                    popover.show_all()
-                    item.set_property('width-request', 50)
-                    popover.set_property('width-request', 50)
+                    self.open_popover_with_widget(image)
                 else:
                     label = Gtk.Label()
                     msg = 'Formula looks incorrect:\n' + result
@@ -295,6 +439,27 @@ class UberwriterInlinePreview():
                     menu.show()
                     found_match = True
                     break
+
+        if not found_match:
+            start_iter = self.TextBuffer.get_iter_at_mark(self.ClickMark)
+            start_iter.backward_word_start()
+            end_iter = start_iter.copy()
+            end_iter.forward_word_end()
+            word = self.TextBuffer.get_text(start_iter, end_iter, False)
+            print(word)
+            terms = get_dictionary(word)
+            sc = Gtk.ScrolledWindow.new()
+            # tv = Gtk.TextView.new()
+            # tv.set_editable(False)
+            # tv.set_name('LexikonBubble')
+
+            sc.add(fill_lexikon_bubble(word, get_dictionary(word)))
+            sc.props.width_request = 500
+            sc.props.height_request = 400
+            tv.get_buffer().set_text(terms)
+            sc.show_all()
+            self.open_popover_with_widget(sc)
+
         return
 
     def move_popup(self):

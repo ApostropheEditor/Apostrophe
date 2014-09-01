@@ -84,6 +84,8 @@ class UberwriterWindow(Window):
         'toggle-fullscreen': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-spellcheck': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-search': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-search-replace': (GObject.SIGNAL_ACTION, None, ()),
         'close-window': (GObject.SIGNAL_ACTION, None, ())
     }
 
@@ -138,10 +140,10 @@ class UberwriterWindow(Window):
             length = 0
         self.word_count.set_text(str(length))
 
-
     def mark_set(self, buffer, location, mark, data=None):
-        if mark.get_name() == 'insert':
-            self.check_scroll()
+        if mark.get_name() in ['insert', 'gtk_drag_target']:
+            self.check_scroll(mark)
+        return True
 
     def text_changed(self, widget, data=None):
         if self.did_change == False:
@@ -154,7 +156,7 @@ class UberwriterWindow(Window):
 
         self.buffer_modified_for_status_bar = True
         self.update_line_and_char_count()
-        self.check_scroll()
+        self.check_scroll(self.TextBuffer.get_insert())
 
     def toggle_fullscreen(self, widget, data=None):
         if widget.get_active():
@@ -179,10 +181,9 @@ class UberwriterWindow(Window):
             self.MarkupBuffer.focusmode_highlight()
             self.focusmode = True
             self.TextEditor.grab_focus()
-            self.check_scroll()
+            self.check_scroll(self.TextBuffer.get_insert())
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 0)
-
         else:
             self.remove_typewriter()
             self.focusmode = False
@@ -222,11 +223,10 @@ class UberwriterWindow(Window):
         widget.get_vadjustment().props.value = pos
         return True # continue ticking
 
-    def check_scroll(self):
+    def check_scroll(self, mark):
         gradient_offset = 80
         buf = self.TextEditor.get_buffer()
-        ins = buf.get_insert()
-        ins_it = buf.get_iter_at_mark(ins)
+        ins_it = buf.get_iter_at_mark(mark)
         loc_rect = self.TextEditor.get_iter_location(ins_it)
 
         # alignment offset added from top
@@ -264,29 +264,34 @@ class UberwriterWindow(Window):
         width_request = 600
         if(w_width < 900):
             self.MarkupBuffer.set_multiplier(8)
-            pango_font = Pango.FontDescription("Inconsolata 12px")
-            self.TextEditor.modify_font(pango_font)
             self.current_font_size = 12
             self.alignment_padding = 30
             lm = 7 * 8
+            self.get_style_context().remove_class("medium")
+            self.get_style_context().remove_class("large")
+            self.get_style_context().add_class("small")
 
         elif(w_width < 1400):
             self.MarkupBuffer.set_multiplier(10)
-            pango_font = Pango.FontDescription("Inconsolata 15px")
-            self.TextEditor.modify_font(pango_font)
             width_request = 800
             self.current_font_size = 15
             self.alignment_padding = 40
             lm = 7 * 10
+            self.get_style_context().remove_class("small")
+            self.get_style_context().remove_class("large")
+            self.get_style_context().add_class("medium")
+
 
         else:
             self.MarkupBuffer.set_multiplier(13)
-            pango_font = Pango.FontDescription("Inconsolata 17px")
-            self.TextEditor.modify_font(pango_font)
             self.current_font_size = 17
             width_request = 1000
             self.alignment_padding = 60
             lm = 7 * 13
+            self.get_style_context().remove_class("medium")
+            self.get_style_context().remove_class("small")
+            self.get_style_context().add_class("large")
+
         self.EditorAlignment.props.top_padding = self.alignment_padding
         self.EditorAlignment.props.bottom_padding = self.alignment_padding
         self.TextEditor.set_left_margin(lm)
@@ -356,9 +361,9 @@ class UberwriterWindow(Window):
                 filechooser.destroy()
                 return response
 
-            elif response == Gtk.ResponseType.CANCEL:
+            else:
                 filechooser.destroy()
-                return response
+                return Gtk.ResponseType.CANCEL
 
     def save_document_as(self, widget, data=None):
         filechooser = Gtk.FileChooserDialog(
@@ -398,8 +403,9 @@ class UberwriterWindow(Window):
             filechooser.destroy()
             self.did_change = False
 
-        elif response == Gtk.ResponseType.CANCEL:
+        else:
             filechooser.destroy()
+            return Gtk.ResponseType.CANCEL
 
     def export(self, export_type="html"):
         filechooser = Gtk.FileChooserDialog(
@@ -530,10 +536,12 @@ class UberwriterWindow(Window):
                 )
             dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
-            dialog.add_button(_("Save now"), Gtk.ResponseType.YES).grab_focus()
+            dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
             dialog.set_title(_('Unsaved changes'))
             dialog.set_default_size(200, 150)
+            dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
+
             if response == Gtk.ResponseType.YES:
                 title = self.get_title()
                 if self.save_document(widget = None) == Gtk.ResponseType.CANCEL:
@@ -542,12 +550,12 @@ class UberwriterWindow(Window):
                 else:                   
                     dialog.destroy()
                     return response
-            elif response == Gtk.ResponseType.CANCEL:
-                dialog.destroy()
-                return response
             elif response == Gtk.ResponseType.NO:
                 dialog.destroy()
                 return response
+            else:
+                dialog.destroy()
+                return Gtk.ResponseType.CANCEL
 
     def new_document(self, widget):
         if self.check_change() == Gtk.ResponseType.CANCEL:
@@ -604,10 +612,10 @@ class UberwriterWindow(Window):
     def on_drag_data_received(self, widget, drag_context, x, y,
                               data, info, time):
         """Handle drag and drop events"""
-
         if info == 1:
             # uri target
             uris = data.get_uris()
+            print(uris)
             for uri in uris:
                 uri = urllib.parse.unquote_plus(uri)
                 mime = mimetypes.guess_type(uri)
@@ -622,21 +630,28 @@ class UberwriterWindow(Window):
                     text = "[Insert link title here](%s)" % uri
                     ll = 1
                     lr = 22
-
+                self.TextBuffer.place_cursor(self.TextBuffer.get_iter_at_mark(
+                    self.TextBuffer.get_mark('gtk_drag_target')))
                 self.TextBuffer.insert_at_cursor(text)
                 insert_mark = self.TextBuffer.get_insert()
                 selection_bound = self.TextBuffer.get_selection_bound()
                 cursor_iter = self.TextBuffer.get_iter_at_mark(insert_mark)
                 cursor_iter.backward_chars(len(text) - ll)
+                print('move_cursor')
                 self.TextBuffer.move_mark(insert_mark, cursor_iter)
                 cursor_iter.forward_chars(lr)
                 self.TextBuffer.move_mark(selection_bound, cursor_iter)
+                print('move selection')
        
         elif info == 2:
             # Text target
+            self.TextBuffer.place_cursor(self.TextBuffer.get_iter_at_mark(
+                self.TextBuffer.get_mark('gtk_drag_target')))
             self.TextBuffer.insert_at_cursor(data.get_text())
-
+        Gtk.drag_finish(drag_context, True, True, time)
         self.present()
+        print("returning true")
+        return False
 
     def toggle_preview(self, widget, data=None):
         if widget.get_active():
@@ -680,6 +695,7 @@ class UberwriterWindow(Window):
             self.TextEditor.show()
 
         self.queue_draw()
+        return True
 
     def on_click_link(self, view, frame, req, data=None):
         # This provide ability for self.webview to open links in default browser
@@ -692,30 +708,25 @@ class UberwriterWindow(Window):
         self.dark_mode = widget.get_active()
         if self.dark_mode:
             # Dark Mode is on
-            css = open(helpers.get_media_path('style_dark.css'), 'rb')
-            css_data = css.read()
-            css.close()
-            self.style_provider.load_from_data(css_data)
-            # self.background_image = helpers.get_media_path('bg_dark.png')
+            self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
+            self.get_style_context().add_class("dark_mode")
             self.MarkupBuffer.dark_mode(True)
-
+            # self.background_image = helpers.get_media_path('bg_dark.png')
         else:
             # Dark mode off
-            css = open(helpers.get_media_path('style.css'), 'rb')
-            css_data = css.read()
-            css.close()
-            self.style_provider.load_from_data(css_data)
-            # self.background_image = helpers.get_media_path('bg_light.png')
+            self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
+            self.get_style_context().remove_class("dark_mode")
             self.MarkupBuffer.dark_mode(False)
+            # self.background_image = helpers.get_media_path('bg_light.png')
 
         # surface = cairo.ImageSurface.create_from_png(self.background_image)
         # self.background_pattern = cairo.SurfacePattern(surface)
         # self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
 
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+        # Gtk.StyleContext.add_provider_for_screen(
+        #     Gdk.Screen.get_default(), self.style_provider,
+        #     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        # )
         # Redraw contents of window (self)
         self.queue_draw()
 
@@ -807,7 +818,8 @@ class UberwriterWindow(Window):
     def poll_for_motion(self):
         if (self.was_motion == False
                 and self.status_bar_visible
-                and self.buffer_modified_for_status_bar):
+                and self.buffer_modified_for_status_bar
+                and self.TextEditor.props.has_focus):
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
             self.statusbar_revealer.set_reveal_child(False)
             self.hb_revealer.set_reveal_child(False)
@@ -838,20 +850,33 @@ class UberwriterWindow(Window):
                 GObject.timeout_add(3000, self.poll_for_motion)
             self.was_motion = True
 
+    def focus_out(self, widget, data=None):
+        if self.status_bar_visible == False:
+            self.statusbar_revealer.set_reveal_child(True)
+            self.hb_revealer.set_reveal_child(True)
+            self.hb.props.opacity = 1
+            self.status_bar_visible = True
+            self.buffer_modified_for_status_bar = False
+            self.update_line_and_char_count()
+
     def draw_gradient(self, widget, cr):
+        bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
+
         lg_top = cairo.LinearGradient(0, 0, 0, 80)
-        lg_top.add_color_stop_rgba(0, 1, 1, 1, 1)
-        lg_top.add_color_stop_rgba(1, 1, 1, 1, 0)
+        lg_top.add_color_stop_rgba(0, bg_color.red, bg_color.green, bg_color.blue, 1)
+        lg_top.add_color_stop_rgba(1, bg_color.red, bg_color.green, bg_color.blue, 0)
+
         width = widget.get_allocation().width
         height = widget.get_allocation().height
+
         cr.rectangle(0, 0, width, 80)
         cr.set_source(lg_top)
         cr.fill()
         cr.rectangle(0, height - 80, width, height)
         
         lg_btm = cairo.LinearGradient(0, height - 80, 0, height)
-        lg_btm.add_color_stop_rgba(1, 1, 1, 1, 1)
-        lg_btm.add_color_stop_rgba(0, 1, 1, 1, 0)
+        lg_btm.add_color_stop_rgba(1, bg_color.red, bg_color.green, bg_color.blue, 1)
+        lg_btm.add_color_stop_rgba(0, bg_color.red, bg_color.green, bg_color.blue, 0)
 
         cr.set_source(lg_btm)
         cr.fill()
@@ -873,6 +898,7 @@ class UberwriterWindow(Window):
         self.connect('toggle-preview', self.menu_activate_preview)
         self.connect('toggle-spellcheck', self.toggle_spellcheck)
         self.connect('close-window', self.on_mnu_close_activate)
+        self.connect('toggle-search', self.open_search_and_replace)
         self.scroll_adjusted = False
         # Code for other initialization actions should be added here.
 
@@ -887,6 +913,7 @@ class UberwriterWindow(Window):
             self.hb = Gtk.HeaderBar()
             self.hb_revealer.add(self.hb)
             self.hb_revealer.props.transition_duration = 1000
+            self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
             self.hb.props.show_close_button = True
             self.hb.get_style_context().add_class("titlebar")
             self.set_titlebar(self.hb_revealer)
@@ -905,6 +932,7 @@ class UberwriterWindow(Window):
             self.hb.pack_start(bbtn)
             self.hb.pack_end(btn_settings)
             self.hb.show_all()
+
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -941,6 +969,7 @@ class UberwriterWindow(Window):
 
         # Setup light background
         self.TextEditor = TextEditor()
+        self.TextEditor.set_name('UberwriterEditor')
 
         base_leftmargin = 40
         # self.TextEditor.set_left_margin(base_leftmargin)
@@ -949,6 +978,7 @@ class UberwriterWindow(Window):
         self.TextEditor.props.halign = Gtk.Align.CENTER
         self.TextEditor.set_vadjustment(builder.get_object('vadjustment1'))
         self.TextEditor.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.TextEditor.connect('focus-out-event', self.focus_out)
 
         self.TextEditor.show()
         self.TextEditor.grab_focus()
@@ -971,9 +1001,6 @@ class UberwriterWindow(Window):
         self.smooth_scroll_tickid = -1
 
         self.PreviewPane = builder.get_object('preview_scrolledwindow')
-
-        pangoFont = Pango.FontDescription("Inconsolata 12px")
-        self.TextEditor.modify_font(pangoFont)
 
         self.TextEditor.set_margin_top(38)
         self.TextEditor.set_margin_bottom(16)
@@ -1015,18 +1042,21 @@ class UberwriterWindow(Window):
         self.textchange = False
         self.scroll_count = 0
         self.timestamp_last_mouse_motion = 0
-        self.TextBuffer.connect('mark-set', self.mark_set)
+        self.TextBuffer.connect_after('mark-set', self.mark_set)
+
+        # Drag and drop
 
         # self.TextEditor.drag_dest_unset()
-        # Drag and drop
-        self.TextEditor.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-
+        # self.TextEditor.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
         self.target_list = Gtk.TargetList.new([])
         self.target_list.add_uri_targets(1)
         self.target_list.add_text_targets(2)
 
         self.TextEditor.drag_dest_set_target_list(self.target_list)
-        self.TextEditor.connect('drag-data-received', self.on_drag_data_received)
+        self.TextEditor.connect_after('drag-data-received', self.on_drag_data_received)
+        def on_drop(widget, *args):
+            print("drop")
+        self.TextEditor.connect('drag-drop', on_drop)
 
 
         self.TextBuffer.connect('paste-done', self.paste_done)
@@ -1075,7 +1105,14 @@ class UberwriterWindow(Window):
         self.connect("configure-event", self.window_resize)
         self.connect("delete-event", self.on_delete_called)
 
+        self.gtk_settings = Gtk.Settings.get_default()
         self.load_settings(builder)
+
+        self.connect_after('realize', self.color_window)
+
+    def color_window(self, widget, data=None):
+        window_gdk = self.get_window()
+        window_gdk.set_background(Gdk.Color(0, 1, 0))
 
     def alt_mod(self, widget, event, data=None):
         # TODO: Click and open when alt is pressed
