@@ -240,12 +240,11 @@ class UberwriterWindow(Window):
         # global t, amount, initvadjustment
         target_pos = -1
         if self.focusmode:
-            print("pos: %i > %i" % (pos, ha.props.page_size * 0.5))
+            # print("pos: %i > %i" % (pos, ha.props.page_size * 0.5))
             if pos != (ha.props.page_size * 0.5):
                 target_pos = pos_y - (ha.props.page_size * 0.5)
-            print("focusmode")
-        elif pos > ha.props.page_size - gradient_offset:
-            target_pos = pos_y - ha.props.page_size + gradient_offset
+        elif pos > ha.props.page_size - gradient_offset - 60:
+            target_pos = pos_y - ha.props.page_size + gradient_offset + 60
         elif pos < gradient_offset:
             target_pos = pos_y - gradient_offset
         self.smooth_scroll_data = {
@@ -263,7 +262,7 @@ class UberwriterWindow(Window):
         # Calculate left / right margin
         width_request = 600
         if(w_width < 900):
-            self.MarkupBuffer.set_multiplier(8)
+            # self.MarkupBuffer.set_multiplier(8)
             self.current_font_size = 12
             self.alignment_padding = 30
             lm = 7 * 8
@@ -272,7 +271,7 @@ class UberwriterWindow(Window):
             self.get_style_context().add_class("small")
 
         elif(w_width < 1400):
-            self.MarkupBuffer.set_multiplier(10)
+            # self.MarkupBuffer.set_multiplier(10)
             width_request = 800
             self.current_font_size = 15
             self.alignment_padding = 40
@@ -281,9 +280,8 @@ class UberwriterWindow(Window):
             self.get_style_context().remove_class("large")
             self.get_style_context().add_class("medium")
 
-
         else:
-            self.MarkupBuffer.set_multiplier(13)
+            # self.MarkupBuffer.set_multiplier(13)
             self.current_font_size = 17
             width_request = 1000
             self.alignment_padding = 60
@@ -291,6 +289,7 @@ class UberwriterWindow(Window):
             self.get_style_context().remove_class("medium")
             self.get_style_context().remove_class("small")
             self.get_style_context().add_class("large")
+
 
         self.EditorAlignment.props.top_padding = self.alignment_padding
         self.EditorAlignment.props.bottom_padding = self.alignment_padding
@@ -308,6 +307,13 @@ class UberwriterWindow(Window):
             alloc = self.TextEditor.get_allocation()
             alloc.width = width_request
             self.TextEditor.size_allocate(alloc)
+
+    def style_changed(self, widget, data=None):
+        pgc = self.TextEditor.get_pango_context()
+        mets = pgc.get_metrics()
+        self.MarkupBuffer.set_multiplier(Pango.units_to_double(mets.get_approximate_char_width()) + 1)
+        print(Pango.units_to_double(mets.get_approximate_char_width()))
+
 
     def save_document(self, widget, data=None):
         if self.filename:
@@ -823,7 +829,6 @@ class UberwriterWindow(Window):
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
             self.statusbar_revealer.set_reveal_child(False)
             self.hb_revealer.set_reveal_child(False)
-            self.hb.props.opacity = 0.0
             self.status_bar_visible = False
             self.buffer_modified_for_status_bar = False
             return False
@@ -858,6 +863,18 @@ class UberwriterWindow(Window):
             self.status_bar_visible = True
             self.buffer_modified_for_status_bar = False
             self.update_line_and_char_count()
+
+    def override_headerbar_background(self, widget, cr):
+        if(widget.get_window().get_state() & self.testbits):
+            bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
+            alloc = widget.get_allocation()
+            width = alloc.width
+            height = alloc.height
+
+            cr.rectangle(0,0, width, height)
+            cr.set_source_rgb(bg_color.red, bg_color.green, bg_color.blue)
+            cr.fill()
+
 
     def draw_gradient(self, widget, cr):
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
@@ -900,6 +917,7 @@ class UberwriterWindow(Window):
         self.connect('close-window', self.on_mnu_close_activate)
         self.connect('toggle-search', self.open_search_and_replace)
         self.scroll_adjusted = False
+
         # Code for other initialization actions should be added here.
 
         # Texlive checker
@@ -932,7 +950,8 @@ class UberwriterWindow(Window):
             self.hb.pack_start(bbtn)
             self.hb.pack_end(btn_settings)
             self.hb.show_all()
-
+            self.testbits = Gdk.WindowState.TILED | Gdk.WindowState.MAXIMIZED
+            self.connect('draw', self.override_headerbar_background)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -979,6 +998,9 @@ class UberwriterWindow(Window):
         self.TextEditor.set_vadjustment(builder.get_object('vadjustment1'))
         self.TextEditor.set_wrap_mode(Gtk.WrapMode.WORD)
         self.TextEditor.connect('focus-out-event', self.focus_out)
+        self.TextEditor.get_style_context().connect('changed', self.style_changed)
+
+        # self.TextEditor.install_style_property_parser
 
         self.TextEditor.show()
         self.TextEditor.grab_focus()

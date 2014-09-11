@@ -63,8 +63,8 @@ class Window(Gtk.Window):
         self.preferences_dialog = None # instance
         self.AboutDialog = None # class
 
-        self.settings = Gio.Settings("net.launchpad.uberwriter")
-        self.settings.connect('changed', self.on_preferences_changed)
+        # self.settings = Gio.Settings("net.launchpad.uberwriter")
+        # self.settings.connect('changed', self.on_preferences_changed)
 
         # Optional application indicator support
         # Run 'quickly add indicator' to get started.

@@ -111,14 +111,17 @@ class DictAccessor(object):
         lines = ' '.join(lines)
         lines = re.sub('\s+', ' ', lines).strip()
         lines = re.split(r'( adv | adj | n | v |^adv |^adj |^n |^v )', lines)
-        res = {}
+        res = []
+        act_res = {}
         for l in lines:
             l = l.strip()
-            act_res = {}
-            act_res['defs'] = []
             if len(l) == 0:
                 continue
             if l  in ['adv', 'adj','n','v']:
+                if act_res:
+                    res.append(act_res.copy())
+                act_res = {}
+                act_res['defs'] = []
                 act_res['class'] = l
             else:
                 ll = re.split('(?: |^)(\d): ', l)
@@ -153,8 +156,9 @@ class DictAccessor(object):
                 if act_def and 'description' in act_def:
                     act_res['defs'].append(act_def.copy())
 
-            print(act_res)
-            return act_res
+        res.append(act_res.copy())
+        return res
+
 def check_url(url, item, spinner):
     logger.debug("thread started, checking url")
     error = False
@@ -175,20 +179,10 @@ def check_url(url, item, spinner):
     item.set_label(text)
 
 def get_dictionary(term):
-    def parse_response(response):
-        # consisting of group (n,v,adj,adv)
-        # number, description, examples, synonyms, antonyms
-        lines = response.split('\n')
-        lines = lines[2:]
-        for l in lines:
-            l = l.lstrip()
-            print(l)
-
     da = DictAccessor()
     output = da.getDefinition('wn', term)
-    print (output)
-
     output = output[0]
+    print(output)
     return da.parse_wordnet(output.decode(encoding='UTF-8'))
 
 def get_web_thumbnail(url, item, spinner):
@@ -219,10 +213,21 @@ def get_web_thumbnail(url, item, spinner):
 def fill_lexikon_bubble(vocab, lexikon_dict):
     grid = Gtk.Grid.new()
     i = 0
-    for entry in lexikon_dict:
-        grid.attach(Gtk.Label.new(vocab + ' ~ ' + entry['class']), i, i, 3, 1)
-    grid.show_all()
-    return grid
+
+    import pprint
+    print("\n\n Pretty Printing \n\n")
+    pprint.pprint(lexikon_dict)
+    if lexikon_dict:
+        for entry in lexikon_dict:
+            grid.attach(Gtk.Label.new(vocab + ' ~ ' + entry['class']), 0, i, 3, 1)
+            for definition in entry['defs']:
+                i = i + 1
+                grid.attach(Gtk.Label.new(definition['num']), 0, i, 1, 1)
+                grid.attach(Gtk.Label.new(' '.join(definition['description'])), 1, i, 1, 1)
+        grid.show_all()
+        return grid
+    else:
+        return None
 
 
 
@@ -276,13 +281,13 @@ class UberwriterInlinePreview():
         item.set_name("PreviewMenuItem")
         separator = Gtk.SeparatorMenuItem.new()
 
-        table_item = Gtk.MenuItem.new()
-        table_item.set_label('Fix that table')
+        # table_item = Gtk.MenuItem.new()
+        # table_item.set_label('Fix that table')
 
-        table_item.connect('activate', self.fix_table)
-        table_item.show()
-        menu.prepend(table_item)
-        menu.show()
+        # table_item.connect('activate', self.fix_table)
+        # table_item.show()
+        # menu.prepend(table_item)
+        # menu.show()
 
         start_iter = self.TextBuffer.get_iter_at_mark(self.ClickMark)
         # Line offset of click mark
@@ -456,7 +461,7 @@ class UberwriterInlinePreview():
             sc.add(fill_lexikon_bubble(word, get_dictionary(word)))
             sc.props.width_request = 500
             sc.props.height_request = 400
-            tv.get_buffer().set_text(terms)
+            # tv.get_buffer().set_text(terms)
             sc.show_all()
             self.open_popover_with_widget(sc)
 

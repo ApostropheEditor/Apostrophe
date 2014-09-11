@@ -33,7 +33,6 @@
 
 #UberwriterWindow {
   gtk-key-bindings: window-bindings;
-  background: #FFF;
   border-radius: 7px 7px 5px 5px;
 }
 
@@ -60,11 +59,12 @@
 
 .scrollbars-junction,
 .scrollbar.trough {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #UberwriterEditor {
   border: none;
+  background-color: transparent;
   color: #222;
   -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
   -GtkWidget-cursor-aspect-ratio: 0.1;
@@ -141,7 +141,7 @@
   box-shadow: 0 0 2px rgba(0,0,0,0.4)
 }
 .dark_mode #status_bar_box GtkButton {
-  background: #F00;
+
 }
 .dark_mode #status_bar_box GtkButton:hover,
 .dark_mode #status_bar_box GtkButton:active {
@@ -167,5 +167,5 @@
 }
 
 #LexikonBubble {
-  font: Inconsolata 10;
+  font: serif 10;
 }
