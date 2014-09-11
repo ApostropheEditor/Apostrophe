@@ -122,7 +122,7 @@ class UberwriterWindow(Window):
         end_iter = self.TextBuffer.get_end_iter()
         return self.TextBuffer.get_text(start_iter, end_iter, False)
 
-    WORDCOUNT = re.compile(r"[\s#*\+\-]+", re.UNICODE)
+    WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
     def update_line_and_char_count(self):
         if self.status_bar_visible == False:
             return
