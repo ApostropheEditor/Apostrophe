@@ -57,7 +57,9 @@ def move_desktop_file(root, target_data, prefix):
     # always really be installed into prefix, because while we can install
     # normal data files anywhere we want, the desktop file needs to exist in
     # the main system to be found.  Only actually useful for /opt installs.
-
+    print("renaming desktop file")
+    print(root, target_data, prefix)
+    if(root == '/'): root = ''
     old_desktop_path = os.path.normpath(root + target_data +
                                         '/share/applications')
     old_desktop_file = old_desktop_path + '/uberwriter.desktop'
@@ -70,8 +72,10 @@ def move_desktop_file(root, target_data, prefix):
     elif target_data != prefix + '/':
         # This is an /opt install, so rename desktop file to use extras-
         desktop_file = desktop_path + '/extras-uberwriter.desktop'
+        print(desktop_file, desktop_path)
         try:
-            os.makedirs(desktop_path)
+            # os.makedirs(desktop_path)
+            print('renaming to: %s' % desktop_file)
             os.rename(old_desktop_file, desktop_file)
             os.rmdir(old_desktop_path)
         except OSError as e:
@@ -81,7 +85,7 @@ def move_desktop_file(root, target_data, prefix):
     return desktop_file
 
 def update_desktop_file(filename, target_pkgdata, target_scripts):
-
+    print("updateing deskop file: %s" % filename)
     try:
         fin = open(filename, 'r', encoding="utf-8")
         fout = open(filename + '.new', 'w', encoding="utf-8")
@@ -136,7 +140,7 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
 
 DistUtilsExtra.auto.setup(
     name='uberwriter',
-    version='0.1',
+    version='1.0',
     license='GPL-3',
     author='Wolf Vollprecht',
     author_email='w.vollprecht@gmail.com',
@@ -160,6 +164,7 @@ DistUtilsExtra.auto.setup(
         "uberwriter"
     ],
     package_data={
-            'pylocales' : ['locales.db']
-            }
-    )
+        'uberwriter_lib.pylocales' : ['locales.db']
+    },
+    data_files=[('uberwriter_lib/pylocales', ['uberwriter_lib/pylocales/locales.db'])]
+)

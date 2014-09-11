@@ -33,7 +33,7 @@
 
 #UberwriterWindow {
   gtk-key-bindings: window-bindings;
-  border-radius: 7px 7px 5px 5px;
+  border-radius: 7px 7px 3px 3px;
 }
 
 #UberwriterWindow.small #UberwriterEditor {

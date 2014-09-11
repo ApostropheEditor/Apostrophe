@@ -18,8 +18,6 @@ override_dh_install:
 		--install-data=/opt/extras.ubuntu.com/uberwriter \
 		--install-lib=/opt/extras.ubuntu.com/uberwriter
 
-	cp uberwriter_lib/pylocales/locales.db debian/uberwriter/opt/extras.ubuntu.com/uberwriter/uberwriter_lib/pylocales/locales.db
-
 override_dh_python3:
 	dh_python3 /opt/extras.ubuntu.com/uberwriter
 
