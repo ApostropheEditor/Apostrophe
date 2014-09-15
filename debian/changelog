@@ -1,3 +1,10 @@
+uberwriter (14.09.07-publicubuntu1) trusty; urgency=medium
+
+  * reworking the installation script
+  * some bug fixes
+
+ -- Wolf Vollprecht <w.vollprecht@gmail.com>  Mon, 15 Sep 2014 15:56:08 +0200
+
 uberwriter (14.09.06-public) trusty; urgency=low
  
   [ Wolf ]
