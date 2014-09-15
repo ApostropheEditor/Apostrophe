@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uberwriter\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-10-01 15:02+0200\n"
-"PO-Revision-Date: 2012-10-02 11:34+0000\n"
-"Last-Translator: Christian A. <christian.alt@live.de>\n"
+"POT-Creation-Date: 2012-11-02 03:21+0100\n"
+"PO-Revision-Date: 2012-11-05 12:03+0000\n"
+"Last-Translator: Wolf Vollprecht <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-27 09:20+0000\n"
-"X-Generator: Launchpad (build 16194)\n"
+"X-Launchpad-Export-Date: 2014-09-12 00:12+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:472
 msgid "(no suggestions)"
@@ -49,60 +49,21 @@ msgstr "UberWriter"
 msgid "UberWriter, a simple and distraction free Markdown Editor"
 msgstr "UberWriter, ein einfacher und ablenkungsfreier Markdown-Editor"
 
-#: ../uberwriter/UberwriterWindow.py:400
-msgid "Save your File"
-msgstr "Datei speichern"
+#: ../uberwriter/UberwriterInlinePreview.py:59
+msgid "Website is not available"
+msgstr "Webseite nicht erreichbar"
 
-#: ../uberwriter/UberwriterWindow.py:543
-msgid "You can not export to PDF."
-msgstr "PDF-Export nicht möglich"
+#: ../uberwriter/UberwriterInlinePreview.py:61
+msgid "Website is available"
+msgstr "Webseite erreichbar"
 
-#: ../uberwriter/UberwriterWindow.py:545
-msgid ""
-"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
-msgstr ""
-"Bitte installieren Sie das Paket <a href=\"apt:texlive\">texlive</a> aus dem "
-"Software-Center"
+#: ../uberwriter/UberwriterInlinePreview.py:203
+msgid "Open Link in Webbrowser"
+msgstr "Link in Browser öffnen"
 
-#: ../uberwriter/UberwriterWindow.py:573
-msgid "MarkDown or Plain Text"
-msgstr "MarkDown oder unformatierter Text"
-
-#: ../uberwriter/UberwriterWindow.py:576
-msgid "Open a .md-File"
-msgstr "Eine .md-Datei öffnen"
-
-#: ../uberwriter/UberwriterWindow.py:598
-msgid "You have not saved your changes."
-msgstr "Sie haben Ihre Änderungen nicht gespeichert."
-
-#: ../uberwriter/UberwriterWindow.py:600
-msgid "Close without Saving"
-msgstr "Schließen, ohne zu speichern"
-
-#: ../uberwriter/UberwriterWindow.py:601
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: ../uberwriter/UberwriterWindow.py:602
-msgid "Save now"
-msgstr "Jetzt speichern"
-
-#: ../uberwriter/UberwriterWindow.py:603
-msgid "Unsaved changes"
-msgstr "Ungespeicherte Änderungen"
-
-#: ../uberwriter/UberwriterWindow.py:660
-msgid "You can not enable the Spell Checker."
-msgstr "Die Rechtschreib-Korrektur konnte nicht aktiviert werden."
-
-#: ../uberwriter/UberwriterWindow.py:662
-msgid ""
-"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
-"software center."
-msgstr ""
-"Bitte installieren Sie die Pakete 'hunspell' oder 'aspell' für Ihre Sprache "
-"aus dem Software-Center."
+#: ../uberwriter/UberwriterInlinePreview.py:256
+msgid "No matching footnote found"
+msgstr "Keine zugehörige Fussnote gefunden"
 
 #: ../data/ui/UberwriterWindow.ui.h:1
 msgid "_File"
@@ -133,74 +94,94 @@ msgid "_View"
 msgstr "_Ansicht"
 
 #: ../data/ui/UberwriterWindow.ui.h:8
-msgid "Light text on  a dark background"
-msgstr "Heller Text vor dunklem Hintergrund"
+msgid "Light text on a dark background"
+msgstr "Heller Text auf dunklem Hintergrund"
 
 #: ../data/ui/UberwriterWindow.ui.h:9
 msgid "Dark Mode"
 msgstr "Abgedunkelter Modus"
 
 #: ../data/ui/UberwriterWindow.ui.h:10
+msgid "Switch to preview mode"
+msgstr "In den Vorschaumodus wechseln"
+
+#: ../data/ui/UberwriterWindow.ui.h:11
+msgid "Preview"
+msgstr "Vorschau"
+
+#: ../data/ui/UberwriterWindow.ui.h:12
 msgid "Auto _Spellcheck"
 msgstr "Rechtschreibkorrektur"
 
-#: ../data/ui/UberwriterWindow.ui.h:11
+#: ../data/ui/UberwriterWindow.ui.h:13
 msgid "F_ormat"
 msgstr "_Format"
 
-#: ../data/ui/UberwriterWindow.ui.h:12
+#: ../data/ui/UberwriterWindow.ui.h:14
 msgid "Unordered List Item"
 msgstr "Ungeordnetes Listenelement"
 
-#: ../data/ui/UberwriterWindow.ui.h:13
+#: ../data/ui/UberwriterWindow.ui.h:15
 msgid "Horizontal Rule"
 msgstr "Horizontale Linie"
 
-#: ../data/ui/UberwriterWindow.ui.h:14 ../uberwriter/FormatShortcuts.py:182
+#: ../data/ui/UberwriterWindow.ui.h:16 ../uberwriter/FormatShortcuts.py:182
 msgid "Heading"
 msgstr "Überschrift"
 
-#: ../data/ui/UberwriterWindow.ui.h:15
+#: ../data/ui/UberwriterWindow.ui.h:17
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../data/ui/UberwriterWindow.ui.h:16
+#: ../data/ui/UberwriterWindow.ui.h:18
 msgid "Contents"
 msgstr "Inhalte"
 
-#: ../data/ui/UberwriterWindow.ui.h:17
+#: ../data/ui/UberwriterWindow.ui.h:19
+msgid "Short Markdown Tutorial"
+msgstr "Kurzes Markdown Tutorial (englisch)"
+
+#: ../data/ui/UberwriterWindow.ui.h:20
+msgid "Open Pandoc Online Markdown Help ..."
+msgstr "Pandoc Online Markdown Hilfe Öffnen"
+
+#: ../data/ui/UberwriterWindow.ui.h:21
 msgid "Get Help Online..."
 msgstr "Online Hilfe erhalten …"
 
-#: ../data/ui/UberwriterWindow.ui.h:18
+#: ../data/ui/UberwriterWindow.ui.h:22
 msgid "Translate This Application..."
 msgstr "Diese Anwendung übersetzen..."
 
-#: ../data/ui/UberwriterWindow.ui.h:19
+#: ../data/ui/UberwriterWindow.ui.h:23
 msgid "Focus Mode"
 msgstr "Fokusmodus"
 
-#: ../data/ui/UberwriterWindow.ui.h:20
+#: ../data/ui/UberwriterWindow.ui.h:24
 msgid "Go into focus mode"
 msgstr "In Fokusmodus wechseln"
 
-#: ../data/ui/UberwriterWindow.ui.h:21
+#: ../data/ui/UberwriterWindow.ui.h:25
 msgid "Fullscreen"
 msgstr "Vollbildmodus"
 
-#: ../data/ui/UberwriterWindow.ui.h:22
+#: ../data/ui/UberwriterWindow.ui.h:26
 msgid "Go into fullscreen mode"
 msgstr "In Vollbildmodus wechseln"
 
-#: ../data/ui/UberwriterWindow.ui.h:23
+#: ../data/ui/UberwriterWindow.ui.h:27
+msgid "Show HTML preview"
+msgstr "HTML Vorschau ansehen"
+
+#: ../data/ui/UberwriterWindow.ui.h:28
 msgid "Words:"
 msgstr "Wörter:"
 
-#: ../data/ui/UberwriterWindow.ui.h:24
+#: ../data/ui/UberwriterWindow.ui.h:29
 msgid "Characters:"
 msgstr "Zeichen:"
 
-#: ../uberwriter/__init__.py:34
+#: ../uberwriter/__init__.py:35
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr "Debugnachrichten anzeigen"
 
@@ -371,3 +352,58 @@ msgstr ""
 #: ../data/ui/AboutUberwriterDialog.ui.h:14
 msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
 msgstr "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+
+#: ../uberwriter/UberwriterWindow.py:418
+msgid "Save your File"
+msgstr "Datei speichern"
+
+#: ../uberwriter/UberwriterWindow.py:563
+msgid "You can not export to PDF."
+msgstr "PDF-Export nicht möglich"
+
+#: ../uberwriter/UberwriterWindow.py:565
+msgid ""
+"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
+msgstr ""
+"Bitte installieren Sie das Paket <a href=\"apt:texlive\">texlive</a> aus dem "
+"Software-Center"
+
+#: ../uberwriter/UberwriterWindow.py:592
+msgid "MarkDown or Plain Text"
+msgstr "MarkDown oder unformatierter Text"
+
+#: ../uberwriter/UberwriterWindow.py:595
+msgid "Open a .md-File"
+msgstr "Eine .md-Datei öffnen"
+
+#: ../uberwriter/UberwriterWindow.py:617
+msgid "You have not saved your changes."
+msgstr "Sie haben Ihre Änderungen nicht gespeichert."
+
+#: ../uberwriter/UberwriterWindow.py:619
+msgid "Close without Saving"
+msgstr "Schließen, ohne zu speichern"
+
+#: ../uberwriter/UberwriterWindow.py:620
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../uberwriter/UberwriterWindow.py:621
+msgid "Save now"
+msgstr "Jetzt speichern"
+
+#: ../uberwriter/UberwriterWindow.py:622
+msgid "Unsaved changes"
+msgstr "Ungespeicherte Änderungen"
+
+#: ../uberwriter/UberwriterWindow.py:682
+msgid "You can not enable the Spell Checker."
+msgstr "Die Rechtschreib-Korrektur konnte nicht aktiviert werden."
+
+#: ../uberwriter/UberwriterWindow.py:684
+msgid ""
+"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
+"software center."
+msgstr ""
+"Bitte installieren Sie die Pakete 'hunspell' oder 'aspell' für Ihre Sprache "
+"aus dem Software-Center."

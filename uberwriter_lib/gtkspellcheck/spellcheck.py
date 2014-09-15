@@ -29,6 +29,8 @@ import logging
 import re
 import sys
 
+import xml.etree.ElementTree as ET
+
 from ..pylocales import code_to_name
 
 # public objects
@@ -168,6 +170,7 @@ class SpellChecker(object):
 
     def __init__(self, view, language='en', prefix='gtkspellchecker',
                  collapse=True, params={}):
+
         self._view = view
         self.collapse = collapse
         self._view.connect('populate-popup',
@@ -473,6 +476,8 @@ class SpellChecker(object):
             item.add(label)
             menu.append(item)
         else:
+            # add sorting here
+
             for suggestion in suggestions:
                 if _pygobject:
                     item = gtk.MenuItem.new()

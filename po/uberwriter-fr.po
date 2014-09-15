@@ -1,16 +1,16 @@
-# Russian translation for uberwriter
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# French translation for uberwriter
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
 # This file is distributed under the same license as the uberwriter package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: uberwriter\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-11-02 03:21+0100\n"
-"PO-Revision-Date: 2013-08-25 19:56+0000\n"
-"Last-Translator: Устин <ustinershovskiy@yandex.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"PO-Revision-Date: 2013-12-19 13:08+0000\n"
+"Last-Translator: RastaPopoulos <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,27 +19,27 @@ msgstr ""
 
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:472
 msgid "(no suggestions)"
-msgstr "(нет предложений)"
+msgstr "(aucune suggestion)"
 
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:494
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:497
 msgid "Add \"{}\" to Dictionary"
-msgstr "Добавить \"{}\" в словарь"
+msgstr "Ajouter {} au dictionnaire"
 
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:501
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:503
 msgid "Ignore All"
-msgstr "Игнорировать все"
+msgstr "Ignorer tout"
 
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:518
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:520
 msgid "Languages"
-msgstr "Языки"
+msgstr "Langues"
 
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:536
 #: ../uberwriter_lib/gtkspellcheck/spellcheck.py:539
 msgid "Suggestions"
-msgstr "Предложения"
+msgstr "Suggestions"
 
 #: ../uberwriter.desktop.in.h:1
 msgid "UberWriter"
@@ -47,249 +47,247 @@ msgstr "UberWriter"
 
 #: ../uberwriter.desktop.in.h:2
 msgid "UberWriter, a simple and distraction free Markdown Editor"
-msgstr ""
-"UberWriter, простой редактор, позволяющий полностью погрузиться в "
-"редактирование разметки Markdown"
+msgstr "UberWriter, un éditeur Markdown simple et sans distractions"
 
 #: ../uberwriter/UberwriterInlinePreview.py:59
 msgid "Website is not available"
-msgstr "Веб-сайт недоступен"
+msgstr "Site web indisponible"
 
 #: ../uberwriter/UberwriterInlinePreview.py:61
 msgid "Website is available"
-msgstr "Веб-сайт доступен"
+msgstr "Site web disponible"
 
 #: ../uberwriter/UberwriterInlinePreview.py:203
 msgid "Open Link in Webbrowser"
-msgstr "Открыть ссылку в веб-браузере"
+msgstr "Ouvrir le lien dans le navigateur"
 
 #: ../uberwriter/UberwriterInlinePreview.py:256
 msgid "No matching footnote found"
-msgstr "Не найдено совпадающей сноски"
+msgstr "Aucun note de bas de page correspondante"
 
 #: ../data/ui/UberwriterWindow.ui.h:1
 msgid "_File"
-msgstr "_Файл"
+msgstr "_Fichier"
 
 #: ../data/ui/UberwriterWindow.ui.h:2
 msgid "Open Recent File"
-msgstr "Последние файлы"
+msgstr "Ouvrir un document récent"
 
 #: ../data/ui/UberwriterWindow.ui.h:3
 msgid "Export as ODT"
-msgstr "Экспортировать как ODT"
+msgstr "Exporter en ODT"
 
 #: ../data/ui/UberwriterWindow.ui.h:4
 msgid "Advanced Export..."
-msgstr "Расширенный экспорт…"
+msgstr "Export avancé…"
 
 #: ../data/ui/UberwriterWindow.ui.h:5
 msgid "Copy raw HTML to clipboard"
-msgstr "Скопировать чистый HTML в буфер обмена"
+msgstr "Copier le HTML brut dans le presse-papiers"
 
 #: ../data/ui/UberwriterWindow.ui.h:6
 msgid "_Edit"
-msgstr "_Правка"
+msgstr "_Édition"
 
 #: ../data/ui/UberwriterWindow.ui.h:7
 msgid "_View"
-msgstr "_Вид"
+msgstr "_Affichage"
 
 #: ../data/ui/UberwriterWindow.ui.h:8
 msgid "Light text on a dark background"
-msgstr "Светлый текст на тёмном фоне"
+msgstr "Texte clair sur fond sombre"
 
 #: ../data/ui/UberwriterWindow.ui.h:9
 msgid "Dark Mode"
-msgstr "Темный режим"
+msgstr "Mode sombre"
 
 #: ../data/ui/UberwriterWindow.ui.h:10
 msgid "Switch to preview mode"
-msgstr "Переключиться в режим предосмотра"
+msgstr "Basculer vers l'aperçu"
 
 #: ../data/ui/UberwriterWindow.ui.h:11
 msgid "Preview"
-msgstr "Предосмотр"
+msgstr "Aperçu"
 
 #: ../data/ui/UberwriterWindow.ui.h:12
 msgid "Auto _Spellcheck"
-msgstr "Автоматическая проверка орфографии"
+msgstr "_Vérifier l’orthographe"
 
 #: ../data/ui/UberwriterWindow.ui.h:13
 msgid "F_ormat"
-msgstr "Ф_ормат"
+msgstr "F_ormat"
 
 #: ../data/ui/UberwriterWindow.ui.h:14
 msgid "Unordered List Item"
-msgstr "Элемент неупорядоченного списка"
+msgstr "Liste non ordonnée"
 
 #: ../data/ui/UberwriterWindow.ui.h:15
 msgid "Horizontal Rule"
-msgstr "Горизонтальная линия"
+msgstr "Ligne horizontale"
 
 #: ../data/ui/UberwriterWindow.ui.h:16 ../uberwriter/FormatShortcuts.py:182
 msgid "Heading"
-msgstr "Заголовок"
+msgstr "Entête"
 
 #: ../data/ui/UberwriterWindow.ui.h:17
 msgid "_Help"
-msgstr "_Помощь"
+msgstr "_Aide"
 
 #: ../data/ui/UberwriterWindow.ui.h:18
 msgid "Contents"
-msgstr "Содержание"
+msgstr "Table des matières"
 
 #: ../data/ui/UberwriterWindow.ui.h:19
 msgid "Short Markdown Tutorial"
-msgstr "Краткое руководство по Markdown"
+msgstr "Tutoriel Markdown rapide"
 
 #: ../data/ui/UberwriterWindow.ui.h:20
 msgid "Open Pandoc Online Markdown Help ..."
-msgstr "Открыть Pandoc Online Markdown Help ..."
+msgstr "Ouvrir l'aide en ligne de Markdown pour Pandoc…"
 
 #: ../data/ui/UberwriterWindow.ui.h:21
 msgid "Get Help Online..."
-msgstr "Получить помощь онлайн…"
+msgstr "Obtenir de l'aide en ligne…"
 
 #: ../data/ui/UberwriterWindow.ui.h:22
 msgid "Translate This Application..."
-msgstr "Перевести это приложение…"
+msgstr "Traduire cette application..."
 
 #: ../data/ui/UberwriterWindow.ui.h:23
 msgid "Focus Mode"
-msgstr "«Фокус»"
+msgstr "Mode focus"
 
 #: ../data/ui/UberwriterWindow.ui.h:24
 msgid "Go into focus mode"
-msgstr "Включить «фокус»"
+msgstr "Basculer vers le mode focus"
 
 #: ../data/ui/UberwriterWindow.ui.h:25
 msgid "Fullscreen"
-msgstr "Полноэкранный режим"
+msgstr "Plein écran"
 
 #: ../data/ui/UberwriterWindow.ui.h:26
 msgid "Go into fullscreen mode"
-msgstr "Переключиться в полноэкранный режим"
+msgstr "Basculer vers le mode plein ecran"
 
 #: ../data/ui/UberwriterWindow.ui.h:27
 msgid "Show HTML preview"
-msgstr "Показать предосмотр HTML"
+msgstr "Montrer l'aperçu HTML"
 
 #: ../data/ui/UberwriterWindow.ui.h:28
 msgid "Words:"
-msgstr "Слов:"
+msgstr "Mots :"
 
 #: ../data/ui/UberwriterWindow.ui.h:29
 msgid "Characters:"
-msgstr "Символов:"
+msgstr "Caractères :"
 
 #: ../uberwriter/__init__.py:35
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-msgstr ""
-"Показывать отладочную информацию (-vv включает заодно и отладку "
-"uberwriter_lib)"
+msgstr "Montrer les messages débogage"
 
 #: ../uberwriter/FormatShortcuts.py:85
 msgid "emphasized text"
-msgstr "курсив"
+msgstr "surligner le texte"
 
 #: ../uberwriter/FormatShortcuts.py:87
 msgid "strong text"
-msgstr "жирный"
+msgstr "texte en gras"
 
 #: ../uberwriter/FormatShortcuts.py:101
 msgid "List item"
-msgstr "Элемент списка"
+msgstr "Liste ordonnée"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:1
 msgid "Export"
-msgstr "Экспорт"
+msgstr "Exporter"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:2
 msgid "Smart"
-msgstr "Типографировать"
+msgstr "Intelligente"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:3
 msgid "Pandoc can automatically make \"--\" to a long dash and more"
 msgstr ""
-"Pandoc может автоматически конвертировать \"--\" в длинное тире и многое "
-"другое"
+"Pandoc peut automatiquement remplacer \"--\" par un tiret long et plus"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:4
 msgid "Normalize"
-msgstr "Нормализовать"
+msgstr "Normaliser"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:5
 msgid ""
 "Removes things like double spaces or spaces at the beginning of a paragraph"
-msgstr "Удалить двойные пробелы или пробелы в начале параграфа"
+msgstr ""
+"Supprimer les choses comme les espaces ou les espaces doubles en début de "
+"paragraphe"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:6
 msgid "Table of Contents"
-msgstr "Содержание"
+msgstr "Table des matières"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:7
 msgid "Standalone"
-msgstr "Создавать файл целиком(включать все необходимые заголовки)"
+msgstr "Autonome"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:8
 msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
-"Использовать header и footer для включения таблиц стилей и мета-информации"
+"Utiliser une en-tête et un pied de page pour incorporer les feuilles de "
+"styles et les meta informations"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:9
 msgid "Number Sections"
-msgstr "Пронумеровать секции"
+msgstr "Numéroter les sections"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:10
 msgid "Strict Markdown"
-msgstr "Строгий Markdown"
+msgstr "Markdown stricte"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:11
 msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "Использовать \"строгий\" markdown вместо \"pandoc\" markdown"
+msgstr "Utiliser le Markdown \"strict\" à la place du Markdown \"pandoc\""
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:12
 msgid "Slideshow incremental bullets"
-msgstr "Показывать элементы последовательного списка один за другим"
+msgstr "Puces incremental de diaporama"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:13
 msgid "Show one bullet point after another in a slideshow"
-msgstr "Показывать элементы маркированного списка один за другим в слайдшоу"
+msgstr "Montrer une puce après l'autre dans un diaporama"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:14
 msgid "<b>General Options</b>"
-msgstr "<b>Основные опции</b>"
+msgstr "<b>Options générales</b>"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:15
 msgid "Highlight syntax"
-msgstr "Подстветка синтаксиса"
+msgstr "Coloration syntaxique"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:16
 msgid "Choose a color theme for syntax highlighting"
-msgstr "Выбрать цветовую тему для подсветки синтаксиса"
+msgstr "Choisissez un jeu de couleur pour la coloration syntaxique"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:17
 msgid "Highlight style  "
-msgstr "Цветовая схема  "
+msgstr "Style de coloration  "
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:18
 msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
-msgstr "<b>Подсветка синтаксиса</b> (HTML, LaTeX)"
+msgstr "<b>Coloration syntaxique</b> (HTML, LaTeX)"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:19
 msgid "Self Contained"
-msgstr "Включать все содержимое в файл"
+msgstr "Autonome"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:20
 msgid ""
 "Produces a HTML that has no external dependencies (all images and "
 "stylesheets are included)"
 msgstr ""
-"Создать HTML без внешних зависимостей (все изображения и таблицы стилей "
-"будут включены)"
+"Génère un HTML sans dépendances externes (toutes les images et styles sont "
+"inclus)"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:21
 msgid "HTML 5"
@@ -297,27 +295,27 @@ msgstr "HTML 5"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:22
 msgid "Use HTML 5 syntax"
-msgstr "Использовать HTML 5 синтаксис"
+msgstr "Utiliser la syntaxe HTML 5"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:23
 msgid "Choose a CSS File that you want to use"
-msgstr "Выбрать CSS файл, который вы хотите использовать"
+msgstr "Choisir un fichier CSS"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:24
 msgid "CSS File"
-msgstr "Файл CSS"
+msgstr "Fichier CSS"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:25
 msgid "<b>HTML Options</b>"
-msgstr "<b>Опции HTML</b>"
+msgstr "<b>Options HTML</b>"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:26
 msgid "<b>Bibliography File</b>"
-msgstr "<b>Файл с библиографическим списком</b>"
+msgstr "Fichier de bibliographie"
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:27
 msgid "Commandline Reference"
-msgstr "Руководство по использованию командной строки"
+msgstr "Référence de Ligne de Commande"
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:1
 msgid ""
@@ -335,77 +333,73 @@ msgid ""
 "# You should have received a copy of the GNU General Public License along \n"
 "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
 msgstr ""
-"# Авторское право (С) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-"# Это свободная программа; вы можете повторно распространять ее\n"
-"# и/или модифицировать её в соответствии с условиями\n"
-"# GNU General Public License, версия 3, опубликованной\n"
-"# Free Software Foundation.\n"
-"# \n"
-"# Эта программа распространяется в надежде, что она будет полезной, но\n"
-"# БЕЗ КАКИХ-либо ГАРАНТИЙ; даже без подразумеваемых гарантий\n"
-"# коммерческой ценности, УДОВЛЕТВОРИТЕЛЬНОГО КАЧЕСТВА или\n"
-"# ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ. Подробнее\n"
-"# смотрите GNU General Public License.\n"
-"# \n"
-"# Вы должны были получить копию стандартной Общественной\n"
-"# Лицензии GNU вместе с этой программой.\n"
-"# Если нет, смотрите <http://www.gnu.org/licenses/>.\n"
+"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+"# This program is free software: you can redistribute it and/or modify it\n"
+"# under the terms of the GNU General Public License version 3, as published\n"
+"# by the Free Software Foundation.\n"
+"#\n"
+"# This program is distributed in the hope that it will be useful, but\n"
+"# WITHOUT ANY WARRANTY; without even the implied warranties of\n"
+"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR\n"
+"# PURPOSE. See the GNU General Public License for more details.\n"
+"#\n"
+"# You should have received a copy of the GNU General Public License along\n"
+"# with this program. If not, see <http://www.gnu.org/licenses/>.\n"
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:14
 msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-msgstr "Авторское право принадлежит Wolf Vollprecht <w.vollprecht@gmail.com>"
+msgstr "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
 
 #: ../uberwriter/UberwriterWindow.py:418
 msgid "Save your File"
-msgstr "Сохранить ваш файл"
+msgstr "Sauvegarder le document"
 
 #: ../uberwriter/UberwriterWindow.py:563
 msgid "You can not export to PDF."
-msgstr "Вы не можете экспортировать в PDF."
+msgstr "Impossible d'exporter en PDF"
 
 #: ../uberwriter/UberwriterWindow.py:565
 msgid ""
 "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
 msgstr ""
-"Пожалуйста, установите <a href=\"apt:texlive\">texlive</a> из центра "
-"приложений."
+"Veuillez installer <a href=\"apt:texlive\">texlive</a> du software center."
 
 #: ../uberwriter/UberwriterWindow.py:592
 msgid "MarkDown or Plain Text"
-msgstr "MarkDown или обычный текст"
+msgstr "MarkDown ou Texte Brut"
 
 #: ../uberwriter/UberwriterWindow.py:595
 msgid "Open a .md-File"
-msgstr "Открыть .md файл"
+msgstr "Ouvrir un fichier .md"
 
 #: ../uberwriter/UberwriterWindow.py:617
 msgid "You have not saved your changes."
-msgstr "Вы не сохранили изменения."
+msgstr "Vous n'avez pas sauvegardé vos modifications."
 
 #: ../uberwriter/UberwriterWindow.py:619
 msgid "Close without Saving"
-msgstr "Закрыть без сохранения"
+msgstr "Fermer sans sauvegarder"
 
 #: ../uberwriter/UberwriterWindow.py:620
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "Annuler"
 
 #: ../uberwriter/UberwriterWindow.py:621
 msgid "Save now"
-msgstr "Сохранить сейчас"
+msgstr "Enregistrer maintenant"
 
 #: ../uberwriter/UberwriterWindow.py:622
 msgid "Unsaved changes"
-msgstr "Несохранённые изменения"
+msgstr "Modifications non enregistrées"
 
 #: ../uberwriter/UberwriterWindow.py:682
 msgid "You can not enable the Spell Checker."
-msgstr "Вы не можете включить проверку орфографии."
+msgstr "Vous ne pouvez pas activer le Correcteur Orthographique"
 
 #: ../uberwriter/UberwriterWindow.py:684
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
 msgstr ""
-"Пожалуйста, установите 'hunspell' или 'aspell' словари для вашего языка из "
-"центра приложений."
+"Veuillez installer les dictionnaires 'hunspell' ou 'aspell' pour votre "
+"langues depuis le software center."

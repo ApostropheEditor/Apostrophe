@@ -213,17 +213,27 @@ def get_web_thumbnail(url, item, spinner):
 def fill_lexikon_bubble(vocab, lexikon_dict):
     grid = Gtk.Grid.new()
     i = 0
-
-    import pprint
-    print("\n\n Pretty Printing \n\n")
-    pprint.pprint(lexikon_dict)
+    grid.set_name('LexikonBubble')
+    grid.set_row_spacing(2)
+    grid.set_column_spacing(4)
     if lexikon_dict:
         for entry in lexikon_dict:
-            grid.attach(Gtk.Label.new(vocab + ' ~ ' + entry['class']), 0, i, 3, 1)
+            vocab_label = Gtk.Label.new(vocab + ' ~ ' + entry['class'])
+            vocab_label.get_style_context().add_class('lexikon_heading')
+            grid.attach(vocab_label, 0, i, 3, 1)
             for definition in entry['defs']:
                 i = i + 1
-                grid.attach(Gtk.Label.new(definition['num']), 0, i, 1, 1)
-                grid.attach(Gtk.Label.new(' '.join(definition['description'])), 1, i, 1, 1)
+                num_label = Gtk.Label.new(definition['num'])
+                num_label.get_style_context().add_class('lexikon_num')
+                grid.attach(num_label, 0, i, 1, 1)
+
+                def_label = Gtk.Label.new(' '.join(definition['description']))
+                def_label.set_halign(Gtk.Align.START)
+                def_label.set_justify(Gtk.Justification.LEFT)
+                def_label.get_style_context().add_class('lexikon_definition')
+                def_label.props.wrap = True
+                grid.attach(def_label, 1, i, 1, 1)
+            i = i + 1
         grid.show_all()
         return grid
     else:

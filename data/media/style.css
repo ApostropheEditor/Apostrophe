@@ -34,6 +34,7 @@
 #UberwriterWindow {
   gtk-key-bindings: window-bindings;
   border-radius: 7px 7px 3px 3px;
+  background: #EDEDED;
 }
 
 #UberwriterWindow.small #UberwriterEditor {
@@ -47,6 +48,12 @@
 #UberwriterWindow.large #UberwriterEditor {
   font: Inconsolata 17;
 }
+
+#UberwriterWindow.large #UberwriterEditor *{
+  font: initial;
+}
+
+
 
 #UberwriterWindow.dark_mode {
   background: #333;
@@ -167,5 +174,16 @@
 }
 
 #LexikonBubble {
-  font: serif 10;
+  font: serif 12;
 }
+
+#LexikonBubble .lexikon_heading {
+  font: serif 12;
+  padding-bottom: 5px;
+  padding-top: 3px;
+  font-weight: bold;
+}
+
+#LexikonBubble .lexikon_num {
+  padding-right: 5px;
+  }
