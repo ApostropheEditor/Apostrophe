@@ -1,4 +1,5 @@
 build/lib.linux-x86_64-2.7
+*.pyc
 __pycache__/
 build/scripts-2.7
 build/share
