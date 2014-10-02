@@ -25,6 +25,7 @@ Depends:
  yelp,
  gnome-web-photo,
  fonts-inconsolata,
+ python3-levenshtein,
  dvipng
 Suggests: texlive
 Description: UberWriter, beautiful distraction free writing

@@ -725,47 +725,38 @@ class UberwriterWindow(Window):
             self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
             self.get_style_context().add_class("dark_mode")
             self.MarkupBuffer.dark_mode(True)
-            # self.background_image = helpers.get_media_path('bg_dark.png')
         else:
             # Dark mode off
             self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
             self.get_style_context().remove_class("dark_mode")
             self.MarkupBuffer.dark_mode(False)
-            # self.background_image = helpers.get_media_path('bg_light.png')
 
-        # surface = cairo.ImageSurface.create_from_png(self.background_image)
-        # self.background_pattern = cairo.SurfacePattern(surface)
-        # self.background_pattern.set_extend(cairo.EXTEND_REPEAT)
-
-        # Gtk.StyleContext.add_provider_for_screen(
-        #     Gdk.Screen.get_default(), self.style_provider,
-        #     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        # )
         # Redraw contents of window (self)
         self.queue_draw()
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
         if filename:
+            self.preview_button.set_active(False)
             if filename.startswith('file://'):
                 filename = filename[7:]
             filename = urllib.parse.unquote_plus(filename)
             try:
-                self.preview_button.set_active(False)
-                self.filename = filename
-                f = codecs.open(filename, encoding="utf-8", mode='r')
-                self.TextBuffer.set_text(f.read())
-                f.close()
-                self.MarkupBuffer.markup_buffer(0)
-                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
-                self.TextEditor.undo_stack = []
-                self.TextEditor.redo_stack = []
-                # ei = self.TextBuffer.get_end_iter()
-                # anchor = self.TextBuffer.create_child_anchor(ei)
-                # al = Gtk.Label.new('asd')
-                # al.set_text('...')
-                # al.show()
-                # self.TextEditor.add_child_at_anchor(al, anchor)
+                if not os.path.exists(filename):
+                    self.filename = filename
+                    self.set_headerbar_title(os.path.basename(filename) + self.title_end)
+                    self.TextEditor.undo_stack = []
+                    self.TextEditor.redo_stack = []
+                    self.TextBuffer.set_text("")
+                else:
+                    self.filename = filename
+                    f = codecs.open(filename, encoding="utf-8", mode='r')
+                    self.TextBuffer.set_text(f.read())
+                    f.close()
+                    self.MarkupBuffer.markup_buffer(0)
+                    self.set_headerbar_title(os.path.basename(filename) + self.title_end)
+                    self.TextEditor.undo_stack = []
+                    self.TextEditor.redo_stack = []
 
             except Exception as e:
                 logger.warning("Error Reading File: %r" % e)
