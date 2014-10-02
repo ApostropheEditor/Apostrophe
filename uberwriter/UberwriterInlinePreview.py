@@ -125,10 +125,8 @@ class DictAccessor(object):
                 act_res['class'] = l
             else:
                 ll = re.split('(?: |^)(\d): ', l)
-                # print(ll)
                 act_def = {}
                 for lll in ll:
-                    # print (lll)
                     if lll.strip().isdigit() or not lll.strip():
                         if 'description' in act_def and act_def['description']:
                             act_res['defs'].append(act_def.copy())
@@ -181,8 +179,10 @@ def check_url(url, item, spinner):
 def get_dictionary(term):
     da = DictAccessor()
     output = da.getDefinition('wn', term)
-    output = output[0]
-    print(output)
+    if(len(output)):
+        output = output[0]
+    else:
+        return None
     return da.parse_wordnet(output.decode(encoding='UTF-8'))
 
 def get_web_thumbnail(url, item, spinner):
@@ -220,11 +220,15 @@ def fill_lexikon_bubble(vocab, lexikon_dict):
         for entry in lexikon_dict:
             vocab_label = Gtk.Label.new(vocab + ' ~ ' + entry['class'])
             vocab_label.get_style_context().add_class('lexikon_heading')
+            vocab_label.set_halign(Gtk.Align.START)
+            vocab_label.set_justify(Gtk.Justification.LEFT)
             grid.attach(vocab_label, 0, i, 3, 1)
+
             for definition in entry['defs']:
                 i = i + 1
                 num_label = Gtk.Label.new(definition['num'])
                 num_label.get_style_context().add_class('lexikon_num')
+                num_label.set_justify(Gtk.Justification.RIGHT)
                 grid.attach(num_label, 0, i, 1, 1)
 
                 def_label = Gtk.Label.new(' '.join(definition['description']))
@@ -254,19 +258,44 @@ class UberwriterInlinePreview():
         self.TextView.connect_after('populate-popup', self.populate_popup)
         self.TextView.connect_after('popup-menu', self.move_popup)
         self.TextView.connect('button-press-event', self.click_move_button)
+        self.popover = None
 
     def open_popover_with_widget(self, widget):
-        a = self.TextBuffer.create_child_anchor(self.TextBuffer.get_iter_at_mark(self.ClickMark))
+        # a = self.TextBuffer.create_child_anchor(self.TextBuffer.get_iter_at_mark(self.ClickMark))
+        a = Gtk.Window.new(Gtk.WindowType.POPUP)
+        a.set_transient_for(self.TextView.get_toplevel())
+        a.grab_focus()
+        a.set_name("QuickPreviewPopup")
+        # a.set_attached_to(self.TextView)
+        a.move(300, 300)
+        a.set_modal(True)
+        def close(widget, event, *args):
+            if(event.keyval == Gdk.KEY_Escape):
+                widget.destroy()
+        a.connect('key-press-event', close)
         b = Gtk.Grid.new()
-        self.TextView.add_child_at_anchor(b, a)
-        b.show()
-        popover = Gtk.Popover.new(b)
-        dismiss, rect = popover.get_pointing_to()
-        rect.y = rect.y - 20
-        popover.set_pointing_to(rect)
-        popover.add(widget)
-        popover.show_all()
-        popover.set_property('width-request', 50)
+        alignment = Gtk.Alignment()
+        alignment.props.margin_bottom = 5
+        alignment.props.margin_top = 5
+        alignment.props.margin_left = 4
+        alignment.add(widget)
+        a.add(alignment)
+        # self.TextView.add_child_in_window(b, Gtk.TextWindowType.WIDGET, 200, 200)
+        # b.attach(Gtk.Label.new("test 123"), 0, 0, 1, 1)
+        # b.show_all()
+        a.show_all()
+        # self.popover = Gtk.Popover.new(b)
+        # dismiss, rect = popover.get_pointing_to()
+        # rect.y = rect.y - 20
+        # popover.set_pointing_to(rect)
+        # widget = Gtk.Label.new("testasds a;12j3 21 lk3j213")
+        # widget.show_all()
+
+        # b.attach(widget, 0, 1, 1, 1)
+        # self.popover.set_modal(False)
+        # self.popover.show_all()
+        # print(self.popover)
+        # popover.set_property('width-request', 50)
 
     def click_move_button(self, widget, event):
         if event.button == 3:
@@ -408,10 +437,8 @@ class UberwriterInlinePreview():
                     pb = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 400, 300)
                     image = Gtk.Image.new_from_pixbuf(pb)
                     image.show()
-                    popover.add(image)
-                    popover.show_all()
+                    self.open_popover_with_widget(image)
                     item.set_property('width-request', 50)
-                    popover.set_property('width-request', 50)
 
                     # item.add(image)
                     # item.set_property('width-request', 50)
@@ -461,19 +488,14 @@ class UberwriterInlinePreview():
             end_iter = start_iter.copy()
             end_iter.forward_word_end()
             word = self.TextBuffer.get_text(start_iter, end_iter, False)
-            print(word)
             terms = get_dictionary(word)
-            sc = Gtk.ScrolledWindow.new()
-            # tv = Gtk.TextView.new()
-            # tv.set_editable(False)
-            # tv.set_name('LexikonBubble')
-
-            sc.add(fill_lexikon_bubble(word, get_dictionary(word)))
-            sc.props.width_request = 500
-            sc.props.height_request = 400
-            # tv.get_buffer().set_text(terms)
-            sc.show_all()
-            self.open_popover_with_widget(sc)
+            if terms:
+                sc = Gtk.ScrolledWindow.new()
+                sc.add(fill_lexikon_bubble(word, terms))
+                sc.props.width_request = 500
+                sc.props.height_request = 400
+                sc.show_all()
+                self.open_popover_with_widget(sc)
 
         return
 

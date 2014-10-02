@@ -18,6 +18,7 @@
   bind "<ctl><shift>r" { "toggle-search-replace" () };
   bind "<ctl><shift>f" { "toggle-search-replace" () };
   bind "F11" { "toggle-fullscreen" () };
+  bind "F7" { "toggle-spellcheck" () };
 }
 
 @binding-set editor-bindings {
@@ -28,6 +29,7 @@
   bind "<ctl>h" { "insert-heading" () };
   bind "<ctl>z" { "undo" () };
   bind "<ctl>y" { "redo" () };
+  /*bind "<ctl>t" { "insert-at-cursor" ('[ ] ') };*/
   bind "<ctl><shift>z" { "redo" () };
 }
 
@@ -53,7 +55,10 @@
   font: initial;
 }
 
-
+#UberwriterWindow GtkAlignment {
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
 
 #UberwriterWindow.dark_mode {
   background: #333;
@@ -132,14 +137,12 @@
   transition: 500ms ease-in;
 }
 
-
 #status_bar_box GtkButton:hover,
 #status_bar_box GtkButton:active:hover {
   transition: 0s ease-in;
   color: #333;
   background: #EEE;
 }
-
 
 #status_bar_box GtkButton:active {
   color: #EEE;
@@ -175,15 +178,55 @@
 
 #LexikonBubble {
   font: serif 12;
+  background: #FFF;
+  border-radius: 4px;
+  margin: 5px;
+  padding: 5px;
+}
+
+#QuickPreviewPopup {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #333;
+  /*background: #FFF;*/
+  border-radius: 3px;
+}
+
+#LexikonBubble GtkLabel {
+  /*padding: 5px;*/
+}
+
+#LexikonBubble {
+   border: 5px solid #FFF;
 }
 
 #LexikonBubble .lexikon_heading {
   font: serif 12;
   padding-bottom: 5px;
-  padding-top: 3px;
+  padding-top: 5px;
   font-weight: bold;
+  padding-left: 10px;
 }
 
 #LexikonBubble .lexikon_num {
   padding-right: 5px;
-  }
+  padding-left: 20px;
+}
+
+#UberwriterWindow #AutoCorrect {
+  padding: 10px;
+  background: #FFF;
+  /*box-shadow: 0 0 5px #000;*/
+  border: 1px solid #BCD1EB;
+  border-radius: 3px 10px 10px 3px;
+  color: #333;
+}
+
+#UberwriterWindow #AutoCorrect GtkLabel {
+  padding: 3px 5px;
+  font: sans-serif;
+}
+
+#UberwriterWindow #AutoCorrect GtkImage {
+  padding: 3px 5px;
+}

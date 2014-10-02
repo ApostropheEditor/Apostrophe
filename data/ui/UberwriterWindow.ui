@@ -21,22 +21,6 @@
     <property name="tooltip_text" translatable="yes">Activate Regex</property>
     <property name="pixbuf">icon-regex-off.png</property>
   </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="yalign">0.49000000953674316</property>
-    <property name="stock">gtk-help</property>
-  </object>
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage" id="image4">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
   <object class="UberwriterWindow" id="uberwriter_window">
     <property name="can_focus">True</property>
     <property name="title">UberWriter</property>
@@ -63,22 +47,20 @@
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkImageMenuItem" id="mnu_new">
-                        <property name="label">gtk-new</property>
+                        <property name="label">_New</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
                         <signal name="activate" handler="new_document" swapped="no"/>
                         <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="mnu_open">
-                        <property name="label">gtk-open</property>
+                        <property name="label">_Open</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
                         <signal name="activate" handler="open_document" swapped="no"/>
                         <accelerator key="o" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
@@ -99,22 +81,20 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="mnu_save">
-                        <property name="label">gtk-save</property>
+                        <property name="label">_Save</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
                         <signal name="activate" handler="save_document" swapped="no"/>
                         <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="mnu_save_as">
-                        <property name="label">gtk-save-as</property>
+                        <property name="label">Save _As</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
                         <signal name="activate" handler="save_document_as" swapped="no"/>
                         <accelerator key="s" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
                       </object>
@@ -130,8 +110,6 @@
                         <property name="label">Export as HTML</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="image">image4</property>
-                        <property name="use_stock">False</property>
                         <signal name="activate" handler="export_as_html" swapped="no"/>
                       </object>
                     </child>
@@ -140,8 +118,6 @@
                         <property name="label">Export as PDF</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="image">image3</property>
-                        <property name="use_stock">False</property>
                         <signal name="activate" handler="export_as_pdf" swapped="no"/>
                       </object>
                     </child>
@@ -150,8 +126,6 @@
                         <property name="label" translatable="yes">Export as ODT</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="image">image1</property>
-                        <property name="use_stock">False</property>
                         <signal name="activate" handler="export_as_odt" swapped="no"/>
                       </object>
                     </child>
@@ -174,7 +148,7 @@
                       <object class="GtkMenuItem" id="copy-html-to-clipboard">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Copy raw HTML to clipboard</property>
+                        <property name="label" translatable="yes">Copy Raw HTML to Clipboard</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="copy_html_to_clipboard" swapped="no"/>
                       </object>
@@ -187,11 +161,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="mnu_close">
-                        <property name="label">gtk-close</property>
+                        <property name="label">_Quit</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
                         <accelerator key="w" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
@@ -243,7 +216,7 @@
                         <property name="tooltip_text" translatable="yes">Light text on a dark background</property>
                         <property name="label" translatable="yes">Dark Mode</property>
                         <property name="draw_as_radio">True</property>
-                        <signal name="toggled" handler="dark_mode_toggled" swapped="no"/>
+                        <signal name="activate" handler="dark_mode_toggled" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -253,7 +226,7 @@
                         <property name="tooltip_text" translatable="yes">Switch to preview mode</property>
                         <property name="label" translatable="yes">Preview</property>
                         <property name="draw_as_radio">True</property>
-                        <signal name="toggled" handler="menu_activate_preview" swapped="no"/>
+                        <signal name="activate" handler="menu_activate_preview" swapped="no"/>
                         <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
@@ -279,7 +252,7 @@
                         <property name="label">Use Typewritermode (experimental)</property>
                         <property name="active">True</property>
                         <property name="draw_as_radio">True</property>
-                        <signal name="toggled" handler="toggle_typewriter" swapped="no"/>
+                        <!-- <signal name="toggled" handler="toggle_typewriter" swapped="no"/> -->
                         <accelerator key="t" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
@@ -296,7 +269,7 @@
                         <property name="label" translatable="yes">Auto _Spellcheck</property>
                         <property name="use_underline">True</property>
                         <property name="active">True</property>
-                        <signal name="toggled" handler="toggle_spellcheck" swapped="no"/>
+                        <signal name="activate" handler="toggle_spellcheck" swapped="no"/>
                         <accelerator key="F7" signal="activate"/>
                       </object>
                     </child>
@@ -374,7 +347,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
                       </object>
                     </child>
                   </object>
@@ -403,7 +375,7 @@
                     <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
+                    <property name="margin_start">5</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Search</property>
                   </object>
@@ -533,7 +505,7 @@
                     <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">5</property>
+                    <property name="margin_start">5</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Replace with</property>
                   </object>
@@ -655,9 +627,7 @@
                           <object class="GtkAlignment" id="editor_alignment">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xscale">0</property>
-                            <property name="top_padding">30</property>
-                            <property name="bottom_padding">60</property>
+                            <property name="halign">center</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -692,7 +662,7 @@
                             <property name="has_tooltip">True</property>
                             <property name="tooltip_markup" translatable="yes">Go into focus mode</property>
                             <property name="tooltip_text" translatable="yes">Go into focus mode</property>
-                            <property name="halign">start</property>
+                            <property name="halign">center</property>
                             <property name="relief">none</property>
                             <property name="focus_on_click">False</property>
                             <signal name="toggled" handler="set_focusmode" swapped="no"/>
@@ -773,8 +743,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">end</property>
-                            <property name="margin_left">10</property>
-                            <property name="margin_right">10</property>
+                            <property name="margin_start">10</property>
+                            <property name="margin_end">10</property>
                             <property name="orientation">vertical</property>
                           </object>
                           <packing>
@@ -799,7 +769,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">end</property>
-                            <property name="margin_right">11</property>
+                            <property name="margin_end">11</property>
                             <property name="xalign">1</property>
                             <property name="label">0</property>
                             <property name="width_chars">6</property>

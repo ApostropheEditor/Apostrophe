@@ -104,14 +104,13 @@ def update_desktop_file(filename, target_pkgdata, target_scripts):
         fout.close()
         fin.close()
         os.rename(fout.name, fin.name)
+
     except (OSError, IOError) as e:
         print ("ERROR: Can't find %s" % filename)
         sys.exit(1)
 
 def compile_schemas(root, target_data):
-    if target_data == '/usr/':
-        return  # /usr paths don't need this, they will be handled by dpkg
-    schemadir = os.path.normpath(root + target_data + 'share/glib-2.0/schemas')
+    schemadir = os.path.normpath('usr/share/glib-2.0/schemas')
     if (os.path.isdir(schemadir) and
             os.path.isfile('/usr/bin/glib-compile-schemas')):
         os.system('/usr/bin/glib-compile-schemas "%s"' % schemadir)
@@ -166,5 +165,7 @@ DistUtilsExtra.auto.setup(
     package_data={
         'uberwriter_lib.pylocales' : ['locales.db']
     },
-    data_files=[('uberwriter_lib/pylocales', ['uberwriter_lib/pylocales/locales.db'])]
+    data_files=[
+        ('uberwriter_lib/pylocales', ['uberwriter_lib/pylocales/locales.db']), 
+        ('/usr/share/glib-2.0/schemas', ['data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml'])]
 )

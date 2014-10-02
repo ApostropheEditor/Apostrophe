@@ -33,6 +33,10 @@ def parse_options():
     parser.add_option(
         "-v", "--verbose", action="count", dest="verbose",
         help=_("Show debug messages (-vv debugs uberwriter_lib also)"))
+    parser.add_option(
+        "-e", "--experimental-features", help="Use experimental features",
+        action='store_true'
+        )
     (options, args) = parser.parse_args()
 
     set_up_logging(options)
@@ -45,12 +49,14 @@ def main():
     'constructor for your class instances'
     (options, args) = parse_options()
 
-    # Run the application.    
+    # Run the application.
     if args:
         for arg in args:
             window = UberwriterWindow.UberwriterWindow()
             window.load_file(arg)
     else:
         window = UberwriterWindow.UberwriterWindow()
+    if options.experimental_features:
+        window.use_experimental_features(True)
     window.show()
     Gtk.main()

@@ -306,11 +306,13 @@ class MarkupBuffer():
     def recalculate(self, lm):
         multiplier = self.multiplier
         for i in range(0, 6):
-            self.rev_leftmargin[i].set_property("left-margin", (lm - multiplier) - multiplier * (i + 1))
+            new_margin =  (lm - multiplier) - multiplier * (i + 1)
+            self.rev_leftmargin[i].set_property("left-margin", 0 if new_margin < 0 else new_margin)
             self.rev_leftmargin[i].set_property("indent", - multiplier * (i + 1) - multiplier)
 
         for i in range(0, 6):
-            self.leftmargin[i].set_property("left-margin", (lm - multiplier) + multiplier + multiplier * (i + 1))
+            new_margin = (lm - multiplier) + multiplier + multiplier * (i + 1)
+            self.leftmargin[i].set_property("left-margin", 0 if new_margin < 0 else new_margin)
             self.leftmargin[i].set_property("indent", - (multiplier - 1) * (i + 1) - multiplier)
 
     def dark_mode(self, active=False):

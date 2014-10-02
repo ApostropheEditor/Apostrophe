@@ -251,8 +251,8 @@ class TextEditor(Gtk.TextView):
             stop = buf.get_iter_at_offset(
                 offset + undo_action.length
             )
-            buf.delete(start, stop)
             buf.place_cursor(start)
+            buf.delete(start, stop)
         else:
             start = buf.get_iter_at_offset(undo_action.start)
             buf.insert(start, undo_action.text)
@@ -318,8 +318,6 @@ class TextEditor(Gtk.TextView):
         if self.not_undoable_action:
             return
 
-        logger.debug(text)
-        logger.debug("b: %i, l: %i" % (length, len(text)))
         undo_action = UndoableInsert(text_iter, text, len(text))
         try:
             prev_insert = self.undo_stack.pop()
@@ -336,7 +334,7 @@ class TextEditor(Gtk.TextView):
             self.undo_stack.append(prev_insert)
         else:
             self.undo_stack.append(prev_insert)
-            self.undo_stack.append(undo_action)                
+            self.undo_stack.append(undo_action)
  
     def on_delete_range(self, text_buffer, start_iter, end_iter):
         """
@@ -476,8 +474,6 @@ class TestWindow(Gtk.Window):
         redo_button.connect("clicked",self.editor.redo)
         redo_button.show()
         windowbox.pack_start(redo_button, False, False, 0)
-
-        print(self.editor.text)
 
 
 if __name__== "__main__":
