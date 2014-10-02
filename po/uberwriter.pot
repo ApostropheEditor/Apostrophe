@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-30 01:49+0200\n"
+"POT-Creation-Date: 2014-10-02 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,29 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../uberwriter/__init__.py:35
-msgid "Show debug messages (-vv debugs uberwriter_lib also)"
+#: ../uberwriter/UberwriterInlinePreview.py:172
+msgid "Website is not available"
 msgstr ""
 
-#: ../data/ui/AboutUberwriterDialog.ui.h:1
-msgid ""
-"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-"# This program is free software: you can redistribute it and/or modify it \n"
-"# under the terms of the GNU General Public License version 3, as "
-"published \n"
-"# by the Free Software Foundation.\n"
-"# \n"
-"# This program is distributed in the hope that it will be useful, but \n"
-"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-"# PURPOSE.  See the GNU General Public License for more details.\n"
-"# \n"
-"# You should have received a copy of the GNU General Public License along \n"
-"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+#: ../uberwriter/UberwriterInlinePreview.py:174
+msgid "Website is available"
 msgstr ""
 
-#: ../data/ui/AboutUberwriterDialog.ui.h:14
-msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+#: ../uberwriter/UberwriterInlinePreview.py:414
+msgid "Open Link in Webbrowser"
+msgstr ""
+
+#: ../uberwriter/UberwriterInlinePreview.py:470
+msgid "No matching footnote found"
 msgstr ""
 
 #: ../data/ui/UberwriterWindow.ui.h:1
@@ -67,7 +58,7 @@ msgid "Advanced Export..."
 msgstr ""
 
 #: ../data/ui/UberwriterWindow.ui.h:7
-msgid "Copy raw HTML to clipboard"
+msgid "Copy Raw HTML to Clipboard"
 msgstr ""
 
 #: ../data/ui/UberwriterWindow.ui.h:8
@@ -194,121 +185,6 @@ msgstr ""
 msgid "Characters:"
 msgstr ""
 
-#: ../uberwriter/UberwriterInlinePreview.py:174
-msgid "Website is not available"
-msgstr ""
-
-#: ../uberwriter/UberwriterInlinePreview.py:176
-msgid "Website is available"
-msgstr ""
-
-#: ../uberwriter/UberwriterInlinePreview.py:419
-msgid "Open Link in Webbrowser"
-msgstr ""
-
-#: ../uberwriter/UberwriterInlinePreview.py:475
-msgid "No matching footnote found"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:344
-msgid "Save your File"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:490
-msgid "You can not export to PDF."
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:492
-msgid ""
-"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:522
-msgid "MarkDown or Plain Text"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:525
-msgid "Open a .md-File"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:547
-msgid "You have not saved your changes."
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:549
-msgid "Close without Saving"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:550
-msgid "Cancel"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:551
-msgid "Save now"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:552
-msgid "Unsaved changes"
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:617
-msgid "You can not enable the Spell Checker."
-msgstr ""
-
-#: ../uberwriter/UberwriterWindow.py:619
-msgid ""
-"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
-"software center."
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:499
-msgid "(no suggestions)"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:533
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:536
-msgid "Add \"{}\" to Dictionary"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:540
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:542
-msgid "Ignore All"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:557
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:559
-msgid "Languages"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:575
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:578
-msgid "Suggestions"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:85
-msgid "emphasized text"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:87
-msgid "strong text"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:101
-msgid "List item"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:182
-msgid "Heading"
-msgstr ""
-
-#: ../uberwriter.desktop.in.h:1
-msgid "UberWriter"
-msgstr ""
-
-#: ../uberwriter.desktop.in.h:2
-msgid "UberWriter, a simple and distraction free Markdown Editor"
-msgstr ""
-
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:1
 msgid "Export"
 msgstr ""
@@ -420,4 +296,128 @@ msgstr ""
 
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:27
 msgid "Commandline Reference"
+msgstr ""
+
+#: ../uberwriter.desktop.in.h:1
+msgid "UberWriter"
+msgstr ""
+
+#: ../uberwriter.desktop.in.h:2
+msgid "UberWriter, a simple and distraction free Markdown Editor"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:340
+msgid "Save your File"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:486
+msgid "You can not export to PDF."
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:488
+msgid ""
+"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:518
+msgid "MarkDown or Plain Text"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:521
+msgid "Open a .md-File"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:543
+msgid "You have not saved your changes."
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:545
+msgid "Close without Saving"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:546
+msgid "Cancel"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:547
+msgid "Save now"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:548
+msgid "Unsaved changes"
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:614
+msgid "You can not enable the Spell Checker."
+msgstr ""
+
+#: ../uberwriter/UberwriterWindow.py:616
+msgid ""
+"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
+"software center."
+msgstr ""
+
+#: ../data/ui/AboutUberwriterDialog.ui.h:1
+msgid ""
+"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+"# This program is free software: you can redistribute it and/or modify it \n"
+"# under the terms of the GNU General Public License version 3, as "
+"published \n"
+"# by the Free Software Foundation.\n"
+"# \n"
+"# This program is distributed in the hope that it will be useful, but \n"
+"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
+"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
+"# PURPOSE.  See the GNU General Public License for more details.\n"
+"# \n"
+"# You should have received a copy of the GNU General Public License along \n"
+"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+msgstr ""
+
+#: ../data/ui/AboutUberwriterDialog.ui.h:14
+msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+msgstr ""
+
+#: ../uberwriter/FormatShortcuts.py:85
+msgid "emphasized text"
+msgstr ""
+
+#: ../uberwriter/FormatShortcuts.py:87
+msgid "strong text"
+msgstr ""
+
+#: ../uberwriter/FormatShortcuts.py:101
+msgid "List item"
+msgstr ""
+
+#: ../uberwriter/FormatShortcuts.py:182
+msgid "Heading"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:507
+msgid "(no suggestions)"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:544
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:547
+msgid "Add \"{}\" to Dictionary"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:553
+msgid "Ignore All"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:568
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:570
+msgid "Languages"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:586
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:589
+msgid "Suggestions"
+msgstr ""
+
+#: ../uberwriter/__init__.py:35
+msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr ""

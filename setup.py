@@ -131,7 +131,8 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
         desktop_file = move_desktop_file(self.root, target_data, self.prefix)
         update_desktop_file(desktop_file, target_pkgdata, target_scripts)
         compile_schemas(self.root, target_data)
-
+        
+        os.symlink(target_scripts + "uberwriter", "/usr/bin/uberwriter")
         
 ##################################################################################
 ###################### YOU SHOULD MODIFY ONLY WHAT IS BELOW ######################
@@ -159,6 +160,7 @@ DistUtilsExtra.auto.setup(
     packages=[
         "uberwriter_lib.gtkspellcheck",
         "uberwriter_lib.pylocales",
+        "uberwriter_lib.pressagio",
         "uberwriter_lib",
         "uberwriter"
     ],
