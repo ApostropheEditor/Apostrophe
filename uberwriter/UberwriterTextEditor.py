@@ -110,6 +110,9 @@ class TextEditor(Gtk.TextView):
         'redo': (GObject.SIGNAL_ACTION, None, ())
     }
 
+    def scroll_to_iter(self, iter, *args):
+        self.get_buffer().place_cursor(iter)
+
     def __init__(self):
         """
             Create a TextEditor

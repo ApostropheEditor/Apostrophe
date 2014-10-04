@@ -124,7 +124,9 @@ class UberwriterSearchAndReplace():
             self.active = 0
         
         matchiter = self.matchiters[self.active]
-        self.texteditor.scroll_to_iter(matchiter[0], 0.0, True, 0.0, 0.5)
+        self.texteditor.get_buffer().select_range(matchiter[0], matchiter[1])
+
+        # self.texteditor.scroll_to_iter(matchiter[0], 0.0, True, 0.0, 0.5)
 
     def hide(self):
         self.box.hide()

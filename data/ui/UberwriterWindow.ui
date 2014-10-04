@@ -370,21 +370,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="spacing">5</property>
-                <child>
-                  <object class="GtkLabel" id="label_search">
-                    <property name="width_request">100</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_start">5</property>
-                    <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Search</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
+                <property name="margin">5</property>
                 <child>
                   <object class="GtkSearchEntry" id="searchentrybox">
                     <property name="visible">True</property>
