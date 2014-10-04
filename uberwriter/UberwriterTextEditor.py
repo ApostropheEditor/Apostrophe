@@ -105,6 +105,7 @@ class TextEditor(Gtk.TextView):
         'insert-hrule': (GObject.SIGNAL_ACTION, None, ()),
         'insert-ulistitem': (GObject.SIGNAL_ACTION, None, ()),
         'insert-heading': (GObject.SIGNAL_ACTION, None, ()),
+        'insert-strikeout': (GObject.SIGNAL_ACTION, None, ()),
         'undo': (GObject.SIGNAL_ACTION, None, ()),
         'redo': (GObject.SIGNAL_ACTION, None, ())
     }
@@ -131,6 +132,7 @@ class TextEditor(Gtk.TextView):
 
         self.connect('insert-italic', self.set_italic)
         self.connect('insert-bold', self.set_bold)
+        self.connect('insert-strikeout', self.set_strikeout)
         self.connect('insert-hrule', self.insert_horizontal_rule)
         self.connect('insert-ulistitem', self.insert_unordered_list_item)
         self.connect('insert-heading', self.insert_heading)
@@ -405,8 +407,12 @@ class TextEditor(Gtk.TextView):
         self.FormatShortcuts.italic()
 
     def set_bold(self, widget, data=None):
-        """Ctrl + B"""
+        """Ctrl + Shift + D"""
         self.FormatShortcuts.bold()
+
+    def set_strikeout(self, widget, data=None):
+        """Ctrl + B"""
+        self.FormatShortcuts.strikeout()
 
     def insert_horizontal_rule(self, widget, data=None):
         """Ctrl + R"""

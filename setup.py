@@ -59,22 +59,24 @@ def move_desktop_file(root, target_data, prefix):
     # the main system to be found.  Only actually useful for /opt installs.
     print("renaming desktop file")
     print(root, target_data, prefix)
-    if(root == '/'): root = ''
-    old_desktop_path = os.path.normpath(root + target_data +
-                                        '/share/applications')
+    if root.endswith("/"): root = root[:-1]
+    print(os.getcwd())
+    old_desktop_path = root + target_data + 'share/applications'
     old_desktop_file = old_desktop_path + '/uberwriter.desktop'
-    desktop_path = os.path.normpath(root + prefix + '/share/applications')
+    desktop_path = root + prefix + '/share/applications'
     desktop_file = desktop_path + '/uberwriter.desktop'
-
+    print("OLD: " + old_desktop_file)
     if not os.path.exists(old_desktop_file):
         print ("ERROR: Can't find", old_desktop_file)
         sys.exit(1)
-    elif target_data != prefix + '/':
+    if os.path.exists(desktop_file):
+        print("REMOVING DESKTOP FILE")
+        os.remove(desktop_file)
+    if target_data != prefix + '/':
         # This is an /opt install, so rename desktop file to use extras-
         desktop_file = desktop_path + '/extras-uberwriter.desktop'
-        print(desktop_file, desktop_path)
         try:
-            # os.makedirs(desktop_path)
+            os.makedirs(desktop_path)
             print('renaming to: %s' % desktop_file)
             os.rename(old_desktop_file, desktop_file)
             os.rmdir(old_desktop_path)
@@ -131,8 +133,11 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
         desktop_file = move_desktop_file(self.root, target_data, self.prefix)
         update_desktop_file(desktop_file, target_pkgdata, target_scripts)
         compile_schemas(self.root, target_data)
-        
-        os.symlink(target_scripts + "uberwriter", "/usr/bin/uberwriter")
+        try:
+            os.remove("/usr/bin/uberwriter")
+            os.symlink(target_scripts + "uberwriter", "/usr/bin/uberwriter")
+        except:
+            print("Couldn't remove old symlink or installing new symlink didn't work.")
         
 ##################################################################################
 ###################### YOU SHOULD MODIFY ONLY WHAT IS BELOW ######################
@@ -169,5 +174,8 @@ DistUtilsExtra.auto.setup(
     },
     data_files=[
         ('uberwriter_lib/pylocales', ['uberwriter_lib/pylocales/locales.db']), 
-        ('/usr/share/glib-2.0/schemas', ['data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml'])]
+        ('/usr/share/glib-2.0/schemas', ['data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml'])
+        #,('/usr/share/icons/hicolor/scalable/apps', ['data/media/uberwriter.svg'])
+
+    ]
 )

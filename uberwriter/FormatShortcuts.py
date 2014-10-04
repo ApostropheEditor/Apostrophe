@@ -43,6 +43,9 @@ class FormatShortcuts():
 	def italic(self):
 		self.apply_format("*")
 
+	def strikeout(self):
+		self.apply_format("~~")
+
 	def apply_format(self, wrap = "*"):
 		if self.TextBuffer.get_has_selection():
 			## Find current highlighting
@@ -85,6 +88,8 @@ class FormatShortcuts():
 				helptext = _("emphasized text")
 			elif wrap == "**":
 				helptext = _("strong text")
+			elif wrap == "~~":
+				helptext = _("striked out text")
 
 			self.TextBuffer.insert_at_cursor(wrap + helptext + wrap)
 			text_length = len(helptext)

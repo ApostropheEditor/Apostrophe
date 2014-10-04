@@ -737,26 +737,23 @@ class UberwriterWindow(Window):
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
         if filename:
-            self.preview_button.set_active(False)
             if filename.startswith('file://'):
                 filename = filename[7:]
             filename = urllib.parse.unquote_plus(filename)
             try:
+                self.preview_button.set_active(False)
                 if not os.path.exists(filename):
-                    self.filename = filename
-                    self.set_headerbar_title(os.path.basename(filename) + self.title_end)
-                    self.TextEditor.undo_stack = []
-                    self.TextEditor.redo_stack = []
                     self.TextBuffer.set_text("")
                 else:
-                    self.filename = filename
                     f = codecs.open(filename, encoding="utf-8", mode='r')
                     self.TextBuffer.set_text(f.read())
                     f.close()
                     self.MarkupBuffer.markup_buffer(0)
-                    self.set_headerbar_title(os.path.basename(filename) + self.title_end)
-                    self.TextEditor.undo_stack = []
-                    self.TextEditor.redo_stack = []
+
+                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
+                self.TextEditor.undo_stack = []
+                self.TextEditor.redo_stack = []
+                self.filename = filename
 
             except Exception as e:
                 logger.warning("Error Reading File: %r" % e)

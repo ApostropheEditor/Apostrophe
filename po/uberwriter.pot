@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-02 19:12+0200\n"
+"POT-Creation-Date: 2014-10-02 22:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/ui/AboutUberwriterDialog.ui.h:1
+msgid ""
+"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+"# This program is free software: you can redistribute it and/or modify it \n"
+"# under the terms of the GNU General Public License version 3, as "
+"published \n"
+"# by the Free Software Foundation.\n"
+"# \n"
+"# This program is distributed in the hope that it will be useful, but \n"
+"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
+"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
+"# PURPOSE.  See the GNU General Public License for more details.\n"
+"# \n"
+"# You should have received a copy of the GNU General Public License along \n"
+"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+msgstr ""
+
+#: ../data/ui/AboutUberwriterDialog.ui.h:14
+msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+msgstr ""
 
 #: ../uberwriter/UberwriterInlinePreview.py:172
 msgid "Website is not available"
@@ -185,6 +206,39 @@ msgstr ""
 msgid "Characters:"
 msgstr ""
 
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:507
+msgid "(no suggestions)"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:544
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:547
+msgid "Add \"{}\" to Dictionary"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:553
+msgid "Ignore All"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:568
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:570
+msgid "Languages"
+msgstr ""
+
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:586
+#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:589
+msgid "Suggestions"
+msgstr ""
+
+#: ../uberwriter.desktop.in.h:1
+msgid "UberWriter"
+msgstr ""
+
+#: ../uberwriter.desktop.in.h:2
+msgid "UberWriter, a simple and distraction free Markdown Editor"
+msgstr ""
+
+#. import SpellChecker class
 #: ../data/ui/UberwriterAdvancedExportDialog.ui.h:1
 msgid "Export"
 msgstr ""
@@ -298,12 +352,20 @@ msgstr ""
 msgid "Commandline Reference"
 msgstr ""
 
-#: ../uberwriter.desktop.in.h:1
-msgid "UberWriter"
+#: ../uberwriter/FormatShortcuts.py:85
+msgid "emphasized text"
 msgstr ""
 
-#: ../uberwriter.desktop.in.h:2
-msgid "UberWriter, a simple and distraction free Markdown Editor"
+#: ../uberwriter/FormatShortcuts.py:87
+msgid "strong text"
+msgstr ""
+
+#: ../uberwriter/FormatShortcuts.py:101
+msgid "List item"
+msgstr ""
+
+#: ../uberwriter/FormatShortcuts.py:182
+msgid "Heading"
 msgstr ""
 
 #: ../uberwriter/UberwriterWindow.py:340
@@ -355,67 +417,6 @@ msgstr ""
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
-msgstr ""
-
-#: ../data/ui/AboutUberwriterDialog.ui.h:1
-msgid ""
-"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-"# This program is free software: you can redistribute it and/or modify it \n"
-"# under the terms of the GNU General Public License version 3, as "
-"published \n"
-"# by the Free Software Foundation.\n"
-"# \n"
-"# This program is distributed in the hope that it will be useful, but \n"
-"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-"# PURPOSE.  See the GNU General Public License for more details.\n"
-"# \n"
-"# You should have received a copy of the GNU General Public License along \n"
-"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-msgstr ""
-
-#: ../data/ui/AboutUberwriterDialog.ui.h:14
-msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:85
-msgid "emphasized text"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:87
-msgid "strong text"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:101
-msgid "List item"
-msgstr ""
-
-#: ../uberwriter/FormatShortcuts.py:182
-msgid "Heading"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:507
-msgid "(no suggestions)"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:544
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:547
-msgid "Add \"{}\" to Dictionary"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:551
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:553
-msgid "Ignore All"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:568
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:570
-msgid "Languages"
-msgstr ""
-
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:586
-#: ../uberwriter_lib/gtkspellcheck/spellcheck.py:589
-msgid "Suggestions"
 msgstr ""
 
 #: ../uberwriter/__init__.py:35

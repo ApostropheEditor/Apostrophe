@@ -1,25 +1,9 @@
-#!/usr/bin/make -f
+
+export PYBUILD_NAME=uberwriter
+export PYBUILD_DISABLE=test
+export PYBUILD_INSTALL_ARGS_python3="--root=./debian/uberwriter/ --install-scripts=/opt/extras.ubuntu.com/uberwriter/bin --install-data=/opt/extras.ubuntu.com/uberwriter --install-lib=/opt/extras.ubuntu.com/uberwriter"
+
+export XDG_RUNTIME_DIR=/tmp
+
 %:
-ifneq ($(shell dh -l | grep -xF translations),)
-	dh $@ --with=python3,translations --buildsystem=pybuild
-else
-	dh $@ --with=python3 --buildsystem=pybuild
-endif
-
-override_dh_auto_install:
-#	dh_auto_install -- --install-scripts=/opt/extras.ubuntu.com/uberwriter/bin  --install-data=/opt/extras.ubuntu.com/uberwriter --install-lib=/opt/extras.ubuntu.com/uberwriter
-
-
-override_dh_install:
-	dh_install
-
-	python3 setup.py install --root=$(CURDIR)/debian/uberwriter/ \
-		--install-scripts=/opt/extras.ubuntu.com/uberwriter/bin \
-		--install-data=/opt/extras.ubuntu.com/uberwriter \
-		--install-lib=/opt/extras.ubuntu.com/uberwriter
-
-override_dh_python3:
-	dh_python3 /opt/extras.ubuntu.com/uberwriter
-
-override_dh_auto_test:
-	PYBUILD_DISABLE=test
+        dh $@ --with python3 --buildsystem=pybuild

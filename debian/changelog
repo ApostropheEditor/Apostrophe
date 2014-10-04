@@ -1,3 +1,22 @@
+uberwriter (14.09.08-publicubuntu3) trusty; urgency=medium
+
+  * added missing dependency
+
+ -- Wolf Vollprecht <w.vollprecht@gmail.com>  Thu, 04 Oct 2014 11:47:32 +0200
+
+uberwriter (14.09.08-publicubuntu2) trusty; urgency=medium
+
+  * icon working again 
+
+ -- Wolf Vollprecht <w.vollprecht@gmail.com>  Thu, 02 Oct 2014 22:47:32 +0200
+
+uberwriter (14.09.08-publicubuntu1) trusty; urgency=medium
+
+  * several bug fixes
+  * added some experimental features
+
+ -- Wolf Vollprecht <w.vollprecht@gmail.com>  Mon, 02 Oct 2014 19:36:08 +0200
+
 uberwriter (14.09.07-publicubuntu1) trusty; urgency=medium
 
   * reworking the installation script

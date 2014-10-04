@@ -39,21 +39,40 @@ class PressagioCallback(pressagio.callback.Callback):
         return ''
 
 class UberwriterAutoCorrect:
+
     def show_bubble(self, iter, suggestion):
         self.suggestion = suggestion
         if self.bubble:
             self.bubble_label.set_text(suggestion)
         else:
             pos = self.TextView.get_iter_location(iter)
-            pos_adjusted = self.TextView.buffer_to_window_coords(Gtk.TextWindowType.TEXT, pos.x, pos.y + pos.height)
+            pos_adjusted = self.TextView.buffer_to_window_coords(
+                Gtk.TextWindowType.TEXT, pos.x, pos.y + pos.height)
+            self.bubble_eventbox = Gtk.EventBox.new()
             self.bubble = Gtk.Grid.new()
             self.bubble.set_name("AutoCorrect")
-            self.TextView.add_child_in_window(self.bubble, Gtk.TextWindowType.TEXT, pos_adjusted[0], pos_adjusted[1])
+            self.bubble_eventbox.add(self.bubble)
+            self.bubble_eventbox.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
+            self.bubble_eventbox.connect("button_press_event", self.clicked_bubble)
+            self.TextView.add_child_in_window(self.bubble_eventbox, 
+                Gtk.TextWindowType.TEXT, pos_adjusted[0], pos_adjusted[1])
+
             self.bubble_label = Gtk.Label.new(suggestion)
+
             self.bubble.attach(self.bubble_label, 0, 0, 1, 1)
+            self.bubble_close_eventbox = Gtk.EventBox.new()
+            self.bubble_close_eventbox.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
+            self.bubble_close_eventbox.connect("button_press_event", self.clicked_close)
             close = Gtk.Image.new_from_icon_name('dialog-close', Gtk.IconSize.SMALL_TOOLBAR)
-            self.bubble.attach(close, 1, 0, 1, 1)
-            self.bubble.show_all()
+            self.bubble_close_eventbox.add(close)
+            self.bubble.attach(self.bubble_close_eventbox, 1, 0, 1, 1)
+            self.bubble_eventbox.show_all()
+
+    def clicked_bubble(self, widget, data=None):
+        self.accept_suggestion()
+
+    def clicked_close(self, widget, data=None):
+        self.destroy_bubble()
 
     def suggest(self, stump, context):
         if self.enchant_dict.check(stump):
@@ -78,7 +97,7 @@ class UberwriterAutoCorrect:
                 else:
                     suggestions_map.append({'suggestion': suggestion, 'freq': 0})
             
-            suggestions_map.sort(key= lambda x: x['freq'])
+            suggestions_map.sort(key=lambda x: x['freq'])
             suggestions_map.reverse()
             prediction = suggestions_map[0]
             print(predictions)

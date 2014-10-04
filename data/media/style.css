@@ -29,6 +29,7 @@
   bind "<ctl>h" { "insert-heading" () };
   bind "<ctl>z" { "undo" () };
   bind "<ctl>y" { "redo" () };
+  bind "<ctl><shift>d" { "insert-strikeout" () };
   /*bind "<ctl>t" { "insert-at-cursor" ('[ ] ') };*/
   bind "<ctl><shift>z" { "redo" () };
 }
