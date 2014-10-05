@@ -370,7 +370,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="spacing">5</property>
-                <property name="margin">5</property>
+                <property name="margin">10</property>
                 <child>
                   <object class="GtkSearchEntry" id="searchentrybox">
                     <property name="visible">True</property>
@@ -389,6 +389,7 @@
                     <property name="can_focus">False</property>
                     <property name="show_arrow">False</property>
                     <property name="icon_size">1</property>
+                    <property name="margin">0</property>
                     <child>
                       <object class="GtkToolButton" id="next_result">
                         <property name="visible">True</property>
@@ -486,12 +487,14 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="spacing">5</property>
+                <property name="margin">10</property>
+                <property name="margin_top">0</property>
                 <child>
                   <object class="GtkLabel" id="replace_label">
                     <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_start">5</property>
+                    <property name="margin_start">0</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Replace with</property>
                   </object>

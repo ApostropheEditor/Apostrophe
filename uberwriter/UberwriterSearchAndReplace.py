@@ -34,6 +34,7 @@ class UberwriterSearchAndReplace():
         self.searchentry = parentwindow.builder.get_object("searchentrybox")
         self.searchentry.connect('changed', self.search)
         self.searchentry.connect('activate', self.scrolltonext)
+        self.searchentry.connect('key-press-event', self.key_pressed)
 
         self.open_replace_button = parentwindow.builder.get_object("replace")
         self.open_replace_button.connect("toggled", self.toggle_replace)
@@ -63,20 +64,29 @@ class UberwriterSearchAndReplace():
         self.highlight = self.textbuffer.create_tag('search_highlight',
             background="yellow")
 
+        self.texteditor.connect("focus-in-event", self.focused_texteditor)
     def toggle_replace(self, widget, data=None):
         if widget.get_active():
             self.replacebox.show_all()
         else: 
             self.replacebox.hide()
 
+    def key_pressed(self, widget, event, data=None):
+        if event.keyval in [Gdk.KEY_Escape]:
+            self.hide()
+
+    def focused_texteditor(self, widget, data=None):
+        self.hide()
+
     def toggle_search(self, widget=None, data=None):
         """
         show search box
         """
         if self.box.get_visible():
-            self.box.hide()
+            self.hide()
         else:
             self.box.show()
+            self.searchentry.grab_focus()
 
     def search(self, widget=None, data=None, scroll=True):
         searchtext = self.searchentry.get_text()
@@ -129,7 +139,13 @@ class UberwriterSearchAndReplace():
         # self.texteditor.scroll_to_iter(matchiter[0], 0.0, True, 0.0, 0.5)
 
     def hide(self):
+        self.replacebox.hide()
         self.box.hide()
+        self.textbuffer.remove_tag(self.highlight, 
+            self.textbuffer.get_start_iter(),
+            self.textbuffer.get_end_iter())
+        self.texteditor.grab_focus()
+
 
     def replace_clicked(self, widget, data=None):
         self.replace(self.active)

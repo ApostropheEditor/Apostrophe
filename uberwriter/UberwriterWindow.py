@@ -226,10 +226,13 @@ class UberwriterWindow(Window):
         widget.get_vadjustment().props.value = pos
         return True # continue ticking
 
-    def check_scroll(self, mark):
+    def check_scroll(self, mark=None):
         gradient_offset = 80
         buf = self.TextEditor.get_buffer()
-        ins_it = buf.get_iter_at_mark(mark)
+        if mark:
+            ins_it = buf.get_iter_at_mark(mark)
+        else:
+            ins_it = buf.get_iter_at_mark(buf.get_insert())
         loc_rect = self.TextEditor.get_iter_location(ins_it)
 
         # alignment offset added from top
