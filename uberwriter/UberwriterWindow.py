@@ -169,7 +169,7 @@ class UberwriterWindow(Window):
             key, mod = Gtk.accelerator_parse("Escape")
             self.fullscreen_button.remove_accelerator(
                 self.accel_group, key, mod)
-            self.menubar.show()
+            self.menubar.hide()
 
         self.TextEditor.grab_focus()
 
@@ -830,7 +830,6 @@ class UberwriterWindow(Window):
             self.hb_revealer.set_reveal_child(False)
             self.status_bar_visible = False
             self.buffer_modified_for_status_bar = False
-            return False
 
         self.was_motion = False
         return True
@@ -838,11 +837,14 @@ class UberwriterWindow(Window):
     def on_motion_notify(self, widget, event, data=None):
         now = event.get_time()
         if now - self.timestamp_last_mouse_motion > 150:
+            # filter out accidental motions
             self.timestamp_last_mouse_motion = now
             return
         if now - self.timestamp_last_mouse_motion < 100:
+            # filter out accidental motion
             return
         if now - self.timestamp_last_mouse_motion > 100:
+            # react on motion by fading in headerbar and statusbar
             if self.status_bar_visible == False:
                 self.statusbar_revealer.set_reveal_child(True)
                 self.hb_revealer.set_reveal_child(True)
@@ -851,7 +853,6 @@ class UberwriterWindow(Window):
                 self.buffer_modified_for_status_bar = False
                 self.update_line_and_char_count()
                 # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
-                GObject.timeout_add(3000, self.poll_for_motion)
             self.was_motion = True
 
     def focus_out(self, widget, data=None):
@@ -862,6 +863,8 @@ class UberwriterWindow(Window):
             self.status_bar_visible = True
             self.buffer_modified_for_status_bar = False
             self.update_line_and_char_count()
+
+
 
     def override_headerbar_background(self, widget, cr):
         if(widget.get_window().get_state() & self.testbits):
