@@ -5,6 +5,7 @@
 */
 
 @define-color dark_bg #333;
+@define-color light_editor_bg #EDEDED;
 
 @binding-set window-bindings {
   bind "<ctl>n" { "new-file" () };
@@ -37,7 +38,8 @@
 #UberwriterWindow {
   gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
-  background: #EDEDED;
+  background: @light_editor_bg;
+
 }
 
 #UberwriterWindow.small #UberwriterEditor {
@@ -77,7 +79,8 @@
 
 #UberwriterEditor {
   border: none;
-  background-color: transparent;
+  background: @light_editor_bg;
+  /*background: und-color: transparent;*/
   color: #222;
   -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
   -GtkWidget-cursor-aspect-ratio: 0.1;
