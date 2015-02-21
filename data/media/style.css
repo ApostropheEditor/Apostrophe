@@ -69,6 +69,8 @@
 
 #UberwriterWindow.dark_mode #UberwriterEditor {
   color: #CCC;
+  background: @dark_bg;
+
   -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
 }
 
