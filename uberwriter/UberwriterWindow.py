@@ -982,7 +982,7 @@ class UberwriterWindow(Window):
 
         self.status_bar = builder.get_object('status_bar_box')
         self.statusbar_revealer = builder.get_object('status_bar_revealer')
-        self.status_bar.set_name('status_bar_box')
+        self.status_bar.get_style_context().add_class('status_bar_box')
         self.status_bar_visible = True
         self.was_motion = True
         self.buffer_modified_for_status_bar = False
@@ -995,6 +995,7 @@ class UberwriterWindow(Window):
         # Setup light background
         self.TextEditor = TextEditor()
         self.TextEditor.set_name('UberwriterEditor')
+        self.get_style_context().add_class('uberwriter_window')
 
         base_leftmargin = 40
         # self.TextEditor.set_left_margin(base_leftmargin)

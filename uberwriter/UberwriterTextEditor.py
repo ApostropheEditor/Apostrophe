@@ -142,6 +142,7 @@ class TextEditor(Gtk.TextView):
         self.connect('redo', self.redo)
         self.connect('undo', self.undo)
 
+        self.get_style_context().add_class("uberwriter-editor")
 
     @property
     def text(self):
