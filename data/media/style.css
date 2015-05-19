@@ -38,11 +38,19 @@
 .uberwriter_window {
   gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
+  background: @light_editor_bg;
+}
+
+.uberwriter_window.small .uberwriter-editor {
+  font: Inconsolata 12;
+}
+.uberwriter_window GtkGrid {
   background-color: @light_editor_bg;
 }
 
-#UberwriterWindow.small .uberwriter-editor {
-  font: Inconsolata 12;
+.uberwriter_window.dark_mode GtkGrid, 
+.uberwriter_window.dark_mode GtkScrolledWindow {
+  background-color: @dark_bg;
 }
 
 #UberwriterWindow.medium .uberwriter-editor {
@@ -58,11 +66,11 @@
   margin-bottom: 60px;
 }
 
-#UberwriterWindow.dark_mode {
+.uberwriter_window.dark_mode {
   background: #333;
 }
 
-#UberwriterWindow.dark_mode .uberwriter-editor {
+.uberwriter_window.dark_mode .uberwriter-editor {
   color: #CCC;
   background: @dark_bg;
 
@@ -71,13 +79,12 @@
 
 .scrollbars-junction,
 .scrollbar.trough {
-  background-color: transparent;
+  background: transparent;
 }
 
 .uberwriter-editor {
   border: none;
-  background: @light_editor_bg;
-  /*background: und-color: transparent;*/
+  background-color: transparent;
   color: #222;
   -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
   -GtkWidget-cursor-aspect-ratio: 0.1;
