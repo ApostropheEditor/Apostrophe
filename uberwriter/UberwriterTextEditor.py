@@ -443,7 +443,23 @@ class TextEditor(Gtk.TextView):
 
     def insert_horizontal_rule(self, widget, data=None):
         """Ctrl + R"""
-        self.FormatShortcuts.rule()
+        buf = self.get_buffer()
+        anchor = buf.create_child_anchor(buf.get_iter_at_mark(buf.get_insert()))
+        window = Gtk.Window()
+        self.wv = WebKit2.WebView()
+        f = open('./data/media/table_editor/index.html', 'r')
+        self.wv.load_html(f.read(), 'file:///localhost/')
+        self.wv.show()
+        self.wv.set_size_request(500, 500)
+        # window.add(self.wv)
+        # window.show()
+        # anchor.add(wv)
+        self.add_child_at_anchor(self.wv, anchor)
+
+        wkset = self.wv.get_settings()
+        wkset.enable_developer_extras = True
+
+        # self.FormatShortcuts.rule()
 
     def insert_unordered_list_item(self, widget, data=None):
         """Ctrl + U"""
