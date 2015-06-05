@@ -55,6 +55,7 @@ try:
 except:
     print("couldn't load depencies")
 
+from gi.repository import WebKit2
 
 
 import logging
@@ -415,7 +416,29 @@ class TextEditor(Gtk.TextView):
 
     def set_strikeout(self, widget, data=None):
         """Ctrl + B"""
-        self.FormatShortcuts.strikeout()
+        """CTRL + O"""
+        # self.FormatShortcuts.ordered_list_item()
+        buf = self.get_buffer()
+        anchor = buf.create_child_anchor(buf.get_iter_at_mark(buf.get_insert()))
+        window = Gtk.Window()
+        self.wv = WebKit2.WebView()
+        f = open('./data/media/formular_editor/index.html', 'r')
+        self.wv.load_html(f.read(), 'file:///localhost/')
+        self.wv.show()
+        self.wv.set_size_request(200, 100)
+        # window.add(self.wv)
+        # window.show()
+        # anchor.add(wv)
+        self.add_child_at_anchor(self.wv, anchor)
+
+        wkset = self.wv.get_settings()
+        wkset.enable_developer_extras = True
+
+        inspector = self.wv.get_inspector()
+        inspector.show()
+        # window.add(inspector)
+        # window.show_all()
+
 
     def insert_horizontal_rule(self, widget, data=None):
         """Ctrl + R"""
@@ -425,9 +448,27 @@ class TextEditor(Gtk.TextView):
         """Ctrl + U"""
         self.FormatShortcuts.unordered_list_item()
 
-    def insert_ordered_list(self, widget, data=None):
-        """CTRL + O"""
-        self.FormatShortcuts.ordered_list_item()
+    # def insert_ordered_list(self, widget, data=None):
+    #     from gi.repository import WebKit
+    #     """CTRL + O"""
+    #     # self.FormatShortcuts.ordered_list_item()
+    #     buf = self.get_buffer()
+    #     anchor = buf.create_child_anchor(buf.get_iter_at_mark(buf.get_insert()))
+    #     wv = WebKit.WebView()
+    #     wv.load_html_string("""
+    #         <!DOCTYPE html>
+    #         <html>
+    #         <body>
+
+    #         <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+             
+    #         </body>
+    #         </html>
+
+    #         """)
+    #     wv.show()
+    #     anchor.add(wv)
+
 
     def insert_heading(self, widget, data=None):
         """CTRL + H"""

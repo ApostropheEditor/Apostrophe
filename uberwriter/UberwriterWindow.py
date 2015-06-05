@@ -27,7 +27,7 @@ locale.textdomain('uberwriter')
 
 import mimetypes
 
-from gi.repository import Gtk, Gdk, GObject, WebKit, Gio  # pylint: disable=E0611
+from gi.repository import Gtk, Gdk, GObject, WebKit2, Gio  # pylint: disable=E0611
 from gi.repository import Pango  # pylint: disable=E0611
 
 import cairo
@@ -690,8 +690,9 @@ class UberwriterWindow(Window):
             output = p.communicate(text)[0]
 
             # Load in Webview and scroll to #ID
-            self.webview = WebKit.WebView()
-            self.webview.load_html_string(output.decode("utf-8"), 'file://localhost/')
+            self.webview = WebKit2.WebView()
+            print(output.decode('utf-8'))
+            self.webview.load_html(output.decode("utf-8"), 'file://localhost/')
 
             # Delete the cursor-scroll mark again
             # cursor_iter = self.TextBuffer.get_iter_at_mark(self.TextBuffer.get_insert())
