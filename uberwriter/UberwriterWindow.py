@@ -71,6 +71,10 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 # See texteditor_lib.Window.py for more details about how this class works
 class UberwriterWindow(Window):
 
+    def __init__(self):
+        super(UberwriterWindow, self).__init__();
+        self.dark_mode = False
+
     __gtype_name__ = "UberwriterWindow"
 
     __gsignals__ = {
@@ -1196,13 +1200,15 @@ class UberwriterWindow(Window):
         try:
             settings = dict()
             settings["dark_mode"] = self.dark_mode
-            settings["spellcheck"] = self.SpellChecker.enabled
+            if self.SpellChecker is not None:
+                settings["spellcheck"] = self.SpellChecker.enabled
             f = open(CONFIG_PATH + "settings.pickle", "wb+")
             pickle.dump(settings, f)
             f.close()
             logger.debug("Saved settings: %r" % settings)
         except Exception as e:
             logger.debug("Error writing settings file to disk. Error: %r" % e)
+            print (e)
 
     def load_settings(self, builder):
         dark_mode_button = builder.get_object("dark_mode")
