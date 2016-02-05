@@ -1,3 +1,8 @@
+uberwriter (15.05.01-publicubuntu3) vivid; urgency=medium
+
+  * some fixes for ubuntu gtk :)
+
+ -- Wolf Vollprecht <w.vollprecht@gmail.com>  Wed, 20 May 2015 00:03:00 +0200 
 uberwriter (14.09.08-publicubuntu3) trusty; urgency=medium
 
   * added missing dependency
