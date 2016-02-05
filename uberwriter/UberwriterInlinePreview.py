@@ -24,6 +24,7 @@ import subprocess
 import tempfile
 
 import threading
+from pprint import pprint
 
 from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
 from uberwriter_lib import LatexToPNG
@@ -48,12 +49,20 @@ GObject.threads_init() # Still needed?
 
 import telnetlib
 
+import subprocess
+
 class DictAccessor(object):
-    def __init__( self, host='localhost', port=2628, timeout=60 ):
+
+    def __init__( self, host='pan.alephnull.com', port=2628, timeout=60 ):
         self.tn = telnetlib.Telnet( host, port )
         self.timeout = timeout
         self.login_response = self.tn.expect( [ self.reEndResponse ], self.timeout )[ 2 ]
-        bytes
+
+
+    def getOnline(self, word):
+        p = subprocess.Popen(['dict', '-d', 'wn', word], stdout=subprocess.PIPE)
+        return p.communicate()[0]
+
     def runCommand( self, cmd ):
         self.tn.write( cmd.encode('utf-8') + b'\r\n' )
         return self.tn.expect( [ self.reEndResponse ], self.timeout )[ 2 ]
@@ -89,12 +98,16 @@ class DictAccessor(object):
             d = database
         w = word.replace( '"', r'\"' )
         dsplit = self.runCommand( 'DEFINE %s "%s"' % ( d, w ) ).splitlines( True )
+        # dsplit = self.getOnline(word).splitlines()
+
         dlist = list( )
         if  dsplit[ -1 ].startswith( b'250 ok' ) and dsplit[ 0 ].startswith( b'1' ):
             dlines = dsplit[ 1:-1 ]
             dtext = b''.join( dlines )
             dlist = self.reDefinition.findall( dtext )
-            #dlist = [ dtext ]
+            # print(dlist)
+            dlist = [ dtext ]
+        # dlist = dsplit # not using the localhost telnet connection
         return dlist
 
     def close( self ):
@@ -112,12 +125,12 @@ class DictAccessor(object):
         lines = re.sub('\s+', ' ', lines).strip()
         lines = re.split(r'( adv | adj | n | v |^adv |^adj |^n |^v )', lines)
         res = []
-        act_res = {}
+        act_res = {'defs': [], 'class': 'none', 'num': 'None'}
         for l in lines:
             l = l.strip()
             if len(l) == 0:
                 continue
-            if l  in ['adv', 'adj','n','v']:
+            if l  in ['adv', 'adj', 'n', 'v']:
                 if act_res:
                     res.append(act_res.copy())
                 act_res = {}
@@ -154,6 +167,7 @@ class DictAccessor(object):
                 if act_def and 'description' in act_def:
                     act_res['defs'].append(act_def.copy())
 
+        pprint(act_res)
         res.append(act_res.copy())
         return res
 
@@ -261,41 +275,45 @@ class UberwriterInlinePreview():
         self.popover = None
 
     def open_popover_with_widget(self, widget):
-        # a = self.TextBuffer.create_child_anchor(self.TextBuffer.get_iter_at_mark(self.ClickMark))
-        a = Gtk.Window.new(Gtk.WindowType.POPUP)
-        a.set_transient_for(self.TextView.get_toplevel())
-        a.grab_focus()
-        a.set_name("QuickPreviewPopup")
-        # a.set_attached_to(self.TextView)
-        a.move(300, 300)
-        a.set_modal(True)
-        def close(widget, event, *args):
-            if(event.keyval == Gdk.KEY_Escape):
-                widget.destroy()
-        a.connect('key-press-event', close)
+        a = self.TextBuffer.create_child_anchor(self.TextBuffer.get_iter_at_mark(self.ClickMark))
+        lbl = Gtk.Label('')
+        self.TextView.add_child_at_anchor(lbl, a)
+        lbl.show()
+        # a = Gtk.Window.new(Gtk.WindowType.POPUP)
+        # a.set_transient_for(self.TextView.get_toplevel())
+        # a.grab_focus()
+        # a.set_name("QuickPreviewPopup")
+        # # a.set_attached_to(self.TextView)
+        # a.move(300, 300)
+        # a.set_modal(True)
+        # def close(widget, event, *args):
+        #     if(event.keyval == Gdk.KEY_Escape):
+        #         widget.destroy()
+        # a.connect('key-press-event', close)
         b = Gtk.Grid.new()
         alignment = Gtk.Alignment()
         alignment.props.margin_bottom = 5
         alignment.props.margin_top = 5
         alignment.props.margin_left = 4
         alignment.add(widget)
-        a.add(alignment)
         # self.TextView.add_child_in_window(b, Gtk.TextWindowType.WIDGET, 200, 200)
         # b.attach(Gtk.Label.new("test 123"), 0, 0, 1, 1)
         # b.show_all()
-        a.show_all()
-        # self.popover = Gtk.Popover.new(b)
-        # dismiss, rect = popover.get_pointing_to()
-        # rect.y = rect.y - 20
-        # popover.set_pointing_to(rect)
+        # a.show_all()
+        self.popover = Gtk.Popover.new(lbl)
+        self.popover.add(alignment)
+        # a.add(alignment)
+        dismiss, rect = self.popover.get_pointing_to()
+        rect.y = rect.y - 20
+        self.popover.set_pointing_to(rect)
         # widget = Gtk.Label.new("testasds a;12j3 21 lk3j213")
-        # widget.show_all()
+        widget.show_all()
 
         # b.attach(widget, 0, 1, 1, 1)
-        # self.popover.set_modal(False)
-        # self.popover.show_all()
-        # print(self.popover)
-        # popover.set_property('width-request', 50)
+        self.popover.set_modal(True)
+        self.popover.show_all()
+        print(self.popover)
+        self.popover.set_property('width-request', 50)
 
     def click_move_button(self, widget, event):
         if event.button == 3:

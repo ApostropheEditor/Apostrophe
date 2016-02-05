@@ -61,7 +61,7 @@ from uberwriter_lib import Window
 from uberwriter_lib import helpers
 from .AboutUberwriterDialog import AboutUberwriterDialog
 from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
-
+from .plugins.bibtex import BibTex
 # Some Globals
 # TODO move them somewhere for better
 # accesibility from other files
@@ -79,6 +79,7 @@ class UberwriterWindow(Window):
         'save-file-as': (GObject.SIGNAL_ACTION, None, ()),
         'new-file': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-focusmode': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-bibtex': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-fullscreen': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-spellcheck': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
@@ -865,8 +866,8 @@ class UberwriterWindow(Window):
             self.update_line_and_char_count()
 
 
-
     def override_headerbar_background(self, widget, cr):
+        # Not needed in Gtk 3.18 anymore apparentlys
         if(widget.get_window().get_state() & self.testbits):
             bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
             alloc = widget.get_allocation()
@@ -901,7 +902,10 @@ class UberwriterWindow(Window):
         cr.fill()
 
     def use_experimental_features(self, val):
-        self.auto_correct = UberwriterAutoCorrect(self.TextEditor, self.TextBuffer)
+        try:
+            self.auto_correct = UberwriterAutoCorrect(self.TextEditor, self.TextBuffer)
+        except:
+            logger.debug("Couldn't install autocorrect.")
 
 
     def finish_initializing(self, builder):  # pylint: disable=E1002
@@ -933,7 +937,7 @@ class UberwriterWindow(Window):
 
         self.use_headerbar = True
         if self.use_headerbar == True:
-            self.hb_revealer = Gtk.Revealer()
+            self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
             self.hb = Gtk.HeaderBar()
             self.hb_revealer.add(self.hb)
             self.hb_revealer.props.transition_duration = 1000
@@ -956,7 +960,7 @@ class UberwriterWindow(Window):
             self.hb.pack_start(bbtn)
             self.hb.pack_end(btn_settings)
             self.hb.show_all()
-            self.testbits = Gdk.WindowState.TILED | Gdk.WindowState.MAXIMIZED
+            self.testbits = Gdk.WindowState.MAXIMIZED
             self.connect('draw', self.override_headerbar_background)
 
         self.title_end = "  –  UberWriter"
@@ -1145,11 +1149,13 @@ class UberwriterWindow(Window):
         self.gtk_settings = Gtk.Settings.get_default()
         self.load_settings(builder)
 
-        self.connect_after('realize', self.color_window)
+        self.plugins = [BibTex(self)]
 
-    def color_window(self, widget, data=None):
-        window_gdk = self.get_window()
-        window_gdk.set_background(Gdk.Color(0, 1, 0))
+        # self.connect_after('realize', self.color_window)
+
+    # def color_window(self, widget, data=None):
+    #   window_gdk = self.get_window()
+    #   window_gdk.set_background(Gdk.Color(0, 1, 0))
 
     def alt_mod(self, widget, event, data=None):
         # TODO: Click and open when alt is pressed
