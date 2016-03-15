@@ -40,6 +40,8 @@
   gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
   background: @light_editor_bg;
+  box-shadow: none;
+  margin: 0.5px;
 }
 
 .uberwriter_window.small .uberwriter-editor {
