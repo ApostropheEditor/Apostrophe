@@ -16,6 +16,7 @@
   bind "<ctl>p" { "toggle-preview" () };
   bind "<ctl>w" { "close-window" () };
   bind "<ctl>f" { "toggle-search" () };
+  bind "<ctl><shift>b" { "toggle-bibtex" () };
   bind "<ctl><shift>r" { "toggle-search-replace" () };
   bind "<ctl><shift>f" { "toggle-search-replace" () };
   bind "F11" { "toggle-fullscreen" () };
@@ -56,16 +57,22 @@
 }
 
 #UberwriterWindow.medium .uberwriter-editor {
-  font: Inconsolata 15;
+  font: Fira Mono  15;
 }
 
 #UberwriterWindow.large .uberwriter-editor {
-  font: Inconsolata 17;
+  /*font: Inconsolata 17;
+  */
+  font: Fira Mono 12;
 }
 
 #UberwriterWindow GtkAlignment {
   margin-top: 30px;
   margin-bottom: 60px;
+}
+
+#titlebar_revealer {
+  padding: 0;
 }
 
 .uberwriter_window.dark_mode {
@@ -75,7 +82,6 @@
 .uberwriter_window.dark_mode .uberwriter-editor {
   color: #CCC;
   background: @dark_bg;
-
   -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
 }
 
@@ -187,7 +193,7 @@
 }
 
 #LexikonBubble {
-  font: serif 12;
+  font: serif 10;
   background: #FFF;
   border-radius: 4px;
   margin: 5px;
