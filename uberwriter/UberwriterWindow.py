@@ -27,7 +27,8 @@ locale.textdomain('uberwriter')
 
 import mimetypes
 
-from gi.repository import Gtk, Gdk, GObject, WebKit, Gio  # pylint: disable=E0611
+from gi.repository import Gtk, Gdk, GObject, Gio  # pylint: disable=E0611
+from gi.repository import WebKit2 as WebKit
 from gi.repository import Pango  # pylint: disable=E0611
 
 import cairo
@@ -40,7 +41,7 @@ from .UberwriterTextEditor import TextEditor
 from .UberwriterInlinePreview import UberwriterInlinePreview
 from .UberwriterSidebar import UberwriterSidebar
 from .UberwriterSearchAndReplace import UberwriterSearchAndReplace
-from .UberwriterAutoCorrect import UberwriterAutoCorrect
+# from .UberwriterAutoCorrect import UberwriterAutoCorrect
 
 import logging
 logger = logging.getLogger('uberwriter')
@@ -61,7 +62,7 @@ from uberwriter_lib import Window
 from uberwriter_lib import helpers
 from .AboutUberwriterDialog import AboutUberwriterDialog
 from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
-from .plugins.bibtex import BibTex
+# from .plugins.bibtex import BibTex
 # Some Globals
 # TODO move them somewhere for better
 # accesibility from other files
@@ -1149,7 +1150,7 @@ class UberwriterWindow(Window):
         self.gtk_settings = Gtk.Settings.get_default()
         self.load_settings(builder)
 
-        self.plugins = [BibTex(self)]
+        # self.plugins = [BibTex(self)]
 
         # self.connect_after('realize', self.color_window)
 
