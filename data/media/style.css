@@ -37,13 +37,14 @@
 }
 
 .uberwriter_window {
-  gtk-key-bindings: window-bindings;
+  -gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
   background: @light_editor_bg;
 }
 
 .uberwriter_window.small .uberwriter-editor {
-  font: Inconsolata 12;
+  font-family: 'Fira Mono', monospace;
+  font-size: 12px;
 }
 .uberwriter_window GtkGrid {
   background-color: @light_editor_bg;
@@ -55,13 +56,13 @@
 }
 
 #UberwriterWindow.medium .uberwriter-editor {
-  font: Fira Mono  15;
+  font-family: 'Fira Mono', monospace;
+  font-size: 15px;
 }
 
 #UberwriterWindow.large .uberwriter-editor {
-  /*font: Inconsolata 17;
-  */
-  font: Fira Mono 12;
+  font-family: 'Fira Mono', monospace;
+  font-size: 18px;
 }
 
 #UberwriterWindow GtkAlignment {
@@ -80,7 +81,7 @@
 .uberwriter_window.dark_mode .uberwriter-editor {
   color: #CCC;
   background: @dark_bg;
-  -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
+  /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
 }
 
 .scrollbars-junction,
@@ -92,9 +93,9 @@
   border: none;
   background-color: transparent;
   color: #222;
-  -GtkWidget-cursor-color: shade(#4D9FCE, 0.9);
-  -GtkWidget-cursor-aspect-ratio: 0.1;
-  gtk-key-bindings: editor-bindings;
+  /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
+  /*-GtkWidget-cursor-aspect-ratio: 0.1;*/
+  -gtk-key-bindings: editor-bindings;
 }
 
 .uberwriter-editor:selected {
@@ -123,7 +124,7 @@
   /* finding reset */
   background-color: initial;
   text-shadow: inherit;
-  icon-shadow: inherit;
+  /*icon-shadow: inherit;*/
   box-shadow: initial;
   background-clip: initial;
   background-origin: initial;
@@ -141,13 +142,14 @@
   border-radius: 2px;
   color: #666;
   padding: 3px 5px;
-  
+  /*
   -GtkButton-child-displacement-y: 0px;
   -GtkButton-child-displacement-x: 0px; 
   -GtkButton-default-border: 0;
   -GtkButton-image-spacing: 5px;
   -GtkButton-interior-focus: false;
   -GtkButton-inner-border: 0;
+  */
   transition: 500ms ease-in;
 }
 
@@ -191,7 +193,9 @@
 }
 
 #LexikonBubble {
-  font: serif 10;
+  /*font: serif 10;*/
+  font-family: serif;
+  font-size: 10px;
   background: #FFF;
   border-radius: 4px;
   margin: 5px;
@@ -215,7 +219,9 @@
 }
 
 #LexikonBubble .lexikon_heading {
-  font: serif 12;
+  /*font: serif 12;*/
+  font-family: serif;
+  font-size: 12px;
   padding-bottom: 5px;
   padding-top: 5px;
   font-weight: bold;
@@ -238,7 +244,7 @@
 
 #UberwriterWindow #AutoCorrect GtkLabel {
   padding: 3px 5px;
-  font: sans-serif;
+  font-family: sans-serif;
 }
 
 #UberwriterWindow #AutoCorrect GtkImage {
