@@ -450,7 +450,7 @@ class UberwriterWindow(Window):
        
         basename = os.path.basename(filename)
 
-        args = ['pandoc', '--from=markdown', '--smart']
+        args = ['pandoc', '--from=markdown', '-smart']
        
         if export_type == "pdf":
             args.append("-o%s.pdf" % basename)
@@ -500,7 +500,7 @@ class UberwriterWindow(Window):
     def copy_html_to_clipboard(self, widget, date=None):
         """Copies only html without headers etc. to Clipboard"""
 
-        args = ['pandoc', '--from=markdown', '--smart', '-thtml']
+        args = ['pandoc', '--from=markdown', '-smart', '-thtml']
         p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
         text = bytes(self.get_text(), "utf-8")
@@ -681,7 +681,7 @@ class UberwriterWindow(Window):
 
             args = ['pandoc',
                     '--from=markdown',
-                    '--smart',
+                    '-smart',
                     '-thtml',
                     '--mathjax',
                     '-c', helpers.get_media_file('uberwriter.css')]
@@ -693,7 +693,7 @@ class UberwriterWindow(Window):
 
             # Load in Webview and scroll to #ID
             self.webview = WebKit.WebView()
-            self.webview.load_html_string(output.decode("utf-8"), 'file://localhost/')
+            self.webview.load_html(output.decode("utf-8"), 'file://localhost/')
 
             # Delete the cursor-scroll mark again
             # cursor_iter = self.TextBuffer.get_iter_at_mark(self.TextBuffer.get_insert())
