@@ -78,7 +78,7 @@
   background: #333;
 }
 
-.uberwriter_window.dark_mode .uberwriter-editor {
+.uberwriter_window.dark_mode .uberwriter-editor text{
   color: #CCC;
   background: @dark_bg;
   /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
@@ -96,6 +96,11 @@
   /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
   /*-GtkWidget-cursor-aspect-ratio: 0.1;*/
   -gtk-key-bindings: editor-bindings;
+}
+
+.uberwriter-editor text {
+  background-color: @light_editor_bg;
+  color: #222;
 }
 
 .uberwriter-editor:selected {
