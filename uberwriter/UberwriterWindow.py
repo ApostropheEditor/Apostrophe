@@ -869,13 +869,19 @@ class UberwriterWindow(Window):
 
     def override_headerbar_background(self, widget, cr):
         # Not needed in Gtk 3.18 anymore apparentlys
-        if(widget.get_window().get_state() & self.testbits):
+        if(widget.get_window().get_state()):
             bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
-            alloc = widget.get_allocation()
+            alloc = widget.get_size()
             width = alloc.width
             height = alloc.height
 
-            cr.rectangle(0,0, width, height)
+            decox = widget.get_allocated_width()
+            decoy = widget.get_allocated_height()
+            xoffset = (decox-width)/2
+            yoffset = (decoy-height)
+
+            
+            cr.rectangle(xoffset,xoffset, width, height)
             cr.set_source_rgb(bg_color.red, bg_color.green, bg_color.blue)
             cr.fill()
 
