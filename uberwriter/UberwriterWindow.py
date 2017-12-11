@@ -729,11 +729,13 @@ class UberwriterWindow(Window):
             # Dark Mode is on
             self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
             self.get_style_context().add_class("dark_mode")
+            self.hb_container.get_style_context().add_class("dark_mode")
             self.MarkupBuffer.dark_mode(True)
         else:
             # Dark mode off
             self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
             self.get_style_context().remove_class("dark_mode")
+            self.hb_container.get_style_context().remove_class("dark_mode")
             self.MarkupBuffer.dark_mode(False)
 
         # Redraw contents of window (self)
@@ -867,18 +869,6 @@ class UberwriterWindow(Window):
             self.update_line_and_char_count()
 
 
-    def override_headerbar_background(self, widget, cr):
-        # Not needed in Gtk 3.18 anymore apparentlys
-        if(widget.get_window().get_state() & self.testbits):
-            bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
-            alloc = widget.get_allocation()
-            width = alloc.width
-            height = alloc.height
-
-            cr.rectangle(0,0, width, height)
-            cr.set_source_rgb(bg_color.red, bg_color.green, bg_color.blue)
-            cr.fill()
-
 
     def draw_gradient(self, widget, cr):
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
@@ -938,6 +928,8 @@ class UberwriterWindow(Window):
 
         self.use_headerbar = True
         if self.use_headerbar == True:
+            self.hb_container = Gtk.Frame(name='titlebar_container')
+            self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
             self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
             self.hb = Gtk.HeaderBar()
             self.hb_revealer.add(self.hb)
@@ -945,7 +937,9 @@ class UberwriterWindow(Window):
             self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
             self.hb.props.show_close_button = True
             self.hb.get_style_context().add_class("titlebar")
-            self.set_titlebar(self.hb_revealer)
+            self.hb_container.add(self.hb_revealer)
+            self.hb_container.show()
+            self.set_titlebar(self.hb_container)
             self.hb_revealer.show()
             self.hb_revealer.set_reveal_child(True)
             self.hb.show()
@@ -962,7 +956,7 @@ class UberwriterWindow(Window):
             self.hb.pack_end(btn_settings)
             self.hb.show_all()
             self.testbits = Gdk.WindowState.MAXIMIZED
-            self.connect('draw', self.override_headerbar_background)
+            #self.connect('draw', self.override_headerbar_background)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
