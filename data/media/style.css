@@ -89,6 +89,14 @@
   background: transparent;
 }
 
+#titlebar_container { 
+  background: @light_editor_bg; 
+}
+
+#titlebar_container.dark_mode { 
+  background: @dark_bg; 
+}
+
 .uberwriter-editor {
   border: none;
   background-color: transparent;
