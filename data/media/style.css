@@ -43,7 +43,8 @@
   caret-color: @dark_bg;
 }
 
-.uberwriter_window .text-button{
+.uberwriter_window .text-button,
+.uberwriter_window .status_bar_box {
   color: @dark_bg;
 }
 
@@ -51,6 +52,7 @@
   caret-color: @light_editor_bg;
 }
 
+.uberwriter_window.dark_mode .status_bar_box,
 .uberwriter_window.dark_mode .text-button{
   color: @light_editor_bg;
 }
