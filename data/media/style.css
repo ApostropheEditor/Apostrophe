@@ -40,6 +40,21 @@
   -gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
   background: @light_editor_bg;
+  caret-color: @dark_bg;
+}
+
+.uberwriter_window .text-button,
+.uberwriter_window .status_bar_box {
+  color: @dark_bg;
+}
+
+.uberwriter_window.dark_mode {
+  caret-color: @light_editor_bg;
+}
+
+.uberwriter_window.dark_mode .status_bar_box,
+.uberwriter_window.dark_mode .text-button{
+  color: @light_editor_bg;
 }
 
 .uberwriter_window.small .uberwriter-editor {
