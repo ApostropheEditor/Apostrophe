@@ -143,7 +143,7 @@ DEPRECATED
 
 .status_bar_box button {
   /* finding reset */
-  background-color: @ligh_bg;
+  background-color: @light_bg;
   text-shadow: inherit;
   /*icon-shadow: inherit;*/
   box-shadow: initial;
@@ -177,7 +177,7 @@ DEPRECATED
 .status_bar_box button:hover,
 .status_bar_box button:active:hover {
   transition: 0s ease-in;
-  color: @ligh_bg;
+  color: @light_bg;
   background-color: @dark_bg;
 }
 
@@ -189,7 +189,7 @@ DEPRECATED
 }
 .dark_mode .status_bar_box button {
   background-color: @dark_bg;
-  color: @ligh_bg;
+  color: @light_bg;
 }
 .dark_mode .status_bar_box button:hover,
 .dark_mode .status_bar_box button:active {
