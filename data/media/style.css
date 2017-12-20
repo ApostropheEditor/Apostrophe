@@ -5,7 +5,7 @@
 */
 
 @define-color dark_bg #333;
-@define-color light_editor_bg #EDEDED;
+@define-color light_bg #EDEDED;
 
 @binding-set window-bindings {
   bind "<ctl>n" { "new-file" () };
@@ -36,37 +36,36 @@
   bind "<ctl><shift>z" { "redo" () };
 }
 
+/* Main window and text colors */
+
 .uberwriter_window {
   -gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
-  background: @light_editor_bg;
+  background: @light_bg;
   caret-color: @dark_bg;
 }
 
-.uberwriter_window .text-button,
-.uberwriter_window .status_bar_box {
-  color: @dark_bg;
-}
-
 .uberwriter_window.dark_mode {
-  caret-color: @light_editor_bg;
+  background: @dark_bg;
+  caret-color: @light_bg;
 }
 
-.uberwriter_window.dark_mode .status_bar_box,
-.uberwriter_window.dark_mode .text-button{
-  color: @light_editor_bg;
+.uberwriter_window.dark_mode .uberwriter-editor text{
+  background: @dark_bg;
+  caret-color: @light_bg;
+  color: @light_bg;
 }
 
 .uberwriter_window.small .uberwriter-editor {
   font-family: 'Fira Mono', monospace;
   font-size: 12px;
 }
-.uberwriter_window GtkGrid {
-  background-color: @light_editor_bg;
+.uberwriter_window grid {
+  background-color: @light_bg;
 }
 
-.uberwriter_window.dark_mode GtkGrid, 
-.uberwriter_window.dark_mode GtkScrolledWindow {
+.uberwriter_window.dark_mode grid, 
+.uberwriter_window.dark_mode scrolledwindow {
   background-color: @dark_bg;
 }
 
@@ -80,23 +79,17 @@
   font-size: 18px;
 }
 
+/*
+DEPRECATED
+
 #UberwriterWindow GtkAlignment {
   margin-top: 30px;
   margin-bottom: 60px;
 }
+*/
 
 #titlebar_revealer {
   padding: 0;
-}
-
-.uberwriter_window.dark_mode {
-  background: #333;
-}
-
-.uberwriter_window.dark_mode .uberwriter-editor text{
-  color: #CCC;
-  background: @dark_bg;
-  /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
 }
 
 .scrollbars-junction,
@@ -105,7 +98,7 @@
 }
 
 #titlebar_container { 
-  background: @light_editor_bg; 
+  background: @light_bg; 
 }
 
 #titlebar_container.dark_mode { 
@@ -122,7 +115,7 @@
 }
 
 .uberwriter-editor text {
-  background-color: @light_editor_bg;
+  background-color: @light_bg;
   color: #222;
 }
 
@@ -131,26 +124,26 @@
   color: #FFF;
 }
 
-.uberwriter-editor GtkButton {
+.uberwriter-editor button {
   margin: 0;
   padding: 0;
   /*background: #CCC;*/
 }
 
-.uberwriter-editor GtkToolbar {
+.uberwriter-editor toolbar {
   /*background: transparent;*/
   border: none;
   padding: 0;
 }
 
 
-.status_bar_box GtkLabel {
+.status_bar_box label {
   color: #666;
 }
 
-.status_bar_box GtkButton {
+.status_bar_box button {
   /* finding reset */
-  background-color: initial;
+  background-color: @light_bg;
   text-shadow: inherit;
   /*icon-shadow: inherit;*/
   box-shadow: initial;
@@ -166,48 +159,50 @@
   border-image-width: initial;
 
   border-style: none;
-  -GtkButton-images: true;
+  -button-images: true;
   border-radius: 2px;
-  color: #666;
+  color: @dark_bg;
   padding: 3px 5px;
   /*
-  -GtkButton-child-displacement-y: 0px;
-  -GtkButton-child-displacement-x: 0px; 
-  -GtkButton-default-border: 0;
-  -GtkButton-image-spacing: 5px;
-  -GtkButton-interior-focus: false;
-  -GtkButton-inner-border: 0;
+  -button-child-displacement-y: 0px;
+  -button-child-displacement-x: 0px; 
+  -button-default-border: 0;
+  -button-image-spacing: 5px;
+  -button-interior-focus: false;
+  -button-inner-border: 0;
   */
-  transition: 500ms ease-in;
+  transition: 100ms ease-in;
 }
 
-.status_bar_box GtkButton:hover,
-.status_bar_box GtkButton:active:hover {
+.status_bar_box button:hover,
+.status_bar_box button:active:hover {
   transition: 0s ease-in;
-  color: #333;
-  background: #EEE;
+  color: @light_bg;
+  background-color: @dark_bg;
 }
 
-.status_bar_box GtkButton:active {
+.status_bar_box button:active {
   color: #EEE;
   background-color: #EEE;
   background-image: none;
   box-shadow: 0 0 2px rgba(0,0,0,0.4)
 }
-.dark_mode .status_bar_box GtkButton {
-
+.dark_mode .status_bar_box button {
+  background-color: @dark_bg;
+  color: @light_bg;
 }
-.dark_mode .status_bar_box GtkButton:hover,
-.dark_mode .status_bar_box GtkButton:active {
-  background-color: shade(@dark_bg, 0.8);
+.dark_mode .status_bar_box button:hover,
+.dark_mode .status_bar_box button:active {
+  background-color: @light_bg;
+  color: @dark_bg;
 }
 
-.status_bar_box GtkSeparator {
+.status_bar_box separator {
   border-color: #999;
   border-right: none;
 }
 
-#PreviewMenuItem GtkImage {
+#PreviewMenuItem image {
   border-radius: 2px;
   color: #666;
   padding: 3px 5px;
@@ -215,7 +210,7 @@
   background: #FFF;
 }
 
-#UberwriterWindow GtkTreeView {
+#UberwriterWindow treeview {
   color: #333;
   font-size: 10px;
 }
@@ -238,7 +233,7 @@
   border-radius: 3px;
 }
 
-#LexikonBubble GtkLabel {
+#LexikonBubble label {
   /*padding: 5px;*/
 }
 
@@ -270,11 +265,11 @@
   color: #333;
 }
 
-#UberwriterWindow #AutoCorrect GtkLabel {
+#UberwriterWindow #AutoCorrect label {
   padding: 3px 5px;
   font-family: sans-serif;
 }
 
-#UberwriterWindow #AutoCorrect GtkImage {
+#UberwriterWindow #AutoCorrect image {
   padding: 3px 5px;
 }
