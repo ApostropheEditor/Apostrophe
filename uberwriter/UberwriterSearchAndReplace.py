@@ -30,7 +30,9 @@ class UberwriterSearchAndReplace():
     """
     def __init__(self, parentwindow):
         self.parentwindow = parentwindow
-        self.box = parentwindow.builder.get_object("searchreplaceholder")
+        self.box = parentwindow.builder.get_object("searchbar_placeholder")
+        self.box.set_reveal_child(False)
+        self.searchbar=parentwindow.builder.get_object("searchbar")
         self.searchentry = parentwindow.builder.get_object("searchentrybox")
         self.searchentry.connect('changed', self.search)
         self.searchentry.connect('activate', self.scrolltonext)
@@ -47,8 +49,8 @@ class UberwriterSearchAndReplace():
         self.regexbutton = parentwindow.builder.get_object("regex")
         self.casesensitivebutton = parentwindow.builder.get_object("case_sensitive")
         
-        self.replacebox = parentwindow.builder.get_object("replacebox")
-        self.replacebox.hide()
+        self.replacebox = parentwindow.builder.get_object("replace_placeholder")
+        self.replacebox.set_reveal_child(False)
         self.replace_one_button = parentwindow.builder.get_object("replace_one")
         self.replace_all_button = parentwindow.builder.get_object("replace_all")
         self.replaceentry = parentwindow.builder.get_object("replaceentrybox")
@@ -67,9 +69,9 @@ class UberwriterSearchAndReplace():
         self.texteditor.connect("focus-in-event", self.focused_texteditor)
     def toggle_replace(self, widget, data=None):
         if widget.get_active():
-            self.replacebox.show_all()
+            self.replacebox.set_reveal_child(True)
         else: 
-            self.replacebox.hide()
+            self.replacebox.set_reveal_child(False)
 
     def key_pressed(self, widget, event, data=None):
         if event.keyval in [Gdk.KEY_Escape]:
@@ -82,11 +84,14 @@ class UberwriterSearchAndReplace():
         """
         show search box
         """
-        if self.box.get_visible():
-            self.hide()
-        else:
-            self.box.show()
+        if self.box.get_reveal_child() == False or self.searchbar.get_search_mode() == False:
+            self.searchbar.set_search_mode(True)
+            self.box.set_reveal_child(True)
             self.searchentry.grab_focus()
+        else:
+            self.hide()
+            self.open_replace_button.set_active(False)
+            
 
     def search(self, widget=None, data=None, scroll=True):
         searchtext = self.searchentry.get_text()
@@ -139,8 +144,8 @@ class UberwriterSearchAndReplace():
         # self.texteditor.scroll_to_iter(matchiter[0], 0.0, True, 0.0, 0.5)
 
     def hide(self):
-        self.replacebox.hide()
-        self.box.hide()
+        self.replacebox.set_reveal_child(False)
+        self.box.set_reveal_child(False)
         self.textbuffer.remove_tag(self.highlight, 
             self.textbuffer.get_start_iter(),
             self.textbuffer.get_end_iter())

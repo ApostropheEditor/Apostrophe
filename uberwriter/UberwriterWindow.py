@@ -265,8 +265,8 @@ class UberwriterWindow(Window):
 
     def window_resize(self, widget, data=None):
         # To calc padding top / bottom
-        self.window_height = widget.get_size()[1]
-        w_width = widget.get_size()[0]
+        self.window_height = widget.get_allocation().height
+        w_width = widget.get_allocation().width
         # Calculate left / right margin
         width_request = 600
         if(w_width < 900):
