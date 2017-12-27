@@ -53,7 +53,7 @@
     <property name="tooltip_text" translatable="yes">Activate Regex</property>
     <property name="icon_name">find-location-symbolic</property>
   </object>
-  <object class="UberwriterWindow" id="uberwriter_window">
+  <object class="GtkApplicationWindow" id="uberwriter_window">
     <property name="can_focus">True</property>
     <property name="default_width">800</property>
     <property name="default_height">500</property>

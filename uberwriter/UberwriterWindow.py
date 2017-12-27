@@ -72,7 +72,7 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 # See texteditor_lib.Window.py for more details about how this class works
 class UberwriterWindow(Window):
 
-    __gtype_name__ = "UberwriterWindow"
+    __gtype_name__ = "GtkApplicationWindow"
 
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
@@ -1002,7 +1002,7 @@ class UberwriterWindow(Window):
         self.TextEditor.props.width_request = 600
         self.TextEditor.props.halign = Gtk.Align.CENTER
         self.TextEditor.set_vadjustment(builder.get_object('vadjustment1'))
-        self.TextEditor.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.TextEditor.set_wrap_mode(Gtk.WrapMode.CHAR)
         self.TextEditor.connect('focus-out-event', self.focus_out)
         self.TextEditor.get_style_context().connect('changed', self.style_changed)
 
