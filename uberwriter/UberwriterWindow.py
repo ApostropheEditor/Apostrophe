@@ -301,8 +301,8 @@ class UberwriterWindow(Window):
 
         self.EditorAlignment.props.margin_bottom = self.alignment_padding + 30
         self.EditorAlignment.props.margin_top = self.alignment_padding
-        self.TextEditor.set_left_margin(lm)
-        self.TextEditor.set_right_margin(lm)
+        #self.TextEditor.set_left_margin(lm)
+        #self.TextEditor.set_right_margin(lm)
 
         self.MarkupBuffer.recalculate(lm)
 
@@ -998,7 +998,7 @@ class UberwriterWindow(Window):
 
         base_leftmargin = 40
         # self.TextEditor.set_left_margin(base_leftmargin)
-        self.TextEditor.set_left_margin(40)
+        #self.TextEditor.set_left_margin(40)
         self.TextEditor.props.width_request = 600
         self.TextEditor.props.halign = Gtk.Align.CENTER
         self.TextEditor.set_vadjustment(builder.get_object('vadjustment1'))
