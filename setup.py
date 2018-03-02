@@ -69,10 +69,7 @@ def move_desktop_file(root, target_data, prefix):
     if not os.path.exists(old_desktop_file):
         print ("ERROR: Can't find", old_desktop_file)
         sys.exit(1)
-    if os.path.exists(desktop_file):
-        print("REMOVING DESKTOP FILE")
-        os.remove(desktop_file)
-    if target_data != prefix + '/':
+    elif target_data != prefix + '/':
         # This is an /opt install, so rename desktop file to use extras-
         desktop_file = desktop_path + '/extras-uberwriter.desktop'
         try:
