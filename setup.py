@@ -87,7 +87,7 @@ def move_desktop_file(root, target_data, prefix):
     return desktop_file
 
 def update_desktop_file(filename, target_pkgdata, target_scripts):
-    print("updateing deskop file: %s" % filename)
+    print("updating deskop file: %s" % filename)
     try:
         fin = open(filename, 'r', encoding="utf-8")
         fout = open(filename + '.new', 'w', encoding="utf-8")
