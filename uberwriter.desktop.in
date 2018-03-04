@@ -6,4 +6,4 @@ Exec=uberwriter %U
 Icon=/usr/share/uberwriter/media/uberwriter.svg
 Terminal=false
 Type=Application
-MimeType=text/x-markdown;text/plain;asdas/dkwodw;
+MimeType=text/x-markdown;text/plain;

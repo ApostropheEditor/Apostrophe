@@ -130,11 +130,14 @@ class InstallAndUpdateDataDirectory(DistUtilsExtra.auto.install_auto):
         desktop_file = move_desktop_file(self.root, target_data, self.prefix)
         update_desktop_file(desktop_file, target_pkgdata, target_scripts)
         compile_schemas(self.root, target_data)
-        try:
-            os.remove("/usr/bin/uberwriter")
-            os.symlink(target_scripts + "uberwriter", "/usr/bin/uberwriter")
-        except:
-            print("Couldn't remove old symlink or installing new symlink didn't work.")
+
+#       TODO:Remove this
+#
+#        try:
+#            os.remove("/usr/bin/uberwriter")
+#            os.symlink(target_scripts + "uberwriter", "/usr/bin/uberwriter")
+#        except:
+#            print("Couldn't remove old symlink or installing new symlink didn't work.")
         
 ##################################################################################
 ###################### YOU SHOULD MODIFY ONLY WHAT IS BELOW ######################
