@@ -693,6 +693,8 @@ class UberwriterWindow(Window):
 
             # Load in Webview and scroll to #ID
             self.webview = WebKit.WebView()
+            self.webview_settings = self.webview.get_settings()
+            self.webview_settings.set_allow_universal_access_from_file_urls(True)
             self.webview.load_html(output.decode("utf-8"), 'file://localhost/')
 
             # Delete the cursor-scroll mark again
