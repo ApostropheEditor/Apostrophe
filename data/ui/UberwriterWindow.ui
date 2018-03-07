@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.2 -->
+<!-- Generated with glade 3.20.4 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <requires lib="uberwriter_window" version="3.26"/>
   <!-- interface-local-resource-path ../media -->
   <object class="GtkAction" id="action1"/>
   <object class="GtkAdjustment" id="adjustment1">
@@ -241,7 +242,6 @@
                     </child>
                     <child>
                       <object class="GtkMenuItem" id="mnu_sidebar">
-                        <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label">Sidebar</property>
                         <signal name="activate" handler="menu_toggle_sidebar" swapped="no"/>
@@ -296,13 +296,11 @@
                     </child>
                     <child>
                       <object class="GtkSeparatorMenuItem" id="separatormenuitem4">
-                        <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkCheckMenuItem" id="disable_spellcheck">
-                        <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Auto _Spellcheck</property>
                         <property name="use_underline">True</property>
