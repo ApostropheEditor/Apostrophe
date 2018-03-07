@@ -108,6 +108,30 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkImageMenuItem" id="mnu_examples">
+                        <property name="label">Open examples</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_stock">False</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu1_1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="mnu_tutorial">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">_Quick markdown tutorial</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="open_uberwriter_markdown" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <accelerator key="o" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkSeparatorMenuItem" id="separatormenuitem3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
