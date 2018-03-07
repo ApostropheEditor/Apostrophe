@@ -164,6 +164,8 @@ class UberwriterWindow(Window):
             key, mod = Gtk.accelerator_parse("Escape")
             self.fullscreen_button.add_accelerator("activate",
                 self.accel_group, key, mod, Gtk.AccelFlags.VISIBLE)
+            self.fullscreen_button.set_active(True)
+            self.fullscreen_menu_button.set_active(True)
             # Hide Menu
             self.menubar.hide()
         else:
@@ -171,6 +173,8 @@ class UberwriterWindow(Window):
             key, mod = Gtk.accelerator_parse("Escape")
             self.fullscreen_button.remove_accelerator(
                 self.accel_group, key, mod)
+            self.fullscreen_button.set_active(False)
+            self.fullscreen_menu_button.set_active(False)
             self.menubar.hide()
 
         self.TextEditor.grab_focus()
@@ -184,6 +188,8 @@ class UberwriterWindow(Window):
             self.check_scroll(self.TextBuffer.get_insert())
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 0)
+            self.focusmode_menu_button.set_active(True)
+            self.focusmode_button.set_active(True)
         else:
             self.remove_typewriter()
             self.focusmode = False
@@ -200,6 +206,8 @@ class UberwriterWindow(Window):
             self.check_scroll()
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 4)
+            self.focusmode_menu_button.set_active(False)
+            self.focusmode_button.set_active(False)
 
     def scroll_smoothly(self, widget, frame_clock, data = None):
         if self.smooth_scroll_data['target_pos'] == -1:
@@ -591,8 +599,8 @@ class UberwriterWindow(Window):
     def menu_toggle_sidebar(self, widget=None):
         self.sidebar.toggle_sidebar()
 
-    def menu_activate_preview(self, widget=None):
-        self.preview_button.emit('activate')
+#    def menu_activate_preview(self, widget=None):
+#        self.preview_button.emit('activate')
 
     def toggle_spellcheck(self, widget=None, data=None):
         if widget:
@@ -674,6 +682,11 @@ class UberwriterWindow(Window):
 
     def toggle_preview(self, widget, data=None):
         if widget.get_active():
+
+            # Toggle buttons
+
+            # self.preview_button.set_active(True)
+            # self.preview_mnu_button.set_active(True)
             # Insert a tag with ID to scroll to
             # self.TextBuffer.insert_at_cursor('<span id="scroll_mark"></span>')
             # TODO
@@ -707,13 +720,17 @@ class UberwriterWindow(Window):
             self.ScrolledWindow.add(self.webview)
             self.webview.show()
 
-            # This saying that all links will be opened in default browser, but local files are opened in appropriate apps:
+            # This saying that all links will be opened in default browser, \
+            # but local files are opened in appropriate apps:
             self.webview.connect("navigation-requested", self.on_click_link)
         else:
             self.ScrolledWindow.remove(self.webview)
             self.webview.destroy()
             self.ScrolledWindow.add(self.EditorViewport)
             self.TextEditor.show()
+            
+            # self.preview_button.set_active(False)
+            # self.preview_mnu_button.set_active(False)
 
         self.queue_draw()
         return True
@@ -915,7 +932,7 @@ class UberwriterWindow(Window):
         self.connect('open-file', self.open_document)
         self.connect('toggle-fullscreen', self.menu_activate_fullscreen)
         self.connect('toggle-focusmode', self.menu_activate_focusmode)
-        self.connect('toggle-preview', self.menu_activate_preview)
+        #self.connect('toggle-preview', self.menu_activate_preview)
         self.connect('toggle-spellcheck', self.toggle_spellcheck)
         self.connect('close-window', self.on_mnu_close_activate)
         self.connect('toggle-search', self.open_search_and_replace)
@@ -972,8 +989,11 @@ class UberwriterWindow(Window):
 
         # Wire up buttons
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
+        self.fullscreen_menu_button = builder.get_object('mnu_fullscreen')
         self.focusmode_button = builder.get_object('focus_toggle')
+        self.focusmode_menu_button = builder.get_object('mnu_focusmode')
         self.preview_button = builder.get_object('preview_toggle')
+        self.preview_mnu_button = builder.get_object('mnu_preview')
 
         self.fullscreen_button.set_name('fullscreen_toggle')
         self.focusmode_button.set_name('focus_toggle')
