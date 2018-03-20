@@ -58,5 +58,5 @@ def main():
         window = UberwriterWindow.UberwriterWindow()
     if options.experimental_features:
         window.use_experimental_features(True)
-    window.show()
-    Gtk.main()
+    window.run()
+    #Gtk.main()

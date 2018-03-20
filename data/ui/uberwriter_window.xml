@@ -2,7 +2,7 @@
                depends="gtk+" version="3.26">
   <glade-widget-classes>
     <glade-widget-class title="Uberwriter Window" name="UberwriterWindow" 
-                        generic-name="UberwriterWindow" parent="GtkWindow"
+                        generic-name="UberwriterWindow" parent="GtkApplicationWindow"
                         icon-name="widget-gtk-window"/>
   </glade-widget-classes>
 </glade-catalog>

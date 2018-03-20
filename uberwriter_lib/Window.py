@@ -24,7 +24,7 @@ from . helpers import get_builder, show_uri, get_help_uri
 
 # This class is meant to be subclassed by UberwriterWindow.  It provides
 # common functions and some boilerplate.
-class Window(Gtk.ApplicationWindow):
+class Window(Gtk.Application):
     __gtype_name__ = "Window"
 
     # To construct a new instance of this method, the following notable 
@@ -43,11 +43,19 @@ class Window(Gtk.ApplicationWindow):
         
         Returns a fully instantiated BaseUberwriterWindow object.
         """
+        App = Gtk.Application()
+        window = Gtk.ApplicationWindow()
+        
+        
         builder = get_builder('UberwriterWindow')
-        new_object = builder.get_object("uberwriter_window")
-        new_object.finish_initializing(builder)
-        return new_object
-
+        new_object = builder.get_object("grid1")
+        window.add(new_object)
+        App.window = window
+        App.window.present()
+        #window.finish_initializing(builder)
+        
+        return App
+        
     def finish_initializing(self, builder):
         """Called while initializing this instance in __new__
 
@@ -61,7 +69,7 @@ class Window(Gtk.ApplicationWindow):
         self.PreferencesDialog = None # class
         self.preferences_dialog = None # instance
         self.AboutDialog = None # class
-
+        
         # self.settings = Gio.Settings("net.launchpad.uberwriter")
         # self.settings.connect('changed', self.on_preferences_changed)
 
@@ -77,6 +85,8 @@ class Window(Gtk.ApplicationWindow):
             self.indicator = indicator.new_application_indicator(self)
         except ImportError:
             pass
+            
+
 
     def on_mnu_contents_activate(self, widget, data=None):
         show_uri(self, "ghelp:%s" % get_help_uri())
