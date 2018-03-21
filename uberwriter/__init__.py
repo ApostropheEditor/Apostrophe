@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License along 
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
-
+import sys
 import optparse
 
 import locale
@@ -24,6 +24,7 @@ locale.textdomain('uberwriter')
 from gi.repository import Gtk # pylint: disable=E0611
 
 from . import UberwriterWindow
+from uberwriter_lib import AppWindow
 
 from uberwriter_lib import set_up_logging, get_version
 
@@ -50,13 +51,15 @@ def main():
     (options, args) = parse_options()
 
     # Run the application.
-    if args:
-        for arg in args:
-            window = UberwriterWindow.UberwriterWindow()
-            window.load_file(arg)
-    else:
-        window = UberwriterWindow.UberwriterWindow()
-    if options.experimental_features:
-        window.use_experimental_features(True)
-    window.run()
+    # ~ if args:
+        # ~ for arg in args:
+            # ~ window = UberwriterWindow.UberwriterWindow()
+            # ~ window.load_file(arg)
+    # ~ else:
+        # ~ window = UberwriterWindow.UberwriterWindow()
+    # ~ if options.experimental_features:
+        # ~ window.use_experimental_features(True)
+    app = AppWindow.Application()
+    app.run(sys.argv)
+    
     #Gtk.main()

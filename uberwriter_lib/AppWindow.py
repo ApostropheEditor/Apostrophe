@@ -5,8 +5,9 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
 
 from . helpers import get_builder, show_uri, get_help_uri
+from uberwriter import UberwriterWindow
 
-class UberwriterWindow(Gtk.ApplicationWindow):
+class Window(Gtk.ApplicationWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,18 +30,13 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         builder = get_builder('UberwriterWindow')
         new_object = builder.get_object("grid1")
         
-         
-        self.builder = builder
-        self.ui = builder.get_ui(self, True)
-        self.PreferencesDialog = None # class
-        self.preferences_dialog = None # instance
-        self.AboutDialog = None # class
-                
         self.contents = new_object
         self.add(self.contents)
+    
+        self.finish_initializing(builder)
         
-        self.finish_initializing(self.builder)
-       
+        return self
+ 
 
     def on_maximize_toggle(self, action, value):
         action.set_state(value)
@@ -48,6 +44,38 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.maximize()
         else:
             self.unmaximize()
+    
+    def finish_initializing(self, builder):
+        """Called while initializing this instance in __new__
+
+        finish_initializing should be called after parsing the UI definition
+        and creating a UberwriterWindow object with it in order to finish
+        initializing the start of the new UberwriterWindow instance.
+        """
+        # Get a reference to the builder and set up the signals.
+        self.builder = builder
+        self.ui = builder.get_ui(self, True)
+        self.PreferencesDialog = None # class
+        self.preferences_dialog = None # instance
+        self.AboutDialog = None # class
+
+        
+        # self.settings = Gio.Settings("net.launchpad.uberwriter")
+        # self.settings.connect('changed', self.on_preferences_changed)
+
+        # Optional application indicator support
+        # Run 'quickly add indicator' to get started.
+        # More information:
+        #  http://owaislone.org/quickly-add-indicator/
+        #  https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationIndicators
+        try:
+            from uberwriter import indicator
+            # self is passed so methods of this class can be called from indicator.py
+            # Comment this next line out to disable appindicator
+            self.indicator = indicator.new_application_indicator(self)
+        except ImportError:
+            pass
+            
 
 class Application(Gtk.Application):
 
@@ -74,12 +102,14 @@ class Application(Gtk.Application):
         builder = get_builder('App_menu')
         self.set_app_menu(builder.get_object("app-menu"))
 
+
     def do_activate(self):
         # We only allow a single window and raise any existing ones
         if not self.window:
             # Windows are associated with the application
             # when the last one is closed the application shuts down
-            self.window = UberwriterWindow(application=self, title="UberWriter")
+            # self.window = Window(application=self, title="UberWriter")
+            self.window = UberwriterWindow.UberwriterWindow()
 
         self.window.present()
 
@@ -101,6 +131,6 @@ class Application(Gtk.Application):
     def on_quit(self, action, param):
         self.quit()
 
-if __name__ == "__main__":
-    app = Application()
-    app.run(sys.argv)
+# ~ if __name__ == "__main__":
+    # ~ app = Application()
+    # ~ app.run(sys.argv)

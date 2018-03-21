@@ -59,7 +59,7 @@ except:
     APT_ENABLED = False
 
 #from uberwriter_lib import Window
-from uberwriter_lib import AppWindow
+from uberwriter_lib.AppWindow import Window
 from uberwriter_lib import helpers
 from .AboutUberwriterDialog import AboutUberwriterDialog
 from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
@@ -71,12 +71,10 @@ from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
 CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
 # See texteditor_lib.Window.py for more details about how this class works
-class UberwriterWindow(AppWindow.Application):
+class UberwriterWindow(Window):
 
     #__gtype_name__ = "UberwriterWindow"
     
-    print("hahah")
-
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
