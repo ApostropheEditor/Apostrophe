@@ -108,7 +108,11 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
 
         action = Gio.SimpleAction.new("help", None)
-        action.connect("activate", self.on_quit)
+        action.connect("activate", self.on_help)
+        self.add_action(action)
+        
+        action = Gio.SimpleAction.new("shortcuts", None)
+        action.connect("activate", self.on_shortcuts)
         self.add_action(action)
         
         action = Gio.SimpleAction.new("about", None)
@@ -158,7 +162,15 @@ class Application(Gtk.Application):
         about_dialog.set_logo(logo)
         
         about_dialog.present()
-
+        
+    def on_help(self, action, param):
+        self.window.open_pandoc_markdown(self)
+        
+    def on_shortcuts(self, action, param):
+        builder = get_builder('Shortcuts')
+        builder.get_object("shortcuts").set_transient_for(self.window)
+        builder.get_object("shortcuts").show()
+        
     def on_quit(self, action, param):
         self.quit()
 

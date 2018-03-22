@@ -791,9 +791,6 @@ class UberwriterWindow(Window):
     def open_launchpad_translation(self, widget, data=None):
         webbrowser.open("https://translations.launchpad.net/uberwriter")
 
-    def open_launchpad_help(self, widget, data=None):
-        webbrowser.open("https://answers.launchpad.net/uberwriter")
-
     def open_pandoc_markdown(self, widget, data=None):
         webbrowser.open("http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
 

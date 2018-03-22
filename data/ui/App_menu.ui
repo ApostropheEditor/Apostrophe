@@ -20,9 +20,8 @@
 -->
     <section>
       <item>
-<!--
         <attribute name="action">app.about</attribute>
--->
+        <attribute name="action">app.shortcuts</attribute>
         <attribute name="label" translatable="yes">_Shortcuts</attribute>
       </item>
       <item>
