@@ -58,9 +58,9 @@ try:
 except:
     APT_ENABLED = False
 
-from uberwriter_lib import Window
+#from uberwriter_lib import Window
+from uberwriter_lib.AppWindow import Window
 from uberwriter_lib import helpers
-from .AboutUberwriterDialog import AboutUberwriterDialog
 from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
 # from .plugins.bibtex import BibTex
 # Some Globals
@@ -72,8 +72,8 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 # See texteditor_lib.Window.py for more details about how this class works
 class UberwriterWindow(Window):
 
-    __gtype_name__ = "UberwriterWindow"
-
+    #__gtype_name__ = "UberwriterWindow"
+    
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
@@ -791,9 +791,6 @@ class UberwriterWindow(Window):
     def open_launchpad_translation(self, widget, data=None):
         webbrowser.open("https://translations.launchpad.net/uberwriter")
 
-    def open_launchpad_help(self, widget, data=None):
-        webbrowser.open("https://answers.launchpad.net/uberwriter")
-
     def open_pandoc_markdown(self, widget, data=None):
         webbrowser.open("http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
 
@@ -920,11 +917,13 @@ class UberwriterWindow(Window):
 
     def finish_initializing(self, builder):  # pylint: disable=E1002
         """Set up the main window"""
+        
         super(UberwriterWindow, self).finish_initializing(builder)
+        
 
-        self.AboutDialog = AboutUberwriterDialog
         self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
+        
 
         self.connect('save-file', self.save_document)
         self.connect('save-file-as', self.save_document_as)
@@ -944,6 +943,7 @@ class UberwriterWindow(Window):
         self.texlive_installed = False
 
         self.set_name('UberwriterWindow')
+        
 
         self.use_headerbar = True
         if self.use_headerbar == True:
@@ -986,6 +986,7 @@ class UberwriterWindow(Window):
         self.char_count = builder.get_object('char_count')
         self.menubar = builder.get_object('menubar1')
         self.menubar.hide()
+        
 
         # Wire up buttons
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
