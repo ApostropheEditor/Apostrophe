@@ -21,7 +21,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 
-from . helpers import get_builder, show_uri, get_help_uri
+from . helpers import get_builder, show_uri, get_help_uri, get_media_path
 from uberwriter import UberwriterWindow
 
 class Window(Gtk.ApplicationWindow):
@@ -41,7 +41,9 @@ class Window(Gtk.ApplicationWindow):
                                                GLib.Variant.new_boolean(obj.props.is_maximized)))
         
         self.set_default_size(800,500)
-        self.set_icon_from_file("data/media/uberwriter.svg")
+        
+        icon_file = get_media_path("uberwriter.svg")
+        self.set_icon_from_file(icon_file)
         
         builder = get_builder('UberwriterWindow')
         new_object = builder.get_object("grid1")
@@ -157,7 +159,8 @@ class Application(Gtk.Application):
         about_dialog.set_website("http://uberwriter.wolfvollprecht.de")
         about_dialog.set_authors(["Wolf Vollprecht"])
         
-        logo = GdkPixbuf.Pixbuf.new_from_file("data/media/uberwriter.svg")
+        logo_file = get_media_path("uberwriter.svg")
+        logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
         
         about_dialog.set_logo(logo)
         
