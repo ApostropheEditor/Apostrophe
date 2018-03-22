@@ -1,8 +1,20 @@
+# This program is free software: you can redistribute it and/or modify it 
+# under the terms of the GNU General Public License version 3, as published 
+# by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranties of 
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR 
+# PURPOSE.  See the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along 
+# with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
 import sys
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, Gio, Gtk
+from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 
 from . helpers import get_builder, show_uri, get_help_uri
 from uberwriter import UberwriterWindow
@@ -35,7 +47,7 @@ class Window(Gtk.ApplicationWindow):
     
         self.finish_initializing(builder)
         
-        return self
+        return super().__init__(*args, **kwargs)
  
 
     def on_maximize_toggle(self, action, value):
@@ -91,9 +103,13 @@ class Application(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
-        # ~ action = Gio.SimpleAction.new("about", None)
-        # ~ action.connect("activate", self.on_about)
-        # ~ self.add_action(action)
+        action = Gio.SimpleAction.new("help", None)
+        action.connect("activate", self.on_quit)
+        self.add_action(action)
+        
+        action = Gio.SimpleAction.new("about", None)
+        action.connect("activate", self.on_about)
+        self.add_action(action)
 
         action = Gio.SimpleAction.new("quit", None)
         action.connect("activate", self.on_quit)
@@ -109,7 +125,7 @@ class Application(Gtk.Application):
             # Windows are associated with the application
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
-            self.window = UberwriterWindow.UberwriterWindow()
+            self.window = UberwriterWindow.UberwriterWindow(application=self, title="UberWriter")
 
         self.window.present()
 
@@ -123,10 +139,21 @@ class Application(Gtk.Application):
         self.activate()
         return 0
 
-    # TODO
-    # ~ def on_about(self, action, param):
-        # ~ about_dialog = Gtk.AboutDialog(transient_for=self.window, modal=True)
-        # ~ about_dialog.present()
+    
+    def on_about(self, action, param):
+        about_dialog = Gtk.AboutDialog(transient_for=self.window, modal=True)
+        about_dialog.set_program_name("Uberwriter")
+        about_dialog.set_version("TODO.beta")
+        about_dialog.set_copyright("Copyright (C) 2018, Wolf Vollprecht")
+        about_dialog.set_license_type(Gtk.License.GPL_3_0)
+        about_dialog.set_website("http://uberwriter.wolfvollprecht.de")
+        about_dialog.set_authors(["Wolf Vollprecht"])
+        
+        logo = GdkPixbuf.Pixbuf.new_from_file("data/media/uberwriter.svg")
+        
+        about_dialog.set_logo(logo)
+        
+        about_dialog.present()
 
     def on_quit(self, action, param):
         self.quit()

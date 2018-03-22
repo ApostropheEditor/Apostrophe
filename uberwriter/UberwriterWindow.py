@@ -921,11 +921,14 @@ class UberwriterWindow(Window):
 
     def finish_initializing(self, builder):  # pylint: disable=E1002
         """Set up the main window"""
+        
         super(UberwriterWindow, self).finish_initializing(builder)
+        
 
         self.AboutDialog = AboutUberwriterDialog
         self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
+        
 
         self.connect('save-file', self.save_document)
         self.connect('save-file-as', self.save_document_as)
@@ -945,6 +948,7 @@ class UberwriterWindow(Window):
         self.texlive_installed = False
 
         self.set_name('UberwriterWindow')
+        
 
         self.use_headerbar = True
         if self.use_headerbar == True:
@@ -987,6 +991,7 @@ class UberwriterWindow(Window):
         self.char_count = builder.get_object('char_count')
         self.menubar = builder.get_object('menubar1')
         self.menubar.hide()
+        
 
         # Wire up buttons
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
