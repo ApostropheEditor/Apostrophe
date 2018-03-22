@@ -61,7 +61,6 @@ except:
 #from uberwriter_lib import Window
 from uberwriter_lib.AppWindow import Window
 from uberwriter_lib import helpers
-from .AboutUberwriterDialog import AboutUberwriterDialog
 from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
 # from .plugins.bibtex import BibTex
 # Some Globals
@@ -925,7 +924,6 @@ class UberwriterWindow(Window):
         super(UberwriterWindow, self).finish_initializing(builder)
         
 
-        self.AboutDialog = AboutUberwriterDialog
         self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
         

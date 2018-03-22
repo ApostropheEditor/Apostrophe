@@ -12,6 +12,11 @@
 
 import sys
 
+import locale
+import os
+from locale import gettext as _
+locale.textdomain('uberwriter')
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk, GdkPixbuf
@@ -35,8 +40,7 @@ class Window(Gtk.ApplicationWindow):
                             lambda obj, pspec: max_action.set_state(
                                                GLib.Variant.new_boolean(obj.props.is_maximized)))
         
-        self.default_width = 800
-        self.defaul_height = 500
+        self.set_default_size(800,500)
         self.set_icon_from_file("data/media/uberwriter.svg")
         
         builder = get_builder('UberwriterWindow')
