@@ -49,17 +49,20 @@ def parse_options():
 def main():
     'constructor for your class instances'
     (options, args) = parse_options()
+    
+    # TODO: all the parsing is unused. 
+    # We want to allow multiple windows
 
     # Run the application.
-    # ~ if args:
-        # ~ for arg in args:
-            # ~ window = UberwriterWindow.UberwriterWindow()
-            # ~ window.load_file(arg)
-    # ~ else:
-        # ~ window = UberwriterWindow.UberwriterWindow()
-    # ~ if options.experimental_features:
-        # ~ window.use_experimental_features(True)
     app = AppWindow.Application()
+    
+    if args:
+        for arg in args:
+            pass 
+    else:
+        pass
+    if options.experimental_features:
+        window.use_experimental_features(True)
+        
     app.run(sys.argv)
     
-    #Gtk.main()
