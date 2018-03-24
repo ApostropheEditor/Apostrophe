@@ -21,6 +21,8 @@ import os
 from locale import gettext as _
 locale.textdomain('uberwriter')
 
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk # pylint: disable=E0611
 
 from . import UberwriterWindow
