@@ -157,7 +157,7 @@ class Application(Gtk.Application):
         about_dialog.set_copyright("Copyright (C) 2018, Wolf Vollprecht")
         about_dialog.set_license_type(Gtk.License.GPL_3_0)
         about_dialog.set_website("http://uberwriter.wolfvollprecht.de")
-        about_dialog.set_authors(["Wolf Vollprecht"])
+        about_dialog.set_authors(["Wolf Vollprecht", "Manuel Genovés"])
         
         logo_file = get_media_path("uberwriter.svg")
         logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
