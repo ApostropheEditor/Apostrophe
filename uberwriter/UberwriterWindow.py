@@ -697,7 +697,9 @@ class UberwriterWindow(Window):
                     '-smart',
                     '-thtml',
                     '--mathjax',
+                    '--lua-filter=' + helpers.get_media_path('task-list.lua'),
                     '-c', helpers.get_media_file('uberwriter.css')]
+            print(args)
 
             p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
