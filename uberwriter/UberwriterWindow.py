@@ -726,7 +726,7 @@ class UberwriterWindow(Window):
 
             # This saying that all links will be opened in default browser, \
             # but local files are opened in appropriate apps:
-            self.webview.connect("navigation-requested", self.on_click_link)
+            self.webview.connect("decide-policy", self.on_click_link)
         else:
             self.ScrolledWindow.remove(self.webview)
             self.webview.destroy()
@@ -739,10 +739,11 @@ class UberwriterWindow(Window):
         self.queue_draw()
         return True
 
-    def on_click_link(self, view, frame, req, data=None):
+    def on_click_link(self, web_view, decision, decision_type):
         # This provide ability for self.webview to open links in default browser
-        if(req.get_uri().startswith("http://")):
-            webbrowser.open(req.get_uri())
+        if(web_view.get_uri().startswith(("http://","https://","www."))):
+            webbrowser.open(web_view.get_uri())
+            decision.ignore()
             return True # Don't let the event "bubble up"
 
     def dark_mode_toggled(self, widget, data=None):
