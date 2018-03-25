@@ -136,7 +136,8 @@ class Application(Gtk.Application):
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
             self.window = UberwriterWindow.UberwriterWindow(application=self, title="UberWriter")
-            self.window.load_file(sys.argv[1])
+            if len(sys.argv) > 1:
+              self.window.load_file(sys.argv[1])
 
         self.window.present()
 
