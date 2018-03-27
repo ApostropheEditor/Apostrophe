@@ -11,6 +11,7 @@
 # with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 
 import sys
+import argparse
 
 import locale
 import os
@@ -23,6 +24,7 @@ from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 
 from . helpers import get_builder, show_uri, get_help_uri, get_media_path
 from uberwriter import UberwriterWindow
+from uberwriter_lib import set_up_logging
 
 class Window(Gtk.ApplicationWindow):
 
@@ -102,10 +104,7 @@ class Application(Gtk.Application):
                          flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
                          **kwargs)
         self.window = None
-
-        self.add_main_option("test", ord("t"), GLib.OptionFlags.NONE,
-                             GLib.OptionArg.NONE, "Command line test", None)
-
+        
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
@@ -136,18 +135,29 @@ class Application(Gtk.Application):
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
             self.window = UberwriterWindow.UberwriterWindow(application=self, title="UberWriter")
-            if len(sys.argv) > 1:
-              self.window.load_file(sys.argv[1])
+            if len(self.args) > 0:
+              self.window.load_file(self.args[0])
+            if self.options.experimental_features:
+                self.window.use_experimental_features(True)
+        
 
         self.window.present()
 
     def do_command_line(self, command_line):
-        options = command_line.get_options_dict()
+      
+        """Support for command line options"""
+        parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "-v", "--verbose", action="count", dest="verbose",
+            help=_("Show debug messages (-vv debugs uberwriter_lib also)"))
+        parser.add_argument(
+            "-e", "--experimental-features", help=_("Use experimental features"),
+            action='store_true'
+            )
+        (self.options, self.args) = parser.parse_known_args()
 
-        if options.contains("test"):
-            # This is printed on the main instance
-            print("Test argument recieved")
-
+        set_up_logging(self.options)
+        
         self.activate()
         return 0
 
