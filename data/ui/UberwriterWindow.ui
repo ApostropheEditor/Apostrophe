@@ -23,7 +23,7 @@
   <object class="GtkImage" id="case_sensitiv">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="icon_name">format-text-capitalize</property>
+    <property name="icon_name">gtk-spell-check</property>
   </object>
   <object class="GtkImage" id="ortografia1">
     <property name="visible">True</property>
@@ -51,7 +51,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="tooltip_text" translatable="yes">Activate Regex</property>
-    <property name="icon_name">find-location-symbolic</property>
+    <property name="icon_name">gtk-find</property>
   </object>
   <object class="GtkGrid" id="grid1">
     <property name="visible">True</property>
