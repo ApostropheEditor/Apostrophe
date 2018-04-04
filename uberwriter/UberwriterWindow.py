@@ -110,13 +110,14 @@ class UberwriterWindow(Window):
         self.MarkupBuffer.markup_buffer(0)
 
     def init_typewriter(self):
-        self.EditorAlignment.props.margin_top = self.window_height / 2
-        self.EditorAlignment.props.margin_bottom = self.window_height / 2
+        self.editor_height = self.TextEditor.get_allocation().height
+        self.TextEditor.props.margin_top = self.editor_height / 2 - 80
+        self.TextEditor.props.margin_bottom = self.editor_height / 2 - 16
         self.typewriter_initiated = True
 
     def remove_typewriter(self):
-        self.EditorAlignment.props.margin_top = self.alignment_padding
-        self.EditorAlignment.props.margin_bottom = 250
+        self.TextEditor.props.top_margin = 80
+        self.TextEditor.props.bottom_margin =  80
         self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
 
     def get_text(self):
@@ -280,7 +281,7 @@ class UberwriterWindow(Window):
         # Calculate left / right margin
         width_request = 600
         if(w_width < 900):
-            # self.MarkupBuffer.set_multiplier(8)
+            self.MarkupBuffer.set_multiplier(8)
             self.current_font_size = 12
             self.alignment_padding = 30
             lm = 7 * 8
@@ -289,7 +290,7 @@ class UberwriterWindow(Window):
             self.get_style_context().add_class("small")
 
         elif(w_width < 1400):
-            # self.MarkupBuffer.set_multiplier(10)
+            self.MarkupBuffer.set_multiplier(10)
             width_request = 800
             self.current_font_size = 15
             self.alignment_padding = 40
@@ -299,7 +300,7 @@ class UberwriterWindow(Window):
             self.get_style_context().add_class("medium")
 
         else:
-            # self.MarkupBuffer.set_multiplier(13)
+            self.MarkupBuffer.set_multiplier(13)
             self.current_font_size = 17
             width_request = 1000
             self.alignment_padding = 60
@@ -309,10 +310,10 @@ class UberwriterWindow(Window):
             self.get_style_context().add_class("large")
 
 
-        self.EditorAlignment.props.margin_bottom = self.alignment_padding + 30
-        self.EditorAlignment.props.margin_top = self.alignment_padding
-        #self.TextEditor.set_left_margin(lm)
-        #self.TextEditor.set_right_margin(lm)
+        self.EditorAlignment.props.margin_bottom = 0
+        self.EditorAlignment.props.margin_top = 0
+        self.TextEditor.set_left_margin(lm)
+        self.TextEditor.set_right_margin(lm)
 
         self.MarkupBuffer.recalculate(lm)
 
@@ -322,6 +323,7 @@ class UberwriterWindow(Window):
 
         if self.TextEditor.props.width_request != width_request:
             self.TextEditor.props.width_request = width_request
+            self.ScrolledWindow.props.width_request = width_request
             alloc = self.TextEditor.get_allocation()
             alloc.width = width_request
             self.TextEditor.size_allocate(alloc)
@@ -720,7 +722,7 @@ class UberwriterWindow(Window):
             # begin_del.backward_chars(30)
             # self.TextBuffer.delete(begin_del, cursor_iter)
 
-            self.ScrolledWindow.remove(self.EditorViewport)
+            self.ScrolledWindow.remove(self.TextEditor)
             self.ScrolledWindow.add(self.webview)
             self.webview.show()
 
@@ -730,7 +732,7 @@ class UberwriterWindow(Window):
         else:
             self.ScrolledWindow.remove(self.webview)
             self.webview.destroy()
-            self.ScrolledWindow.add(self.EditorViewport)
+            self.ScrolledWindow.add(self.TextEditor)
             self.TextEditor.show()
             
             # self.preview_button.set_active(False)
@@ -1024,13 +1026,14 @@ class UberwriterWindow(Window):
         self.TextEditor.set_name('UberwriterEditor')
         self.get_style_context().add_class('uberwriter_window')
 
-        base_leftmargin = 40
-        # self.TextEditor.set_left_margin(base_leftmargin)
-        #self.TextEditor.set_left_margin(40)
+        base_leftmargin = 100
+        self.TextEditor.set_left_margin(base_leftmargin)
+        self.TextEditor.set_left_margin(40)
+        self.TextEditor.set_top_margin(80)
         self.TextEditor.props.width_request = 600
         self.TextEditor.props.halign = Gtk.Align.CENTER
         self.TextEditor.set_vadjustment(builder.get_object('vadjustment1'))
-        self.TextEditor.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.TextEditor.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.TextEditor.connect('focus-out-event', self.focus_out)
         self.TextEditor.get_style_context().connect('changed', self.style_changed)
 
@@ -1039,12 +1042,13 @@ class UberwriterWindow(Window):
         self.TextEditor.show()
         self.TextEditor.grab_focus()
 
-        self.ScrolledWindow = builder.get_object('editor_scrolledwindow')
         self.EditorAlignment = builder.get_object('editor_alignment')
-        self.EditorAlignment.add(self.TextEditor)
+        self.ScrolledWindow = builder.get_object('editor_scrolledwindow')
+        self.ScrolledWindow.props.width_request = 600
+        self.ScrolledWindow.add(self.TextEditor)
         self.alignment_padding = 40
         self.EditorViewport = builder.get_object('editor_viewport')
-        self.EditorViewport.connect_after("draw", self.draw_gradient)
+        self.TextEditor.connect_after("draw", self.draw_gradient)
 
         self.smooth_scroll_starttime = 0
         self.smooth_scroll_endtime = 0
@@ -1058,8 +1062,8 @@ class UberwriterWindow(Window):
 
         self.PreviewPane = builder.get_object('preview_scrolledwindow')
 
-        self.TextEditor.set_margin_top(38)
-        self.TextEditor.set_margin_bottom(16)
+        self.TextEditor.set_top_margin(80)
+        self.TextEditor.set_bottom_margin(16)
 
         self.TextEditor.set_pixels_above_lines(4)
         self.TextEditor.set_pixels_below_lines(4)
