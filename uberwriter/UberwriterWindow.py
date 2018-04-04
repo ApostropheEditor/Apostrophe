@@ -27,6 +27,8 @@ locale.textdomain('uberwriter')
 
 import mimetypes
 
+import gi
+gi.require_version('WebKit2', '4.0')
 from gi.repository import Gtk, Gdk, GObject, Gio  # pylint: disable=E0611
 from gi.repository import WebKit2 as WebKit
 from gi.repository import Pango  # pylint: disable=E0611
@@ -58,9 +60,9 @@ try:
 except:
     APT_ENABLED = False
 
-from uberwriter_lib import Window
+#from uberwriter_lib import Window
+from uberwriter_lib.AppWindow import Window
 from uberwriter_lib import helpers
-from .AboutUberwriterDialog import AboutUberwriterDialog
 from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
 # from .plugins.bibtex import BibTex
 # Some Globals
@@ -72,8 +74,8 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 # See texteditor_lib.Window.py for more details about how this class works
 class UberwriterWindow(Window):
 
-    __gtype_name__ = "UberwriterWindow"
-
+    #__gtype_name__ = "UberwriterWindow"
+    
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
@@ -697,7 +699,9 @@ class UberwriterWindow(Window):
                     '-smart',
                     '-thtml',
                     '--mathjax',
+                    '--lua-filter=' + helpers.get_media_path('task-list.lua'),
                     '-c', helpers.get_media_file('uberwriter.css')]
+            print(args)
 
             p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
@@ -722,7 +726,7 @@ class UberwriterWindow(Window):
 
             # This saying that all links will be opened in default browser, \
             # but local files are opened in appropriate apps:
-            self.webview.connect("navigation-requested", self.on_click_link)
+            self.webview.connect("decide-policy", self.on_click_link)
         else:
             self.ScrolledWindow.remove(self.webview)
             self.webview.destroy()
@@ -735,10 +739,11 @@ class UberwriterWindow(Window):
         self.queue_draw()
         return True
 
-    def on_click_link(self, view, frame, req, data=None):
+    def on_click_link(self, web_view, decision, decision_type):
         # This provide ability for self.webview to open links in default browser
-        if(req.get_uri().startswith("http://")):
-            webbrowser.open(req.get_uri())
+        if(web_view.get_uri().startswith(("http://","https://","www."))):
+            webbrowser.open(web_view.get_uri())
+            decision.ignore()
             return True # Don't let the event "bubble up"
 
     def dark_mode_toggled(self, widget, data=None):
@@ -790,9 +795,6 @@ class UberwriterWindow(Window):
     # Help Menu
     def open_launchpad_translation(self, widget, data=None):
         webbrowser.open("https://translations.launchpad.net/uberwriter")
-
-    def open_launchpad_help(self, widget, data=None):
-        webbrowser.open("https://answers.launchpad.net/uberwriter")
 
     def open_pandoc_markdown(self, widget, data=None):
         webbrowser.open("http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
@@ -920,11 +922,13 @@ class UberwriterWindow(Window):
 
     def finish_initializing(self, builder):  # pylint: disable=E1002
         """Set up the main window"""
+        
         super(UberwriterWindow, self).finish_initializing(builder)
+        
 
-        self.AboutDialog = AboutUberwriterDialog
         self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
+        
 
         self.connect('save-file', self.save_document)
         self.connect('save-file-as', self.save_document_as)
@@ -944,6 +948,7 @@ class UberwriterWindow(Window):
         self.texlive_installed = False
 
         self.set_name('UberwriterWindow')
+        
 
         self.use_headerbar = True
         if self.use_headerbar == True:
@@ -986,6 +991,7 @@ class UberwriterWindow(Window):
         self.char_count = builder.get_object('char_count')
         self.menubar = builder.get_object('menubar1')
         self.menubar.hide()
+        
 
         # Wire up buttons
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
