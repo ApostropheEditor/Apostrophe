@@ -55,6 +55,9 @@ def get_data_path():
     """
 
     # Get pathname absolute or relative.
+    if os.environ.get("IN_FLATPAK"):
+        return '/app/opt/uberwriter/data/'
+
     path = os.path.join(
         os.path.dirname(__file__), __uberwriter_data_directory__)
 
