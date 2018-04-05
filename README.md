@@ -15,6 +15,6 @@ and then run it with `./bin/uberwriter`
 It's also possible to build, run and debug a flatpak package. You'll need flatpak-builder for this:
 
 - cd to the flatpak dir of the repo
-- flatpak-builder --install --force-clean some_folder_name uberwriter.json # this installs and cleans the build folder)
-- flatpak run de.wolfvollprecht.UberWriter
-- you can also debug with the following: flatpak-builder --run --share=network some_folder_name uberwriter.json sh
+- `flatpak-builder --install --force-clean some_folder_name uberwriter.json` (this installs and cleans the build folder)
+- `flatpak run de.wolfvollprecht.UberWriter`
+- you can also debug with the following: `flatpak-builder --run --share=network some_folder_name uberwriter.json sh`
