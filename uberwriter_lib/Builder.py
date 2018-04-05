@@ -18,6 +18,8 @@
 
 '''Enhances builder connections, provides object to access glade objects'''
 
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import GObject, Gtk # pylint: disable=E0611
 
 import inspect

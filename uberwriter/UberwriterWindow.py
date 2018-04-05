@@ -60,7 +60,6 @@ try:
 except:
     APT_ENABLED = False
 
-#from uberwriter_lib import Window
 from uberwriter_lib.AppWindow import Window
 from uberwriter_lib import helpers
 from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
