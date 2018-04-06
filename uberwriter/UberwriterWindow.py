@@ -110,13 +110,13 @@ class UberwriterWindow(Window):
 
     def init_typewriter(self):
         self.editor_height = self.TextEditor.get_allocation().height
-        self.TextEditor.props.margin_top = self.editor_height / 2 - 80
-        self.TextEditor.props.margin_bottom = self.editor_height / 2 - 16
+        self.TextEditor.props.top_margin = self.editor_height / 2 
+        self.TextEditor.props.bottom_margin =  self.editor_height / 2       
         self.typewriter_initiated = True
 
     def remove_typewriter(self):
         self.TextEditor.props.top_margin = 80
-        self.TextEditor.props.bottom_margin =  80
+        self.TextEditor.props.bottom_margin = 16
         self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
 
     def get_text(self):
@@ -248,7 +248,7 @@ class UberwriterWindow(Window):
         loc_rect = self.TextEditor.get_iter_location(ins_it)
 
         # alignment offset added from top
-        pos_y = loc_rect.y + loc_rect.height + self.EditorAlignment.props.margin_top 
+        pos_y = loc_rect.y + loc_rect.height + self.TextEditor.props.top_margin
         
         ha = self.ScrolledWindow.get_vadjustment()
         if ha.props.page_size < gradient_offset:
@@ -899,8 +899,8 @@ class UberwriterWindow(Window):
         lg_top.add_color_stop_rgba(0, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_top.add_color_stop_rgba(1, bg_color.red, bg_color.green, bg_color.blue, 0)
 
-        width = widget.get_allocation().width
-        height = widget.get_allocation().height
+        width = self.ScrolledWindow.get_allocation().width
+        height = self.ScrolledWindow.get_allocation().height
 
         cr.rectangle(0, 0, width, 80)
         cr.set_source(lg_top)
@@ -1047,7 +1047,7 @@ class UberwriterWindow(Window):
         self.ScrolledWindow.add(self.TextEditor)
         self.alignment_padding = 40
         self.EditorViewport = builder.get_object('editor_viewport')
-        self.TextEditor.connect_after("draw", self.draw_gradient)
+        self.ScrolledWindow.connect_after("draw", self.draw_gradient)
 
         self.smooth_scroll_starttime = 0
         self.smooth_scroll_endtime = 0
