@@ -19,6 +19,6 @@ Research GTK Source View
 Implement a GTK Popover
 Option to make paths relative/absolute on save dialog
 Localization & spellchecking
-App menu with "about" dialog (and preferences dialog ?¿)
+Preferences dialog?
 
 
