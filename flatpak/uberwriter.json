@@ -4,6 +4,7 @@
   "runtime-version": "3.26",
   "sdk": "org.gnome.Sdk",
   "command": "uberwriter",
+  "rename-icon": "uberwriter",
   "finish-args": [
      "--socket=x11",
      "--env=IN_FLATPAK=1"
