@@ -19,7 +19,7 @@
 ##################################################################################
 ###################### YOU SHOULD MODIFY ONLY WHAT IS BELOW ######################
 ##################################################################################
-from distutils.core import setup
+from setuptools import setup
 import os
 
 def package_files(directory):
@@ -48,7 +48,7 @@ setup(
  font, it is only for writing.You can use markdown for all your markup 
  needs. PDF, RTF and HTML are generated with pandoc. For PDF generation it 
  is also required that you choose to install the texlive-luatex package.""",
-    url='https://launchpad.com/uberwriter',
+    url='https://github.com/wolfv/uberwriter/',
     # cmdclass={'install': InstallAndUpdateDataDirectory},
     package_dir = {
         # "": '/opt/uberwriter/'
@@ -58,10 +58,13 @@ setup(
         "uberwriter_lib.pylocales",
         # "uberwriter_lib.pressagio",
         "uberwriter_lib",
-        "uberwriter"
+        "uberwriter",
+        "po"
         # "uberwriter.plugins"
         # "uberwriter.plugins.bibtex"
     ],
+    include_package_data=True,
+
     package_data={
         'uberwriter_lib.pylocales' : ['locales.db'],
     },
