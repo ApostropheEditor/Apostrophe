@@ -13,10 +13,8 @@
 import sys
 import argparse
 
-import locale
+import gettext
 import os
-from locale import gettext as _
-locale.textdomain('uberwriter')
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -25,6 +23,10 @@ from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 from . helpers import get_builder, show_uri, get_help_uri, get_media_path
 from uberwriter import UberwriterWindow
 from uberwriter_lib import set_up_logging
+
+gettext.textdomain('uberwriter')
+gettext.bindtextdomain('uberwriter', 'po')
+_ = gettext.gettext
 
 class Window(Gtk.ApplicationWindow):
 
@@ -42,7 +44,7 @@ class Window(Gtk.ApplicationWindow):
                             lambda obj, pspec: max_action.set_state(
                                                GLib.Variant.new_boolean(obj.props.is_maximized)))
         
-        self.set_default_size(800,500)
+        self.set_default_size(850,500)
         
         icon_file = get_media_path("uberwriter.svg")
         self.set_icon_from_file(icon_file)

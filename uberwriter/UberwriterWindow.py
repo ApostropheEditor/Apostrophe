@@ -14,16 +14,13 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-import locale
+import gettext
 import subprocess
 import os
 import codecs
 import webbrowser
 import urllib
 import pickle
-
-from locale import gettext as _
-locale.textdomain('uberwriter')
 
 import mimetypes
 
@@ -53,6 +50,12 @@ logger = logging.getLogger('uberwriter')
 import locale
 
 from uberwriter_lib.gtkspellcheck import SpellChecker
+
+# L10n
+
+gettext.textdomain('uberwriter')
+gettext.bindtextdomain('uberwriter', 'po')
+_ = gettext.gettext
 
 try:
     import apt
@@ -895,19 +898,19 @@ class UberwriterWindow(Window):
     def draw_gradient(self, widget, cr):
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
 
-        lg_top = cairo.LinearGradient(0, 0, 0, 80)
+        lg_top = cairo.LinearGradient(0, 0, 0, 35)
         lg_top.add_color_stop_rgba(0, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_top.add_color_stop_rgba(1, bg_color.red, bg_color.green, bg_color.blue, 0)
 
         width = self.ScrolledWindow.get_allocation().width
         height = self.ScrolledWindow.get_allocation().height
 
-        cr.rectangle(0, 0, width, 80)
+        cr.rectangle(0, 0, width, 35)
         cr.set_source(lg_top)
         cr.fill()
-        cr.rectangle(0, height - 80, width, height)
+        cr.rectangle(0, height - 35, width, height)
         
-        lg_btm = cairo.LinearGradient(0, height - 80, 0, height)
+        lg_btm = cairo.LinearGradient(0, height - 35, 0, height)
         lg_btm.add_color_stop_rgba(1, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_btm.add_color_stop_rgba(0, bg_color.red, bg_color.green, bg_color.blue, 0)
 

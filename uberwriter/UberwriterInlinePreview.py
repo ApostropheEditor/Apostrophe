@@ -19,7 +19,7 @@ import http.client
 import urllib
 from urllib.error import URLError, HTTPError
 import webbrowser
-import locale
+import gettext
 import subprocess
 import tempfile
 
@@ -33,8 +33,9 @@ from .FixTable import FixTable
 
 from .MarkupBuffer import MarkupBuffer
 
-from locale import gettext as _
-locale.textdomain('uberwriter')
+gettext.textdomain('uberwriter')
+gettext.bindtextdomain('uberwriter', 'po')
+_ = gettext.gettext
 
 import logging
 logger = logging.getLogger('uberwriter')

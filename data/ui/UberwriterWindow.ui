@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <!-- interface-local-resource-path ../media -->
@@ -72,7 +72,7 @@
                 <property name="can_focus">False</property>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_new">
-                    <property name="label">_New</property>
+                    <property name="label" translatable="yes">_New</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_underline">True</property>
@@ -83,7 +83,7 @@
                 </child>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_open">
-                    <property name="label">_Open</property>
+                    <property name="label" translatable="yes">_Open</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_underline">True</property>
@@ -102,7 +102,7 @@
                 </child>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_examples">
-                    <property name="label">Open examples</property>
+                    <property name="label" translatable="yes">Open examples</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_stock">False</property>
@@ -131,7 +131,7 @@
                 </child>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_save">
-                    <property name="label">_Save</property>
+                    <property name="label" translatable="yes">_Save</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_underline">True</property>
@@ -142,7 +142,7 @@
                 </child>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_save_as">
-                    <property name="label">Save _As</property>
+                    <property name="label" translatable="yes">Save _As</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_underline">True</property>
@@ -159,7 +159,7 @@
                 </child>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_export_html">
-                    <property name="label">Export as HTML</property>
+                    <property name="label" translatable="yes">Export as HTML</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_stock">False</property>
@@ -168,7 +168,7 @@
                 </child>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_export_pdf">
-                    <property name="label">Export as PDF</property>
+                    <property name="label" translatable="yes">Export as PDF</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_stock">False</property>
@@ -216,7 +216,7 @@
                 </child>
                 <child>
                   <object class="GtkImageMenuItem" id="mnu_close">
-                    <property name="label">_Quit</property>
+                    <property name="label" translatable="yes">_Quit</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="use_underline">True</property>

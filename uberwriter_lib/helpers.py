@@ -23,7 +23,11 @@ import os
 from . uberwriterconfig import get_data_file
 from . Builder import Builder
 
-from locale import gettext as _
+import locale
+import gettext
+locale.textdomain('uberwriter')
+locale.bindtextdomain('uberwriter', 'po')
+_ = gettext.gettext
 
 def get_builder(builder_file_name):
     """Return a fully-instantiated Gtk.Builder instance from specified ui 
@@ -38,7 +42,7 @@ def get_builder(builder_file_name):
         ui_filename = None
 
     builder = Builder()
-    builder.set_translation_domain('uberwriter')
+    builder.set_translation_domain()
     builder.add_from_file(ui_filename)
     return builder
 

@@ -17,9 +17,11 @@
 from gi.repository import Gtk
 import os
 import subprocess
-import locale
-from locale import gettext as _
-locale.textdomain('uberwriter')
+import gettext
+
+gettext.textdomain('uberwriter')
+gettext.bindtextdomain('uberwriter', 'po')
+_ = gettext.gettext
 
 import logging
 logger = logging.getLogger('uberwriter')
