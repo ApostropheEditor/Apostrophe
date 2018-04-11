@@ -28,8 +28,7 @@ PROJECT_ROOT_DIRECTORY = os.path.abspath(
     os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 
 if os.environ.get('IN_FLATPAK'):
-    locale_dir = 'po'
-    print('flatpak')
+    locale_dir = PROJECT_ROOT_DIRECTORY + 'lib/python3.5/site-packages/uberwriter-1.0-py3.5.egg/po'
 else:
     locale_dir = PROJECT_ROOT_DIRECTORY + 'po'
     
