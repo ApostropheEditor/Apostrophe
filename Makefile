@@ -1,6 +1,6 @@
 all:
-	echo "Nothing"
+	python3 ./setup.py build
 
 install:
-	python3 setup.py install --prefix=/app
+	python3 ./setup.py install --prefix=/app --skip-build --optimize=1
 
