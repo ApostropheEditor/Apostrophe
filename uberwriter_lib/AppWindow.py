@@ -25,7 +25,7 @@ from uberwriter import UberwriterWindow
 from uberwriter_lib import set_up_logging
 
 gettext.textdomain('uberwriter')
-gettext.bindtextdomain('uberwriter', 'po')
+# gettext.bindtextdomain('uberwriter', 'po')
 _ = gettext.gettext
 
 class Window(Gtk.ApplicationWindow):
