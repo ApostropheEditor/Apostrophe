@@ -19,9 +19,7 @@ import os
 import subprocess
 import gettext
 
-gettext.textdomain('uberwriter')
-#gettext.bindtextdomain('uberwriter', 'po')
-_ = gettext.gettext
+from gettext import gettext as _
 
 import logging
 logger = logging.getLogger('uberwriter')

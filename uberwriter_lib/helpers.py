@@ -27,15 +27,7 @@ from . Builder import Builder
 import locale
 import gettext
 
-# Add project root directory (enable symlink and trunk execution)
-PROJECT_ROOT_DIRECTORY = os.path.abspath(
-    os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
-
-# L10n
-
-locale.textdomain('uberwriter')
-locale.bindtextdomain('uberwriter', PROJECT_ROOT_DIRECTORY + 'po')
-_ = gettext.gettext
+from gettext import gettext as _
 
 def get_builder(builder_file_name):
     """Return a fully-instantiated Gtk.Builder instance from specified ui 

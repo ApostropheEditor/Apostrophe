@@ -28,11 +28,10 @@ PROJECT_ROOT_DIRECTORY = os.path.abspath(
     os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 
 # L10n
-
+locale.textdomain('uberwriter')
+locale.bindtextdomain('uberwriter', PROJECT_ROOT_DIRECTORY + '/po')
 gettext.textdomain('uberwriter')
 gettext.bindtextdomain('uberwriter', PROJECT_ROOT_DIRECTORY + '/po')
-print(PROJECT_ROOT_DIRECTORY + '/po')
-print(locale.setlocale(locale.LC_ALL, ''))
 
 python_path = []
 if os.path.abspath(__file__).startswith('/opt'):

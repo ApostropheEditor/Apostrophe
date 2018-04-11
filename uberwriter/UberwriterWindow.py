@@ -37,6 +37,8 @@ import cairo
 
 import re
 
+from gettext import gettext as _
+
 from .MarkupBuffer import MarkupBuffer
 from .UberwriterTextEditor import TextEditor
 from .UberwriterInlinePreview import UberwriterInlinePreview
@@ -50,15 +52,6 @@ logger = logging.getLogger('uberwriter')
 # Spellcheck
 
 from uberwriter_lib.gtkspellcheck import SpellChecker
-
-# L10n
-PROJECT_ROOT_DIRECTORY = os.path.abspath(
-    os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
-print(PROJECT_ROOT_DIRECTORY)
-
-gettext.textdomain('uberwriter')
-gettext.bindtextdomain('uberwriter', PROJECT_ROOT_DIRECTORY +'po')
-_ = gettext.gettext
 
 try:
     import apt

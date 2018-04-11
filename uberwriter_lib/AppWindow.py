@@ -24,9 +24,7 @@ from . helpers import get_builder, show_uri, get_help_uri, get_media_path
 from uberwriter import UberwriterWindow
 from uberwriter_lib import set_up_logging
 
-gettext.textdomain('uberwriter')
-# gettext.bindtextdomain('uberwriter', 'po')
-_ = gettext.gettext
+from gettext import gettext as _
 
 class Window(Gtk.ApplicationWindow):
 

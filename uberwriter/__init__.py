@@ -19,9 +19,7 @@ import locale
 import os
 
 import gettext
-gettext.textdomain('uberwriter')
-#gettext.bindtextdomain('uberwriter', 'po')
-_ = gettext.gettext
+from gettext import gettext as _
 
 import gi
 gi.require_version('Gtk', '3.0')

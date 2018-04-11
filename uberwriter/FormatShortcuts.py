@@ -21,10 +21,7 @@ import re
 from gi.repository import Gtk, Gdk # pylint: disable=E0611
 from gi.repository import Pango # pylint: disable=E0611
 
-gettext.textdomain('uberwriter')
-#gettext.bindtextdomain('uberwriter', 'po')
-_ = gettext.gettext
-
+from gettext import gettext as _
 
 from . MarkupBuffer import MarkupBuffer
 
