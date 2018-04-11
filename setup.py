@@ -35,6 +35,11 @@ from pprint import pprint
 pprint(extra_files_ui)
 pprint(extra_files_media)
 
+if os.environ.get('IN_FLATPAK'):
+    app_prefix = '/app/'
+else:
+    app_prefix = ''
+
 setup(
     name='uberwriter',
     version='1.0',
@@ -69,11 +74,11 @@ setup(
         'uberwriter_lib.pylocales' : ['locales.db'],
     },
     data_files=[
-        ('bin/', ['bin/uberwriter']),
-        ('share/glib-2.0/schemas', ['data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml']),
-        ('share/icons/hicolor/scalable/apps', ['data/media/uberwriter.svg']),
-        ('share/applications', ['de.wolfvollprecht.UberWriter.desktop']),
-        ('opt/uberwriter/data/ui', extra_files_ui),
-        ('opt/uberwriter/data/media', extra_files_media)
+        (app_prefix + '/bin/', ['bin/uberwriter']),
+        (app_prefix + '/share/glib-2.0/schemas', ['data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml']),
+        (app_prefix + '/share/icons/hicolor/scalable/apps', ['data/media/uberwriter.svg']),
+        (app_prefix + '/share/applications', ['de.wolfvollprecht.UberWriter.desktop']),
+        (app_prefix + '/opt/uberwriter/data/ui', extra_files_ui),
+        (app_prefix + '/opt/uberwriter/data/media', extra_files_media)
     ]
 )

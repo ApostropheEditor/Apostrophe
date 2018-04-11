@@ -13,7 +13,8 @@
   ],
   "build-options" : {
     "env": {
-      "PYTHON": "python3"
+      "PYTHON": "python3",
+      "IN_FLATPAK": "1"
     }
   },
   "modules": [
@@ -22,7 +23,7 @@
       "sources": [
         {
           "type": "git",
-          "url": "git://github.com/wolfv/uberwriter",
+          "url": "file://home/wolfv/Programs/uberwriter",
           "branch": "master"
         }
       ]

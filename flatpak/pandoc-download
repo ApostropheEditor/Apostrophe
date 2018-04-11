@@ -28,6 +28,7 @@ install:
 	tar xf data.tar.*
 	cp ./usr/bin/pandoc /app/bin/pandoc
 	cp ./usr/bin/pandoc-citeproc /app/bin/pandoc-citeproc
+	mkdir -p /app/share/
 	cp ./usr/share/doc/pandoc/copyright /app/share/pandoc.copyright
 	cd ..
 	rm -rf /tmp/pandoc_dl
