@@ -34,7 +34,7 @@ from .FixTable import FixTable
 from .MarkupBuffer import MarkupBuffer
 
 gettext.textdomain('uberwriter')
-gettext.bindtextdomain('uberwriter', 'po')
+#gettext.bindtextdomain('uberwriter', 'po')
 _ = gettext.gettext
 
 import logging

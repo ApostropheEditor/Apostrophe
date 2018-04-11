@@ -25,6 +25,9 @@ from . Builder import Builder
 
 import locale
 import gettext
+
+
+
 locale.textdomain('uberwriter')
 locale.bindtextdomain('uberwriter', 'po')
 _ = gettext.gettext

@@ -20,7 +20,7 @@ import os
 
 import gettext
 gettext.textdomain('uberwriter')
-gettext.bindtextdomain('uberwriter', 'po')
+#gettext.bindtextdomain('uberwriter', 'po')
 _ = gettext.gettext
 
 import gi

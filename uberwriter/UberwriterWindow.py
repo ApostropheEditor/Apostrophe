@@ -15,6 +15,7 @@
 ### END LICENSE
 
 import gettext
+import locale
 import subprocess
 import os
 import codecs
@@ -47,14 +48,12 @@ logger = logging.getLogger('uberwriter')
 
 # Spellcheck
 
-import locale
-
 from uberwriter_lib.gtkspellcheck import SpellChecker
 
 # L10n
 
 gettext.textdomain('uberwriter')
-gettext.bindtextdomain('uberwriter', 'po')
+#gettext.bindtextdomain('uberwriter', 'po')
 _ = gettext.gettext
 
 try:
