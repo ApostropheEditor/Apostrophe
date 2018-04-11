@@ -18,6 +18,7 @@ import gettext
 import locale
 import subprocess
 import os
+import sys
 import codecs
 import webbrowser
 import urllib
@@ -51,9 +52,11 @@ logger = logging.getLogger('uberwriter')
 from uberwriter_lib.gtkspellcheck import SpellChecker
 
 # L10n
+PROJECT_ROOT_DIRECTORY = os.path.abspath(
+    os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 
 gettext.textdomain('uberwriter')
-#gettext.bindtextdomain('uberwriter', 'po')
+gettext.bindtextdomain('uberwriter', PROJECT_ROOT_DIRECTORY + 'po')
 _ = gettext.gettext
 
 try:
