@@ -1,1 +1,1 @@
-recursive-include po/ *
+recursive-include po *
