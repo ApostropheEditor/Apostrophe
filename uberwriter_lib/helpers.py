@@ -19,6 +19,7 @@
 """Helpers for an Ubuntu application."""
 import logging
 import os
+import sys
 
 from . uberwriterconfig import get_data_file
 from . Builder import Builder
