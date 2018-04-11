@@ -54,9 +54,10 @@ from uberwriter_lib.gtkspellcheck import SpellChecker
 # L10n
 PROJECT_ROOT_DIRECTORY = os.path.abspath(
     os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
+print(PROJECT_ROOT_DIRECTORY)
 
 gettext.textdomain('uberwriter')
-gettext.bindtextdomain('uberwriter', PROJECT_ROOT_DIRECTORY + 'po')
+gettext.bindtextdomain('uberwriter', PROJECT_ROOT_DIRECTORY +'po')
 _ = gettext.gettext
 
 try:
