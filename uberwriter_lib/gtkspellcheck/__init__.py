@@ -16,29 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Python 2/3 unicode
-import sys
-if sys.version_info.major == 3:
-    u = lambda x: x
-else:
-    u = lambda x: x.decode('utf-8')
+from __future__ import unicode_literals
 
-# Metadata
-__version__ = '3.0'
+__version__ = '4.0.5'
 __project__ = 'Python GTK Spellcheck'
 __short_name__ = 'pygtkspellcheck'
-__authors__ = u('Maximilian Köhl & Carlos Jenkins')
-__emails__ = u('linuxmaxi@googlemail.com & carlos@jenkins.co.cr')
+__authors__ = 'Maximilian Köhl & Carlos Jenkins'
+__emails__ = 'linuxmaxi@googlemail.com & carlos@jenkins.co.cr'
 __website__ = 'http://koehlma.github.com/projects/pygtkspellcheck.html'
 __download_url__ = 'https://github.com/koehlma/pygtkspellcheck/tarball/master'
 __source__ = 'https://github.com/koehlma/pygtkspellcheck/'
 __vcs__ = 'git://github.com/koehlma/pygtkspellcheck.git'
-__copyright__ = u('2012, Maximilian Köhl & Carlos Jenkins')
-__desc_short__ = 'A simple but quite powerful Python spell checking library for GtkTextViews based on Enchant.'
-__desc_long__ = ('It supports both Gtk\'s Python bindings, PyGObject and'
-                 'PyGtk, and for both Python 2 and 3 with automatic switching'
-                 'and binding autodetection. For automatic translation of the'
-                 'user interface it can use GEdit\'s translation files.')
+__copyright__ = '2012, Maximilian Köhl & Carlos Jenkins'
+__desc_short__ = ('a simple but quite powerful Python spell checking library '
+                  'for GtkTextViews based on Enchant')
+__desc_long__ = ('A simple but quite powerful spellchecking library written in '
+                 'pure Python for Gtk based on Enchant. It supports PyGObject '
+                 'as well as PyGtk for Python 2 and 3 with automatic switching '
+                 'and binding detection. For automatic translation of the user '
+                 'interface it can use Gedit’s translation files.')
 
 __metadata__ = {'__version__' : __version__,
                 '__project__' : __project__,
@@ -53,5 +49,5 @@ __metadata__ = {'__version__' : __version__,
                 '__desc_short__' : __desc_short__,
                 '__desc_long__' : __desc_long__}
 
-# import SpellChecker class
-from . spellcheck import SpellChecker
+from gtkspellcheck.spellcheck import (SpellChecker, NoDictionariesFound,
+                                      NoGtkBindingFound)

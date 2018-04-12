@@ -28,13 +28,9 @@ import gettext
 import logging
 import re
 import sys
-import pickle
-import os
 
-from ..helpers import get_media_path
-import xml.etree.ElementTree as ET
-
-from ..pylocales import code_to_name
+from pylocales import code_to_name as _code_to_name
+from pylocales import LanguageNotFound, CountryNotFound
 
 # public objects
 __all__ = ['SpellChecker', 'NoDictionariesFound', 'NoGtkBindingFound']
@@ -53,15 +49,25 @@ class NoGtkBindingFound(Exception):
     Could not find any loaded Gtk binding.
     """
 
-# find any loaded gtk binding
-if 'gi.repository.Gtk' in sys.modules:
-    gtk = sys.modules['gi.repository.Gtk']
-    _pygobject = True
-elif 'gtk' in sys.modules:
-    gtk = sys.modules['gtk']
-    _pygobject = False
+if sys.version_info.major == 3:
+    _py3k = True
 else:
-    raise NoGtkBindingFound('could not find any loaded Gtk binding')
+    _py3k = False
+    
+if _py3k:
+    # there is only the gi binding for Python 3
+    from gi.repository import Gtk as gtk
+    _pygobject = True
+else:
+    # find any loaded gtk binding
+    if 'gi.repository.Gtk' in sys.modules:
+        gtk = sys.modules['gi.repository.Gtk']
+        _pygobject = True
+    elif 'gtk' in sys.modules:
+        gtk = sys.modules['gtk']
+        _pygobject = False
+    else:
+        raise NoGtkBindingFound('could not find any loaded Gtk binding')
 
 # select base list class
 try:
@@ -70,10 +76,7 @@ try:
 except ImportError:
     _list = list
 
-if sys.version_info.major == 3:
-    _py3k = True
-else:
-    _py3k = False
+
 
 # select base string
 if _py3k:
@@ -84,7 +87,8 @@ _GEDIT_MAP = {'Languages' : 'Languages',
               'Ignore All' : 'Ignore _All',
               'Suggestions' : 'Suggestions',
               '(no suggestions)' : '(no suggested words)',
-              'Add "{}" to Dictionary' : 'Add w_ord'}
+              'Add "{}" to Dictionary' : 'Add w_ord',
+              'Unknown' : 'Unknown'}
 
 # translation
 if gettext.find('gedit'):
@@ -93,6 +97,12 @@ if gettext.find('gedit'):
 else:
     locale_name = 'py{}gtkspellcheck'.format(sys.version_info.major)
     _ = gettext.translation(locale_name, fallback=True).gettext
+
+def code_to_name(code, separator='_'):
+    try:
+        return _code_to_name(code, separator)
+    except (LanguageNotFound, CountryNotFound):
+        return '{} ({})'.format(_('Unknown'), code)
 
 class SpellChecker(object):
     """
@@ -173,7 +183,6 @@ class SpellChecker(object):
 
     def __init__(self, view, language='en', prefix='gtkspellchecker',
                  collapse=True, params={}):
-
         self._view = view
         self.collapse = collapse
         self._view.connect('populate-popup',
@@ -181,12 +190,6 @@ class SpellChecker(object):
         self._view.connect('popup-menu', self._click_move_popup)
         self._view.connect('button-press-event', self._click_move_button)
         self._prefix = prefix
-        if _pygobject:
-            self._misspelled = gtk.TextTag.new('{}-misspelled'\
-                                               .format(self._prefix))
-        else:
-            self._misspelled = gtk.TextTag('{}-misspelled'.format(self._prefix))
-        self._misspelled.set_property('underline', 4)
         self._broker = enchant.Broker()
         for param, value in params.items(): self._broker.set_param(param, value)
         self.languages = SpellChecker._LanguageList.from_broker(self._broker)
@@ -218,26 +221,6 @@ class SpellChecker(object):
                                                                re.MULTILINE)}
         self._enabled = True
         self.buffer_initialize()
-
-        self.notify_language_change_functions = []
-
-        self.frequency_dict = {}
-        pp_pickled = 'pickled_dict'
-        if pp_pickled and os.path.isfile(pp_pickled):
-            f = open(pp_pickled, 'rb')
-            self.frequency_dict = pickle.load(f)
-            f.close()
-        else:
-            pp = get_media_path('wordlists/en_us_wordlist.xml')
-            frequencies = ET.parse(pp)
-            root = frequencies.getroot()
-            for child in root:
-                self.frequency_dict[child.text] = int(child.attrib['f'])
-            f = open('pickled_dict', 'wb+')
-            pickle.dump(self.frequency_dict, f)
-            f.close()
-        # print(self.frequency_dict)
-
 
     @property
     def language(self):
@@ -273,6 +256,12 @@ class SpellChecker(object):
         have associated a new GtkTextBuffer with the GtkTextView call this
         method.
         """
+        if _pygobject:
+            self._misspelled = gtk.TextTag.new('{}-misspelled'\
+                                               .format(self._prefix))
+        else:
+            self._misspelled = gtk.TextTag('{}-misspelled'.format(self._prefix))
+        self._misspelled.set_property('underline', 4)
         self._buffer = self._view.get_buffer()
         self._buffer.connect('insert-text', self._before_text_insert)
         self._buffer.connect_after('insert-text', self._after_text_insert)
@@ -451,24 +440,15 @@ class SpellChecker(object):
             else:
                 self._check_word(word_start, word_end)
                 self._deferred_check = False
-
             word_end.forward_word_end()
             word_end.backward_word_start()
-            word_start = word_end.copy()
-
-
             if word_start.equal(word_end):
                 break
-
-    def connect_language_change(self, fn):
-        self.notify_language_change_functions.append(fn)
+            word_start = word_end.copy()
 
     def _languages_menu(self):
         def _set_language(item, code):
             self.language = code
-            for fn in self.notify_language_change_functions:
-                fn(code)
-
         if _pygobject:
             menu = gtk.Menu.new()
             group = []
@@ -508,21 +488,6 @@ class SpellChecker(object):
             item.add(label)
             menu.append(item)
         else:
-            # add sorting here
-            # suggestions_map = []
-            # print(suggestions)
-            # for suggestion in suggestions:
-            #     if suggestion in self.frequency_dict:
-            #         suggestions_map.append({'suggestion': suggestion, 'freq': self.frequency_dict[suggestion]})
-            #     else:
-            #         suggestions_map.append({'suggestion': suggestion, 'freq': 0})
-
-            # suggestions_map.sort(key= lambda x: x['freq'])
-            # suggestions_map.reverse()
-            # print(suggestions_map)
-            # suggestions = []
-            # for suggestion in suggestions_map:
-            #   suggestions.append(suggestion["suggestion"])
             for suggestion in suggestions:
                 if _pygobject:
                     item = gtk.MenuItem.new()
@@ -609,7 +574,10 @@ class SpellChecker(object):
             if self._deferred_check:  self._check_deferred_range(True)
             x, y = self._view.window_to_buffer_coords(2, int(event.x),
                                                       int(event.y))
-            self._marks['click'].move(self._view.get_iter_at_location(x, y))
+            iter = self._view.get_iter_at_location(x, y)
+            if isinstance(iter, tuple):
+                iter = iter[1]
+            self._marks['click'].move(iter)
         return False
 
     def _before_text_insert(self, textbuffer, location, text, length):
@@ -651,6 +619,8 @@ class SpellChecker(object):
             word = self._buffer.get_text(start, end, False).strip()
         else:
             word = self._buffer.get_text(start, end, False).decode('utf-8').strip()
+        if not word:
+            return
         if len(self._filters[SpellChecker.FILTER_WORD]):
             if self._regexes[SpellChecker.FILTER_WORD].match(word):
                 return
@@ -684,9 +654,5 @@ class SpellChecker(object):
                     end = self._buffer.get_iter_at_offset(match.end())
                     self._buffer.remove_tag(self._misspelled, start, end)
                     return
-        # Somehow needed now, checking for zero length (happens on double space)
-        if len(word) == 0:
-            return
         if not self._dictionary.check(word):
             self._buffer.apply_tag(self._misspelled, start, end)
-

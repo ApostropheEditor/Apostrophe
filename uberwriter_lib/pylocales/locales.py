@@ -18,23 +18,22 @@
 
 """
 Query the ISO 639/3166 database about a country or a language. The locales
-database contains ISO 639 languages definitions and ISO 3166 countries
-definitions. This package provides translation for countries and languages names
-if iso-codes package is installed (Ubuntu/Debian).
-
-@see utils/locales/build.py to know the database tables and structure.
+database contains ISO 639 language definitions and ISO 3166 country definitions.
+This package provides translation for country and language names if the
+iso-code messages are installed on your system.
 """
 
 import gettext
 import logging
 import os
 import sqlite3
+import sys
 
-# Public Objects
+# public objects
 __all__ = ['Country', 'Language', 'LanguageNotFound',
            'CountryNotFound', 'code_to_name']
 
-# Translation
+# translation
 _translator_language = gettext.translation('iso_639', fallback=True).gettext
 _translator_country = gettext.translation('iso_3166', fallback=True).gettext
 
@@ -48,14 +47,23 @@ if hasattr(os.path, 'get_module_path'):
     if not os.path.isfile(os.path.join(__path__, 'locales.db')):
         __path__ = None
 if __path__ is None:
-    __path__ = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
+    frozen = getattr(sys, 'frozen', None)
+    if frozen in ('dll', 'console_exe', 'windows_exe'):
+        __path__ = os.path.abspath(os.path.dirname(sys.executable))
+    elif frozen == 'macosx_app':
+        __path__ = os.path.abspath(os.environ['RESOURCEPATH'])
+    elif frozen is True:
+        # Handle executables produced by PyInstaller.
+        __path__ = sys._MEIPASS
+    else:
+        __path__ = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
+    
 
-# Loading the Database
+# loading the database
 _database = sqlite3.connect(os.path.join(__path__, 'locales.db'))
 
 logger = logging.getLogger(__name__)
 
-# Exceptions
 class LanguageNotFound(Exception):
     """
     The specified language wasn't found in the database.
@@ -68,7 +76,8 @@ class CountryNotFound(Exception):
 
 class Country(object):
     def __init__(self, rowid):
-        country = _database.execute('SELECT * FROM countries WHERE rowid == ?', (rowid,)).fetchone()
+        country = _database.execute('SELECT * FROM countries WHERE rowid == ?',
+                                    (rowid,)).fetchone()
         self.name = country[0]
         self.official_name = country[1]
         self.alpha_2 = country[2]
@@ -78,7 +87,9 @@ class Country(object):
         
     @classmethod
     def get_country(cls, code, codec):
-        country = _database.execute('SELECT rowid FROM countries WHERE %s == ?' % (codec), (code,)).fetchone()
+        country = _database.execute(
+            'SELECT rowid FROM countries WHERE %s == ?' % (codec),
+            (code,)).fetchone()
         if country:
             return cls(country[0])
         raise CountryNotFound('code: %s, codec: %s' % (code, codec))
@@ -97,7 +108,8 @@ class Country(object):
    
 class Language(object):
     def __init__(self, rowid):
-        language = _database.execute('SELECT * FROM languages WHERE rowid == ?', (rowid,)).fetchone()
+        language = _database.execute('SELECT * FROM languages WHERE rowid == ?',
+                                     (rowid,)).fetchone()
         self.name = language[0]
         self.iso_639_2B = language[1]
         self.iso_639_2T = language[2]
@@ -106,7 +118,9 @@ class Language(object):
         
     @classmethod
     def get_language(cls, code, codec):
-        language = _database.execute('SELECT rowid FROM languages WHERE %s == ?' % (codec), (code,)).fetchone()
+        language = _database.execute(
+            'SELECT rowid FROM languages WHERE %s == ?' % (codec),
+            (code,)).fetchone()
         if language:
             return cls(language[0])
         raise LanguageNotFound('code: %s, codec: %s' % (code, codec))
@@ -125,14 +139,18 @@ class Language(object):
 
 
 def code_to_name(code, separator='_'):
-    """
-    Get the natural name of a language based on it's code.
+    """  
+    Get the human readable and translated name of a language based on it's code.
+    
+    :param code: the code of the language (e.g. de_DE, en_US) 
+    :param target: separator used to separate language from country
+    :rtype: human readable and translated language name
     """
     logger.debug('requesting name for code "{}"'.format(code))
     code = code.split(separator)
     if len(code) > 1:
         lang = Language.by_iso_639_1(code[0]).translation
         country = Country.by_alpha_2(code[1]).translation
-        return '{lang} ({country})'.format(lang=lang, country=country)
+        return '{} ({})'.format(lang, country)
     else:
         return Language.by_iso_639_1(code[0]).translation
