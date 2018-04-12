@@ -693,14 +693,15 @@ class UberwriterWindow(Window):
             # self.TextBuffer.insert_at_cursor('<span id="scroll_mark"></span>')
             # TODO
             # Find a way to find the next header, scroll to the next header.
-
+            # TODO: provide a local version of mathjax
+            
             args = ['pandoc',
+                    '-s',
                     '--from=markdown',
-                    '-smart',
-                    '-thtml',
+                    '--to=html',
                     '--mathjax',
-                    '--lua-filter=' + helpers.get_media_path('task-list.lua'),
-                    '-c', helpers.get_media_file('uberwriter.css')]
+                    '--css=' + helpers.get_media_path('uberwriter.css'),
+                    '--lua-filter=' + helpers.get_media_path('task-list.lua')]
             print(args)
 
             p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
