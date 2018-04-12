@@ -3,7 +3,6 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <!-- interface-local-resource-path ../media -->
-  <object class="GtkAction" id="action1"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="upper">100</property>
     <property name="step_increment">1</property>
@@ -78,7 +77,6 @@
                     <property name="use_underline">True</property>
                     <property name="use_stock">False</property>
                     <signal name="activate" handler="new_document" swapped="no"/>
-                    <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -89,7 +87,6 @@
                     <property name="use_underline">True</property>
                     <property name="use_stock">False</property>
                     <signal name="activate" handler="open_document" swapped="no"/>
-                    <accelerator key="o" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -137,7 +134,6 @@
                     <property name="use_underline">True</property>
                     <property name="use_stock">False</property>
                     <signal name="activate" handler="save_document" swapped="no"/>
-                    <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -148,7 +144,6 @@
                     <property name="use_underline">True</property>
                     <property name="use_stock">False</property>
                     <signal name="activate" handler="save_document_as" swapped="no"/>
-                    <accelerator key="s" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -221,7 +216,6 @@
                     <property name="can_focus">False</property>
                     <property name="use_underline">True</property>
                     <property name="use_stock">False</property>
-                    <accelerator key="w" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
               </object>
@@ -244,7 +238,6 @@
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Focus Mode</property>
                     <signal name="toggled" handler="set_focusmode" swapped="no"/>
-                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -253,14 +246,12 @@
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Fullscreen</property>
                     <signal name="toggled" handler="toggle_fullscreen" swapped="no"/>
-                    <accelerator key="F11" signal="activate"/>
                   </object>
                 </child>
                 <child>
                   <object class="GtkCheckMenuItem" id="mnu_sidebar">
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Sidebar</property>
-                    <accelerator key="F12" signal="activate"/>
                   </object>
                 </child>
                 <child>
@@ -279,7 +270,6 @@
                     <property name="tooltip_text" translatable="yes">Switch to preview mode</property>
                     <property name="label" translatable="yes">Preview</property>
                     <signal name="toggled" handler="toggle_preview" swapped="no"/>
-                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -290,7 +280,6 @@
                     <property name="label" translatable="yes">Search and Replace ...</property>
                     <property name="use_underline">True</property>
                     <signal name="activate" handler="open_search_and_replace" swapped="no"/>
-                    <accelerator key="f" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -304,7 +293,6 @@
                     <property name="label">Use Typewritermode (experimental)</property>
                     <property name="active">True</property>
                     <property name="draw_as_radio">True</property>
-                    <accelerator key="t" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                 </child>
                 <child>
@@ -319,7 +307,6 @@
                     <property name="use_underline">True</property>
                     <property name="active">True</property>
                     <signal name="activate" handler="toggle_spellcheck" swapped="no"/>
-                    <accelerator key="F7" signal="activate"/>
                   </object>
                 </child>
               </object>
@@ -341,7 +328,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Contents</property>
-                    <accelerator key="F1" signal="activate"/>
                   </object>
                 </child>
                 <child>
