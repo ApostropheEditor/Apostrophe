@@ -61,6 +61,12 @@ def get_media_path(media_file_name):
         media_filename = None
     return media_filename
 
+def get_script_path(script_file_name):
+    script_filename = get_data_file('lua', '%s' % (script_file_name,))
+    if not os.path.exists(script_filename):
+        script_filename = None
+    return script_filename
+
 class NullHandler(logging.Handler):
     def emit(self, record):
         pass

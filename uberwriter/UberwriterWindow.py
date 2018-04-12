@@ -694,15 +694,22 @@ class UberwriterWindow(Window):
             # TODO
             # Find a way to find the next header, scroll to the next header.
             # TODO: provide a local version of mathjax
-            
+
+            # We need to convert relative routes to absolute ones
+            if self.filename:
+                base_path = os.path.dirname(self.filename)
+            else:
+                base_path = ''
+            os.environ['PANDOC_PREFIX'] = base_path + '/'
+
             args = ['pandoc',
                     '-s',
                     '--from=markdown',
-                    '--to=html',
+                    '--to=html5',
                     '--mathjax',
                     '--css=' + helpers.get_media_path('uberwriter.css'),
-                    '--lua-filter=' + helpers.get_media_path('task-list.lua')]
-            print(args)
+                    '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
+                    '--lua-filter=' + helpers.get_script_path('task-list.lua')]
 
             p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
