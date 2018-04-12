@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uberwriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-10 22:02+0200\n"
-"PO-Revision-Date: 2018-04-10 22:10+0200\n"
+"POT-Creation-Date: 2018-04-11 16:57+0200\n"
+"PO-Revision-Date: 2018-04-11 16:58+0200\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca_ES\n"
@@ -470,53 +470,53 @@ msgstr "Obre l'enllaç en un navegador web"
 msgid "No matching footnote found"
 msgstr "No s'ha pogut trobar la nota de peu corresponent"
 
-#: uberwriter/UberwriterWindow.py:359
+#: uberwriter/UberwriterWindow.py:358
 msgid "Save your File"
 msgstr "Deseu el vostre fitxer"
 
-#: uberwriter/UberwriterWindow.py:505
+#: uberwriter/UberwriterWindow.py:504
 msgid "You can not export to PDF."
 msgstr "No es pot exportar a PDF."
 
-#: uberwriter/UberwriterWindow.py:507
+#: uberwriter/UberwriterWindow.py:506
 msgid ""
 "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
 msgstr ""
 "Instal·leu <a href=\"apt:texlive\">texlive</a> des del centre de programari."
 
-#: uberwriter/UberwriterWindow.py:537
+#: uberwriter/UberwriterWindow.py:536
 msgid "MarkDown or Plain Text"
 msgstr "Markdown o text simple"
 
-#: uberwriter/UberwriterWindow.py:540
+#: uberwriter/UberwriterWindow.py:539
 msgid "Open a .md-File"
 msgstr "Obre un fitxer .md"
 
-#: uberwriter/UberwriterWindow.py:562
+#: uberwriter/UberwriterWindow.py:561
 msgid "You have not saved your changes."
 msgstr "No heu desat els canvis."
 
-#: uberwriter/UberwriterWindow.py:564
+#: uberwriter/UberwriterWindow.py:563
 msgid "Close without Saving"
 msgstr "Tanca sense desar"
 
-#: uberwriter/UberwriterWindow.py:565
+#: uberwriter/UberwriterWindow.py:564
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: uberwriter/UberwriterWindow.py:566
+#: uberwriter/UberwriterWindow.py:565
 msgid "Save now"
 msgstr "Desa ara"
 
-#: uberwriter/UberwriterWindow.py:567
+#: uberwriter/UberwriterWindow.py:566
 msgid "Unsaved changes"
 msgstr "Canvis sense desar"
 
-#: uberwriter/UberwriterWindow.py:633
+#: uberwriter/UberwriterWindow.py:632
 msgid "You can not enable the Spell Checker."
 msgstr "No es pot activar el corrector ortogràfic."
 
-#: uberwriter/UberwriterWindow.py:635
+#: uberwriter/UberwriterWindow.py:634
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
