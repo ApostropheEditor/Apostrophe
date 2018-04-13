@@ -76,6 +76,7 @@ setup(
     data_files=[
         (app_prefix + '/bin/', ['bin/uberwriter']),
         (app_prefix + '/share/glib-2.0/schemas', ['data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml']),
+        (app_prefix + '/share/glib-2.0/schemas', ['data/de.wolfvollprecht.UberWriter']),
         (app_prefix + '/share/icons/hicolor/scalable/apps', ['data/media/uberwriter.svg']),
         (app_prefix + '/share/applications', ['de.wolfvollprecht.UberWriter.desktop']),
         (app_prefix + '/opt/uberwriter/data/ui', extra_files_ui),

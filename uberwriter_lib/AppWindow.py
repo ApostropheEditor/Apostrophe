@@ -22,6 +22,7 @@ from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 
 from . helpers import get_builder, show_uri, get_help_uri, get_media_path
 from uberwriter import UberwriterWindow
+from uberwriter.Settings import Settings
 from uberwriter_lib import set_up_logging
 
 from gettext import gettext as _
@@ -104,6 +105,7 @@ class Application(Gtk.Application):
                          flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
                          **kwargs)
         self.window = None
+        self.settings = Settings.new()
         
     def do_startup(self):
         Gtk.Application.do_startup(self)
