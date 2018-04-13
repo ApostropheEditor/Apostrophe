@@ -1,105 +1,130 @@
 {
-  "app-id": "de.wolfvollprecht.UberWriter",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "3.26",
-  "sdk": "org.gnome.Sdk",
-  "command": "uberwriter",
-  "rename-icon": "uberwriter",
-  "finish-args": [
-     "--socket=x11",
-     "--share=ipc",
-     "--filesystem=host",
-     "--env=IN_FLATPAK=1"
-  ],
-  "build-options" : {
-    "env": {
-      "PYTHON": "python3",
-      "IN_FLATPAK": "1"
-    }
-  },
-  "modules": [
-    {
-      "name": "uberwriter",
-      "sources": [
-        {
-          "type": "git",
-          "url": "git://github.com/wolfv/uberwriter",
-          "branch": "master"
+    "app-id" : "de.wolfvollprecht.UberWriter",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.26",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "uberwriter",
+    "rename-icon" : "uberwriter",
+    "finish-args" : [
+        "--socket=x11",
+        "--share=ipc",
+        "--filesystem=host",
+        "--env=IN_FLATPAK=1",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+    ],
+    "build-options" : {
+        "env" : {
+            "PYTHON" : "python3",
+            "IN_FLATPAK" : "1"
         }
-      ]
     },
-    {
-      "name": "pyenchant",
-      "build-options" : {
-        "build-args": ["--share=network"]
-      },
-      "config-opts": ["--module=pyenchant"],
-      "sources": [
+    "modules" : [
         {
-            "type": "file",
-            "path": "pip-download",
-            "dest-filename": "configure"
-        }
-      ]
-    },
-    {
-      "name": "regex",
-      "build-options" : {
-        "build-args": ["--share=network"]
-      },
-      "config-opts": ["--module=regex"],
-      "sources": [
+            "name" : "uberwriter",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "git://github.com/wolfv/uberwriterr",
+                    "branch" : "master"
+                }
+            ],
+            "post-install": [
+            "glib-compile-schemas /app/share/glib-2.0/schemas"
+            ]
+        },
         {
-            "type": "file",
-            "path": "pip-download",
-            "dest-filename": "configure"
-        }
-      ]
-    },
-    {
-      "name": "python-Levenshtein",
-      "build-options" : {
-        "build-args": ["--share=network"]
-      },
-      "config-opts": ["--module=python-Levenshtein"],
-      "sources": [
+            "name" : "pyenchant",
+            "build-options" : {
+                "build-args" : [
+                    "--share=network"
+                ]
+            },
+            "config-opts" : [
+                "--module=pyenchant"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "path" : "pip-download",
+                    "dest-filename" : "configure"
+                }
+            ]
+        },
         {
-            "type": "file",
-            "path": "pip-download",
-            "dest-filename": "configure"
-        }
-      ]
-    },
-    {
-      "name": "pypandoc",
-      "build-options" : {
-        "build-args": ["--share=network"]
-      },
-      "config-opts": ["--module=pypandoc"],
-      "sources": [
+            "name" : "regex",
+            "build-options" : {
+                "build-args" : [
+                    "--share=network"
+                ]
+            },
+            "config-opts" : [
+                "--module=regex"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "path" : "pip-download",
+                    "dest-filename" : "configure"
+                }
+            ]
+        },
         {
-            "type": "file",
-            "path": "pandoc-download",
-            "dest-filename": "configure"
-        }
-      ]
-    },
-    {
-      "name": "fonts",
-      "build-options" : {
-        "build-args": ["--share=network"]
-      },
-      "config-opts": [""],
-      "sources": [
+            "name" : "python-Levenshtein",
+            "build-options" : {
+                "build-args" : [
+                    "--share=network"
+                ]
+            },
+            "config-opts" : [
+                "--module=python-Levenshtein"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "path" : "pip-download",
+                    "dest-filename" : "configure"
+                }
+            ]
+        },
         {
-            "type": "file",
-            "path": "fonts-download",
-            "dest-filename": "configure"
+            "name" : "pypandoc",
+            "build-options" : {
+                "build-args" : [
+                    "--share=network"
+                ]
+            },
+            "config-opts" : [
+                "--module=pypandoc"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "path" : "pandoc-download",
+                    "dest-filename" : "configure"
+                }
+            ]
+        },
+        {
+            "name" : "fonts",
+            "build-options" : {
+                "build-args" : [
+                    "--share=network"
+                ]
+            },
+            "config-opts" : [
+                ""
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "path" : "fonts-download",
+                    "dest-filename" : "configure"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "post-install": [
-      "glib-compile-schemas /app/share/glib-2.0/schemas"
+        
     ]
 }
