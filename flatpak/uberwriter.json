@@ -98,5 +98,8 @@
         }
       ]
     }
-  ]
+  ],
+  "post-install": [
+      "glib-compile-schemas /app/share/glib-2.0/schemas"
+    ]
 }
