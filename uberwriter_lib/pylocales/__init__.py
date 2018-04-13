@@ -45,5 +45,5 @@ __metadata__ = {'__version__' : __version__,
                 '__desc_short__' : __desc_short__,
                 '__desc_long__' : __desc_long__}
 
-from pylocales.locales import (Country, Language, LanguageNotFound,
+from .locales import (Country, Language, LanguageNotFound,
                                CountryNotFound, code_to_name)

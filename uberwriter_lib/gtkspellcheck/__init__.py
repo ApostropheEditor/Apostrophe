@@ -49,5 +49,5 @@ __metadata__ = {'__version__' : __version__,
                 '__desc_short__' : __desc_short__,
                 '__desc_long__' : __desc_long__}
 
-from gtkspellcheck.spellcheck import (SpellChecker, NoDictionariesFound,
+from .spellcheck import (SpellChecker, NoDictionariesFound,
                                       NoGtkBindingFound)
