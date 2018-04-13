@@ -2,7 +2,7 @@
 
 <schemalist>
 
-  <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter.gschema">
+  <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter">
 
     <key name='dark-mode' type='b'>
       <default>false</default>
