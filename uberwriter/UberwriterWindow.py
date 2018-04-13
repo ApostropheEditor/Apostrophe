@@ -214,8 +214,8 @@ class UberwriterWindow(Window):
         if self.smooth_scroll_data['target_pos'] == -1:
             return True
         def ease_out_cubic(t):
-          p = t - 1;
-          return p * p * p + 1;
+          p = t - 1
+          return p * p * p + 1
         
         now = frame_clock.get_frame_time()
         if self.smooth_scroll_acttarget != self.smooth_scroll_data['target_pos']:
