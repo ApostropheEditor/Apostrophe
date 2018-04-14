@@ -27,7 +27,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "git://github.com/wolfv/uberwriterr",
+                    "url" : "git://github.com/wolfv/uberwriter",
                     "branch" : "master"
                 }
             ],
