@@ -44,6 +44,7 @@ from .UberwriterTextEditor import TextEditor
 from .UberwriterInlinePreview import UberwriterInlinePreview
 from .UberwriterSidebar import UberwriterSidebar
 from .UberwriterSearchAndReplace import UberwriterSearchAndReplace
+from .Settings import Settings
 # from .UberwriterAutoCorrect import UberwriterAutoCorrect
 
 import logging
@@ -759,13 +760,15 @@ class UberwriterWindow(Window):
         self.dark_mode = widget.get_active()
         if self.dark_mode:
             # Dark Mode is on
-            self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
+            # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
+            self.settings.set_value("dark-mode", True)
             self.get_style_context().add_class("dark_mode")
             self.hb_container.get_style_context().add_class("dark_mode")
             self.MarkupBuffer.dark_mode(True)
         else:
             # Dark mode off
-            self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
+            # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
+            self.settings.set_value("dark-mode", False)
             self.get_style_context().remove_class("dark_mode")
             self.hb_container.get_style_context().remove_class("dark_mode")
             self.MarkupBuffer.dark_mode(False)
@@ -897,8 +900,6 @@ class UberwriterWindow(Window):
             self.buffer_modified_for_status_bar = False
             self.update_line_and_char_count()
 
-
-
     def draw_gradient(self, widget, cr):
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
 
@@ -927,12 +928,13 @@ class UberwriterWindow(Window):
         except:
             logger.debug("Couldn't install autocorrect.")
 
-
     def finish_initializing(self, builder):  # pylint: disable=E1002
         """Set up the main window"""
         
         super(UberwriterWindow, self).finish_initializing(builder)
         
+        # preferences
+        self.settings = Settings.new()
 
         self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
@@ -1027,9 +1029,10 @@ class UberwriterWindow(Window):
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
-        # Setup light background
+        # Setup background
         self.TextEditor = TextEditor()
         self.TextEditor.set_name('UberwriterEditor')
+        # if self.settings.get_value("dark-mode")
         self.get_style_context().add_class('uberwriter_window')
 
         base_leftmargin = 100
@@ -1179,8 +1182,9 @@ class UberwriterWindow(Window):
         self.connect("configure-event", self.window_resize)
         self.connect("delete-event", self.on_delete_called)
 
-        self.gtk_settings = Gtk.Settings.get_default()
-        self.load_settings(builder)
+        # TODO: remove this calls
+        # self.gtk_settings = Gtk.Settings.get_default()
+        # self.load_settings(builder)
 
         # self.plugins = [BibTex(self)]
 
