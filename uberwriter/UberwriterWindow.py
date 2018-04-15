@@ -703,12 +703,18 @@ class UberwriterWindow(Window):
                 base_path = ''
             os.environ['PANDOC_PREFIX'] = base_path + '/'
 
+            # Set the styles according the color theme
+            if self.settings.get_value("dark-mode"):
+                stylesheet = helpers.get_media_path('uberwriter_dark.css')
+            else:
+                stylesheet = helpers.get_media_path('uberwriter.css')
+
             args = ['pandoc',
                     '-s',
                     '--from=markdown',
                     '--to=html5',
                     '--mathjax',
-                    '--css=' + helpers.get_media_path('uberwriter.css'),
+                    '--css=' + stylesheet,
                     '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
                     '--lua-filter=' + helpers.get_script_path('task-list.lua')]
 
