@@ -31,6 +31,7 @@ def package_files(directory):
 
 extra_files_ui = package_files('./data/ui')
 extra_files_media = package_files('./data/media')
+extra_files_scripts = package_files('./data/lua')
 from pprint import pprint
 pprint(extra_files_ui)
 pprint(extra_files_media)
@@ -79,6 +80,7 @@ setup(
         (app_prefix + '/share/icons/hicolor/scalable/apps', ['data/media/uberwriter.svg']),
         (app_prefix + '/share/applications', ['de.wolfvollprecht.UberWriter.desktop']),
         (app_prefix + '/opt/uberwriter/data/ui', extra_files_ui),
-        (app_prefix + '/opt/uberwriter/data/media', extra_files_media)
+        (app_prefix + '/opt/uberwriter/data/media', extra_files_media),
+        (app_prefix + '/opt/uberwriter/data/lua', extra_files_scripts)
     ]
 )
