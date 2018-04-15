@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uberwriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-15 03:05+0200\n"
-"PO-Revision-Date: 2018-04-15 03:06+0200\n"
+"POT-Creation-Date: 2018-04-15 18:57+0200\n"
+"PO-Revision-Date: 2018-04-15 18:57+0200\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca_ES\n"
@@ -20,8 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:9
-#, fuzzy
-#| msgid "Dark Mode"
 msgid "Dark mode"
 msgstr "Mode fosc"
 
@@ -29,17 +27,6 @@ msgstr "Mode fosc"
 msgid ""
 "If enabled, the window will be dark themed If disabled, the window will be "
 "light themed asked to install them manually."
-msgstr ""
-
-#: data/org.example.myapp.gschema.xml:9
-msgid "Automatically install updates"
-msgstr ""
-
-#: data/org.example.myapp.gschema.xml:10
-msgid ""
-"If enabled, updates will automatically be downlaoded and installed. If "
-"disabled, updates will still be downloaded, but the user will be asked to "
-"install them manually."
 msgstr ""
 
 #.
@@ -303,7 +290,7 @@ msgstr "_Fitxer"
 
 #: data/ui/UberwriterWindow.ui:74
 msgid "_New"
-msgstr ""
+msgstr "_Nou"
 
 #: data/ui/UberwriterWindow.ui:84
 msgid "_Open"

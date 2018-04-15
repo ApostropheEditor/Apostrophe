@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-15 03:05+0200\n"
+"POT-Creation-Date: 2018-04-15 18:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,17 +29,6 @@ msgstr ""
 msgid ""
 "If enabled, the window will be dark themed If disabled, the window will be "
 "light themed asked to install them manually."
-msgstr ""
-
-#: data/org.example.myapp.gschema.xml:9
-msgid "Automatically install updates"
-msgstr ""
-
-#: data/org.example.myapp.gschema.xml:10
-msgid ""
-"If enabled, updates will automatically be downlaoded and installed. If "
-"disabled, updates will still be downloaded, but the user will be asked to "
-"install them manually."
 msgstr ""
 
 #.
