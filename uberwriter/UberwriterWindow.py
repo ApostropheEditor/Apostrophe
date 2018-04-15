@@ -1186,17 +1186,7 @@ class UberwriterWindow(Window):
         self.connect("configure-event", self.window_resize)
         self.connect("delete-event", self.on_delete_called)
 
-        # TODO: remove this calls
-        # self.gtk_settings = Gtk.Settings.get_default()
-        # self.load_settings(builder)
-
         # self.plugins = [BibTex(self)]
-
-        # self.connect_after('realize', self.color_window)
-
-    # def color_window(self, widget, data=None):
-    #   window_gdk = self.get_window()
-    #   window_gdk.set_background(Gdk.Color(0, 1, 0))
 
     def alt_mod(self, widget, event, data=None):
         # TODO: Click and open when alt is pressed
