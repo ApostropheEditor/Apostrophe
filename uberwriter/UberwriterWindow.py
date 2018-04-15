@@ -1010,6 +1010,7 @@ class UberwriterWindow(Window):
         self.focusmode_menu_button = builder.get_object('mnu_focusmode')
         self.preview_button = builder.get_object('preview_toggle')
         self.preview_mnu_button = builder.get_object('mnu_preview')
+        self.dark_mode_button = builder.get_object('dark_mode')
 
         self.fullscreen_button.set_name('fullscreen_toggle')
         self.focusmode_button.set_name('focus_toggle')
@@ -1029,11 +1030,14 @@ class UberwriterWindow(Window):
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
-        # Setup background
+        # Setup light background
         self.TextEditor = TextEditor()
         self.TextEditor.set_name('UberwriterEditor')
-        # if self.settings.get_value("dark-mode")
         self.get_style_context().add_class('uberwriter_window')
+
+        # Setup dark mode if so
+        if self.settings.get_value("dark-mode"):
+            self.dark_mode_button.set_active()
 
         base_leftmargin = 100
         self.TextEditor.set_left_margin(base_leftmargin)
