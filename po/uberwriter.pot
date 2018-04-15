@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 17:12+0200\n"
+"POT-Creation-Date: 2018-04-15 03:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,25 @@ msgstr ""
 "X-Poedit-SearchPath-1: uberwriter_lib\n"
 "X-Poedit-SearchPath-2: data\n"
 
-#: data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml:6
-msgid "Sample setting"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
+msgid "Dark mode"
 msgstr ""
 
-#: data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml:7
-msgid "Yolo."
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
+msgid ""
+"If enabled, the window will be dark themed If disabled, the window will be "
+"light themed asked to install them manually."
+msgstr ""
+
+#: data/org.example.myapp.gschema.xml:9
+msgid "Automatically install updates"
+msgstr ""
+
+#: data/org.example.myapp.gschema.xml:10
+msgid ""
+"If enabled, updates will automatically be downlaoded and installed. If "
+"disabled, updates will still be downloaded, but the user will be asked to "
+"install them manually."
 msgstr ""
 
 #.
@@ -371,7 +384,7 @@ msgstr ""
 msgid "Search and Replace ..."
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:306
+#: data/ui/UberwriterWindow.ui:307
 msgid "Auto _Spellcheck"
 msgstr ""
 
@@ -467,52 +480,52 @@ msgstr ""
 msgid "No matching footnote found"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:355
+#: uberwriter/UberwriterWindow.py:356
 msgid "Save your File"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:501
+#: uberwriter/UberwriterWindow.py:502
 msgid "You can not export to PDF."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:503
+#: uberwriter/UberwriterWindow.py:504
 msgid ""
 "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:533
+#: uberwriter/UberwriterWindow.py:534
 msgid "MarkDown or Plain Text"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:536
+#: uberwriter/UberwriterWindow.py:537
 msgid "Open a .md-File"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:558
+#: uberwriter/UberwriterWindow.py:559
 msgid "You have not saved your changes."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:560
+#: uberwriter/UberwriterWindow.py:561
 msgid "Close without Saving"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:561
+#: uberwriter/UberwriterWindow.py:562
 msgid "Cancel"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:562
+#: uberwriter/UberwriterWindow.py:563
 msgid "Save now"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:563
+#: uberwriter/UberwriterWindow.py:564
 msgid "Unsaved changes"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:629
+#: uberwriter/UberwriterWindow.py:630
 msgid "You can not enable the Spell Checker."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:631
+#: uberwriter/UberwriterWindow.py:632
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
@@ -524,34 +537,54 @@ msgstr ""
 msgid "label"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:152
+#: uberwriter_lib/AppWindow.py:154
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:154
+#: uberwriter_lib/AppWindow.py:156
 msgid "Use experimental features"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:507
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:259
+msgid "extension \"{}\" is not a valid ZIP file"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:265
+msgid "extension \"{}\" has no valid XML dictionary registry"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:285
+msgid "unable to move extension, file with same name exists within move_path"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:293
+msgid "unable to move extension, move_path is not a directory"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:105
+msgid "Unknown"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
 msgid "(no suggestions)"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:544
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:547
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
 msgid "Add \"{}\" to Dictionary"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:553
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
 msgid "Ignore All"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:568
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:570
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
 msgid "Languages"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:586
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:589
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
 msgid "Suggestions"
 msgstr ""
