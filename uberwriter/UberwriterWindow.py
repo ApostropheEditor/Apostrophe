@@ -761,14 +761,14 @@ class UberwriterWindow(Window):
         if self.dark_mode:
             # Dark Mode is on
             # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
-            self.settings.set_value("dark-mode", True)
+            self.settings.set_value("dark-mode", GLib.Variant("b", True))
             self.get_style_context().add_class("dark_mode")
             self.hb_container.get_style_context().add_class("dark_mode")
             self.MarkupBuffer.dark_mode(True)
         else:
             # Dark mode off
             # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
-            self.settings.set_value("dark-mode", False)
+            self.settings.set_value("dark-mode", GLib.Variant("b", False))
             self.get_style_context().remove_class("dark_mode")
             self.hb_container.get_style_context().remove_class("dark_mode")
             self.MarkupBuffer.dark_mode(False)
