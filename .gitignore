@@ -13,3 +13,6 @@ flatpak/*
 !flatpak/uberwriter.json
 Promo/
 *.py~
+data/ui/shortcut_handlers
+*.ui~
+.vscode/
