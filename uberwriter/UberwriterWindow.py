@@ -1037,7 +1037,7 @@ class UberwriterWindow(Window):
 
         # Setup dark mode if so
         if self.settings.get_value("dark-mode"):
-            self.dark_mode_button.set_active()
+            self.dark_mode_button.set_active(True)
 
         base_leftmargin = 100
         self.TextEditor.set_left_margin(base_leftmargin)
