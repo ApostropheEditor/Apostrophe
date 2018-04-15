@@ -8,6 +8,7 @@
     "finish-args" : [
         "--socket=x11",
         "--share=ipc",
+        "--share=network",
         "--filesystem=host",
         "--env=IN_FLATPAK=1",
         "--filesystem=xdg-run/dconf",
