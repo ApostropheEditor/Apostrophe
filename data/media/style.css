@@ -79,15 +79,6 @@
   font-size: 18px;
 }
 
-/*
-DEPRECATED
-
-#UberwriterWindow GtkAlignment {
-  margin-top: 30px;
-  margin-bottom: 60px;
-}
-*/
-
 #titlebar_revealer {
   padding: 0;
 }
@@ -161,24 +152,21 @@ DEPRECATED
   border-style: none;
   -button-images: true;
   border-radius: 2px;
-  color: @dark_bg;
+  color: #666;
   padding: 3px 5px;
-  /*
-  -button-child-displacement-y: 0px;
-  -button-child-displacement-x: 0px; 
-  -button-default-border: 0;
-  -button-image-spacing: 5px;
-  -button-interior-focus: false;
-  -button-inner-border: 0;
-  */
   transition: 100ms ease-in;
 }
 
 .status_bar_box button:hover,
-.status_bar_box button:active:hover {
+.status_bar_box button:checked {
   transition: 0s ease-in;
   color: @light_bg;
-  background-color: @dark_bg;
+  background-color: #666;
+}
+
+.status_bar_box button:hover label,
+.status_bar_box button:checked label {
+  color: @light_bg;
 }
 
 .status_bar_box button:active {
@@ -189,14 +177,20 @@ DEPRECATED
 }
 .dark_mode .status_bar_box button {
   background-color: @dark_bg;
+}
+.dark_mode .status_bar_box label {
   color: @light_bg;
 }
 .dark_mode .status_bar_box button:hover,
-.dark_mode .status_bar_box button:active {
+.dark_mode .status_bar_box button:checked {
   background-color: @light_bg;
-  color: @dark_bg;
+  color: #666;
 }
 
+.dark_mode .status_bar_box button:hover label,
+.dark_mode .status_bar_box button:checked label{
+  color: #666;
+}
 .status_bar_box separator {
   border-color: #999;
   border-right: none;
