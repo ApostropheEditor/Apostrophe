@@ -461,7 +461,7 @@ class UberwriterWindow(Window):
        
         basename = os.path.basename(filename)
 
-        args = ['pandoc', '--from=markdown', '-smart']
+        args = ['pandoc', '--from=markdown', '-s']
        
         if export_type == "pdf":
             args.append("-o%s.pdf" % basename)
@@ -471,9 +471,13 @@ class UberwriterWindow(Window):
        
         elif export_type == "html":
             css = helpers.get_media_file('uberwriter.css')
+            relativize = helpers.get_script_path('relative_to_absolute.lua')
+            task_list = helpers.get_script_path('task-list.lua')
             args.append("-c%s" % css)
             args.append("-o%s.html" % basename)
             args.append("--mathjax")
+            args.append("--lua-filter=" + relativize)
+            args.append("--lua-filter=" + task_list)
 
         p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=output_dir)
         output = p.communicate(text)[0]
