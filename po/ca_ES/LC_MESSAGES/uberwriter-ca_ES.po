@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uberwriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-15 18:57+0200\n"
-"PO-Revision-Date: 2018-04-15 18:57+0200\n"
+"POT-Creation-Date: 2018-04-16 18:57+0200\n"
+"PO-Revision-Date: 2018-04-16 18:58+0200\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca_ES\n"
@@ -318,11 +318,11 @@ msgstr "Des_a com a"
 
 #: data/ui/UberwriterWindow.ui:157
 msgid "Export as HTML"
-msgstr "Exporta com a ODT"
+msgstr "Exporta com HTML"
 
 #: data/ui/UberwriterWindow.ui:166
 msgid "Export as PDF"
-msgstr "Exporta com a ODT"
+msgstr "Exporta com a PDF"
 
 #: data/ui/UberwriterWindow.ui:175
 msgid "Export as ODT"
