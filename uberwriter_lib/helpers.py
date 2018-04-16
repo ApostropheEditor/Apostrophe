@@ -20,6 +20,7 @@
 import logging
 import os
 import sys
+import shutil
 
 from . uberwriterconfig import get_data_file
 from . Builder import Builder
@@ -125,3 +126,6 @@ def alias(alternative_function_name):
         function.aliases.append(alternative_function_name)
         return function
     return decorator
+
+def exist_executable(command):
+    return shutil.which(command) is not None

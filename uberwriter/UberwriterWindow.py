@@ -1022,6 +1022,12 @@ class UberwriterWindow(Window):
         self.focusmode_button.set_name('focus_toggle')
         self.preview_button.set_name('preview_toggle')
 
+        self.export_pdf_button = builder.get_object('mnu_export_pdf')
+
+        # Gray export to pdf if pdftex not avaliable
+        if not helpers.exist_executable('pdftex'):
+            self.export_pdf_button.set_sensitive(False)
+
         # Setup status bar hide after 3 seconds
 
         self.status_bar = builder.get_object('status_bar_box')
