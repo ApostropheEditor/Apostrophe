@@ -25,23 +25,11 @@ import pkg_resources
 import gettext
 import locale
 
-import uberwriter
-
 # Add project root directory (enable symlink and trunk execution)
 PROJECT_ROOT_DIRECTORY = os.path.abspath(
     os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 
-locale_dir = os.path.abspath(os.path.join(os.path.dirname(uberwriter.__file__),'../po/'))
-if os.environ.get('IN_FLATPAK'):
-    locale_dir = PROJECT_ROOT_DIRECTORY + '/lib/python3.5/site-packages/uberwriter-1.0-py3.5.egg/po'
-
- 
-# L10n
-locale.textdomain('uberwriter')
-locale.bindtextdomain('uberwriter', locale_dir)
-gettext.textdomain('uberwriter')
-gettext.bindtextdomain('uberwriter', locale_dir)
-
+# Set the path if needed. This allows uberwriter to run without installing it :)
 python_path = []
 if os.path.abspath(__file__).startswith('/opt'):
     gettext.bindtextdomain('uberwriter', '/opt/extras.ubuntu.com/uberwriter/share/locale')
@@ -58,5 +46,16 @@ if (os.path.exists(os.path.join(PROJECT_ROOT_DIRECTORY, 'uberwriter'))
 if python_path:
     os.putenv('PYTHONPATH', "%s:%s" % (os.getenv('PYTHONPATH', ''), ':'.join(python_path))) # for subprocesses
 
+import uberwriter
+
+locale_dir = os.path.abspath(os.path.join(os.path.dirname(uberwriter.__file__),'../po/'))
+if os.environ.get('IN_FLATPAK'):
+    locale_dir = PROJECT_ROOT_DIRECTORY + '/lib/python3.5/site-packages/uberwriter-1.0-py3.5.egg/po'
+
+# L10n
+locale.textdomain('uberwriter')
+locale.bindtextdomain('uberwriter', locale_dir)
+gettext.textdomain('uberwriter')
+gettext.bindtextdomain('uberwriter', locale_dir)
 
 uberwriter.main()
