@@ -50,7 +50,7 @@ def get_data_path():
     """Retrieve uberwriter data path
 
     This path is by default <uberwriter_lib_path>/../data/ in trunk
-    and /usr/share/uberwriter in an installed version but this path
+    and /opt/uberwriter/data in an installed version but this path
     is specified at installation time.
     """
 
@@ -61,8 +61,12 @@ def get_data_path():
     path = os.path.join(
         os.path.dirname(__file__), __uberwriter_data_directory__)
 
+    # We try first if the data exists in the local folder and then
+    # in the system installation path
     abs_data_path = os.path.abspath(path)
     if not os.path.exists(abs_data_path):
+        abs_data_path = '/opt/uberwriter/data/'
+    elif not os.path.exists(abs_data_path):
         raise project_path_not_found
 
     return abs_data_path
