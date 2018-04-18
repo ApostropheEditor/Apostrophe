@@ -213,8 +213,9 @@
   /*font: serif 10;*/
   font-family: serif;
   font-size: 10px;
-  background: #FFF;
+  background: @light_bg;
   border-radius: 4px;
+  border-color: @light_bg;
   margin: 5px;
   padding: 5px;
 }
@@ -223,8 +224,9 @@
   padding: 5px;
   margin: 5px;
   border: 1px solid #333;
-  /*background: #FFF;*/
+  background: @ligth_bg;
   border-radius: 3px;
+  border-color: @light_bg;
 }
 
 #LexikonBubble label {
@@ -232,7 +234,9 @@
 }
 
 #LexikonBubble {
-   border: 5px solid #FFF;
+  background-color: @light_bg;
+   border: 5px solid @light_bg;
+   border-color: @light_bg
 }
 
 #LexikonBubble .lexikon_heading {
@@ -250,20 +254,12 @@
   padding-left: 20px;
 }
 
-#UberwriterWindow #AutoCorrect {
-  padding: 10px;
-  background: #FFF;
-  /*box-shadow: 0 0 5px #000;*/
-  border: 1px solid #BCD1EB;
-  border-radius: 3px 10px 10px 3px;
-  color: #333;
+popover {
+	background-color: @light_bg;
 }
 
-#UberwriterWindow #AutoCorrect label {
-  padding: 3px 5px;
-  font-family: sans-serif;
-}
-
-#UberwriterWindow #AutoCorrect image {
-  padding: 3px 5px;
+popover grid {
+	background-color: @light_bg;
+	color: @dark_bg;
+	border-color: @light_bg;
 }
