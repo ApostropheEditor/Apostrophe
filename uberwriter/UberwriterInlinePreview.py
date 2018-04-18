@@ -203,6 +203,10 @@ def get_web_thumbnail(url, item, spinner):
 
     # error = False
 
+    # gnome-web-photo only understands http urls
+    if url.startswith("www"):
+        url = "http://" + url
+
     filename = tempfile.mktemp(suffix='.png')
     thumb_size = '256'  # size can only be 32, 64, 96, 128 or 256!
     args = ['gnome-web-photo', '--mode=thumbnail', '-s', thumb_size, url, filename]
@@ -386,6 +390,7 @@ class UberwriterInlinePreview():
                     label.set_text(msg)
                     label.show()
                     item.add(label)
+                    self.open_popover_with_widget(item)
                 item.show()
                 # menu.prepend(separator)
                 # separator.show()
@@ -431,6 +436,7 @@ class UberwriterInlinePreview():
 
                     item.set_label(_("Open Link in Webbrowser"))
                     item.show()
+                    self.open_popover_with_widget(webphoto_item)
     
                     # menu.prepend(separator)
                     # separator.show()
@@ -492,6 +498,7 @@ class UberwriterInlinePreview():
                     label.show()
                     item.add(label)
                     item.show()
+                    self.open_popover_with_widget(item)
 
                     # menu.prepend(separator)
                     # separator.show()

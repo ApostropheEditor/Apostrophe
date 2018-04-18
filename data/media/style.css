@@ -263,3 +263,7 @@ popover grid {
 	color: @dark_bg;
 	border-color: @light_bg;
 }
+
+popover label {
+	color: @dark_bg;
+}
