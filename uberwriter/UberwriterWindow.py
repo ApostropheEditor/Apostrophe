@@ -1051,10 +1051,6 @@ class UberwriterWindow(Window):
         self.TextEditor.set_name('UberwriterEditor')
         self.get_style_context().add_class('uberwriter_window')
 
-        # Setup dark mode if so
-        if self.settings.get_value("dark-mode"):
-            self.dark_mode_button.set_active(True)
-
         base_leftmargin = 100
         self.TextEditor.set_left_margin(base_leftmargin)
         self.TextEditor.set_left_margin(40)
@@ -1126,6 +1122,11 @@ class UberwriterWindow(Window):
         # Markup and Shortcuts for the TextBuffer
         self.MarkupBuffer = MarkupBuffer(self, self.TextBuffer, base_leftmargin)
         self.MarkupBuffer.markup_buffer()
+
+        # Setup dark mode if so
+        if self.settings.get_value("dark-mode"):
+            self.dark_mode_button.set_active(True)
+
 
         # Scrolling -> Dark or not?
         self.textchange = False
