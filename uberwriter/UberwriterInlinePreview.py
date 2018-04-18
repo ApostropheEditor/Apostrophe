@@ -166,7 +166,7 @@ class DictAccessor(object):
                 if act_def and 'description' in act_def:
                     act_res['defs'].append(act_def.copy())
 
-        pprint(act_res)
+        # pprint(act_res)
         res.append(act_res.copy())
         return res
 
@@ -266,11 +266,11 @@ class UberwriterInlinePreview():
         self.LatexConverter = LatexToPNG.LatexToPNG()
         cursor_mark = self.TextBuffer.get_insert()
         cursor_iter = self.TextBuffer.get_iter_at_mark(cursor_mark)
-        # self.ClickMark = self.TextBuffer.create_mark('click', cursor_iter)
+        self.ClickMark = self.TextBuffer.create_mark('click', cursor_iter)
         # Events for popup menu
         self.TextView.connect_after('populate-popup', self.populate_popup)
         self.TextView.connect_after('popup-menu', self.move_popup)
-        # self.TextView.connect('button-press-event', self.click_move_button)
+        self.TextView.connect('button-press-event', self.click_move_button)
         self.popover = None
 
     def open_popover_with_widget(self, widget):
@@ -311,23 +311,24 @@ class UberwriterInlinePreview():
         # b.attach(widget, 0, 1, 1, 1)
         self.popover.set_modal(True)
         self.popover.show_all()
-        print(self.popover)
+        # print(self.popover)
         self.popover.set_property('width-request', 50)
 
     def click_move_button(self, widget, event):
-        if event.button == 3:
+        if event.button == 1 and event.state & Gdk.ModifierType.CONTROL_MASK:
             x, y = self.TextView.window_to_buffer_coords(2,
                                                          int(event.x),
                                                          int(event.y))
             self.TextBuffer.move_mark(self.ClickMark,
-                                      self.TextView.get_iter_at_location(x, y))
+                                      self.TextView.get_iter_at_location(x, y).iter)
+            self.populate_popup(self.TextView)
 
     def fix_table(self, widget, data=None):
         logger.debug('fixing that table')
         f = FixTable(self.TextBuffer)
         f.fix_table()
 
-    def populate_popup(self, editor, menu, data=None):
+    def populate_popup(self, editor, data=None):
         # popover = Gtk.Popover.new(editor)
         # pop_cont = Gtk.Container.new()
         # popover.add(pop_cont)
@@ -386,10 +387,10 @@ class UberwriterInlinePreview():
                     label.show()
                     item.add(label)
                 item.show()
-                menu.prepend(separator)
-                separator.show()
-                menu.prepend(item)
-                menu.show()
+                # menu.prepend(separator)
+                # separator.show()
+                # menu.prepend(item)
+                # menu.show()
                 found_match = True
                 break
 
@@ -431,13 +432,13 @@ class UberwriterInlinePreview():
                     item.set_label(_("Open Link in Webbrowser"))
                     item.show()
     
-                    menu.prepend(separator)
-                    separator.show()
+                    # menu.prepend(separator)
+                    # separator.show()
 
-                    menu.prepend(webphoto_item)
-                    menu.prepend(statusitem)
-                    menu.prepend(item)
-                    menu.show()
+                    # menu.prepend(webphoto_item)
+                    # menu.prepend(statusitem)
+                    # menu.prepend(item)
+                    # menu.show()
 
 
                     found_match = True
@@ -492,10 +493,10 @@ class UberwriterInlinePreview():
                     item.add(label)
                     item.show()
 
-                    menu.prepend(separator)
-                    separator.show()
-                    menu.prepend(item)
-                    menu.show()
+                    # menu.prepend(separator)
+                    # separator.show()
+                    # menu.prepend(item)
+                    # menu.show()
                     found_match = True
                     break
 
