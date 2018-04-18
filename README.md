@@ -8,6 +8,7 @@ To use uberwriter, please make sure you have some dependencies installed:
 - Pandoc, the program used to convert Markdown to basically anything else (the package name should be pandoc in most distributions)
 - Of course, gtk3 etc. needs to be installed as well since this is a gtk application
 - Please find these packages on your distribution: `python3 python3-regex python3-setuptools python3-levenshtein python3-enchant python3-gi python3-cairo`
+- Optional dependencies are `texlive` for the pdftex module and `gnome-web-photo` for the inline web previews
 
 You can run UberWriter with `./bin/uberwriter` without installing it in the system,
 but you'll need to install and compile the schemas before:
