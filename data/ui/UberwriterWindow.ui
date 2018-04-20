@@ -353,15 +353,6 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkMenuItem" id="translate_launchpad">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Translate This Application...</property>
-                    <property name="use_underline">True</property>
-                    <signal name="activate" handler="open_launchpad_translation" swapped="no"/>
-                  </object>
-                </child>
-                <child>
                   <object class="GtkSeparatorMenuItem" id="separatormenuitem9">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>

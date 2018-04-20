@@ -814,8 +814,8 @@ class UberwriterWindow(Window):
             logger.warning("No File arg")
 
     # Help Menu
-    def open_launchpad_translation(self, widget, data=None):
-        webbrowser.open("https://translations.launchpad.net/uberwriter")
+    def open_translation(self):
+        webbrowser.open("https://poeditor.com/join/project/gxVzFyXb2x")
 
     def open_pandoc_markdown(self, widget, data=None):
         webbrowser.open("http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
