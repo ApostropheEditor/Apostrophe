@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uberwriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 17:12+0200\n"
-"PO-Revision-Date: 2018-04-12 17:13+0200\n"
+"POT-Creation-Date: 2018-04-20 21:44+0200\n"
+"PO-Revision-Date: 2018-04-20 22:04+0200\n"
 "Last-Translator: Wolf Vollprecht <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -18,12 +18,16 @@ msgstr ""
 "X-Launchpad-Export-Date: 2014-09-12 00:12+0000\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml:6
-msgid "Sample setting"
-msgstr ""
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
+#, fuzzy
+#| msgid "Dark Mode"
+msgid "Dark mode"
+msgstr "Abgedunkelter Modus"
 
-#: data/glib-2.0/schemas/net.launchpad.uberwriter.gschema.xml:7
-msgid "Yolo."
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
+msgid ""
+"If enabled, the window will be dark themed If disabled, the window will be "
+"light themed asked to install them manually."
 msgstr ""
 
 #.
@@ -402,7 +406,7 @@ msgstr ""
 msgid "Search and Replace ..."
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:306
+#: data/ui/UberwriterWindow.ui:307
 msgid "Auto _Spellcheck"
 msgstr "Rechtschreibkorrektur"
 
@@ -492,62 +496,62 @@ msgstr "Webseite nicht erreichbar"
 msgid "Website is available"
 msgstr "Webseite erreichbar"
 
-#: uberwriter/UberwriterInlinePreview.py:431
+#: uberwriter/UberwriterInlinePreview.py:437
 msgid "Open Link in Webbrowser"
 msgstr "Link in Browser öffnen"
 
-#: uberwriter/UberwriterInlinePreview.py:487
+#: uberwriter/UberwriterInlinePreview.py:494
 msgid "No matching footnote found"
 msgstr "Keine zugehörige Fussnote gefunden"
 
-#: uberwriter/UberwriterWindow.py:355
+#: uberwriter/UberwriterWindow.py:356
 msgid "Save your File"
 msgstr "Datei speichern"
 
-#: uberwriter/UberwriterWindow.py:501
+#: uberwriter/UberwriterWindow.py:506
 msgid "You can not export to PDF."
 msgstr "PDF-Export nicht möglich"
 
-#: uberwriter/UberwriterWindow.py:503
+#: uberwriter/UberwriterWindow.py:508
 msgid ""
 "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
 msgstr ""
 "Bitte installieren Sie das Paket <a href=\"apt:texlive\">texlive</a> aus dem "
 "Software-Center"
 
-#: uberwriter/UberwriterWindow.py:533
+#: uberwriter/UberwriterWindow.py:538
 msgid "MarkDown or Plain Text"
 msgstr "MarkDown oder unformatierter Text"
 
-#: uberwriter/UberwriterWindow.py:536
+#: uberwriter/UberwriterWindow.py:541
 msgid "Open a .md-File"
 msgstr "Eine .md-Datei öffnen"
 
-#: uberwriter/UberwriterWindow.py:558
+#: uberwriter/UberwriterWindow.py:563
 msgid "You have not saved your changes."
 msgstr "Sie haben Ihre Änderungen nicht gespeichert."
 
-#: uberwriter/UberwriterWindow.py:560
+#: uberwriter/UberwriterWindow.py:565
 msgid "Close without Saving"
 msgstr "Schließen, ohne zu speichern"
 
-#: uberwriter/UberwriterWindow.py:561
+#: uberwriter/UberwriterWindow.py:566
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: uberwriter/UberwriterWindow.py:562
+#: uberwriter/UberwriterWindow.py:567
 msgid "Save now"
 msgstr "Jetzt speichern"
 
-#: uberwriter/UberwriterWindow.py:563
+#: uberwriter/UberwriterWindow.py:568
 msgid "Unsaved changes"
 msgstr "Ungespeicherte Änderungen"
 
-#: uberwriter/UberwriterWindow.py:629
+#: uberwriter/UberwriterWindow.py:634
 msgid "You can not enable the Spell Checker."
 msgstr "Die Rechtschreib-Korrektur konnte nicht aktiviert werden."
 
-#: uberwriter/UberwriterWindow.py:631
+#: uberwriter/UberwriterWindow.py:636
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
@@ -561,35 +565,55 @@ msgstr ""
 msgid "label"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:152
+#: uberwriter_lib/AppWindow.py:154
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr "Debugnachrichten anzeigen"
 
-#: uberwriter_lib/AppWindow.py:154
+#: uberwriter_lib/AppWindow.py:156
 msgid "Use experimental features"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:507
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:259
+msgid "extension \"{}\" is not a valid ZIP file"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:265
+msgid "extension \"{}\" has no valid XML dictionary registry"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:285
+msgid "unable to move extension, file with same name exists within move_path"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/oxt_extract.py:293
+msgid "unable to move extension, move_path is not a directory"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:105
+msgid "Unknown"
+msgstr ""
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
 msgid "(no suggestions)"
 msgstr "(keine Vorschläge)"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:544
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:547
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
 msgid "Add \"{}\" to Dictionary"
 msgstr "\"{}\" zum Wörterbuch hinzufügen"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:553
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
 msgid "Ignore All"
 msgstr "Alle Ignorieren"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:568
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:570
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
 msgid "Languages"
 msgstr "Sprachauswahl"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:586
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:589
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
 msgid "Suggestions"
 msgstr "Vorschläge"
 

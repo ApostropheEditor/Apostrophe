@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 18:57+0200\n"
+"POT-Creation-Date: 2018-04-20 21:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -461,11 +461,11 @@ msgstr ""
 msgid "Website is available"
 msgstr ""
 
-#: uberwriter/UberwriterInlinePreview.py:431
+#: uberwriter/UberwriterInlinePreview.py:437
 msgid "Open Link in Webbrowser"
 msgstr ""
 
-#: uberwriter/UberwriterInlinePreview.py:487
+#: uberwriter/UberwriterInlinePreview.py:494
 msgid "No matching footnote found"
 msgstr ""
 
@@ -473,48 +473,48 @@ msgstr ""
 msgid "Save your File"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:502
+#: uberwriter/UberwriterWindow.py:506
 msgid "You can not export to PDF."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:504
+#: uberwriter/UberwriterWindow.py:508
 msgid ""
 "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:534
+#: uberwriter/UberwriterWindow.py:538
 msgid "MarkDown or Plain Text"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:537
+#: uberwriter/UberwriterWindow.py:541
 msgid "Open a .md-File"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:559
+#: uberwriter/UberwriterWindow.py:563
 msgid "You have not saved your changes."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:561
+#: uberwriter/UberwriterWindow.py:565
 msgid "Close without Saving"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:562
+#: uberwriter/UberwriterWindow.py:566
 msgid "Cancel"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:563
+#: uberwriter/UberwriterWindow.py:567
 msgid "Save now"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:564
+#: uberwriter/UberwriterWindow.py:568
 msgid "Unsaved changes"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:630
+#: uberwriter/UberwriterWindow.py:634
 msgid "You can not enable the Spell Checker."
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:632
+#: uberwriter/UberwriterWindow.py:636
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
