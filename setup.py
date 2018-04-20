@@ -43,7 +43,7 @@ else:
 
 setup(
     name='uberwriter',
-    version='1.0',
+    version='2.0 beta',
     license='GPL-3',
     author='Wolf Vollprecht',
     author_email='w.vollprecht@gmail.com',
