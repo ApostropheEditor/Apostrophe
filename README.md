@@ -1,7 +1,16 @@
 Uberwriter
 ==========
 
+# About
+
 Uberwriter is a GTK+ based distraction free Markdown editor, mainly developed by Wolf Vollprecht. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.
+
+# Contributions and localization
+
+If you want to help to localize the project, just join us at [Poeditor](https://poeditor.com/join/project/gxVzFyXb2x)
+Any help is appreciated!
+
+# Running and building it
 
 To use uberwriter, please make sure you have some dependencies installed:
 
