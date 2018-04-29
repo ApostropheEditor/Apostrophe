@@ -11,7 +11,7 @@ flatpak/*
 !flatpak/pandoc-download
 !flatpak/pip-download
 !flatpak/uberwriter.json
-!flatpak/de.wolfvollprecht.UberWriter.svg
+!flatpak/de.wolfvollprecht.UberWriter.uberwriter.svg
 Promo/
 *.py~
 data/ui/shortcut_handlers
