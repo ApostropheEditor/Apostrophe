@@ -14,7 +14,8 @@
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf",
-        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        "--env=PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/bin:/usr/bin"
     ],
     "build-options" : {
         "env" : {
