@@ -11,8 +11,9 @@ flatpak/*
 !flatpak/pandoc-download
 !flatpak/pip-download
 !flatpak/uberwriter.json
-!flatpak/de.wolfvollprecht.UberWriter.uberwriter.*
-Promo/
+!flatpak/de.wolfvollprecht.UberWriter.*
+!flatpak/flatpak_texlive.json
+!flatpak/texlive_install.sh
 *.py~
 data/ui/shortcut_handlers
 *.ui~
