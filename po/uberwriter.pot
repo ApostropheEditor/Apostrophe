@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-20 21:44+0200\n"
+"POT-Creation-Date: 2018-05-01 20:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,11 @@ msgstr ""
 msgid "_About"
 msgstr ""
 
-#: data/ui/App_menu.ui:37 data/ui/UberwriterWindow.ui:214
+#: data/ui/App_menu.ui:37
+msgid "Help to _translate"
+msgstr ""
+
+#: data/ui/App_menu.ui:41 data/ui/UberwriterWindow.ui:214
 msgid "_Quit"
 msgstr ""
 
@@ -337,11 +341,11 @@ msgstr ""
 msgid "_View"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:434
+#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:425
 msgid "Focus Mode"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:454
+#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:445
 msgid "Fullscreen"
 msgstr ""
 
@@ -361,7 +365,7 @@ msgstr ""
 msgid "Switch to preview mode"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:271 data/ui/UberwriterWindow.ui:473
+#: data/ui/UberwriterWindow.ui:271 data/ui/UberwriterWindow.ui:464
 msgid "Preview"
 msgstr ""
 
@@ -393,43 +397,39 @@ msgstr ""
 msgid "Open Pandoc Online Markdown Help ..."
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:359
-msgid "Translate This Application..."
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:441 data/ui/UberwriterWindow.ui:442
+#: data/ui/UberwriterWindow.ui:432 data/ui/UberwriterWindow.ui:433
 msgid "Go into focus mode"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
+#: data/ui/UberwriterWindow.ui:451 data/ui/UberwriterWindow.ui:452
 msgid "Go into fullscreen mode"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:479 data/ui/UberwriterWindow.ui:480
+#: data/ui/UberwriterWindow.ui:470 data/ui/UberwriterWindow.ui:471
 msgid "Show HTML preview"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:496
+#: data/ui/UberwriterWindow.ui:487
 msgid "Words:"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:539
+#: data/ui/UberwriterWindow.ui:530
 msgid "Characters:"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:670
+#: data/ui/UberwriterWindow.ui:661
 msgid "Previous Match"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:714
+#: data/ui/UberwriterWindow.ui:705
 msgid "Case Sensitive"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:818
+#: data/ui/UberwriterWindow.ui:809
 msgid "Replace"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:832
+#: data/ui/UberwriterWindow.ui:823
 msgid "Replace all"
 msgstr ""
 
@@ -526,11 +526,11 @@ msgstr ""
 msgid "label"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:154
+#: uberwriter_lib/AppWindow.py:158
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:156
+#: uberwriter_lib/AppWindow.py:160
 msgid "Use experimental features"
 msgstr ""
 
