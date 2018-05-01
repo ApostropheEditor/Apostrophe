@@ -23,10 +23,13 @@
         }
     },
     "add-extensions": {
-        "de.wolfvollprecht.UberWriter.Extension": {
+        "de.wolfvollprecht.UberWriter.Plugin": {
+          "directory": "extensions",
+          "version": "stable",
           "subdirectories": true,
           "no-autodownload": true,
           "autodelete": true
+    }
     },
     "modules" : [
         {
@@ -39,7 +42,8 @@
                 }
             ],
             "post-install": [
-            "glib-compile-schemas /app/share/glib-2.0/schemas"
+            "glib-compile-schemas /app/share/glib-2.0/schemas",
+            "install -d /app/extensions"
             ]
         },
         {
@@ -134,4 +138,4 @@
         }
         
     ]
-}
+    }
