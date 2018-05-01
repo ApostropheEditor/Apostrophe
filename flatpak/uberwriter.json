@@ -22,6 +22,12 @@
             "IN_FLATPAK" : "1"
         }
     },
+    "add-extensions": {
+        "de.wolfvollprecht.UberWriter.Extension": {
+          "subdirectories": true,
+          "no-autodownload": true,
+          "autodelete": true
+    },
     "modules" : [
         {
             "name" : "uberwriter",
