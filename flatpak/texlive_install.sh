@@ -27,6 +27,7 @@ TEXMFSYSVAR /app/extensions/TexLive/2018/texmf-var
 TEXMFVAR ~/.texlive2018/texmf-var
 binary_x86_64-linux 1
 collection-latex 1
+collection-binextra 1
 collection-fontsrecommended 1
 instopt_adjustpath 0
 instopt_adjustrepo 1
