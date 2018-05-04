@@ -701,6 +701,7 @@ class UberwriterWindow(Window):
             # TODO: provide a local version of mathjax
 
             # We need to convert relative routes to absolute ones
+            # For that first we need to know if the file is saved:
             if self.filename:
                 base_path = os.path.dirname(self.filename)
             else:
