@@ -139,6 +139,20 @@
                     "dest-filename" : "configure"
                 }
             ]
+        },
+        {
+            "name": "appdata",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/share/appdata",
+                "install -Dm644 de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "de.wolfvollprecht.UberWriter.appdata.xml"
+                }
+            ]
         }
         
     ]

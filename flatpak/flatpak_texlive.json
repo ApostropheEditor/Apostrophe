@@ -7,7 +7,7 @@
     "separate-locales": false,
     "appstream-compose": false,
     "finish-args": [
-    ],
+        ],
     "build-options" : {
         "prefix": "/app/extensions/TexLive",
         "cflags": "-O2 -g",
@@ -37,15 +37,28 @@
                 "build-args": ["--share=network"],
                 "config-opts": ["--prefix=/app/extensions/TexLive"]
             },
-            "post-install": [
-                "install -Dm644 --target-directory=/app/share/metainfo flatpak/de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml",
-                "appstream-compose --basename=de.wolfvollprecht.UberWriter.Plugin.TexLive --prefix=/app/ --origin=flatpak de.wolfvollprecht.UberWriter.Plugin.TexLive"
+            "build-commands": [
             ],
             "sources": [
                 {
                     "type": "file",
                     "path": "texlive_install.sh",
                     "dest-filename": "configure"
+                }
+            ]
+        },
+        {
+            "name": "appdata",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/extensions/TexLive/share/appdata",
+                "install -Dm644 de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml /app/extensions/TexLive/share/appdata/de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml",
+                "appstream-compose --basename=de.wolfvollprecht.UberWriter.Plugin.TexLive --prefix=/app/extensions/TexLive --origin=flatpak de.wolfvollprecht.UberWriter.Plugin.TexLive"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml"
                 }
             ]
         }
