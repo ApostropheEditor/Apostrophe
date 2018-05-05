@@ -38,7 +38,7 @@
                 "config-opts": ["--prefix=/app/extensions/TexLive"]
             },
             "post-install": [
-                "install -Dm644 --target-directory=/app/share/metainfo data/misc/de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml",
+                "install -Dm644 --target-directory=/app/share/metainfo flatpak/de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml",
                 "appstream-compose --basename=de.wolfvollprecht.UberWriter.Plugin.TexLive --prefix=/app/ --origin=flatpak de.wolfvollprecht.UberWriter.Plugin.TexLive"
             ],
             "sources": [

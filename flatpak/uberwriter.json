@@ -42,6 +42,9 @@
                     "branch" : "master"
                 }
             ],
+            "build-commands": [
+                "install -Dm644 flatpak/de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml "
+            ],
             "post-install": [
             "glib-compile-schemas /app/share/glib-2.0/schemas",
             "install -d /app/extensions"
