@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <id type="desktop">de.wolfvollprecht.UberWriter.desktop</id>
+  <name>UberWriter</name>
+  <summary>An elegant, free distraction GTK+ markdown editor</summary>
+  <categories>
+    <category>Office</category>
+    <category>TextEditor</category>
+    <category>GTK</category>
+  </categories>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <url type="homepage">http://uberwriter.wolfvollprecht.de/</url>
+  <!-- <icon type="remote" height="375" width="375"></icon> -->
+</application>
