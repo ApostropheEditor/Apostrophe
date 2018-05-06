@@ -274,8 +274,8 @@ class UberwriterInlinePreview():
         cursor_iter = self.TextBuffer.get_iter_at_mark(cursor_mark)
         self.ClickMark = self.TextBuffer.create_mark('click', cursor_iter)
         # Events for popup menu
-        self.TextView.connect_after('populate-popup', self.populate_popup)
-        self.TextView.connect_after('popup-menu', self.move_popup)
+        # self.TextView.connect_after('populate-popup', self.populate_popup)
+        # self.TextView.connect_after('popup-menu', self.move_popup)
         self.TextView.connect('button-press-event', self.click_move_button)
         self.popover = None
         self.settings = Settings.new()
