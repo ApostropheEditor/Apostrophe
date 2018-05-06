@@ -16,7 +16,7 @@
           "PATH": "/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/bin:/usr/bin"
         }
     },
-    "cleanup": [],
+    "cleanup": ["/bin/wget"],
     "modules": [
         {
             "name": "wget",
