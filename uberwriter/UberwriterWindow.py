@@ -378,7 +378,7 @@ class UberwriterWindow(Window):
                 f.write(self.get_text())
                 f.close()
                
-                self.filename = filename
+                self.set_filename(filename)
                 self.set_headerbar_title(os.path.basename(filename) + self.title_end)
                
                 self.did_change = False
@@ -416,7 +416,7 @@ class UberwriterWindow(Window):
             f.write(self.get_text())
             f.close()
            
-            self.filename = filename
+            self.set_filename(filename)
             self.set_headerbar_title(os.path.basename(filename) + self.title_end)
 
             try:
@@ -594,7 +594,7 @@ class UberwriterWindow(Window):
             self.TextEditor.redos = []
 
             self.did_change = False
-            self.filename = None
+            self.set_filename()
             self.set_headerbar_title("New File" + self.title_end)
 
     def menu_activate_focusmode(self, widget=None):
@@ -709,7 +709,7 @@ class UberwriterWindow(Window):
             os.environ['PANDOC_PREFIX'] = base_path + '/'
 
             # Set the styles according the color theme
-            if self.settings.get_value("dark-mode"):
+            if Settings.get_value("dark-mode"):
                 stylesheet = helpers.get_media_path('uberwriter_dark.css')
             else:
                 stylesheet = helpers.get_media_path('uberwriter.css')
@@ -806,7 +806,7 @@ class UberwriterWindow(Window):
                 self.set_headerbar_title(os.path.basename(filename) + self.title_end)
                 self.TextEditor.undo_stack = []
                 self.TextEditor.redo_stack = []
-                self.filename = filename
+                self.set_filename(filename)
 
             except Exception as e:
                 logger.warning("Error Reading File: %r" % e)
@@ -1108,7 +1108,7 @@ class UberwriterWindow(Window):
         self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
 
         # Init file name with None
-        self.filename = None
+        self.set_filename()
 
         self.generate_recent_files_menu(self.builder.get_object('recent'))
 
@@ -1241,6 +1241,14 @@ class UberwriterWindow(Window):
             self.hb.props.title = title
         self.set_title(title)
 
+    def set_filename(self, filename=None):
+        if filename:
+            self.filename = filename
+            base_path = os.path.dirname(self.filename)
+        else:
+            self.filename = None
+            base_path = "/"
+        self.settings.set_value("open-file-path", GLib.Variant("s", base_path))
     def save_settings(self):
         if not os.path.exists(CONFIG_PATH):
             try:

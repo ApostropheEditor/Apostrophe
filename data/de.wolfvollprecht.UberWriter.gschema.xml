@@ -13,6 +13,13 @@
         asked to install them manually.
       </description>
     </key>
+    <key name='open-file-path' type='s'>
+      <default>"/tmp"</default>
+      <summary>Open file base path</summary>
+      <description>
+        Open file paths of the current session
+      </description>
+    </key>
 
   </schema>
 

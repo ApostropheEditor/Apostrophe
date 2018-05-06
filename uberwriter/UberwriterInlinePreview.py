@@ -14,6 +14,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+import os
 import re
 import http.client
 import urllib
@@ -28,6 +29,7 @@ from pprint import pprint
 
 from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
 from uberwriter_lib import LatexToPNG
+from .Settings import Settings
 
 from .FixTable import FixTable
 
@@ -276,6 +278,7 @@ class UberwriterInlinePreview():
         self.TextView.connect_after('popup-menu', self.move_popup)
         self.TextView.connect('button-press-event', self.click_move_button)
         self.popover = None
+        self.settings = Settings.new()
 
     def open_popover_with_widget(self, widget):
         a = self.TextBuffer.create_child_anchor(self.TextBuffer.get_iter_at_mark(self.ClickMark))
@@ -363,7 +366,7 @@ class UberwriterInlinePreview():
         link = MarkupBuffer.regex["LINK"]
 
         footnote = re.compile('\[\^([^\s]+?)\]')
-        image = re.compile("!\[(.+?)\]\((.+?)\)")
+        image = re.compile("!\[(.*?)\]\((.+?)\)")
 
         buf = self.TextBuffer
         context_offset = 0
@@ -457,6 +460,11 @@ class UberwriterInlinePreview():
                     path = match.group(2)
                     if path.startswith("file://"):
                         path = path[7:]
+                    elif not path.startswith("/"):
+                        # then the path is relative
+                        base_path = self.settings.get_value("open-file-path").get_string()
+                        path = base_path + "/" + path
+                                            
                     logger.info(path)
                     pb = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 400, 300)
                     image = Gtk.Image.new_from_pixbuf(pb)
