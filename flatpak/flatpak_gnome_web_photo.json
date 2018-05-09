@@ -92,7 +92,10 @@
         {
             "name": "gnome-web-photo",
             "buildsystem": "autotools",
-            "build-commands": ["--prefix=/app/extensions/WebPhoto"],
+            "config-opts": [
+                "--with-gtk=3.0",
+                "--prefix=/app/extensions/WebPhoto"
+            ],
             "build-options": {
                 "env":{
                     "LD_LIBRARY_PATH": "/app/extensions/WebPhoto/lib",
