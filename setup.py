@@ -38,6 +38,7 @@ pprint(extra_files_media)
 
 if os.path.isfile("/.flatpak-info"):
     app_prefix = '/app/'
+    print("in flatpak")
 else:
     app_prefix = ''
 
