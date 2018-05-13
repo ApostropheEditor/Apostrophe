@@ -36,7 +36,7 @@ from pprint import pprint
 pprint(extra_files_ui)
 pprint(extra_files_media)
 
-if os.environ.get('IN_FLATPAK'):
+if os.path.isfile("/.flatpak-info"):
     app_prefix = '/app/'
 else:
     app_prefix = ''
