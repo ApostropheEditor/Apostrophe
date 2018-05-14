@@ -709,7 +709,7 @@ class UberwriterWindow(Window):
             os.environ['PANDOC_PREFIX'] = base_path + '/'
 
             # Set the styles according the color theme
-            if Settings.get_value("dark-mode"):
+            if self.settings.get_value("dark-mode"):
                 stylesheet = helpers.get_media_path('uberwriter_dark.css')
             else:
                 stylesheet = helpers.get_media_path('uberwriter.css')
