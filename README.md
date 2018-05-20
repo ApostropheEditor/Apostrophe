@@ -1,9 +1,16 @@
 Uberwriter
 ==========
 
+![](screenshots/main.png)
+
 # About
 
 Uberwriter is a GTK+ based distraction free Markdown editor, mainly developed by Wolf Vollprecht. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.
+
+# Install
+
+You can get now UberWriter on Flathub!
+[Get it now](https://flathub.org/apps/details/de.wolfvollprecht.UberWriter)
 
 # Contributions and localization
 
@@ -16,8 +23,9 @@ To use uberwriter, please make sure you have some dependencies installed:
 
 - Pandoc, the program used to convert Markdown to basically anything else (the package name should be pandoc in most distributions)
 - Of course, gtk3 etc. needs to be installed as well since this is a gtk application
+- webkit2gtk is also needed for the preview panel
 - Please find these packages on your distribution: `python3 python3-regex python3-setuptools python3-levenshtein python3-enchant python3-gi python3-cairo`
-- Optional dependencies are `texlive` for the pdftex module and `gnome-web-photo` for the inline web previews
+- Optional dependencies are `texlive` for the pdftex module.
 
 You can run UberWriter with `./bin/uberwriter` without installing it in the system,
 but you'll need to install and compile the schemas before:
