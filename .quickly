@@ -1,5 +1,0 @@
-project = uberwriter
-version = 12.08.1
-template = ubuntu-application
-bzrbranch = lp:~w-vollprecht/uberwriter/quickly_trunk
-lp_id = uberwriter

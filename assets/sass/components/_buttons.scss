@@ -1,0 +1,30 @@
+button {
+    margin-left: 5px;
+
+    border:none;
+    -webkit-border-radius: 15;
+    -moz-border-radius: 15;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 3px #666666;
+    -moz-box-shadow: 0px 0px 3px #666666;
+    box-shadow: 0px 0px 3px #666666;
+    color: #000000;
+    font-size: 20px;
+    background: #0099ff;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+button:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+  }
+
+.donate {
+    background-color: rgba(194, 194, 194, 0);
+    color: #6b6b6b;
+}
+
+.donate:hover {
+    background: #6b6b6b;
+    color: white;
+}

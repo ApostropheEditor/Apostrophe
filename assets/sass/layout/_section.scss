@@ -1,0 +1,18 @@
+
+section {
+    height: 100vh;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    padding-top: 10vh;
+    
+}
+
+section img {
+    filter: drop-shadow( 0px 10px 40px #888888 );
+    width: 80%;
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center; */
+}
