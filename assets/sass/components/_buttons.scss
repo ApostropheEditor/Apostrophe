@@ -25,3 +25,10 @@ button:hover {
     background: #6b6b6b;
     color: white;
 }
+
+/* Maximum width */
+@media (max-width: 480px) {
+    #download {
+      display: none;
+    }
+}
