@@ -520,10 +520,10 @@ body {
 /* LAYOUT - Structure and layout files.
 ========================================================================== */
 header {
-  background-color: #ededed;
+  background-color: #f5f5f588;
   width: 100%;
   height: 10vh;
-  box-shadow: 0px -17px 20px 20px #29292978;
+  /*  box-shadow: 0px -17px 20px 20px #29292978; */
   position: fixed;
   top: 0px;
   z-index: 1;
@@ -543,7 +543,7 @@ header a {
 
 .buttons {
   margin-left: auto;
-  margin-right: 5px; }
+  height: 100%; }
 
 section {
   height: 100vh;
@@ -571,23 +571,22 @@ section img {
   background: radial-gradient(ellipse at top left, #699bc8 0%, #b5c5d8 57%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#699bc8', endColorstr='#b5c5d8',GradientType=1 ); }
 
+.background-2 {
+  background: whitesmoke; }
+
 button {
   margin-left: 5px;
   border: none;
-  -webkit-border-radius: 15;
-  -moz-border-radius: 15;
-  border-radius: 15px;
-  -webkit-box-shadow: 0px 0px 3px #666666;
-  -moz-box-shadow: 0px 0px 3px #666666;
-  box-shadow: 0px 0px 3px #666666;
-  color: #000000;
+  color: black;
   font-size: 20px;
-  background: #0099ff;
+  background: #ec6410;
   padding: 10px 20px 10px 20px;
-  text-decoration: none; }
+  text-decoration: none;
+  height: 100%; }
 
 button:hover {
-  background: #3cb0fd;
+  background: #963700;
+  color: whitesmoke;
   text-decoration: none; }
 
 .donate {

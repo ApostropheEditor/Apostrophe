@@ -2,20 +2,17 @@ button {
     margin-left: 5px;
 
     border:none;
-    -webkit-border-radius: 15;
-    -moz-border-radius: 15;
-    border-radius: 15px;
-    -webkit-box-shadow: 0px 0px 3px #666666;
-    -moz-box-shadow: 0px 0px 3px #666666;
-    box-shadow: 0px 0px 3px #666666;
-    color: #000000;
+    color: black;
     font-size: 20px;
-    background: #0099ff;
+    background: #ec6410;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
+
+    height: 100%;
 }
 button:hover {
-    background: #3cb0fd;
+    background: rgb(150, 55, 0);
+    color: whitesmoke;
     text-decoration: none;
   }
 
