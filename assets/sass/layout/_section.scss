@@ -5,6 +5,8 @@ section {
     // align-items: center;
     justify-content: center;
     padding-top: 10vh;
+
+    background: whitesmoke;
     
 }
 
@@ -16,3 +18,31 @@ section img {
     margin-right: auto;
     justify-content: center; */
 }
+
+section.dark {
+    background: rgba(0, 0, 0, 0);
+}
+
+section #programmers {
+    height: 50vh;
+    width: 100%;
+
+    position: absolute;
+    margin-top: -10vh;
+
+    z-index: -1;
+
+    background: whitesmoke;
+}
+
+section #footer {
+    height: 50vh;
+    width: 100%;
+
+    position: fixed;
+    top: 50vh;
+    z-index: -2;
+
+    color: whitesmoke;
+}
+

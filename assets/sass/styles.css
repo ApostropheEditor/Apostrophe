@@ -549,7 +549,8 @@ section {
   height: 100vh;
   display: flex;
   justify-content: center;
-  padding-top: 10vh; }
+  padding-top: 10vh;
+  background: whitesmoke; }
 
 section img {
   filter: drop-shadow(0px 10px 40px #888888);
@@ -558,6 +559,25 @@ section img {
   margin-left: auto;
   margin-right: auto;
   justify-content: center; */ }
+
+section.dark {
+  background: rgba(0, 0, 0, 0); }
+
+section #programmers {
+  height: 50vh;
+  width: 100%;
+  position: absolute;
+  margin-top: -10vh;
+  z-index: -1;
+  background: whitesmoke; }
+
+section #footer {
+  height: 50vh;
+  width: 100%;
+  position: fixed;
+  top: 50vh;
+  z-index: -2;
+  color: whitesmoke; }
 
 /* MODULES - Re-usable site elements.
 ========================================================================== */
@@ -572,7 +592,7 @@ section img {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#699bc8', endColorstr='#b5c5d8',GradientType=1 ); }
 
 .background-2 {
-  background: whitesmoke; }
+  background: #363636; }
 
 button {
   margin-left: 5px;
