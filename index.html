@@ -17,6 +17,8 @@
         $(function() {
           $.scrollify({
             section : ".section",
+            interstitialSection : ".footer",
+            setHeights: false,
           });
         });
       </script>
@@ -35,24 +37,31 @@
         </div>
     </header>
     <main>
-        <section class="section" id="1">
+        <section class="section" id="MainApp">
             <img src="images/main_web.svg#MainApp" alt="">
         </section>
-        <section class="section" id="2">
+        <section class="section" id="DarkMode">
             <img src="images/main_web.svg#MainAppDark" alt=""></img>
         </section>
-        <section class="section" id="3">
+        <section class="section" id="InlinePreview">
             <img src="images/main_web.svg#InlinePreview" alt=""></img>
         </section>
-        <section class="section" id="4">
+        <section class="section" id="InlinePreview-2">
             <img src="images/main_web.svg#InlinePrevi2w" alt=""></img>
         </section>
-        <section class="section" id="5">
+        <section class="section" id="InlinePreview-3">
             <img src="images/main_web.svg#InlinePrevi3w" alt=""></img>
         </section>
         <section class="section dark" id="footer">
             <div id="programmers">
-                <p></p>
+                <div class="programmer left">
+                    <img src="/images/Wolf.jpeg" alt="Wolf Vollprecht">
+                    <p>Blablabla</p>
+                </div>
+                <div class="programmer right">
+                    <img src="/images/Manu.jpeg" alt="Wolf Vollprecht">
+                    <p>Blebleble</p>
+                </div>
             </div>
             <div id="footer">
                 <div id="about">
@@ -60,11 +69,10 @@
 
                 </div>
                 <div id="links">
-                    <p>Github</p>
-                    <p>Translations</p>
-                    <p>Flathub</p>
-                    <p>Donate</p>
-
+                    <a href="https://github.com/UberWriter">Github</a>
+                    <a href="https://poeditor.com/join/project/gxVzFyXb2x">Localization</a>
+                    <a href="https://flathub.org/apps/details/de.wolfvollprecht.UberWriter">Flathub</a>
+                    <a href="https://www.paypal.me/WolfVollprecht">Donate</a>
                 </div>
             </div>
             

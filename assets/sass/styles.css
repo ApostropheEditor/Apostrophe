@@ -550,6 +550,7 @@ section {
   display: flex;
   justify-content: center;
   padding-top: 10vh;
+  flex-wrap: wrap;
   background: whitesmoke; }
 
 section img {
@@ -561,22 +562,36 @@ section img {
   justify-content: center; */ }
 
 section.dark {
-  background: rgba(0, 0, 0, 0); }
+  background: rgba(0, 0, 0, 0);
+  height: 900px;
+  flex-wrap: wrap; }
 
 section #programmers {
-  height: 50vh;
+  min-height: 50vh;
   width: 100%;
   position: absolute;
   margin-top: -10vh;
+  margin-bottom: 50vh;
+  padding-top: 10vh;
+  display: flex;
+  flex-flow: wrap;
   z-index: -1;
   background: whitesmoke; }
+
+.programmer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px; }
 
 section #footer {
   height: 50vh;
   width: 100%;
   position: fixed;
-  top: 50vh;
+  bottom: 0px;
   z-index: -2;
+  display: flex;
   color: whitesmoke; }
 
 /* MODULES - Re-usable site elements.
@@ -621,5 +636,9 @@ button:hover {
 @media (max-width: 480px) {
   #download {
     display: none; } }
+.programmer img {
+  border-radius: 100%;
+  height: 25vh;
+  width: auto; }
 
 /*# sourceMappingURL=styles.css.map */
