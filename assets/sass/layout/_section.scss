@@ -26,21 +26,22 @@ section.dark {
     flex-wrap: wrap;
 }
 
-section #programmers {
-    min-height: 50vh;
+section.programmers {
+    height: 80vh;
     width: 100%;
 
     position: absolute;
-    margin-top: -10vh;
-    margin-bottom: 50vh;
-    padding-top: 10vh;
+    /* margin-top: -10vh; */
+    margin-bottom: 20vh;
+    /* padding-top: 10vh; */
 
     display: flex;
     flex-flow: wrap;
 
-    z-index: -1;
+    z-index: 2;
 
     background: whitesmoke;
+    box-shadow: 0px 20px 40px 0px #1010104f;
 }
 
 .programmer {
@@ -49,18 +50,5 @@ section #programmers {
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
-}
-
-section #footer {
-    height: 50vh;
-    width: 100%;
-
-    position: fixed;
-    bottom: 0px;
-    z-index: -2;
-
-    display: flex;
-
-    color: whitesmoke;
 }
 

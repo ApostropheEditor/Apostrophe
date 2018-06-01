@@ -519,6 +519,11 @@ body {
 
 /* LAYOUT - Structure and layout files.
 ========================================================================== */
+main {
+  position: absolute;
+  z-index: 2;
+  width: 100%; }
+
 header {
   background-color: #f5f5f588;
   width: 100%;
@@ -526,7 +531,7 @@ header {
   /*  box-shadow: 0px -17px 20px 20px #29292978; */
   position: fixed;
   top: 0px;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   align-items: center; }
 
@@ -544,6 +549,18 @@ header a {
 .buttons {
   margin-left: auto;
   height: 100%; }
+
+footer {
+  height: 20vh;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  z-index: 0;
+  display: flex;
+  color: whitesmoke; }
+
+footer a {
+  color: whitesmoke; }
 
 section {
   height: 100vh;
@@ -566,17 +583,18 @@ section.dark {
   height: 900px;
   flex-wrap: wrap; }
 
-section #programmers {
-  min-height: 50vh;
+section.programmers {
+  height: 80vh;
   width: 100%;
   position: absolute;
-  margin-top: -10vh;
-  margin-bottom: 50vh;
-  padding-top: 10vh;
+  /* margin-top: -10vh; */
+  margin-bottom: 20vh;
+  /* padding-top: 10vh; */
   display: flex;
   flex-flow: wrap;
-  z-index: -1;
-  background: whitesmoke; }
+  z-index: 2;
+  background: whitesmoke;
+  box-shadow: 0px 20px 40px 0px #1010104f; }
 
 .programmer {
   display: flex;
@@ -584,15 +602,6 @@ section #programmers {
   margin-left: auto;
   margin-right: auto;
   padding: 20px; }
-
-section #footer {
-  height: 50vh;
-  width: 100%;
-  position: fixed;
-  bottom: 0px;
-  z-index: -2;
-  display: flex;
-  color: whitesmoke; }
 
 /* MODULES - Re-usable site elements.
 ========================================================================== */
