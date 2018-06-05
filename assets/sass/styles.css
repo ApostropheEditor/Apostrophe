@@ -562,7 +562,21 @@ footer {
 footer a {
   color: whitesmoke; }
 
-section {
+#about, #links {
+  display: flex;
+  align-items: center; }
+
+#about {
+  margin-left: 30px; }
+
+#links {
+  margin-left: auto;
+  margin-right: 30px; }
+
+#links a {
+  margin-left: 10px; }
+
+.section {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -570,39 +584,37 @@ section {
   flex-wrap: wrap;
   background: whitesmoke; }
 
-section img {
+.section img {
   filter: drop-shadow(0px 10px 40px #888888);
   width: 80%;
+  z-index: 3;
   /* display: block;
   margin-left: auto;
   margin-right: auto;
   justify-content: center; */ }
 
-section.dark {
+.section.dark {
   background: rgba(0, 0, 0, 0);
   height: 900px;
   flex-wrap: wrap; }
 
-section.programmers {
+.section.programmers {
   height: 80vh;
   width: 100%;
   position: absolute;
-  /* margin-top: -10vh; */
   margin-bottom: 20vh;
-  /* padding-top: 10vh; */
   display: flex;
   flex-flow: wrap;
   z-index: 2;
   background: whitesmoke;
   box-shadow: 0px 20px 40px 0px #1010104f; }
 
-.programmer {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px; }
-
+/********MOBILE************/
+@media (max-width: 480px) {
+  .section.programmers {
+    min-height: 80vh;
+    height: auto;
+    flex-flow: column; } }
 /* MODULES - Re-usable site elements.
 ========================================================================== */
 .background-1 {
@@ -645,9 +657,31 @@ button:hover {
 @media (max-width: 480px) {
   #download {
     display: none; } }
+.programmer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  width: 50%; }
+
+.programmer p {
+  margin-top: 60px;
+  width: 60%; }
+
 .programmer img {
+  filter: none;
   border-radius: 100%;
-  height: 25vh;
-  width: auto; }
+  height: auto;
+  width: 40%; }
+
+/********MOBILE************/
+@media (max-width: 480px) {
+  .programmer {
+    width: 100%; }
+
+  .programmer p {
+    width: 100%; } }
 
 /*# sourceMappingURL=styles.css.map */

@@ -11,6 +11,24 @@ footer {
     color: whitesmoke;
 }
 
-footer a{
+footer a {
     color: whitesmoke;
+}
+
+#about, #links {
+    display: flex;
+    align-items: center;
+}
+
+#about {
+    margin-left: 30px;
+}
+
+#links {
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+#links a{
+    margin-left:10px;
 }

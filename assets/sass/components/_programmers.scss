@@ -1,5 +1,37 @@
+.programmer {
+    display: flex;
+    flex-flow: column;
+
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width: 50%;
+}
+
+.programmer p{
+    margin-top: 60px;
+    width: 60%;
+}
+
 .programmer img{
+    filter: none;
+
     border-radius: 100%;
-    height: 25vh;
-    width: auto;
+    height: auto;
+    width: 40%;
+}
+
+
+/********MOBILE************/
+@media (max-width: 480px) {
+
+    .programmer{
+        width: 100%;
+    }
+
+    .programmer p{
+        width: 100%;
+    }
+
 }
