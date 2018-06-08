@@ -599,7 +599,9 @@ footer a {
   flex-wrap: wrap; }
 
 .section.programmers {
-  height: 80vh;
+  /* min-height: 80vh;
+  overflow: hidden; */
+  height: auto;
   width: 100%;
   position: absolute;
   margin-bottom: 20vh;
