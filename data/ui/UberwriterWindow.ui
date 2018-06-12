@@ -306,6 +306,7 @@
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Auto _Spellcheck</property>
                     <property name="use_underline">True</property>
+                    <property name="active">True</property>
                     <signal name="toggled" handler="toggle_spellcheck" swapped="no"/>
                   </object>
                 </child>
