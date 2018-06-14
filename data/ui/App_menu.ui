@@ -37,6 +37,10 @@
         <attribute name="label" translatable="yes">Help to _translate</attribute>
       </item>
       <item>
+        <attribute name="action">app.donate</attribute>
+        <attribute name="label" translatable="yes">Donate to the project</attribute>
+      </item>
+      <item>
         <attribute name="action">app.quit</attribute>
         <attribute name="label" translatable="yes">_Quit</attribute>
         <attribute name="accel">&lt;Primary&gt;q</attribute>
