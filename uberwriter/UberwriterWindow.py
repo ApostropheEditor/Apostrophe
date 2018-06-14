@@ -818,6 +818,9 @@ class UberwriterWindow(Window):
     def open_translation(self):
         webbrowser.open("https://poeditor.com/join/project/gxVzFyXb2x")
 
+    def open_donation(self):
+        webbrowser.open("https://liberapay.com/UberWriter/donate")
+
     def open_pandoc_markdown(self, widget, data=None):
         webbrowser.open("http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
 
@@ -992,6 +995,7 @@ class UberwriterWindow(Window):
             bbtn = Gtk.MenuButton()
             btn_settings = Gtk.MenuButton()
             btn_settings.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
+            #btn_settings.props.use_popover = True
             self.builder.get_object("menu4").detach()
             btn_settings.set_popup(self.builder.get_object("menu4"))
 
