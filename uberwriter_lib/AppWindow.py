@@ -134,6 +134,15 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_quit)
         self.add_action(action)
 
+        set_dark_mode = self.settings.get_value("dark-mode")
+
+        action = Gio.SimpleAction.new_stateful(
+            "dark_mode",
+            None,
+            GLib.Variant.new_boolean(set_dark_mode))
+        action.connect("change-state", self.on_dark_mode)
+        self.add_action(action)
+
         builder = get_builder('App_menu')
         self.set_app_menu(builder.get_object("app-menu"))
 
@@ -202,6 +211,17 @@ class Application(Gtk.Application):
         builder = get_builder('Shortcuts')
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
+
+    def on_dark_mode(self, action, value):
+        action.set_state(value)
+        self.settings.set_value("dark-mode",
+                                 GLib.Variant("b", value))
+        self.window.dark_mode_toggled(value)
+
+        #this changes the headerbar theme accordingly
+        self.dark_setting = Gtk.Settings.get_default()
+        self.dark_setting.set_property("gtk-application-prefer-dark-theme", value)
+
         
     def on_quit(self, action, param):
         self.quit()

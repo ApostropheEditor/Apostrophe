@@ -47,6 +47,8 @@ from .UberwriterSearchAndReplace import UberwriterSearchAndReplace
 from .Settings import Settings
 # from .UberwriterAutoCorrect import UberwriterAutoCorrect
 
+from uberwriter_lib.helpers import get_builder
+
 import logging
 logger = logging.getLogger('uberwriter')
 
@@ -766,20 +768,20 @@ class UberwriterWindow(Window):
             decision.ignore()
             return True # Don't let the event "bubble up"
 
-    def dark_mode_toggled(self, widget, data=None):
+    def dark_mode_toggled(self, state):
         # Save state for saving settings later
-        self.dark_mode = widget.get_active()
+        self.dark_mode = state
         if self.dark_mode:
             # Dark Mode is on
             # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
-            self.settings.set_value("dark-mode", GLib.Variant("b", True))
+            # self.settings.set_value("dark-mode", GLib.Variant("b", True))
             self.get_style_context().add_class("dark_mode")
             self.hb_container.get_style_context().add_class("dark_mode")
             self.MarkupBuffer.dark_mode(True)
         else:
             # Dark mode off
             # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
-            self.settings.set_value("dark-mode", GLib.Variant("b", False))
+            # self.settings.set_value("dark-mode", GLib.Variant("b", False))
             self.get_style_context().remove_class("dark_mode")
             self.hb_container.get_style_context().remove_class("dark_mode")
             self.MarkupBuffer.dark_mode(False)
@@ -995,9 +997,10 @@ class UberwriterWindow(Window):
             bbtn = Gtk.MenuButton()
             btn_settings = Gtk.MenuButton()
             btn_settings.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
-            #btn_settings.props.use_popover = True
-            self.builder.get_object("menu4").detach()
-            btn_settings.set_popup(self.builder.get_object("menu4"))
+            btn_settings.props.use_popover = True
+            self.builder_window_menu = get_builder('WindowMenu')
+            self.model = self.builder_window_menu.get_object("WindowMenu")
+            btn_settings.set_menu_model(self.model)
 
             self.builder.get_object("menu1").detach()
             bbtn.set_popup(self.builder.get_object("menu1"))
@@ -1025,7 +1028,6 @@ class UberwriterWindow(Window):
         self.focusmode_menu_button = builder.get_object('mnu_focusmode')
         self.preview_button = builder.get_object('preview_toggle')
         self.preview_mnu_button = builder.get_object('mnu_preview')
-        self.dark_mode_button = builder.get_object('dark_mode')
 
         self.fullscreen_button.set_name('fullscreen_toggle')
         self.focusmode_button.set_name('focus_toggle')
@@ -1130,7 +1132,7 @@ class UberwriterWindow(Window):
 
         # Setup dark mode if so
         if self.settings.get_value("dark-mode"):
-            self.dark_mode_button.set_active(True)
+            self.dark_mode_toggled(True)
 
 
         # Scrolling -> Dark or not?
@@ -1272,14 +1274,12 @@ class UberwriterWindow(Window):
             logger.debug("Error writing settings file to disk. Error: %r" % e)
 
     def load_settings(self, builder):
-        dark_mode_button = builder.get_object("dark_mode")
         spellcheck_button = builder.get_object("disable_spellcheck")
         try:
             f = open(CONFIG_PATH + "settings.pickle", "rb")
             settings = pickle.load(f)
             f.close()
             self.dark_mode = settings['dark_mode']
-            dark_mode_button.set_active(settings['dark_mode'])
             spellcheck_button.set_active(settings['spellcheck'])
             logger.debug("loaded settings: %r" % settings)
         except Exception as e:

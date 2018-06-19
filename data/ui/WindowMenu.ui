@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <menu id="WindowMenu">
+        <section>
+            <item>
+                <attribute name="label" translatable="yes">Focus Mode</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Fullscreen</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Dark Mode</attribute>
+                <attribute name="action">app.dark_mode</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Preview</attribute>
+            </item>
+        </section>
+        <section>
+            <item>
+                <attribute name="label" translatable="yes">Search and Replace ...</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Auto _Spellcheck</attribute>
+            </item>
+        </section>
+    </menu>
+</interface>
