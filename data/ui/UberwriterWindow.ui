@@ -425,7 +425,6 @@
                         <property name="tooltip_text" translatable="yes">Go into focus mode</property>
                         <property name="halign">center</property>
                         <property name="relief">none</property>
-                        <signal name="toggled" handler="set_focusmode" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -444,7 +443,6 @@
                         <property name="tooltip_text" translatable="yes">Go into fullscreen mode</property>
                         <property name="halign">start</property>
                         <property name="relief">none</property>
-                        <signal name="toggled" handler="toggle_fullscreen" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>

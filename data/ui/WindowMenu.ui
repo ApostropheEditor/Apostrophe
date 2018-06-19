@@ -4,9 +4,11 @@
         <section>
             <item>
                 <attribute name="label" translatable="yes">Focus Mode</attribute>
+                <attribute name="action">app.focus_mode</attribute>
             </item>
             <item>
                 <attribute name="label" translatable="yes">Fullscreen</attribute>
+                <attribute name="action">app.fullscreen</attribute>
             </item>
             <item>
                 <attribute name="label" translatable="yes">Dark Mode</attribute>

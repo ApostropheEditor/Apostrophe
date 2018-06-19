@@ -82,9 +82,7 @@ class UberwriterWindow(Window):
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
         'save-file-as': (GObject.SIGNAL_ACTION, None, ()),
         'new-file': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-focusmode': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-bibtex': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-fullscreen': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-spellcheck': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-search': (GObject.SIGNAL_ACTION, None, ()),
@@ -162,8 +160,8 @@ class UberwriterWindow(Window):
         self.update_line_and_char_count()
         self.check_scroll(self.TextBuffer.get_insert())
 
-    def toggle_fullscreen(self, widget, data=None):
-        if widget.get_active():
+    def toggle_fullscreen(self, state):
+        if state.get_boolean():
             self.fullscreen()
             key, mod = Gtk.accelerator_parse("Escape")
             self.fullscreen_button.add_accelerator("activate",
@@ -183,8 +181,8 @@ class UberwriterWindow(Window):
 
         self.TextEditor.grab_focus()
 
-    def set_focusmode(self, widget, data=None):
-        if widget.get_active():
+    def set_focusmode(self, state):
+        if state.get_boolean():
             self.init_typewriter()
             self.MarkupBuffer.focusmode_highlight()
             self.focusmode = True
@@ -192,7 +190,6 @@ class UberwriterWindow(Window):
             self.check_scroll(self.TextBuffer.get_insert())
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 0)
-            self.focusmode_menu_button.set_active(True)
             self.focusmode_button.set_active(True)
         else:
             self.remove_typewriter()
@@ -210,7 +207,6 @@ class UberwriterWindow(Window):
             self.check_scroll()
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 4)
-            self.focusmode_menu_button.set_active(False)
             self.focusmode_button.set_active(False)
 
     def scroll_smoothly(self, widget, frame_clock, data = None):
@@ -599,9 +595,6 @@ class UberwriterWindow(Window):
             self.set_filename()
             self.set_headerbar_title("New File" + self.title_end)
 
-    def menu_activate_focusmode(self, widget=None):
-        self.focusmode_button.emit('activate')
-
     def menu_activate_fullscreen(self, widget=None):
         self.fullscreen_button.emit('activate')
 
@@ -960,8 +953,6 @@ class UberwriterWindow(Window):
         self.connect('save-file-as', self.save_document_as)
         self.connect('new-file', self.new_document)
         self.connect('open-file', self.open_document)
-        self.connect('toggle-fullscreen', self.menu_activate_fullscreen)
-        self.connect('toggle-focusmode', self.menu_activate_focusmode)
         #self.connect('toggle-preview', self.menu_activate_preview)
         self.connect('toggle-spellcheck', self.toggle_spellcheck)
         self.connect('close-window', self.on_mnu_close_activate)
@@ -1023,11 +1014,12 @@ class UberwriterWindow(Window):
 
         # Wire up buttons
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
-        self.fullscreen_menu_button = builder.get_object('mnu_fullscreen')
         self.focusmode_button = builder.get_object('focus_toggle')
-        self.focusmode_menu_button = builder.get_object('mnu_focusmode')
         self.preview_button = builder.get_object('preview_toggle')
         self.preview_mnu_button = builder.get_object('mnu_preview')
+
+        self.fullscreen_button.set_action_name("app.fullscreen")
+        self.focusmode_button.set_action_name("app.focus_mode")
 
         self.fullscreen_button.set_name('fullscreen_toggle')
         self.focusmode_button.set_name('focus_toggle')

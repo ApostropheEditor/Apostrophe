@@ -135,12 +135,25 @@ class Application(Gtk.Application):
         self.add_action(action)
 
         set_dark_mode = self.settings.get_value("dark-mode")
-
         action = Gio.SimpleAction.new_stateful(
             "dark_mode",
             None,
             GLib.Variant.new_boolean(set_dark_mode))
         action.connect("change-state", self.on_dark_mode)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new_stateful(
+            "focus_mode",
+            None,
+            GLib.Variant.new_boolean(False))
+        action.connect("change-state", self.on_focus_mode)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new_stateful(
+            "fullscreen",
+            None,
+            GLib.Variant.new_boolean(False))
+        action.connect("change-state", self.on_fullscreen)
         self.add_action(action)
 
         builder = get_builder('App_menu')
@@ -222,6 +235,13 @@ class Application(Gtk.Application):
         self.dark_setting = Gtk.Settings.get_default()
         self.dark_setting.set_property("gtk-application-prefer-dark-theme", value)
 
+    def on_focus_mode(self, action, value):
+        action.set_state(value)
+        self.window.set_focusmode(value)
+
+    def on_fullscreen(self, action, value):
+        action.set_state(value)
+        self.window.toggle_fullscreen(value)
         
     def on_quit(self, action, param):
         self.quit()
