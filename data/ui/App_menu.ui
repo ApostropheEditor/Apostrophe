@@ -20,7 +20,6 @@
 -->
     <section>
       <item>
-        <attribute name="action">app.about</attribute>
         <attribute name="action">app.shortcuts</attribute>
         <attribute name="label" translatable="yes">_Shortcuts</attribute>
       </item>
@@ -40,6 +39,8 @@
         <attribute name="action">app.donate</attribute>
         <attribute name="label" translatable="yes">Donate to the project</attribute>
       </item>
+    </section>
+    <section>
       <item>
         <attribute name="action">app.quit</attribute>
         <attribute name="label" translatable="yes">_Quit</attribute>
