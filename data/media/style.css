@@ -12,15 +12,8 @@
   bind "<ctl>o" { "open-file" () };
   bind "<ctl>s" { "save-file" () };
   bind "<ctl><shift>s" { "save-file-as" () };
-  bind "<ctl>d" { "toggle-focusmode" () };
-  bind "<ctl>p" { "toggle-preview" () };
   bind "<ctl>w" { "close-window" () };
-  bind "<ctl>f" { "toggle-search" () };
   bind "<ctl><shift>b" { "toggle-bibtex" () };
-  bind "<ctl><shift>r" { "toggle-search-replace" () };
-  bind "<ctl><shift>f" { "toggle-search-replace" () };
-  bind "F11" { "toggle-fullscreen" () };
-  bind "F7" { "toggle-spellcheck" () };
 }
 
 @binding-set editor-bindings {
@@ -220,14 +213,14 @@
   padding: 5px;
 }
 
-#QuickPreviewPopup {
+/* .QuickPreviewPopup {
   padding: 5px;
   margin: 5px;
   border: 1px solid #333;
   background: @ligth_bg;
   border-radius: 3px;
   border-color: @light_bg;
-}
+} */
 
 #LexikonBubble label {
   /*padding: 5px;*/
@@ -254,16 +247,16 @@
   padding-left: 20px;
 }
 
-popover {
+.QuickPreviewPopup {
 	background-color: @light_bg;
 }
 
-popover grid {
+.QuickPreviewPopup grid {
 	background-color: @light_bg;
 	color: @dark_bg;
 	border-color: @light_bg;
 }
 
-popover label {
+.QuickPreviewPopup label {
 	color: @dark_bg;
 }

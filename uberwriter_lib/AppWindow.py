@@ -110,6 +110,8 @@ class Application(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
+        '''AppMenu Actions'''
+
         action = Gio.SimpleAction.new("help", None)
         action.connect("activate", self.on_help)
         self.add_action(action)
@@ -134,30 +136,59 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_quit)
         self.add_action(action)
 
+        '''Right menu actions'''
+
         set_dark_mode = self.settings.get_value("dark-mode")
-        action = Gio.SimpleAction.new_stateful(
-            "dark_mode",
-            None,
-            GLib.Variant.new_boolean(set_dark_mode))
+        action = Gio.SimpleAction.new_stateful("dark_mode",
+                                                None,
+                                                GLib.Variant.new_boolean(set_dark_mode))
         action.connect("change-state", self.on_dark_mode)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new_stateful(
-            "focus_mode",
-            None,
-            GLib.Variant.new_boolean(False))
+        action = Gio.SimpleAction.new_stateful("focus_mode",
+                                                None,
+                                                GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_focus_mode)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new_stateful(
-            "fullscreen",
-            None,
-            GLib.Variant.new_boolean(False))
+        action = Gio.SimpleAction.new_stateful("fullscreen",
+                                                None,
+                                                GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_fullscreen)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new_stateful("preview",
+                                                None,
+                                                GLib.Variant.new_boolean(False))
+        action.connect("change-state", self.on_preview)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("search", None)
+        action.connect("activate", self.on_search)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new_stateful("preview",
+                                                None,
+                                                GLib.Variant.new_boolean(False))
+        action.connect("change-state", self.on_preview)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new_stateful("spellcheck",
+                                                None,
+                                                GLib.Variant.new_boolean(True))
+        action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
         builder = get_builder('App_menu')
         self.set_app_menu(builder.get_object("app-menu"))
+
+        '''Shortcuts'''
+
+        self.set_accels_for_action("app.focus_mode",["<Ctl>d"])
+        self.set_accels_for_action("app.fullscreen",["F11"])
+        self.set_accels_for_action("app.preview",["<Ctl>p"])
+        self.set_accels_for_action("app.search",["<Ctl>f"])
+        self.set_accels_for_action("app.spellcheck",["F7"])
 
 
     def do_activate(self):
@@ -242,6 +273,17 @@ class Application(Gtk.Application):
     def on_fullscreen(self, action, value):
         action.set_state(value)
         self.window.toggle_fullscreen(value)
+
+    def on_preview(self, action, value):
+        action.set_state(value)
+        self.window.toggle_preview(value)
+
+    def on_search(self, action, value):
+        self.window.open_search_and_replace()
+
+    def on_spellcheck(self, action, value):
+        action.set_state(value)
+        self.window.toggle_spellcheck(value)
         
     def on_quit(self, action, param):
         self.quit()

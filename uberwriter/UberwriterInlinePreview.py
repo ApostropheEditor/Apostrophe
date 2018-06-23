@@ -307,6 +307,7 @@ class UberwriterInlinePreview():
         # b.show_all()
         # a.show_all()
         self.popover = Gtk.Popover.new(lbl)
+        self.popover.get_style_context().add_class("QuickPreviewPopup")
         self.popover.add(alignment)
         # a.add(alignment)
         dismiss, rect = self.popover.get_pointing_to()

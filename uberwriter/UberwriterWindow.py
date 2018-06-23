@@ -83,10 +83,7 @@ class UberwriterWindow(Window):
         'save-file-as': (GObject.SIGNAL_ACTION, None, ()),
         'new-file': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-bibtex': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-spellcheck': (GObject.SIGNAL_ACTION, None, ()),
         'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-search': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-search-replace': (GObject.SIGNAL_ACTION, None, ()),
         'close-window': (GObject.SIGNAL_ACTION, None, ())
     }
 
@@ -163,21 +160,10 @@ class UberwriterWindow(Window):
     def toggle_fullscreen(self, state):
         if state.get_boolean():
             self.fullscreen()
-            key, mod = Gtk.accelerator_parse("Escape")
-            self.fullscreen_button.add_accelerator("activate",
-                self.accel_group, key, mod, Gtk.AccelFlags.VISIBLE)
             self.fullscreen_button.set_active(True)
-            self.fullscreen_menu_button.set_active(True)
-            # Hide Menu
-            self.menubar.hide()
         else:
             self.unfullscreen()
-            key, mod = Gtk.accelerator_parse("Escape")
-            self.fullscreen_button.remove_accelerator(
-                self.accel_group, key, mod)
             self.fullscreen_button.set_active(False)
-            self.fullscreen_menu_button.set_active(False)
-            self.menubar.hide()
 
         self.TextEditor.grab_focus()
 
@@ -595,51 +581,35 @@ class UberwriterWindow(Window):
             self.set_filename()
             self.set_headerbar_title("New File" + self.title_end)
 
-    def menu_activate_fullscreen(self, widget=None):
-        self.fullscreen_button.emit('activate')
-
     def menu_toggle_sidebar(self, widget=None):
         self.sidebar.toggle_sidebar()
 
-#    def menu_activate_preview(self, widget=None):
-#        self.preview_button.emit('activate')
-
-    def toggle_spellcheck(self, widget=None, data=None):
-        if widget:
-            if self.spellcheck:
-                if widget.get_active():
-                    self.SpellChecker.enable()
-                else:
-                    self.SpellChecker.disable()
-
-            elif widget.get_active():
-                self.SpellChecker = SpellChecker(self.TextEditor, self, locale.getdefaultlocale()[0], collapse=False)
-                if self.auto_correct:
-                    self.auto_correct.set_language(self.SpellChecker.language)
-                    self.SpellChecker.connect_language_change(self.auto_correct.set_language)
-                try:
-                    self.spellcheck = True
-                except:
-                    self.SpellChecker = None
-                    self.spellcheck = False
-                    dialog = Gtk.MessageDialog(self,
-                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                        Gtk.MessageType.INFO,
-                        Gtk.ButtonsType.NONE,
-                        _("You can not enable the Spell Checker.")
-                    )
-                    dialog.format_secondary_text(_("Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."))
-                    response = dialog.run()
-                    return
-        else:
-            widget = self.spellcheck_button
-            if self.spellcheck and self.SpellChecker.enabled():
-                self.SpellChecker.disable()
-                widget.set_active(False)
-            else:
+    def toggle_spellcheck(self, status):
+        if self.spellcheck:
+            if status.get_boolean():
                 self.SpellChecker.enable()
-                widget.set_active(True)
+            else:
+                self.SpellChecker.disable()
 
+        elif status.get_boolean():
+            self.SpellChecker = SpellChecker(self.TextEditor, self, locale.getdefaultlocale()[0], collapse=False)
+            if self.auto_correct:
+                self.auto_correct.set_language(self.SpellChecker.language)
+                self.SpellChecker.connect_language_change(self.auto_correct.set_language)
+            try:
+                self.spellcheck = True
+            except:
+                self.SpellChecker = None
+                self.spellcheck = False
+                dialog = Gtk.MessageDialog(self,
+                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.INFO,
+                    Gtk.ButtonsType.NONE,
+                    _("You can not enable the Spell Checker.")
+                )
+                dialog.format_secondary_text(_("Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."))
+                response = dialog.run()
+                return
         return
 
     def on_drag_data_received(self, widget, drag_context, x, y,
@@ -682,13 +652,12 @@ class UberwriterWindow(Window):
         self.present()
         return False
 
-    def toggle_preview(self, widget, data=None):
-        if widget.get_active():
+    def toggle_preview(self, state):
 
-            # Toggle buttons
+        self.preview_button.set_active(state.get_boolean())
 
-            # self.preview_button.set_active(True)
-            # self.preview_mnu_button.set_active(True)
+        if state.get_boolean():
+
             # Insert a tag with ID to scroll to
             # self.TextBuffer.insert_at_cursor('<span id="scroll_mark"></span>')
             # TODO
@@ -748,8 +717,6 @@ class UberwriterWindow(Window):
             self.ScrolledWindow.add(self.TextEditor)
             self.TextEditor.show()
             
-            # self.preview_button.set_active(False)
-            # self.preview_mnu_button.set_active(False)
 
         self.queue_draw()
         return True
@@ -822,7 +789,7 @@ class UberwriterWindow(Window):
     def open_uberwriter_markdown(self, widget, data=None):
         self.load_file(helpers.get_media_file('uberwriter_markdown.md'))
 
-    def open_search_and_replace(self, widget, data=None):
+    def open_search_and_replace(self):
         self.searchreplace.toggle_search()
 
     def open_advanced_export(self, widget, data=None):
@@ -953,10 +920,7 @@ class UberwriterWindow(Window):
         self.connect('save-file-as', self.save_document_as)
         self.connect('new-file', self.new_document)
         self.connect('open-file', self.open_document)
-        #self.connect('toggle-preview', self.menu_activate_preview)
-        self.connect('toggle-spellcheck', self.toggle_spellcheck)
         self.connect('close-window', self.on_mnu_close_activate)
-        self.connect('toggle-search', self.open_search_and_replace)
         self.scroll_adjusted = False
 
         # Code for other initialization actions should be added here.
@@ -1016,10 +980,10 @@ class UberwriterWindow(Window):
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
         self.focusmode_button = builder.get_object('focus_toggle')
         self.preview_button = builder.get_object('preview_toggle')
-        self.preview_mnu_button = builder.get_object('mnu_preview')
 
         self.fullscreen_button.set_action_name("app.fullscreen")
         self.focusmode_button.set_action_name("app.focus_mode")
+        self.preview_button.set_action_name("app.preview")
 
         self.fullscreen_button.set_name('fullscreen_toggle')
         self.focusmode_button.set_name('focus_toggle')
@@ -1161,7 +1125,6 @@ class UberwriterWindow(Window):
         self.vadjustment.connect('value-changed', self.scrolled)
 
 
-        self.spellcheck_button = builder.get_object("disable_spellcheck")
         # Setting up spellcheck
         self.auto_correct = None
         try:
@@ -1175,7 +1138,6 @@ class UberwriterWindow(Window):
         except:
             self.SpellChecker = None
             self.spellcheck = False
-            builder.get_object("disable_spellcheck").set_active(False)
 
         if self.spellcheck:
             self.SpellChecker.append_filter('[#*]+', SpellChecker.FILTER_WORD)
@@ -1266,13 +1228,11 @@ class UberwriterWindow(Window):
             logger.debug("Error writing settings file to disk. Error: %r" % e)
 
     def load_settings(self, builder):
-        spellcheck_button = builder.get_object("disable_spellcheck")
         try:
             f = open(CONFIG_PATH + "settings.pickle", "rb")
             settings = pickle.load(f)
             f.close()
             self.dark_mode = settings['dark_mode']
-            spellcheck_button.set_active(settings['spellcheck'])
             logger.debug("loaded settings: %r" % settings)
         except Exception as e:
             logger.debug("(First Run?) Error loading settings from home dir. \

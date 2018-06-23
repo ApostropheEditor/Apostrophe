@@ -16,14 +16,17 @@
             </item>
             <item>
                 <attribute name="label" translatable="yes">Preview</attribute>
+                <attribute name="action">app.preview</attribute>
             </item>
         </section>
         <section>
             <item>
-                <attribute name="label" translatable="yes">Search and Replace ...</attribute>
+                <attribute name="label" translatable="yes">Search and Replace</attribute>
+                <attribute name="action">app.search</attribute>
             </item>
             <item>
                 <attribute name="label" translatable="yes">Auto _Spellcheck</attribute>
+                <attribute name="action">app.spellcheck</attribute>
             </item>
         </section>
     </menu>

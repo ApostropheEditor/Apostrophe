@@ -461,7 +461,6 @@
                         <property name="tooltip_text" translatable="yes">Show HTML preview</property>
                         <property name="halign">start</property>
                         <property name="relief">none</property>
-                        <signal name="toggled" handler="toggle_preview" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
