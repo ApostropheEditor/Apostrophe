@@ -1,9 +1,0 @@
-
-export PYBUILD_NAME=uberwriter
-export PYBUILD_DISABLE=test
-export PYBUILD_INSTALL_ARGS_python3="--root=./debian/uberwriter/ --install-scripts=/opt/extras.ubuntu.com/uberwriter/bin --install-data=/opt/extras.ubuntu.com/uberwriter --install-lib=/opt/extras.ubuntu.com/uberwriter"
-
-export XDG_RUNTIME_DIR=/tmp
-
-%:
-        dh $@ --with python3 --buildsystem=pybuild
