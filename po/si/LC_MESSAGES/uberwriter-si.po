@@ -1,173 +1,191 @@
-# Sinhalese translation for uberwriter
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
-# This file is distributed under the same license as the uberwriter package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: uberwriter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-20 21:44+0200\n"
-"PO-Revision-Date: 2018-04-20 22:02+0200\n"
-"Last-Translator: Nishadi Madavi <nishanda.wickrama@gmail.com>\n"
-"Language-Team: Sinhalese <si@li.org>\n"
-"Language: si\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-12 00:12+0000\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: UberWriter\n"
+"Language: si\n"
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
-#, fuzzy
-#| msgid "Dark Mode"
-msgid "Dark mode"
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
+msgid "(no suggestions)"
+msgstr "(යෝජනා නොමැත)"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
+msgid "Add \"{}\" to Dictionary"
+msgstr "ශබ්දකෝෂයට \"{}\" ඇතුලත් කරන්න"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
+msgid "Ignore All"
+msgstr "සියල්ල නොසලකා හරින්න"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
+msgid "Languages"
+msgstr "භාෂා"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
+msgid "Suggestions"
+msgstr "යෝජනා"
+
+#: ../uberwriter.desktop.in.h:1
+msgid "UberWriter"
+msgstr "උබ(ර්)ලියනය"
+
+#: ../uberwriter.desktop.in.h:2
+msgid "UberWriter, a simple and distraction free Markdown Editor"
+msgstr "උබ(ර්)ලියනය, සරල සහ වික්ෂිප්ත නිදහස් සටහන් තබාගන්නා සංස්කාරකයකි"
+
+#: uberwriter/UberwriterInlinePreview.py:185
+msgid "Website is not available"
+msgstr "වෙබ් අඩවිය නොපවතී"
+
+#: uberwriter/UberwriterInlinePreview.py:187
+msgid "Website is available"
+msgstr "වෙබ් අඩවිය පවතී"
+
+#: uberwriter/UberwriterInlinePreview.py:437
+msgid "Open Link in Webbrowser"
+msgstr "විවෘත සම්බන්ධිත ලිපිනය වෙබ් බ්‍රව්සරයේ ඇත."
+
+#: uberwriter/UberwriterInlinePreview.py:494
+msgid "No matching footnote found"
+msgstr "ගැළපෙන අධෝලිපියක් සොයාගත නොහැක"
+
+#: data/ui/UberwriterWindow.ui:66
+msgid "_File"
+msgstr "_ගොනුව"
+
+#: data/ui/UberwriterWindow.ui:96
+msgid "Open Recent File"
+msgstr "නූතන ගොනුව විවෘත කරන්න"
+
+#: data/ui/UberwriterWindow.ui:175
+msgid "Export as ODT"
+msgstr "ODT ලෙස අපනයනය කරන්න"
+
+#: data/ui/UberwriterWindow.ui:186
+msgid "Advanced Export..."
+msgstr "ඉදිරියට පැමිණි අපනයනය"
+
+#: ../data/ui/UberwriterWindow.ui.h:5
+msgid "Copy raw HTML to clipboard"
+msgstr "දළ HTML ඇමුණුම් පුවරුවට පිටපත් කරන්න"
+
+#: ../data/ui/UberwriterWindow.ui.h:6
+msgid "_Edit"
+msgstr "_සංස්කරණය"
+
+#: data/ui/UberwriterWindow.ui:229
+msgid "_View"
+msgstr "_පෙන්වන්න"
+
+#: data/ui/UberwriterWindow.ui:261
+msgid "Light text on a dark background"
+msgstr "අඳුරුපසුතලයක වූ ආලොකමත් පාඨ"
+
+#: data/ui/UberwriterWindow.ui:262
+msgid "Dark Mode"
 msgstr "අඳුරු විධිය"
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
-msgid ""
-"If enabled, the window will be dark themed If disabled, the window will be light themed "
-"asked to install them manually."
-msgstr ""
+#: data/ui/UberwriterWindow.ui:270
+msgid "Switch to preview mode"
+msgstr "පෙර විධියට මාරුවන්න"
 
-#.
-#. <attribute name="action">win.change_label</attribute>
-#. <attribute name="target">String 1</attribute>
-#: data/ui/App_menu.ui:10
-msgid "New window"
-msgstr ""
-
-#: data/ui/App_menu.ui:25
-msgid "_Shortcuts"
-msgstr ""
-
-#: data/ui/App_menu.ui:29
-msgid "Pandoc _Help"
-msgstr ""
-
-#: data/ui/App_menu.ui:33
-msgid "_About"
-msgstr ""
-
-#: data/ui/App_menu.ui:37 data/ui/UberwriterWindow.ui:214
-msgid "_Quit"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:13
-msgctxt "shortcut window"
-msgid "General"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:17
-msgctxt "shortcut window"
-msgid "New"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:24
-msgctxt "shortcut window"
-msgid "Open"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:31
-#, fuzzy
-#| msgid "Save now"
-msgctxt "shortcut window"
-msgid "Save"
-msgstr "දැන් සුරකින්න"
-
-#: data/ui/Shortcuts.ui:38
-#, fuzzy
-#| msgid "Save now"
-msgctxt "shortcut window"
-msgid "Save as"
-msgstr "දැන් සුරකින්න"
-
-#: data/ui/Shortcuts.ui:45
-msgctxt "shortcut window"
-msgid "Quit"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:52
-#, fuzzy
-#| msgid "Focus Mode"
-msgctxt "shortcut window"
-msgid "Focus mode"
-msgstr "එල්ල කරනා විධිය"
-
-#: data/ui/Shortcuts.ui:59
-#, fuzzy
-#| msgid "Fullscreen"
-msgctxt "shortcut window"
-msgid "Fullscreen"
-msgstr "සම්පූර්ණ තිරය"
-
-#: data/ui/Shortcuts.ui:66
-#, fuzzy
-#| msgid "Preview"
-msgctxt "shortcut window"
+#: data/ui/UberwriterWindow.ui:271 data/ui/UberwriterWindow.ui:473
 msgid "Preview"
 msgstr "පෙරදසුන"
 
-#: data/ui/Shortcuts.ui:73
-msgctxt "shortcut window"
-msgid "Search"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:307
+msgid "Auto _Spellcheck"
+msgstr "ස්වයං_අක්ෂර වින්‍යාස පරීක්ෂනය"
 
-#: data/ui/Shortcuts.ui:82
-#, fuzzy
-#| msgid "_Edit"
-msgctxt "shortcut window"
-msgid "Editor"
-msgstr "_සංස්කරණය"
+#: ../data/ui/UberwriterWindow.ui.h:13
+msgid "F_ormat"
+msgstr "_ආකෘතිය"
 
-#: data/ui/Shortcuts.ui:86
-msgctxt "shortcut window"
-msgid "Separator"
-msgstr ""
+#: ../data/ui/UberwriterWindow.ui.h:14
+msgid "Unordered List Item"
+msgstr "ලයිස්තුගත නොකල අයිතම"
 
-#: data/ui/Shortcuts.ui:93
-#, fuzzy
-#| msgid "List item"
-msgctxt "shortcut window"
-msgid "List item"
-msgstr "අයිතම ලැයිස්තුව"
+#: ../data/ui/UberwriterWindow.ui.h:15
+msgid "Horizontal Rule"
+msgstr "තිරස් නිතීය"
 
-#: data/ui/Shortcuts.ui:100
-msgctxt "shortcut window"
-msgid "Italic"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:107
-msgctxt "shortcut window"
-msgid "Bold"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:114
-#, fuzzy
-#| msgid "Heading"
-msgctxt "shortcut window"
-msgid "Header"
+#: uberwriter/FormatShortcuts.py:186
+msgid "Heading"
 msgstr "ශීර්ෂ පාඨය"
 
-#: data/ui/Shortcuts.ui:121
-msgctxt "shortcut window"
-msgid "Cut"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:320
+msgid "_Help"
+msgstr "_සහය"
 
-#: data/ui/Shortcuts.ui:128
-msgctxt "shortcut window"
-msgid "Copy"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:330
+msgid "Contents"
+msgstr "අන්තර්ගතයන්"
 
-#: data/ui/Shortcuts.ui:135
-msgctxt "shortcut window"
-msgid "Paste"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:343
+msgid "Short Markdown Tutorial"
+msgstr "කෙටි සටහන් තබන පංක්ති පාඩම"
 
-#: data/ui/Shortcuts.ui:142
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:351
+msgid "Open Pandoc Online Markdown Help ..."
+msgstr "පැන්ඩොක් මාර්ගගත සටහන් තැබීමේ සහය විවෘත කරන්න"
+
+#: ../data/ui/UberwriterWindow.ui.h:21
+msgid "Get Help Online..."
+msgstr "මාර්ගගත සහය ලබා ගන්න"
+
+#: data/ui/UberwriterWindow.ui:359
+msgid "Translate This Application..."
+msgstr "මෙම මෘදුකාංගය පරිවර්තනය කරන්න"
+
+#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:434
+msgid "Focus Mode"
+msgstr "එල්ල කරනා විධිය"
+
+#: data/ui/UberwriterWindow.ui:441 data/ui/UberwriterWindow.ui:442
+msgid "Go into focus mode"
+msgstr "එල්ල කරනා විධියට යන්න"
+
+#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:454
+msgid "Fullscreen"
+msgstr "සම්පූර්ණ තිරය"
+
+#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
+msgid "Go into fullscreen mode"
+msgstr "සම්පූර්ණ තිර විධියට යන්න"
+
+#: data/ui/UberwriterWindow.ui:479 data/ui/UberwriterWindow.ui:480
+msgid "Show HTML preview"
+msgstr "HTML පූර්වදර්ශනය පෙන්වන්න"
+
+#: data/ui/UberwriterWindow.ui:496
+msgid "Words:"
+msgstr "පද:"
+
+#: data/ui/UberwriterWindow.ui:539
+msgid "Characters:"
+msgstr "අක්ෂර"
+
+#: uberwriter_lib/AppWindow.py:154
+msgid "Show debug messages (-vv debugs uberwriter_lib also)"
+msgstr "ද්‍යෝෂය ඉවත්කරන පණිවිඩ පෙන්වන්න (-vv එසේම උබ(ර්)ලියනයේ_lib)"
+
+#: uberwriter/FormatShortcuts.py:87
+msgid "emphasized text"
+msgstr "අවධාරණ පාඨ"
+
+#: uberwriter/FormatShortcuts.py:89
+msgid "strong text"
+msgstr "ප්‍රබල පාඨ"
+
+#: uberwriter/FormatShortcuts.py:105
+msgid "List item"
+msgstr "අයිතම ලැයිස්තුව"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:36
 msgid "Export"
@@ -247,8 +265,7 @@ msgid "Self Contained"
 msgstr "ස්වයංපූර්ණ"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:376
-msgid ""
-"Produces a HTML that has no external dependencies (all images and stylesheets are included)"
+msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
 msgstr "බාහිර පරායත්තතාවක් නොමැති HTML සාදන්න (සියළු අනුරූප සහ ශෛලීපත්‍ර ඇතුලත්ය)"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:389
@@ -280,223 +297,37 @@ msgstr "<b> ග්‍රනථ නාමාවලි ගොනුව </b>"
 msgid "Commandline Reference"
 msgstr "විධාන පෙළ නිර්දේශන"
 
-#: data/ui/UberwriterWindow.ui:19
-msgid "Next Match"
-msgstr ""
+#: ../data/ui/AboutUberwriterDialog.ui.h:1
+msgid "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+"# This program is free software: you can redistribute it and/or modify it \n"
+"# under the terms of the GNU General Public License version 3, as published \n"
+"# by the Free Software Foundation.\n"
+"# \n"
+"# This program is distributed in the hope that it will be useful, but \n"
+"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
+"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
+"# PURPOSE.  See the GNU General Public License for more details.\n"
+"# \n"
+"# You should have received a copy of the GNU General Public License along \n"
+"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+""
+msgstr "ප්‍රකාශන අයිතිය (C) 2012, වොල්ෆ් වොල්ප්‍රෙච්ට් <w.vollprecht@gmail.com>\n"
+"මෙම වැඩසටහන නිදහස් මෘදුකාංගයකි: ඔබට එය නැවත බෙදාහැරීමට හෝ/සහ වෙනස් කිරීමට හැකි වන්නේ \n"
+"GNU සාමාන්‍ය පොදු බලපත්‍රයේ තුන් වන සංස්කරණයේ ප්‍රකාශිත කොන්දේසි වලට අනුවය \n"
+"නිදහස් මෘදුකාංග පදනම මගින්\n"
+" \n"
+"මෙම වැඩසටහන බෙදාහරින ලද්දේ එය ප්‍රයෝජනවත් වේ යන බලාපොරොත්තුවෙනි, නමුත් \n"
+"කිසිඳු වගකීමකින් තොරව; ගම්‍යමාන වගකීම්වන \n"
+"විකිණිය හැකි, පිළිගත හැකි ගුණාංග ඇති, හෝ විශේෂ අරමුණු සඳහා යෝග්‍ය යන්නෙන් තොරවය \n"
+"වැඩි විස්තර සඳහා GNU සාමාන්‍ය පොදු බලපත්‍රය බලන්න.\n"
+" \n"
+"ඔබට මෙම වැඩසටහනත් සමඟම GNU සාමාන්‍ය පොදු බලපත්‍රයේ පිටපතක් ලැබිය යුතුය. \n"
+"එසේ නොමැතිනම්  <http://www.gnu.org/licenses/> බලන්න\n"
+""
 
-#: data/ui/UberwriterWindow.ui:41
-#, fuzzy
-#| msgid "Open Recent File"
-msgid "Open Replace"
-msgstr "නූතන ගොනුව විවෘත කරන්න"
-
-#: data/ui/UberwriterWindow.ui:52
-msgid "Activate Regex"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:66
-msgid "_File"
-msgstr "_ගොනුව"
-
-#: data/ui/UberwriterWindow.ui:74
-msgid "_New"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:84
-msgid "_Open"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:96
-msgid "Open Recent File"
-msgstr "නූතන ගොනුව විවෘත කරන්න"
-
-#: data/ui/UberwriterWindow.ui:102
-#, fuzzy
-#| msgid "Open a .md-File"
-msgid "Open examples"
-msgstr ".md ගොනුවක් විවෘත කරන්න"
-
-#: data/ui/UberwriterWindow.ui:114
-#, fuzzy
-#| msgid "Short Markdown Tutorial"
-msgid "_Quick markdown tutorial"
-msgstr "කෙටි සටහන් තබන පංක්ති පාඩම"
-
-#: data/ui/UberwriterWindow.ui:131
-#, fuzzy
-#| msgid "Save now"
-msgid "_Save"
-msgstr "දැන් සුරකින්න"
-
-#: data/ui/UberwriterWindow.ui:141
-#, fuzzy
-#| msgid "Save now"
-msgid "Save _As"
-msgstr "දැන් සුරකින්න"
-
-#: data/ui/UberwriterWindow.ui:157
-#, fuzzy
-#| msgid "Export as ODT"
-msgid "Export as HTML"
-msgstr "ODT ලෙස අපනයනය කරන්න"
-
-#: data/ui/UberwriterWindow.ui:166
-#, fuzzy
-#| msgid "Export as ODT"
-msgid "Export as PDF"
-msgstr "ODT ලෙස අපනයනය කරන්න"
-
-#: data/ui/UberwriterWindow.ui:175
-msgid "Export as ODT"
-msgstr "ODT ලෙස අපනයනය කරන්න"
-
-#: data/ui/UberwriterWindow.ui:186
-msgid "Advanced Export..."
-msgstr "ඉදිරියට පැමිණි අපනයනය"
-
-#: data/ui/UberwriterWindow.ui:201
-#, fuzzy
-#| msgid "Copy raw HTML to clipboard"
-msgid "Copy Raw HTML to Clipboard"
-msgstr "දළ HTML ඇමුණුම් පුවරුවට පිටපත් කරන්න"
-
-#: data/ui/UberwriterWindow.ui:229
-msgid "_View"
-msgstr "_පෙන්වන්න"
-
-#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:434
-msgid "Focus Mode"
-msgstr "එල්ල කරනා විධිය"
-
-#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:454
-msgid "Fullscreen"
-msgstr "සම්පූර්ණ තිරය"
-
-#: data/ui/UberwriterWindow.ui:254
-msgid "Sidebar"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:261
-msgid "Light text on a dark background"
-msgstr "අඳුරුපසුතලයක වූ ආලොකමත් පාඨ"
-
-#: data/ui/UberwriterWindow.ui:262
-msgid "Dark Mode"
-msgstr "අඳුරු විධිය"
-
-#: data/ui/UberwriterWindow.ui:270
-msgid "Switch to preview mode"
-msgstr "පෙර විධියට මාරුවන්න"
-
-#: data/ui/UberwriterWindow.ui:271 data/ui/UberwriterWindow.ui:473
-msgid "Preview"
-msgstr "පෙරදසුන"
-
-#: data/ui/UberwriterWindow.ui:279
-msgid "Open Search and Replace"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:280
-msgid "Search and Replace ..."
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:307
-msgid "Auto _Spellcheck"
-msgstr "ස්වයං_අක්ෂර වින්‍යාස පරීක්ෂනය"
-
-#: data/ui/UberwriterWindow.ui:320
-msgid "_Help"
-msgstr "_සහය"
-
-#: data/ui/UberwriterWindow.ui:330
-msgid "Contents"
-msgstr "අන්තර්ගතයන්"
-
-#: data/ui/UberwriterWindow.ui:343
-msgid "Short Markdown Tutorial"
-msgstr "කෙටි සටහන් තබන පංක්ති පාඩම"
-
-#: data/ui/UberwriterWindow.ui:351
-msgid "Open Pandoc Online Markdown Help ..."
-msgstr "පැන්ඩොක් මාර්ගගත සටහන් තැබීමේ සහය විවෘත කරන්න"
-
-#: data/ui/UberwriterWindow.ui:359
-msgid "Translate This Application..."
-msgstr "මෙම මෘදුකාංගය පරිවර්තනය කරන්න"
-
-#: data/ui/UberwriterWindow.ui:441 data/ui/UberwriterWindow.ui:442
-msgid "Go into focus mode"
-msgstr "එල්ල කරනා විධියට යන්න"
-
-#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
-msgid "Go into fullscreen mode"
-msgstr "සම්පූර්ණ තිර විධියට යන්න"
-
-#: data/ui/UberwriterWindow.ui:479 data/ui/UberwriterWindow.ui:480
-msgid "Show HTML preview"
-msgstr "HTML පූර්වදර්ශනය පෙන්වන්න"
-
-#: data/ui/UberwriterWindow.ui:496
-msgid "Words:"
-msgstr "පද:"
-
-#: data/ui/UberwriterWindow.ui:539
-msgid "Characters:"
-msgstr "අක්ෂර"
-
-#: data/ui/UberwriterWindow.ui:670
-msgid "Previous Match"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:714
-msgid "Case Sensitive"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:818
-msgid "Replace"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:832
-msgid "Replace all"
-msgstr ""
-
-#: uberwriter/FormatShortcuts.py:87
-msgid "emphasized text"
-msgstr "අවධාරණ පාඨ"
-
-#: uberwriter/FormatShortcuts.py:89
-msgid "strong text"
-msgstr "ප්‍රබල පාඨ"
-
-#: uberwriter/FormatShortcuts.py:91
-#, fuzzy
-#| msgid "strong text"
-msgid "striked out text"
-msgstr "ප්‍රබල පාඨ"
-
-#: uberwriter/FormatShortcuts.py:105
-msgid "List item"
-msgstr "අයිතම ලැයිස්තුව"
-
-#: uberwriter/FormatShortcuts.py:186
-msgid "Heading"
-msgstr "ශීර්ෂ පාඨය"
-
-#: uberwriter/UberwriterInlinePreview.py:185
-msgid "Website is not available"
-msgstr "වෙබ් අඩවිය නොපවතී"
-
-#: uberwriter/UberwriterInlinePreview.py:187
-msgid "Website is available"
-msgstr "වෙබ් අඩවිය පවතී"
-
-#: uberwriter/UberwriterInlinePreview.py:437
-msgid "Open Link in Webbrowser"
-msgstr "විවෘත සම්බන්ධිත ලිපිනය වෙබ් බ්‍රව්සරයේ ඇත."
-
-#: uberwriter/UberwriterInlinePreview.py:494
-msgid "No matching footnote found"
-msgstr "ගැළපෙන අධෝලිපියක් සොයාගත නොහැක"
+#: ../data/ui/AboutUberwriterDialog.ui.h:14
+msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+msgstr "ප්‍රකාශන අයිතිය (C) 2012, වොල්ෆ් වොල්ප්‍රෙච්ට් <w.vollprecht@gmail.com>"
 
 #: uberwriter/UberwriterWindow.py:356
 msgid "Save your File"
@@ -543,20 +374,242 @@ msgid "You can not enable the Spell Checker."
 msgstr "ඔබට අක්ෂර වින්‍යාසය සොයාබැලීමට බලය දිය නොහැක"
 
 #: uberwriter/UberwriterWindow.py:636
-msgid ""
-"Please install 'hunspell' or 'aspell' dictionarys for your language from the software "
-"center."
+msgid "Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."
 msgstr "කරුණාකර ඔබේ භාෂාව සඳහා, 'හන්ස්පෙල්' හෝ 'ඇස්පෙල්' ශබ්දකෝෂ මෘදුකාංග කේන්ද්‍රයේ සිට පිහිටුවන්න"
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
+#, fuzzy
+msgid "Dark mode"
+msgstr "අඳුරු විධිය"
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
+msgid "If enabled, the window will be dark themed If disabled, the window will be light themed asked to install them manually."
+msgstr ""
+
+#. <attribute name="action">win.change_label</attribute>
+#. <attribute name="target">String 1</attribute>
+#: data/ui/App_menu.ui:10
+msgid "New window"
+msgstr ""
+
+#: data/ui/App_menu.ui:25
+msgid "_Shortcuts"
+msgstr ""
+
+#: data/ui/App_menu.ui:29
+msgid "Pandoc _Help"
+msgstr ""
+
+#: data/ui/App_menu.ui:33
+msgid "_About"
+msgstr ""
+
+#: data/ui/App_menu.ui:37 data/ui/UberwriterWindow.ui:214
+msgid "_Quit"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:31
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "දැන් සුරකින්න"
+
+#: data/ui/Shortcuts.ui:38
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "දැන් සුරකින්න"
+
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:52
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "එල්ල කරනා විධිය"
+
+#: data/ui/Shortcuts.ui:59
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "සම්පූර්ණ තිරය"
+
+#: data/ui/Shortcuts.ui:66
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "පෙරදසුන"
+
+#: data/ui/Shortcuts.ui:73
+msgctxt "shortcut window"
+msgid "Search"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:82
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Editor"
+msgstr "_සංස්කරණය"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:93
+#, fuzzy
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "අයිතම ලැයිස්තුව"
+
+#: data/ui/Shortcuts.ui:100
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:107
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:114
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "ශීර්ෂ පාඨය"
+
+#: data/ui/Shortcuts.ui:121
+msgctxt "shortcut window"
+msgid "Cut"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:128
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:135
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:142
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:19
+msgid "Next Match"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:41
+#, fuzzy
+msgid "Open Replace"
+msgstr "නූතන ගොනුව විවෘත කරන්න"
+
+#: data/ui/UberwriterWindow.ui:52
+msgid "Activate Regex"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:74
+msgid "_New"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:84
+msgid "_Open"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:102
+#, fuzzy
+msgid "Open examples"
+msgstr ".md ගොනුවක් විවෘත කරන්න"
+
+#: data/ui/UberwriterWindow.ui:114
+#, fuzzy
+msgid "_Quick markdown tutorial"
+msgstr "කෙටි සටහන් තබන පංක්ති පාඩම"
+
+#: data/ui/UberwriterWindow.ui:131
+#, fuzzy
+msgid "_Save"
+msgstr "දැන් සුරකින්න"
+
+#: data/ui/UberwriterWindow.ui:141
+#, fuzzy
+msgid "Save _As"
+msgstr "දැන් සුරකින්න"
+
+#: data/ui/UberwriterWindow.ui:157
+#, fuzzy
+msgid "Export as HTML"
+msgstr "ODT ලෙස අපනයනය කරන්න"
+
+#: data/ui/UberwriterWindow.ui:166
+#, fuzzy
+msgid "Export as PDF"
+msgstr "ODT ලෙස අපනයනය කරන්න"
+
+#: data/ui/UberwriterWindow.ui:201
+#, fuzzy
+msgid "Copy Raw HTML to Clipboard"
+msgstr "දළ HTML ඇමුණුම් පුවරුවට පිටපත් කරන්න"
+
+#: data/ui/UberwriterWindow.ui:254
+msgid "Sidebar"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:279
+msgid "Open Search and Replace"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:280
+msgid "Search and Replace ..."
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:670
+msgid "Previous Match"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:714
+msgid "Case Sensitive"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:818
+msgid "Replace"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:832
+msgid "Replace all"
+msgstr ""
+
+#: uberwriter/FormatShortcuts.py:91
+#, fuzzy
+msgid "striked out text"
+msgstr "ප්‍රබල පාඨ"
 
 #: uberwriter/plugins/bibtex/bibtex_item.glade:18
 #: uberwriter/plugins/bibtex/bibtex_item.glade:32
 #: uberwriter/plugins/bibtex/bibtex_item.glade:45
 msgid "label"
 msgstr ""
-
-#: uberwriter_lib/AppWindow.py:154
-msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-msgstr "ද්‍යෝෂය ඉවත්කරන පණිවිඩ පෙන්වන්න (-vv එසේම උබ(ර්)ලියනයේ_lib)"
 
 #: uberwriter_lib/AppWindow.py:156
 msgid "Use experimental features"
@@ -582,74 +635,3 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
-msgid "(no suggestions)"
-msgstr "(යෝජනා නොමැත)"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
-msgid "Add \"{}\" to Dictionary"
-msgstr "ශබ්දකෝෂයට \"{}\" ඇතුලත් කරන්න"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
-msgid "Ignore All"
-msgstr "සියල්ල නොසලකා හරින්න"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
-msgid "Languages"
-msgstr "භාෂා"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
-msgid "Suggestions"
-msgstr "යෝජනා"
-
-#~ msgid "UberWriter"
-#~ msgstr "උබ(ර්)ලියනය"
-
-#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
-#~ msgstr "උබ(ර්)ලියනය, සරල සහ වික්ෂිප්ත නිදහස් සටහන් තබාගන්නා සංස්කාරකයකි"
-
-#~ msgid "F_ormat"
-#~ msgstr "_ආකෘතිය"
-
-#~ msgid "Unordered List Item"
-#~ msgstr "ලයිස්තුගත නොකල අයිතම"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "තිරස් නිතීය"
-
-#~ msgid "Get Help Online..."
-#~ msgstr "මාර්ගගත සහය ලබා ගන්න"
-
-#~ msgid ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify it \n"
-#~ "# under the terms of the GNU General Public License version 3, as published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-#~ msgstr ""
-#~ "ප්‍රකාශන අයිතිය (C) 2012, වොල්ෆ් වොල්ප්‍රෙච්ට් <w.vollprecht@gmail.com>\n"
-#~ "මෙම වැඩසටහන නිදහස් මෘදුකාංගයකි: ඔබට එය නැවත බෙදාහැරීමට හෝ/සහ වෙනස් කිරීමට හැකි වන්නේ \n"
-#~ "GNU සාමාන්‍ය පොදු බලපත්‍රයේ තුන් වන සංස්කරණයේ ප්‍රකාශිත කොන්දේසි වලට අනුවය \n"
-#~ "නිදහස් මෘදුකාංග පදනම මගින්\n"
-#~ " \n"
-#~ "මෙම වැඩසටහන බෙදාහරින ලද්දේ එය ප්‍රයෝජනවත් වේ යන බලාපොරොත්තුවෙනි, නමුත් \n"
-#~ "කිසිඳු වගකීමකින් තොරව; ගම්‍යමාන වගකීම්වන \n"
-#~ "විකිණිය හැකි, පිළිගත හැකි ගුණාංග ඇති, හෝ විශේෂ අරමුණු සඳහා යෝග්‍ය යන්නෙන් තොරවය \n"
-#~ "වැඩි විස්තර සඳහා GNU සාමාන්‍ය පොදු බලපත්‍රය බලන්න.\n"
-#~ " \n"
-#~ "ඔබට මෙම වැඩසටහනත් සමඟම GNU සාමාන්‍ය පොදු බලපත්‍රයේ පිටපතක් ලැබිය යුතුය. \n"
-#~ "එසේ නොමැතිනම්  <http://www.gnu.org/licenses/> බලන්න\n"
-
-#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-#~ msgstr "ප්‍රකාශන අයිතිය (C) 2012, වොල්ෆ් වොල්ප්‍රෙච්ට් <w.vollprecht@gmail.com>"
