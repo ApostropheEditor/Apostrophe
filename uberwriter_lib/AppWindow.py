@@ -228,7 +228,7 @@ class Application(Gtk.Application):
     def on_about(self, action, param):
         about_dialog = Gtk.AboutDialog(transient_for=self.window, modal=True)
         about_dialog.set_program_name("Uberwriter")
-        about_dialog.set_version("2.0.3")
+        about_dialog.set_version("2.0.4")
         about_dialog.set_copyright("Copyright (C) 2018, Wolf Vollprecht")
         about_dialog.set_license_type(Gtk.License.GPL_3_0)
         about_dialog.set_website("Uberwriter website http://uberwriter.github.io/uberwriter")
