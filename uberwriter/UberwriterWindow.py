@@ -161,6 +161,8 @@ class UberwriterWindow(Window):
         if state.get_boolean():
             self.fullscreen()
             self.fullscreen_button.set_active(True)
+            self.fullscr_hb_revealer.set_reveal_child(True)
+
         else:
             self.unfullscreen()
             self.fullscreen_button.set_active(False)
@@ -948,6 +950,21 @@ class UberwriterWindow(Window):
             self.hb_revealer.show()
             self.hb_revealer.set_reveal_child(True)
             self.hb.show()
+
+            # fullscreen headerbar
+            self.fullscr_hb_container = Gtk.Overlay(name='fullscreen_titlebar_container')
+            self.fullscr_hb_revealer = Gtk.Revealer(name='fullscreen_titlebar_revealer')
+            self.fullscr_hb = Gtk.HeaderBar()
+            self.fullscr_hb_revealer.add(self.fullscr_hb)
+            self.fullscr_hb_revealer.props.transition_duration = 1000
+            self.fullscr_hb_revealer.props.transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN
+            self.fullscr_hb.get_style_context().add_class("titlebar")
+            self.fullscr_hb_container.add(self.fullscr_hb_revealer)
+            self.builder.get_object("grid1").add(self.fullscr_hb_container)
+            self.fullscr_hb_container.show()
+            self.fullscr_hb_revealer.show()
+            self.fullscr_hb_revealer.set_reveal_child(False)
+            self.fullscr_hb.show()
 
             bbtn = Gtk.MenuButton()
             btn_settings = Gtk.MenuButton()
