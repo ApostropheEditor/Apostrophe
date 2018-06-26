@@ -161,11 +161,12 @@ class UberwriterWindow(Window):
         if state.get_boolean():
             self.fullscreen()
             self.fullscreen_button.set_active(True)
-            self.fullscr_hb_revealer.set_reveal_child(True)
+            self.fullscr_events.show()
 
         else:
             self.unfullscreen()
             self.fullscreen_button.set_active(False)
+            self.fullscr_events.hide()
 
         self.TextEditor.grab_focus()
 
@@ -869,6 +870,12 @@ class UberwriterWindow(Window):
                 # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
             self.was_motion = True
 
+    def show_fs_hb(self, widget, data=None):
+        self.fullscr_hb_revealer.set_reveal_child(True)
+
+    def hide_fs_hb(self, widget, data=None):
+        self.fullscr_hb_revealer.set_reveal_child(False)
+
     def focus_out(self, widget, data=None):
         if self.status_bar_visible == False:
             self.statusbar_revealer.set_reveal_child(True)
@@ -951,21 +958,6 @@ class UberwriterWindow(Window):
             self.hb_revealer.set_reveal_child(True)
             self.hb.show()
 
-            # fullscreen headerbar
-            self.fullscr_hb_container = Gtk.Overlay(name='fullscreen_titlebar_container')
-            self.fullscr_hb_revealer = Gtk.Revealer(name='fullscreen_titlebar_revealer')
-            self.fullscr_hb = Gtk.HeaderBar()
-            self.fullscr_hb_revealer.add(self.fullscr_hb)
-            self.fullscr_hb_revealer.props.transition_duration = 1000
-            self.fullscr_hb_revealer.props.transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN
-            self.fullscr_hb.get_style_context().add_class("titlebar")
-            self.fullscr_hb_container.add(self.fullscr_hb_revealer)
-            self.builder.get_object("grid1").add(self.fullscr_hb_container)
-            self.fullscr_hb_container.show()
-            self.fullscr_hb_revealer.show()
-            self.fullscr_hb_revealer.set_reveal_child(False)
-            self.fullscr_hb.show()
-
             bbtn = Gtk.MenuButton()
             btn_settings = Gtk.MenuButton()
             btn_settings.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
@@ -979,8 +971,35 @@ class UberwriterWindow(Window):
             self.hb.pack_start(bbtn)
             self.hb.pack_end(btn_settings)
             self.hb.show_all()
-            self.testbits = Gdk.WindowState.MAXIMIZED
-            #self.connect('draw', self.override_headerbar_background)
+
+            #same for fullscreen headerbar
+
+            self.fullscr_events = self.builder.get_object("FullscreenEventbox")
+            self.fullscr_hb_revealer = self.builder.get_object("FullscreenHbPlaceholder")
+            self.fullscr_hb = self.builder.get_object("FullscreenHeaderbar")
+            self.fullscr_hb.get_style_context().add_class("titlebar")
+            self.fullscr_hb_revealer.show()
+            self.fullscr_hb_revealer.set_reveal_child(False)
+            self.fullscr_hb.show()
+            self.fullscr_events.hide()
+
+            bbtn_fs = Gtk.MenuButton()
+            btn_settings_fs = Gtk.MenuButton()
+            btn_settings_fs.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
+            btn_settings_fs.props.use_popover = True
+            btn_settings_fs.set_menu_model(self.model)
+
+            self.builder.get_object("menu1").detach()
+            bbtn_fs.set_popup(self.builder.get_object("menu1"))
+
+            self.fullscr_hb.pack_start(bbtn_fs)
+            self.fullscr_hb.pack_end(btn_settings_fs)
+            self.fullscr_hb.show_all()
+            # this is a little tricky
+            # we show hb when the cursor enters an area of 1 px at the top of the window
+            # as the hb is shown the height of the eventbox grows to accomodate it
+            self.fullscr_events.connect('enter_notify_event', self.show_fs_hb)
+            self.fullscr_events.connect('leave_notify_event', self.hide_fs_hb)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)

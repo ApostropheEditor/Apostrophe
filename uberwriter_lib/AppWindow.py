@@ -49,7 +49,7 @@ class Window(Gtk.ApplicationWindow):
         self.set_icon_from_file(icon_file)
         
         builder = get_builder('UberwriterWindow')
-        new_object = builder.get_object("grid1")
+        new_object = builder.get_object("FullscreenOverlay")
         
         self.contents = new_object
         self.add(self.contents)
