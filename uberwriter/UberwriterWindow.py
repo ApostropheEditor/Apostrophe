@@ -992,7 +992,12 @@ class UberwriterWindow(Window):
             self.builder.get_object("menu1").detach()
             bbtn_fs.set_popup(self.builder.get_object("menu1"))
 
+            btn_exit_fs = Gtk.Button()
+            btn_exit_fs.props.image = Gtk.Image.new_from_icon_name('view-restore-symbolic', Gtk.IconSize.BUTTON)
+            btn_exit_fs.set_action_name("app.fullscreen")
+
             self.fullscr_hb.pack_start(bbtn_fs)
+            self.fullscr_hb.pack_end(btn_exit_fs)
             self.fullscr_hb.pack_end(btn_settings_fs)
             self.fullscr_hb.show_all()
             # this is a little tricky
