@@ -874,7 +874,11 @@ class UberwriterWindow(Window):
         self.fullscr_hb_revealer.set_reveal_child(True)
 
     def hide_fs_hb(self, widget, data=None):
-        self.fullscr_hb_revealer.set_reveal_child(False)
+        if self.btn_settings_fs.get_active() or self.bbtn_fs.get_active():
+            pass
+        else:
+            self.fullscr_hb_revealer.set_reveal_child(False)
+        
 
     def focus_out(self, widget, data=None):
         if self.status_bar_visible == False:
@@ -966,7 +970,7 @@ class UberwriterWindow(Window):
             self.model = self.builder_window_menu.get_object("WindowMenu")
             btn_settings.set_menu_model(self.model)
 
-            self.builder.get_object("menu1").detach()
+            #self.builder.get_object("menu1").detach()
             bbtn.set_popup(self.builder.get_object("menu1"))
             self.hb.pack_start(bbtn)
             self.hb.pack_end(btn_settings)
@@ -983,28 +987,29 @@ class UberwriterWindow(Window):
             self.fullscr_hb.show()
             self.fullscr_events.hide()
 
-            bbtn_fs = Gtk.MenuButton()
-            btn_settings_fs = Gtk.MenuButton()
-            btn_settings_fs.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
-            btn_settings_fs.props.use_popover = True
-            btn_settings_fs.set_menu_model(self.model)
+            self.bbtn_fs = Gtk.MenuButton()
+            self.btn_settings_fs = Gtk.MenuButton()
+            self.btn_settings_fs.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
+            self.btn_settings_fs.props.use_popover = True
+            self.btn_settings_fs.set_menu_model(self.model)
 
-            self.builder.get_object("menu1").detach()
-            bbtn_fs.set_popup(self.builder.get_object("menu1"))
+            #self.builder.get_object("menu1").detach()
+            self.bbtn_fs.set_popup(self.builder.get_object("menu1"))
 
             btn_exit_fs = Gtk.Button()
             btn_exit_fs.props.image = Gtk.Image.new_from_icon_name('view-restore-symbolic', Gtk.IconSize.BUTTON)
             btn_exit_fs.set_action_name("app.fullscreen")
 
-            self.fullscr_hb.pack_start(bbtn_fs)
+            self.fullscr_hb.pack_start(self.bbtn_fs)
             self.fullscr_hb.pack_end(btn_exit_fs)
-            self.fullscr_hb.pack_end(btn_settings_fs)
+            self.fullscr_hb.pack_end(self.btn_settings_fs)
             self.fullscr_hb.show_all()
             # this is a little tricky
             # we show hb when the cursor enters an area of 1 px at the top of the window
             # as the hb is shown the height of the eventbox grows to accomodate it
             self.fullscr_events.connect('enter_notify_event', self.show_fs_hb)
             self.fullscr_events.connect('leave_notify_event', self.hide_fs_hb)
+            self.btn_settings_fs.connect('focus_out_event', self.hide_fs_hb)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
