@@ -224,6 +224,11 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.search",["<Ctl>f"])
         self.set_accels_for_action("app.spellcheck",["F7"])
 
+        self.set_accels_for_action("app.new",["<Ctl>n"])
+        self.set_accels_for_action("app.open",["<Ctl>o"])
+        self.set_accels_for_action("app.save",["<Ctl>s"])
+        self.set_accels_for_action("app.save_as",["<Ctl><shift>s"])
+
 
     def do_activate(self):
         # We only allow a single window and raise any existing ones

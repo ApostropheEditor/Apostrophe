@@ -8,10 +8,6 @@
 @define-color light_bg #EDEDED;
 
 @binding-set window-bindings {
-  bind "<ctl>n" { "new-file" () };
-  bind "<ctl>o" { "open-file" () };
-  bind "<ctl>s" { "save-file" () };
-  bind "<ctl><shift>s" { "save-file-as" () };
   bind "<ctl>w" { "close-window" () };
   bind "<ctl><shift>b" { "toggle-bibtex" () };
 }
