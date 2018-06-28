@@ -179,6 +179,40 @@ class Application(Gtk.Application):
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
+        '''Left Menu Actions'''
+
+        action = Gio.SimpleAction.new("new", None)
+        action.connect("activate", self.on_new)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("open", None)
+        action.connect("activate", self.on_open)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("open_recent", None)
+        action.connect("activate", self.on_open_recent)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("open_examples", None)
+        action.connect("activate", self.on_example)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("save", None)
+        action.connect("activate", self.on_save)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("save_as", None)
+        action.connect("activate", self.on_save_as)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("export", None)
+        action.connect("activate", self.on_export)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("HTML_copy", None)
+        action.connect("activate", self.on_html_copy)
+        self.add_action(action)
+
         builder = get_builder('App_menu')
         self.set_app_menu(builder.get_object("app-menu"))
 
@@ -284,7 +318,31 @@ class Application(Gtk.Application):
     def on_spellcheck(self, action, value):
         action.set_state(value)
         self.window.toggle_spellcheck(value)
-        
+
+    def on_new(self, action, value):
+        self.window.new_document()
+
+    def on_open(self, action, value):
+        self.window.open_document()
+    
+    def on_open_recent(self, action, value):
+        pass
+    
+    def on_example(self, action, value):
+        self.window.open_uberwriter_markdown()
+    
+    def on_save(self, action, value):
+        self.window.save_document()
+    
+    def on_save_as(self, action, value):
+        self.window.save_document_as()
+    
+    def on_export(self, action, value):
+        self.window.open_advanced_export()
+    
+    def on_html_copy(self, action, value):
+        self.window.copy_html_to_clipboard()
+   
     def on_quit(self, action, param):
         self.quit()
 

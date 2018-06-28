@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <menu id="SettingsMenu">
+        <section>
+            <item>
+                <attribute name="label" translatable="yes">_New</attribute>
+                <attribute name="action">app.new</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">_Open</attribute>
+                <attribute name="action">app.open</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Open Recent File</attribute>
+                <attribute name="action">app.open_recent</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Open Examples</attribute>
+                <attribute name="action">app.open_examples</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">_Save</attribute>
+                <attribute name="action">app.save</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Save _As</attribute>
+                <attribute name="action">app.save_as</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">_Export</attribute>
+                <attribute name="action">app.export</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Copy as HTML</attribute>
+                <attribute name="action">app.HTML_copy</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">_Quit</attribute>
+                <attribute name="action">app.quit</attribute>
+            </item>
+        </section>
+    </menu>
+</interface>

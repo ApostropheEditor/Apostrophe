@@ -320,7 +320,7 @@ class UberwriterWindow(Window):
         self.MarkupBuffer.set_multiplier(Pango.units_to_double(mets.get_approximate_char_width()) + 1)
 
 
-    def save_document(self, widget, data=None):
+    def save_document(self, widget=None, data=None):
         if self.filename:
             logger.info("saving")
             filename = self.filename
@@ -376,7 +376,7 @@ class UberwriterWindow(Window):
                 filechooser.destroy()
                 return Gtk.ResponseType.CANCEL
 
-    def save_document_as(self, widget, data=None):
+    def save_document_as(self, widget=None, data=None):
         filechooser = Gtk.FileChooserDialog(
             "Save your File",
             self,
@@ -499,7 +499,7 @@ class UberwriterWindow(Window):
                 self.texlive_installed = True
         self.export("pdf")
 
-    def copy_html_to_clipboard(self, widget, date=None):
+    def copy_html_to_clipboard(self, widget=None, date=None):
         """Copies only html without headers etc. to Clipboard"""
 
         args = ['pandoc', '--from=markdown', '-smart', '-thtml']
@@ -512,7 +512,7 @@ class UberwriterWindow(Window):
         cb.set_text(output.decode("utf-8"), -1)
         cb.store()
 
-    def open_document(self, widget):
+    def open_document(self, widget=None):
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
 
@@ -572,7 +572,7 @@ class UberwriterWindow(Window):
                 dialog.destroy()
                 return Gtk.ResponseType.CANCEL
 
-    def new_document(self, widget):
+    def new_document(self, widget=None):
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
         else:
@@ -789,13 +789,13 @@ class UberwriterWindow(Window):
     def open_pandoc_markdown(self, widget, data=None):
         webbrowser.open("http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
 
-    def open_uberwriter_markdown(self, widget, data=None):
+    def open_uberwriter_markdown(self, widget=None, data=None):
         self.load_file(helpers.get_media_file('uberwriter_markdown.md'))
 
     def open_search_and_replace(self):
         self.searchreplace.toggle_search()
 
-    def open_advanced_export(self, widget, data=None):
+    def open_advanced_export(self, widget=None, data=None):
         if self.UberwriterAdvancedExportDialog is not None:
             advexp = self.UberwriterAdvancedExportDialog()  # pylint: disable=
 
@@ -878,7 +878,6 @@ class UberwriterWindow(Window):
             pass
         else:
             self.fullscr_hb_revealer.set_reveal_child(False)
-        
 
     def focus_out(self, widget, data=None):
         if self.status_bar_visible == False:
@@ -943,73 +942,77 @@ class UberwriterWindow(Window):
 
         self.set_name('UberwriterWindow')
         
+        # Headerbars
+        self.hb_container = Gtk.Frame(name='titlebar_container')
+        self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
+        self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
+        self.hb = Gtk.HeaderBar()
+        self.hb_revealer.add(self.hb)
+        self.hb_revealer.props.transition_duration = 1000
+        self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
+        self.hb.props.show_close_button = True
+        self.hb.get_style_context().add_class("titlebar")
+        self.hb_container.add(self.hb_revealer)
+        self.hb_container.show()
+        self.set_titlebar(self.hb_container)
+        self.hb_revealer.show()
+        self.hb_revealer.set_reveal_child(True)
+        self.hb.show()
 
-        self.use_headerbar = True
-        if self.use_headerbar == True:
-            self.hb_container = Gtk.Frame(name='titlebar_container')
-            self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
-            self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
-            self.hb = Gtk.HeaderBar()
-            self.hb_revealer.add(self.hb)
-            self.hb_revealer.props.transition_duration = 1000
-            self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
-            self.hb.props.show_close_button = True
-            self.hb.get_style_context().add_class("titlebar")
-            self.hb_container.add(self.hb_revealer)
-            self.hb_container.show()
-            self.set_titlebar(self.hb_container)
-            self.hb_revealer.show()
-            self.hb_revealer.set_reveal_child(True)
-            self.hb.show()
+        #TODO: this button/model names are HORRIBLE. Find better ones
 
-            bbtn = Gtk.MenuButton()
-            btn_settings = Gtk.MenuButton()
-            btn_settings.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
-            btn_settings.props.use_popover = True
-            self.builder_window_menu = get_builder('WindowMenu')
-            self.model = self.builder_window_menu.get_object("WindowMenu")
-            btn_settings.set_menu_model(self.model)
+        btn_settings = Gtk.MenuButton()
+        btn_settings.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
+        btn_settings.props.use_popover = True
+        self.builder_window_menu = get_builder('WindowMenu')
+        self.model = self.builder_window_menu.get_object("WindowMenu")
+        btn_settings.set_menu_model(self.model)
 
-            #self.builder.get_object("menu1").detach()
-            bbtn.set_popup(self.builder.get_object("menu1"))
-            self.hb.pack_start(bbtn)
-            self.hb.pack_end(btn_settings)
-            self.hb.show_all()
+        bbtn = Gtk.MenuButton()
+        bbtn.props.use_popover = True
+        self.builder_settings_menu = get_builder('SettingsMenu')
+        self.model2 = self.builder_settings_menu.get_object("SettingsMenu")
+        bbtn.set_menu_model(self.model2)
 
-            #same for fullscreen headerbar
+        self.hb.pack_start(bbtn)
+        self.hb.pack_end(btn_settings)
+        self.hb.show_all()
 
-            self.fullscr_events = self.builder.get_object("FullscreenEventbox")
-            self.fullscr_hb_revealer = self.builder.get_object("FullscreenHbPlaceholder")
-            self.fullscr_hb = self.builder.get_object("FullscreenHeaderbar")
-            self.fullscr_hb.get_style_context().add_class("titlebar")
-            self.fullscr_hb_revealer.show()
-            self.fullscr_hb_revealer.set_reveal_child(False)
-            self.fullscr_hb.show()
-            self.fullscr_events.hide()
+        #same for fullscreen headerbar
 
-            self.bbtn_fs = Gtk.MenuButton()
-            self.btn_settings_fs = Gtk.MenuButton()
-            self.btn_settings_fs.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
-            self.btn_settings_fs.props.use_popover = True
-            self.btn_settings_fs.set_menu_model(self.model)
+        self.fullscr_events = self.builder.get_object("FullscreenEventbox")
+        self.fullscr_hb_revealer = self.builder.get_object("FullscreenHbPlaceholder")
+        self.fullscr_hb = self.builder.get_object("FullscreenHeaderbar")
+        self.fullscr_hb.get_style_context().add_class("titlebar")
+        self.fullscr_hb_revealer.show()
+        self.fullscr_hb_revealer.set_reveal_child(False)
+        self.fullscr_hb.show()
+        self.fullscr_events.hide()
 
-            #self.builder.get_object("menu1").detach()
-            self.bbtn_fs.set_popup(self.builder.get_object("menu1"))
+        self.btn_settings_fs = Gtk.MenuButton()
+        self.btn_settings_fs.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
+        self.btn_settings_fs.props.use_popover = True
+        self.btn_settings_fs.set_menu_model(self.model)
 
-            btn_exit_fs = Gtk.Button()
-            btn_exit_fs.props.image = Gtk.Image.new_from_icon_name('view-restore-symbolic', Gtk.IconSize.BUTTON)
-            btn_exit_fs.set_action_name("app.fullscreen")
+        self.bbtn_fs = Gtk.MenuButton()
+        self.bbtn_fs.props.use_popover = True
+        self.bbtn_fs.set_menu_model(self.model2)
 
-            self.fullscr_hb.pack_start(self.bbtn_fs)
-            self.fullscr_hb.pack_end(btn_exit_fs)
-            self.fullscr_hb.pack_end(self.btn_settings_fs)
-            self.fullscr_hb.show_all()
-            # this is a little tricky
-            # we show hb when the cursor enters an area of 1 px at the top of the window
-            # as the hb is shown the height of the eventbox grows to accomodate it
-            self.fullscr_events.connect('enter_notify_event', self.show_fs_hb)
-            self.fullscr_events.connect('leave_notify_event', self.hide_fs_hb)
-            self.btn_settings_fs.connect('focus_out_event', self.hide_fs_hb)
+
+        btn_exit_fs = Gtk.Button()
+        btn_exit_fs.props.image = Gtk.Image.new_from_icon_name('view-restore-symbolic', Gtk.IconSize.BUTTON)
+        btn_exit_fs.set_action_name("app.fullscreen")
+
+        self.fullscr_hb.pack_start(self.bbtn_fs)
+        self.fullscr_hb.pack_end(btn_exit_fs)
+        self.fullscr_hb.pack_end(self.btn_settings_fs)
+        self.fullscr_hb.show_all()
+        # this is a little tricky
+        # we show hb when the cursor enters an area of 1 px at the top of the window
+        # as the hb is shown the height of the eventbox grows to accomodate it
+        self.fullscr_events.connect('enter_notify_event', self.show_fs_hb)
+        self.fullscr_events.connect('leave_notify_event', self.hide_fs_hb)
+        self.btn_settings_fs.connect('focus_out_event', self.hide_fs_hb)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -1018,10 +1021,7 @@ class UberwriterWindow(Window):
 
         self.word_count = builder.get_object('word_count')
         self.char_count = builder.get_object('char_count')
-        self.menubar = builder.get_object('menubar1')
-        self.menubar.hide()
         
-
         # Wire up buttons
         self.fullscreen_button = builder.get_object('fullscreen_toggle')
         self.focusmode_button = builder.get_object('focus_toggle')
@@ -1118,7 +1118,8 @@ class UberwriterWindow(Window):
         # Init file name with None
         self.set_filename()
 
-        self.generate_recent_files_menu(self.builder.get_object('recent'))
+        #TODO: set recents menu
+        # self.generate_recent_files_menu(self.builder.get_object('recent'))
 
         self.style_provider = Gtk.CssProvider()
         self.style_provider.load_from_path(helpers.get_media_path('style.css'))
@@ -1243,8 +1244,8 @@ class UberwriterWindow(Window):
         Gtk.main_quit()
 
     def set_headerbar_title(self, title):
-        if self.use_headerbar:
-            self.hb.props.title = title
+        self.hb.props.title = title
+        self.fullscr_hb.props.title = title
         self.set_title(title)
 
     def set_filename(self, filename=None):
