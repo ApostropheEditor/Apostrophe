@@ -104,61 +104,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkToggleButton" id="focus_toggle">
-                            <property name="label" translatable="yes">Focus Mode</property>
-                            <property name="height_request">15</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">True</property>
-                            <property name="has_tooltip">True</property>
-                            <property name="tooltip_markup" translatable="yes">Go into focus mode</property>
-                            <property name="tooltip_text" translatable="yes">Go into focus mode</property>
-                            <property name="halign">center</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkToggleButton" id="fullscreen_toggle">
-                            <property name="label" translatable="yes">Fullscreen</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">True</property>
-                            <property name="has_tooltip">True</property>
-                            <property name="tooltip_markup" translatable="yes">Go into fullscreen mode</property>
-                            <property name="tooltip_text" translatable="yes">Go into fullscreen mode</property>
-                            <property name="halign">start</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkToggleButton" id="preview_toggle">
-                            <property name="label" translatable="yes">Preview</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">True</property>
-                            <property name="has_tooltip">True</property>
-                            <property name="tooltip_markup" translatable="yes">Show HTML preview</property>
-                            <property name="tooltip_text" translatable="yes">Show HTML preview</property>
-                            <property name="halign">start</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkLabel" id="label2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -229,6 +174,15 @@
                             <property name="left_attach">7</property>
                             <property name="top_attach">0</property>
                           </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                       </object>
                     </child>

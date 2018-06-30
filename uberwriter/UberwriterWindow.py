@@ -161,12 +161,10 @@ class UberwriterWindow(Window):
     def toggle_fullscreen(self, state):
         if state.get_boolean():
             self.fullscreen()
-            self.fullscreen_button.set_active(True)
             self.fullscr_events.show()
 
         else:
             self.unfullscreen()
-            self.fullscreen_button.set_active(False)
             self.fullscr_events.hide()
 
         self.TextEditor.grab_focus()
@@ -180,7 +178,6 @@ class UberwriterWindow(Window):
             self.check_scroll(self.TextBuffer.get_insert())
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 0)
-            self.focusmode_button.set_active(True)
         else:
             self.remove_typewriter()
             self.focusmode = False
@@ -197,7 +194,6 @@ class UberwriterWindow(Window):
             self.check_scroll()
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 4)
-            self.focusmode_button.set_active(False)
 
     def scroll_smoothly(self, widget, frame_clock, data=None):
         if self.smooth_scroll_data['target_pos'] == -1:
@@ -215,8 +211,8 @@ class UberwriterWindow(Window):
             self.smooth_scroll_acttarget = self.smooth_scroll_data['target_pos']
 
         if now < self.smooth_scroll_endtime:
-            t = float(now - self.smooth_scroll_starttime) \
-                / float(self.smooth_scroll_endtime - self.smooth_scroll_starttime)
+            t = float(now - self.smooth_scroll_starttime) / float(
+                self.smooth_scroll_endtime - self.smooth_scroll_starttime)
         else:
             t = 1
             pos = self.smooth_scroll_data['source_pos'] \
@@ -609,7 +605,8 @@ class UberwriterWindow(Window):
 
         elif status.get_boolean():
             self.SpellChecker = SpellChecker(
-                self.TextEditor, self, locale.getdefaultlocale()[0], collapse=False)
+                self.TextEditor, self, locale.getdefaultlocale()[0],
+                collapse=False)
             if self.auto_correct:
                 self.auto_correct.set_language(self.SpellChecker.language)
                 self.SpellChecker.connect_language_change(
@@ -895,7 +892,7 @@ class UberwriterWindow(Window):
         self.fullscr_hb_revealer.set_reveal_child(True)
 
     def hide_fs_hb(self, widget, data=None):
-        if self.btn_settings_fs.get_active() or self.bbtn_fs.get_active():
+        if self.fs_btn_menu.get_active():
             pass
         else:
             self.fullscr_hb_revealer.set_reveal_child(False)
@@ -984,27 +981,42 @@ class UberwriterWindow(Window):
         self.hb_revealer.set_reveal_child(True)
         self.hb.show()
 
-        # TODO: this button/model names are HORRIBLE. Find better ones
+        btn_new = Gtk.Button().new_from_icon_name("document-new-symbolic", 
+                                                  Gtk.IconSize.BUTTON)
+        btn_open = Gtk.Button().new_from_icon_name("document-open-symbolic", 
+                                                   Gtk.IconSize.BUTTON)
+        btn_recent = Gtk.Button().new_from_icon_name("document-open-recent-symbolic",
+                                                     Gtk.IconSize.BUTTON)
+        btn_save = Gtk.Button().new_from_icon_name("document-save-symbolic",
+                                                   Gtk.IconSize.BUTTON)
+        btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
+                                                     Gtk.IconSize.BUTTON)
+        btn_menu = Gtk.MenuButton().new()
+        btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
+                                                        Gtk.IconSize.BUTTON))
 
-        btn_settings = Gtk.MenuButton()
-        btn_settings.props.image = Gtk.Image.new_from_icon_name(
-            'emblem-system-symbolic', Gtk.IconSize.BUTTON)
-        btn_settings.props.use_popover = True
-        self.builder_window_menu = get_builder('WindowMenu')
-        self.model = self.builder_window_menu.get_object("WindowMenu")
-        btn_settings.set_menu_model(self.model)
+        btn_new.set_action_name("app.new")
+        btn_open.set_action_name("app.open")
+        btn_recent.set_action_name("app.open_recent")
+        btn_save.set_action_name("app.save")
+        btn_search.set_action_name("app.search")
 
-        bbtn = Gtk.MenuButton()
-        bbtn.props.use_popover = True
-        self.builder_settings_menu = get_builder('SettingsMenu')
-        self.model2 = self.builder_settings_menu.get_object("SettingsMenu")
-        bbtn.set_menu_model(self.model2)
+        btn_menu.set_use_popover(True)
+        self.builder_window_menu = get_builder('Menu')
+        self.model = self.builder_window_menu.get_object("Menu")
+        btn_menu.set_menu_model(self.model)
 
-        self.hb.pack_start(bbtn)
-        self.hb.pack_end(btn_settings)
+        self.hb.pack_start(btn_new)
+        self.hb.pack_start(btn_open)
+        self.hb.pack_start(btn_recent)
+        self.hb.pack_end(btn_menu)
+        self.hb.pack_end(btn_search)
+        self.hb.pack_end(btn_save)
         self.hb.show_all()
 
         # same for fullscreen headerbar
+        # TODO: Refactorice: this is duplicated code!
+
 
         self.fullscr_events = self.builder.get_object("FullscreenEventbox")
         self.fullscr_hb_revealer = self.builder.get_object(
@@ -1016,31 +1028,48 @@ class UberwriterWindow(Window):
         self.fullscr_hb.show()
         self.fullscr_events.hide()
 
-        self.btn_settings_fs = Gtk.MenuButton()
-        self.btn_settings_fs.props.image = Gtk.Image.new_from_icon_name(
-            'emblem-system-symbolic', Gtk.IconSize.BUTTON)
-        self.btn_settings_fs.props.use_popover = True
-        self.btn_settings_fs.set_menu_model(self.model)
+        fs_btn_new = Gtk.Button().new_from_icon_name("document-new-symbolic", 
+                                                     Gtk.IconSize.BUTTON)
+        fs_btn_open = Gtk.Button().new_from_icon_name("document-open-symbolic", 
+                                                      Gtk.IconSize.BUTTON)
+        fs_btn_recent = Gtk.Button().new_from_icon_name("document-open-recent-symbolic",
+                                                        Gtk.IconSize.BUTTON)
+        fs_btn_save = Gtk.Button().new_from_icon_name("document-save-symbolic",
+                                                      Gtk.IconSize.BUTTON)
+        fs_btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
+                                                        Gtk.IconSize.BUTTON)
+        self.fs_btn_menu = Gtk.MenuButton().new()
+        self.fs_btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
+                                                           Gtk.IconSize.BUTTON))
+        fs_btn_exit = Gtk.Button().new_from_icon_name("view-restore-symbolic", 
+                                                      Gtk.IconSize.BUTTON)
+        
+        fs_btn_new.set_action_name("app.new")
+        fs_btn_open.set_action_name("app.open")
+        fs_btn_recent.set_action_name("app.open_recent")
+        fs_btn_save.set_action_name("app.save")
+        fs_btn_search.set_action_name("app.search")
+        fs_btn_exit.set_action_name("app.fullscreen")
 
-        self.bbtn_fs = Gtk.MenuButton()
-        self.bbtn_fs.props.use_popover = True
-        self.bbtn_fs.set_menu_model(self.model2)
+        self.fs_btn_menu.set_use_popover(True)
+        self.builder_window_menu = get_builder('Menu')
+        self.model = self.builder_window_menu.get_object("Menu")
+        self.fs_btn_menu.set_menu_model(self.model)
 
-        btn_exit_fs = Gtk.Button()
-        btn_exit_fs.props.image = Gtk.Image.new_from_icon_name(
-            'view-restore-symbolic', Gtk.IconSize.BUTTON)
-        btn_exit_fs.set_action_name("app.fullscreen")
-
-        self.fullscr_hb.pack_start(self.bbtn_fs)
-        self.fullscr_hb.pack_end(btn_exit_fs)
-        self.fullscr_hb.pack_end(self.btn_settings_fs)
+        self.fullscr_hb.pack_start(fs_btn_new)
+        self.fullscr_hb.pack_start(fs_btn_open)
+        self.fullscr_hb.pack_start(fs_btn_recent)
+        self.fullscr_hb.pack_end(fs_btn_exit)
+        self.fullscr_hb.pack_end(self.fs_btn_menu)
+        self.fullscr_hb.pack_end(fs_btn_search)
+        self.fullscr_hb.pack_end(fs_btn_save)
         self.fullscr_hb.show_all()
         # this is a little tricky
         # we show hb when the cursor enters an area of 1 px at the top of the window
         # as the hb is shown the height of the eventbox grows to accomodate it
         self.fullscr_events.connect('enter_notify_event', self.show_fs_hb)
         self.fullscr_events.connect('leave_notify_event', self.hide_fs_hb)
-        self.btn_settings_fs.connect('focus_out_event', self.hide_fs_hb)
+        self.fs_btn_menu.get_popover().connect('closed', self.hide_fs_hb)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -1049,25 +1078,6 @@ class UberwriterWindow(Window):
 
         self.word_count = builder.get_object('word_count')
         self.char_count = builder.get_object('char_count')
-
-        # Wire up buttons
-        self.fullscreen_button = builder.get_object('fullscreen_toggle')
-        self.focusmode_button = builder.get_object('focus_toggle')
-        self.preview_button = builder.get_object('preview_toggle')
-
-        self.fullscreen_button.set_action_name("app.fullscreen")
-        self.focusmode_button.set_action_name("app.focus_mode")
-        self.preview_button.set_action_name("app.preview")
-
-        self.fullscreen_button.set_name('fullscreen_toggle')
-        self.focusmode_button.set_name('focus_toggle')
-        self.preview_button.set_name('preview_toggle')
-
-        self.export_pdf_button = builder.get_object('mnu_export_pdf')
-
-        # Gray export to pdf if pdftex not avaliable
-        if not helpers.exist_executable('pdftex'):
-            self.export_pdf_button.set_sensitive(False)
 
         # Setup status bar hide after 3 seconds
 
@@ -1205,8 +1215,9 @@ class UberwriterWindow(Window):
         # Setting up spellcheck
         self.auto_correct = None
         try:
-            self.SpellChecker = SpellChecker(self.TextEditor,
-                                             locale.getdefaultlocale()[0], collapse=False)
+            self.SpellChecker = SpellChecker(
+                self.TextEditor, locale.getdefaultlocale()[0],
+                collapse=False)
             if self.auto_correct:
                 self.auto_correct.set_language(self.SpellChecker.language)
                 self.SpellChecker.connect_language_change(

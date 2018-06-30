@@ -110,7 +110,7 @@ class Application(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
-        '''AppMenu Actions'''
+        '''Actions'''
 
         action = Gio.SimpleAction.new("help", None)
         action.connect("activate", self.on_help)
@@ -135,8 +135,6 @@ class Application(Gtk.Application):
         action = Gio.SimpleAction.new("quit", None)
         action.connect("activate", self.on_quit)
         self.add_action(action)
-
-        '''Right menu actions'''
 
         set_dark_mode = self.settings.get_value("dark-mode")
         action = Gio.SimpleAction.new_stateful("dark_mode",
@@ -212,9 +210,6 @@ class Application(Gtk.Application):
         action = Gio.SimpleAction.new("HTML_copy", None)
         action.connect("activate", self.on_html_copy)
         self.add_action(action)
-
-        builder = get_builder('App_menu')
-        self.set_app_menu(builder.get_object("app-menu"))
 
         '''Shortcuts'''
 
