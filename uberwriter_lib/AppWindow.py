@@ -172,7 +172,7 @@ class Application(Gtk.Application):
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
-        '''Left Menu Actions'''
+        '''Menu Actions'''
 
         action = Gio.SimpleAction.new("new", None)
         action.connect("activate", self.on_new)
@@ -260,15 +260,10 @@ class Application(Gtk.Application):
 
     
     def on_about(self, action, param):
-        about_dialog = Gtk.AboutDialog(transient_for=self.window, modal=True)
-        about_dialog.set_program_name("Uberwriter")
-        about_dialog.set_version("2.0.3")
-        about_dialog.set_copyright("Copyright (C) 2018, Wolf Vollprecht")
-        about_dialog.set_license_type(Gtk.License.GPL_3_0)
-        about_dialog.set_website("Uberwriter website http://uberwriter.github.io/uberwriter")
-        about_dialog.set_authors(["Wolf Vollprecht <w.vollprecht@gmail.com>", 
-                                  "Manuel Genovés <manuel.genoves@gmail.com>"])
-        
+
+        builder = get_builder('About')
+        about_dialog = builder.get_object("AboutDialog")
+        about_dialog.set_transient_for(self.window)
         logo_file = get_media_path("uberwriter.svg")
         logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
         
