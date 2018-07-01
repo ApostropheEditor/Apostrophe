@@ -25,7 +25,7 @@ logger = logging.getLogger('uberwriter_lib')
 
 from . helpers import get_builder, show_uri, get_help_uri
 
-class PreferencesDialog(Gtk.Dialog):
+class PreferencesDialog(Gtk.Window):
     __gtype_name__ = "PreferencesDialog"
 
     def __new__(cls):
@@ -34,9 +34,9 @@ class PreferencesDialog(Gtk.Dialog):
         
         Returns a fully instantiated PreferencesDialog object.
         """
-        builder = get_builder('PreferencesUberwriterDialog')
-        new_object = builder.get_object("preferences_uberwriter_dialog")
-        new_object.finish_initializing(builder)
+        builder = get_builder('Preferences')
+        new_object = builder.get_object("PreferencesWindow")
+       # new_object.finish_initializing(builder)
         return new_object
 
     def finish_initializing(self, builder):
@@ -58,7 +58,3 @@ class PreferencesDialog(Gtk.Dialog):
 
     def on_btn_close_clicked(self, widget, data=None):
         self.destroy()
-
-    def on_btn_help_clicked(self, widget, data=None):
-        show_uri(self, "ghelp:%s" % get_help_uri('preferences'))
-

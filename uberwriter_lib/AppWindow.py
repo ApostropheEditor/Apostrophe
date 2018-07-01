@@ -24,6 +24,7 @@ from . helpers import get_builder, show_uri, get_help_uri, get_media_path
 from uberwriter import UberwriterWindow
 from uberwriter.Settings import Settings
 from uberwriter_lib import set_up_logging
+from uberwriter_lib.PreferencesDialog import PreferencesDialog
 
 from gettext import gettext as _
 
@@ -165,12 +166,6 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_search)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new_stateful("preview",
-                                                None,
-                                                GLib.Variant.new_boolean(False))
-        action.connect("change-state", self.on_preview)
-        self.add_action(action)
-
         action = Gio.SimpleAction.new_stateful("spellcheck",
                                                 None,
                                                 GLib.Variant.new_boolean(True))
@@ -210,6 +205,11 @@ class Application(Gtk.Application):
         action = Gio.SimpleAction.new("HTML_copy", None)
         action.connect("activate", self.on_html_copy)
         self.add_action(action)
+
+        action = Gio.SimpleAction.new("preferences", None)
+        action.connect("activate", self.on_preferences)
+        self.add_action(action)
+
 
         '''Shortcuts'''
 
@@ -342,6 +342,12 @@ class Application(Gtk.Application):
     
     def on_html_copy(self, action, value):
         self.window.copy_html_to_clipboard()
+
+    def on_preferences(self, action, value):
+        PreferencesWindow = PreferencesDialog()
+        PreferencesWindow.set_application(self)
+        PreferencesWindow.set_transient_for(self.window)
+        PreferencesWindow.show()
    
     def on_quit(self, action, param):
         self.quit()
