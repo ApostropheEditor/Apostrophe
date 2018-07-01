@@ -36,25 +36,4 @@ class PreferencesDialog(Gtk.Window):
         """
         builder = get_builder('Preferences')
         new_object = builder.get_object("PreferencesWindow")
-       # new_object.finish_initializing(builder)
         return new_object
-
-    def finish_initializing(self, builder):
-        """Called while initializing this instance in __new__
-
-        finish_initalizing should be called after parsing the ui definition
-        and creating a PreferencesDialog object with it in order to
-        finish initializing the start of the new PerferencesUberwriterDialog
-        instance.
-        
-        Put your initialization code in here and leave __init__ undefined.
-        """
-
-        # Get a reference to the builder and set up the signals.
-        self.builder = builder
-        self.ui = builder.get_ui(self, True)
-
-        # code for other initialization actions should be added here
-
-    def on_btn_close_clicked(self, widget, data=None):
-        self.destroy()
