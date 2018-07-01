@@ -981,17 +981,17 @@ class UberwriterWindow(Window):
         self.hb_revealer.set_reveal_child(True)
         self.hb.show()
 
-        btn_new = Gtk.Button().new_from_icon_name("document-new-symbolic", 
-                                                  Gtk.IconSize.BUTTON)
-        btn_open = Gtk.Button().new_from_icon_name("document-open-symbolic", 
-                                                   Gtk.IconSize.BUTTON)
-        btn_recent = Gtk.Button().new_from_icon_name("document-open-recent-symbolic",
+        btn_new = Gtk.Button().new_with_label(_("New"))
+        btn_open = Gtk.Button().new_with_label(_("Open"))
+        btn_recent = Gtk.Button().new_from_icon_name("go-down-symbolic",
                                                      Gtk.IconSize.BUTTON)
-        btn_save = Gtk.Button().new_from_icon_name("document-save-symbolic",
-                                                   Gtk.IconSize.BUTTON)
+        btn_recent.set_tooltip_text(_("Open Recent"))
+        btn_save = Gtk.Button().new_with_label(_("Save"))
         btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
                                                      Gtk.IconSize.BUTTON)
+        btn_search.set_tooltip_text(_("Search and replace"))
         btn_menu = Gtk.MenuButton().new()
+        btn_menu.set_tooltip_text(_("Menu"))
         btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
                                                         Gtk.IconSize.BUTTON))
 
@@ -1028,21 +1028,22 @@ class UberwriterWindow(Window):
         self.fullscr_hb.show()
         self.fullscr_events.hide()
 
-        fs_btn_new = Gtk.Button().new_from_icon_name("document-new-symbolic", 
+        fs_btn_new = Gtk.Button().new_with_label(_("New"))
+        fs_btn_open = Gtk.Button().new_with_label(_("Open"))
+        fs_btn_recent = Gtk.Button().new_from_icon_name("go-down-symbolic",
                                                      Gtk.IconSize.BUTTON)
-        fs_btn_open = Gtk.Button().new_from_icon_name("document-open-symbolic", 
-                                                      Gtk.IconSize.BUTTON)
-        fs_btn_recent = Gtk.Button().new_from_icon_name("document-open-recent-symbolic",
-                                                        Gtk.IconSize.BUTTON)
-        fs_btn_save = Gtk.Button().new_from_icon_name("document-save-symbolic",
-                                                      Gtk.IconSize.BUTTON)
+        fs_btn_recent.set_tooltip_text(_("Open Recent"))
+        fs_btn_save = Gtk.Button().new_with_label(_("Save"))
         fs_btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
-                                                        Gtk.IconSize.BUTTON)
+                                                     Gtk.IconSize.BUTTON)
+        fs_btn_search.set_tooltip_text(_("Search and replace"))
         self.fs_btn_menu = Gtk.MenuButton().new()
+        self.fs_btn_menu.set_tooltip_text(_("Menu"))
         self.fs_btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
-                                                           Gtk.IconSize.BUTTON))
+                                                        Gtk.IconSize.BUTTON))
         fs_btn_exit = Gtk.Button().new_from_icon_name("view-restore-symbolic", 
                                                       Gtk.IconSize.BUTTON)
+        fs_btn_exit.set_tooltip_text(_("Exit Fullscreen"))
         
         fs_btn_new.set_action_name("app.new")
         fs_btn_open.set_action_name("app.open")
