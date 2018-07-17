@@ -52,23 +52,6 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="normalize">
-                        <property name="label" translatable="yes">Normalize</property>
-                        <property name="use_action_appearance">False</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Removes things like double spaces or spaces at the beginning of a paragraph</property>
-                        <property name="halign">start</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkCheckButton" id="toc">
                         <property name="label" translatable="yes">Table of Contents</property>
                         <property name="use_action_appearance">False</property>
@@ -469,13 +452,6 @@
           <object class="GtkComboBox" id="choose_format">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="has_entry">True</property>
-            <child internal-child="entry">
-              <object class="GtkEntry" id="choose_format_entry">
-                <property name="can_focus">False</property>
-                <property name="text" translatable="yes">Choose format</property>
-              </object>
-            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -610,13 +586,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkFileChooserWidget" id="export_advanced">
+              <object class="GtkFileChooserWidget" id="advanced">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="extra_widget">advanced_export_options</property>
               </object>
               <packing>
-                <property name="name">page0</property>
+                <property name="name">advanced</property>
                 <property name="title" translatable="yes">Advanced</property>
                 <property name="position">3</property>
               </packing>
