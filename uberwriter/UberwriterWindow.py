@@ -725,13 +725,13 @@ class UberwriterWindow(Window):
 
     def open_advanced_export(self, widget=None, data=None):
         self.Export = Export(self.filename)
-        self.Export.Dialog.set_transient_for(self)
+        self.Export.dialog.set_transient_for(self)
 
-        response = self.Export.Dialog.run()
+        response = self.Export.dialog.run()
         if response == 1: 
             self.Export.export(bytes(self.get_text(), "utf-8"))
 
-        self.Export.Dialog.destroy()
+        self.Export.dialog.destroy()
             
     def open_recent(self, widget, data=None):
         if data:
