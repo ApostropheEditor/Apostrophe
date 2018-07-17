@@ -724,11 +724,8 @@ class UberwriterWindow(Window):
         self.searchreplace.toggle_search()
 
     def open_advanced_export(self, widget=None, data=None):
-        #ExportDialog = UberwriterExportDialog()
-        #ExportDialog.finish_initializing()
         self.Export = Export(self.filename)
         self.Export.Dialog.set_transient_for(self)
-        #self.ExportDialog.ExportDialog.show()
 
         response = self.Export.Dialog.run()
         if response == 1: 
