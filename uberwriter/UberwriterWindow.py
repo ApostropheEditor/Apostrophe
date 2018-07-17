@@ -61,7 +61,7 @@ except:
     APT_ENABLED = False
 
 
-from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
+from .UberwriterExportDialog import Export
 # from .plugins.bibtex import BibTex
 # Some Globals
 # TODO move them somewhere for better
@@ -424,89 +424,6 @@ class UberwriterWindow(Window):
             filechooser.destroy()
             return Gtk.ResponseType.CANCEL
 
-    def export(self, export_type="html"):
-        filechooser = Gtk.FileChooserDialog(
-            "Export as %s" % export_type.upper(),
-            self,
-            Gtk.FileChooserAction.SAVE,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Save", Gtk.ResponseType.OK)
-        )
-
-        filechooser.set_do_overwrite_confirmation(True)
-        if self.filename:
-            filechooser.set_filename(self.filename[:-2] + export_type.lower())
-
-        response = filechooser.run()
-        if response == Gtk.ResponseType.OK:
-            filename = filechooser.get_filename()
-            if filename.endswith("." + export_type):
-                filename = filename[:-len(export_type)-1]
-            filechooser.destroy()
-        else:
-            filechooser.destroy()
-            return
-
-        # Converting text to bytes for python 3
-        text = bytes(self.get_text(), "utf-8")
-
-        output_dir = os.path.abspath(os.path.join(filename, os.path.pardir))
-
-        basename = os.path.basename(filename)
-
-        args = ['pandoc', '--from=markdown', '-s']
-
-        if export_type == "pdf":
-            args.append("-o%s.pdf" % basename)
-
-        elif export_type == "odt":
-            args.append("-o%s.odt" % basename)
-
-        elif export_type == "html":
-            css = helpers.get_media_file('uberwriter.css')
-            relativize = helpers.get_script_path('relative_to_absolute.lua')
-            task_list = helpers.get_script_path('task-list.lua')
-            args.append("-c%s" % css)
-            args.append("-o%s.html" % basename)
-            args.append("--mathjax")
-            args.append("--lua-filter=" + relativize)
-            args.append("--lua-filter=" + task_list)
-
-        p = subprocess.Popen(args, stdin=subprocess.PIPE,
-                             stdout=subprocess.PIPE, cwd=output_dir)
-        output = p.communicate(text)[0]
-
-        return filename
-
-    def export_as_odt(self, widget, data=None):
-        self.export("odt")
-
-    def export_as_html(self, widget, data=None):
-        self.export("html")
-
-    def export_as_pdf(self, widget, data=None):
-        if self.texlive_installed == False and APT_ENABLED:
-            try:
-                cache = apt.Cache()
-                inst = cache["texlive"].is_installed
-            except:
-                inst = True
-
-            if inst == False:
-                dialog = Gtk.MessageDialog(self,
-                                           Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                           Gtk.MessageType.INFO,
-                                           Gtk.ButtonsType.NONE,
-                                           _("You can not export to PDF.")
-                                           )
-                dialog.format_secondary_markup(
-                    _("Please install <a href=\"apt:texlive\">texlive</a> from the software center."))
-                response = dialog.run()
-                return
-            else:
-                self.texlive_installed = True
-        self.export("pdf")
-
     def copy_html_to_clipboard(self, widget=None, date=None):
         """Copies only html without headers etc. to Clipboard"""
 
@@ -524,9 +441,6 @@ class UberwriterWindow(Window):
     def open_document(self, widget=None):
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
-
-        if self.focusmode:
-            self.focusmode_button.set_active(False)
 
         filefilter = Gtk.FileFilter.new()
         filefilter.add_mime_type('text/x-markdown')
@@ -670,8 +584,6 @@ class UberwriterWindow(Window):
 
     def toggle_preview(self, state):
 
-        self.preview_button.set_active(state.get_boolean())
-
         if state.get_boolean():
 
             # Insert a tag with ID to scroll to
@@ -774,7 +686,6 @@ class UberwriterWindow(Window):
                 filename = filename[7:]
             filename = urllib.parse.unquote_plus(filename)
             try:
-                self.preview_button.set_active(False)
                 if not os.path.exists(filename):
                     self.TextBuffer.set_text("")
                 else:
@@ -813,15 +724,18 @@ class UberwriterWindow(Window):
         self.searchreplace.toggle_search()
 
     def open_advanced_export(self, widget=None, data=None):
-        if self.UberwriterAdvancedExportDialog is not None:
-            advexp = self.UberwriterAdvancedExportDialog()  # pylint: disable=
+        #ExportDialog = UberwriterExportDialog()
+        #ExportDialog.finish_initializing()
+        self.Export = Export(self.filename)
+        self.Export.Dialog.set_transient_for(self)
+        #self.ExportDialog.ExportDialog.show()
 
-            response = advexp.run()
-            if response == 1:
-                advexp.advanced_export(bytes(self.get_text(), "utf-8"))
+        response = self.Export.Dialog.run()
+        if response == 1: 
+            self.Export.export(bytes(self.get_text(), "utf-8"))
 
-            advexp.destroy()
-
+        self.Export.Dialog.destroy()
+            
     def open_recent(self, widget, data=None):
         if data:
             if self.check_change() == Gtk.ResponseType.CANCEL:
@@ -946,8 +860,6 @@ class UberwriterWindow(Window):
 
         # preferences
         self.settings = Settings.new()
-
-        self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
 
         self.connect('save-file', self.save_document)
