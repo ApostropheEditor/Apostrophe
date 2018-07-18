@@ -740,7 +740,7 @@ class UberwriterWindow(Window):
             else:
                 self.load_file(data)
 
-    def generate_recent_files_menu(self, parent_menu):
+    def generate_recent_files_menu(self):
         # Recent file filter
         self.recent_manager = Gtk.RecentManager.get_default()
 
@@ -761,8 +761,9 @@ class UberwriterWindow(Window):
                 item.show()
 
         menu.show()
-        parent_menu.set_submenu(menu)
-        parent_menu.show()
+        return menu
+        # menu.attach_to_widget(widget)
+        # parent_menu.show()
 
     def poll_for_motion(self):
         if (self.was_motion == False
@@ -892,9 +893,11 @@ class UberwriterWindow(Window):
 
         btn_new = Gtk.Button().new_with_label(_("New"))
         btn_open = Gtk.Button().new_with_label(_("Open"))
-        btn_recent = Gtk.Button().new_from_icon_name("go-down-symbolic",
-                                                     Gtk.IconSize.BUTTON)
+        btn_recent = Gtk.MenuButton().new()
+        btn_recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
+                                                     Gtk.IconSize.BUTTON))
         btn_recent.set_tooltip_text(_("Open Recent"))
+        btn_recent.set_popup(self.generate_recent_files_menu())
         btn_save = Gtk.Button().new_with_label(_("Save"))
         btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
                                                      Gtk.IconSize.BUTTON)
@@ -939,9 +942,12 @@ class UberwriterWindow(Window):
 
         fs_btn_new = Gtk.Button().new_with_label(_("New"))
         fs_btn_open = Gtk.Button().new_with_label(_("Open"))
-        fs_btn_recent = Gtk.Button().new_from_icon_name("go-down-symbolic",
-                                                     Gtk.IconSize.BUTTON)
-        fs_btn_recent.set_tooltip_text(_("Open Recent"))
+        self.fs_btn_recent = Gtk.MenuButton().new()
+        self.fs_btn_recent.set_tooltip_text(_("Open Recent"))
+        self.fs_btn_recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
+                                                     Gtk.IconSize.BUTTON))
+        self.fs_btn_recent.set_tooltip_text(_("Open Recent"))
+        self.fs_btn_recent.set_popup(self.generate_recent_files_menu())
         fs_btn_save = Gtk.Button().new_with_label(_("Save"))
         fs_btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
                                                      Gtk.IconSize.BUTTON)
@@ -956,7 +962,7 @@ class UberwriterWindow(Window):
         
         fs_btn_new.set_action_name("app.new")
         fs_btn_open.set_action_name("app.open")
-        fs_btn_recent.set_action_name("app.open_recent")
+        self.fs_btn_recent.set_action_name("app.open_recent")
         fs_btn_save.set_action_name("app.save")
         fs_btn_search.set_action_name("app.search")
         fs_btn_exit.set_action_name("app.fullscreen")
@@ -968,7 +974,7 @@ class UberwriterWindow(Window):
 
         self.fullscr_hb.pack_start(fs_btn_new)
         self.fullscr_hb.pack_start(fs_btn_open)
-        self.fullscr_hb.pack_start(fs_btn_recent)
+        self.fullscr_hb.pack_start(self.fs_btn_recent)
         self.fullscr_hb.pack_end(fs_btn_exit)
         self.fullscr_hb.pack_end(self.fs_btn_menu)
         self.fullscr_hb.pack_end(fs_btn_search)
@@ -1066,9 +1072,6 @@ class UberwriterWindow(Window):
 
         # Init file name with None
         self.set_filename()
-
-        # TODO: set recents menu
-        # self.generate_recent_files_menu(self.builder.get_object('recent'))
 
         self.style_provider = Gtk.CssProvider()
         self.style_provider.load_from_path(helpers.get_media_path('style.css'))
