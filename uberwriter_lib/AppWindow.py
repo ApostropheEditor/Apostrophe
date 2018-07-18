@@ -56,9 +56,6 @@ class Window(Gtk.ApplicationWindow):
         self.add(self.contents)
     
         self.finish_initializing(builder)
-        
-        return super().__init__(*args, **kwargs)
- 
 
     def on_maximize_toggle(self, action, value):
         action.set_state(value)
