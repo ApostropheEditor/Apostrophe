@@ -1,174 +1,195 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: UberWriter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-24 17:57+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: UberWriter\n"
+"Language: sv\n"
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
+msgid "(no suggestions)"
+msgstr "(inga förslag)"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
+msgid "Add \"{}\" to Dictionary"
+msgstr "Lägg till \"{}\" i ordlistan"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
+msgid "Ignore All"
+msgstr "Ignorera alla"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
+msgid "Languages"
+msgstr "Språk"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
+msgid "Suggestions"
+msgstr "Förslag"
+
+#: ../uberwriter.desktop.in.h:1
+msgid "UberWriter"
+msgstr ""
+
+#: ../uberwriter.desktop.in.h:2
+msgid "UberWriter, a simple and distraction free Markdown Editor"
+msgstr "UberWriter, ett enkelt redigeringsverktyg för Markdown"
+
+#: uberwriter/UberwriterInlinePreview.py:187
+msgid "Website is not available"
+msgstr "Webbplatsen är inte tillgänglig"
+
+#: uberwriter/UberwriterInlinePreview.py:189
+msgid "Website is available"
+msgstr "Webbplatsen är tillgänglig"
+
+#: uberwriter/UberwriterInlinePreview.py:441
+msgid "Open Link in Webbrowser"
+msgstr "Öppna länk i webbläsare"
+
+#: uberwriter/UberwriterInlinePreview.py:503
+msgid "No matching footnote found"
+msgstr "Kunde inte hitta någon matchande fotnot"
+
+#: data/ui/UberwriterWindow.ui:66
+msgid "_File"
+msgstr "_Arkiv"
+
+#: data/ui/UberwriterWindow.ui:96
+msgid "Open Recent File"
+msgstr "Senaste filer"
+
+#: data/ui/UberwriterWindow.ui:175
+msgid "Export as ODT"
+msgstr "Exportera som ODT"
+
+#: data/ui/UberwriterWindow.ui:186
+msgid "Advanced Export..."
+msgstr "Avancerad export..."
+
+#: ../data/ui/UberwriterWindow.ui.h:5
 #, fuzzy
-msgid "Dark mode"
+msgid "Copy raw HTML to clipboard"
+msgstr "Kopiera ren HTML-data till urklipp"
+
+#: ../data/ui/UberwriterWindow.ui.h:6
+msgid "_Edit"
+msgstr "_Redigera"
+
+#: data/ui/UberwriterWindow.ui:229
+msgid "_View"
+msgstr "_Visa"
+
+#: data/ui/UberwriterWindow.ui:261
+msgid "Light text on a dark background"
+msgstr "Ljus text på mörk bakgrund"
+
+#: data/ui/WindowMenu.ui:14
+msgid "Dark Mode"
 msgstr "Mörkt läge"
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
-msgid ""
-"If enabled, the window will be dark themed If disabled, the window will be "
-"light themed asked to install them manually."
-msgstr ""
+#: data/ui/UberwriterWindow.ui:261
+msgid "Switch to preview mode"
+msgstr "Växla till förhandsgranskning"
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:18
-msgid "Open file base path"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:19
-msgid "Open file paths of the current session"
-msgstr ""
-
-#.
-#. <attribute name="action">win.change_label</attribute>
-#. <attribute name="target">String 1</attribute>
-#: data/ui/App_menu.ui:10
-msgid "New window"
-msgstr ""
-
-#: data/ui/App_menu.ui:24
-msgid "_Shortcuts"
-msgstr ""
-
-#: data/ui/App_menu.ui:28
-msgid "Pandoc _Help"
-msgstr ""
-
-#: data/ui/App_menu.ui:32
-msgid "_About"
-msgstr ""
-
-#: data/ui/App_menu.ui:36
-msgid "Help to _translate"
-msgstr ""
-
-#: data/ui/App_menu.ui:40
-msgid "Donate to the project"
-msgstr ""
-
-#: data/ui/App_menu.ui:46 data/ui/UberwriterWindow.ui:214
-msgid "_Quit"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:13
-msgctxt "shortcut window"
-msgid "General"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:17
-msgctxt "shortcut window"
-msgid "New"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:24
-msgctxt "shortcut window"
-msgid "Open"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:31
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Save"
-msgstr "Spara nu"
-
-#: data/ui/Shortcuts.ui:38
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Save as"
-msgstr "Spara nu"
-
-#: data/ui/Shortcuts.ui:45
-msgctxt "shortcut window"
-msgid "Quit"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:52
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Focus mode"
-msgstr "Fokusläge"
-
-#: data/ui/Shortcuts.ui:59
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Fullscreen"
-msgstr "Helskärm"
-
-#: data/ui/Shortcuts.ui:66
-#, fuzzy
-msgctxt "shortcut window"
+#: data/ui/UberwriterWindow.ui:262 data/ui/UberwriterWindow.ui:454
+#: data/ui/WindowMenu.ui:18
 msgid "Preview"
 msgstr "Förhandsgranskning"
 
-#: data/ui/Shortcuts.ui:73
-msgctxt "shortcut window"
-msgid "Search"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:298 data/ui/WindowMenu.ui:28
+msgid "Auto _Spellcheck"
+msgstr "Automatisk _stavningskontroll"
 
-#: data/ui/Shortcuts.ui:82
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Editor"
-msgstr "_Redigera"
+#: ../data/ui/UberwriterWindow.ui.h:13
+msgid "F_ormat"
+msgstr "_Format"
 
-#: data/ui/Shortcuts.ui:86
-msgctxt "shortcut window"
-msgid "Separator"
-msgstr ""
+#: ../data/ui/UberwriterWindow.ui.h:14
+msgid "Unordered List Item"
+msgstr "Oordnat listelement"
 
-#: data/ui/Shortcuts.ui:93
-#, fuzzy
-msgctxt "shortcut window"
-msgid "List item"
-msgstr "Listelement"
+#: ../data/ui/UberwriterWindow.ui.h:15
+msgid "Horizontal Rule"
+msgstr "Horisontell linje"
 
-#: data/ui/Shortcuts.ui:100
-msgctxt "shortcut window"
-msgid "Italic"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:107
-msgctxt "shortcut window"
-msgid "Bold"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:114
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Header"
+#: uberwriter/FormatShortcuts.py:186
+msgid "Heading"
 msgstr "Rubrik"
 
-#: data/ui/Shortcuts.ui:121
-msgctxt "shortcut window"
-msgid "Cut"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:312
+msgid "_Help"
+msgstr "_Hjälp"
 
-#: data/ui/Shortcuts.ui:128
-msgctxt "shortcut window"
-msgid "Copy"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:322
+msgid "Contents"
+msgstr "Innehåll"
 
-#: data/ui/Shortcuts.ui:135
-msgctxt "shortcut window"
-msgid "Paste"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:335
+msgid "Short Markdown Tutorial"
+msgstr "Kort markdown-guide"
 
-#: data/ui/Shortcuts.ui:142
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:343
+msgid "Open Pandoc Online Markdown Help ..."
+msgstr "Öppna hjälp för Pandoc Markdown via internet..."
+
+#: ../data/ui/UberwriterWindow.ui.h:21
+msgid "Get Help Online..."
+msgstr "Få hjälp på internet..."
+
+#: data/ui/UberwriterWindow.ui:359
+msgid "Translate This Application..."
+msgstr "Översätt det här programmet..."
+
+#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:417
+#: data/ui/WindowMenu.ui:6
+msgid "Focus Mode"
+msgstr "Fokusläge"
+
+#: data/ui/UberwriterWindow.ui:424 data/ui/UberwriterWindow.ui:425
+msgid "Go into focus mode"
+msgstr "Växla till fokusläge"
+
+#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:436
+#: data/ui/WindowMenu.ui:10
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+#: data/ui/UberwriterWindow.ui:442 data/ui/UberwriterWindow.ui:443
+msgid "Go into fullscreen mode"
+msgstr "Växla till helskärmsläge"
+
+#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
+msgid "Show HTML preview"
+msgstr "Visa förhandsgranskning av HTML"
+
+#: data/ui/UberwriterWindow.ui:476
+msgid "Words:"
+msgstr "Ord:"
+
+#: data/ui/UberwriterWindow.ui:519
+msgid "Characters:"
+msgstr "Tecken:"
+
+#: uberwriter_lib/AppWindow.py:215
+msgid "Show debug messages (-vv debugs uberwriter_lib also)"
+msgstr "Visa felsökningsmeddelanden (-vv felsäker uberwriter_lib också)"
+
+#: uberwriter/FormatShortcuts.py:87
+msgid "emphasized text"
+msgstr "betonad text"
+
+#: uberwriter/FormatShortcuts.py:89
+msgid "strong text"
+msgstr "kraftig text"
+
+#: uberwriter/FormatShortcuts.py:105
+msgid "List item"
+msgstr "Listelement"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:36
 msgid "Export"
@@ -180,18 +201,15 @@ msgstr "Smart"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:103
 msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr ""
-"Pandoc kan automatiskt konvertera \"--\" till ett långt bindestreck och mer"
+msgstr "Pandoc kan automatiskt konvertera \"--\" till ett långt bindestreck och mer"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:117
 msgid "Normalize"
 msgstr "Normalisera"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:122
-msgid ""
-"Removes things like double spaces or spaces at the beginning of a paragraph"
-msgstr ""
-"Tar bort saker som dubbla mellanslag eller mellanslag i början av en paragraf"
+msgid "Removes things like double spaces or spaces at the beginning of a paragraph"
+msgstr "Tar bort saker som dubbla mellanslag eller mellanslag i början av en paragraf"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:135
 msgid "Table of Contents"
@@ -202,12 +220,8 @@ msgid "Standalone"
 msgstr "Fristående"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:157
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr ""
-"Använd sidhuvud och sidfot för att inkludera till exempel stilmallar och "
-"metainformation"
+msgid "Use a header and footer to include things like stylesheets and meta information"
+msgstr "Använd sidhuvud och sidfot för att inkludera till exempel stilmallar och metainformation"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:171
 msgid "Number Sections"
@@ -227,7 +241,7 @@ msgstr ""
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:211
 msgid "Show one bullet point after another in a slideshow"
-msgstr ""
+msgstr "Visa en punkt efter en annan i en presentation"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:230
 msgid "<b>General Options</b>"
@@ -235,16 +249,16 @@ msgstr "<b>Allmänna alternativ</b>"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:263
 msgid "Highlight syntax"
-msgstr ""
+msgstr "Markera syntax"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:287
 #: data/ui/UberwriterAdvancedExportDialog.ui:300
 msgid "Choose a color theme for syntax highlighting"
-msgstr ""
+msgstr "Välj färgtema för syntaxmarkering"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:288
 msgid "Highlight style  "
-msgstr ""
+msgstr "Markera stil␣␣"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:337
 msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
@@ -255,11 +269,8 @@ msgid "Self Contained"
 msgstr ""
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:376
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
-msgstr ""
-"Skapar HTML utan externa beroenden (alla bilder och stilmallar inkluderas)"
+msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
+msgstr "Skapar HTML utan externa beroenden (alla bilder och stilmallar inkluderas)"
 
 #: data/ui/UberwriterAdvancedExportDialog.ui:389
 msgid "HTML 5"
@@ -290,213 +301,25 @@ msgstr "<b>Bilbliografifil</b>"
 msgid "Commandline Reference"
 msgstr "Terminalreferens"
 
-#: data/ui/UberwriterWindow.ui:19
-msgid "Next Match"
+#: ../data/ui/AboutUberwriterDialog.ui.h:1
+msgid "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+"# This program is free software: you can redistribute it and/or modify it \n"
+"# under the terms of the GNU General Public License version 3, as published \n"
+"# by the Free Software Foundation.\n"
+"# \n"
+"# This program is distributed in the hope that it will be useful, but \n"
+"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
+"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
+"# PURPOSE.  See the GNU General Public License for more details.\n"
+"# \n"
+"# You should have received a copy of the GNU General Public License along \n"
+"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+""
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:41
-#, fuzzy
-msgid "Open Replace"
-msgstr "Senaste filer"
-
-#: data/ui/UberwriterWindow.ui:52
-msgid "Activate Regex"
+#: ../data/ui/AboutUberwriterDialog.ui.h:14
+msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
 msgstr ""
-
-#: data/ui/UberwriterWindow.ui:66
-msgid "_File"
-msgstr "_Arkiv"
-
-#: data/ui/UberwriterWindow.ui:74
-msgid "_New"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:84
-msgid "_Open"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:96
-msgid "Open Recent File"
-msgstr "Senaste filer"
-
-#: data/ui/UberwriterWindow.ui:102
-#, fuzzy
-msgid "Open examples"
-msgstr "Öppna .md-fil"
-
-#: data/ui/UberwriterWindow.ui:114
-#, fuzzy
-msgid "_Quick markdown tutorial"
-msgstr "Kort markdown-guide"
-
-#: data/ui/UberwriterWindow.ui:131
-#, fuzzy
-msgid "_Save"
-msgstr "Spara nu"
-
-#: data/ui/UberwriterWindow.ui:141
-#, fuzzy
-msgid "Save _As"
-msgstr "Spara nu"
-
-#: data/ui/UberwriterWindow.ui:157
-#, fuzzy
-msgid "Export as HTML"
-msgstr "Exportera som ODT"
-
-#: data/ui/UberwriterWindow.ui:166
-#, fuzzy
-msgid "Export as PDF"
-msgstr "Exportera som ODT"
-
-#: data/ui/UberwriterWindow.ui:175
-msgid "Export as ODT"
-msgstr "Exportera som ODT"
-
-#: data/ui/UberwriterWindow.ui:186
-msgid "Advanced Export..."
-msgstr "Avancerad export..."
-
-#: data/ui/UberwriterWindow.ui:201
-msgid "Copy Raw HTML to Clipboard"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:229
-msgid "_View"
-msgstr "_Visa"
-
-#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:417
-#: data/ui/WindowMenu.ui:6
-msgid "Focus Mode"
-msgstr "Fokusläge"
-
-#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:436
-#: data/ui/WindowMenu.ui:10
-msgid "Fullscreen"
-msgstr "Helskärm"
-
-#: data/ui/UberwriterWindow.ui:254
-msgid "Sidebar"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:261
-msgid "Switch to preview mode"
-msgstr "Växla till förhandsgranskning"
-
-#: data/ui/UberwriterWindow.ui:262 data/ui/UberwriterWindow.ui:454
-#: data/ui/WindowMenu.ui:18
-msgid "Preview"
-msgstr "Förhandsgranskning"
-
-#: data/ui/UberwriterWindow.ui:270
-msgid "Open Search and Replace"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:271
-msgid "Search and Replace ..."
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:298 data/ui/WindowMenu.ui:28
-msgid "Auto _Spellcheck"
-msgstr "Automatisk _stavningskontroll"
-
-#: data/ui/UberwriterWindow.ui:312
-msgid "_Help"
-msgstr "_Hjälp"
-
-#: data/ui/UberwriterWindow.ui:322
-msgid "Contents"
-msgstr "Innehåll"
-
-#: data/ui/UberwriterWindow.ui:335
-msgid "Short Markdown Tutorial"
-msgstr "Kort markdown-guide"
-
-#: data/ui/UberwriterWindow.ui:343
-msgid "Open Pandoc Online Markdown Help ..."
-msgstr "Öppna hjälp för Pandoc Markdown via internet..."
-
-#: data/ui/UberwriterWindow.ui:424 data/ui/UberwriterWindow.ui:425
-msgid "Go into focus mode"
-msgstr "Växla till fokusläge"
-
-#: data/ui/UberwriterWindow.ui:442 data/ui/UberwriterWindow.ui:443
-msgid "Go into fullscreen mode"
-msgstr "Växla till helskärmsläge"
-
-#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
-msgid "Show HTML preview"
-msgstr "Visa förhandsgranskning av HTML"
-
-#: data/ui/UberwriterWindow.ui:476
-msgid "Words:"
-msgstr "Ord:"
-
-#: data/ui/UberwriterWindow.ui:519
-msgid "Characters:"
-msgstr "Tecken:"
-
-#: data/ui/UberwriterWindow.ui:650
-msgid "Previous Match"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:694
-msgid "Case Sensitive"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:798
-msgid "Replace"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:812
-msgid "Replace all"
-msgstr ""
-
-#: data/ui/WindowMenu.ui:14
-msgid "Dark Mode"
-msgstr "Mörkt läge"
-
-#: data/ui/WindowMenu.ui:24
-#, fuzzy
-msgid "Search and Replace"
-msgstr "Senaste filer"
-
-#: uberwriter/FormatShortcuts.py:87
-msgid "emphasized text"
-msgstr "betonad text"
-
-#: uberwriter/FormatShortcuts.py:89
-msgid "strong text"
-msgstr "kraftig text"
-
-#: uberwriter/FormatShortcuts.py:91
-#, fuzzy
-msgid "striked out text"
-msgstr "kraftig text"
-
-#: uberwriter/FormatShortcuts.py:105
-msgid "List item"
-msgstr "Listelement"
-
-#: uberwriter/FormatShortcuts.py:186
-msgid "Heading"
-msgstr "Rubrik"
-
-#: uberwriter/UberwriterInlinePreview.py:187
-msgid "Website is not available"
-msgstr "Webbplatsen är inte tillgänglig"
-
-#: uberwriter/UberwriterInlinePreview.py:189
-msgid "Website is available"
-msgstr "Webbplatsen är tillgänglig"
-
-#: uberwriter/UberwriterInlinePreview.py:441
-msgid "Open Link in Webbrowser"
-msgstr "Öppna länk i webbläsare"
-
-#: uberwriter/UberwriterInlinePreview.py:503
-msgid "No matching footnote found"
-msgstr "Kunde inte hitta någon matchande fotnot"
 
 #: uberwriter/UberwriterWindow.py:340
 msgid "Save your File"
@@ -507,8 +330,7 @@ msgid "You can not export to PDF."
 msgstr "Du kan inte exportera till PDF"
 
 #: uberwriter/UberwriterWindow.py:492
-msgid ""
-"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
+msgid "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
 msgstr "Installera <a href=\"apt:texlive\">texlive</a> från Programcentralen."
 
 #: uberwriter/UberwriterWindow.py:522
@@ -544,20 +366,243 @@ msgid "You can not enable the Spell Checker."
 msgstr "Du kan inte aktivera rättstavning."
 
 #: uberwriter/UberwriterWindow.py:610
-msgid ""
-"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
-"software center."
+#, fuzzy
+msgid "Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."
+msgstr "Installera \"hunspell\" eller \"aspell\" ordböckerna för ditt språk i pakethanteraren"
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
+#, fuzzy
+msgid "Dark mode"
+msgstr "Mörkt läge"
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
+msgid "If enabled, the window will be dark themed If disabled, the window will be light themed asked to install them manually."
 msgstr ""
+
+#. <attribute name="action">win.change_label</attribute>
+#. <attribute name="target">String 1</attribute>
+#: data/ui/App_menu.ui:10
+msgid "New window"
+msgstr "Nytt fösnter"
+
+#: data/ui/App_menu.ui:24
+msgid "_Shortcuts"
+msgstr "_Genvägar"
+
+#: data/ui/App_menu.ui:28
+msgid "Pandoc _Help"
+msgstr "Pandoc_Hjälp"
+
+#: data/ui/App_menu.ui:32
+msgid "_About"
+msgstr "_OM"
+
+#: data/ui/App_menu.ui:46 data/ui/UberwriterWindow.ui:214
+msgid "_Quit"
+msgstr "_Avsluta"
+
+#: data/ui/Shortcuts.ui:13
+#, fuzzy
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Standard"
+
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr "Ny"
+
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Öppna"
+
+#: data/ui/Shortcuts.ui:31
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Spara nu"
+
+#: data/ui/Shortcuts.ui:38
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "Spara nu"
+
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Avsluta"
+
+#: data/ui/Shortcuts.ui:52
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "Fokusläge"
+
+#: data/ui/Shortcuts.ui:59
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+#: data/ui/Shortcuts.ui:66
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Förhandsgranskning"
+
+#: data/ui/Shortcuts.ui:73
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Sök"
+
+#: data/ui/Shortcuts.ui:82
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Editor"
+msgstr "_Redigera"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr "Avdelare"
+
+#: data/ui/Shortcuts.ui:93
+#, fuzzy
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "Listelement"
+
+#: data/ui/Shortcuts.ui:100
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Kursiv"
+
+#: data/ui/Shortcuts.ui:107
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Fet"
+
+#: data/ui/Shortcuts.ui:114
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Rubrik"
+
+#: data/ui/Shortcuts.ui:121
+msgctxt "shortcut window"
+msgid "Cut"
+msgstr "Klipp ut"
+
+#: data/ui/Shortcuts.ui:128
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr "Kopiera"
+
+#: data/ui/Shortcuts.ui:135
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr "Klistra in"
+
+#: data/ui/Shortcuts.ui:142
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Välj alla"
+
+#: data/ui/UberwriterWindow.ui:19
+msgid "Next Match"
+msgstr "Nästa matchning"
+
+#: data/ui/UberwriterWindow.ui:41
+#, fuzzy
+msgid "Open Replace"
+msgstr "Senaste filer"
+
+#: data/ui/UberwriterWindow.ui:52
+msgid "Activate Regex"
+msgstr "Aktivera Regex"
+
+#: data/ui/UberwriterWindow.ui:74
+msgid "_New"
+msgstr "_Ny"
+
+#: data/ui/UberwriterWindow.ui:84
+msgid "_Open"
+msgstr "_Öppna"
+
+#: data/ui/UberwriterWindow.ui:102
+#, fuzzy
+msgid "Open examples"
+msgstr "Öppna .md-fil"
+
+#: data/ui/UberwriterWindow.ui:114
+#, fuzzy
+msgid "_Quick markdown tutorial"
+msgstr "Kort markdown-guide"
+
+#: data/ui/UberwriterWindow.ui:131
+#, fuzzy
+msgid "_Save"
+msgstr "Spara nu"
+
+#: data/ui/UberwriterWindow.ui:141
+#, fuzzy
+msgid "Save _As"
+msgstr "Spara nu"
+
+#: data/ui/UberwriterWindow.ui:157
+#, fuzzy
+msgid "Export as HTML"
+msgstr "Exportera som ODT"
+
+#: data/ui/UberwriterWindow.ui:166
+#, fuzzy
+msgid "Export as PDF"
+msgstr "Exportera som ODT"
+
+#: data/ui/UberwriterWindow.ui:201
+msgid "Copy Raw HTML to Clipboard"
+msgstr "Kopiera ren HTML-data till urklipp"
+
+#: data/ui/UberwriterWindow.ui:254
+msgid "Sidebar"
+msgstr "Sidopanel"
+
+#: data/ui/UberwriterWindow.ui:270
+msgid "Open Search and Replace"
+msgstr "Öppna sök och ersätt"
+
+#: data/ui/UberwriterWindow.ui:271
+msgid "Search and Replace ..."
+msgstr "Sök och ersätt"
+
+#: data/ui/UberwriterWindow.ui:650
+msgid "Previous Match"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:694
+msgid "Case Sensitive"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:798
+msgid "Replace"
+msgstr "Ersätt"
+
+#: data/ui/UberwriterWindow.ui:812
+msgid "Replace all"
+msgstr "Ersätt alla"
+
+#: uberwriter/FormatShortcuts.py:91
+#, fuzzy
+msgid "striked out text"
+msgstr "kraftig text"
 
 #: uberwriter/plugins/bibtex/bibtex_item.glade:18
 #: uberwriter/plugins/bibtex/bibtex_item.glade:32
 #: uberwriter/plugins/bibtex/bibtex_item.glade:45
 msgid "label"
-msgstr ""
-
-#: uberwriter_lib/AppWindow.py:215
-msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-msgstr "Visa felsökningsmeddelanden (-vv felsäker uberwriter_lib också)"
+msgstr "etikett"
 
 #: uberwriter_lib/AppWindow.py:217
 msgid "Use experimental features"
@@ -581,52 +626,25 @@ msgstr ""
 
 #: uberwriter_lib/gtkspellcheck/spellcheck.py:105
 msgid "Unknown"
+msgstr "Okänd"
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:18
+msgid "Open file base path"
 msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
-msgid "(no suggestions)"
-msgstr "(inga förslag)"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:19
+msgid "Open file paths of the current session"
+msgstr ""
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
-msgid "Add \"{}\" to Dictionary"
-msgstr "Lägg till \"{}\" i ordlistan"
+#: data/ui/App_menu.ui:36
+msgid "Help to _translate"
+msgstr "Hjälp till att _översätta"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
-msgid "Ignore All"
-msgstr "Ignorera alla"
+#: data/ui/App_menu.ui:40
+msgid "Donate to the project"
+msgstr "Donera till projektet"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
-msgid "Languages"
-msgstr "Språk"
+#: data/ui/WindowMenu.ui:24
+msgid "Search and Replace"
+msgstr "Sök och ersätt"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
-msgid "Suggestions"
-msgstr "Förslag"
-
-#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
-#~ msgstr "UberWriter, ett enkelt redigeringsverktyg för Markdown"
-
-#~ msgid "_Edit"
-#~ msgstr "_Redigera"
-
-#~ msgid "Light text on a dark background"
-#~ msgstr "Ljus text på mörk bakgrund"
-
-#~ msgid "F_ormat"
-#~ msgstr "_Format"
-
-#~ msgid "Unordered List Item"
-#~ msgstr "Oordnat listelement"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "Horisontell linje"
-
-#~ msgid "Get Help Online..."
-#~ msgstr "Få hjälp på internet..."
-
-#~ msgid "Translate This Application..."
-#~ msgstr "Översätt det här programmet..."
