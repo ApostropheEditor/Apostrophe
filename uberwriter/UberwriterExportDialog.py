@@ -42,20 +42,31 @@ class Export:
         self.builder = get_builder('Export')
         self.dialog = self.builder.get_object("Export")
         self.stack = self.builder.get_object("export_stack")
-        self.filename = filename or _("Untitled document.md")
+        self.stack_switcher = self.builder.get_object("format_switcher")
 
-        # TODO: Disable pdf if Texlive not installed
+        stack_pdf_disabled = self.builder.get_object("pdf_disabled")
+        filename = filename or _("Untitled document.md")
 
         self.filechoosers = {export_format:self.stack.get_child_by_name(export_format)\
                    for export_format in ["pdf", "html", "odt", "advanced"]}
         for export_format, filechooser in self.filechoosers.items():
             filechooser.set_do_overwrite_confirmation(True)
-            filechooser.set_current_folder(os.path.dirname(self.filename))
+            filechooser.set_current_folder(os.path.dirname(filename))
             if export_format == "advanced":
                 self.adv_export_name = self.builder.get_object("advanced_export_name")
-                self.adv_export_name.set_text(os.path.basename(self.filename)[:-3])
+                self.adv_export_name.set_text(os.path.basename(filename)[:-3])
             else:
-                filechooser.set_current_name(os.path.basename(self.filename)[:-2] + export_format)
+                filechooser.set_current_name(os.path.basename(filename)[:-2] + export_format)
+
+        # Disable pdf if Texlive not installed
+        texlive_installed = helpers.exist_executable("pdftex")
+
+        if not texlive_installed:
+            self.filechoosers["pdf"].set_visible(False)
+            stack_pdf_disabled.set_visible(True)
+            stack_pdf_disabled.set_text(disabled_text())
+            stack_pdf_disabled.set_justify(Gtk.Justification.CENTER)
+            self.stack.connect('notify', self.allow_export, 'visible_child_name')
 
         self.builder.get_object("highlight_style").set_active(0)
 
@@ -223,11 +234,8 @@ class Export:
         """
 
         filename = self.adv_export_name.get_text()
-
         output_dir = os.path.abspath(self.filechoosers["advanced"].get_current_folder())
-
         basename = os.path.basename(filename)
-
         args = self.set_arguments(basename)
 
         LOGGER.info(args)
@@ -339,3 +347,30 @@ class Export:
         args.append(output_file)
 
         return args
+
+    def allow_export(self, widget, data, signal):
+        """Disable export button if the visible child is "pdf_disabled"
+        """
+
+        del widget, data, signal
+
+        export_btn = self.builder.get_object("export_btn")
+
+        if self.stack.get_visible_child_name() == "pdf_disabled":
+            export_btn.set_sensitive(False)
+        else:
+            export_btn.set_sensitive(True)
+
+def disabled_text():
+    """Return the TexLive installation instructions
+
+    Returns:
+        {str} -- [TexLive installation instructions]
+    """
+
+    if os.path.isfile("/.flatpak-info"):
+        text = _("Please, install the TexLive extension from Gnome Software or running\n")\
+                + ("flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive")
+    else:
+        text = _("Please, install TexLive from your distribuiton repositories")
+    return text
