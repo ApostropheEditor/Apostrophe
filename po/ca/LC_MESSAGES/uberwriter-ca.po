@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uberwriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-20 21:44+0200\n"
-"PO-Revision-Date: 2018-04-20 22:04+0200\n"
+"POT-Creation-Date: 2018-07-18 17:13+0200\n"
+"PO-Revision-Date: 2018-07-18 17:15+0200\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-09-12 00:12+0000\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.9\n"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:9
 #, fuzzy
@@ -30,28 +30,252 @@ msgid ""
 "light themed asked to install them manually."
 msgstr ""
 
-#.
-#. <attribute name="action">win.change_label</attribute>
-#. <attribute name="target">String 1</attribute>
-#: data/ui/App_menu.ui:10
-msgid "New window"
-msgstr "Nova finestra"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:18
+msgid "Open file base path"
+msgstr ""
 
-#: data/ui/App_menu.ui:25
-msgid "_Shortcuts"
-msgstr "Dreceres"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:19
+msgid "Open file paths of the current session"
+msgstr ""
 
-#: data/ui/App_menu.ui:29
+#: data/ui/About.ui:12
+#, fuzzy
+#| msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+msgid "Copyright (C) 2018, Wolf Vollprecht"
+msgstr "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+
+#: data/ui/About.ui:14
+#, fuzzy
+#| msgid "UberWriter"
+msgid "Uberwriter website"
+msgstr "UberWriter"
+
+#: data/ui/About.ui:60
+msgid "Donations:"
+msgstr ""
+
+#: data/ui/About.ui:69
+msgid "Liberapay"
+msgstr ""
+
+#: data/ui/About.ui:100
+msgid "Help to translate:"
+msgstr ""
+
+#: data/ui/About.ui:109
+#, fuzzy
+#| msgid "_Edit"
+msgid "Poeditor"
+msgstr "_Edita"
+
+#: data/ui/Export.ui:38 data/ui/UberwriterAdvancedExportDialog.ui:98
+msgid "Smart"
+msgstr "Intel·ligent"
+
+#: data/ui/Export.ui:43 data/ui/UberwriterAdvancedExportDialog.ui:103
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr "El Pandoc pot convertir automàticament «--» a un guió y més"
+
+#: data/ui/Export.ui:56 data/ui/UberwriterAdvancedExportDialog.ui:135
+msgid "Table of Contents"
+msgstr "Índex"
+
+#: data/ui/Export.ui:72 data/ui/UberwriterAdvancedExportDialog.ui:152
+msgid "Standalone"
+msgstr "Independent"
+
+#: data/ui/Export.ui:77 data/ui/UberwriterAdvancedExportDialog.ui:157
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+"Utilitza la capçalera i el peu per incloure coses com fulls d'estil o "
+"metainformació"
+
+#: data/ui/Export.ui:90 data/ui/UberwriterAdvancedExportDialog.ui:171
+msgid "Number Sections"
+msgstr "Numera les seccions"
+
+#: data/ui/Export.ui:106 data/ui/UberwriterAdvancedExportDialog.ui:188
+msgid "Strict Markdown"
+msgstr "Markdown estricte"
+
+#: data/ui/Export.ui:111 data/ui/UberwriterAdvancedExportDialog.ui:193
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr "Utilitza markdown «estricte» en comptes de markdown «pandoc»"
+
+#: data/ui/Export.ui:123 data/ui/UberwriterAdvancedExportDialog.ui:206
+msgid "Slideshow incremental bullets"
+msgstr "Vinyetes incrementals de presentació"
+
+#: data/ui/Export.ui:128 data/ui/UberwriterAdvancedExportDialog.ui:211
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Mostra una vinyeta rere l'altra en una presentació"
+
+#: data/ui/Export.ui:146 data/ui/UberwriterAdvancedExportDialog.ui:230
+msgid "<b>General Options</b>"
+msgstr "<b>Opcions generals</b>"
+
+#: data/ui/Export.ui:182 data/ui/UberwriterAdvancedExportDialog.ui:263
+msgid "Highlight syntax"
+msgstr "Realça la sintaxi"
+
+#: data/ui/Export.ui:205 data/ui/Export.ui:218
+#: data/ui/UberwriterAdvancedExportDialog.ui:287
+#: data/ui/UberwriterAdvancedExportDialog.ui:300
+msgid "Choose a color theme for syntax highlighting"
+msgstr "Tria un tema de color per al realçat de sintaxi"
+
+#: data/ui/Export.ui:206 data/ui/UberwriterAdvancedExportDialog.ui:288
+msgid "Highlight style  "
+msgstr "Estil de realçat  "
+
+#: data/ui/Export.ui:253 data/ui/UberwriterAdvancedExportDialog.ui:337
+msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
+msgstr "<b>Realçat de sintaxi</b> (HTML, LaTeX)"
+
+#: data/ui/Export.ui:289 data/ui/UberwriterAdvancedExportDialog.ui:491
+msgid "<b>Bibliography File</b>"
+msgstr "<b>Fixer de bibliografía</b>"
+
+#: data/ui/Export.ui:329 data/ui/UberwriterAdvancedExportDialog.ui:371
+msgid "Self Contained"
+msgstr "Autocontingut"
+
+#: data/ui/Export.ui:334 data/ui/UberwriterAdvancedExportDialog.ui:376
+msgid ""
+"Produces a HTML that has no external dependencies (all images and "
+"stylesheets are included)"
+msgstr ""
+"Produeix HTML sense dependències externes (totes les imatges i fulls d'estil "
+"estan inclosos)"
+
+#: data/ui/Export.ui:346 data/ui/UberwriterAdvancedExportDialog.ui:389
+msgid "HTML 5"
+msgstr "HTML 5"
+
+#: data/ui/Export.ui:351 data/ui/UberwriterAdvancedExportDialog.ui:394
+msgid "Use HTML 5 syntax"
+msgstr "Utilitzar sintaxi HTML5"
+
+#: data/ui/Export.ui:369 data/ui/Export.ui:382
+#: data/ui/UberwriterAdvancedExportDialog.ui:413
+#: data/ui/UberwriterAdvancedExportDialog.ui:427
+msgid "Choose a CSS File that you want to use"
+msgstr "Trieu un fitxer CSS que volgueu utilitzar"
+
+#: data/ui/Export.ui:370 data/ui/UberwriterAdvancedExportDialog.ui:415
+msgid "CSS File"
+msgstr "Fitxer CSS"
+
+#: data/ui/Export.ui:405 data/ui/UberwriterAdvancedExportDialog.ui:451
+msgid "<b>HTML Options</b>"
+msgstr "<b>Opcions d'HTML</b>"
+
+#: data/ui/Export.ui:423 data/ui/UberwriterAdvancedExportDialog.ui:510
+msgid "Commandline Reference"
+msgstr "Referència de la línea d'ordres"
+
+#: data/ui/Export.ui:517 data/ui/UberwriterAdvancedExportDialog.ui:36
+msgid "Export"
+msgstr "Exporta"
+
+#: data/ui/Export.ui:559 data/ui/Export.ui:569
+msgid "PDF"
+msgstr ""
+
+#: data/ui/Export.ui:565 uberwriter/plugins/bibtex/bibtex_item.glade:18
+#: uberwriter/plugins/bibtex/bibtex_item.glade:32
+#: uberwriter/plugins/bibtex/bibtex_item.glade:45
+msgid "label"
+msgstr ""
+
+#: data/ui/Export.ui:582
+#, fuzzy
+#| msgid "HTML 5"
+msgid "HTML"
+msgstr "HTML 5"
+
+#: data/ui/Export.ui:595
+msgid "ODT"
+msgstr ""
+
+#: data/ui/Export.ui:607
+#, fuzzy
+#| msgid "Advanced Export..."
+msgid "Advanced"
+msgstr "Exportació avançada…"
+
+#: data/ui/Menu.ui:7
+msgid "Focus Mode"
+msgstr "Mode de concentració"
+
+#: data/ui/Menu.ui:12
+msgid "Preview"
+msgstr "Previsualització"
+
+#: data/ui/Menu.ui:17
+msgid "Fullscreen"
+msgstr "Pantalla completa"
+
+#: data/ui/Menu.ui:24
+#, fuzzy
+#| msgid "Save now"
+msgid "Save _As"
+msgstr "Desa ara"
+
+#: data/ui/Menu.ui:28
+#, fuzzy
+#| msgid "Export"
+msgid "_Export"
+msgstr "Exporta"
+
+#: data/ui/Menu.ui:32
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Copy"
+msgid "Copy HTML"
+msgstr "Copia"
+
+#: data/ui/Menu.ui:38 data/ui/Preferences.ui:14
+msgid "Preferences"
+msgstr ""
+
+#: data/ui/Menu.ui:44
+msgid "Open Tutorial"
+msgstr ""
+
+#: data/ui/Menu.ui:49
 msgid "Pandoc _Help"
 msgstr "Ajuda del Pandoc"
 
-#: data/ui/App_menu.ui:33
+#: data/ui/Menu.ui:53
+msgid "_Shortcuts"
+msgstr "Dreceres"
+
+#: data/ui/Menu.ui:59
 msgid "_About"
 msgstr "_Acerca de"
 
-#: data/ui/App_menu.ui:37 data/ui/UberwriterWindow.ui:214
+#: data/ui/Menu.ui:62
 msgid "_Quit"
 msgstr "Surt"
+
+#: data/ui/Preferences.ui:45
+#, fuzzy
+#| msgid "Dark Mode"
+msgid "Use dark mode"
+msgstr "Mode fosc"
+
+#: data/ui/Preferences.ui:56
+#, fuzzy
+#| msgid "Auto _Spellcheck"
+msgid "Autospellcheck"
+msgstr "_Correcció ortogràfica automàtica"
+
+#: data/ui/Preferences.ui:95
+msgid "page 1"
+msgstr ""
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -169,18 +393,6 @@ msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Selecciona-ho tot"
 
-#: data/ui/UberwriterAdvancedExportDialog.ui:36
-msgid "Export"
-msgstr "Exporta"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:98
-msgid "Smart"
-msgstr "Intel·ligent"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:103
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr "El Pandoc pot convertir automàticament «--» a un guió y més"
-
 #: data/ui/UberwriterAdvancedExportDialog.ui:117
 msgid "Normalize"
 msgstr "Normalitza"
@@ -190,104 +402,6 @@ msgid ""
 "Removes things like double spaces or spaces at the beginning of a paragraph"
 msgstr ""
 "Suprimeix elements com espais o espais dobles al començament d'un paràgraf"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:135
-msgid "Table of Contents"
-msgstr "Índex"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:152
-msgid "Standalone"
-msgstr "Independent"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:157
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr ""
-"Utilitza la capçalera i el peu per incloure coses com fulls d'estil o "
-"metainformació"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:171
-msgid "Number Sections"
-msgstr "Numera les seccions"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:188
-msgid "Strict Markdown"
-msgstr "Markdown estricte"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:193
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "Utilitza markdown «estricte» en comptes de markdown «pandoc»"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:206
-msgid "Slideshow incremental bullets"
-msgstr "Vinyetes incrementals de presentació"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:211
-msgid "Show one bullet point after another in a slideshow"
-msgstr "Mostra una vinyeta rere l'altra en una presentació"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:230
-msgid "<b>General Options</b>"
-msgstr "<b>Opcions generals</b>"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:263
-msgid "Highlight syntax"
-msgstr "Realça la sintaxi"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:287
-#: data/ui/UberwriterAdvancedExportDialog.ui:300
-msgid "Choose a color theme for syntax highlighting"
-msgstr "Tria un tema de color per al realçat de sintaxi"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:288
-msgid "Highlight style  "
-msgstr "Estil de realçat  "
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:337
-msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
-msgstr "<b>Realçat de sintaxi</b> (HTML, LaTeX)"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:371
-msgid "Self Contained"
-msgstr "Autocontingut"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:376
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
-msgstr ""
-"Produeix HTML sense dependències externes (totes les imatges i fulls d'estil "
-"estan inclosos)"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:389
-msgid "HTML 5"
-msgstr "HTML 5"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:394
-msgid "Use HTML 5 syntax"
-msgstr "Utilitzar sintaxi HTML5"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:413
-#: data/ui/UberwriterAdvancedExportDialog.ui:427
-msgid "Choose a CSS File that you want to use"
-msgstr "Trieu un fitxer CSS que volgueu utilitzar"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:415
-msgid "CSS File"
-msgstr "Fitxer CSS"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:451
-msgid "<b>HTML Options</b>"
-msgstr "<b>Opcions d'HTML</b>"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:491
-msgid "<b>Bibliography File</b>"
-msgstr "<b>Fixer de bibliografía</b>"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:510
-msgid "Commandline Reference"
-msgstr "Referència de la línea d'ordres"
 
 #: data/ui/UberwriterWindow.ui:19
 msgid "Next Match"
@@ -303,174 +417,27 @@ msgstr "Obre un fitxer recent"
 msgid "Activate Regex"
 msgstr "Expressió regular"
 
-#: data/ui/UberwriterWindow.ui:66
-msgid "_File"
-msgstr "_Fitxer"
-
-#: data/ui/UberwriterWindow.ui:74
-msgid "_New"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:84
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Open"
-msgid "_Open"
-msgstr "Obre"
-
-#: data/ui/UberwriterWindow.ui:96
-#, fuzzy
-#| msgid "Open a .md-File"
-msgid "Open Recent File"
-msgstr "Obre un fitxer .md"
-
-#: data/ui/UberwriterWindow.ui:102
-#, fuzzy
-#| msgid "Open Recent File"
-msgid "Open examples"
-msgstr "Obre un fitxer recent"
-
-#: data/ui/UberwriterWindow.ui:114
-#, fuzzy
-#| msgid "Short Markdown Tutorial"
-msgid "_Quick markdown tutorial"
-msgstr "Tutorial breu de Markdown"
-
-#: data/ui/UberwriterWindow.ui:131
-#, fuzzy
-#| msgid "Save now"
-msgid "_Save"
-msgstr "Desa ara"
-
-#: data/ui/UberwriterWindow.ui:141
-#, fuzzy
-#| msgid "Save now"
-msgid "Save _As"
-msgstr "Desa ara"
-
-#: data/ui/UberwriterWindow.ui:157
-#, fuzzy
-#| msgid "Export as ODT"
-msgid "Export as HTML"
-msgstr "Exporta com a ODT"
-
-#: data/ui/UberwriterWindow.ui:166
-#, fuzzy
-#| msgid "Export as ODT"
-msgid "Export as PDF"
-msgstr "Exporta com a ODT"
-
-#: data/ui/UberwriterWindow.ui:175
-msgid "Export as ODT"
-msgstr "Exporta com a ODT"
-
-#: data/ui/UberwriterWindow.ui:186
-msgid "Advanced Export..."
-msgstr "Exportació avançada…"
-
-#: data/ui/UberwriterWindow.ui:201
-#, fuzzy
-#| msgid "Copy raw HTML to clipboard"
-msgid "Copy Raw HTML to Clipboard"
-msgstr "Copia el codi HTML al porta-retalls"
-
-#: data/ui/UberwriterWindow.ui:229
-msgid "_View"
-msgstr "_Visualitza"
-
-#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:434
-msgid "Focus Mode"
-msgstr "Mode de concentració"
-
-#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:454
-msgid "Fullscreen"
-msgstr "Pantalla completa"
-
-#: data/ui/UberwriterWindow.ui:254
-msgid "Sidebar"
-msgstr "Barra lateral"
-
-#: data/ui/UberwriterWindow.ui:261
-msgid "Light text on a dark background"
-msgstr "Text clar sobre fons fosc"
-
-#: data/ui/UberwriterWindow.ui:262
-msgid "Dark Mode"
-msgstr "Mode fosc"
-
-#: data/ui/UberwriterWindow.ui:270
-msgid "Switch to preview mode"
-msgstr "Canvia al mode de previsualització"
-
-#: data/ui/UberwriterWindow.ui:271 data/ui/UberwriterWindow.ui:473
-msgid "Preview"
-msgstr "Previsualització"
-
-#: data/ui/UberwriterWindow.ui:279
-msgid "Open Search and Replace"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:280
-msgid "Search and Replace ..."
-msgstr "Cerca i reemplaça..."
-
-#: data/ui/UberwriterWindow.ui:307
-msgid "Auto _Spellcheck"
-msgstr "_Correcció ortogràfica automàtica"
-
-#: data/ui/UberwriterWindow.ui:320
-msgid "_Help"
-msgstr "A_juda"
-
-#: data/ui/UberwriterWindow.ui:330
-msgid "Contents"
-msgstr "Contingut"
-
-#: data/ui/UberwriterWindow.ui:343
-msgid "Short Markdown Tutorial"
-msgstr "Tutorial breu de Markdown"
-
-#: data/ui/UberwriterWindow.ui:351
-msgid "Open Pandoc Online Markdown Help ..."
-msgstr "Obre l'ajuda en línea de Markdown Pandoc…"
-
-#: data/ui/UberwriterWindow.ui:359
-msgid "Translate This Application..."
-msgstr "Traduïu aquesta aplicació…"
-
-#: data/ui/UberwriterWindow.ui:441 data/ui/UberwriterWindow.ui:442
-msgid "Go into focus mode"
-msgstr "Vés al mode de concentració"
-
-#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
-msgid "Go into fullscreen mode"
-msgstr "Vés al mode de pantalla completa"
-
-#: data/ui/UberwriterWindow.ui:479 data/ui/UberwriterWindow.ui:480
-msgid "Show HTML preview"
-msgstr "Mostra previsualització d'HTML"
-
-#: data/ui/UberwriterWindow.ui:496
+#: data/ui/UberwriterWindow.ui:112
 msgid "Words:"
 msgstr "Paraules:"
 
-#: data/ui/UberwriterWindow.ui:539
+#: data/ui/UberwriterWindow.ui:155
 msgid "Characters:"
 msgstr "Caràcters:"
 
-#: data/ui/UberwriterWindow.ui:670
+#: data/ui/UberwriterWindow.ui:295
 msgid "Previous Match"
 msgstr "Coincidència anterior"
 
-#: data/ui/UberwriterWindow.ui:714
+#: data/ui/UberwriterWindow.ui:339
 msgid "Case Sensitive"
 msgstr "Coincidència de majúscules i minúscules"
 
-#: data/ui/UberwriterWindow.ui:818
+#: data/ui/UberwriterWindow.ui:443
 msgid "Replace"
 msgstr "Reemplaça"
 
-#: data/ui/UberwriterWindow.ui:832
+#: data/ui/UberwriterWindow.ui:457
 msgid "Replace all"
 msgstr "Reemplaça-ho tot"
 
@@ -496,69 +463,71 @@ msgstr "Element de llista"
 msgid "Heading"
 msgstr "Encapçalament"
 
-#: uberwriter/UberwriterInlinePreview.py:185
+#: uberwriter/UberwriterExportDialog.py:48
+msgid "Untitled document.md"
+msgstr ""
+
+#: uberwriter/UberwriterExportDialog.py:372
+msgid "Please, install the TexLive extension from Gnome Software or running\n"
+msgstr ""
+
+#: uberwriter/UberwriterExportDialog.py:375
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr ""
+
+#: uberwriter/UberwriterInlinePreview.py:187
 msgid "Website is not available"
 msgstr "La pàgina web no està disponible"
 
-#: uberwriter/UberwriterInlinePreview.py:187
+#: uberwriter/UberwriterInlinePreview.py:189
 msgid "Website is available"
 msgstr "La pàgina web està disponible"
 
-#: uberwriter/UberwriterInlinePreview.py:437
+#: uberwriter/UberwriterInlinePreview.py:441
 msgid "Open Link in Webbrowser"
 msgstr "Obre l'enllaç en un navegador web"
 
-#: uberwriter/UberwriterInlinePreview.py:494
+#: uberwriter/UberwriterInlinePreview.py:503
 msgid "No matching footnote found"
 msgstr "No s'ha pogut trobar la nota de peu corresponent"
 
-#: uberwriter/UberwriterWindow.py:356
+#: uberwriter/UberwriterWindow.py:347
 msgid "Save your File"
 msgstr "Deseu el vostre fitxer"
 
-#: uberwriter/UberwriterWindow.py:506
-msgid "You can not export to PDF."
-msgstr "No es pot exportar a PDF."
-
-#: uberwriter/UberwriterWindow.py:508
-msgid ""
-"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
-msgstr ""
-"Instal·leu <a href=\"apt:texlive\">texlive</a> des del centre de programari."
-
-#: uberwriter/UberwriterWindow.py:538
+#: uberwriter/UberwriterWindow.py:448
 msgid "MarkDown or Plain Text"
 msgstr "Markdown o text simple"
 
-#: uberwriter/UberwriterWindow.py:541
+#: uberwriter/UberwriterWindow.py:451
 msgid "Open a .md-File"
 msgstr "Obre un fitxer .md"
 
-#: uberwriter/UberwriterWindow.py:563
+#: uberwriter/UberwriterWindow.py:473
 msgid "You have not saved your changes."
 msgstr "No heu desat els canvis."
 
-#: uberwriter/UberwriterWindow.py:565
+#: uberwriter/UberwriterWindow.py:475
 msgid "Close without Saving"
 msgstr "Tanca sense desar"
 
-#: uberwriter/UberwriterWindow.py:566
+#: uberwriter/UberwriterWindow.py:476
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: uberwriter/UberwriterWindow.py:567
+#: uberwriter/UberwriterWindow.py:477
 msgid "Save now"
 msgstr "Desa ara"
 
-#: uberwriter/UberwriterWindow.py:568
+#: uberwriter/UberwriterWindow.py:478
 msgid "Unsaved changes"
 msgstr "Canvis sense desar"
 
-#: uberwriter/UberwriterWindow.py:634
+#: uberwriter/UberwriterWindow.py:537
 msgid "You can not enable the Spell Checker."
 msgstr "No es pot activar el corrector ortogràfic."
 
-#: uberwriter/UberwriterWindow.py:636
+#: uberwriter/UberwriterWindow.py:540
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
@@ -566,17 +535,54 @@ msgstr ""
 "Instal·leu els diccionaris de «hunspell» o «aspell» per al vostre idioma des "
 "del centre de programari."
 
-#: uberwriter/plugins/bibtex/bibtex_item.glade:18
-#: uberwriter/plugins/bibtex/bibtex_item.glade:32
-#: uberwriter/plugins/bibtex/bibtex_item.glade:45
-msgid "label"
+#: uberwriter/UberwriterWindow.py:894 uberwriter/UberwriterWindow.py:943
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "New"
+msgid "New"
+msgstr "Nou"
+
+#: uberwriter/UberwriterWindow.py:895 uberwriter/UberwriterWindow.py:944
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Open"
+msgid "Open"
+msgstr "Obre"
+
+#: uberwriter/UberwriterWindow.py:899 uberwriter/UberwriterWindow.py:946
+#: uberwriter/UberwriterWindow.py:949
+#, fuzzy
+#| msgid "Open a .md-File"
+msgid "Open Recent"
+msgstr "Obre un fitxer .md"
+
+#: uberwriter/UberwriterWindow.py:901 uberwriter/UberwriterWindow.py:951
+#, fuzzy
+#| msgid "Save now"
+msgid "Save"
+msgstr "Desa ara"
+
+#: uberwriter/UberwriterWindow.py:904 uberwriter/UberwriterWindow.py:954
+#, fuzzy
+#| msgid "Search and Replace ..."
+msgid "Search and replace"
+msgstr "Cerca i reemplaça..."
+
+#: uberwriter/UberwriterWindow.py:906 uberwriter/UberwriterWindow.py:956
+msgid "Menu"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:154
+#: uberwriter/UberwriterWindow.py:961
+#, fuzzy
+#| msgid "Fullscreen"
+msgid "Exit Fullscreen"
+msgstr "Pantalla completa"
+
+#: uberwriter_lib/AppWindow.py:246
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr "Mostra missatges de depuració (-vv depura uberwriter_lib també)"
 
-#: uberwriter_lib/AppWindow.py:156
+#: uberwriter_lib/AppWindow.py:248
 msgid "Use experimental features"
 msgstr "Utilitzar característiques experimentals"
 
@@ -624,8 +630,99 @@ msgstr "Idiomes"
 msgid "Suggestions"
 msgstr "Suggeriments"
 
-#~ msgid "UberWriter"
-#~ msgstr "UberWriter"
+#~ msgid "New window"
+#~ msgstr "Nova finestra"
+
+#~ msgid "_File"
+#~ msgstr "_Fitxer"
+
+#, fuzzy
+#~| msgctxt "shortcut window"
+#~| msgid "Open"
+#~ msgid "_Open"
+#~ msgstr "Obre"
+
+#, fuzzy
+#~| msgid "Open Recent File"
+#~ msgid "Open examples"
+#~ msgstr "Obre un fitxer recent"
+
+#, fuzzy
+#~| msgid "Short Markdown Tutorial"
+#~ msgid "_Quick markdown tutorial"
+#~ msgstr "Tutorial breu de Markdown"
+
+#, fuzzy
+#~| msgid "Save now"
+#~ msgid "_Save"
+#~ msgstr "Desa ara"
+
+#, fuzzy
+#~| msgid "Export as ODT"
+#~ msgid "Export as HTML"
+#~ msgstr "Exporta com a ODT"
+
+#, fuzzy
+#~| msgid "Export as ODT"
+#~ msgid "Export as PDF"
+#~ msgstr "Exporta com a ODT"
+
+#~ msgid "Export as ODT"
+#~ msgstr "Exporta com a ODT"
+
+#, fuzzy
+#~| msgid "Copy raw HTML to clipboard"
+#~ msgid "Copy Raw HTML to Clipboard"
+#~ msgstr "Copia el codi HTML al porta-retalls"
+
+#~ msgid "_View"
+#~ msgstr "_Visualitza"
+
+#~ msgid "Sidebar"
+#~ msgstr "Barra lateral"
+
+#~ msgid "Light text on a dark background"
+#~ msgstr "Text clar sobre fons fosc"
+
+#~ msgid "Dark Mode"
+#~ msgstr "Mode fosc"
+
+#~ msgid "Switch to preview mode"
+#~ msgstr "Canvia al mode de previsualització"
+
+#~ msgid "_Help"
+#~ msgstr "A_juda"
+
+#~ msgid "Contents"
+#~ msgstr "Contingut"
+
+#~ msgid "Short Markdown Tutorial"
+#~ msgstr "Tutorial breu de Markdown"
+
+#~ msgid "Open Pandoc Online Markdown Help ..."
+#~ msgstr "Obre l'ajuda en línea de Markdown Pandoc…"
+
+#~ msgid "Translate This Application..."
+#~ msgstr "Traduïu aquesta aplicació…"
+
+#~ msgid "Go into focus mode"
+#~ msgstr "Vés al mode de concentració"
+
+#~ msgid "Go into fullscreen mode"
+#~ msgstr "Vés al mode de pantalla completa"
+
+#~ msgid "Show HTML preview"
+#~ msgstr "Mostra previsualització d'HTML"
+
+#~ msgid "You can not export to PDF."
+#~ msgstr "No es pot exportar a PDF."
+
+#~ msgid ""
+#~ "Please install <a href=\"apt:texlive\">texlive</a> from the software "
+#~ "center."
+#~ msgstr ""
+#~ "Instal·leu <a href=\"apt:texlive\">texlive</a> des del centre de "
+#~ "programari."
 
 #~ msgid "UberWriter, a simple and distraction free Markdown Editor"
 #~ msgstr "UberWriter, un editor de Markdown simple i lliure de distraccions"
@@ -662,9 +759,6 @@ msgstr "Suggeriments"
 #~ "# Hauríeu d'haver rebut una còpia de la Llicència Pública General de GNU "
 #~ "amb \n"
 #~ "# aquest programa. Si no, veieu <http://www.gnu.org/licenses/>.\n"
-
-#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-#~ msgstr "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
 
 #~ msgid "F_ormat"
 #~ msgstr "F_ormata"
