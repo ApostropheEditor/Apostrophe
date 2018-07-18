@@ -257,10 +257,10 @@ class Application(Gtk.Application):
 
     
     def on_about(self, action, param):
-
         builder = get_builder('About')
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
+
         logo_file = get_media_path("uberwriter.svg")
         logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
         

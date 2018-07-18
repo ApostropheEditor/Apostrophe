@@ -1,397 +1,63 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: UberWriter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-24 17:57+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: UberWriter\n"
-"Language: cs\n"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
-msgid "(no suggestions)"
-msgstr "(žádné návrhy)"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
-msgid "Add \"{}\" to Dictionary"
-msgstr "Přidat \"{}\"  do slovníku"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
-msgid "Ignore All"
-msgstr "Ignorovat vše"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
-msgid "Languages"
-msgstr "Jazyky"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
-msgid "Suggestions"
-msgstr "Návrhy"
-
-#: ../uberwriter.desktop.in.h:1
-msgid "UberWriter"
-msgstr "UberWriter"
-
-#: ../uberwriter.desktop.in.h:2
-msgid "UberWriter, a simple and distraction free Markdown Editor"
-msgstr "UberWriter, jednoduchý a nerozptylující Markdown editor"
-
-#: uberwriter/UberwriterInlinePreview.py:185
-msgid "Website is not available"
-msgstr "Stránka je nedostupná"
-
-#: uberwriter/UberwriterInlinePreview.py:187
-msgid "Website is available"
-msgstr "Stránka je dostupná"
-
-#: uberwriter/UberwriterInlinePreview.py:437
-msgid "Open Link in Webbrowser"
-msgstr "Otevřít odkaz v prohlížeči"
-
-#: uberwriter/UberwriterInlinePreview.py:494
-msgid "No matching footnote found"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:66
-msgid "_File"
-msgstr "_Soubor"
-
-#: data/ui/UberwriterWindow.ui:96
-msgid "Open Recent File"
-msgstr "Otevřít poslední soubor"
-
-#: data/ui/UberwriterWindow.ui:175
-msgid "Export as ODT"
-msgstr "Exportovat jako ODT"
-
-#: data/ui/UberwriterWindow.ui:186
-msgid "Advanced Export..."
-msgstr "Pokročilý export"
-
-#: ../data/ui/UberwriterWindow.ui.h:5
-msgid "Copy raw HTML to clipboard"
-msgstr ""
-
-#: ../data/ui/UberwriterWindow.ui.h:6
-msgid "_Edit"
-msgstr "_Upravit"
-
-#: data/ui/UberwriterWindow.ui:229
-msgid "_View"
-msgstr "_Zobrazit"
-
-#: data/ui/UberwriterWindow.ui:261
-msgid "Light text on a dark background"
-msgstr "Světlý text na tmavém pozadí"
-
-#: data/ui/UberwriterWindow.ui:262
-msgid "Dark Mode"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:270
-msgid "Switch to preview mode"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:271 data/ui/UberwriterWindow.ui:473
-msgid "Preview"
-msgstr "Náhled"
-
-#: data/ui/UberwriterWindow.ui:307
-msgid "Auto _Spellcheck"
-msgstr ""
-
-#: ../data/ui/UberwriterWindow.ui.h:13
-msgid "F_ormat"
-msgstr "F_ormát"
-
-#: ../data/ui/UberwriterWindow.ui.h:14
-msgid "Unordered List Item"
-msgstr ""
-
-#: ../data/ui/UberwriterWindow.ui.h:15
-msgid "Horizontal Rule"
-msgstr "Vodorovná oddělovací čára"
-
-#: uberwriter/FormatShortcuts.py:186
-msgid "Heading"
-msgstr "Nadpis"
-
-#: data/ui/UberwriterWindow.ui:320
-msgid "_Help"
-msgstr "_Nápověda"
-
-#: data/ui/UberwriterWindow.ui:330
-msgid "Contents"
-msgstr "Obsahuje"
-
-#: data/ui/UberwriterWindow.ui:343
-msgid "Short Markdown Tutorial"
-msgstr "Krátký tutoriál k Markdown"
-
-#: data/ui/UberwriterWindow.ui:351
-msgid "Open Pandoc Online Markdown Help ..."
-msgstr "Otevřít nápovědu Pandoc Markdown"
-
-#: ../data/ui/UberwriterWindow.ui.h:21
-msgid "Get Help Online..."
-msgstr "Získat online nápovědu…"
-
-#: data/ui/UberwriterWindow.ui:359
-msgid "Translate This Application..."
-msgstr "Přeložte tuto aplikaci…"
-
-#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:434
-msgid "Focus Mode"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:441 data/ui/UberwriterWindow.ui:442
-msgid "Go into focus mode"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:454
-msgid "Fullscreen"
-msgstr "Na celou obrazovku"
-
-#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
-msgid "Go into fullscreen mode"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:479 data/ui/UberwriterWindow.ui:480
-msgid "Show HTML preview"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:496
-msgid "Words:"
-msgstr "Slova:"
-
-#: data/ui/UberwriterWindow.ui:539
-msgid "Characters:"
-msgstr "Znaky:"
-
-#: uberwriter_lib/AppWindow.py:154
-msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-msgstr ""
-
-#: uberwriter/FormatShortcuts.py:87
-msgid "emphasized text"
-msgstr ""
-
-#: uberwriter/FormatShortcuts.py:89
-msgid "strong text"
-msgstr ""
-
-#: uberwriter/FormatShortcuts.py:105
-msgid "List item"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:36
-msgid "Export"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:98
-msgid "Smart"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:103
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:117
-msgid "Normalize"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:122
-msgid "Removes things like double spaces or spaces at the beginning of a paragraph"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:135
-msgid "Table of Contents"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:152
-msgid "Standalone"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:157
-msgid "Use a header and footer to include things like stylesheets and meta information"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:171
-msgid "Number Sections"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:188
-msgid "Strict Markdown"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:193
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:206
-msgid "Slideshow incremental bullets"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:211
-msgid "Show one bullet point after another in a slideshow"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:230
-msgid "<b>General Options</b>"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:263
-msgid "Highlight syntax"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:287
-#: data/ui/UberwriterAdvancedExportDialog.ui:300
-msgid "Choose a color theme for syntax highlighting"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:288
-msgid "Highlight style  "
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:337
-msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:371
-msgid "Self Contained"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:376
-msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:389
-msgid "HTML 5"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:394
-msgid "Use HTML 5 syntax"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:413
-#: data/ui/UberwriterAdvancedExportDialog.ui:427
-msgid "Choose a CSS File that you want to use"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:415
-msgid "CSS File"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:451
-msgid "<b>HTML Options</b>"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:491
-msgid "<b>Bibliography File</b>"
-msgstr ""
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:510
-msgid "Commandline Reference"
-msgstr ""
-
-#: ../data/ui/AboutUberwriterDialog.ui.h:1
-msgid "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-"# This program is free software: you can redistribute it and/or modify it \n"
-"# under the terms of the GNU General Public License version 3, as published \n"
-"# by the Free Software Foundation.\n"
-"# \n"
-"# This program is distributed in the hope that it will be useful, but \n"
-"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-"# PURPOSE.  See the GNU General Public License for more details.\n"
-"# \n"
-"# You should have received a copy of the GNU General Public License along \n"
-"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-""
-msgstr ""
-
-#: ../data/ui/AboutUberwriterDialog.ui.h:14
-msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:356
-msgid "Save your File"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:506
-msgid "You can not export to PDF."
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:508
-msgid "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:538
-msgid "MarkDown or Plain Text"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:541
-msgid "Open a .md-File"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:563
-msgid "You have not saved your changes."
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:565
-msgid "Close without Saving"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:566
-msgid "Cancel"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:567
-msgid "Save now"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:568
-msgid "Unsaved changes"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:634
-msgid "You can not enable the Spell Checker."
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:636
-msgid "Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."
-msgstr ""
+"X-Generator: Poedit 2.0.8\n"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:9
 msgid "Dark mode"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:10
-msgid "If enabled, the window will be dark themed If disabled, the window will be light themed asked to install them manually."
+msgid ""
+"If enabled, the window will be dark themed If disabled, the window will be "
+"light themed asked to install them manually."
 msgstr ""
 
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:18
+msgid "Open file base path"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:19
+msgid "Open file paths of the current session"
+msgstr ""
+
+#.
 #. <attribute name="action">win.change_label</attribute>
 #. <attribute name="target">String 1</attribute>
 #: data/ui/App_menu.ui:10
 msgid "New window"
 msgstr ""
 
-#: data/ui/App_menu.ui:25
+#: data/ui/App_menu.ui:24
 msgid "_Shortcuts"
 msgstr ""
 
-#: data/ui/App_menu.ui:29
+#: data/ui/App_menu.ui:28
 msgid "Pandoc _Help"
 msgstr ""
 
-#: data/ui/App_menu.ui:33
+#: data/ui/App_menu.ui:32
 msgid "_About"
 msgstr ""
 
-#: data/ui/App_menu.ui:37 data/ui/UberwriterWindow.ui:214
+#: data/ui/App_menu.ui:36
+msgid "Help to _translate"
+msgstr ""
+
+#: data/ui/App_menu.ui:40
+msgid "Donate to the project"
+msgstr ""
+
+#: data/ui/App_menu.ui:46 data/ui/UberwriterWindow.ui:214
 msgid "_Quit"
 msgstr ""
 
@@ -499,6 +165,121 @@ msgctxt "shortcut window"
 msgid "Select all"
 msgstr ""
 
+#: data/ui/UberwriterAdvancedExportDialog.ui:36
+msgid "Export"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:98
+msgid "Smart"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:103
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:117
+msgid "Normalize"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:122
+msgid ""
+"Removes things like double spaces or spaces at the beginning of a paragraph"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:135
+msgid "Table of Contents"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:152
+msgid "Standalone"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:157
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:171
+msgid "Number Sections"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:188
+msgid "Strict Markdown"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:193
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:206
+msgid "Slideshow incremental bullets"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:211
+msgid "Show one bullet point after another in a slideshow"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:230
+msgid "<b>General Options</b>"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:263
+msgid "Highlight syntax"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:287
+#: data/ui/UberwriterAdvancedExportDialog.ui:300
+msgid "Choose a color theme for syntax highlighting"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:288
+msgid "Highlight style  "
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:337
+msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:371
+msgid "Self Contained"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:376
+msgid ""
+"Produces a HTML that has no external dependencies (all images and "
+"stylesheets are included)"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:389
+msgid "HTML 5"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:394
+msgid "Use HTML 5 syntax"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:413
+#: data/ui/UberwriterAdvancedExportDialog.ui:427
+msgid "Choose a CSS File that you want to use"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:415
+msgid "CSS File"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:451
+msgid "<b>HTML Options</b>"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:491
+msgid "<b>Bibliography File</b>"
+msgstr ""
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:510
+msgid "Commandline Reference"
+msgstr ""
+
 #: data/ui/UberwriterWindow.ui:19
 msgid "Next Match"
 msgstr ""
@@ -512,6 +293,10 @@ msgstr "Otevřít poslední soubor"
 msgid "Activate Regex"
 msgstr ""
 
+#: data/ui/UberwriterWindow.ui:66
+msgid "_File"
+msgstr "_Soubor"
+
 #: data/ui/UberwriterWindow.ui:74
 msgid "_New"
 msgstr ""
@@ -519,6 +304,10 @@ msgstr ""
 #: data/ui/UberwriterWindow.ui:84
 msgid "_Open"
 msgstr ""
+
+#: data/ui/UberwriterWindow.ui:96
+msgid "Open Recent File"
+msgstr "Otevřít poslední soubor"
 
 #: data/ui/UberwriterWindow.ui:102
 msgid "Open examples"
@@ -547,40 +336,203 @@ msgstr "Exportovat jako ODT"
 msgid "Export as PDF"
 msgstr "Exportovat jako ODT"
 
+#: data/ui/UberwriterWindow.ui:175
+msgid "Export as ODT"
+msgstr "Exportovat jako ODT"
+
+#: data/ui/UberwriterWindow.ui:186
+msgid "Advanced Export..."
+msgstr "Pokročilý export"
+
 #: data/ui/UberwriterWindow.ui:201
 msgid "Copy Raw HTML to Clipboard"
 msgstr ""
+
+#: data/ui/UberwriterWindow.ui:229
+msgid "_View"
+msgstr "_Zobrazit"
+
+#: data/ui/UberwriterWindow.ui:239 data/ui/UberwriterWindow.ui:417
+#: data/ui/WindowMenu.ui:6
+msgid "Focus Mode"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:247 data/ui/UberwriterWindow.ui:436
+#: data/ui/WindowMenu.ui:10
+msgid "Fullscreen"
+msgstr "Na celou obrazovku"
 
 #: data/ui/UberwriterWindow.ui:254
 msgid "Sidebar"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:279
+#: data/ui/UberwriterWindow.ui:261
+msgid "Switch to preview mode"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:262 data/ui/UberwriterWindow.ui:454
+#: data/ui/WindowMenu.ui:18
+msgid "Preview"
+msgstr "Náhled"
+
+#: data/ui/UberwriterWindow.ui:270
 msgid "Open Search and Replace"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:280
+#: data/ui/UberwriterWindow.ui:271
 msgid "Search and Replace ..."
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:670
+#: data/ui/UberwriterWindow.ui:298 data/ui/WindowMenu.ui:28
+msgid "Auto _Spellcheck"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:312
+msgid "_Help"
+msgstr "_Nápověda"
+
+#: data/ui/UberwriterWindow.ui:322
+msgid "Contents"
+msgstr "Obsahuje"
+
+#: data/ui/UberwriterWindow.ui:335
+msgid "Short Markdown Tutorial"
+msgstr "Krátký tutoriál k Markdown"
+
+#: data/ui/UberwriterWindow.ui:343
+msgid "Open Pandoc Online Markdown Help ..."
+msgstr "Otevřít nápovědu Pandoc Markdown"
+
+#: data/ui/UberwriterWindow.ui:424 data/ui/UberwriterWindow.ui:425
+msgid "Go into focus mode"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:442 data/ui/UberwriterWindow.ui:443
+msgid "Go into fullscreen mode"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
+msgid "Show HTML preview"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:476
+msgid "Words:"
+msgstr "Slova:"
+
+#: data/ui/UberwriterWindow.ui:519
+msgid "Characters:"
+msgstr "Znaky:"
+
+#: data/ui/UberwriterWindow.ui:650
 msgid "Previous Match"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:714
+#: data/ui/UberwriterWindow.ui:694
 msgid "Case Sensitive"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:818
+#: data/ui/UberwriterWindow.ui:798
 msgid "Replace"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:832
+#: data/ui/UberwriterWindow.ui:812
 msgid "Replace all"
+msgstr ""
+
+#: data/ui/WindowMenu.ui:14
+msgid "Dark Mode"
+msgstr ""
+
+#: data/ui/WindowMenu.ui:24
+#, fuzzy
+msgid "Search and Replace"
+msgstr "Otevřít poslední soubor"
+
+#: uberwriter/FormatShortcuts.py:87
+msgid "emphasized text"
+msgstr ""
+
+#: uberwriter/FormatShortcuts.py:89
+msgid "strong text"
 msgstr ""
 
 #: uberwriter/FormatShortcuts.py:91
 msgid "striked out text"
+msgstr ""
+
+#: uberwriter/FormatShortcuts.py:105
+msgid "List item"
+msgstr ""
+
+#: uberwriter/FormatShortcuts.py:186
+msgid "Heading"
+msgstr "Nadpis"
+
+#: uberwriter/UberwriterInlinePreview.py:187
+msgid "Website is not available"
+msgstr "Stránka je nedostupná"
+
+#: uberwriter/UberwriterInlinePreview.py:189
+msgid "Website is available"
+msgstr "Stránka je dostupná"
+
+#: uberwriter/UberwriterInlinePreview.py:441
+msgid "Open Link in Webbrowser"
+msgstr "Otevřít odkaz v prohlížeči"
+
+#: uberwriter/UberwriterInlinePreview.py:503
+msgid "No matching footnote found"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:340
+msgid "Save your File"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:490
+msgid "You can not export to PDF."
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:492
+msgid ""
+"Please install <a href=\"apt:texlive\">texlive</a> from the software center."
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:522
+msgid "MarkDown or Plain Text"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:525
+msgid "Open a .md-File"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:547
+msgid "You have not saved your changes."
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:549
+msgid "Close without Saving"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:550
+msgid "Cancel"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:551
+msgid "Save now"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:552
+msgid "Unsaved changes"
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:608
+msgid "You can not enable the Spell Checker."
+msgstr ""
+
+#: uberwriter/UberwriterWindow.py:610
+msgid ""
+"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
+"software center."
 msgstr ""
 
 #: uberwriter/plugins/bibtex/bibtex_item.glade:18
@@ -589,7 +541,11 @@ msgstr ""
 msgid "label"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:156
+#: uberwriter_lib/AppWindow.py:215
+msgid "Show debug messages (-vv debugs uberwriter_lib also)"
+msgstr ""
+
+#: uberwriter_lib/AppWindow.py:217
 msgid "Use experimental features"
 msgstr ""
 
@@ -613,3 +569,50 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
+msgid "(no suggestions)"
+msgstr "(žádné návrhy)"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
+msgid "Add \"{}\" to Dictionary"
+msgstr "Přidat \"{}\"  do slovníku"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
+msgid "Ignore All"
+msgstr "Ignorovat vše"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
+msgid "Languages"
+msgstr "Jazyky"
+
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
+msgid "Suggestions"
+msgstr "Návrhy"
+
+#~ msgid "UberWriter"
+#~ msgstr "UberWriter"
+
+#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
+#~ msgstr "UberWriter, jednoduchý a nerozptylující Markdown editor"
+
+#~ msgid "_Edit"
+#~ msgstr "_Upravit"
+
+#~ msgid "Light text on a dark background"
+#~ msgstr "Světlý text na tmavém pozadí"
+
+#~ msgid "F_ormat"
+#~ msgstr "F_ormát"
+
+#~ msgid "Horizontal Rule"
+#~ msgstr "Vodorovná oddělovací čára"
+
+#~ msgid "Get Help Online..."
+#~ msgstr "Získat online nápovědu…"
+
+#~ msgid "Translate This Application..."
+#~ msgstr "Přeložte tuto aplikaci…"
