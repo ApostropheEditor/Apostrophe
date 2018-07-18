@@ -25,7 +25,7 @@ logger = logging.getLogger('uberwriter_lib')
 
 from . helpers import get_builder, show_uri, get_help_uri
 
-class PreferencesDialog(Gtk.Dialog):
+class PreferencesDialog(Gtk.Window):
     __gtype_name__ = "PreferencesDialog"
 
     def __new__(cls):
@@ -34,31 +34,6 @@ class PreferencesDialog(Gtk.Dialog):
         
         Returns a fully instantiated PreferencesDialog object.
         """
-        builder = get_builder('PreferencesUberwriterDialog')
-        new_object = builder.get_object("preferences_uberwriter_dialog")
-        new_object.finish_initializing(builder)
+        builder = get_builder('Preferences')
+        new_object = builder.get_object("PreferencesWindow")
         return new_object
-
-    def finish_initializing(self, builder):
-        """Called while initializing this instance in __new__
-
-        finish_initalizing should be called after parsing the ui definition
-        and creating a PreferencesDialog object with it in order to
-        finish initializing the start of the new PerferencesUberwriterDialog
-        instance.
-        
-        Put your initialization code in here and leave __init__ undefined.
-        """
-
-        # Get a reference to the builder and set up the signals.
-        self.builder = builder
-        self.ui = builder.get_ui(self, True)
-
-        # code for other initialization actions should be added here
-
-    def on_btn_close_clicked(self, widget, data=None):
-        self.destroy()
-
-    def on_btn_help_clicked(self, widget, data=None):
-        show_uri(self, "ghelp:%s" % get_help_uri('preferences'))
-

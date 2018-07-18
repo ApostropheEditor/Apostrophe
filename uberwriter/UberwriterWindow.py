@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-### BEGIN LICENSE
+# BEGIN LICENSE
 # Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
@@ -12,7 +12,7 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
-### END LICENSE
+# END LICENSE
 
 import gettext
 import locale
@@ -25,6 +25,9 @@ import urllib
 import pickle
 
 import mimetypes
+import re
+
+from gettext import gettext as _
 
 import gi
 gi.require_version('WebKit2', '4.0')
@@ -35,9 +38,10 @@ from gi.repository import Pango  # pylint: disable=E0611
 import cairo
 # import cairo.Pattern, cairo.SolidPattern
 
-import re
-
-from gettext import gettext as _
+from uberwriter_lib import helpers
+from uberwriter_lib.helpers import get_builder
+from uberwriter_lib.AppWindow import Window
+from uberwriter_lib.gtkspellcheck import SpellChecker
 
 from .MarkupBuffer import MarkupBuffer
 from .UberwriterTextEditor import TextEditor
@@ -47,14 +51,8 @@ from .UberwriterSearchAndReplace import UberwriterSearchAndReplace
 from .Settings import Settings
 # from .UberwriterAutoCorrect import UberwriterAutoCorrect
 
-from uberwriter_lib.helpers import get_builder
-
 import logging
 logger = logging.getLogger('uberwriter')
-
-# Spellcheck
-
-from uberwriter_lib.gtkspellcheck import SpellChecker
 
 try:
     import apt
@@ -62,9 +60,8 @@ try:
 except:
     APT_ENABLED = False
 
-from uberwriter_lib.AppWindow import Window
-from uberwriter_lib import helpers
-from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
+
+from .UberwriterExportDialog import Export
 # from .plugins.bibtex import BibTex
 # Some Globals
 # TODO move them somewhere for better
@@ -73,10 +70,12 @@ from .UberwriterAdvancedExportDialog import UberwriterAdvancedExportDialog
 CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
 # See texteditor_lib.Window.py for more details about how this class works
+
+
 class UberwriterWindow(Window):
 
     #__gtype_name__ = "UberwriterWindow"
-    
+
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
@@ -90,31 +89,32 @@ class UberwriterWindow(Window):
     def scrolled(self, widget):
         """if window scrolled + focusmode make font black again"""
         # if self.focusmode:
-            # if self.textchange == False:
-            #     if self.scroll_count >= 4:
-            #         self.TextBuffer.apply_tag(
-            #             self.MarkupBuffer.blackfont,
-            #             self.TextBuffer.get_start_iter(),
-            #             self.TextBuffer.get_end_iter())
-            #     else:
-            #         self.scroll_count += 1
-            # else:
-            #     self.scroll_count = 0
-            #     self.textchange = False
+        # if self.textchange == False:
+        #     if self.scroll_count >= 4:
+        #         self.TextBuffer.apply_tag(
+        #             self.MarkupBuffer.blackfont,
+        #             self.TextBuffer.get_start_iter(),
+        #             self.TextBuffer.get_end_iter())
+        #     else:
+        #         self.scroll_count += 1
+        # else:
+        #     self.scroll_count = 0
+        #     self.textchange = False
 
     def paste_done(self, *args):
         self.MarkupBuffer.markup_buffer(0)
 
     def init_typewriter(self):
         self.editor_height = self.TextEditor.get_allocation().height
-        self.TextEditor.props.top_margin = self.editor_height / 2 
-        self.TextEditor.props.bottom_margin =  self.editor_height / 2       
+        self.TextEditor.props.top_margin = self.editor_height / 2
+        self.TextEditor.props.bottom_margin = self.editor_height / 2
         self.typewriter_initiated = True
 
     def remove_typewriter(self):
         self.TextEditor.props.top_margin = 80
         self.TextEditor.props.bottom_margin = 16
-        self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
+        self.text_change_event = self.TextBuffer.connect(
+            'changed', self.text_changed)
 
     def get_text(self):
         start_iter = self.TextBuffer.get_start_iter()
@@ -122,8 +122,9 @@ class UberwriterWindow(Window):
         return self.TextBuffer.get_text(start_iter, end_iter, False)
 
     WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
+
     def update_line_and_char_count(self):
-        if self.status_bar_visible == False:
+        if self.status_bar_visible is False:
             return
         self.char_count.set_text(str(self.TextBuffer.get_char_count()))
         text = self.get_text()
@@ -145,7 +146,7 @@ class UberwriterWindow(Window):
         return True
 
     def text_changed(self, widget, data=None):
-        if self.did_change == False:
+        if self.did_change is False:
             self.did_change = True
             title = self.get_title()
             self.set_headerbar_title("* " + title)
@@ -160,10 +161,11 @@ class UberwriterWindow(Window):
     def toggle_fullscreen(self, state):
         if state.get_boolean():
             self.fullscreen()
-            self.fullscreen_button.set_active(True)
+            self.fullscr_events.show()
+
         else:
             self.unfullscreen()
-            self.fullscreen_button.set_active(False)
+            self.fullscr_events.hide()
 
         self.TextEditor.grab_focus()
 
@@ -176,16 +178,15 @@ class UberwriterWindow(Window):
             self.check_scroll(self.TextBuffer.get_insert())
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 0)
-            self.focusmode_button.set_active(True)
         else:
             self.remove_typewriter()
             self.focusmode = False
             self.TextBuffer.remove_tag(self.MarkupBuffer.grayfont,
-                self.TextBuffer.get_start_iter(),
-                self.TextBuffer.get_end_iter())
+                                       self.TextBuffer.get_start_iter(),
+                                       self.TextBuffer.get_end_iter())
             self.TextBuffer.remove_tag(self.MarkupBuffer.blackfont,
-                self.TextBuffer.get_start_iter(),
-                self.TextBuffer.get_end_iter())
+                                       self.TextBuffer.get_start_iter(),
+                                       self.TextBuffer.get_end_iter())
 
             self.MarkupBuffer.markup_buffer(1)
             self.TextEditor.grab_focus()
@@ -193,34 +194,40 @@ class UberwriterWindow(Window):
             self.check_scroll()
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 4)
-            self.focusmode_button.set_active(False)
 
-    def scroll_smoothly(self, widget, frame_clock, data = None):
+    def scroll_smoothly(self, widget, frame_clock, data=None):
         if self.smooth_scroll_data['target_pos'] == -1:
             return True
+
         def ease_out_cubic(t):
-          p = t - 1
-          return p * p * p + 1
-        
+            p = t - 1
+            return p * p * p + 1
+
         now = frame_clock.get_frame_time()
         if self.smooth_scroll_acttarget != self.smooth_scroll_data['target_pos']:
             self.smooth_scroll_starttime = now
-            self.smooth_scroll_endtime = now + self.smooth_scroll_data['duration'] * 100
+            self.smooth_scroll_endtime = now + \
+                self.smooth_scroll_data['duration'] * 100
             self.smooth_scroll_acttarget = self.smooth_scroll_data['target_pos']
 
-        if(now < self.smooth_scroll_endtime):
-            t = float(now - self.smooth_scroll_starttime) / float(self.smooth_scroll_endtime - self.smooth_scroll_starttime)
+        if now < self.smooth_scroll_endtime:
+            t = float(now - self.smooth_scroll_starttime) / float(
+                self.smooth_scroll_endtime - self.smooth_scroll_starttime)
         else:
             t = 1
-            pos = self.smooth_scroll_data['source_pos'] + (t * (self.smooth_scroll_data['target_pos'] - self.smooth_scroll_data['source_pos']))
+            pos = self.smooth_scroll_data['source_pos'] \
+                + (t * (self.smooth_scroll_data['target_pos']
+                        - self.smooth_scroll_data['source_pos']))
             widget.get_vadjustment().props.value = pos
             self.smooth_scroll_data['target_pos'] = -1
             return True
 
         t = ease_out_cubic(t)
-        pos = self.smooth_scroll_data['source_pos'] + (t * (self.smooth_scroll_data['target_pos'] - self.smooth_scroll_data['source_pos']))
+        pos = self.smooth_scroll_data['source_pos'] \
+            + (t * (self.smooth_scroll_data['target_pos']
+                    - self.smooth_scroll_data['source_pos']))
         widget.get_vadjustment().props.value = pos
-        return True # continue ticking
+        return True  # continue ticking
 
     def check_scroll(self, mark=None):
         gradient_offset = 80
@@ -233,7 +240,7 @@ class UberwriterWindow(Window):
 
         # alignment offset added from top
         pos_y = loc_rect.y + loc_rect.height + self.TextEditor.props.top_margin
-        
+
         ha = self.ScrolledWindow.get_vadjustment()
         if ha.props.page_size < gradient_offset:
             return
@@ -251,11 +258,12 @@ class UberwriterWindow(Window):
             target_pos = pos_y - gradient_offset
         self.smooth_scroll_data = {
             'target_pos': target_pos,
-            'source_pos': ha.props.value, 
+            'source_pos': ha.props.value,
             'duration': 2000
         }
         if self.smooth_scroll_tickid == -1:
-            self.smooth_scroll_tickid = self.ScrolledWindow.add_tick_callback(self.scroll_smoothly)
+            self.smooth_scroll_tickid = self.ScrolledWindow.add_tick_callback(
+                self.scroll_smoothly)
 
     def window_resize(self, widget, data=None):
         # To calc padding top / bottom
@@ -263,7 +271,7 @@ class UberwriterWindow(Window):
         w_width = widget.get_allocation().width
         # Calculate left / right margin
         width_request = 600
-        if(w_width < 900):
+        if w_width < 900:
             self.MarkupBuffer.set_multiplier(8)
             self.current_font_size = 12
             self.alignment_padding = 30
@@ -272,7 +280,7 @@ class UberwriterWindow(Window):
             self.get_style_context().remove_class("large")
             self.get_style_context().add_class("small")
 
-        elif(w_width < 1400):
+        elif w_width < 1400:
             self.MarkupBuffer.set_multiplier(10)
             width_request = 800
             self.current_font_size = 15
@@ -291,7 +299,6 @@ class UberwriterWindow(Window):
             self.get_style_context().remove_class("medium")
             self.get_style_context().remove_class("small")
             self.get_style_context().add_class("large")
-
 
         self.EditorAlignment.props.margin_bottom = 0
         self.EditorAlignment.props.margin_top = 0
@@ -314,10 +321,10 @@ class UberwriterWindow(Window):
     def style_changed(self, widget, data=None):
         pgc = self.TextEditor.get_pango_context()
         mets = pgc.get_metrics()
-        self.MarkupBuffer.set_multiplier(Pango.units_to_double(mets.get_approximate_char_width()) + 1)
+        self.MarkupBuffer.set_multiplier(
+            Pango.units_to_double(mets.get_approximate_char_width()) + 1)
 
-
-    def save_document(self, widget, data=None):
+    def save_document(self, widget=None, data=None):
         if self.filename:
             logger.info("saving")
             filename = self.filename
@@ -331,7 +338,7 @@ class UberwriterWindow(Window):
             return Gtk.ResponseType.OK
 
         else:
-           
+
             filefilter = Gtk.FileFilter.new()
             filefilter.add_mime_type('text/x-markdown')
             filefilter.add_mime_type('text/plain')
@@ -342,14 +349,14 @@ class UberwriterWindow(Window):
                 Gtk.FileChooserAction.SAVE,
                 ("_Cancel", Gtk.ResponseType.CANCEL,
                  "_Save", Gtk.ResponseType.OK)
-                )
+            )
 
             filechooser.set_do_overwrite_confirmation(True)
             filechooser.add_filter(filefilter)
             response = filechooser.run()
             if response == Gtk.ResponseType.OK:
                 filename = filechooser.get_filename()
-               
+
                 if filename[-3:] != ".md":
                     filename = filename + ".md"
                     try:
@@ -361,10 +368,11 @@ class UberwriterWindow(Window):
 
                 f.write(self.get_text())
                 f.close()
-               
+
                 self.set_filename(filename)
-                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
-               
+                self.set_headerbar_title(
+                    os.path.basename(filename) + self.title_end)
+
                 self.did_change = False
                 filechooser.destroy()
                 return response
@@ -373,14 +381,14 @@ class UberwriterWindow(Window):
                 filechooser.destroy()
                 return Gtk.ResponseType.CANCEL
 
-    def save_document_as(self, widget, data=None):
+    def save_document_as(self, widget=None, data=None):
         filechooser = Gtk.FileChooserDialog(
             "Save your File",
             self,
             Gtk.FileChooserAction.SAVE,
             ("_Cancel", Gtk.ResponseType.CANCEL,
              "_Save", Gtk.ResponseType.OK)
-            )
+        )
         filechooser.set_do_overwrite_confirmation(True)
         if self.filename:
             filechooser.set_filename(self.filename)
@@ -391,7 +399,7 @@ class UberwriterWindow(Window):
             if filename[-3:] != ".md":
                 filename = filename + ".md"
                 try:
-                    self.recent_manager.remove_item("file:/" + filename)       
+                    self.recent_manager.remove_item("file:/" + filename)
                     self.recent_manager.add_item("file:/ " + filename)
                 except:
                     pass
@@ -399,15 +407,16 @@ class UberwriterWindow(Window):
             f = codecs.open(filename, encoding="utf-8", mode='w')
             f.write(self.get_text())
             f.close()
-           
+
             self.set_filename(filename)
-            self.set_headerbar_title(os.path.basename(filename) + self.title_end)
+            self.set_headerbar_title(
+                os.path.basename(filename) + self.title_end)
 
             try:
                 self.recent_manager.add_item(filename)
             except:
                 pass
-               
+
             filechooser.destroy()
             self.did_change = False
 
@@ -415,106 +424,23 @@ class UberwriterWindow(Window):
             filechooser.destroy()
             return Gtk.ResponseType.CANCEL
 
-    def export(self, export_type="html"):
-        filechooser = Gtk.FileChooserDialog(
-            "Export as %s" % export_type.upper(),
-            self,
-            Gtk.FileChooserAction.SAVE,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Save", Gtk.ResponseType.OK)
-            )
-
-        filechooser.set_do_overwrite_confirmation(True)
-        if self.filename:
-            filechooser.set_filename(self.filename[:-2] + export_type.lower())
-       
-        response = filechooser.run()
-        if response == Gtk.ResponseType.OK:
-            filename = filechooser.get_filename()
-            if filename.endswith("." + export_type):
-                filename = filename[:-len(export_type)-1]
-            filechooser.destroy()
-        else:
-            filechooser.destroy()
-            return
-
-        # Converting text to bytes for python 3
-        text = bytes(self.get_text(), "utf-8")
-
-        output_dir = os.path.abspath(os.path.join(filename, os.path.pardir))
-       
-        basename = os.path.basename(filename)
-
-        args = ['pandoc', '--from=markdown', '-s']
-       
-        if export_type == "pdf":
-            args.append("-o%s.pdf" % basename)
-       
-        elif export_type == "odt":
-            args.append("-o%s.odt" % basename)
-       
-        elif export_type == "html":
-            css = helpers.get_media_file('uberwriter.css')
-            relativize = helpers.get_script_path('relative_to_absolute.lua')
-            task_list = helpers.get_script_path('task-list.lua')
-            args.append("-c%s" % css)
-            args.append("-o%s.html" % basename)
-            args.append("--mathjax")
-            args.append("--lua-filter=" + relativize)
-            args.append("--lua-filter=" + task_list)
-
-        p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=output_dir)
-        output = p.communicate(text)[0]
-       
-        return filename
-           
-    def export_as_odt(self, widget, data=None):
-        self.export("odt")
-
-    def export_as_html(self, widget, data=None):
-        self.export("html")
-
-    def export_as_pdf(self, widget, data=None):
-        if self.texlive_installed == False and APT_ENABLED:
-            try:
-                cache = apt.Cache()
-                inst = cache["texlive"].is_installed
-            except:
-                inst = True
-
-            if inst == False:
-                dialog = Gtk.MessageDialog(self,
-                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                    Gtk.MessageType.INFO,
-                    Gtk.ButtonsType.NONE,
-                    _("You can not export to PDF.")
-                )
-                dialog.format_secondary_markup(_("Please install <a href=\"apt:texlive\">texlive</a> from the software center."))
-                response = dialog.run()
-                return
-            else:
-                self.texlive_installed = True
-        self.export("pdf")
-
-    def copy_html_to_clipboard(self, widget, date=None):
+    def copy_html_to_clipboard(self, widget=None, date=None):
         """Copies only html without headers etc. to Clipboard"""
 
         args = ['pandoc', '--from=markdown', '-smart', '-thtml']
-        p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        p = subprocess.Popen(args, stdin=subprocess.PIPE,
+                             stdout=subprocess.PIPE)
 
         text = bytes(self.get_text(), "utf-8")
         output = p.communicate(text)[0]
-               
+
         cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         cb.set_text(output.decode("utf-8"), -1)
         cb.store()
 
-    def open_document(self, widget):
+    def open_document(self, widget=None):
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
-
-        if self.focusmode:
-            self.focusmode_button.set_active(False)
 
         filefilter = Gtk.FileFilter.new()
         filefilter.add_mime_type('text/x-markdown')
@@ -527,7 +453,7 @@ class UberwriterWindow(Window):
             Gtk.FileChooserAction.OPEN,
             ("_Cancel", Gtk.ResponseType.CANCEL,
              "_Open", Gtk.ResponseType.OK)
-            )
+        )
         filechooser.add_filter(filefilter)
         response = filechooser.run()
         if response == Gtk.ResponseType.OK:
@@ -541,11 +467,11 @@ class UberwriterWindow(Window):
     def check_change(self):
         if self.did_change and len(self.get_text()):
             dialog = Gtk.MessageDialog(self,
-                Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                Gtk.MessageType.WARNING,
-                Gtk.ButtonsType.NONE,
-                _("You have not saved your changes.")
-                )
+                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.MessageType.WARNING,
+                                       Gtk.ButtonsType.NONE,
+                                       _("You have not saved your changes.")
+                                       )
             dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
@@ -556,10 +482,10 @@ class UberwriterWindow(Window):
 
             if response == Gtk.ResponseType.YES:
                 title = self.get_title()
-                if self.save_document(widget = None) == Gtk.ResponseType.CANCEL:
+                if self.save_document(widget=None) == Gtk.ResponseType.CANCEL:
                     dialog.destroy()
                     return self.check_change()
-                else:                   
+                else:
                     dialog.destroy()
                     return response
             elif response == Gtk.ResponseType.NO:
@@ -569,7 +495,7 @@ class UberwriterWindow(Window):
                 dialog.destroy()
                 return Gtk.ResponseType.CANCEL
 
-    def new_document(self, widget):
+    def new_document(self, widget=None):
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
         else:
@@ -592,22 +518,26 @@ class UberwriterWindow(Window):
                 self.SpellChecker.disable()
 
         elif status.get_boolean():
-            self.SpellChecker = SpellChecker(self.TextEditor, self, locale.getdefaultlocale()[0], collapse=False)
+            self.SpellChecker = SpellChecker(
+                self.TextEditor, self, locale.getdefaultlocale()[0],
+                collapse=False)
             if self.auto_correct:
                 self.auto_correct.set_language(self.SpellChecker.language)
-                self.SpellChecker.connect_language_change(self.auto_correct.set_language)
+                self.SpellChecker.connect_language_change(
+                    self.auto_correct.set_language)
             try:
                 self.spellcheck = True
             except:
                 self.SpellChecker = None
                 self.spellcheck = False
                 dialog = Gtk.MessageDialog(self,
-                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                    Gtk.MessageType.INFO,
-                    Gtk.ButtonsType.NONE,
-                    _("You can not enable the Spell Checker.")
-                )
-                dialog.format_secondary_text(_("Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."))
+                                           Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                           Gtk.MessageType.INFO,
+                                           Gtk.ButtonsType.NONE,
+                                           _("You can not enable the Spell Checker.")
+                                           )
+                dialog.format_secondary_text(
+                    _("Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."))
                 response = dialog.run()
                 return
         return
@@ -642,7 +572,7 @@ class UberwriterWindow(Window):
                 self.TextBuffer.move_mark(insert_mark, cursor_iter)
                 cursor_iter.forward_chars(lr)
                 self.TextBuffer.move_mark(selection_bound, cursor_iter)
-       
+
         elif info == 2:
             # Text target
             self.TextBuffer.place_cursor(self.TextBuffer.get_iter_at_mark(
@@ -653,8 +583,6 @@ class UberwriterWindow(Window):
         return False
 
     def toggle_preview(self, state):
-
-        self.preview_button.set_active(state.get_boolean())
 
         if state.get_boolean():
 
@@ -684,10 +612,12 @@ class UberwriterWindow(Window):
                     '--to=html5',
                     '--mathjax',
                     '--css=' + stylesheet,
-                    '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
+                    '--lua-filter=' +
+                    helpers.get_script_path('relative_to_absolute.lua'),
                     '--lua-filter=' + helpers.get_script_path('task-list.lua')]
 
-            p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            p = subprocess.Popen(
+                args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
             text = bytes(self.get_text(), "utf-8")
             output = p.communicate(text)[0]
@@ -695,7 +625,8 @@ class UberwriterWindow(Window):
             # Load in Webview and scroll to #ID
             self.webview = WebKit.WebView()
             self.webview_settings = self.webview.get_settings()
-            self.webview_settings.set_allow_universal_access_from_file_urls(True)
+            self.webview_settings.set_allow_universal_access_from_file_urls(
+                True)
             self.webview.load_html(output.decode("utf-8"), 'file://localhost/')
 
             # Delete the cursor-scroll mark again
@@ -716,17 +647,16 @@ class UberwriterWindow(Window):
             self.webview.destroy()
             self.ScrolledWindow.add(self.TextEditor)
             self.TextEditor.show()
-            
 
         self.queue_draw()
         return True
 
     def on_click_link(self, web_view, decision, decision_type):
         # This provide ability for self.webview to open links in default browser
-        if(web_view.get_uri().startswith(("http://","https://","www."))):
+        if(web_view.get_uri().startswith(("http://", "https://", "www."))):
             webbrowser.open(web_view.get_uri())
             decision.ignore()
-            return True # Don't let the event "bubble up"
+            return True  # Don't let the event "bubble up"
 
     def dark_mode_toggled(self, state):
         # Save state for saving settings later
@@ -756,7 +686,6 @@ class UberwriterWindow(Window):
                 filename = filename[7:]
             filename = urllib.parse.unquote_plus(filename)
             try:
-                self.preview_button.set_active(False)
                 if not os.path.exists(filename):
                     self.TextBuffer.set_text("")
                 else:
@@ -765,7 +694,8 @@ class UberwriterWindow(Window):
                     f.close()
                     self.MarkupBuffer.markup_buffer(0)
 
-                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
+                self.set_headerbar_title(
+                    os.path.basename(filename) + self.title_end)
                 self.TextEditor.undo_stack = []
                 self.TextEditor.redo_stack = []
                 self.set_filename(filename)
@@ -784,24 +714,25 @@ class UberwriterWindow(Window):
         webbrowser.open("https://liberapay.com/UberWriter/donate")
 
     def open_pandoc_markdown(self, widget, data=None):
-        webbrowser.open("http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
+        webbrowser.open(
+            "http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
 
-    def open_uberwriter_markdown(self, widget, data=None):
+    def open_uberwriter_markdown(self, widget=None, data=None):
         self.load_file(helpers.get_media_file('uberwriter_markdown.md'))
 
     def open_search_and_replace(self):
         self.searchreplace.toggle_search()
 
-    def open_advanced_export(self, widget, data=None):
-        if self.UberwriterAdvancedExportDialog is not None:
-            advexp = self.UberwriterAdvancedExportDialog()  # pylint: disable=
+    def open_advanced_export(self, widget=None, data=None):
+        self.Export = Export(self.filename)
+        self.Export.dialog.set_transient_for(self)
 
-            response = advexp.run()
-            if response == 1:
-                advexp.advanced_export(bytes(self.get_text(), "utf-8"))
+        response = self.Export.dialog.run()
+        if response == 1: 
+            self.Export.export(bytes(self.get_text(), "utf-8"))
 
-            advexp.destroy()
-
+        self.Export.dialog.destroy()
+            
     def open_recent(self, widget, data=None):
         if data:
             if self.check_change() == Gtk.ResponseType.CANCEL:
@@ -809,11 +740,12 @@ class UberwriterWindow(Window):
             else:
                 self.load_file(data)
 
-    def generate_recent_files_menu(self, parent_menu):
+    def generate_recent_files_menu(self):
         # Recent file filter
         self.recent_manager = Gtk.RecentManager.get_default()
 
-        self.recent_files_menu = Gtk.RecentChooserMenu.new_for_manager(self.recent_manager)
+        self.recent_files_menu = Gtk.RecentChooserMenu.new_for_manager(
+            self.recent_manager)
         self.recent_files_menu.set_sort_type(Gtk.RecentSortType.MRU)
 
         recent_filter = Gtk.RecentFilter.new()
@@ -829,8 +761,9 @@ class UberwriterWindow(Window):
                 item.show()
 
         menu.show()
-        parent_menu.set_submenu(menu)
-        parent_menu.show()
+        return menu
+        # menu.attach_to_widget(widget)
+        # parent_menu.show()
 
     def poll_for_motion(self):
         if (self.was_motion == False
@@ -867,6 +800,15 @@ class UberwriterWindow(Window):
                 # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
             self.was_motion = True
 
+    def show_fs_hb(self, widget, data=None):
+        self.fullscr_hb_revealer.set_reveal_child(True)
+
+    def hide_fs_hb(self, widget, data=None):
+        if self.fs_btn_menu.get_active():
+            pass
+        else:
+            self.fullscr_hb_revealer.set_reveal_child(False)
+
     def focus_out(self, widget, data=None):
         if self.status_bar_visible == False:
             self.statusbar_revealer.set_reveal_child(True)
@@ -880,8 +822,10 @@ class UberwriterWindow(Window):
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
 
         lg_top = cairo.LinearGradient(0, 0, 0, 35)
-        lg_top.add_color_stop_rgba(0, bg_color.red, bg_color.green, bg_color.blue, 1)
-        lg_top.add_color_stop_rgba(1, bg_color.red, bg_color.green, bg_color.blue, 0)
+        lg_top.add_color_stop_rgba(
+            0, bg_color.red, bg_color.green, bg_color.blue, 1)
+        lg_top.add_color_stop_rgba(
+            1, bg_color.red, bg_color.green, bg_color.blue, 0)
 
         width = self.ScrolledWindow.get_allocation().width
         height = self.ScrolledWindow.get_allocation().height
@@ -890,31 +834,31 @@ class UberwriterWindow(Window):
         cr.set_source(lg_top)
         cr.fill()
         cr.rectangle(0, height - 35, width, height)
-        
+
         lg_btm = cairo.LinearGradient(0, height - 35, 0, height)
-        lg_btm.add_color_stop_rgba(1, bg_color.red, bg_color.green, bg_color.blue, 1)
-        lg_btm.add_color_stop_rgba(0, bg_color.red, bg_color.green, bg_color.blue, 0)
+        lg_btm.add_color_stop_rgba(
+            1, bg_color.red, bg_color.green, bg_color.blue, 1)
+        lg_btm.add_color_stop_rgba(
+            0, bg_color.red, bg_color.green, bg_color.blue, 0)
 
         cr.set_source(lg_btm)
         cr.fill()
 
     def use_experimental_features(self, val):
         try:
-            self.auto_correct = UberwriterAutoCorrect(self.TextEditor, self.TextBuffer)
+            self.auto_correct = UberwriterAutoCorrect(
+                self.TextEditor, self.TextBuffer)
         except:
             logger.debug("Couldn't install autocorrect.")
 
     def finish_initializing(self, builder):  # pylint: disable=E1002
         """Set up the main window"""
-        
+
         super(UberwriterWindow, self).finish_initializing(builder)
-        
+
         # preferences
         self.settings = Settings.new()
-
-        self.UberwriterAdvancedExportDialog = UberwriterAdvancedExportDialog
         self.builder = builder
-        
 
         self.connect('save-file', self.save_document)
         self.connect('save-file-as', self.save_document_as)
@@ -929,41 +873,119 @@ class UberwriterWindow(Window):
         self.texlive_installed = False
 
         self.set_name('UberwriterWindow')
+
+        # Headerbars
+        self.hb_container = Gtk.Frame(name='titlebar_container')
+        self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
+        self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
+        self.hb = Gtk.HeaderBar()
+        self.hb_revealer.add(self.hb)
+        self.hb_revealer.props.transition_duration = 1000
+        self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
+        self.hb.props.show_close_button = True
+        self.hb.get_style_context().add_class("titlebar")
+        self.hb_container.add(self.hb_revealer)
+        self.hb_container.show()
+        self.set_titlebar(self.hb_container)
+        self.hb_revealer.show()
+        self.hb_revealer.set_reveal_child(True)
+        self.hb.show()
+
+        btn_new = Gtk.Button().new_with_label(_("New"))
+        btn_open = Gtk.Button().new_with_label(_("Open"))
+        btn_recent = Gtk.MenuButton().new()
+        btn_recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
+                                                     Gtk.IconSize.BUTTON))
+        btn_recent.set_tooltip_text(_("Open Recent"))
+        btn_recent.set_popup(self.generate_recent_files_menu())
+        btn_save = Gtk.Button().new_with_label(_("Save"))
+        btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
+                                                     Gtk.IconSize.BUTTON)
+        btn_search.set_tooltip_text(_("Search and replace"))
+        btn_menu = Gtk.MenuButton().new()
+        btn_menu.set_tooltip_text(_("Menu"))
+        btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
+                                                        Gtk.IconSize.BUTTON))
+
+        btn_new.set_action_name("app.new")
+        btn_open.set_action_name("app.open")
+        btn_recent.set_action_name("app.open_recent")
+        btn_save.set_action_name("app.save")
+        btn_search.set_action_name("app.search")
+
+        btn_menu.set_use_popover(True)
+        self.builder_window_menu = get_builder('Menu')
+        self.model = self.builder_window_menu.get_object("Menu")
+        btn_menu.set_menu_model(self.model)
+
+        self.hb.pack_start(btn_new)
+        self.hb.pack_start(btn_open)
+        self.hb.pack_start(btn_recent)
+        self.hb.pack_end(btn_menu)
+        self.hb.pack_end(btn_search)
+        self.hb.pack_end(btn_save)
+        self.hb.show_all()
+
+        # same for fullscreen headerbar
+        # TODO: Refactorice: this is duplicated code!
+
+
+        self.fullscr_events = self.builder.get_object("FullscreenEventbox")
+        self.fullscr_hb_revealer = self.builder.get_object(
+            "FullscreenHbPlaceholder")
+        self.fullscr_hb = self.builder.get_object("FullscreenHeaderbar")
+        self.fullscr_hb.get_style_context().add_class("titlebar")
+        self.fullscr_hb_revealer.show()
+        self.fullscr_hb_revealer.set_reveal_child(False)
+        self.fullscr_hb.show()
+        self.fullscr_events.hide()
+
+        fs_btn_new = Gtk.Button().new_with_label(_("New"))
+        fs_btn_open = Gtk.Button().new_with_label(_("Open"))
+        self.fs_btn_recent = Gtk.MenuButton().new()
+        self.fs_btn_recent.set_tooltip_text(_("Open Recent"))
+        self.fs_btn_recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
+                                                     Gtk.IconSize.BUTTON))
+        self.fs_btn_recent.set_tooltip_text(_("Open Recent"))
+        self.fs_btn_recent.set_popup(self.generate_recent_files_menu())
+        fs_btn_save = Gtk.Button().new_with_label(_("Save"))
+        fs_btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
+                                                     Gtk.IconSize.BUTTON)
+        fs_btn_search.set_tooltip_text(_("Search and replace"))
+        self.fs_btn_menu = Gtk.MenuButton().new()
+        self.fs_btn_menu.set_tooltip_text(_("Menu"))
+        self.fs_btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
+                                                        Gtk.IconSize.BUTTON))
+        fs_btn_exit = Gtk.Button().new_from_icon_name("view-restore-symbolic", 
+                                                      Gtk.IconSize.BUTTON)
+        fs_btn_exit.set_tooltip_text(_("Exit Fullscreen"))
         
+        fs_btn_new.set_action_name("app.new")
+        fs_btn_open.set_action_name("app.open")
+        self.fs_btn_recent.set_action_name("app.open_recent")
+        fs_btn_save.set_action_name("app.save")
+        fs_btn_search.set_action_name("app.search")
+        fs_btn_exit.set_action_name("app.fullscreen")
 
-        self.use_headerbar = True
-        if self.use_headerbar == True:
-            self.hb_container = Gtk.Frame(name='titlebar_container')
-            self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
-            self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
-            self.hb = Gtk.HeaderBar()
-            self.hb_revealer.add(self.hb)
-            self.hb_revealer.props.transition_duration = 1000
-            self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
-            self.hb.props.show_close_button = True
-            self.hb.get_style_context().add_class("titlebar")
-            self.hb_container.add(self.hb_revealer)
-            self.hb_container.show()
-            self.set_titlebar(self.hb_container)
-            self.hb_revealer.show()
-            self.hb_revealer.set_reveal_child(True)
-            self.hb.show()
+        self.fs_btn_menu.set_use_popover(True)
+        self.builder_window_menu = get_builder('Menu')
+        self.model = self.builder_window_menu.get_object("Menu")
+        self.fs_btn_menu.set_menu_model(self.model)
 
-            bbtn = Gtk.MenuButton()
-            btn_settings = Gtk.MenuButton()
-            btn_settings.props.image = Gtk.Image.new_from_icon_name('emblem-system-symbolic', Gtk.IconSize.BUTTON)
-            btn_settings.props.use_popover = True
-            self.builder_window_menu = get_builder('WindowMenu')
-            self.model = self.builder_window_menu.get_object("WindowMenu")
-            btn_settings.set_menu_model(self.model)
-
-            self.builder.get_object("menu1").detach()
-            bbtn.set_popup(self.builder.get_object("menu1"))
-            self.hb.pack_start(bbtn)
-            self.hb.pack_end(btn_settings)
-            self.hb.show_all()
-            self.testbits = Gdk.WindowState.MAXIMIZED
-            #self.connect('draw', self.override_headerbar_background)
+        self.fullscr_hb.pack_start(fs_btn_new)
+        self.fullscr_hb.pack_start(fs_btn_open)
+        self.fullscr_hb.pack_start(self.fs_btn_recent)
+        self.fullscr_hb.pack_end(fs_btn_exit)
+        self.fullscr_hb.pack_end(self.fs_btn_menu)
+        self.fullscr_hb.pack_end(fs_btn_search)
+        self.fullscr_hb.pack_end(fs_btn_save)
+        self.fullscr_hb.show_all()
+        # this is a little tricky
+        # we show hb when the cursor enters an area of 1 px at the top of the window
+        # as the hb is shown the height of the eventbox grows to accomodate it
+        self.fullscr_events.connect('enter_notify_event', self.show_fs_hb)
+        self.fullscr_events.connect('leave_notify_event', self.hide_fs_hb)
+        self.fs_btn_menu.get_popover().connect('closed', self.hide_fs_hb)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -972,28 +994,6 @@ class UberwriterWindow(Window):
 
         self.word_count = builder.get_object('word_count')
         self.char_count = builder.get_object('char_count')
-        self.menubar = builder.get_object('menubar1')
-        self.menubar.hide()
-        
-
-        # Wire up buttons
-        self.fullscreen_button = builder.get_object('fullscreen_toggle')
-        self.focusmode_button = builder.get_object('focus_toggle')
-        self.preview_button = builder.get_object('preview_toggle')
-
-        self.fullscreen_button.set_action_name("app.fullscreen")
-        self.focusmode_button.set_action_name("app.focus_mode")
-        self.preview_button.set_action_name("app.preview")
-
-        self.fullscreen_button.set_name('fullscreen_toggle')
-        self.focusmode_button.set_name('focus_toggle')
-        self.preview_button.set_name('preview_toggle')
-
-        self.export_pdf_button = builder.get_object('mnu_export_pdf')
-
-        # Gray export to pdf if pdftex not avaliable
-        if not helpers.exist_executable('pdftex'):
-            self.export_pdf_button.set_sensitive(False)
 
         # Setup status bar hide after 3 seconds
 
@@ -1043,7 +1043,7 @@ class UberwriterWindow(Window):
         self.smooth_scroll_acttarget = 0
         self.smooth_scroll_data = {
             'target_pos': -1,
-            'source_pos': -1, 
+            'source_pos': -1,
             'duration': 0
         }
         self.smooth_scroll_tickid = -1
@@ -1067,12 +1067,11 @@ class UberwriterWindow(Window):
         # Init Window height for top/bottom padding
         self.window_height = self.get_size()[1]
 
-        self.text_change_event = self.TextBuffer.connect('changed', self.text_changed)
+        self.text_change_event = self.TextBuffer.connect(
+            'changed', self.text_changed)
 
         # Init file name with None
         self.set_filename()
-
-        self.generate_recent_files_menu(self.builder.get_object('recent'))
 
         self.style_provider = Gtk.CssProvider()
         self.style_provider.load_from_path(helpers.get_media_path('style.css'))
@@ -1083,13 +1082,13 @@ class UberwriterWindow(Window):
         )
 
         # Markup and Shortcuts for the TextBuffer
-        self.MarkupBuffer = MarkupBuffer(self, self.TextBuffer, base_leftmargin)
+        self.MarkupBuffer = MarkupBuffer(
+            self, self.TextBuffer, base_leftmargin)
         self.MarkupBuffer.markup_buffer()
 
         # Setup dark mode if so
         if self.settings.get_value("dark-mode"):
             self.dark_mode_toggled(True)
-
 
         # Scrolling -> Dark or not?
         self.textchange = False
@@ -1106,11 +1105,12 @@ class UberwriterWindow(Window):
         self.target_list.add_text_targets(2)
 
         self.TextEditor.drag_dest_set_target_list(self.target_list)
-        self.TextEditor.connect_after('drag-data-received', self.on_drag_data_received)
+        self.TextEditor.connect_after(
+            'drag-data-received', self.on_drag_data_received)
+
         def on_drop(widget, *args):
             print("drop")
         self.TextEditor.connect('drag-drop', on_drop)
-
 
         self.TextBuffer.connect('paste-done', self.paste_done)
         # self.connect('key-press-event', self.alt_mod)
@@ -1118,21 +1118,23 @@ class UberwriterWindow(Window):
         # Events for Typewriter mode
 
         # Setting up inline preview
-        self.InlinePreview = UberwriterInlinePreview(self.TextEditor, self.TextBuffer)
+        self.InlinePreview = UberwriterInlinePreview(
+            self.TextEditor, self.TextBuffer)
 
         # Vertical scrolling
         self.vadjustment = self.ScrolledWindow.get_vadjustment()
         self.vadjustment.connect('value-changed', self.scrolled)
 
-
         # Setting up spellcheck
         self.auto_correct = None
         try:
-            self.SpellChecker = SpellChecker(self.TextEditor,
-                locale.getdefaultlocale()[0], collapse=False)
+            self.SpellChecker = SpellChecker(
+                self.TextEditor, locale.getdefaultlocale()[0],
+                collapse=False)
             if self.auto_correct:
                 self.auto_correct.set_language(self.SpellChecker.language)
-                self.SpellChecker.connect_language_change(self.auto_correct.set_language)
+                self.SpellChecker.connect_language_change(
+                    self.auto_correct.set_language)
 
             self.spellcheck = True
         except:
@@ -1157,7 +1159,6 @@ class UberwriterWindow(Window):
         #   Same interface as Sidebar ;)
         ###
         self.searchreplace = UberwriterSearchAndReplace(self)
-
 
         # Window resize
         self.window_resize(self)
@@ -1197,8 +1198,8 @@ class UberwriterWindow(Window):
         Gtk.main_quit()
 
     def set_headerbar_title(self, title):
-        if self.use_headerbar:
-            self.hb.props.title = title
+        self.hb.props.title = title
+        self.fullscr_hb.props.title = title
         self.set_title(title)
 
     def set_filename(self, filename=None):
@@ -1209,6 +1210,7 @@ class UberwriterWindow(Window):
             self.filename = None
             base_path = "/"
         self.settings.set_value("open-file-path", GLib.Variant("s", base_path))
+
     def save_settings(self):
         if not os.path.exists(CONFIG_PATH):
             try:
