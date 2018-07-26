@@ -286,7 +286,7 @@ class Application(Gtk.Application):
         action.set_state(value)
         self.settings.set_value("dark-mode",
                                  GLib.Variant("b", value))
-        self.window.dark_mode_toggled(value)
+        self.window.toggle_dark_mode(value)
 
         #this changes the headerbar theme accordingly
         self.dark_setting = Gtk.Settings.get_default()
