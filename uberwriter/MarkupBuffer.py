@@ -109,9 +109,9 @@ class MarkupBuffer():
 
         # self.ftag = self.TextBuffer.create_tag("pix_front", pixels_above_lines = 100)
     regex = {
-        "ITALIC": re.compile(r"\*\w(.+?)\*| _\w(.+?)_ |\*(.)\*| _(.)_ ", re.UNICODE),   # *asdasd* // _asdasd asd asd_
-        "STRONG": re.compile(r"\*{2}\w(.+?)\*{2}|\*{2}(.)\*{2}| [_]{2}\w(.+?)[_]{2} | [_]{2}(.)[_]{2} ", re.UNICODE),   # **as das** // __asdasdasd asd ad a__
-        "STRONGITALIC": re.compile(r"\*{3}\w(.+?)\*{3}|\*{3}(.)\*{3}| [_]{3}\w(.+?)[_]{3} | [_]{3}(.)[_]{3} "),
+        "ITALIC": re.compile(r"(\*|_)(.*?)\1", re.UNICODE),   # *asdasd* // _asdasd asd asd_
+        "STRONG": re.compile(r"(\*\*|__)(.*?)\1", re.UNICODE),   # **as das** // __asdasdasd asd ad a__
+        "STRONGITALIC": re.compile(r"(\*\*\*|___)(.*?)\1"),
         "BLOCKQUOTE": re.compile(r"^([\>]+ )", re.MULTILINE),
         "STRIKETHROUGH": re.compile(r"~~[^ `~\n].+?~~"),
         "LIST": re.compile(r"^[\-\*\+] ", re.MULTILINE),

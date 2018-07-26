@@ -89,8 +89,8 @@ class DictAccessor(object):
                 mlist.append( ( db, word ) )
         return mlist
 
-    reEndResponse = re.compile( b'^[2-5][0-58][0-9] .*\r\n$', re.DOTALL + re.MULTILINE )
-    reDefinition = re.compile( b'^151(.*?)^\.', re.DOTALL + re.MULTILINE )
+    reEndResponse = re.compile( br'^[2-5][0-58][0-9] .*\r\n$', re.DOTALL + re.MULTILINE )
+    reDefinition = re.compile( br'^151(.*?)^\.', re.DOTALL + re.MULTILINE )
 
     def getDefinition( self, database, word ):
         if database in [ '', 'all' ]:
@@ -123,7 +123,7 @@ class DictAccessor(object):
         lines = response.splitlines()
         lines = lines[2:]
         lines = ' '.join(lines)
-        lines = re.sub('\s+', ' ', lines).strip()
+        lines = re.sub(r'\s+', ' ', lines).strip()
         lines = re.split(r'( adv | adj | n | v |^adv |^adj |^n |^v )', lines)
         res = []
         act_res = {'defs': [], 'class': 'none', 'num': 'None'}
@@ -138,7 +138,7 @@ class DictAccessor(object):
                 act_res['defs'] = []
                 act_res['class'] = l
             else:
-                ll = re.split('(?: |^)(\d): ', l)
+                ll = re.split(r'(?: |^)(\d): ', l)
                 act_def = {}
                 for lll in ll:
                     if lll.strip().isdigit() or not lll.strip():
@@ -366,8 +366,8 @@ class UberwriterInlinePreview():
         math = MarkupBuffer.regex["MATH"]
         link = MarkupBuffer.regex["LINK"]
 
-        footnote = re.compile('\[\^([^\s]+?)\]')
-        image = re.compile("!\[(.*?)\]\((.+?)\)")
+        footnote = re.compile(r'\[\^([^\s]+?)\]')
+        image = re.compile(r"!\[(.*?)\]\((.+?)\)")
 
         buf = self.TextBuffer
         context_offset = 0
@@ -488,8 +488,8 @@ class UberwriterInlinePreview():
             for match in matches:
                 if match.start() < line_offset and match.end() > line_offset:
                     logger.debug(match.group(1))
-                    footnote_match = re.compile("\[\^" + match.group(1) + "\]: (.+(?:\n|\Z)(?:^[\t].+(?:\n|\Z))*)", re.MULTILINE)
-                    replace = re.compile("^\t", re.MULTILINE)
+                    footnote_match = re.compile(r"\[\^" + match.group(1) + r"\]: (.+(?:\n|\Z)(?:^[\t].+(?:\n|\Z))*)", re.MULTILINE)
+                    replace = re.compile(r"^\t", re.MULTILINE)
                     start, end = self.TextBuffer.get_bounds()
                     fn_match = re.search(footnote_match, self.TextBuffer.get_text(start, end, False))
                     label = Gtk.Label()
