@@ -19,11 +19,6 @@
     <property name="tooltip_text" translatable="yes">Next Match</property>
     <property name="icon_name">go-down-symbolic</property>
   </object>
-  <object class="GtkImage" id="case_sensitiv">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-execute</property>
-  </object>
   <object class="GtkImage" id="ortografia1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -40,16 +35,6 @@
     <property name="can_focus">False</property>
     <property name="tooltip_text" translatable="yes">Open Replace</property>
     <property name="icon_name">edit-find-replace-symbolic</property>
-  </object>
-  <object class="GtkImage" id="reemplaza1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-find-and-replace</property>
-  </object>
-  <object class="GtkImage" id="regex1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="tooltip_text" translatable="yes">Activate Regex</property>
   </object>
   <object class="GtkOverlay" id="FullscreenOverlay">
     <property name="name">FullscreenOverlay</property>
@@ -337,7 +322,6 @@
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="tooltip_text" translatable="yes">Case Sensitive</property>
-                                    <property name="image">case_sensitiv</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -351,7 +335,6 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="image">regex1</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -459,7 +442,6 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
-                                        <property name="image">reemplaza1</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
