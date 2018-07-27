@@ -178,6 +178,8 @@ class UberwriterWindow(Window):
             self.check_scroll(self.TextBuffer.get_insert())
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 0)
+            self.click_event = self.TextEditor.connect("button-release-event",
+                                                       self.on_focusmode_click)
         else:
             self.remove_typewriter()
             self.focusmode = False
@@ -194,6 +196,13 @@ class UberwriterWindow(Window):
             self.check_scroll()
             if self.spellcheck != False:
                 self.SpellChecker._misspelled.set_property('underline', 4)
+            _click_event = self.TextEditor.disconnect(self.click_event)
+
+    def on_focusmode_click(self, *_args):
+        """call MarkupBuffer to mark as bold the line where the cursor is
+        """
+
+        self.MarkupBuffer.markup_buffer(1)
 
     def scroll_smoothly(self, widget, frame_clock, data=None):
         if self.smooth_scroll_data['target_pos'] == -1:
@@ -424,7 +433,7 @@ class UberwriterWindow(Window):
             filechooser.destroy()
             return Gtk.ResponseType.CANCEL
 
-    def copy_html_to_clipboard(self, widget=None, date=None):
+    def copy_html_to_clipboard(self, widget=None, _date=None):
         """Copies only html without headers etc. to Clipboard"""
 
         args = ['pandoc', '--from=markdown', '-smart', '-thtml']

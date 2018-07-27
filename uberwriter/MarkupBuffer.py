@@ -126,7 +126,7 @@ class MarkupBuffer():
         "LINK": re.compile(r"\(http(.+?)\)")
     }
 
-    def markup_buffer(self, mode=0):
+    def markup_buffer(self, mode=0, *_args):
         buf = self.TextBuffer
 
         # Test for shifting first line
