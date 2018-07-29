@@ -20,6 +20,6 @@
 
 while keeping its api constant'''
 from . helpers import set_up_logging
-from . AppWindow import Window
+# from . AppWindow import Window
 from . uberwriterconfig import get_version
 
