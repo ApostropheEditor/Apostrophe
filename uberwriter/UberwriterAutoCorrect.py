@@ -43,8 +43,8 @@ class UberwriterAutoCorrect:
         if self.bubble:
             self.bubble_label.set_text(suggestion)
         else:
-            pos = self.TextView.get_iter_location(iterator)
-            pos_adjusted = self.TextView.buffer_to_window_coords(
+            pos = self.text_view.get_iter_location(iterator)
+            pos_adjusted = self.text_view.buffer_to_window_coords(
                 Gtk.TextWindowType.TEXT, pos.x, pos.y + pos.height)
             self.bubble_eventbox = Gtk.EventBox.new()
             self.bubble = Gtk.Grid.new()
@@ -52,7 +52,7 @@ class UberwriterAutoCorrect:
             self.bubble_eventbox.add(self.bubble)
             self.bubble_eventbox.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
             self.bubble_eventbox.connect("button_press_event", self.clicked_bubble)
-            self.TextView.add_child_in_window(self.bubble_eventbox,
+            self.text_view.add_child_in_window(self.bubble_eventbox,
                                               Gtk.TextWindowType.TEXT,
                                               pos_adjusted[0], pos_adjusted[1])
 
@@ -196,12 +196,12 @@ class UberwriterAutoCorrect:
         self.enchant_dict = enchant.Dict(self.language)
 
     def __init__(self, textview, textbuffer):
-        self.TextView = textview
+        self.text_view = textview
         self.buffer = textbuffer
         self.suggestion = ""
         self.bubble = self.bubble_label = None
         self.buffer.connect_after('insert-text', self.text_insert)
-        self.TextView.connect('key-press-event', self.key_pressed)
+        self.text_view.connect('key-press-event', self.key_pressed)
 
         self.language = "en_US"
         self.frequency_dict = {}

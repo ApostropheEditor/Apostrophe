@@ -20,7 +20,6 @@ import os
 import codecs
 import webbrowser
 import urllib
-import pickle
 import logging
 
 import mimetypes
@@ -195,6 +194,8 @@ class UberwriterWindow(Window):
             self.check_scroll(self.text_buffer.get_insert())
             if self.spellcheck:
                 self.spell_checker._misspelled.set_property('underline', 0)
+            self.click_event = self.text_editor.connect("button-release-event",
+                                                        self.on_focusmode_click)
         else:
             self.remove_typewriter()
             self.focusmode = False
@@ -210,7 +211,14 @@ class UberwriterWindow(Window):
             self.update_line_and_char_count()
             self.check_scroll()
             if self.spellcheck:
-                self.spell_checker._misspelled.set_property('underline', 4)
+                self.SpellChecker._misspelled.set_property('underline', 4)
+            _click_event = self.text_editor.disconnect(self.click_event)
+
+    def on_focusmode_click(self, *_args):
+        """call MarkupBuffer to mark as bold the line where the cursor is
+        """
+
+        self.markup_buffer.markup_buffer(1)
 
     def scroll_smoothly(self, widget, frame_clock, _data=None):
         if self.smooth_scroll_data['target_pos'] == -1:

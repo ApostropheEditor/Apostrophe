@@ -102,7 +102,7 @@ class MarkupBuffer():
         # self.ftag = self.TextBuffer.create_tag("pix_front", pixels_above_lines = 100)
     regex = {
         "ITALIC": re.compile(r"(\*|_)(.*?)\1", re.UNICODE),   # *asdasd* // _asdasd asd asd_
-        "STRONG": re.compile(r"(\*\*|__)(.*?)\1", re.UNICODE),   # **as das** // __asdasdasd asd ad a__
+        "STRONG": re.compile(r"(\*\*|__)(.*?)\1", re.UNICODE),   # **as das** // __asdasd asd ad a__
         "STRONGITALIC": re.compile(r"(\*\*\*|___)(.*?)\1"),
         "BLOCKQUOTE": re.compile(r"^([\>]+ )", re.MULTILINE),
         "STRIKETHROUGH": re.compile(r"~~[^ `~\n].+?~~"),

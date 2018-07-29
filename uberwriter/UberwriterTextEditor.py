@@ -44,8 +44,6 @@ Extending
 A TextEditor is Gtk.TextView
 
 """
-
-
 try:
     from gi.repository import Gtk
     from gi.repository import Gdk
@@ -54,8 +52,6 @@ try:
 
 except:
     print("couldn't load depencies")
-
-
 
 import logging
 LOGGER = logging.getLogger('uberwriter')
@@ -104,7 +100,6 @@ class TextEditor(Gtk.TextView):
         'redo': (GObject.SIGNAL_ACTION, None, ())
     }
 
-    # TODO: delete this?
     def scroll_to_iter(self, iterable, *args):
         self.get_buffer().place_cursor(iterable)
 
