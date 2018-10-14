@@ -11,18 +11,13 @@
   <object class="GtkImage" id="amunt">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-go-up</property>
+    <property name="icon_name">go-up-symbolic</property>
   </object>
   <object class="GtkImage" id="avall">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="tooltip_text" translatable="yes">Next Match</property>
-    <property name="stock">gtk-go-down</property>
-  </object>
-  <object class="GtkImage" id="case_sensitiv">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-execute</property>
+    <property name="icon_name">go-down-symbolic</property>
   </object>
   <object class="GtkImage" id="ortografia1">
     <property name="visible">True</property>
@@ -39,18 +34,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="tooltip_text" translatable="yes">Open Replace</property>
-    <property name="stock">gtk-find-and-replace</property>
-  </object>
-  <object class="GtkImage" id="reemplaza1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-find-and-replace</property>
-  </object>
-  <object class="GtkImage" id="regex1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="tooltip_text" translatable="yes">Activate Regex</property>
-    <property name="stock">gtk-find</property>
+    <property name="icon_name">edit-find-replace-symbolic</property>
   </object>
   <object class="GtkOverlay" id="FullscreenOverlay">
     <property name="name">FullscreenOverlay</property>
@@ -277,7 +261,7 @@
                                   <object class="GtkSearchEntry" id="searchentrybox">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="primary_icon_stock">gtk-find</property>
+                                    <property name="primary_icon_name">edit-find-symbolic</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="primary_icon_sensitive">False</property>
                                   </object>
@@ -333,11 +317,11 @@
                                 <property name="can_focus">False</property>
                                 <child>
                                   <object class="GtkToggleButton" id="case_sensitive">
+                                    <property name="label" translatable="yes">aA</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="tooltip_text" translatable="yes">Case Sensitive</property>
-                                    <property name="image">case_sensitiv</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -347,10 +331,10 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="regex">
+                                    <property name="label" translatable="yes">(.*)</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="image">regex1</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -413,7 +397,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="hexpand">True</property>
-                                        <property name="primary_icon_stock">gtk-find-and-replace</property>
+                                        <property name="primary_icon_name">edit-find-replace-symbolic</property>
                                       </object>
                                       <packing>
                                         <property name="expand">True</property>
@@ -458,7 +442,6 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
-                                        <property name="image">reemplaza1</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
