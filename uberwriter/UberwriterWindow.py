@@ -36,6 +36,7 @@ from gi.repository import Pango  # pylint: disable=E0611
 import cairo
 # import cairo.Pattern, cairo.SolidPattern
 
+from . import headerbars
 from uberwriter_lib import helpers
 from uberwriter_lib.helpers import get_builder
 from uberwriter_lib.gtkspellcheck import SpellChecker
@@ -63,152 +64,42 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 class UberwriterWindow(Gtk.ApplicationWindow):
 
     #__gtype_name__ = "UberwriterWindow"
+    WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
 
     def __init__(self):
         """Set up the main window"""
-        
+
         Gtk.ApplicationWindow.__init__(self,
                                        application=Gio.Application.get_default(),
                                        title="Uberwriter")
 
-        builder = get_builder('UberwriterWindow')
-        self.add(builder.get_object("FullscreenOverlay"))
+        self.builder = get_builder('UberwriterWindow')
+        self.add(self.builder.get_object("FullscreenOverlay"))
+
+        self.set_default_size(850, 500)
 
         # preferences
         self.settings = Settings.new()
-        self.builder = builder
-
-        self.scroll_adjusted = False
-
-        # Texlive checker
-        self.texlive_installed = False
 
         self.set_name('UberwriterWindow')
 
         # Headerbars
-        self.hb_container = Gtk.Frame(name='titlebar_container')
-        self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
-        self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
-        self.hb = Gtk.HeaderBar()
-        self.hb_revealer.add(self.hb)
-        self.hb_revealer.props.transition_duration = 1000
-        self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
-        self.hb.props.show_close_button = True
-        self.hb.get_style_context().add_class("titlebar")
-        self.hb_container.add(self.hb_revealer)
-        self.hb_container.show()
-        self.set_titlebar(self.hb_container)
-        self.hb_revealer.show()
-        self.hb_revealer.set_reveal_child(True)
-        self.hb.show()
-
-        btn_new = Gtk.Button().new_with_label(_("New"))
-        btn_open = Gtk.Button().new_with_label(_("Open"))
-        btn_recent = Gtk.MenuButton().new()
-        btn_recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
-                                                          Gtk.IconSize.BUTTON))
-        btn_recent.set_tooltip_text(_("Open Recent"))
-        btn_recent.set_popup(self.generate_recent_files_menu())
-        btn_save = Gtk.Button().new_with_label(_("Save"))
-        btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
-                                                     Gtk.IconSize.BUTTON)
-        btn_search.set_tooltip_text(_("Search and replace"))
-        btn_menu = Gtk.MenuButton().new()
-        btn_menu.set_tooltip_text(_("Menu"))
-        btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
-                                                        Gtk.IconSize.BUTTON))
-
-        btn_new.set_action_name("app.new")
-        btn_open.set_action_name("app.open")
-        btn_recent.set_action_name("app.open_recent")
-        btn_save.set_action_name("app.save")
-        btn_search.set_action_name("app.search")
-
-        btn_menu.set_use_popover(True)
-        self.builder_window_menu = get_builder('Menu')
-        self.model = self.builder_window_menu.get_object("Menu")
-        btn_menu.set_menu_model(self.model)
-
-        self.hb.pack_start(btn_new)
-        self.hb.pack_start(btn_open)
-        self.hb.pack_start(btn_recent)
-        self.hb.pack_end(btn_menu)
-        self.hb.pack_end(btn_search)
-        self.hb.pack_end(btn_save)
-        self.hb.show_all()
-
-        # same for fullscreen headerbar
-        # TODO: Refactorice: this is duplicated code!
-
-        self.fullscr_events = self.builder.get_object("FullscreenEventbox")
-        self.fullscr_hb_revealer = self.builder.get_object(
-            "FullscreenHbPlaceholder")
-        self.fullscr_hb = self.builder.get_object("FullscreenHeaderbar")
-        self.fullscr_hb.get_style_context().add_class("titlebar")
-        self.fullscr_hb_revealer.show()
-        self.fullscr_hb_revealer.set_reveal_child(False)
-        self.fullscr_hb.show()
-        self.fullscr_events.hide()
-
-        fs_btn_new = Gtk.Button().new_with_label(_("New"))
-        fs_btn_open = Gtk.Button().new_with_label(_("Open"))
-        self.fs_btn_recent = Gtk.MenuButton().new()
-        self.fs_btn_recent.set_tooltip_text(_("Open Recent"))
-        self.fs_btn_recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
-                                                                  Gtk.IconSize.BUTTON))
-        self.fs_btn_recent.set_tooltip_text(_("Open Recent"))
-        self.fs_btn_recent.set_popup(self.generate_recent_files_menu())
-        fs_btn_save = Gtk.Button().new_with_label(_("Save"))
-        fs_btn_search = Gtk.Button().new_from_icon_name("system-search-symbolic",
-                                                        Gtk.IconSize.BUTTON)
-        fs_btn_search.set_tooltip_text(_("Search and replace"))
-        self.fs_btn_menu = Gtk.MenuButton().new()
-        self.fs_btn_menu.set_tooltip_text(_("Menu"))
-        self.fs_btn_menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
-                                                                Gtk.IconSize.BUTTON))
-        fs_btn_exit = Gtk.Button().new_from_icon_name("view-restore-symbolic",
-                                                      Gtk.IconSize.BUTTON)
-        fs_btn_exit.set_tooltip_text(_("Exit Fullscreen"))
-
-        fs_btn_new.set_action_name("app.new")
-        fs_btn_open.set_action_name("app.open")
-        self.fs_btn_recent.set_action_name("app.open_recent")
-        fs_btn_save.set_action_name("app.save")
-        fs_btn_search.set_action_name("app.search")
-        fs_btn_exit.set_action_name("app.fullscreen")
-
-        self.fs_btn_menu.set_use_popover(True)
-        self.builder_window_menu = get_builder('Menu')
-        self.model = self.builder_window_menu.get_object("Menu")
-        self.fs_btn_menu.set_menu_model(self.model)
-
-        self.fullscr_hb.pack_start(fs_btn_new)
-        self.fullscr_hb.pack_start(fs_btn_open)
-        self.fullscr_hb.pack_start(self.fs_btn_recent)
-        self.fullscr_hb.pack_end(fs_btn_exit)
-        self.fullscr_hb.pack_end(self.fs_btn_menu)
-        self.fullscr_hb.pack_end(fs_btn_search)
-        self.fullscr_hb.pack_end(fs_btn_save)
-        self.fullscr_hb.show_all()
-        # this is a little tricky
-        # we show hb when the cursor enters an area of 1 px at the top of the window
-        # as the hb is shown the height of the eventbox grows to accomodate it
-        self.fullscr_events.connect('enter_notify_event', self.show_fs_hb)
-        self.fullscr_events.connect('leave_notify_event', self.hide_fs_hb)
-        self.fs_btn_menu.get_popover().connect('closed', self.hide_fs_hb)
+        self.headerbar = headerbars.MainHeaderbar()
+        self.set_titlebar(self.headerbar.hb_container)
+        self.fs_headerbar = headerbars.FsHeaderbar(self.builder)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
 
         self.focusmode = False
 
-        self.word_count = builder.get_object('word_count')
-        self.char_count = builder.get_object('char_count')
+        self.word_count = self.builder.get_object('word_count')
+        self.char_count = self.builder.get_object('char_count')
 
         # Setup status bar hide after 3 seconds
 
-        self.status_bar = builder.get_object('status_bar_box')
-        self.statusbar_revealer = builder.get_object('status_bar_revealer')
+        self.status_bar = self.builder.get_object('status_bar_box')
+        self.statusbar_revealer = self.builder.get_object('status_bar_revealer')
         self.status_bar.get_style_context().add_class('status_bar_box')
         self.status_bar_visible = True
         self.was_motion = True
@@ -230,35 +121,10 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.text_editor.set_top_margin(80)
         self.text_editor.props.width_request = 600
         self.text_editor.props.halign = Gtk.Align.CENTER
-        self.text_editor.set_vadjustment(builder.get_object('vadjustment1'))
+        self.text_editor.set_vadjustment(self.builder.get_object('vadjustment1'))
         self.text_editor.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.text_editor.connect('focus-out-event', self.focus_out)
         self.text_editor.get_style_context().connect('changed', self.style_changed)
-
-        # self.TextEditor.install_style_property_parser
-
-        self.text_editor.show()
-        self.text_editor.grab_focus()
-
-        self.editor_alignment = builder.get_object('editor_alignment')
-        self.scrolled_window = builder.get_object('editor_scrolledwindow')
-        self.scrolled_window.props.width_request = 600
-        self.scrolled_window.add(self.text_editor)
-        self.alignment_padding = 40
-        self.editor_viewport = builder.get_object('editor_viewport')
-        self.scrolled_window.connect_after("draw", self.draw_gradient)
-
-        self.smooth_scroll_starttime = 0
-        self.smooth_scroll_endtime = 0
-        self.smooth_scroll_acttarget = 0
-        self.smooth_scroll_data = {
-            'target_pos': -1,
-            'source_pos': -1,
-            'duration': 0
-        }
-        self.smooth_scroll_tickid = -1
-
-        self.preview_pane = builder.get_object('preview_scrolledwindow')
 
         self.text_editor.set_top_margin(80)
         self.text_editor.set_bottom_margin(16)
@@ -270,6 +136,27 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         tab_array = Pango.TabArray.new(1, True)
         tab_array.set_tab(0, Pango.TabAlign.LEFT, 20)
         self.text_editor.set_tabs(tab_array)
+
+        self.text_editor.show()
+        self.text_editor.grab_focus()
+
+        self.editor_alignment = self.builder.get_object('editor_alignment')
+        self.scrolled_window = self.builder.get_object('editor_scrolledwindow')
+        self.scrolled_window.props.width_request = 600
+        self.scrolled_window.add(self.text_editor)
+        self.alignment_padding = 40
+        self.editor_viewport = self.builder.get_object('editor_viewport')
+        self.scrolled_window.connect_after("draw", self.draw_gradient)
+
+        self.smooth_scroll_starttime = 0
+        self.smooth_scroll_endtime = 0
+        self.smooth_scroll_acttarget = 0
+        self.smooth_scroll_data = {
+            'target_pos': -1,
+            'source_pos': -1,
+            'duration': 0
+        }
+        self.smooth_scroll_tickid = -1
 
         self.text_buffer = self.text_editor.get_buffer()
         self.text_buffer.set_text('')
@@ -359,8 +246,8 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         ###
         #   Sidebar initialization test
         ###
-        self.paned_window = builder.get_object("main_pained")
-        self.sidebar_box = builder.get_object("sidebar_box")
+        self.paned_window = self.builder.get_object("main_pained")
+        self.sidebar_box = self.builder.get_object("sidebar_box")
         self.sidebar = UberwriterSidebar(self)
         self.sidebar_box.hide()
 
@@ -408,10 +295,9 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         bottom margins to height/2
         """
 
-        self.editor_height = self.text_editor.get_allocation().height
-        self.text_editor.props.top_margin = self.editor_height / 2
-        self.text_editor.props.bottom_margin = self.editor_height / 2
-        self.typewriter_initiated = True
+        editor_height = self.text_editor.get_allocation().height
+        self.text_editor.props.top_margin = editor_height / 2
+        self.text_editor.props.bottom_margin = editor_height / 2
 
     def remove_typewriter(self):
         """set margins to default values
@@ -429,8 +315,6 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         start_iter = self.text_buffer.get_start_iter()
         end_iter = self.text_buffer.get_end_iter()
         return self.text_buffer.get_text(start_iter, end_iter, False)
-
-    WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
 
     def update_line_and_char_count(self):
         """it... it updates line and characters count
@@ -484,11 +368,11 @@ class UberwriterWindow(Gtk.ApplicationWindow):
 
         if state.get_boolean():
             self.fullscreen()
-            self.fullscr_events.show()
+            self.fs_headerbar.events.show()
 
         else:
             self.unfullscreen()
-            self.fullscr_events.hide()
+            self.fs_headerbar.events.hide()
 
         self.text_editor.grab_focus()
 
@@ -521,7 +405,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.update_line_and_char_count()
             self.check_scroll()
             if self.spellcheck:
-                self.SpellChecker._misspelled.set_property('underline', 4)
+                self.spell_checker._misspelled.set_property('underline', 4)
             _click_event = self.text_editor.disconnect(self.click_event)
 
     def on_focusmode_click(self, *_args):
@@ -990,11 +874,11 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             output = proc.communicate(text)[0]
 
             # Load in Webview and scroll to #ID
-            self.webview = WebKit.WebView()
-            self.webview_settings = self.webview.get_settings()
-            self.webview_settings.set_allow_universal_access_from_file_urls(
+            self.preview_webview = WebKit.WebView()
+            webview_settings = self.preview_webview.get_settings()
+            webview_settings.set_allow_universal_access_from_file_urls(
                 True)
-            self.webview.load_html(output.decode("utf-8"), 'file://localhost/')
+            self.preview_webview.load_html(output.decode("utf-8"), 'file://localhost/')
 
             # Delete the cursor-scroll mark again
             # cursor_iter = self.TextBuffer.get_iter_at_mark(self.TextBuffer.get_insert())
@@ -1003,15 +887,15 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             # self.TextBuffer.delete(begin_del, cursor_iter)
 
             self.scrolled_window.remove(self.text_editor)
-            self.scrolled_window.add(self.webview)
-            self.webview.show()
+            self.scrolled_window.add(self.preview_webview)
+            self.preview_webview.show()
 
             # This saying that all links will be opened in default browser, \
             # but local files are opened in appropriate apps:
-            self.webview.connect("decide-policy", self.on_click_link)
+            self.preview_webview.connect("decide-policy", self.on_click_link)
         else:
-            self.scrolled_window.remove(self.webview)
-            self.webview.destroy()
+            self.scrolled_window.remove(self.preview_webview)
+            self.preview_webview.destroy()
             self.scrolled_window.add(self.text_editor)
             self.text_editor.show()
 
@@ -1032,14 +916,14 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
             # self.settings.set_value("dark-mode", GLib.Variant("b", True))
             self.get_style_context().add_class("dark_mode")
-            self.hb_container.get_style_context().add_class("dark_mode")
+            self.headerbar.hb_container.get_style_context().add_class("dark_mode")
             self.markup_buffer.dark_mode(True)
         else:
             # Dark mode off
             # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
             # self.settings.set_value("dark-mode", GLib.Variant("b", False))
             self.get_style_context().remove_class("dark_mode")
-            self.hb_container.get_style_context().remove_class("dark_mode")
+            self.headerbar.hb_container.get_style_context().remove_class("dark_mode")
             self.markup_buffer.dark_mode(False)
 
         # Redraw contents of window (self)
@@ -1075,6 +959,8 @@ class UberwriterWindow(Gtk.ApplicationWindow):
     def open_uberwriter_markdown(self, _widget=None, _data=None):
         """open a markdown mini tutorial
         """
+        if self.check_change() == Gtk.ResponseType.CANCEL:
+            return
 
         self.load_file(helpers.get_media_file('uberwriter_markdown.md'))
 
@@ -1150,7 +1036,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
                 and self.text_editor.props.has_focus): #pylint: disable=no-member
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
             self.statusbar_revealer.set_reveal_child(False)
-            self.hb_revealer.set_reveal_child(False)
+            self.headerbar.hb_revealer.set_reveal_child(False)
             self.status_bar_visible = False
             self.buffer_modified_for_status_bar = False
 
@@ -1172,34 +1058,21 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             # react on motion by fading in headerbar and statusbar
             if self.status_bar_visible is False:
                 self.statusbar_revealer.set_reveal_child(True)
-                self.hb_revealer.set_reveal_child(True)
-                self.hb.props.opacity = 1
+                self.headerbar.hb_revealer.set_reveal_child(True)
+                self.headerbar.hb.props.opacity = 1
                 self.status_bar_visible = True
                 self.buffer_modified_for_status_bar = False
                 self.update_line_and_char_count()
                 # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
             self.was_motion = True
 
-    def show_fs_hb(self, _widget, _data=None):
-        """show headerbar of the fullscreen mode
-        """
-        self.fullscr_hb_revealer.set_reveal_child(True)
-
-    def hide_fs_hb(self, _widget, _data=None):
-        """hide headerbar of the fullscreen mode
-        """
-        if self.fs_btn_menu.get_active():
-            pass
-        else:
-            self.fullscr_hb_revealer.set_reveal_child(False)
-
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
         """
         if self.status_bar_visible is False:
             self.statusbar_revealer.set_reveal_child(True)
-            self.hb_revealer.set_reveal_child(True)
-            self.hb.props.opacity = 1
+            self.headerbar.hb_revealer.set_reveal_child(True)
+            self.headerbar.hb.props.opacity = 1
             self.status_bar_visible = True
             self.buffer_modified_for_status_bar = False
             self.update_line_and_char_count()
@@ -1277,8 +1150,8 @@ class UberwriterWindow(Gtk.ApplicationWindow):
     def set_headerbar_title(self, title):
         """set the desired headerbar title
         """
-        self.hb.props.title = title
-        self.fullscr_hb.props.title = title
+        self.headerbar.hb.props.title = title
+        self.fs_headerbar.hb.props.title = title
         self.set_title(title)
 
     def set_filename(self, filename=None):
@@ -1299,19 +1172,3 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             webbrowser.open(web_view.get_uri())
             decision.ignore()
             return True  # Don't let the event "bubble up"
-
-    def open_translation(self):
-        """open poeditor project web
-        """
-        webbrowser.open("https://poeditor.com/join/project/gxVzFyXb2x")
-
-    def open_donation(self):
-        """open donations web
-        """
-        webbrowser.open("https://liberapay.com/UberWriter/donate")
-
-    def open_pandoc_markdown(self, _widget, _data=None):
-        """open pandoc markdown web
-        """
-        webbrowser.open(
-            "http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
