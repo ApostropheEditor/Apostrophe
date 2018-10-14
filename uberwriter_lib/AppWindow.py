@@ -11,6 +11,7 @@
 # with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 
 import argparse
+import webbrowser
 from gettext import gettext as _
 
 import gi
@@ -23,75 +24,6 @@ from uberwriter_lib import set_up_logging
 from uberwriter_lib.PreferencesDialog import PreferencesDialog
 from . helpers import get_builder, get_media_path
 
-
-
-class Window(Gtk.ApplicationWindow):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # This will be in the windows group and have the "win" prefix
-        max_action = Gio.SimpleAction.new_stateful("maximize", None,
-                                                   GLib.Variant.new_boolean(False))
-        max_action.connect("change-state", self.on_maximize_toggle)
-        self.add_action(max_action)
-
-        # Keep it in sync with the actual state
-        self.connect("notify::is-maximized",
-                     lambda obj, pspec: max_action.set_state(
-                         GLib.Variant.new_boolean(obj.props.is_maximized)))
-
-        self.set_default_size(850, 500)
-
-        icon_file = get_media_path("uberwriter.svg")
-        self.set_icon_from_file(icon_file)
-
-        builder = get_builder('UberwriterWindow')
-        new_object = builder.get_object("FullscreenOverlay")
-
-        self.contents = new_object
-        self.add(self.contents)
-
-        self.finish_initializing(builder)
-
-    def on_maximize_toggle(self, action, value):
-        action.set_state(value)
-        if value.get_boolean():
-            self.maximize()
-        else:
-            self.unmaximize()
-
-    def finish_initializing(self, builder):
-        """Called while initializing this instance in __new__
-
-        finish_initializing should be called after parsing the UI definition
-        and creating a UberwriterWindow object with it in order to finish
-        initializing the start of the new UberwriterWindow instance.
-        """
-        # Get a reference to the builder and set up the signals.
-        self.builder = builder
-        self.ui = builder.get_ui(self, True)
-        self.PreferencesDialog = None  # class
-        self.preferences_dialog = None  # instance
-        self.AboutDialog = None  # class
-
-        # self.settings = Gio.Settings("net.launchpad.uberwriter")
-        # self.settings.connect('changed', self.on_preferences_changed)
-
-        # Optional application indicator support
-        # Run 'quickly add indicator' to get started.
-        # More information:
-        #  http://owaislone.org/quickly-add-indicator/
-        #  https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationIndicators
-        try:
-            from uberwriter import indicator
-            # self is passed so methods of this class can be called from indicator.py
-            # Comment this next line out to disable appindicator
-            self.indicator = indicator.new_application_indicator(self)
-        except ImportError:
-            pass
-
-
 class Application(Gtk.Application):
 
     def __init__(self, *args, **kwargs):
@@ -101,10 +33,10 @@ class Application(Gtk.Application):
         self.window = None
         self.settings = Settings.new()
 
-    def do_startup(self):
+    def do_startup(self, *args, **kwargs):
         Gtk.Application.do_startup(self)
 
-        '''Actions'''
+        # Actions
 
         action = Gio.SimpleAction.new("help", None)
         action.connect("activate", self.on_help)
@@ -116,14 +48,6 @@ class Application(Gtk.Application):
 
         action = Gio.SimpleAction.new("about", None)
         action.connect("activate", self.on_about)
-        self.add_action(action)
-
-        action = Gio.SimpleAction.new("translate", None)
-        action.connect("activate", self.on_translate)
-        self.add_action(action)
-
-        action = Gio.SimpleAction.new("donate", None)
-        action.connect("activate", self.on_donate)
         self.add_action(action)
 
         action = Gio.SimpleAction.new("quit", None)
@@ -165,7 +89,7 @@ class Application(Gtk.Application):
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
-        '''Menu Actions'''
+        # Menu Actions
 
         action = Gio.SimpleAction.new("new", None)
         action.connect("activate", self.on_new)
@@ -203,7 +127,7 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_preferences)
         self.add_action(action)
 
-        '''Shortcuts'''
+        # Shortcuts
 
         self.set_accels_for_action("app.focus_mode", ["<Ctl>d"])
         self.set_accels_for_action("app.fullscreen", ["F11"])
@@ -216,14 +140,13 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.save", ["<Ctl>s"])
         self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
 
-    def do_activate(self):
+    def do_activate(self, *args, **kwargs):
         # We only allow a single window and raise any existing ones
         if not self.window:
             # Windows are associated with the application
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
-            self.window = UberwriterWindow.UberwriterWindow(
-                application=self, title="UberWriter")
+            self.window = UberwriterWindow.UberwriterWindow()
             if self.args:
                 self.window.load_file(self.args[0])
             if self.options.experimental_features:
@@ -261,13 +184,10 @@ class Application(Gtk.Application):
         about_dialog.present()
 
     def on_help(self, _action, _param):
-        self.window.open_pandoc_markdown(self)
-
-    def on_translate(self, _action, _param):
-        self.window.open_translation()
-
-    def on_donate(self, _action, _param):
-        self.window.open_donation()
+        """open pandoc markdown web
+        """
+        webbrowser.open(
+            "http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
 
     def on_shortcuts(self, _action, _param):
         builder = get_builder('Shortcuts')
