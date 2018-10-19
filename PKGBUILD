@@ -11,19 +11,12 @@ makedepends=('python-setuptools')
 optdepends=('texlive-core' 'otf-fira-mono: Recommended font')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-source=('git+https://github.com/UberWriter/uberwriter.git'
-        'uberwriter.patch')
-sha256sums=('SKIP'
-            '11f4c27a7f8ae954dd69f691b3a2c49db019cbc3c6a2e4c4a1a47293162e3d1b')
+source=('git+https://github.com/UberWriter/uberwriter.git#branch=refactoring')
+sha256sums=('SKIP')
 
 pkgver() {
     cd $_pkgname
     git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
-}
-
-prepare() {
-    cd $_pkgname
-    patch -Np1 -i "${srcdir}/uberwriter.patch"
 }
 
 build() {
