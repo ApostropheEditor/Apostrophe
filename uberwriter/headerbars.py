@@ -21,6 +21,7 @@ from gettext import gettext as _
 from gi.repository import Gtk
 from uberwriter_lib.helpers import get_builder
 
+from uberwriter_lib.AppWindow import Application as app
 
 class MainHeaderbar:  #pylint: disable=too-few-public-methods
     """Sets up the main application headerbar
@@ -104,8 +105,13 @@ def buttons():
     Returns:
         [NamedTupple] -- tupple of Gtk.Buttons
     """
+
     builder_window_menu = get_builder('Menu')
     model = builder_window_menu.get_object("Menu")
+    recents_builder = get_builder('Recents')
+    recents = recents_builder.get_object("recent_md_popover")
+    recents_wd = recents_builder.get_object("recent_md_widget")
+    recents_wd.connect('item-activated', app.on_open_recent)
 
     Button = namedtuple("Button", "new open recent save search menu")
     btn = Button(Gtk.Button().new_with_label(_("New")),
@@ -119,6 +125,7 @@ def buttons():
     btn.recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
                                                       Gtk.IconSize.BUTTON))
     btn.recent.set_tooltip_text(_("Open Recent"))
+    btn.recent.set_popover(recents)
     btn.search.set_tooltip_text(_("Search and replace"))
     btn.menu.set_tooltip_text(_("Menu"))
     btn.menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
@@ -127,7 +134,6 @@ def buttons():
     btn.menu.set_menu_model(model)
     btn.new.set_action_name("app.new")
     btn.open.set_action_name("app.open")
-    btn.recent.set_action_name("app.open_recent")
     btn.save.set_action_name("app.save")
     btn.search.set_action_name("app.search")
 

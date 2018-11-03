@@ -230,8 +230,9 @@ class Application(Gtk.Application):
     def on_open(self, _action, _value):
         self.window.open_document()
 
-    def on_open_recent(self, action, value):
-        pass
+    def on_open_recent(self):
+        print(self)
+        #self.window.load_file(self.get_current_uri())
 
     def on_example(self, _action, _value):
         self.window.open_uberwriter_markdown()

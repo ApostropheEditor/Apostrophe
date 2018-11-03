@@ -986,42 +986,12 @@ class UberwriterWindow(Gtk.ApplicationWindow):
     def open_recent(self, _widget, data=None):
         """open the given recent document
         """
+        print("open")
 
         if data:
             if self.check_change() == Gtk.ResponseType.CANCEL:
                 return
             self.load_file(data)
-
-    def generate_recent_files_menu(self):
-        """Generate a menu of recent opened .md files
-
-        Returns:
-            GtkMenu -- the menu of recent items
-        """
-
-        # Recent file filter
-        self.recent_manager = Gtk.RecentManager.get_default()
-
-        self.recent_files_menu = Gtk.RecentChooserMenu.new_for_manager(
-            self.recent_manager)
-        self.recent_files_menu.set_sort_type(Gtk.RecentSortType.MRU)
-
-        recent_filter = Gtk.RecentFilter.new()
-        recent_filter.add_mime_type('text/x-markdown')
-        self.recent_files_menu.set_filter(recent_filter)
-        menu = Gtk.Menu.new()
-
-        for entry in self.recent_files_menu.get_items():
-            if entry.exists():
-                item = Gtk.MenuItem.new_with_label(entry.get_display_name())
-                item.connect('activate', self.open_recent, entry.get_uri())
-                menu.append(item)
-                item.show()
-
-        menu.show()
-        return menu
-        # menu.attach_to_widget(widget)
-        # parent_menu.show()
 
     def poll_for_motion(self):
         """check if the user has moved the cursor to show the headerbar
