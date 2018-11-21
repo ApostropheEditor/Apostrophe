@@ -2,21 +2,17 @@
 <interface>
     <menu id="Menu">
         <section>
-        <attribute name="display-hint">horizontal-buttons</attribute>
             <item>
                 <attribute name="label" translatable="yes">Focus Mode</attribute>
                 <attribute name="action">app.focus_mode</attribute>
-                <attribute name="verb-icon">find-location-symbolic</attribute>
             </item>
             <item>
                 <attribute name="label" translatable="yes">Preview</attribute>
                 <attribute name="action">app.preview</attribute>
-                <attribute name="verb-icon">x-office-presentation-symbolic</attribute>
             </item>
             <item>
                 <attribute name="label" translatable="yes">Fullscreen</attribute>
                 <attribute name="action">app.fullscreen</attribute>
-                <attribute name="verb-icon">view-fullscreen-symbolic</attribute>
             </item>
         </section>
         <section>
