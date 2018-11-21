@@ -32,29 +32,13 @@
     },
     "modules": [
         {
-        "name": "uberwriter",
-        "sources": [
-                {
-                    "type" : "git",
-                    "url" : "git://github.com/wolfv/uberwriter",
-                    "branch" : "master"
-                }
-            ],
-            "build-commands": [
-                "install -Dm644 flatpak/de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml "
-            ],
-            "post-install": [
-            "glib-compile-schemas /app/share/glib-2.0/schemas",
-            "install -d /app/extensions"
-            ]
-        },
-        {
         "name": "pandoc",
         "only-arches": [
           "x86_64"
             ],
         "buildsystem": "simple",
         "build-commands": [
+          "mkdir -p /app/bin/pandoc",
           "cp bin/pandoc /app/bin/pandoc",
           "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
             ],
@@ -127,6 +111,23 @@
                     "type": "file",
                     "path": "de.wolfvollprecht.UberWriter.appdata.xml"
                 }
+            ]
+        },
+        {
+        "name": "uberwriter",
+        "sources": [
+                {
+                    "type" : "git",
+                    "url" : "git://github.com/wolfv/uberwriter",
+                    "branch" : "master"
+                }
+            ],
+            "build-commands": [
+                "install -Dm644 flatpak/de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml "
+            ],
+            "post-install": [
+            "glib-compile-schemas /app/share/glib-2.0/schemas",
+            "install -d /app/extensions"
             ]
         }
     ]
