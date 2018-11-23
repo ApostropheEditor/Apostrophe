@@ -31,12 +31,6 @@
         </section>
         <section>
             <item>
-                <attribute name="label" translatable="yes">Preferences</attribute>
-                <attribute name="action">app.preferences</attribute>
-            </item>
-        </section>
-        <section>
-            <item>
                 <attribute name="label" translatable="yes">Open Tutorial</attribute>
                 <attribute name="action">app.open_examples</attribute>
             </item>
@@ -44,19 +38,19 @@
                 <attribute name="action">app.help</attribute>
                 <attribute name="label" translatable="yes">Pandoc _Help</attribute>
             </item>
-            <item>
-                <attribute name="action">app.shortcuts</attribute>
-                <attribute name="label" translatable="yes">_Shortcuts</attribute>
-            </item>
         </section>
         <section>
             <item>
-                <attribute name="action">app.about</attribute>
-                <attribute name="label" translatable="yes">_About</attribute>
+                <attribute name="label" translatable="yes">Preferences</attribute>
+                <attribute name="action">app.preferences</attribute>
             </item>
             <item>
-                <attribute name="label" translatable="yes">_Quit</attribute>
-                <attribute name="action">app.quit</attribute>
+                <attribute name="action">app.shortcuts</attribute>
+                <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+            </item>
+            <item>
+                <attribute name="action">app.about</attribute>
+                <attribute name="label" translatable="yes">_About UberWriter</attribute>
             </item>
         </section>
     </menu>
