@@ -157,7 +157,7 @@ class Application(Gtk.Application):
             # Windows are associated with the application
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
-            self.window = UberwriterWindow.UberwriterWindow()
+            self.window = UberwriterWindow.UberwriterWindow(self)
             if self.args:
                 self.window.load_file(self.args[0])
             if self.options.experimental_features:
@@ -241,9 +241,8 @@ class Application(Gtk.Application):
     def on_open(self, _action, _value):
         self.window.open_document()
 
-    def on_open_recent(self):
-        print(self)
-        #self.window.load_file(self.get_current_uri())
+    def on_open_recent(self, file):
+        self.window.load_file(file.get_current_uri())
 
     def on_example(self, _action, _value):
         self.window.open_uberwriter_markdown()

@@ -27,7 +27,7 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
     """Sets up the main application headerbar
     """
 
-    def __init__(self):
+    def __init__(self, app):
         self.hb = Gtk.HeaderBar().new() #pylint: disable=C0103
         self.hb.props.show_close_button = True
         self.hb.get_style_context().add_class("titlebar")
@@ -44,8 +44,9 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
         self.hb_container.add(self.hb_revealer)
         self.hb_container.show()
 
-        btns = buttons()
-        pack_buttons(self.hb, btns)
+        self.btns = buttons(app)
+        self.rec = self.btns.recent
+        pack_buttons(self.hb, self.btns)
 
         # btns.recent.set_popup(self.generate_recent_files_menu())
 
@@ -56,7 +57,7 @@ class FsHeaderbar:
     """Sets up and manages the fullscreen headerbar and his events
     """
 
-    def __init__(self, builder):
+    def __init__(self, builder, app):
         self.events = builder.get_object("FullscreenEventbox")
         self.revealer = builder.get_object(
             "FullscreenHbPlaceholder")
@@ -68,7 +69,7 @@ class FsHeaderbar:
         self.hb.show()
         self.events.hide()
 
-        self.btns = buttons()
+        self.btns = buttons(app)
 
         fs_btn_exit = Gtk.Button().new_from_icon_name("view-restore-symbolic",
                                                       Gtk.IconSize.BUTTON)
@@ -99,7 +100,7 @@ class FsHeaderbar:
         else:
             self.revealer.set_reveal_child(False)
 
-def buttons():
+def buttons(app):
     """constructor for the headerbar buttons
 
     Returns:

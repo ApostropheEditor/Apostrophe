@@ -66,7 +66,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
     #__gtype_name__ = "UberwriterWindow"
     WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
 
-    def __init__(self):
+    def __init__(self, app):
         """Set up the main window"""
 
         Gtk.ApplicationWindow.__init__(self,
@@ -84,9 +84,9 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.set_name('UberwriterWindow')
 
         # Headerbars
-        self.headerbar = headerbars.MainHeaderbar()
+        self.headerbar = headerbars.MainHeaderbar(app)
         self.set_titlebar(self.headerbar.hb_container)
-        self.fs_headerbar = headerbars.FsHeaderbar(self.builder)
+        self.fs_headerbar = headerbars.FsHeaderbar(self.builder, app)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -926,6 +926,9 @@ class UberwriterWindow(Gtk.ApplicationWindow):
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
+        if self.check_change() == Gtk.ResponseType.CANCEL:
+            return
+
         if filename:
             if filename.startswith('file://'):
                 filename = filename[7:]
