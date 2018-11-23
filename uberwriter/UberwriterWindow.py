@@ -184,8 +184,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.markup_buffer.markup_buffer()
 
         # Setup dark mode if so
-        if self.settings.get_value("dark-mode"):
-            self.toggle_dark_mode(True)
+        self.toggle_dark_mode(self.settings.get_value("dark-mode"))
 
         # Scrolling -> Dark or not?
         self.textchange = False
@@ -910,18 +909,14 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         """
 
         # Save state for saving settings later
-        self.dark_mode = state
-        if self.dark_mode:
+
+        if state:
             # Dark Mode is on
-            # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', True)
-            # self.settings.set_value("dark-mode", GLib.Variant("b", True))
             self.get_style_context().add_class("dark_mode")
             self.headerbar.hb_container.get_style_context().add_class("dark_mode")
             self.markup_buffer.dark_mode(True)
         else:
             # Dark mode off
-            # self.gtk_settings.set_property('gtk-application-prefer-dark-theme', False)
-            # self.settings.set_value("dark-mode", GLib.Variant("b", False))
             self.get_style_context().remove_class("dark_mode")
             self.headerbar.hb_container.get_style_context().remove_class("dark_mode")
             self.markup_buffer.dark_mode(False)

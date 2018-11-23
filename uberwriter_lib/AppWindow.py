@@ -33,7 +33,16 @@ class Application(Gtk.Application):
         self.window = None
         self.settings = Settings.new()
 
+    def init(self):
+        """Init main application"""
+
+        dark = self.settings.get_value("dark-mode")
+        Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", dark)
+
+
+
     def do_startup(self, *args, **kwargs):
+
         Gtk.Application.do_startup(self)
 
         # Actions
@@ -139,6 +148,8 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.open", ["<Ctl>o"])
         self.set_accels_for_action("app.save", ["<Ctl>s"])
         self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
+
+        self.init()
 
     def do_activate(self, *args, **kwargs):
         # We only allow a single window and raise any existing ones
