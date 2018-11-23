@@ -655,7 +655,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         """Copies only html without headers etc. to Clipboard
         """
 
-        args = ['pandoc', '--from=markdown', '-smart', '-thtml']
+        args = ['pandoc', '--from=markdown', '--to=html5']
         proc = subprocess.Popen(args, stdin=subprocess.PIPE,
                                 stdout=subprocess.PIPE)
 
