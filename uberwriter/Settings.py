@@ -13,16 +13,14 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from gi.repository import Gtk, Gdk, GLib, Gio
-
-from gettext import gettext as _
+from gi.repository import Gio
 
 class Settings(Gio.Settings):
 
     """
         UberWriter Settings
     """
-    
+
     def __init__(self):
         """
             Init Settings

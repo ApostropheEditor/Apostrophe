@@ -40,7 +40,7 @@ if os.path.isfile("/.flatpak-info"):
     app_prefix = '/app/'
     print("in flatpak")
 else:
-    app_prefix = ''
+    app_prefix = '/'
 
 setup(
     name='uberwriter',
@@ -76,12 +76,12 @@ setup(
         'uberwriter_lib.pylocales' : ['locales.db'],
     },
     data_files=[
-        (app_prefix + '/bin/', ['bin/uberwriter']),
-        (app_prefix + '/share/glib-2.0/schemas', ['data/de.wolfvollprecht.UberWriter.gschema.xml']),
-        (app_prefix + '/share/icons/hicolor/scalable/apps', ['data/media/uberwriter.svg']),
-        (app_prefix + '/share/applications', ['de.wolfvollprecht.UberWriter.desktop']),
-        (app_prefix + '/opt/uberwriter/data/ui', extra_files_ui),
-        (app_prefix + '/opt/uberwriter/data/media', extra_files_media),
-        (app_prefix + '/opt/uberwriter/data/lua', extra_files_scripts)
+        (app_prefix + 'usr/bin', ['bin/uberwriter']),
+        (app_prefix + 'usr/share/glib-2.0/schemas', ['data/de.wolfvollprecht.UberWriter.gschema.xml']),
+        (app_prefix + 'usr/share/icons/hicolor/scalable/apps', ['data/media/de.wolfvollprecht.UberWriter.svg']),
+        (app_prefix + 'usr/share/applications', ['de.wolfvollprecht.UberWriter.desktop']),
+        (app_prefix + 'opt/uberwriter/data/ui', extra_files_ui),
+        (app_prefix + 'opt/uberwriter/data/media', extra_files_media),
+        (app_prefix + 'opt/uberwriter/data/lua', extra_files_scripts)
     ]
 )

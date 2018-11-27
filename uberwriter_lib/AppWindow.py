@@ -1,100 +1,28 @@
-# This program is free software: you can redistribute it and/or modify it 
-# under the terms of the GNU General Public License version 3, as published 
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
-# 
-# This program is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranties of 
-# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR 
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranties of
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
 # PURPOSE.  See the GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License along 
+#
+# You should have received a copy of the GNU General Public License along
 # with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 
-import sys
 import argparse
-
-import gettext
-import os
+import webbrowser
+from gettext import gettext as _
 
 import gi
-gi.require_version('Gtk', '3.0')
+gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
 from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 
-from . helpers import get_builder, show_uri, get_help_uri, get_media_path
 from uberwriter import UberwriterWindow
 from uberwriter.Settings import Settings
 from uberwriter_lib import set_up_logging
 from uberwriter_lib.PreferencesDialog import PreferencesDialog
-
-from gettext import gettext as _
-
-class Window(Gtk.ApplicationWindow):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # This will be in the windows group and have the "win" prefix
-        max_action = Gio.SimpleAction.new_stateful("maximize", None,
-                                           GLib.Variant.new_boolean(False))
-        max_action.connect("change-state", self.on_maximize_toggle)
-        self.add_action(max_action)
-
-        # Keep it in sync with the actual state
-        self.connect("notify::is-maximized",
-                            lambda obj, pspec: max_action.set_state(
-                                               GLib.Variant.new_boolean(obj.props.is_maximized)))
-        
-        self.set_default_size(850,500)
-        
-        icon_file = get_media_path("uberwriter.svg")
-        self.set_icon_from_file(icon_file)
-        
-        builder = get_builder('UberwriterWindow')
-        new_object = builder.get_object("FullscreenOverlay")
-        
-        self.contents = new_object
-        self.add(self.contents)
-    
-        self.finish_initializing(builder)
-
-    def on_maximize_toggle(self, action, value):
-        action.set_state(value)
-        if value.get_boolean():
-            self.maximize()
-        else:
-            self.unmaximize()
-    
-    def finish_initializing(self, builder):
-        """Called while initializing this instance in __new__
-
-        finish_initializing should be called after parsing the UI definition
-        and creating a UberwriterWindow object with it in order to finish
-        initializing the start of the new UberwriterWindow instance.
-        """
-        # Get a reference to the builder and set up the signals.
-        self.builder = builder
-        self.ui = builder.get_ui(self, True)
-        self.PreferencesDialog = None # class
-        self.preferences_dialog = None # instance
-        self.AboutDialog = None # class
-
-        
-        # self.settings = Gio.Settings("net.launchpad.uberwriter")
-        # self.settings.connect('changed', self.on_preferences_changed)
-
-        # Optional application indicator support
-        # Run 'quickly add indicator' to get started.
-        # More information:
-        #  http://owaislone.org/quickly-add-indicator/
-        #  https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationIndicators
-        try:
-            from uberwriter import indicator
-            # self is passed so methods of this class can be called from indicator.py
-            # Comment this next line out to disable appindicator
-            self.indicator = indicator.new_application_indicator(self)
-        except ImportError:
-            pass
-            
+from . helpers import get_builder, get_media_path
 
 class Application(Gtk.Application):
 
@@ -104,30 +32,31 @@ class Application(Gtk.Application):
                          **kwargs)
         self.window = None
         self.settings = Settings.new()
-        
-    def do_startup(self):
+
+    def init(self):
+        """Init main application"""
+
+        dark = self.settings.get_value("dark-mode")
+        Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", dark)
+
+
+
+    def do_startup(self, *args, **kwargs):
+
         Gtk.Application.do_startup(self)
 
-        '''Actions'''
+        # Actions
 
         action = Gio.SimpleAction.new("help", None)
         action.connect("activate", self.on_help)
         self.add_action(action)
-        
+
         action = Gio.SimpleAction.new("shortcuts", None)
         action.connect("activate", self.on_shortcuts)
         self.add_action(action)
-        
+
         action = Gio.SimpleAction.new("about", None)
         action.connect("activate", self.on_about)
-        self.add_action(action)
-
-        action = Gio.SimpleAction.new("translate", None)
-        action.connect("activate", self.on_translate)
-        self.add_action(action)
-
-        action = Gio.SimpleAction.new("donate", None)
-        action.connect("activate", self.on_donate)
         self.add_action(action)
 
         action = Gio.SimpleAction.new("quit", None)
@@ -136,26 +65,26 @@ class Application(Gtk.Application):
 
         set_dark_mode = self.settings.get_value("dark-mode")
         action = Gio.SimpleAction.new_stateful("dark_mode",
-                                                None,
-                                                GLib.Variant.new_boolean(set_dark_mode))
+                                               None,
+                                               GLib.Variant.new_boolean(set_dark_mode))
         action.connect("change-state", self.on_dark_mode)
         self.add_action(action)
 
         action = Gio.SimpleAction.new_stateful("focus_mode",
-                                                None,
-                                                GLib.Variant.new_boolean(False))
+                                               None,
+                                               GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_focus_mode)
         self.add_action(action)
 
         action = Gio.SimpleAction.new_stateful("fullscreen",
-                                                None,
-                                                GLib.Variant.new_boolean(False))
+                                               None,
+                                               GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_fullscreen)
         self.add_action(action)
 
         action = Gio.SimpleAction.new_stateful("preview",
-                                                None,
-                                                GLib.Variant.new_boolean(False))
+                                               None,
+                                               GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_preview)
         self.add_action(action)
 
@@ -164,12 +93,12 @@ class Application(Gtk.Application):
         self.add_action(action)
 
         action = Gio.SimpleAction.new_stateful("spellcheck",
-                                                None,
-                                                GLib.Variant.new_boolean(True))
+                                               None,
+                                               GLib.Variant.new_boolean(True))
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
-        '''Menu Actions'''
+        # Menu Actions
 
         action = Gio.SimpleAction.new("new", None)
         action.connect("activate", self.on_new)
@@ -207,38 +136,36 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_preferences)
         self.add_action(action)
 
+        # Shortcuts
 
-        '''Shortcuts'''
+        self.set_accels_for_action("app.focus_mode", ["<Ctl>d"])
+        self.set_accels_for_action("app.fullscreen", ["F11"])
+        self.set_accels_for_action("app.preview", ["<Ctl>p"])
+        self.set_accels_for_action("app.search", ["<Ctl>f"])
+        self.set_accels_for_action("app.spellcheck", ["F7"])
 
-        self.set_accels_for_action("app.focus_mode",["<Ctl>d"])
-        self.set_accels_for_action("app.fullscreen",["F11"])
-        self.set_accels_for_action("app.preview",["<Ctl>p"])
-        self.set_accels_for_action("app.search",["<Ctl>f"])
-        self.set_accels_for_action("app.spellcheck",["F7"])
+        self.set_accels_for_action("app.new", ["<Ctl>n"])
+        self.set_accels_for_action("app.open", ["<Ctl>o"])
+        self.set_accels_for_action("app.save", ["<Ctl>s"])
+        self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
 
-        self.set_accels_for_action("app.new",["<Ctl>n"])
-        self.set_accels_for_action("app.open",["<Ctl>o"])
-        self.set_accels_for_action("app.save",["<Ctl>s"])
-        self.set_accels_for_action("app.save_as",["<Ctl><shift>s"])
+        self.init()
 
-
-    def do_activate(self):
+    def do_activate(self, *args, **kwargs):
         # We only allow a single window and raise any existing ones
         if not self.window:
             # Windows are associated with the application
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
-            self.window = UberwriterWindow.UberwriterWindow(application=self, title="UberWriter")
-            if len(self.args) > 0:
-              self.window.load_file(self.args[0])
+            self.window = UberwriterWindow.UberwriterWindow(self)
+            if self.args:
+                self.window.load_file(self.args[0])
             if self.options.experimental_features:
                 self.window.use_experimental_features(True)
-        
 
         self.window.present()
 
-    def do_command_line(self, command_line):
-      
+    def do_command_line(self, _command_line):
         """Support for command line options"""
         parser = argparse.ArgumentParser()
         parser.add_argument(
@@ -247,37 +174,33 @@ class Application(Gtk.Application):
         parser.add_argument(
             "-e", "--experimental-features", help=_("Use experimental features"),
             action='store_true'
-            )
+        )
         (self.options, self.args) = parser.parse_known_args()
 
         set_up_logging(self.options)
-        
+
         self.activate()
         return 0
 
-    
-    def on_about(self, action, param):
+    def on_about(self, _action, _param):
         builder = get_builder('About')
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
 
-        logo_file = get_media_path("uberwriter.svg")
+        logo_file = get_media_path("de.wolfvollprecht.UberWriter.svg")
         logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
-        
+
         about_dialog.set_logo(logo)
-        
+
         about_dialog.present()
-        
-    def on_help(self, action, param):
-        self.window.open_pandoc_markdown(self)
 
-    def on_translate(self, action, param):
-        self.window.open_translation()
+    def on_help(self, _action, _param):
+        """open pandoc markdown web
+        """
+        webbrowser.open(
+            "http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
 
-    def on_donate(self, action, param):
-        self.window.open_donation()
-        
-    def on_shortcuts(self, action, param):
+    def on_shortcuts(self, _action, _param):
         builder = get_builder('Shortcuts')
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
@@ -285,12 +208,13 @@ class Application(Gtk.Application):
     def on_dark_mode(self, action, value):
         action.set_state(value)
         self.settings.set_value("dark-mode",
-                                 GLib.Variant("b", value))
-        self.window.dark_mode_toggled(value)
+                                GLib.Variant("b", value))
+        self.window.toggle_dark_mode(value)
 
-        #this changes the headerbar theme accordingly
+        # this changes the headerbar theme accordingly
         self.dark_setting = Gtk.Settings.get_default()
-        self.dark_setting.set_property("gtk-application-prefer-dark-theme", value)
+        self.dark_setting.set_property(
+            "gtk-application-prefer-dark-theme", value)
 
     def on_focus_mode(self, action, value):
         action.set_state(value)
@@ -304,44 +228,44 @@ class Application(Gtk.Application):
         action.set_state(value)
         self.window.toggle_preview(value)
 
-    def on_search(self, action, value):
+    def on_search(self, _action, _value):
         self.window.open_search_and_replace()
 
     def on_spellcheck(self, action, value):
         action.set_state(value)
         self.window.toggle_spellcheck(value)
 
-    def on_new(self, action, value):
+    def on_new(self, _action, _value):
         self.window.new_document()
 
-    def on_open(self, action, value):
+    def on_open(self, _action, _value):
         self.window.open_document()
-    
-    def on_open_recent(self, action, value):
-        pass
-    
-    def on_example(self, action, value):
+
+    def on_open_recent(self, file):
+        self.window.load_file(file.get_current_uri())
+
+    def on_example(self, _action, _value):
         self.window.open_uberwriter_markdown()
-    
-    def on_save(self, action, value):
+
+    def on_save(self, _action, _value):
         self.window.save_document()
-    
-    def on_save_as(self, action, value):
+
+    def on_save_as(self, _action, _value):
         self.window.save_document_as()
-    
-    def on_export(self, action, value):
+
+    def on_export(self, _action, _value):
         self.window.open_advanced_export()
-    
-    def on_html_copy(self, action, value):
+
+    def on_html_copy(self, _action, _value):
         self.window.copy_html_to_clipboard()
 
-    def on_preferences(self, action, value):
+    def on_preferences(self, _action, _value):
         PreferencesWindow = PreferencesDialog()
         PreferencesWindow.set_application(self)
         PreferencesWindow.set_transient_for(self.window)
         PreferencesWindow.show()
-   
-    def on_quit(self, action, param):
+
+    def on_quit(self, _action, _param):
         self.quit()
 
 # ~ if __name__ == "__main__":

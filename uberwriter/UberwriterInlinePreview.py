@@ -1,31 +1,30 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-### BEGIN LICENSE
+# BEGIN LICENSE
 # Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
-# This program is free software: you can redistribute it and/or modify it 
-# under the terms of the GNU General Public License version 3, as published 
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
-# 
-# This program is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranties of 
-# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR 
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranties of
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
 # PURPOSE.  See the GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License along 
+#
+# You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
-### END LICENSE
+# END LICENSE
 
-import os
 import re
-import http.client
 import urllib
-from urllib.error import URLError, HTTPError
+from urllib.error import URLError
 import webbrowser
-import gettext
 import subprocess
 import tempfile
-
+import logging
 import threading
-from pprint import pprint
+import telnetlib
+
+from gettext import gettext as _
 
 from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
 from uberwriter_lib import LatexToPNG
@@ -35,12 +34,9 @@ from .FixTable import FixTable
 
 from .MarkupBuffer import MarkupBuffer
 
-from gettext import gettext as _
+LOGGER = logging.getLogger('uberwriter')
 
-import logging
-logger = logging.getLogger('uberwriter')
-
-GObject.threads_init() # Still needed?
+GObject.threads_init()  # Still needed?
 
 # TODO:
 # - Don't insert a span with id, it breaks the text to often
@@ -48,78 +44,77 @@ GObject.threads_init() # Still needed?
 #   A jumping URL from that (for preview)
 #   Also, after going to preview, set cursor back to where it was
 
-import telnetlib
 
-import subprocess
+class DictAccessor():
 
-class DictAccessor(object):
-
-    def __init__( self, host='pan.alephnull.com', port=2628, timeout=60 ):
-        self.tn = telnetlib.Telnet( host, port )
+    def __init__(self, host='pan.alephnull.com', port=2628, timeout=60):
+        self.telnet = telnetlib.Telnet(host, port)
         self.timeout = timeout
-        self.login_response = self.tn.expect( [ self.reEndResponse ], self.timeout )[ 2 ]
+        self.login_response = self.telnet.expect(
+            [self.reEndResponse], self.timeout)[2]
 
+    def get_online(self, word):
+        process = subprocess.Popen(['dict', '-d', 'wn', word],
+                                   stdout=subprocess.PIPE)
+        return process.communicate()[0]
 
-    def getOnline(self, word):
-        p = subprocess.Popen(['dict', '-d', 'wn', word], stdout=subprocess.PIPE)
-        return p.communicate()[0]
+    def run_command(self, cmd):
+        self.telnet.write(cmd.encode('utf-8') + b'\r\n')
+        return self.telnet.expect([self.reEndResponse], self.timeout)[2]
 
-    def runCommand( self, cmd ):
-        self.tn.write( cmd.encode('utf-8') + b'\r\n' )
-        return self.tn.expect( [ self.reEndResponse ], self.timeout )[ 2 ]
-
-    def getMatches( self, database, strategy, word ):
-        if database in [ '', 'all' ]:
+    def get_matches(self, database, strategy, word):
+        if database in ['', 'all']:
             d = '*'
         else:
             d = database
-        if strategy in [ '', 'default' ]:
+        if strategy in ['', 'default']:
             s = '.'
         else:
             s = strategy
-        w = word.replace( '"', r'\"' )
-        tsplit = self.runCommand( 'MATCH %s %s "%s"' % ( d, s, w ) ).splitlines( )
-        mlist = list( )
-        if  tsplit[ -1 ].startswith( b'250 ok' ) and tsplit[ 0 ].startswith( b'1' ):
-            mlines = tsplit[ 1:-2 ]
+        w = word.replace('"', r'\"')
+        tsplit = self.run_command('MATCH %s %s "%s"' % (d, s, w)).splitlines()
+        mlist = list()
+        if tsplit[-1].startswith(b'250 ok') and tsplit[0].startswith(b'1'):
+            mlines = tsplit[1:-2]
             for line in mlines:
-                lsplit = line.strip( ).split( )
-                db = lsplit[ 0 ]
-                word = unquote( ' '.join( lsplit[ 1: ] ) )
-                mlist.append( ( db, word ) )
+                lsplit = line.strip().split()
+                db = lsplit[0]
+                word = unquote(' '.join(lsplit[1:]))
+                mlist.append((db, word))
         return mlist
 
-    reEndResponse = re.compile( br'^[2-5][0-58][0-9] .*\r\n$', re.DOTALL + re.MULTILINE )
-    reDefinition = re.compile( br'^151(.*?)^\.', re.DOTALL + re.MULTILINE )
+    reEndResponse = re.compile(
+        br'^[2-5][0-58][0-9] .*\r\n$', re.DOTALL + re.MULTILINE)
+    reDefinition = re.compile(br'^151(.*?)^\.', re.DOTALL + re.MULTILINE)
 
-    def getDefinition( self, database, word ):
-        if database in [ '', 'all' ]:
+    def get_definition(self, database, word):
+        if database in ['', 'all']:
             d = '*'
         else:
             d = database
-        w = word.replace( '"', r'\"' )
-        dsplit = self.runCommand( 'DEFINE %s "%s"' % ( d, w ) ).splitlines( True )
+        w = word.replace('"', r'\"')
+        dsplit = self.run_command('DEFINE %s "%s"' % (d, w)).splitlines(True)
         # dsplit = self.getOnline(word).splitlines()
 
-        dlist = list( )
-        if  dsplit[ -1 ].startswith( b'250 ok' ) and dsplit[ 0 ].startswith( b'1' ):
-            dlines = dsplit[ 1:-1 ]
-            dtext = b''.join( dlines )
-            dlist = self.reDefinition.findall( dtext )
+        dlist = list()
+        if dsplit[-1].startswith(b'250 ok') and dsplit[0].startswith(b'1'):
+            dlines = dsplit[1:-1]
+            dtext = b''.join(dlines)
+            dlist = self.reDefinition.findall(dtext)
             # print(dlist)
-            dlist = [ dtext ]
+            dlist = [dtext]
         # dlist = dsplit # not using the localhost telnet connection
         return dlist
 
-    def close( self ):
-        t = self.runCommand( 'QUIT' )
-        self.tn.close( )
+    def close(self):
+        t = self.run_command('QUIT')
+        self.telnet.close()
         return t
 
     def parse_wordnet(self, response):
         # consisting of group (n,v,adj,adv)
         # number, description, examples, synonyms, antonyms
-        capture = {}
+
         lines = response.splitlines()
         lines = lines[2:]
         lines = ' '.join(lines)
@@ -129,9 +124,9 @@ class DictAccessor(object):
         act_res = {'defs': [], 'class': 'none', 'num': 'None'}
         for l in lines:
             l = l.strip()
-            if len(l) == 0:
+            if not l:
                 continue
-            if l  in ['adv', 'adj', 'n', 'v']:
+            if l in ['adv', 'adj', 'n', 'v']:
                 if act_res:
                     res.append(act_res.copy())
                 act_res = {}
@@ -160,7 +155,7 @@ class DictAccessor(object):
                     act_def['description'] = []
                     for llll in lll:
                         llll = llll.strip()
-                        if(llll.strip().startswith('"')):
+                        if llll.strip().startswith('"'):
                             act_def['examples'].append(llll)
                         else:
                             act_def['description'].append(llll)
@@ -172,8 +167,9 @@ class DictAccessor(object):
         res.append(act_res.copy())
         return res
 
+
 def check_url(url, item, spinner):
-    logger.debug("thread started, checking url")
+    LOGGER.debug("thread started, checking url")
     error = False
     try:
         response = urllib.request.urlopen(url)
@@ -183,25 +179,27 @@ def check_url(url, item, spinner):
 
     if not error:
         if (response.code / 100) >= 4:
-            logger.debug("Website not available")
+            LOGGER.debug("Website not available")
             text = _("Website is not available")
         else:
             text = _("Website is available")
-    logger.debug("Response: %s" % text)
+    LOGGER.debug("Response: %s" % text)
     spinner.destroy()
     item.set_label(text)
 
+
 def get_dictionary(term):
     da = DictAccessor()
-    output = da.getDefinition('wn', term)
-    if(len(output)):
+    output = da.get_definition('wn', term)
+    if output:
         output = output[0]
     else:
         return None
     return da.parse_wordnet(output.decode(encoding='UTF-8'))
 
+
 def get_web_thumbnail(url, item, spinner):
-    logger.debug("thread started, generating thumb")
+    LOGGER.debug("thread started, generating thumb")
 
     # error = False
 
@@ -211,9 +209,10 @@ def get_web_thumbnail(url, item, spinner):
 
     filename = tempfile.mktemp(suffix='.png')
     thumb_size = '256'  # size can only be 32, 64, 96, 128 or 256!
-    args = ['gnome-web-photo', '--mode=thumbnail', '-s', thumb_size, url, filename]
-    p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    output = p.communicate()[0]
+    args = ['gnome-web-photo', '--mode=thumbnail',
+            '-s', thumb_size, url, filename]
+    process = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    _output = process.communicate()[0]
 
     image = Gtk.Image.new_from_file(filename)
     image.show()
@@ -228,6 +227,7 @@ def get_web_thumbnail(url, item, spinner):
     spinner.destroy()
     item.add(image)
     item.show()
+
 
 def fill_lexikon_bubble(vocab, lexikon_dict):
     grid = Gtk.Grid.new()
@@ -259,31 +259,30 @@ def fill_lexikon_bubble(vocab, lexikon_dict):
             i = i + 1
         grid.show_all()
         return grid
-    else:
-        return None
-
+    return None
 
 
 class UberwriterInlinePreview():
 
     def __init__(self, view, text_buffer):
-        self.TextView = view
-        self.TextBuffer = text_buffer
-        self.LatexConverter = LatexToPNG.LatexToPNG()
-        cursor_mark = self.TextBuffer.get_insert()
-        cursor_iter = self.TextBuffer.get_iter_at_mark(cursor_mark)
-        self.ClickMark = self.TextBuffer.create_mark('click', cursor_iter)
+        self.text_view = view
+        self.text_buffer = text_buffer
+        self.latex_converter = LatexToPNG.LatexToPNG()
+        cursor_mark = self.text_buffer.get_insert()
+        cursor_iter = self.text_buffer.get_iter_at_mark(cursor_mark)
+        self.click_mark = self.text_buffer.create_mark('click', cursor_iter)
         # Events for popup menu
         # self.TextView.connect_after('populate-popup', self.populate_popup)
         # self.TextView.connect_after('popup-menu', self.move_popup)
-        self.TextView.connect('button-press-event', self.click_move_button)
+        self.text_view.connect('button-press-event', self.click_move_button)
         self.popover = None
         self.settings = Settings.new()
 
     def open_popover_with_widget(self, widget):
-        a = self.TextBuffer.create_child_anchor(self.TextBuffer.get_iter_at_mark(self.ClickMark))
+        a = self.text_buffer.create_child_anchor(
+            self.text_buffer.get_iter_at_mark(self.click_mark))
         lbl = Gtk.Label('')
-        self.TextView.add_child_at_anchor(lbl, a)
+        self.text_view.add_child_at_anchor(lbl, a)
         lbl.show()
         # a = Gtk.Window.new(Gtk.WindowType.POPUP)
         # a.set_transient_for(self.TextView.get_toplevel())
@@ -296,7 +295,6 @@ class UberwriterInlinePreview():
         #     if(event.keyval == Gdk.KEY_Escape):
         #         widget.destroy()
         # a.connect('key-press-event', close)
-        b = Gtk.Grid.new()
         alignment = Gtk.Alignment()
         alignment.props.margin_bottom = 5
         alignment.props.margin_top = 5
@@ -310,7 +308,7 @@ class UberwriterInlinePreview():
         self.popover.get_style_context().add_class("QuickPreviewPopup")
         self.popover.add(alignment)
         # a.add(alignment)
-        dismiss, rect = self.popover.get_pointing_to()
+        _dismiss, rect = self.popover.get_pointing_to()
         rect.y = rect.y - 20
         self.popover.set_pointing_to(rect)
         # widget = Gtk.Label.new("testasds a;12j3 21 lk3j213")
@@ -322,21 +320,21 @@ class UberwriterInlinePreview():
         # print(self.popover)
         self.popover.set_property('width-request', 50)
 
-    def click_move_button(self, widget, event):
+    def click_move_button(self, _widget, event):
         if event.button == 1 and event.state & Gdk.ModifierType.CONTROL_MASK:
-            x, y = self.TextView.window_to_buffer_coords(2,
-                                                         int(event.x),
-                                                         int(event.y))
-            self.TextBuffer.move_mark(self.ClickMark,
-                                      self.TextView.get_iter_at_location(x, y).iter)
-            self.populate_popup(self.TextView)
+            x, y = self.text_view.window_to_buffer_coords(2,
+                                                          int(event.x),
+                                                          int(event.y))
+            self.text_buffer.move_mark(self.click_mark,
+                                       self.text_view.get_iter_at_location(x, y).iter)
+            self.populate_popup(self.text_view)
 
-    def fix_table(self, widget, data=None):
-        logger.debug('fixing that table')
-        f = FixTable(self.TextBuffer)
-        f.fix_table()
+    def fix_table(self, _widget, _data=None):
+        LOGGER.debug('fixing that table')
+        fix_table = FixTable(self.text_buffer)
+        fix_table.fix_table()
 
-    def populate_popup(self, editor, data=None):
+    def populate_popup(self, _editor, _data=None):
         # popover = Gtk.Popover.new(editor)
         # pop_cont = Gtk.Container.new()
         # popover.add(pop_cont)
@@ -354,14 +352,14 @@ class UberwriterInlinePreview():
         # menu.prepend(table_item)
         # menu.show()
 
-        start_iter = self.TextBuffer.get_iter_at_mark(self.ClickMark)
+        start_iter = self.text_buffer.get_iter_at_mark(self.click_mark)
         # Line offset of click mark
         line_offset = start_iter.get_line_offset()
         end_iter = start_iter.copy()
         start_iter.set_line_offset(0)
         end_iter.forward_to_line_end()
 
-        text = self.TextBuffer.get_text(start_iter, end_iter, False)
+        text = self.text_buffer.get_text(start_iter, end_iter, False)
 
         math = MarkupBuffer.regex["MATH"]
         link = MarkupBuffer.regex["LINK"]
@@ -369,22 +367,18 @@ class UberwriterInlinePreview():
         footnote = re.compile(r'\[\^([^\s]+?)\]')
         image = re.compile(r"!\[(.*?)\]\((.+?)\)")
 
-        buf = self.TextBuffer
-        context_offset = 0
-
-        matchlist = []
-
         found_match = False
 
         matches = re.finditer(math, text)
         for match in matches:
-            logger.debug(match.group(1))
-            if match.start() < line_offset and match.end() > line_offset:
-                success, result = self.LatexConverter.generatepng(match.group(1))
+            LOGGER.debug(match.group(1))
+            if match.start() < line_offset < match.end():
+                success, result = self.latex_converter.generatepng(
+                    match.group(1))
                 if success:
                     image = Gtk.Image.new_from_file(result)
                     image.show()
-                    logger.debug("logging image")
+                    LOGGER.debug("logging image")
                     # item.add(image)
                     self.open_popover_with_widget(image)
                 else:
@@ -407,12 +401,12 @@ class UberwriterInlinePreview():
             # Links
             matches = re.finditer(link, text)
             for match in matches:
-                if match.start() < line_offset and match.end() > line_offset:
+                if match.start() < line_offset < match.end():
                     text = text[text.find("http://"):-1]
 
                     item.connect("activate", lambda w: webbrowser.open(text))
 
-                    logger.debug(text)
+                    LOGGER.debug(text)
 
                     statusitem = Gtk.MenuItem.new()
                     statusitem.show()
@@ -421,9 +415,9 @@ class UberwriterInlinePreview():
                     spinner.start()
                     statusitem.add(spinner)
                     spinner.show()
-                    
-                    thread = threading.Thread(target=check_url, 
-                        args=(text, statusitem, spinner))
+
+                    thread = threading.Thread(target=check_url,
+                                              args=(text, statusitem, spinner))
                     thread.start()
 
                     webphoto_item = Gtk.MenuItem.new()
@@ -433,15 +427,15 @@ class UberwriterInlinePreview():
                     webphoto_item.add(spinner_2)
                     spinner_2.show()
 
-                    thread_image = threading.Thread(target=get_web_thumbnail, 
-                        args=(text, webphoto_item, spinner_2))
+                    thread_image = threading.Thread(target=get_web_thumbnail,
+                                                    args=(text, webphoto_item, spinner_2))
 
                     thread_image.start()
 
                     item.set_label(_("Open Link in Webbrowser"))
                     item.show()
                     self.open_popover_with_widget(webphoto_item)
-    
+
                     # menu.prepend(separator)
                     # separator.show()
 
@@ -450,25 +444,25 @@ class UberwriterInlinePreview():
                     # menu.prepend(item)
                     # menu.show()
 
-
                     found_match = True
                     break
 
         if not found_match:
             matches = re.finditer(image, text)
             for match in matches:
-                if match.start() < line_offset and match.end() > line_offset:
+                if match.start() < line_offset < match.end():
                     path = match.group(2)
                     if path.startswith("file://"):
                         path = path[7:]
                     elif not path.startswith("/"):
                         # then the path is relative
-                        base_path = self.settings.get_value("open-file-path").get_string()
+                        base_path = self.settings.get_value(
+                            "open-file-path").get_string()
                         path = base_path + "/" + path
-                                            
-                    logger.info(path)
-                    pb = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 400, 300)
-                    image = Gtk.Image.new_from_pixbuf(pb)
+
+                    LOGGER.info(path)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 400, 300)
+                    image = Gtk.Image.new_from_pixbuf(pixbuf)
                     image.show()
                     self.open_popover_with_widget(image)
                     item.set_property('width-request', 50)
@@ -486,15 +480,18 @@ class UberwriterInlinePreview():
         if not found_match:
             matches = re.finditer(footnote, text)
             for match in matches:
-                if match.start() < line_offset and match.end() > line_offset:
-                    logger.debug(match.group(1))
-                    footnote_match = re.compile(r"\[\^" + match.group(1) + r"\]: (.+(?:\n|\Z)(?:^[\t].+(?:\n|\Z))*)", re.MULTILINE)
+                if match.start() < line_offset < match.end():
+                    LOGGER.debug(match.group(1))
+                    footnote_match = re.compile(
+                        r"\[\^" + match.group(1) + r"\]: (.+(?:\n|\Z)(?:^[\t].+(?:\n|\Z))*)",
+                        re.MULTILINE)
                     replace = re.compile(r"^\t", re.MULTILINE)
-                    start, end = self.TextBuffer.get_bounds()
-                    fn_match = re.search(footnote_match, self.TextBuffer.get_text(start, end, False))
+                    start, end = self.text_buffer.get_bounds()
+                    fn_match = re.search(
+                        footnote_match, self.text_buffer.get_text(start, end, False))
                     label = Gtk.Label()
                     label.set_alignment(0.0, 0.5)
-                    logger.debug(fn_match)
+                    LOGGER.debug(fn_match)
                     if fn_match:
                         result = re.sub(replace, "", fn_match.group(1))
                         if result.endswith("\n"):
@@ -517,21 +514,19 @@ class UberwriterInlinePreview():
                     break
 
         if not found_match:
-            start_iter = self.TextBuffer.get_iter_at_mark(self.ClickMark)
+            start_iter = self.text_buffer.get_iter_at_mark(self.click_mark)
             start_iter.backward_word_start()
             end_iter = start_iter.copy()
             end_iter.forward_word_end()
-            word = self.TextBuffer.get_text(start_iter, end_iter, False)
+            word = self.text_buffer.get_text(start_iter, end_iter, False)
             terms = get_dictionary(word)
             if terms:
-                sc = Gtk.ScrolledWindow.new()
-                sc.add(fill_lexikon_bubble(word, terms))
-                sc.props.width_request = 500
-                sc.props.height_request = 400
-                sc.show_all()
-                self.open_popover_with_widget(sc)
-
-        return
+                scrolled_window = Gtk.ScrolledWindow.new()
+                scrolled_window.add(fill_lexikon_bubble(word, terms))
+                scrolled_window.props.width_request = 500
+                scrolled_window.props.height_request = 400
+                scrolled_window.show_all()
+                self.open_popover_with_widget(scrolled_window)
 
     def move_popup(self):
         pass

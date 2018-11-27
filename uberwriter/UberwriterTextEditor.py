@@ -1,19 +1,19 @@
 ### BEGIN LICENSE
 # Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
-# This program is free software: you can redistribute it and/or modify it 
-# under the terms of the GNU General Public License version 3, as published 
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
-# 
-# This program is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranties of 
-# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR 
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranties of
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
 # PURPOSE.  See the GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License along 
+#
+# You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 """Module for the TextView widgth wich encapsulates management of TextBuffer
-and TextIter for common functionality, such as cut, copy, paste, undo, redo, 
+and TextIter for common functionality, such as cut, copy, paste, undo, redo,
 and highlighting of text.
 
 Using
@@ -44,8 +44,6 @@ Extending
 A TextEditor is Gtk.TextView
 
 """
-
-
 try:
     from gi.repository import Gtk
     from gi.repository import Gdk
@@ -55,16 +53,14 @@ try:
 except:
     print("couldn't load depencies")
 
-
-
 import logging
-logger = logging.getLogger('uberwriter')
+LOGGER = logging.getLogger('uberwriter')
 
 
-class UndoableInsert(object):
+class UndoableInsert:
     """something that has been inserted into our textbuffer"""
     def __init__(self, text_iter, text, length):
-        self.offset = text_iter.get_offset() 
+        self.offset = text_iter.get_offset()
         self.text = text
         self.length = length
         if self.length > 1 or self.text in ("\r", "\n", " "):
@@ -73,7 +69,7 @@ class UndoableInsert(object):
             self.mergeable = True
 
 
-class UndoableDelete(object):
+class UndoableDelete:
     """something that has ben deleted from our textbuffer"""
     def __init__(self, text_buffer, start_iter, end_iter):
         self.text = text_buffer.get_text(start_iter, end_iter, False)
@@ -82,21 +78,15 @@ class UndoableDelete(object):
         # need to find out if backspace or delete key has been used
         # so we don't mess up during redo
         insert_iter = text_buffer.get_iter_at_mark(text_buffer.get_insert())
-        if insert_iter.get_offset() <= self.start:
-            self.delete_key_used = True
-        else:
-            self.delete_key_used = False
-        if self.end - self.start > 1 or self.text in ("\r", "\n", " "):
-            self.mergeable = False
-        else:
-            self.mergeable = True
 
+        self.delete_key_used = bool(insert_iter.get_offset() <= self.start)
+        self.mergeable = not bool(self.end - self.start > 1
+                                  or self.text in ("\r", "\n", " "))
 
 class TextEditor(Gtk.TextView):
     """TextEditor encapsulates management of TextBuffer and TextIter for
     common functionality, such as cut, copy, paste, undo, redo, and
     highlighting of text.
-
     """
 
     __gsignals__ = {
@@ -110,8 +100,8 @@ class TextEditor(Gtk.TextView):
         'redo': (GObject.SIGNAL_ACTION, None, ())
     }
 
-    def scroll_to_iter(self, iter, *args):
-        self.get_buffer().place_cursor(iter)
+    def scroll_to_iter(self, iterable, *args):
+        self.get_buffer().place_cursor(iterable)
 
     def __init__(self):
         """
@@ -131,7 +121,7 @@ class TextEditor(Gtk.TextView):
         self.not_undoable_action = False
         self.undo_in_progress = False
 
-        self.FormatShortcuts = FormatShortcuts(self.get_buffer(), self)
+        self.format_shortcuts = FormatShortcuts(self.get_buffer(), self)
 
         self.connect('insert-italic', self.set_italic)
         self.connect('insert-bold', self.set_bold)
@@ -153,7 +143,7 @@ class TextEditor(Gtk.TextView):
         This property is read/write.
         """
         start_iter = self.get_buffer().get_iter_at_offset(0)
-        end_iter =  self.get_buffer().get_iter_at_offset(-1)
+        end_iter = self.get_buffer().get_iter_at_offset(-1)
         return self.get_buffer().get_text(start_iter, end_iter, False)
 
     @property
@@ -178,7 +168,7 @@ class TextEditor(Gtk.TextView):
 
         """
 
-        end_iter =  self.get_buffer().get_iter_at_offset(-1)
+        end_iter = self.get_buffer().get_iter_at_offset(-1)
         self.get_buffer().insert(end_iter, text)
 
     def prepend(self, text):
@@ -190,7 +180,7 @@ class TextEditor(Gtk.TextView):
 
         """
 
-        start_iter =  self.get_buffer().get_iter_at_offset(0)
+        start_iter = self.get_buffer().get_iter_at_offset(0)
         self.get_buffer().insert(start_iter, text)
         insert_iter = self.get_buffer().get_iter_at_offset(len(text)-1)
         self.get_buffer().place_cursor(insert_iter)
@@ -213,7 +203,7 @@ class TextEditor(Gtk.TextView):
         start_iter = self.get_buffer().get_iter_at_offset(0)
         self.get_buffer().place_cursor(start_iter)
 
-    def cut(self, widget=None, data=None):
+    def cut(self, _widget=None, _data=None):
         """cut: cut currently selected text and put it on the clipboard.
         This function can be called as a function, or assigned as a signal
         handler.
@@ -222,16 +212,14 @@ class TextEditor(Gtk.TextView):
 
         self.get_buffer().cut_clipboard(self.clipboard, True)
 
-    def copy(self, widget=None, data=None):
+    def copy(self, _widget=None, _data=None):
         """copy: copy currently selected text to the clipboard.
-        This function can be called as a function, or assigned as a signal
-        handler.
-
+           This function can be called as a function, or assigned as a signal
+           handler.
         """
- 
-        self.get_buffer().copy_clipboard(self.clipboard)            
+        self.get_buffer().copy_clipboard(self.clipboard)
 
-    def paste(self, widget=None, data=None):
+    def paste(self, _widget=None, _data=None):
         """paste: Insert any text currently on the clipboard into the
         buffer.
         This function can be called as a function, or assigned as a signal
@@ -239,9 +227,9 @@ class TextEditor(Gtk.TextView):
 
         """
 
-        self.get_buffer().paste_clipboard(self.clipboard,None,True)
+        self.get_buffer().paste_clipboard(self.clipboard, None, True)
 
-    def undo(self, widget=None, data=None):
+    def undo(self, _widget=None, _data=None):
         """undo inserts or deletions
         undone actions are being moved to redo stack"""
         if not self.undo_stack:
@@ -270,7 +258,7 @@ class TextEditor(Gtk.TextView):
         self.end_not_undoable_action()
         self.undo_in_progress = False
 
-    def redo(self, widget=None, data=None):
+    def redo(self, _widget=None, _data=None):
         """redo inserts or deletions
 
         redone actions are moved to undo stack"""
@@ -296,7 +284,7 @@ class TextEditor(Gtk.TextView):
         self.end_not_undoable_action()
         self.undo_in_progress = False
 
-    def on_insert_text(self, textbuffer, text_iter, text, length):
+    def on_insert_text(self, _textbuffer, text_iter, text, _length):
         """
             _on_insert: internal function to handle programatically inserted
             text. Do not call directly.
@@ -308,14 +296,14 @@ class TextEditor(Gtk.TextView):
             can't merge if prev and cur are not mergeable in the first place
             can't merge when user set the input bar somewhere else
             can't merge across word boundaries"""
-            WHITESPACE = (' ', '\t')
+            whitespace = (' ', '\t')
             if not cur.mergeable or not prev.mergeable:
                 return False
-            elif cur.offset != (prev.offset + prev.length):
+            if cur.offset != (prev.offset + prev.length):
                 return False
-            elif cur.text in WHITESPACE and not prev.text in WHITESPACE:
+            if cur.text in whitespace and not prev.text in whitespace:
                 return False
-            elif prev.text in WHITESPACE and not cur.text in WHITESPACE:
+            if prev.text in whitespace and not cur.text in whitespace:
                 return False
             return True
 
@@ -341,10 +329,9 @@ class TextEditor(Gtk.TextView):
         else:
             self.undo_stack.append(prev_insert)
             self.undo_stack.append(undo_action)
- 
+
     def on_delete_range(self, text_buffer, start_iter, end_iter):
-        """
-            On delete 
+        """On delete
         """
         def can_be_merged(prev, cur):
             """see if we can merge multiple deletions here
@@ -354,18 +341,18 @@ class TextEditor(Gtk.TextView):
             can't merge if delete and backspace key were both used
             can't merge across word boundaries"""
 
-            WHITESPACE = (' ', '\t')
+            whitespace = (' ', '\t')
             if not cur.mergeable or not prev.mergeable:
                 return False
-            elif prev.delete_key_used != cur.delete_key_used:
+            if prev.delete_key_used != cur.delete_key_used:
                 return False
-            elif prev.start != cur.start and prev.start != cur.end:
+            if prev.start != cur.start and prev.start != cur.end:
                 return False
-            elif cur.text not in WHITESPACE and \
-               prev.text in WHITESPACE:
+            if cur.text not in whitespace and \
+               prev.text in whitespace:
                 return False
-            elif cur.text in WHITESPACE and \
-               prev.text not in WHITESPACE:
+            if cur.text in whitespace and \
+               prev.text not in whitespace:
                 return False
             return True
 
@@ -389,50 +376,50 @@ class TextEditor(Gtk.TextView):
                 prev_delete.end += (undo_action.end - undo_action.start)
             else: # Backspace used
                 prev_delete.text = "%s%s" % (undo_action.text,
-                                                     prev_delete.text)
+                                             prev_delete.text)
                 prev_delete.start = undo_action.start
             self.undo_stack.append(prev_delete)
         else:
             self.undo_stack.append(prev_delete)
-            self.undo_stack.append(undo_action)    
+            self.undo_stack.append(undo_action)
 
     def begin_not_undoable_action(self):
         """don't record the next actions
         toggles self.not_undoable_action"""
-        self.not_undoable_action = True        
+        self.not_undoable_action = True
 
     def end_not_undoable_action(self):
         """record next actions
         toggles self.not_undoable_action"""
         self.not_undoable_action = False
 
-    def set_italic(self, widget, data=None):
+    def set_italic(self, _widget, _data=None):
         """Ctrl + I"""
-        self.FormatShortcuts.italic()
+        self.format_shortcuts.italic()
 
-    def set_bold(self, widget, data=None):
+    def set_bold(self, _widget, _data=None):
         """Ctrl + Shift + D"""
-        self.FormatShortcuts.bold()
+        self.format_shortcuts.bold()
 
-    def set_strikeout(self, widget, data=None):
+    def set_strikeout(self, _widget, _data=None):
         """Ctrl + B"""
-        self.FormatShortcuts.strikeout()
+        self.format_shortcuts.strikeout()
 
-    def insert_horizontal_rule(self, widget, data=None):
+    def insert_horizontal_rule(self, _widget, _data=None):
         """Ctrl + R"""
-        self.FormatShortcuts.rule()
+        self.format_shortcuts.rule()
 
-    def insert_unordered_list_item(self, widget, data=None):
+    def insert_unordered_list_item(self, _widget, _data=None):
         """Ctrl + U"""
-        self.FormatShortcuts.unordered_list_item()
+        self.format_shortcuts.unordered_list_item()
 
-    def insert_ordered_list(self, widget, data=None):
+    def insert_ordered_list(self, _widget, _data=None):
         """CTRL + O"""
-        self.FormatShortcuts.ordered_list_item()
+        self.format_shortcuts.ordered_list_item()
 
-    def insert_heading(self, widget, data=None):
+    def insert_heading(self, _widget, _data=None):
         """CTRL + H"""
-        self.FormatShortcuts.heading()
+        self.format_shortcuts.heading()
 
 
 class TestWindow(Gtk.Window):
@@ -449,10 +436,10 @@ class TestWindow(Gtk.Window):
         self.editor = TextEditor()
         self.editor.show()
         windowbox.pack_end(self.editor, True, True, 0)
-        self.set_size_request(200,200)
+        self.set_size_request(200, 200)
         self.show()
         self.maximize()
-  
+
         self.connect("destroy", Gtk.main_quit)
         self.editor.text = "this is some inserted text"
         self.editor.append("\nLine 3")
@@ -461,32 +448,31 @@ class TestWindow(Gtk.Window):
         self.editor.cursor_to_start()
         self.editor.undo_max = 100
         cut_button = Gtk.Button("Cut")
-        cut_button.connect("clicked",self.editor.cut)
+        cut_button.connect("clicked", self.editor.cut)
         cut_button.show()
         windowbox.pack_start(cut_button, False, False, 0)
 
         copy_button = Gtk.Button("Copy")
-        copy_button.connect("clicked",self.editor.copy)
+        copy_button.connect("clicked", self.editor.copy)
         copy_button.show()
         windowbox.pack_start(copy_button, False, False, 0)
 
         paste_button = Gtk.Button("Paste")
-        paste_button.connect("clicked",self.editor.paste)
+        paste_button.connect("clicked", self.editor.paste)
         paste_button.show()
         windowbox.pack_start(paste_button, False, False, 0)
 
         undo_button = Gtk.Button("Undo")
-        undo_button.connect("clicked",self.editor.undo)
+        undo_button.connect("clicked", self.editor.undo)
         undo_button.show()
         windowbox.pack_start(undo_button, False, False, 0)
 
         redo_button = Gtk.Button("Redo")
-        redo_button.connect("clicked",self.editor.redo)
+        redo_button.connect("clicked", self.editor.redo)
         redo_button.show()
         windowbox.pack_start(redo_button, False, False, 0)
 
 
-if __name__== "__main__":
-    test = TestWindow()
+if __name__ == "__main__":
+    TEST = TestWindow()
     Gtk.main()
-

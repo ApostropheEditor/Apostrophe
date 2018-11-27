@@ -1,32 +1,30 @@
 # UberwriterAutoCorrect
-# The Uberwriter Auto Correct is a auto correction 
+# The Uberwriter Auto Correct is a auto correction
 # mechanism to prevent stupid typos
 # import presage
-from gi.repository import Gtk, Gdk
 
-import uberwriter_lib.pressagio as pressagio
-import enchant
-
-
-# d = enchant.Dict("de_DE")
-import re
-
-import uberwriter_lib.pressagio.predictor
-import uberwriter_lib.pressagio.tokenizer
-import uberwriter_lib.pressagio.dbconnector
-import uberwriter_lib.pressagio.context_tracker
-import uberwriter_lib.pressagio.callback
+import os
+import pickle
+import configparser
 
 import xml.etree.ElementTree as ET
-import pickle
 
-from Levenshtein import distance
+from gi.repository import Gtk, Gdk
 
-import configparser
+import enchant
+
+from uberwriter_lib import pressagio
+# import uberwriter_lib.pressagio.predictor
+# import uberwriter_lib.pressagio.tokenizer
+# import uberwriter_lib.pressagio.dbconnector
+# import uberwriter_lib.pressagio.context_tracker
+# import uberwriter_lib.pressagio.callback
+
+# from Levenshtein import distance
+
 from uberwriter_lib.helpers import get_media_path
 
 # Define and create PresageCallback object
-
 class PressagioCallback(pressagio.callback.Callback):
     def __init__(self, buffer):
         super().__init__()
@@ -34,19 +32,19 @@ class PressagioCallback(pressagio.callback.Callback):
 
     def past_stream(self):
         return self.buffer
-    
+
     def future_stream(self):
         return ''
 
 class UberwriterAutoCorrect:
 
-    def show_bubble(self, iter, suggestion):
+    def show_bubble(self, iterator, suggestion):
         self.suggestion = suggestion
         if self.bubble:
             self.bubble_label.set_text(suggestion)
         else:
-            pos = self.TextView.get_iter_location(iter)
-            pos_adjusted = self.TextView.buffer_to_window_coords(
+            pos = self.text_view.get_iter_location(iterator)
+            pos_adjusted = self.text_view.buffer_to_window_coords(
                 Gtk.TextWindowType.TEXT, pos.x, pos.y + pos.height)
             self.bubble_eventbox = Gtk.EventBox.new()
             self.bubble = Gtk.Grid.new()
@@ -54,8 +52,9 @@ class UberwriterAutoCorrect:
             self.bubble_eventbox.add(self.bubble)
             self.bubble_eventbox.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
             self.bubble_eventbox.connect("button_press_event", self.clicked_bubble)
-            self.TextView.add_child_in_window(self.bubble_eventbox, 
-                Gtk.TextWindowType.TEXT, pos_adjusted[0], pos_adjusted[1])
+            self.text_view.add_child_in_window(self.bubble_eventbox,
+                                              Gtk.TextWindowType.TEXT,
+                                              pos_adjusted[0], pos_adjusted[1])
 
             self.bubble_label = Gtk.Label.new(suggestion)
 
@@ -68,10 +67,10 @@ class UberwriterAutoCorrect:
             self.bubble.attach(self.bubble_close_eventbox, 1, 0, 1, 1)
             self.bubble_eventbox.show_all()
 
-    def clicked_bubble(self, widget, data=None):
+    def clicked_bubble(self, _widget, _data=None):
         self.accept_suggestion()
 
-    def clicked_close(self, widget, data=None):
+    def clicked_close(self, _widget, _data=None):
         self.destroy_bubble()
 
     def suggest(self, stump, context):
@@ -85,7 +84,7 @@ class UberwriterAutoCorrect:
         if self.use_pressagio:
             predictions = self.prsgio.predict(6, None)
         prediction = None
-        if not len(predictions):
+        if not predictions:
             if self.enchant_dict.check(stump):
                 self.destroy_bubble()
                 return
@@ -93,45 +92,46 @@ class UberwriterAutoCorrect:
             suggestions_map = []
             for suggestion in predictions:
                 if suggestion in self.frequency_dict:
-                    suggestions_map.append({'suggestion': suggestion, 'freq': self.frequency_dict[suggestion]})
+                    suggestions_map.append({'suggestion': suggestion,
+                                            'freq': self.frequency_dict[suggestion]})
                 else:
                     suggestions_map.append({'suggestion': suggestion, 'freq': 0})
-            
+
             suggestions_map.sort(key=lambda x: x['freq'])
             suggestions_map.reverse()
             prediction = suggestions_map[0]
             print(predictions)
             prediction = predictions[0]
-        else: 
+        else:
             prediction = predictions[0].word
         anchor_iter = self.buffer.get_iter_at_mark(self.buffer.get_insert())
         anchor_iter.backward_visible_word_start()
         if len(stump) >= 1:
             self.show_bubble(anchor_iter, prediction)
 
-    def destroy_bubble(self, *args):
+    def destroy_bubble(self, *_args):
         if not self.bubble:
             return
         self.bubble.destroy()
         self.bubble = None
         self.suggestion = ''
 
-    def get_frequency_dict(self, language):
+    def get_frequency_dict(self, _language):
         self.frequency_dict = {}
         pp_pickled = get_media_path("frequency_dict_" + self.language + ".pickle")
         if pp_pickled and os.path.isfile(pp_pickled):
-            f = open(pp_pickled, 'rb')
-            self.frequency_dict = pickle.load(f)
-            f.close()
+            frequency_file = open(pp_pickled, 'rb')
+            self.frequency_dict = pickle.load(frequency_file)
+            frequency_file.close()
         else:
             pp = get_media_path('wordlists/en_us_wordlist.xml')
             frequencies = ET.parse(pp)
             root = frequencies.getroot()
             for child in root:
                 self.frequency_dict[child.text] = int(child.attrib['f'])
-            f = open('pickled_dict', 'wb+')
-            pickle.dump(self.frequency_dict, f)
-            f.close()
+            frequency_file = open('pickled_dict', 'wb+')
+            pickle.dump(self.frequency_dict, frequency_file)
+            frequency_file.close()
 
     def accept_suggestion(self, append=""):
         print("called")
@@ -142,19 +142,20 @@ class UberwriterAutoCorrect:
         self.buffer.insert_at_cursor(self.suggestion + append)
         self.destroy_bubble()
 
-    def key_pressed(self, widget, event):
+    def key_pressed(self, _widget, event):
         if not self.bubble:
             return False
         if event.keyval in [Gdk.KEY_Escape, Gdk.KEY_BackSpace]:
             self.destroy_bubble()
         return False
 
-    def text_insert(self, buffer, location, 
-                    text, len, data=None):
+    def text_insert(self, buffer, location,
+                    text, _length, _data=None):
         # check if at end of a word
         # if yes, check if suggestion available
         # then display suggetion
-        if self.suggestion and text in [' ', '\t', '\n', '.', '?', '!', ',', ';', '\'', '"', ')', ':']:
+        if self.suggestion and text in [' ', '\t', '\n', '.', '?', '!',
+                                        ',', ';', '\'', '"', ')', ':']:
             self.accept_suggestion(append=text)
             location.assign(self.buffer.get_iter_at_mark(self.buffer.get_insert()))
         elif location.ends_word():
@@ -174,44 +175,45 @@ class UberwriterAutoCorrect:
         print("Language changed to: %s" % language)
 
         # handle 2 char cases e.g. "en"
-        if(len(language) == 2):
+        if len(language) == 2:
             if "en":
                 language = "en_US"
 
         if self.language == language:
             return
 
-        else:
-            self.language = language
-            print("Language changing")
-            config_file = get_media_path("pressagio_config.ini")
-            pres_config = configparser.ConfigParser()
-            pres_config.read(config_file)
-            pres_config.set("Database", "database", get_media_path("corpora/" + self.language + ".sqlite"))
-            self.context_tracker = pressagio.context_tracker.ContextTracker(
-                pres_config, self.predictor_registry, self.callback)
-            self.prsgio = self.predictor_registry[0]
+        self.language = language
+        print("Language changing")
+        config_file = get_media_path("pressagio_config.ini")
+        pres_config = configparser.ConfigParser()
+        pres_config.read(config_file)
+        pres_config.set("Database", "database",
+                        get_media_path("corpora/" + self.language + ".sqlite"))
+        self.context_tracker = pressagio.context_tracker.ContextTracker(
+            pres_config, self.predictor_registry, self.callback)
+        self.prsgio = self.predictor_registry[0]
 
-            self.enchant_dict = enchant.Dict(self.language)
+        self.enchant_dict = enchant.Dict(self.language)
 
     def __init__(self, textview, textbuffer):
-        self.TextView = textview
+        self.text_view = textview
         self.buffer = textbuffer
         self.suggestion = ""
         self.bubble = self.bubble_label = None
         self.buffer.connect_after('insert-text', self.text_insert)
-        self.TextView.connect('key-press-event', self.key_pressed)
+        self.text_view.connect('key-press-event', self.key_pressed)
 
         self.language = "en_US"
         self.frequency_dict = {}
         self.get_frequency_dict(self.language)
         self.enchant_dict = enchant.Dict(self.language)
-        
+
         self.use_pressagio = False
         config_file = get_media_path("pressagio_config.ini")
         pres_config = configparser.ConfigParser()
         pres_config.read(config_file)
-        pres_config.set("Database", "database", get_media_path("corpora/" + self.language + ".sqlite"))
+        pres_config.set("Database", "database",
+                        get_media_path("corpora/" + self.language + ".sqlite"))
         self.callback = PressagioCallback("")
 
         self.predictor_registry = pressagio.predictor.PredictorRegistry(pres_config)

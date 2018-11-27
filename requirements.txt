@@ -1,2 +1,4 @@
 regex
-
+enchant
+python-gtkspellcheck
+pandoc

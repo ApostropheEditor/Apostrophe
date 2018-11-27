@@ -1,10 +1,9 @@
 {
     "app-id": "de.wolfvollprecht.UberWriter",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.26",
+    "runtime-version": "3.28",
     "sdk": "org.gnome.Sdk",
-    "command": "uberwriter",
-    "rename-icon": "uberwriter",
+    "command": "/app/usr/bin/uberwriter",
     "finish-args": [
         "--socket=x11",
         "--share=ipc",
@@ -14,11 +13,13 @@
         "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-        "--env=PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/bin:/usr/bin"
+        "--env=XDG_DATA_DIRS=/app/usr/share",
+        "--env=PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/usr/bin:/app/bin"
     ],
     "build-options" : {
       "env": {
-        "PYTHON": "python3"
+        "PYTHON": "python3",
+        "IN_FLATPAK": "1"
         }
     },
     "add-extensions": {
@@ -36,15 +37,15 @@
         "sources": [
                 {
                     "type" : "git",
-                    "url" : "git://github.com/wolfv/uberwriter",
-                    "branch" : "master"
+                    "url" : "../",
+                    "branch" : "refactoring"
                 }
             ],
             "build-commands": [
                 "install -Dm644 flatpak/de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml "
             ],
             "post-install": [
-            "glib-compile-schemas /app/share/glib-2.0/schemas",
+            "glib-compile-schemas /app/usr/share/glib-2.0/schemas",
             "install -d /app/extensions"
             ]
         },
@@ -55,8 +56,8 @@
             ],
         "buildsystem": "simple",
         "build-commands": [
-          "cp bin/pandoc /app/bin/pandoc",
-          "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
+          "cp bin/pandoc /app/usr/bin/pandoc",
+          "cp bin/pandoc-citeproc /app/usr/bin/pandoc-citeproc"
             ],
         "sources": [
                 {
