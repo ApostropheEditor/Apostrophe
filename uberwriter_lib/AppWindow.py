@@ -187,7 +187,7 @@ class Application(Gtk.Application):
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
 
-        logo_file = get_media_path("uberwriter.svg")
+        logo_file = get_media_path("de.wolfvollprecht.UberWriter.svg")
         logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
 
         about_dialog.set_logo(logo)
