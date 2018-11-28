@@ -1,195 +1,61 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: UberWriter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-27 21:21+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: UberWriter\n"
-"Language: hu\n"
+"X-Generator: Poedit 2.2\n"
 
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
-msgid "(no suggestions)"
-msgstr "(nincs javaslat)"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
-msgid "Add \"{}\" to Dictionary"
-msgstr "{} hozzáadása a szótárhoz"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
-msgid "Ignore All"
-msgstr "Összes mellőzése"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
-msgid "Languages"
-msgstr "Nyelvek"
-
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
-#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
-msgid "Suggestions"
-msgstr "Javaslatok"
-
-#: ../uberwriter.desktop.in.h:1
-msgid "UberWriter"
-msgstr "UberWriter"
-
-#: ../uberwriter.desktop.in.h:2
-msgid "UberWriter, a simple and distraction free Markdown Editor"
-msgstr "Uberwriter, egy egyszerü Markdown szövegszerkesztő"
-
-#: uberwriter/UberwriterInlinePreview.py:187
-msgid "Website is not available"
-msgstr "A weblap nem elérhető"
-
-#: uberwriter/UberwriterInlinePreview.py:189
-msgid "Website is available"
-msgstr "A weblap elérhető"
-
-#: uberwriter/UberwriterInlinePreview.py:441
-msgid "Open Link in Webbrowser"
-msgstr "A link megnyitása"
-
-#: uberwriter/UberwriterInlinePreview.py:503
-msgid "No matching footnote found"
-msgstr "Nincs találó lábjegyzet"
-
-#: data/ui/UberwriterWindow.ui:66
-msgid "_File"
-msgstr "_Fájl"
-
-#: data/ui/UberwriterWindow.ui:96
-msgid "Open Recent File"
-msgstr "Elozmények megnyitása"
-
-#: data/ui/UberwriterWindow.ui:175
-msgid "Export as ODT"
-msgstr "Exportálás ODT formátumban"
-
-#: data/ui/UberwriterWindow.ui:186
-msgid "Advanced Export..."
-msgstr "Exportálás..."
-
-#: ../data/ui/UberwriterWindow.ui.h:5
-msgid "Copy raw HTML to clipboard"
-msgstr "HTML kód másolása a vágólapra"
-
-#: ../data/ui/UberwriterWindow.ui.h:6
-msgid "_Edit"
-msgstr "Szerkesztés"
-
-#: data/ui/UberwriterWindow.ui:229
-msgid "_View"
-msgstr "_Nézet"
-
-#: data/ui/UberwriterWindow.ui:261
-msgid "Light text on a dark background"
-msgstr "Világos szöveg sötét háttéren"
-
-#: data/ui/WindowMenu.ui:14
-msgid "Dark Mode"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
+#, fuzzy
+msgid "Dark mode"
 msgstr "Elsötétített nézet"
 
-#: data/ui/UberwriterWindow.ui:261
-msgid "Switch to preview mode"
-msgstr "Előnézeti mód"
-
-#: data/ui/Menu.ui:12
-msgid "Preview"
-msgstr "Előnézet"
-
-#: data/ui/UberwriterWindow.ui:298 data/ui/WindowMenu.ui:28
-msgid "Auto _Spellcheck"
-msgstr "Helyesírás ellenőrzés"
-
-#: ../data/ui/UberwriterWindow.ui.h:13
-msgid "F_ormat"
-msgstr "F_ormátum"
-
-#: ../data/ui/UberwriterWindow.ui.h:14
-msgid "Unordered List Item"
-msgstr "Felsorolás"
-
-#: ../data/ui/UberwriterWindow.ui.h:15
-msgid "Horizontal Rule"
-msgstr "Vízszintes elválasztó"
-
-#: uberwriter/FormatShortcuts.py:186
-msgid "Heading"
-msgstr "Címsor"
-
-#: data/ui/UberwriterWindow.ui:312
-msgid "_Help"
-msgstr "_Súgó"
-
-#: data/ui/UberwriterWindow.ui:322
-msgid "Contents"
-msgstr "Tartalom"
-
-#: data/ui/UberwriterWindow.ui:335
-msgid "Short Markdown Tutorial"
-msgstr "Rövid Markdown lecke"
-
-#: data/ui/UberwriterWindow.ui:343
-msgid "Open Pandoc Online Markdown Help ..."
-msgstr "Pandoc Markdown sugó megnyitása"
-
-#: ../data/ui/UberwriterWindow.ui.h:21
-msgid "Get Help Online..."
-msgstr "Online segítség…"
-
-#: data/ui/UberwriterWindow.ui:359
-msgid "Translate This Application..."
-msgstr "Alkalmazás fordítása..."
-
-#: data/ui/Menu.ui:7
-msgid "Focus Mode"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
+msgid ""
+"If enabled, the window will be dark themed If disabled, the window will be "
+"light themed asked to install them manually."
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:424 data/ui/UberwriterWindow.ui:425
-msgid "Go into focus mode"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:18
+msgid "Open file base path"
 msgstr ""
 
-#: data/ui/Menu.ui:17
-msgid "Fullscreen"
-msgstr "Teljes képernyő"
-
-#: data/ui/UberwriterWindow.ui:442 data/ui/UberwriterWindow.ui:443
-msgid "Go into fullscreen mode"
-msgstr "Váltás teljes képernyő módba"
-
-#: data/ui/UberwriterWindow.ui:460 data/ui/UberwriterWindow.ui:461
-msgid "Show HTML preview"
-msgstr "HTML előnézet"
-
-#: data/ui/UberwriterWindow.ui:112
-msgid "Words:"
-msgstr "Szavak száma:"
-
-#: data/ui/UberwriterWindow.ui:155
-msgid "Characters:"
-msgstr "Karakterek száma:"
-
-#: uberwriter_lib/AppWindow.py:246
-msgid "Show debug messages (-vv debugs uberwriter_lib also)"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:19
+msgid "Open file paths of the current session"
 msgstr ""
 
-#: uberwriter/FormatShortcuts.py:87
-msgid "emphasized text"
-msgstr "dőlt betű"
+#: data/ui/About.ui:12
+msgid "Copyright (C) 2018, Wolf Vollprecht"
+msgstr ""
 
-#: uberwriter/FormatShortcuts.py:89
-msgid "strong text"
-msgstr "vastag betű"
+#: data/ui/About.ui:14
+#, fuzzy
+msgid "Uberwriter website"
+msgstr "UberWriter"
 
-#: uberwriter/FormatShortcuts.py:105
-msgid "List item"
-msgstr "Listaelem"
+#: data/ui/About.ui:66
+msgid "Donations:"
+msgstr ""
 
-#: data/ui/Export.ui:517 data/ui/UberwriterAdvancedExportDialog.ui:36
-msgid "Export"
-msgstr "Exportálás"
+#: data/ui/About.ui:75
+msgid "Liberapay"
+msgstr ""
+
+#: data/ui/About.ui:106
+msgid "Help to translate:"
+msgstr ""
+
+#: data/ui/About.ui:115
+#, fuzzy
+msgid "Poeditor"
+msgstr "Szerkesztés"
 
 #: data/ui/Export.ui:38 data/ui/UberwriterAdvancedExportDialog.ui:98
 msgid "Smart"
@@ -198,14 +64,6 @@ msgstr "Intelligens"
 #: data/ui/Export.ui:43 data/ui/UberwriterAdvancedExportDialog.ui:103
 msgid "Pandoc can automatically make \"--\" to a long dash and more"
 msgstr "Nyomdailag helyes szöveg generálása"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:117
-msgid "Normalize"
-msgstr "Normalizálás"
-
-#: data/ui/UberwriterAdvancedExportDialog.ui:122
-msgid "Removes things like double spaces or spaces at the beginning of a paragraph"
-msgstr "Ismételt szóközök elhagyása"
 
 #: data/ui/Export.ui:56 data/ui/UberwriterAdvancedExportDialog.ui:135
 msgid "Table of Contents"
@@ -216,7 +74,9 @@ msgid "Standalone"
 msgstr "Egyedülálló"
 
 #: data/ui/Export.ui:77 data/ui/UberwriterAdvancedExportDialog.ui:157
-msgid "Use a header and footer to include things like stylesheets and meta information"
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
 msgstr ""
 
 #: data/ui/Export.ui:90 data/ui/UberwriterAdvancedExportDialog.ui:171
@@ -229,7 +89,8 @@ msgstr "Szigorú Markdown"
 
 #: data/ui/Export.ui:111 data/ui/UberwriterAdvancedExportDialog.ui:193
 msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "Szigorú Markdown használata a \"Pandoc\" kiterjesztett markdown helyett"
+msgstr ""
+"Szigorú Markdown használata a \"Pandoc\" kiterjesztett markdown helyett"
 
 #: data/ui/Export.ui:123 data/ui/UberwriterAdvancedExportDialog.ui:206
 msgid "Slideshow incremental bullets"
@@ -261,13 +122,21 @@ msgstr "Kiemelés stílusa  "
 msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
 msgstr "<b>Szintaxis kiemelés</b>"
 
+#: data/ui/Export.ui:289 data/ui/UberwriterAdvancedExportDialog.ui:491
+msgid "<b>Bibliography File</b>"
+msgstr "Bibliográfia"
+
 #: data/ui/Export.ui:329 data/ui/UberwriterAdvancedExportDialog.ui:371
 msgid "Self Contained"
 msgstr ""
 
 #: data/ui/Export.ui:334 data/ui/UberwriterAdvancedExportDialog.ui:376
-msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
-msgstr "Külso függőségek nélküli HTML generálása (a képek és a CSS fileok beágyazódnak)"
+msgid ""
+"Produces a HTML that has no external dependencies (all images and "
+"stylesheets are included)"
+msgstr ""
+"Külso függőségek nélküli HTML generálása (a képek és a CSS fileok "
+"beágyazódnak)"
 
 #: data/ui/Export.ui:346 data/ui/UberwriterAdvancedExportDialog.ui:389
 msgid "HTML 5"
@@ -291,111 +160,98 @@ msgstr "CSS File"
 msgid "<b>HTML Options</b>"
 msgstr "<b>HTML beállítások</b>"
 
-#: data/ui/Export.ui:289 data/ui/UberwriterAdvancedExportDialog.ui:491
-msgid "<b>Bibliography File</b>"
-msgstr "Bibliográfia"
-
 #: data/ui/Export.ui:423 data/ui/UberwriterAdvancedExportDialog.ui:510
 msgid "Commandline Reference"
 msgstr ""
 
-#: ../data/ui/AboutUberwriterDialog.ui.h:1
-msgid "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-"# This program is free software: you can redistribute it and/or modify it \n"
-"# under the terms of the GNU General Public License version 3, as published \n"
-"# by the Free Software Foundation.\n"
-"# \n"
-"# This program is distributed in the hope that it will be useful, but \n"
-"# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-"# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-"# PURPOSE.  See the GNU General Public License for more details.\n"
-"# \n"
-"# You should have received a copy of the GNU General Public License along \n"
-"# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-""
+#: data/ui/Export.ui:517 data/ui/UberwriterAdvancedExportDialog.ui:36
+msgid "Export"
+msgstr "Exportálás"
+
+#: data/ui/Export.ui:559 data/ui/Export.ui:569
+msgid "PDF"
 msgstr ""
 
-#: ../data/ui/AboutUberwriterDialog.ui.h:14
-msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+#: data/ui/Export.ui:565 uberwriter/plugins/bibtex/bibtex_item.glade:18
+#: uberwriter/plugins/bibtex/bibtex_item.glade:32
+#: uberwriter/plugins/bibtex/bibtex_item.glade:45
+msgid "label"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:347
-msgid "Save your File"
-msgstr "Állomány mentése"
+#: data/ui/Export.ui:582
+#, fuzzy
+msgid "HTML"
+msgstr "HTML5"
 
-#: uberwriter/UberwriterWindow.py:490
-msgid "You can not export to PDF."
-msgstr "Nem tudtam PDF formátumba exportálni"
+#: data/ui/Export.ui:595
+msgid "ODT"
+msgstr ""
 
-#: uberwriter/UberwriterWindow.py:492
-msgid "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
-msgstr "Kérlek installáld a <a href=\"apt:texlive\">texlive</a> csomagot a szoftwareközpontból."
+#: data/ui/Export.ui:607
+#, fuzzy
+msgid "Advanced"
+msgstr "Exportálás..."
 
-#: uberwriter/UberwriterWindow.py:448
-msgid "MarkDown or Plain Text"
-msgstr "Markdown vagy síma szöveg"
+#: data/ui/Menu.ui:6
+msgid "Focus Mode"
+msgstr ""
 
-#: uberwriter/UberwriterWindow.py:451
-msgid "Open a .md-File"
-msgstr ".md állomány megnyitása"
+#: data/ui/Menu.ui:10
+msgid "Preview"
+msgstr "Előnézet"
 
-#: uberwriter/UberwriterWindow.py:473
-msgid "You have not saved your changes."
-msgstr "A változtatások nincsenek lementve"
+#: data/ui/Menu.ui:14
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
 
-#: uberwriter/UberwriterWindow.py:475
-msgid "Close without Saving"
-msgstr "Bezárás mentés nélkül"
-
-#: uberwriter/UberwriterWindow.py:476
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: uberwriter/UberwriterWindow.py:477
-msgid "Save now"
+#: data/ui/Menu.ui:20
+#, fuzzy
+msgid "Save _As"
 msgstr "Mentés most"
 
-#: uberwriter/UberwriterWindow.py:478
-msgid "Unsaved changes"
-msgstr "Mentetlen változtatások"
-
-#: uberwriter/UberwriterWindow.py:537
-msgid "You can not enable the Spell Checker."
-msgstr "Helyesírás ellenőrzőt nem lehet bekapcsolni"
-
-#: uberwriter/UberwriterWindow.py:540
-msgid "Please install 'hunspell' or 'aspell' dictionarys for your language from the software center."
-msgstr "Installáld a 'hunspell' vagy az 'aspell' szótárat a nyelvedhez a szoftwareközpontból"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:9
+#: data/ui/Menu.ui:24
 #, fuzzy
-msgid "Dark mode"
-msgstr "Elsötétített nézet"
+msgid "_Export"
+msgstr "Exportálás"
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:10
-msgid "If enabled, the window will be dark themed If disabled, the window will be light themed asked to install them manually."
+#: data/ui/Menu.ui:28
+msgid "Copy HTML"
 msgstr ""
 
-#. <attribute name="action">win.change_label</attribute>
-#. <attribute name="target">String 1</attribute>
-#: data/ui/App_menu.ui:10
-msgid "New window"
+#: data/ui/Menu.ui:34
+msgid "Open Tutorial"
 msgstr ""
 
-#: data/ui/Menu.ui:53
-msgid "_Shortcuts"
-msgstr ""
-
-#: data/ui/Menu.ui:49
+#: data/ui/Menu.ui:39
 msgid "Pandoc _Help"
 msgstr ""
 
-#: data/ui/Menu.ui:59
-msgid "_About"
+#: data/ui/Menu.ui:44 data/ui/Preferences.ui:14
+msgid "Preferences"
 msgstr ""
 
-#: data/ui/Menu.ui:62
-msgid "_Quit"
+#: data/ui/Menu.ui:49
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/Menu.ui:53
+#, fuzzy
+#| msgid "UberWriter"
+msgid "_About UberWriter"
+msgstr "UberWriter"
+
+#: data/ui/Preferences.ui:45
+#, fuzzy
+msgid "Use dark mode"
+msgstr "Elsötétített nézet"
+
+#: data/ui/Preferences.ui:56
+#, fuzzy
+msgid "Autospellcheck"
+msgstr "Helyesírás ellenőrzés"
+
+#: data/ui/Preferences.ui:95
+msgid "page 1"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:13
@@ -505,102 +361,192 @@ msgctxt "shortcut window"
 msgid "Select all"
 msgstr ""
 
+#: data/ui/UberwriterAdvancedExportDialog.ui:117
+msgid "Normalize"
+msgstr "Normalizálás"
+
+#: data/ui/UberwriterAdvancedExportDialog.ui:122
+msgid ""
+"Removes things like double spaces or spaces at the beginning of a paragraph"
+msgstr "Ismételt szóközök elhagyása"
+
 #: data/ui/UberwriterWindow.ui:19
 msgid "Next Match"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:41
+#: data/ui/UberwriterWindow.ui:36
 #, fuzzy
 msgid "Open Replace"
 msgstr "Elozmények megnyitása"
 
-#: data/ui/UberwriterWindow.ui:52
-msgid "Activate Regex"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:96
+msgid "Words:"
+msgstr "Szavak száma:"
 
-#: data/ui/UberwriterWindow.ui:74
-msgid "_New"
-msgstr ""
+#: data/ui/UberwriterWindow.ui:139
+msgid "Characters:"
+msgstr "Karakterek száma:"
 
-#: data/ui/UberwriterWindow.ui:84
-msgid "_Open"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:102
-#, fuzzy
-msgid "Open examples"
-msgstr ".md állomány megnyitása"
-
-#: data/ui/UberwriterWindow.ui:114
-#, fuzzy
-msgid "_Quick markdown tutorial"
-msgstr "Rövid Markdown lecke"
-
-#: data/ui/UberwriterWindow.ui:131
-#, fuzzy
-msgid "_Save"
-msgstr "Mentés most"
-
-#: data/ui/Menu.ui:24
-#, fuzzy
-msgid "Save _As"
-msgstr "Mentés most"
-
-#: data/ui/UberwriterWindow.ui:157
-#, fuzzy
-msgid "Export as HTML"
-msgstr "Exportálás ODT formátumban"
-
-#: data/ui/UberwriterWindow.ui:166
-#, fuzzy
-msgid "Export as PDF"
-msgstr "Exportálás ODT formátumban"
-
-#: data/ui/UberwriterWindow.ui:201
-#, fuzzy
-msgid "Copy Raw HTML to Clipboard"
-msgstr "HTML kód másolása a vágólapra"
-
-#: data/ui/UberwriterWindow.ui:254
-msgid "Sidebar"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:270
-msgid "Open Search and Replace"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:271
-msgid "Search and Replace ..."
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:295
+#: data/ui/UberwriterWindow.ui:279
 msgid "Previous Match"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:339
+#: data/ui/UberwriterWindow.ui:320
+msgid "aA"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:324
 msgid "Case Sensitive"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:443
+#: data/ui/UberwriterWindow.ui:334
+msgid "(.*)"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:427
 msgid "Replace"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:457
+#: data/ui/UberwriterWindow.ui:441
 msgid "Replace all"
 msgstr ""
 
-#: uberwriter/FormatShortcuts.py:91
+#: uberwriter/FormatShortcuts.py:99
+msgid "emphasized text"
+msgstr "dőlt betű"
+
+#: uberwriter/FormatShortcuts.py:101
+msgid "strong text"
+msgstr "vastag betű"
+
+#: uberwriter/FormatShortcuts.py:103
 #, fuzzy
 msgid "striked out text"
 msgstr "vastag betű"
 
-#: data/ui/Export.ui:565 uberwriter/plugins/bibtex/bibtex_item.glade:18
-#: uberwriter/plugins/bibtex/bibtex_item.glade:32
-#: uberwriter/plugins/bibtex/bibtex_item.glade:45
-msgid "label"
+#: uberwriter/FormatShortcuts.py:121
+msgid "List item"
+msgstr "Listaelem"
+
+#: uberwriter/FormatShortcuts.py:181
+msgid "Heading"
+msgstr "Címsor"
+
+#: uberwriter/UberwriterExportDialog.py:48
+msgid "Untitled document.md"
 msgstr ""
 
-#: uberwriter_lib/AppWindow.py:248
+#: uberwriter/UberwriterExportDialog.py:372
+msgid "Please, install the TexLive extension from Gnome Software or running\n"
+msgstr ""
+
+#: uberwriter/UberwriterExportDialog.py:375
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr ""
+
+#: uberwriter/UberwriterInlinePreview.py:183
+msgid "Website is not available"
+msgstr "A weblap nem elérhető"
+
+#: uberwriter/UberwriterInlinePreview.py:185
+msgid "Website is available"
+msgstr "A weblap elérhető"
+
+#: uberwriter/UberwriterInlinePreview.py:435
+msgid "Open Link in Webbrowser"
+msgstr "A link megnyitása"
+
+#: uberwriter/UberwriterInlinePreview.py:500
+msgid "No matching footnote found"
+msgstr "Nincs találó lábjegyzet"
+
+#: uberwriter/UberwriterWindow.py:572
+msgid "Save your File"
+msgstr "Állomány mentése"
+
+#: uberwriter/UberwriterWindow.py:678
+msgid "MarkDown or Plain Text"
+msgstr "Markdown vagy síma szöveg"
+
+#: uberwriter/UberwriterWindow.py:681
+msgid "Open a .md-File"
+msgstr ".md állomány megnyitása"
+
+#: uberwriter/UberwriterWindow.py:706
+msgid "You have not saved your changes."
+msgstr "A változtatások nincsenek lementve"
+
+#: uberwriter/UberwriterWindow.py:708
+msgid "Close without Saving"
+msgstr "Bezárás mentés nélkül"
+
+#: uberwriter/UberwriterWindow.py:709
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: uberwriter/UberwriterWindow.py:710
+msgid "Save now"
+msgstr "Mentés most"
+
+#: uberwriter/UberwriterWindow.py:711
+msgid "Unsaved changes"
+msgstr "Mentetlen változtatások"
+
+#: uberwriter/UberwriterWindow.py:742
+#, fuzzy
+#| msgid "CSS File"
+msgid "New File"
+msgstr "CSS File"
+
+#: uberwriter/UberwriterWindow.py:780
+msgid "You can not enable the Spell Checker."
+msgstr "Helyesírás ellenőrzőt nem lehet bekapcsolni"
+
+#: uberwriter/UberwriterWindow.py:783
+msgid ""
+"Please install 'hunspell' or 'aspell' dictionarys for your language from the "
+"software center."
+msgstr ""
+"Installáld a 'hunspell' vagy az 'aspell' szótárat a nyelvedhez a "
+"szoftwareközpontból"
+
+#: uberwriter/headerbars.py:76
+#, fuzzy
+msgid "Exit Fullscreen"
+msgstr "Teljes képernyő"
+
+#: uberwriter/headerbars.py:118
+msgid "New"
+msgstr ""
+
+#: uberwriter/headerbars.py:119
+msgid "Open"
+msgstr ""
+
+#: uberwriter/headerbars.py:121
+#, fuzzy
+msgid "Save"
+msgstr "Mentés most"
+
+#: uberwriter/headerbars.py:128
+#, fuzzy
+msgid "Open Recent"
+msgstr "Elozmények megnyitása"
+
+#: uberwriter/headerbars.py:130
+#, fuzzy
+msgid "Search and replace"
+msgstr "Elozmények megnyitása"
+
+#: uberwriter/headerbars.py:131
+msgid "Menu"
+msgstr ""
+
+#: uberwriter_lib/AppWindow.py:173
+msgid "Show debug messages (-vv debugs uberwriter_lib also)"
+msgstr ""
+
+#: uberwriter_lib/AppWindow.py:175
 msgid "Use experimental features"
 msgstr ""
 
@@ -624,144 +570,129 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:18
-msgid "Open file base path"
-msgstr ""
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:487
+msgid "(no suggestions)"
+msgstr "(nincs javaslat)"
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:19
-msgid "Open file paths of the current session"
-msgstr ""
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:509
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:512
+msgid "Add \"{}\" to Dictionary"
+msgstr "{} hozzáadása a szótárhoz"
 
-#: data/ui/App_menu.ui:36
-msgid "Help to _translate"
-msgstr ""
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:516
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:518
+msgid "Ignore All"
+msgstr "Összes mellőzése"
 
-#: data/ui/App_menu.ui:40
-msgid "Donate to the project"
-msgstr ""
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:533
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:535
+msgid "Languages"
+msgstr "Nyelvek"
 
-#: data/ui/WindowMenu.ui:24
-msgid "Search and Replace"
-msgstr ""
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:551
+#: uberwriter_lib/gtkspellcheck/spellcheck.py:554
+msgid "Suggestions"
+msgstr "Javaslatok"
 
-#: data/ui/About.ui:12
-msgid "Copyright (C) 2018, Wolf Vollprecht"
-msgstr ""
+#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
+#~ msgstr "Uberwriter, egy egyszerü Markdown szövegszerkesztő"
 
-#: data/ui/About.ui:14
+#~ msgid "_File"
+#~ msgstr "_Fájl"
+
+#~ msgid "Open Recent File"
+#~ msgstr "Elozmények megnyitása"
+
+#~ msgid "Export as ODT"
+#~ msgstr "Exportálás ODT formátumban"
+
+#~ msgid "Advanced Export..."
+#~ msgstr "Exportálás..."
+
+#~ msgid "Copy raw HTML to clipboard"
+#~ msgstr "HTML kód másolása a vágólapra"
+
+#~ msgid "_Edit"
+#~ msgstr "Szerkesztés"
+
+#~ msgid "_View"
+#~ msgstr "_Nézet"
+
+#~ msgid "Light text on a dark background"
+#~ msgstr "Világos szöveg sötét háttéren"
+
+#~ msgid "Dark Mode"
+#~ msgstr "Elsötétített nézet"
+
+#~ msgid "Switch to preview mode"
+#~ msgstr "Előnézeti mód"
+
+#~ msgid "Auto _Spellcheck"
+#~ msgstr "Helyesírás ellenőrzés"
+
+#~ msgid "F_ormat"
+#~ msgstr "F_ormátum"
+
+#~ msgid "Unordered List Item"
+#~ msgstr "Felsorolás"
+
+#~ msgid "Horizontal Rule"
+#~ msgstr "Vízszintes elválasztó"
+
+#~ msgid "_Help"
+#~ msgstr "_Súgó"
+
+#~ msgid "Contents"
+#~ msgstr "Tartalom"
+
+#~ msgid "Short Markdown Tutorial"
+#~ msgstr "Rövid Markdown lecke"
+
+#~ msgid "Open Pandoc Online Markdown Help ..."
+#~ msgstr "Pandoc Markdown sugó megnyitása"
+
+#~ msgid "Get Help Online..."
+#~ msgstr "Online segítség…"
+
+#~ msgid "Translate This Application..."
+#~ msgstr "Alkalmazás fordítása..."
+
+#~ msgid "Go into fullscreen mode"
+#~ msgstr "Váltás teljes képernyő módba"
+
+#~ msgid "Show HTML preview"
+#~ msgstr "HTML előnézet"
+
+#~ msgid "You can not export to PDF."
+#~ msgstr "Nem tudtam PDF formátumba exportálni"
+
+#~ msgid ""
+#~ "Please install <a href=\"apt:texlive\">texlive</a> from the software "
+#~ "center."
+#~ msgstr ""
+#~ "Kérlek installáld a <a href=\"apt:texlive\">texlive</a> csomagot a "
+#~ "szoftwareközpontból."
+
 #, fuzzy
-msgid "Uberwriter website"
-msgstr "UberWriter"
+#~ msgid "Open examples"
+#~ msgstr ".md állomány megnyitása"
 
-#: data/ui/About.ui:60
-msgid "Donations:"
-msgstr ""
-
-#: data/ui/About.ui:69
-msgid "Liberapay"
-msgstr ""
-
-#: data/ui/About.ui:100
-msgid "Help to translate:"
-msgstr ""
-
-#: data/ui/About.ui:109
 #, fuzzy
-msgid "Poeditor"
-msgstr "Szerkesztés"
+#~ msgid "_Quick markdown tutorial"
+#~ msgstr "Rövid Markdown lecke"
 
-#: data/ui/Export.ui:559 data/ui/Export.ui:569
-msgid "PDF"
-msgstr ""
-
-#: data/ui/Export.ui:582
 #, fuzzy
-msgid "HTML"
-msgstr "HTML5"
+#~ msgid "_Save"
+#~ msgstr "Mentés most"
 
-#: data/ui/Export.ui:595
-msgid "ODT"
-msgstr ""
-
-#: data/ui/Export.ui:607
 #, fuzzy
-msgid "Advanced"
-msgstr "Exportálás..."
+#~ msgid "Export as HTML"
+#~ msgstr "Exportálás ODT formátumban"
 
-#: data/ui/Menu.ui:28
 #, fuzzy
-msgid "_Export"
-msgstr "Exportálás"
+#~ msgid "Export as PDF"
+#~ msgstr "Exportálás ODT formátumban"
 
-#: data/ui/Menu.ui:32
-msgid "Copy HTML"
-msgstr ""
-
-#: data/ui/Menu.ui:38 data/ui/Preferences.ui:14
-msgid "Preferences"
-msgstr ""
-
-#: data/ui/Menu.ui:44
-msgid "Open Tutorial"
-msgstr ""
-
-#: data/ui/Preferences.ui:45
 #, fuzzy
-msgid "Use dark mode"
-msgstr "Elsötétített nézet"
-
-#: data/ui/Preferences.ui:56
-#, fuzzy
-msgid "Autospellcheck"
-msgstr "Helyesírás ellenőrzés"
-
-#: data/ui/Preferences.ui:95
-msgid "page 1"
-msgstr ""
-
-#: uberwriter/UberwriterExportDialog.py:48
-msgid "Untitled document.md"
-msgstr ""
-
-#: uberwriter/UberwriterExportDialog.py:372
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
-""
-msgstr ""
-
-#: uberwriter/UberwriterExportDialog.py:375
-msgid "Please, install TexLive from your distribuiton repositories"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:894 uberwriter/UberwriterWindow.py:943
-msgid "New"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:895 uberwriter/UberwriterWindow.py:944
-msgid "Open"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:899 uberwriter/UberwriterWindow.py:946
-#: uberwriter/UberwriterWindow.py:949
-#, fuzzy
-msgid "Open Recent"
-msgstr "Elozmények megnyitása"
-
-#: uberwriter/UberwriterWindow.py:901 uberwriter/UberwriterWindow.py:951
-#, fuzzy
-msgid "Save"
-msgstr "Mentés most"
-
-#: uberwriter/UberwriterWindow.py:904 uberwriter/UberwriterWindow.py:954
-#, fuzzy
-msgid "Search and replace"
-msgstr "Elozmények megnyitása"
-
-#: uberwriter/UberwriterWindow.py:906 uberwriter/UberwriterWindow.py:956
-msgid "Menu"
-msgstr ""
-
-#: uberwriter/UberwriterWindow.py:961
-#, fuzzy
-msgid "Exit Fullscreen"
-msgstr "Teljes képernyő"
-
+#~ msgid "Copy Raw HTML to Clipboard"
+#~ msgstr "HTML kód másolása a vágólapra"
