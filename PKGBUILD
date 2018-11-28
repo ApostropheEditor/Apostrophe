@@ -1,6 +1,6 @@
 pkgname=uberwriter
 _pkgname=uberwriter
-pkgver=2.1.2
+pkgver=2.1.3
 pkgrel=1
 pkgdesc='A distraction free Markdown editor for GNU/Linux made with GTK+'
 arch=('any')
