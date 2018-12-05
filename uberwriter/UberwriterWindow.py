@@ -146,7 +146,12 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.scrolled_window.add(self.text_editor)
         self.alignment_padding = 40
         self.editor_viewport = self.builder.get_object('editor_viewport')
-        self.scrolled_window.connect_after("draw", self.draw_gradient)
+
+        # some people seems to have performance problems with the overlay. 
+        # Let them disable it
+        
+        if self.settings.get_value("gradient-overlay"):
+            self.scrolled_window.connect_after("draw", self.draw_gradient)
 
         self.smooth_scroll_starttime = 0
         self.smooth_scroll_endtime = 0
