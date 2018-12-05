@@ -149,7 +149,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
 
         # some people seems to have performance problems with the overlay. 
         # Let them disable it
-        
+
         if self.settings.get_value("gradient-overlay"):
             self.scrolled_window.connect_after("draw", self.draw_gradient)
 
