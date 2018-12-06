@@ -104,8 +104,10 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.status_bar_visible = True
         self.was_motion = True
         self.buffer_modified_for_status_bar = False
-        self.connect("motion-notify-event", self.on_motion_notify)
-        GObject.timeout_add(3000, self.poll_for_motion)
+
+        if self.settings.get_value("poll-motion"):
+            self.connect("motion-notify-event", self.on_motion_notify)
+            GObject.timeout_add(3000, self.poll_for_motion)
 
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)

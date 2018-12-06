@@ -21,6 +21,13 @@
         It can cause performance problems to some users
       </description>
     </key>
+    <key name='poll-motion' type='b'>
+      <default>true</default>
+      <summary>Allow Uberwriter to poll cursor motion</summary>
+      <description>
+        Used for hidding the headerbar after 3 seconds if the cursor is not moving.
+      </description>
+    </key>
     <key name='open-file-path' type='s'>
       <default>"/tmp"</default>
       <summary>Open file base path</summary>
