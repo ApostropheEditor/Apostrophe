@@ -852,9 +852,9 @@ class UberwriterWindow(Gtk.ApplicationWindow):
 
             # Set the styles according the color theme
             if self.settings.get_value("dark-mode"):
-                stylesheet = helpers.get_media_path('uberwriter_dark.css')
+                stylesheet = helpers.get_media_path('github-md-dark.css')
             else:
-                stylesheet = helpers.get_media_path('uberwriter.css')
+                stylesheet = helpers.get_media_path('github-md.css')
 
             args = ['pandoc',
                     '-s',

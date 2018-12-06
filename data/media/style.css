@@ -4,7 +4,7 @@
   inclusion in templates
 */
 
-@define-color dark_bg #333;
+@define-color dark_bg #31373D;
 @define-color light_bg #EDEDED;
 
 @binding-set window-bindings {
