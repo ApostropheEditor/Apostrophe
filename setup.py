@@ -43,7 +43,7 @@ else:
 
 setup(
     name='uberwriter',
-    version='2.1.3',
+    version='2.1.4',
     license='GPL-3',
     author='Wolf Vollprecht',
     author_email='w.vollprecht@gmail.com',
@@ -79,8 +79,8 @@ setup(
         (app_prefix + 'share/glib-2.0/schemas', ['data/de.wolfvollprecht.UberWriter.gschema.xml']),
         (app_prefix + 'share/icons/hicolor/scalable/apps', ['data/media/de.wolfvollprecht.UberWriter.svg']),
         (app_prefix + 'share/applications', ['de.wolfvollprecht.UberWriter.desktop']),
-        (app_prefix + 'opt/uberwriter/data/ui', extra_files_ui),
-        (app_prefix + 'opt/uberwriter/data/media', extra_files_media),
-        (app_prefix + 'opt/uberwriter/data/lua', extra_files_scripts)
+        (app_prefix + 'share/uberwriter/data/ui', extra_files_ui),
+        (app_prefix + 'share/uberwriter/data/media', extra_files_media),
+        (app_prefix + 'share/uberwriter/data/lua', extra_files_scripts)
     ]
 )
