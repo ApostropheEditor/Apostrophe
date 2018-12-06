@@ -213,7 +213,7 @@ class Export:
                 args.append("-o%s.odt" % basename)
 
             elif export_format == "html":
-                css = helpers.get_media_file('uberwriter.css')
+                css = helpers.get_media_file('github-md.css')
                 relativize = helpers.get_script_path('relative_to_absolute.lua')
                 task_list = helpers.get_script_path('task-list.lua')
                 args.append("-c%s" % css)
