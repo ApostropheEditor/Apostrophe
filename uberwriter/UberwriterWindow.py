@@ -715,8 +715,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
-            dialog.set_title(_('Unsaved changes'))
-            dialog.set_default_size(200, 150)
+            # dialog.set_default_size(200, 60)
             dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
 
