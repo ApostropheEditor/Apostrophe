@@ -98,9 +98,10 @@ class Application(Gtk.Application):
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
+        set_gradient_overlay = self.settings.get_value("gradient-overlay")
         action = Gio.SimpleAction.new_stateful("draw_gradient",
                                                None,
-                                               GLib.Variant.new_boolean(True))
+                                               GLib.Variant.new_boolean(set_gradient_overlay))
         action.connect("change-state", self.on_draw_gradient)
         self.add_action(action)
 
