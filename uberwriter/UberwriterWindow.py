@@ -153,7 +153,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Let them disable it
 
         if self.settings.get_value("gradient-overlay"):
-            self.scrolled_window.connect_after("draw", self.draw_gradient)
+            self.overlay = self.scrolled_window.connect_after("draw", self.draw_gradient)
 
         self.smooth_scroll_starttime = 0
         self.smooth_scroll_endtime = 0

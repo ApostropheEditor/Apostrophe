@@ -98,6 +98,12 @@ class Application(Gtk.Application):
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
+        action = Gio.SimpleAction.new_stateful("draw_gradient",
+                                               None,
+                                               GLib.Variant.new_boolean(True))
+        action.connect("change-state", self.on_draw_gradient)
+        self.add_action(action)
+
         # Menu Actions
 
         action = Gio.SimpleAction.new("new", None)
@@ -234,6 +240,16 @@ class Application(Gtk.Application):
     def on_spellcheck(self, action, value):
         action.set_state(value)
         self.window.toggle_spellcheck(value)
+
+    def on_draw_gradient(self, action, value):
+        action.set_state(value)
+        self.settings.set_value("gradient-overlay",
+                                GLib.Variant("b", value))
+        if value:
+            self.window.overlay = self.window.scrolled_window.connect_after(
+                                "draw", self.window.draw_gradient)
+        else:
+            self.window.scrolled_window.disconnect(self.window.overlay)
 
     def on_new(self, _action, _value):
         self.window.new_document()
