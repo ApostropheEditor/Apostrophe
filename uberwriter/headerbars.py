@@ -20,6 +20,7 @@ from collections import namedtuple
 from gettext import gettext as _
 from gi.repository import Gtk
 from uberwriter_lib.helpers import get_builder
+from uberwriter_lib.helpers import get_descendant
 
 from uberwriter_lib.AppWindow import Application as app
 
@@ -120,6 +121,10 @@ def buttons(app):
 
     recents_builder = get_builder('Recents')
     recents = recents_builder.get_object("recent_md_popover")
+
+    recents_treeview = get_descendant(recents, "recent_view", level=0)
+    recents_treeview.set_activate_on_single_click(True)
+
     recents_wd = recents_builder.get_object("recent_md_widget")
     recents_wd.connect('item-activated', app.on_open_recent)
 
