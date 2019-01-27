@@ -13,6 +13,13 @@
         asked to install them manually.
       </description>
     </key>
+    <key name='spellcheck' type='b'>
+      <default>true</default>
+      <summary>Spellcheck</summary>
+      <description>
+        Enable/disable spellchecking in the application.
+      </description>
+    </key>
     <key name='open-file-path' type='s'>
       <default>"/tmp"</default>
       <summary>Open file base path</summary>
