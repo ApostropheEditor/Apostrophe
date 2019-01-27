@@ -29,7 +29,7 @@ from gettext import gettext as _
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit2', '4.0') # pylint: disable=wrong-import-position
+gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio  
 from gi.repository import WebKit2 as WebKit
 from gi.repository import Pango  # pylint: disable=E0611
@@ -45,7 +45,7 @@ from uberwriter_lib.gtkspellcheck import SpellChecker
 from .MarkupBuffer import MarkupBuffer
 from .UberwriterTextEditor import TextEditor
 from .UberwriterInlinePreview import UberwriterInlinePreview
-# from .UberwriterSidebar import UberwriterSidebar
+from .UberwriterSidebar import UberwriterSidebar
 from .UberwriterSearchAndReplace import UberwriterSearchAndReplace
 from .Settings import Settings
 # from .UberwriterAutoCorrect import UberwriterAutoCorrect
@@ -62,9 +62,9 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
 # See texteditor_lib.Window.py for more details about how this class works
 
+
 class UberwriterWindow(Gtk.ApplicationWindow):
 
-    #__gtype_name__ = "UberwriterWindow"
     WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
 
     def __init__(self, app):
@@ -442,7 +442,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         loc_rect = self.text_editor.get_iter_location(ins_it)
 
         # alignment offset added from top
-        pos_y = loc_rect.y + loc_rect.height + self.text_editor.props.top_margin # pylint: disable=no-member
+        pos_y = loc_rect.y + loc_rect.height + self.text_editor.props.top_margin  # pylint: disable=no-member
 
         ha = self.scrolled_window.get_vadjustment()
         if ha.props.page_size < gradient_offset:
@@ -518,7 +518,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.remove_typewriter()
             self.init_typewriter()
 
-        if self.text_editor.props.width_request != width_request: # pylint: disable=no-member
+        if self.text_editor.props.width_request != width_request:  # pylint: disable=no-member
             self.text_editor.props.width_request = width_request
             self.scrolled_window.props.width_request = width_request
             alloc = self.text_editor.get_allocation()
@@ -744,11 +744,11 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             except:
                 try:
                     self.spell_checker = SpellChecker(
-                    self.text_editor, locale.getdefaultlocale()[0],
-                    collapse=False)
+                      self.text_editor, locale.getdefaultlocale()[0],
+                      collapse=False)
                     if self.auto_correct:
                         self.auto_correct.set_language(self.spell_checker.language)
-                        self.spell_checker.connect_language_change( # pylint: disable=no-member
+                        self.spell_checker.connect_language_change(  # pylint: disable=no-member
                             self.auto_correct.set_language)
                 except:
                     self.spell_checker = None
@@ -818,7 +818,6 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         Arguments:
             state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
         """
-
 
         if state.get_boolean():
 
@@ -987,7 +986,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         if (self.was_motion is False
                 and self.status_bar_visible
                 and self.buffer_modified_for_status_bar
-                and self.text_editor.props.has_focus): #pylint: disable=no-member
+                and self.text_editor.props.has_focus): # pylint: disable=no-member
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
             self.statusbar_revealer.set_reveal_child(False)
             self.headerbar.hb_revealer.set_reveal_child(False)
@@ -1037,7 +1036,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         """
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
 
-        lg_top = cairo.LinearGradient(0, 0, 0, 35) #pylint: disable=no-member
+        lg_top = cairo.LinearGradient(0, 0, 0, 35)  # pylint: disable=no-member
         lg_top.add_color_stop_rgba(
             0, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_top.add_color_stop_rgba(
@@ -1051,7 +1050,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         cr.fill()
         cr.rectangle(0, height - 35, width, height)
 
-        lg_btm = cairo.LinearGradient(0, height - 35, 0, height) # pylint: disable=no-member
+        lg_btm = cairo.LinearGradient(0, height - 35, 0, height)  # pylint: disable=no-member
         lg_btm.add_color_stop_rgba(
             1, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_btm.add_color_stop_rgba(
