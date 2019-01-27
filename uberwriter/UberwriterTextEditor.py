@@ -44,14 +44,11 @@ Extending
 A TextEditor is Gtk.TextView
 
 """
-try:
-    from gi.repository import Gtk
-    from gi.repository import Gdk
-    from gi.repository import GObject
-    from .FormatShortcuts import FormatShortcuts
 
-except:
-    print("couldn't load depencies")
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk, GObject
+from .FormatShortcuts import FormatShortcuts
 
 import logging
 LOGGER = logging.getLogger('uberwriter')
@@ -83,6 +80,7 @@ class UndoableDelete:
         self.mergeable = not bool(self.end - self.start > 1
                                   or self.text in ("\r", "\n", " "))
 
+
 class TextEditor(Gtk.TextView):
     """TextEditor encapsulates management of TextBuffer and TextIter for
     common functionality, such as cut, copy, paste, undo, redo, and
@@ -90,14 +88,14 @@ class TextEditor(Gtk.TextView):
     """
 
     __gsignals__ = {
-        'insert-italic': (GObject.SIGNAL_ACTION, None, ()),
-        'insert-bold': (GObject.SIGNAL_ACTION, None, ()),
-        'insert-hrule': (GObject.SIGNAL_ACTION, None, ()),
-        'insert-ulistitem': (GObject.SIGNAL_ACTION, None, ()),
-        'insert-heading': (GObject.SIGNAL_ACTION, None, ()),
-        'insert-strikeout': (GObject.SIGNAL_ACTION, None, ()),
-        'undo': (GObject.SIGNAL_ACTION, None, ()),
-        'redo': (GObject.SIGNAL_ACTION, None, ())
+        'insert-italic': (GObject.SignalFlags.ACTION, None, ()),
+        'insert-bold': (GObject.SignalFlags.ACTION, None, ()),
+        'insert-hrule': (GObject.SignalFlags.ACTION, None, ()),
+        'insert-ulistitem': (GObject.SignalFlags.ACTION, None, ()),
+        'insert-heading': (GObject.SignalFlags.ACTION, None, ()),
+        'insert-strikeout': (GObject.SignalFlags.ACTION, None, ()),
+        'undo': (GObject.SignalFlags.ACTION, None, ()),
+        'redo': (GObject.SignalFlags.ACTION, None, ())
     }
 
     def scroll_to_iter(self, iterable, *args):
@@ -111,10 +109,13 @@ class TextEditor(Gtk.TextView):
         Gtk.TextView.__init__(self)
         self.undo_max = None
 
-        self.insert_event = self.get_buffer().connect("insert-text", self.on_insert_text)
-        self.delete_event = self.get_buffer().connect("delete-range", self.on_delete_range)
+        self.insert_event = self.get_buffer().connect("insert-text",
+                                                      self.on_insert_text)
+        self.delete_event = self.get_buffer().connect("delete-range",
+                                                      self.on_delete_range)
         display = self.get_display()
-        self.clipboard = Gtk.Clipboard.get_for_display(display, Gdk.SELECTION_CLIPBOARD)
+        self.clipboard = Gtk.Clipboard.get_for_display(display,
+                                                       Gdk.SELECTION_CLIPBOARD)
 
         self.undo_stack = []
         self.redo_stack = []
@@ -153,7 +154,6 @@ class TextEditor(Gtk.TextView):
     @property
     def can_redo(self):
         return bool(self.redo_stack)
-
 
     @text.setter
     def text(self, text):
@@ -371,10 +371,10 @@ class TextEditor(Gtk.TextView):
             self.undo_stack.append(undo_action)
             return
         if can_be_merged(prev_delete, undo_action):
-            if prev_delete.start == undo_action.start: # delete key used
+            if prev_delete.start == undo_action.start:  # delete key used
                 prev_delete.text += undo_action.text
                 prev_delete.end += (undo_action.end - undo_action.start)
-            else: # Backspace used
+            else:  # Backspace used
                 prev_delete.text = "%s%s" % (undo_action.text,
                                              prev_delete.text)
                 prev_delete.start = undo_action.start
@@ -427,10 +427,10 @@ class TestWindow(Gtk.Window):
 
     """
     def __init__(self):
-        #create a window a VBox to hold the controls
+        # create a window a VBox to hold the controls
         Gtk.Window.__init__(self)
         self.set_title("TextEditor Test Window")
-        windowbox = Gtk.VBox(False, 2)
+        windowbox = Gtk.VBox(homogeneous=False, spacing=2)
         windowbox.show()
         self.add(windowbox)
         self.editor = TextEditor()
@@ -447,27 +447,27 @@ class TestWindow(Gtk.Window):
         self.editor.cursor_to_end()
         self.editor.cursor_to_start()
         self.editor.undo_max = 100
-        cut_button = Gtk.Button("Cut")
+        cut_button = Gtk.Button(label="Cut")
         cut_button.connect("clicked", self.editor.cut)
         cut_button.show()
         windowbox.pack_start(cut_button, False, False, 0)
 
-        copy_button = Gtk.Button("Copy")
+        copy_button = Gtk.Button(label="Copy")
         copy_button.connect("clicked", self.editor.copy)
         copy_button.show()
         windowbox.pack_start(copy_button, False, False, 0)
 
-        paste_button = Gtk.Button("Paste")
+        paste_button = Gtk.Button(label="Paste")
         paste_button.connect("clicked", self.editor.paste)
         paste_button.show()
         windowbox.pack_start(paste_button, False, False, 0)
 
-        undo_button = Gtk.Button("Undo")
+        undo_button = Gtk.Button(label="Undo")
         undo_button.connect("clicked", self.editor.undo)
         undo_button.show()
         windowbox.pack_start(undo_button, False, False, 0)
 
-        redo_button = Gtk.Button("Redo")
+        redo_button = Gtk.Button(label="Redo")
         redo_button.connect("clicked", self.editor.redo)
         redo_button.show()
         windowbox.pack_start(redo_button, False, False, 0)
