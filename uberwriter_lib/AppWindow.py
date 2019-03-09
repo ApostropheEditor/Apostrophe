@@ -16,11 +16,12 @@ from gettext import gettext as _
 
 import gi
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
-from gi.repository import GLib, Gio, Gtk, GdkPixbuf
+from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf
 
 from uberwriter import UberwriterWindow
 from uberwriter.Settings import Settings
 from uberwriter_lib import set_up_logging
+from uberwriter_lib import helpers
 from uberwriter_lib.PreferencesDialog import PreferencesDialog
 from . helpers import get_builder, get_media_path
 
@@ -36,8 +37,26 @@ class Application(Gtk.Application):
     def init(self):
         """Init main application"""
 
+        # set theme variant (dark/light) 
         dark = self.settings.get_value("dark-mode")
         Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", dark)
+
+        # set css for current theme
+        self.style_provider = Gtk.CssProvider()
+
+        themes = {
+            "Arc": "arc_style.css",
+            "Arc-Dark": "arc_style.css",
+            "Arc-Darker": "arc_style.css",
+        }
+
+        theme = Gtk.Settings.get_default().get_property("gtk-theme-name")
+        self.style_provider.load_from_path(helpers.get_media_path(themes.get(theme,"adwaita_style.css")))
+
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), self.style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
 
 
