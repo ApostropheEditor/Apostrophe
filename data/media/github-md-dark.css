@@ -474,7 +474,7 @@ code {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(27,31,35,0.05);
+  background-color: #fafbfc9d;
   color: #1b1f23;
   border-radius: 3px;
 }
@@ -508,7 +508,7 @@ pre {
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: #f6f8fa;
+  background-color: #f6f8faf1;
   border-radius: 3px;
 }
 
