@@ -15,6 +15,7 @@ import webbrowser
 from gettext import gettext as _
 
 import gi
+
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
 from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf
 
@@ -24,6 +25,7 @@ from uberwriter_lib import set_up_logging
 from uberwriter_lib import helpers
 from uberwriter_lib.PreferencesDialog import PreferencesDialog
 from . helpers import get_builder, get_media_path
+
 
 class Application(Gtk.Application):
 
@@ -57,8 +59,6 @@ class Application(Gtk.Application):
             Gdk.Screen.get_default(), self.style_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-
-
 
     def do_startup(self, *args, **kwargs):
 
@@ -111,9 +111,10 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_search)
         self.add_action(action)
 
+        set_spellcheck = self.settings.get_value("spellcheck")
         action = Gio.SimpleAction.new_stateful("spellcheck",
                                                None,
-                                               GLib.Variant.new_boolean(True))
+                                               GLib.Variant.new_boolean(set_spellcheck))
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
@@ -259,6 +260,8 @@ class Application(Gtk.Application):
 
     def on_spellcheck(self, action, value):
         action.set_state(value)
+        self.settings.set_value("spellcheck",
+                                GLib.Variant("b", value))
         self.window.toggle_spellcheck(value)
 
     def on_draw_gradient(self, action, value):

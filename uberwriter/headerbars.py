@@ -18,6 +18,9 @@
 
 from collections import namedtuple
 from gettext import gettext as _
+
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from uberwriter_lib.helpers import get_builder
 from uberwriter_lib.helpers import get_descendant

@@ -16,6 +16,8 @@
 
 import os
 import subprocess
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
 
 # from plugins import plugins
@@ -151,10 +153,10 @@ class UberwriterSidebar():
                 filename = self.store.get_value(treeiter, 1)
                 item = Gtk.MenuItem.new()
                 item.set_label("Open ...")
-                item.connect("activate", self.context_menu_open_file)
-                item.filename = filename
+                # item.connect("activate", self.context_menu_open_file)
+                # item.filename = filename
                 item.show()
-                self.popup.append(item)
+                #  self.popup.append(item)
             self.popup.show()
             self.popup.popup(None, None, None, None, event.button, event.time)
             return True
