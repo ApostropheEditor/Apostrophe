@@ -153,7 +153,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Let them disable it
 
         if self.settings.get_value("gradient-overlay"):
-            self.scrolled_window.connect_after("draw", self.draw_gradient)
+            self.overlay = self.scrolled_window.connect_after("draw", self.draw_gradient)
 
         self.smooth_scroll_starttime = 0
         self.smooth_scroll_endtime = 0
@@ -177,13 +177,13 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Init file name with None
         self.set_filename()
 
-        self.style_provider = Gtk.CssProvider()
-        self.style_provider.load_from_path(helpers.get_media_path('style.css'))
+        # self.style_provider = Gtk.CssProvider()
+        # self.style_provider.load_from_path(helpers.get_media_path('arc_style.css'))
 
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+        # Gtk.StyleContext.add_provider_for_screen(
+        #     Gdk.Screen.get_default(), self.style_provider,
+        #     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        # )
 
         # Markup and Shortcuts for the TextBuffer
         self.markup_buffer = MarkupBuffer(
@@ -715,8 +715,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
-            dialog.set_title(_('Unsaved changes'))
-            dialog.set_default_size(200, 150)
+            # dialog.set_default_size(200, 60)
             dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
 

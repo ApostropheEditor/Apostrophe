@@ -21,6 +21,8 @@ import logging
 import os
 import shutil
 
+from gi.repository import Gtk
+
 from . uberwriterconfig import get_data_file
 from . Builder import Builder
 
@@ -152,3 +154,32 @@ def exist_executable(command):
     """
 
     return shutil.which(command) is not None
+
+def get_descendant(widget, child_name, level, doPrint=False):
+    if widget is not None:
+        if doPrint: print("-"*level + str(Gtk.Buildable.get_name(widget)) +
+                          " :: " + widget.get_name())
+    else:
+        if doPrint: print("-"*level + "None")
+        return None
+    #/*** If it is what we are looking for ***/
+    if Gtk.Buildable.get_name(widget) == child_name: # not widget.get_name() !
+        return widget
+    #/*** If this widget has one child only search its child ***/
+    if (hasattr(widget, 'get_child') and
+            callable(getattr(widget, 'get_child')) and
+            child_name != ""):
+        child = widget.get_child()
+        if child is not None:
+            return get_descendant(child, child_name, level+1,doPrint)
+    # /*** Ity might have many children, so search them ***/
+    elif (hasattr(widget, 'get_children') and
+          callable(getattr(widget, 'get_children')) and
+          child_name != ""):
+        children = widget.get_children()
+        # /*** For each child ***/
+        found = None
+        for child in children:
+            if child is not None:
+                found = get_descendant(child, child_name, level+1, doPrint) # //search the child
+                if found: return found
