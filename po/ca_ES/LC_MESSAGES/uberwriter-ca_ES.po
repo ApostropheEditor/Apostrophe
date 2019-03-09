@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: UberWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-18 17:13+0200\n"
+"POT-Creation-Date: 2018-11-27 21:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,18 +10,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.9\n"
+"X-Generator: Poedit 2.2\n"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:9
 msgid "Dark mode"
 msgstr "Mode fosc"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:10
-#, fuzzy
 msgid ""
 "If enabled, the window will be dark themed If disabled, the window will be "
 "light themed asked to install them manually."
-msgstr "Si engegat, la finestra tindrà un tema fosc"
+msgstr "Si engegat, la finestra tindrà un tema fosc."
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:18
 msgid "Open file base path"
@@ -39,19 +38,19 @@ msgstr "Copyright (C) 2018, Wolf Vollprecht"
 msgid "Uberwriter website"
 msgstr "Pàgina web del Uberwriter"
 
-#: data/ui/About.ui:60
+#: data/ui/About.ui:66
 msgid "Donations:"
 msgstr "Donatius:"
 
-#: data/ui/About.ui:69
+#: data/ui/About.ui:75
 msgid "Liberapay"
 msgstr "Liberapay"
 
-#: data/ui/About.ui:100
+#: data/ui/About.ui:106
 msgid "Help to translate:"
 msgstr "Ajuda a traduir:"
 
-#: data/ui/About.ui:109
+#: data/ui/About.ui:115
 msgid "Poeditor"
 msgstr "Poeditor"
 
@@ -189,57 +188,56 @@ msgstr "ODT"
 msgid "Advanced"
 msgstr "Exportació avançada"
 
-#: data/ui/Menu.ui:7
+#: data/ui/Menu.ui:6
 msgid "Focus Mode"
 msgstr "Mode de concentració"
 
-#: data/ui/Menu.ui:12
+#: data/ui/Menu.ui:10
 msgid "Preview"
 msgstr "Previsualització"
 
-#: data/ui/Menu.ui:17
+#: data/ui/Menu.ui:14
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: data/ui/Menu.ui:24
+#: data/ui/Menu.ui:20
 msgid "Save _As"
 msgstr "Des_a com a"
 
-#: data/ui/Menu.ui:28
+#: data/ui/Menu.ui:24
 msgid "_Export"
 msgstr "_Exporta"
 
-#: data/ui/Menu.ui:32
+#: data/ui/Menu.ui:28
 msgid "Copy HTML"
 msgstr "Copia HTML"
 
-#: data/ui/Menu.ui:38 data/ui/Preferences.ui:14
-msgid "Preferences"
-msgstr "Preferències"
-
-#: data/ui/Menu.ui:44
+#: data/ui/Menu.ui:34
 msgid "Open Tutorial"
 msgstr "Obri el Tutorial"
 
-#: data/ui/Menu.ui:49
+#: data/ui/Menu.ui:39
 msgid "Pandoc _Help"
 msgstr "Ajuda del Pandoc"
 
-#: data/ui/Menu.ui:53
-msgid "_Shortcuts"
+#: data/ui/Menu.ui:44 data/ui/Preferences.ui:14
+msgid "Preferences"
+msgstr "Preferències"
+
+#: data/ui/Menu.ui:49
+#, fuzzy
+#| msgid "_Shortcuts"
+msgid "_Keyboard Shortcuts"
 msgstr "Dreceres"
 
-#: data/ui/Menu.ui:59
-msgid "_About"
-msgstr "_Acerca de"
-
-#: data/ui/Menu.ui:62
-msgid "_Quit"
-msgstr "Surt"
+#: data/ui/Menu.ui:53
+#, fuzzy
+#| msgid "UberWriter"
+msgid "_About UberWriter"
+msgstr "UberWriter"
 
 #: data/ui/Preferences.ui:45
 #, fuzzy
-#| msgid "Dark mode"
 msgid "Use dark mode"
 msgstr "Mode fosc"
 
@@ -365,55 +363,59 @@ msgstr ""
 msgid "Next Match"
 msgstr "Següent coincidència"
 
-#: data/ui/UberwriterWindow.ui:41
+#: data/ui/UberwriterWindow.ui:36
 msgid "Open Replace"
 msgstr "Reemplaçar"
 
-#: data/ui/UberwriterWindow.ui:52
-msgid "Activate Regex"
-msgstr "Expressió regular"
-
-#: data/ui/UberwriterWindow.ui:112
+#: data/ui/UberwriterWindow.ui:96
 msgid "Words:"
 msgstr "Paraules:"
 
-#: data/ui/UberwriterWindow.ui:155
+#: data/ui/UberwriterWindow.ui:139
 msgid "Characters:"
 msgstr "Caràcters:"
 
-#: data/ui/UberwriterWindow.ui:295
+#: data/ui/UberwriterWindow.ui:279
 msgid "Previous Match"
 msgstr "Coincidència anterior"
 
-#: data/ui/UberwriterWindow.ui:339
+#: data/ui/UberwriterWindow.ui:320
+msgid "aA"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:324
 msgid "Case Sensitive"
 msgstr "Coincidència de majúscules i minúscules"
 
-#: data/ui/UberwriterWindow.ui:443
+#: data/ui/UberwriterWindow.ui:334
+msgid "(.*)"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:427
 msgid "Replace"
 msgstr "Reemplaça"
 
-#: data/ui/UberwriterWindow.ui:457
+#: data/ui/UberwriterWindow.ui:441
 msgid "Replace all"
 msgstr "Reemplaça tot"
 
-#: uberwriter/FormatShortcuts.py:87
+#: uberwriter/FormatShortcuts.py:99
 msgid "emphasized text"
 msgstr "text destacat"
 
-#: uberwriter/FormatShortcuts.py:89
+#: uberwriter/FormatShortcuts.py:101
 msgid "strong text"
 msgstr "text en negreta"
 
-#: uberwriter/FormatShortcuts.py:91
+#: uberwriter/FormatShortcuts.py:103
 msgid "striked out text"
 msgstr "text destacat"
 
-#: uberwriter/FormatShortcuts.py:105
+#: uberwriter/FormatShortcuts.py:121
 msgid "List item"
 msgstr "Element de llista"
 
-#: uberwriter/FormatShortcuts.py:186
+#: uberwriter/FormatShortcuts.py:181
 msgid "Heading"
 msgstr "Encapçalament"
 
@@ -431,59 +433,65 @@ msgstr ""
 msgid "Please, install TexLive from your distribuiton repositories"
 msgstr "Per favor, instal·leu TexLive dels repositoris del vostre sistema"
 
-#: uberwriter/UberwriterInlinePreview.py:187
+#: uberwriter/UberwriterInlinePreview.py:183
 msgid "Website is not available"
 msgstr "La pàgina web no està disponible"
 
-#: uberwriter/UberwriterInlinePreview.py:189
+#: uberwriter/UberwriterInlinePreview.py:185
 msgid "Website is available"
 msgstr "La pàgina web està disponible"
 
-#: uberwriter/UberwriterInlinePreview.py:441
+#: uberwriter/UberwriterInlinePreview.py:435
 msgid "Open Link in Webbrowser"
 msgstr "Obre l'enllaç en un navegador web"
 
-#: uberwriter/UberwriterInlinePreview.py:503
+#: uberwriter/UberwriterInlinePreview.py:500
 msgid "No matching footnote found"
 msgstr "No s'ha pogut trobar la nota de peu corresponent"
 
-#: uberwriter/UberwriterWindow.py:347
+#: uberwriter/UberwriterWindow.py:572
 msgid "Save your File"
 msgstr "Deseu el vostre fitxer"
 
-#: uberwriter/UberwriterWindow.py:448
+#: uberwriter/UberwriterWindow.py:678
 msgid "MarkDown or Plain Text"
 msgstr "Markdown o text simple"
 
-#: uberwriter/UberwriterWindow.py:451
+#: uberwriter/UberwriterWindow.py:681
 msgid "Open a .md-File"
 msgstr "Obre un fitxer .md"
 
-#: uberwriter/UberwriterWindow.py:473
+#: uberwriter/UberwriterWindow.py:706
 msgid "You have not saved your changes."
 msgstr "No heu desat els canvis."
 
-#: uberwriter/UberwriterWindow.py:475
+#: uberwriter/UberwriterWindow.py:708
 msgid "Close without Saving"
 msgstr "Tanca sense desar"
 
-#: uberwriter/UberwriterWindow.py:476
+#: uberwriter/UberwriterWindow.py:709
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: uberwriter/UberwriterWindow.py:477
+#: uberwriter/UberwriterWindow.py:710
 msgid "Save now"
 msgstr "Desa ara"
 
-#: uberwriter/UberwriterWindow.py:478
+#: uberwriter/UberwriterWindow.py:711
 msgid "Unsaved changes"
 msgstr "Canvis sense desar"
 
-#: uberwriter/UberwriterWindow.py:537
+#: uberwriter/UberwriterWindow.py:742
+#, fuzzy
+#| msgid "CSS File"
+msgid "New File"
+msgstr "Fitxer CSS"
+
+#: uberwriter/UberwriterWindow.py:780
 msgid "You can not enable the Spell Checker."
 msgstr "No es pot activar el corrector ortogràfic."
 
-#: uberwriter/UberwriterWindow.py:540
+#: uberwriter/UberwriterWindow.py:783
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
@@ -491,40 +499,39 @@ msgstr ""
 "Instal·leu els diccionaris de «hunspell» o «aspell» per al vostre idioma des "
 "del centre de programari."
 
-#: uberwriter/UberwriterWindow.py:894 uberwriter/UberwriterWindow.py:943
-msgid "New"
-msgstr "Nou"
-
-#: uberwriter/UberwriterWindow.py:895 uberwriter/UberwriterWindow.py:944
-msgid "Open"
-msgstr "Obre"
-
-#: uberwriter/UberwriterWindow.py:899 uberwriter/UberwriterWindow.py:946
-#: uberwriter/UberwriterWindow.py:949
-msgid "Open Recent"
-msgstr "Obre un fitxer recent"
-
-#: uberwriter/UberwriterWindow.py:901 uberwriter/UberwriterWindow.py:951
-msgid "Save"
-msgstr "Desa"
-
-#: uberwriter/UberwriterWindow.py:904 uberwriter/UberwriterWindow.py:954
-msgid "Search and replace"
-msgstr "Cerca i reemplaça"
-
-#: uberwriter/UberwriterWindow.py:906 uberwriter/UberwriterWindow.py:956
-msgid "Menu"
-msgstr "Menú"
-
-#: uberwriter/UberwriterWindow.py:961
+#: uberwriter/headerbars.py:76
 msgid "Exit Fullscreen"
 msgstr "Sortir de pantalla completa"
 
-#: uberwriter_lib/AppWindow.py:246
+#: uberwriter/headerbars.py:118
+msgid "New"
+msgstr "Nou"
+
+#: uberwriter/headerbars.py:119
+msgid "Open"
+msgstr "Obre"
+
+#: uberwriter/headerbars.py:121
+msgid "Save"
+msgstr "Desa"
+
+#: uberwriter/headerbars.py:128
+msgid "Open Recent"
+msgstr "Obre un fitxer recent"
+
+#: uberwriter/headerbars.py:130
+msgid "Search and replace"
+msgstr "Cerca i reemplaça"
+
+#: uberwriter/headerbars.py:131
+msgid "Menu"
+msgstr "Menú"
+
+#: uberwriter_lib/AppWindow.py:173
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr "Mostra missatges de depuració (-vv depura uberwriter_lib també)"
 
-#: uberwriter_lib/AppWindow.py:248
+#: uberwriter_lib/AppWindow.py:175
 msgid "Use experimental features"
 msgstr "Utilitzar característiques experimentals"
 
@@ -575,8 +582,14 @@ msgstr "Suggeriments"
 #~ msgid "_File"
 #~ msgstr "_Fitxer"
 
+#~ msgid "Open Recent File"
+#~ msgstr "Obre un fitxer recent"
+
 #~ msgid "Export as ODT"
 #~ msgstr "Exporta com a ODT"
+
+#~ msgid "Advanced Export..."
+#~ msgstr "Exportació avançada…"
 
 #~ msgid "Copy raw HTML to clipboard"
 #~ msgstr "Copia el codi HTML al porta-retalls"
@@ -595,6 +608,9 @@ msgstr "Suggeriments"
 
 #~ msgid "Switch to preview mode"
 #~ msgstr "Canvia al mode de previsualització"
+
+#~ msgid "Auto _Spellcheck"
+#~ msgstr "_Correcció ortogràfica automàtica"
 
 #~ msgid "F_ormat"
 #~ msgstr "F_ormat"
@@ -639,6 +655,15 @@ msgstr "Suggeriments"
 #~ msgid "New window"
 #~ msgstr "Nova finestra"
 
+#~ msgid "_About"
+#~ msgstr "_Acerca de"
+
+#~ msgid "_Quit"
+#~ msgstr "Surt"
+
+#~ msgid "Activate Regex"
+#~ msgstr "Expressió regular"
+
 #~ msgid "_New"
 #~ msgstr "_Nou"
 
@@ -668,3 +693,6 @@ msgstr "Suggeriments"
 
 #~ msgid "Open Search and Replace"
 #~ msgstr "Cerca i reemplaça"
+
+#~ msgid "Search and Replace ..."
+#~ msgstr "Cerca i reemplaça..."

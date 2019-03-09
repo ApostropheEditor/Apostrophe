@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: UberWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-18 17:13+0200\n"
+"POT-Creation-Date: 2018-11-27 21:21+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.9\n"
+"X-Generator: Poedit 2.2\n"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:9
 #, fuzzy
@@ -33,29 +33,27 @@ msgstr ""
 
 #: data/ui/About.ui:12
 #, fuzzy
-#| msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
 msgid "Copyright (C) 2018, Wolf Vollprecht"
 msgstr "版权所有 (C) 2012，Wolf Vollprecht <w.vollprecht@gmail.com>"
 
 #: data/ui/About.ui:14
 #, fuzzy
-#| msgid "UberWriter"
 msgid "Uberwriter website"
 msgstr "UberWriter"
 
-#: data/ui/About.ui:60
+#: data/ui/About.ui:66
 msgid "Donations:"
 msgstr ""
 
-#: data/ui/About.ui:69
+#: data/ui/About.ui:75
 msgid "Liberapay"
 msgstr ""
 
-#: data/ui/About.ui:100
+#: data/ui/About.ui:106
 msgid "Help to translate:"
 msgstr ""
 
-#: data/ui/About.ui:109
+#: data/ui/About.ui:115
 #, fuzzy
 msgid "Poeditor"
 msgstr "编辑(_E)"
@@ -180,7 +178,6 @@ msgstr ""
 
 #: data/ui/Export.ui:582
 #, fuzzy
-#| msgid "HTML 5"
 msgid "HTML"
 msgstr "HTML 5"
 
@@ -190,60 +187,56 @@ msgstr ""
 
 #: data/ui/Export.ui:607
 #, fuzzy
-#| msgid "Advanced Export..."
 msgid "Advanced"
 msgstr "高级导出..."
 
-#: data/ui/Menu.ui:7
+#: data/ui/Menu.ui:6
 msgid "Focus Mode"
 msgstr "聚焦模式"
 
-#: data/ui/Menu.ui:12
+#: data/ui/Menu.ui:10
 msgid "Preview"
 msgstr "预览"
 
-#: data/ui/Menu.ui:17
+#: data/ui/Menu.ui:14
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: data/ui/Menu.ui:24
+#: data/ui/Menu.ui:20
 #, fuzzy
 msgid "Save _As"
 msgstr "立即保存"
 
-#: data/ui/Menu.ui:28
+#: data/ui/Menu.ui:24
 #, fuzzy
-#| msgid "Export"
 msgid "_Export"
 msgstr "导出"
 
-#: data/ui/Menu.ui:32
+#: data/ui/Menu.ui:28
 msgid "Copy HTML"
 msgstr ""
 
-#: data/ui/Menu.ui:38 data/ui/Preferences.ui:14
-msgid "Preferences"
-msgstr ""
-
-#: data/ui/Menu.ui:44
+#: data/ui/Menu.ui:34
 msgid "Open Tutorial"
 msgstr ""
 
-#: data/ui/Menu.ui:49
+#: data/ui/Menu.ui:39
 msgid "Pandoc _Help"
 msgstr ""
 
+#: data/ui/Menu.ui:44 data/ui/Preferences.ui:14
+msgid "Preferences"
+msgstr ""
+
+#: data/ui/Menu.ui:49
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
 #: data/ui/Menu.ui:53
-msgid "_Shortcuts"
-msgstr ""
-
-#: data/ui/Menu.ui:59
-msgid "_About"
-msgstr ""
-
-#: data/ui/Menu.ui:62
-msgid "_Quit"
-msgstr ""
+#, fuzzy
+#| msgid "UberWriter"
+msgid "_About UberWriter"
+msgstr "UberWriter"
 
 #: data/ui/Preferences.ui:45
 #, fuzzy
@@ -252,7 +245,6 @@ msgstr "深色模式"
 
 #: data/ui/Preferences.ui:56
 #, fuzzy
-#| msgid "Auto _Spellcheck"
 msgid "Autospellcheck"
 msgstr "自动拼写检查(_S)"
 
@@ -381,57 +373,61 @@ msgstr "移除段首空格"
 msgid "Next Match"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:41
+#: data/ui/UberwriterWindow.ui:36
 #, fuzzy
 msgid "Open Replace"
 msgstr "打开最近的文件"
 
-#: data/ui/UberwriterWindow.ui:52
-msgid "Activate Regex"
-msgstr ""
-
-#: data/ui/UberwriterWindow.ui:112
+#: data/ui/UberwriterWindow.ui:96
 msgid "Words:"
 msgstr "单词数："
 
-#: data/ui/UberwriterWindow.ui:155
+#: data/ui/UberwriterWindow.ui:139
 msgid "Characters:"
 msgstr "字数："
 
-#: data/ui/UberwriterWindow.ui:295
+#: data/ui/UberwriterWindow.ui:279
 msgid "Previous Match"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:339
+#: data/ui/UberwriterWindow.ui:320
+msgid "aA"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:324
 msgid "Case Sensitive"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:443
+#: data/ui/UberwriterWindow.ui:334
+msgid "(.*)"
+msgstr ""
+
+#: data/ui/UberwriterWindow.ui:427
 msgid "Replace"
 msgstr ""
 
-#: data/ui/UberwriterWindow.ui:457
+#: data/ui/UberwriterWindow.ui:441
 msgid "Replace all"
 msgstr ""
 
-#: uberwriter/FormatShortcuts.py:87
+#: uberwriter/FormatShortcuts.py:99
 msgid "emphasized text"
 msgstr "强调文本"
 
-#: uberwriter/FormatShortcuts.py:89
+#: uberwriter/FormatShortcuts.py:101
 msgid "strong text"
 msgstr "文本加粗"
 
-#: uberwriter/FormatShortcuts.py:91
+#: uberwriter/FormatShortcuts.py:103
 #, fuzzy
 msgid "striked out text"
 msgstr "文本加粗"
 
-#: uberwriter/FormatShortcuts.py:105
+#: uberwriter/FormatShortcuts.py:121
 msgid "List item"
 msgstr "列表项目"
 
-#: uberwriter/FormatShortcuts.py:186
+#: uberwriter/FormatShortcuts.py:181
 msgid "Heading"
 msgstr "标题"
 
@@ -447,104 +443,107 @@ msgstr ""
 msgid "Please, install TexLive from your distribuiton repositories"
 msgstr ""
 
-#: uberwriter/UberwriterInlinePreview.py:187
+#: uberwriter/UberwriterInlinePreview.py:183
 msgid "Website is not available"
 msgstr "网站不可访问"
 
-#: uberwriter/UberwriterInlinePreview.py:189
+#: uberwriter/UberwriterInlinePreview.py:185
 msgid "Website is available"
 msgstr "网站可访问"
 
-#: uberwriter/UberwriterInlinePreview.py:441
+#: uberwriter/UberwriterInlinePreview.py:435
 msgid "Open Link in Webbrowser"
 msgstr "在网络浏览器中打开链接"
 
-#: uberwriter/UberwriterInlinePreview.py:503
+#: uberwriter/UberwriterInlinePreview.py:500
 msgid "No matching footnote found"
 msgstr "未发现匹配的脚注"
 
-#: uberwriter/UberwriterWindow.py:347
+#: uberwriter/UberwriterWindow.py:572
 msgid "Save your File"
 msgstr "保存文件"
 
-#: uberwriter/UberwriterWindow.py:448
+#: uberwriter/UberwriterWindow.py:678
 msgid "MarkDown or Plain Text"
 msgstr "MarkDown 或纯文本"
 
-#: uberwriter/UberwriterWindow.py:451
+#: uberwriter/UberwriterWindow.py:681
 msgid "Open a .md-File"
 msgstr "打开一个 .md 文件"
 
-#: uberwriter/UberwriterWindow.py:473
+#: uberwriter/UberwriterWindow.py:706
 msgid "You have not saved your changes."
 msgstr "您还没有保存您的更改。"
 
-#: uberwriter/UberwriterWindow.py:475
+#: uberwriter/UberwriterWindow.py:708
 msgid "Close without Saving"
 msgstr "关闭但不保存"
 
-#: uberwriter/UberwriterWindow.py:476
+#: uberwriter/UberwriterWindow.py:709
 msgid "Cancel"
 msgstr "取消"
 
-#: uberwriter/UberwriterWindow.py:477
+#: uberwriter/UberwriterWindow.py:710
 msgid "Save now"
 msgstr "立即保存"
 
-#: uberwriter/UberwriterWindow.py:478
+#: uberwriter/UberwriterWindow.py:711
 msgid "Unsaved changes"
 msgstr "未保存的更改"
 
-#: uberwriter/UberwriterWindow.py:537
+#: uberwriter/UberwriterWindow.py:742
+#, fuzzy
+#| msgid "CSS File"
+msgid "New File"
+msgstr "CSS 文件"
+
+#: uberwriter/UberwriterWindow.py:780
 msgid "You can not enable the Spell Checker."
 msgstr "您无法启用拼写检查。"
 
-#: uberwriter/UberwriterWindow.py:540
+#: uberwriter/UberwriterWindow.py:783
 msgid ""
 "Please install 'hunspell' or 'aspell' dictionarys for your language from the "
 "software center."
 msgstr "请从软件中心安装您所使用语言的 'hunspell' 或 'aspell' 字典。"
 
-#: uberwriter/UberwriterWindow.py:894 uberwriter/UberwriterWindow.py:943
+#: uberwriter/headerbars.py:76
+#, fuzzy
+msgid "Exit Fullscreen"
+msgstr "全屏"
+
+#: uberwriter/headerbars.py:118
 msgid "New"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:895 uberwriter/UberwriterWindow.py:944
+#: uberwriter/headerbars.py:119
 msgid "Open"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:899 uberwriter/UberwriterWindow.py:946
-#: uberwriter/UberwriterWindow.py:949
-#, fuzzy
-#| msgid "Open Recent File"
-msgid "Open Recent"
-msgstr "打开最近的文件"
-
-#: uberwriter/UberwriterWindow.py:901 uberwriter/UberwriterWindow.py:951
+#: uberwriter/headerbars.py:121
 #, fuzzy
 msgid "Save"
 msgstr "立即保存"
 
-#: uberwriter/UberwriterWindow.py:904 uberwriter/UberwriterWindow.py:954
+#: uberwriter/headerbars.py:128
+#, fuzzy
+msgid "Open Recent"
+msgstr "打开最近的文件"
+
+#: uberwriter/headerbars.py:130
 #, fuzzy
 msgid "Search and replace"
 msgstr "打开最近的文件"
 
-#: uberwriter/UberwriterWindow.py:906 uberwriter/UberwriterWindow.py:956
+#: uberwriter/headerbars.py:131
 msgid "Menu"
 msgstr ""
 
-#: uberwriter/UberwriterWindow.py:961
-#, fuzzy
-#| msgid "Fullscreen"
-msgid "Exit Fullscreen"
-msgstr "全屏"
-
-#: uberwriter_lib/AppWindow.py:246
+#: uberwriter_lib/AppWindow.py:173
 msgid "Show debug messages (-vv debugs uberwriter_lib also)"
 msgstr "显示调试信息(-vv 亦调试 uberwriter_lib)"
 
-#: uberwriter_lib/AppWindow.py:248
+#: uberwriter_lib/AppWindow.py:175
 msgid "Use experimental features"
 msgstr ""
 
@@ -598,8 +597,14 @@ msgstr "建议"
 #~ msgid "_File"
 #~ msgstr "文件(_F)"
 
+#~ msgid "Open Recent File"
+#~ msgstr "打开最近的文件"
+
 #~ msgid "Export as ODT"
 #~ msgstr "导出为 ODT"
+
+#~ msgid "Advanced Export..."
+#~ msgstr "高级导出..."
 
 #~ msgid "Copy raw HTML to clipboard"
 #~ msgstr "复制原始 HTML 到剪贴板"
@@ -618,6 +623,9 @@ msgstr "建议"
 
 #~ msgid "Switch to preview mode"
 #~ msgstr "切换到预览模式"
+
+#~ msgid "Auto _Spellcheck"
+#~ msgstr "自动拼写检查(_S)"
 
 #~ msgid "F_ormat"
 #~ msgstr "格式(_O)"
@@ -687,6 +695,9 @@ msgstr "建议"
 #~ "# You should have received a copy of the GNU General Public License "
 #~ "along \n"
 #~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+
+#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
+#~ msgstr "版权所有 (C) 2012，Wolf Vollprecht <w.vollprecht@gmail.com>"
 
 #~ msgid "You can not export to PDF."
 #~ msgstr "您无法导出为 PDF。"

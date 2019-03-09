@@ -55,7 +55,7 @@ def get_data_path():
     # Get pathname absolute or relative.
     # TODO: Abstract this (the old env IN_FLATPAK)
     if os.path.isfile("/.flatpak-info"):
-        return '/app/opt/uberwriter/data/'
+        return '/app/share/uberwriter/data/'
 
     path = os.path.join(
         os.path.dirname(__file__), __uberwriter_data_directory__)
@@ -64,7 +64,7 @@ def get_data_path():
     # in the system installation path
     abs_data_path = os.path.abspath(path)
     if not os.path.exists(abs_data_path):
-        abs_data_path = '/opt/uberwriter/data/'
+        abs_data_path = '/usr/share/uberwriter/data/'
     elif not os.path.exists(abs_data_path):
         raise ProjectPathNotFound
 

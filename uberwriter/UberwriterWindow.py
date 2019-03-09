@@ -105,8 +105,10 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.status_bar_visible = True
         self.was_motion = True
         self.buffer_modified_for_status_bar = False
-        self.connect("motion-notify-event", self.on_motion_notify)
-        GObject.timeout_add(3000, self.poll_for_motion)
+
+        if self.settings.get_value("poll-motion"):
+            self.connect("motion-notify-event", self.on_motion_notify)
+            GObject.timeout_add(3000, self.poll_for_motion)
 
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
@@ -147,7 +149,12 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.scrolled_window.add(self.text_editor)
         self.alignment_padding = 40
         self.editor_viewport = self.builder.get_object('editor_viewport')
-        self.scrolled_window.connect_after("draw", self.draw_gradient)
+
+        # some people seems to have performance problems with the overlay. 
+        # Let them disable it
+
+        if self.settings.get_value("gradient-overlay"):
+            self.overlay = self.scrolled_window.connect_after("draw", self.draw_gradient)
 
         self.smooth_scroll_starttime = 0
         self.smooth_scroll_endtime = 0
@@ -171,13 +178,13 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Init file name with None
         self.set_filename()
 
-        self.style_provider = Gtk.CssProvider()
-        self.style_provider.load_from_path(helpers.get_media_path('style.css'))
+        # self.style_provider = Gtk.CssProvider()
+        # self.style_provider.load_from_path(helpers.get_media_path('arc_style.css'))
 
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+        # Gtk.StyleContext.add_provider_for_screen(
+        #     Gdk.Screen.get_default(), self.style_provider,
+        #     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        # )
 
         # Markup and Shortcuts for the TextBuffer
         self.markup_buffer = MarkupBuffer(
@@ -693,8 +700,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
-            dialog.set_title(_('Unsaved changes'))
-            dialog.set_default_size(200, 150)
+            # dialog.set_default_size(200, 60)
             dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
 
@@ -837,9 +843,9 @@ class UberwriterWindow(Gtk.ApplicationWindow):
 
             # Set the styles according the color theme
             if self.settings.get_value("dark-mode"):
-                stylesheet = helpers.get_media_path('uberwriter_dark.css')
+                stylesheet = helpers.get_media_path('github-md-dark.css')
             else:
-                stylesheet = helpers.get_media_path('uberwriter.css')
+                stylesheet = helpers.get_media_path('github-md.css')
 
             args = ['pandoc',
                     '-s',
