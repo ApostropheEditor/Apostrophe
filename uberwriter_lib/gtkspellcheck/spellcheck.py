@@ -56,6 +56,8 @@ else:
     
 if _py3k:
     # there is only the gi binding for Python 3
+    import gi
+    gi.require_version('Gtk', '3.0')
     from gi.repository import Gtk as gtk
     _pygobject = True
 else:

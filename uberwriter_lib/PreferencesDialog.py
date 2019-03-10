@@ -18,7 +18,8 @@
 
 """this dialog adjusts values in gsettings
 """
-
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk # pylint: disable=E0611
 import logging
 logger = logging.getLogger('uberwriter_lib')

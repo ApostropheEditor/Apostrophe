@@ -4,9 +4,6 @@
   inclusion in templates
 */
 
-@define-color dark_bg #31373D;
-@define-color light_bg #EDEDED;
-
 @binding-set window-bindings {
   bind "<ctl>w" { "close-window" () };
   bind "<ctl><shift>b" { "toggle-bibtex" () };

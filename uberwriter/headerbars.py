@@ -18,8 +18,12 @@
 
 from collections import namedtuple
 from gettext import gettext as _
+
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from uberwriter_lib.helpers import get_builder
+from uberwriter_lib.helpers import get_descendant
 
 from uberwriter_lib.AppWindow import Application as app
 
@@ -45,10 +49,7 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
         self.hb_container.show()
 
         self.btns = buttons(app)
-        self.rec = self.btns.recent
         pack_buttons(self.hb, self.btns)
-
-        # btns.recent.set_popup(self.generate_recent_files_menu())
 
         self.hb.show_all()
 
@@ -107,26 +108,39 @@ def buttons(app):
         [NamedTupple] -- tupple of Gtk.Buttons
     """
 
-    builder_window_menu = get_builder('Menu')
-    model = builder_window_menu.get_object("Menu")
-    recents_builder = get_builder('Recents')
-    recents = recents_builder.get_object("recent_md_popover")
-    recents_wd = recents_builder.get_object("recent_md_widget")
-    recents_wd.connect('item-activated', app.on_open_recent)
-
-    Button = namedtuple("Button", "new open recent save search menu")
+    Button = namedtuple("Button", "new open_recent save search menu")
     btn = Button(Gtk.Button().new_with_label(_("New")),
-                 Gtk.Button().new_with_label(_("Open")),
-                 Gtk.MenuButton().new(),
+                 Gtk.Box().new(0, 0),
                  Gtk.Button().new_with_label(_("Save")),
                  Gtk.Button().new_from_icon_name("system-search-symbolic",
                                                  Gtk.IconSize.BUTTON),
                  Gtk.MenuButton().new())
 
-    btn.recent.set_image(Gtk.Image.new_from_icon_name("go-down-symbolic",
-                                                      Gtk.IconSize.BUTTON))
-    btn.recent.set_tooltip_text(_("Open Recent"))
-    btn.recent.set_popover(recents)
+    builder_window_menu = get_builder('Menu')
+    model = builder_window_menu.get_object("Menu")
+
+    open_button = Gtk.Button().new_with_label(_("Open"))
+    open_button.set_action_name("app.open")
+
+    recents_builder = get_builder('Recents')
+    recents = recents_builder.get_object("recent_md_popover")
+
+    recents_treeview = get_descendant(recents, "recent_view", level=0)
+    recents_treeview.set_activate_on_single_click(True)
+
+    recents_wd = recents_builder.get_object("recent_md_widget")
+    recents_wd.connect('item-activated', app.on_open_recent)
+
+    recents_button = Gtk.MenuButton().new()
+    recents_button.set_image(Gtk.Image.new_from_icon_name("pan-down-symbolic",
+                                                          Gtk.IconSize.BUTTON))
+    recents_button.set_tooltip_text(_("Open Recent"))
+    recents_button.set_popover(recents)
+
+    btn.open_recent.get_style_context().add_class("linked")
+    btn.open_recent.pack_start(open_button, False, False, 0)
+    btn.open_recent.pack_end(recents_button, False, False, 0)
+
     btn.search.set_tooltip_text(_("Search and replace"))
     btn.menu.set_tooltip_text(_("Menu"))
     btn.menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
@@ -134,7 +148,6 @@ def buttons(app):
     btn.menu.set_use_popover(True)
     btn.menu.set_menu_model(model)
     btn.new.set_action_name("app.new")
-    btn.open.set_action_name("app.open")
     btn.save.set_action_name("app.save")
     btn.search.set_action_name("app.search")
 
@@ -152,8 +165,7 @@ def pack_buttons(headerbar, btn, btn_exit=None):
     """
 
     headerbar.pack_start(btn.new)
-    headerbar.pack_start(btn.open)
-    headerbar.pack_start(btn.recent)
+    headerbar.pack_start(btn.open_recent)
     if btn_exit:
         headerbar.pack_end(btn_exit)
     headerbar.pack_end(btn.menu)

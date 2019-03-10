@@ -15,14 +15,17 @@ import webbrowser
 from gettext import gettext as _
 
 import gi
+
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
-from gi.repository import GLib, Gio, Gtk, GdkPixbuf
+from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf
 
 from uberwriter import UberwriterWindow
 from uberwriter.Settings import Settings
 from uberwriter_lib import set_up_logging
+from uberwriter_lib import helpers
 from uberwriter_lib.PreferencesDialog import PreferencesDialog
 from . helpers import get_builder, get_media_path
+
 
 class Application(Gtk.Application):
 
@@ -36,10 +39,26 @@ class Application(Gtk.Application):
     def init(self):
         """Init main application"""
 
+        # set theme variant (dark/light) 
         dark = self.settings.get_value("dark-mode")
         Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", dark)
 
+        # set css for current theme
+        self.style_provider = Gtk.CssProvider()
 
+        themes = {
+            "Arc": "arc_style.css",
+            "Arc-Dark": "arc_style.css",
+            "Arc-Darker": "arc_style.css",
+        }
+
+        theme = Gtk.Settings.get_default().get_property("gtk-theme-name")
+        self.style_provider.load_from_path(helpers.get_media_path(themes.get(theme,"adwaita_style.css")))
+
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), self.style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
     def do_startup(self, *args, **kwargs):
 
@@ -92,10 +111,18 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_search)
         self.add_action(action)
 
+        set_spellcheck = self.settings.get_value("spellcheck")
         action = Gio.SimpleAction.new_stateful("spellcheck",
                                                None,
-                                               GLib.Variant.new_boolean(True))
+                                               GLib.Variant.new_boolean(set_spellcheck))
         action.connect("change-state", self.on_spellcheck)
+        self.add_action(action)
+
+        set_gradient_overlay = self.settings.get_value("gradient-overlay")
+        action = Gio.SimpleAction.new_stateful("draw_gradient",
+                                               None,
+                                               GLib.Variant.new_boolean(set_gradient_overlay))
+        action.connect("change-state", self.on_draw_gradient)
         self.add_action(action)
 
         # Menu Actions
@@ -233,7 +260,19 @@ class Application(Gtk.Application):
 
     def on_spellcheck(self, action, value):
         action.set_state(value)
+        self.settings.set_value("spellcheck",
+                                GLib.Variant("b", value))
         self.window.toggle_spellcheck(value)
+
+    def on_draw_gradient(self, action, value):
+        action.set_state(value)
+        self.settings.set_value("gradient-overlay",
+                                GLib.Variant("b", value))
+        if value:
+            self.window.overlay = self.window.scrolled_window.connect_after(
+                                "draw", self.window.draw_gradient)
+        else:
+            self.window.scrolled_window.disconnect(self.window.overlay)
 
     def on_new(self, _action, _value):
         self.window.new_document()

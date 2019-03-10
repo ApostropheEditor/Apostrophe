@@ -28,8 +28,9 @@ import re
 from gettext import gettext as _
 
 import gi
-gi.require_version('WebKit2', '4.0') # pylint: disable=wrong-import-position
-from gi.repository import Gtk, Gdk, GObject, GLib, Gio  # pylint: disable=E0611
+gi.require_version('Gtk', '3.0')
+gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
+from gi.repository import Gtk, Gdk, GObject, GLib, Gio  
 from gi.repository import WebKit2 as WebKit
 from gi.repository import Pango  # pylint: disable=E0611
 
@@ -61,9 +62,9 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
 # See texteditor_lib.Window.py for more details about how this class works
 
+
 class UberwriterWindow(Gtk.ApplicationWindow):
 
-    #__gtype_name__ = "UberwriterWindow"
     WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
 
     def __init__(self, app):
@@ -153,7 +154,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Let them disable it
 
         if self.settings.get_value("gradient-overlay"):
-            self.scrolled_window.connect_after("draw", self.draw_gradient)
+            self.overlay = self.scrolled_window.connect_after("draw", self.draw_gradient)
 
         self.smooth_scroll_starttime = 0
         self.smooth_scroll_endtime = 0
@@ -177,13 +178,13 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Init file name with None
         self.set_filename()
 
-        self.style_provider = Gtk.CssProvider()
-        self.style_provider.load_from_path(helpers.get_media_path('style.css'))
+        # self.style_provider = Gtk.CssProvider()
+        # self.style_provider.load_from_path(helpers.get_media_path('arc_style.css'))
 
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+        # Gtk.StyleContext.add_provider_for_screen(
+        #     Gdk.Screen.get_default(), self.style_provider,
+        #     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        # )
 
         # Markup and Shortcuts for the TextBuffer
         self.markup_buffer = MarkupBuffer(
@@ -230,23 +231,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
 
         # Setting up spellcheck
         self.auto_correct = None
-        try:
-            self.spell_checker = SpellChecker(
-                self.text_editor, locale.getdefaultlocale()[0],
-                collapse=False)
-            if self.auto_correct:
-                self.auto_correct.set_language(self.spell_checker.language)
-                self.spell_checker.connect_language_change( #pylint: disable=no-member
-                    self.auto_correct.set_language)
-
-            self.spellcheck = True
-        except:
-            self.spell_checker = None
-            self.spellcheck = False
-
-        if self.spellcheck:
-            self.spell_checker.append_filter('[#*]+', SpellChecker.FILTER_WORD)
-
+        self.toggle_spellcheck(self.settings.get_value("spellcheck"))
         self.did_change = False
 
         ###
@@ -392,7 +377,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.focusmode = True
             self.text_editor.grab_focus()
             self.check_scroll(self.text_buffer.get_insert())
-            if self.spellcheck:
+            if self.spell_checker:
                 self.spell_checker._misspelled.set_property('underline', 0)
             self.click_event = self.text_editor.connect("button-release-event",
                                                         self.on_focusmode_click)
@@ -410,7 +395,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.text_editor.grab_focus()
             self.update_line_and_char_count()
             self.check_scroll()
-            if self.spellcheck:
+            if self.spell_checker:
                 self.spell_checker._misspelled.set_property('underline', 4)
             _click_event = self.text_editor.disconnect(self.click_event)
 
@@ -464,7 +449,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         loc_rect = self.text_editor.get_iter_location(ins_it)
 
         # alignment offset added from top
-        pos_y = loc_rect.y + loc_rect.height + self.text_editor.props.top_margin # pylint: disable=no-member
+        pos_y = loc_rect.y + loc_rect.height + self.text_editor.props.top_margin  # pylint: disable=no-member
 
         ha = self.scrolled_window.get_vadjustment()
         if ha.props.page_size < gradient_offset:
@@ -540,7 +525,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.remove_typewriter()
             self.init_typewriter()
 
-        if self.text_editor.props.width_request != width_request: # pylint: disable=no-member
+        if self.text_editor.props.width_request != width_request:  # pylint: disable=no-member
             self.text_editor.props.width_request = width_request
             self.scrolled_window.props.width_request = width_request
             alloc = self.text_editor.get_allocation()
@@ -715,8 +700,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
-            dialog.set_title(_('Unsaved changes'))
-            dialog.set_default_size(200, 150)
+            # dialog.set_default_size(200, 60)
             dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
 
@@ -760,37 +744,38 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             status {gtk bool} -- Desired status of the spellchecking
         """
 
-        if self.spellcheck:
-            if status.get_boolean():
-                self.spell_checker.enable()
-            else:
-                self.spell_checker.disable()
-
-        elif status.get_boolean():
-            self.spell_checker = SpellChecker(
-                self.text_editor, self, locale.getdefaultlocale()[0],
-                collapse=False)
-            if self.auto_correct:
-                self.auto_correct.set_language(self.spell_checker.language)
-                self.spell_checker.connect_language_change( # pylint: disable=no-member
-                    self.auto_correct.set_language)
+        if status.get_boolean():
             try:
-                self.spellcheck = True
+                self.spell_checker.enable()
             except:
-                self.spell_checker = None
-                self.spellcheck = False
-                dialog = Gtk.MessageDialog(self,
-                                           Gtk.DialogFlags.MODAL \
-                                           | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                           Gtk.MessageType.INFO,
-                                           Gtk.ButtonsType.NONE,
-                                           _("You can not enable the Spell Checker.")
-                                           )
-                dialog.format_secondary_text(
-                    _("Please install 'hunspell' or 'aspell' dictionarys"
-                      + " for your language from the software center."))
-                _response = dialog.run()
+                try:
+                    self.spell_checker = SpellChecker(
+                      self.text_editor, locale.getdefaultlocale()[0],
+                      collapse=False)
+                    if self.auto_correct:
+                        self.auto_correct.set_language(self.spell_checker.language)
+                        self.spell_checker.connect_language_change(  # pylint: disable=no-member
+                            self.auto_correct.set_language)
+                except:
+                    self.spell_checker = None
+                    dialog = Gtk.MessageDialog(self,
+                                            Gtk.DialogFlags.MODAL \
+                                            | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                            Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.NONE,
+                                            _("You can not enable the Spell Checker.")
+                                            )
+                    dialog.format_secondary_text(
+                        _("Please install 'hunspell' or 'aspell' dictionarys"
+                        + " for your language from the software center."))
+                    _response = dialog.run()
                 return
+            return
+        else:
+            try:
+                self.spell_checker.disable()
+            except:
+                pass
         return
 
     def on_drag_data_received(self, _widget, drag_context, _x, _y,
@@ -839,7 +824,6 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         Arguments:
             state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
         """
-
 
         if state.get_boolean():
 
@@ -1008,7 +992,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         if (self.was_motion is False
                 and self.status_bar_visible
                 and self.buffer_modified_for_status_bar
-                and self.text_editor.props.has_focus): #pylint: disable=no-member
+                and self.text_editor.props.has_focus): # pylint: disable=no-member
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
             self.statusbar_revealer.set_reveal_child(False)
             self.headerbar.hb_revealer.set_reveal_child(False)
@@ -1058,7 +1042,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         """
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
 
-        lg_top = cairo.LinearGradient(0, 0, 0, 35) #pylint: disable=no-member
+        lg_top = cairo.LinearGradient(0, 0, 0, 35)  # pylint: disable=no-member
         lg_top.add_color_stop_rgba(
             0, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_top.add_color_stop_rgba(
@@ -1072,7 +1056,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         cr.fill()
         cr.rectangle(0, height - 35, width, height)
 
-        lg_btm = cairo.LinearGradient(0, height - 35, 0, height) # pylint: disable=no-member
+        lg_btm = cairo.LinearGradient(0, height - 35, 0, height)  # pylint: disable=no-member
         lg_btm.add_color_stop_rgba(
             1, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_btm.add_color_stop_rgba(
