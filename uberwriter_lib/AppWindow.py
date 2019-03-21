@@ -202,6 +202,10 @@ class Application(Gtk.Application):
             "-e", "--experimental-features", help=_("Use experimental features"),
             action='store_true'
         )
+        parser.add_argument(
+            "-d", "--debug", help=_("Debug options"), action='store_true',
+            dest="debug"
+        )
         (self.options, self.args) = parser.parse_known_args()
 
         set_up_logging(self.options)
@@ -253,7 +257,7 @@ class Application(Gtk.Application):
 
     def on_preview(self, action, value):
         action.set_state(value)
-        self.window.toggle_preview(value)
+        self.window.toggle_preview(value, self.options)
 
     def on_search(self, _action, _value):
         self.window.open_search_and_replace()
