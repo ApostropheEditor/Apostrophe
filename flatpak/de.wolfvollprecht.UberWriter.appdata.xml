@@ -39,6 +39,7 @@
           <li>Spellchecking status is now saved between sessions</li>
           <li>Minor UI fixes</li>
           <li>Added -d flag to enable webdev tools</li>
+        </ul>
       </description>
     </release>
     <release date="2018-12-06" version="2.1.4">
