@@ -30,7 +30,7 @@ from gettext import gettext as _
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
-from gi.repository import Gtk, Gdk, GObject, GLib, Gio  
+from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 from gi.repository import WebKit2 as WebKit
 from gi.repository import Pango  # pylint: disable=E0611
 
@@ -150,7 +150,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.alignment_padding = 40
         self.editor_viewport = self.builder.get_object('editor_viewport')
 
-        # some people seems to have performance problems with the overlay. 
+        # some people seems to have performance problems with the overlay.
         # Let them disable it
 
         if self.settings.get_value("gradient-overlay"):
@@ -877,21 +877,31 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             # begin_del.backward_chars(30)
             # self.TextBuffer.delete(begin_del, cursor_iter)
 
-            self.scrolled_window.remove(self.text_editor)
-            self.scrolled_window.add(self.preview_webview)
-            self.preview_webview.show()
+            # Show preview once the load is finished
+            self.preview_webview.connect("load-changed", self.on_preview_load_change)
 
             # This saying that all links will be opened in default browser, \
             # but local files are opened in appropriate apps:
             self.preview_webview.connect("decide-policy", self.on_click_link)
         else:
-            self.scrolled_window.remove(self.preview_webview)
-            self.preview_webview.destroy()
-            self.scrolled_window.add(self.text_editor)
-            self.text_editor.show()
+            self.show_text_editor()
 
-        self.queue_draw()
         return True
+
+    def show_text_editor(self):
+        if self.scrolled_window.get_child() != self.text_editor:
+            self.scrolled_window.remove(self.preview_webview)
+            self.scrolled_window.add(self.text_editor)
+        self.preview_webview.destroy()
+        self.text_editor.show()
+        self.queue_draw()
+
+    def show_preview(self):
+        if self.scrolled_window.get_child() != self.preview_webview:
+            self.scrolled_window.remove(self.text_editor)
+            self.scrolled_window.add(self.preview_webview)
+        self.preview_webview.show()
+        self.queue_draw()
 
     def toggle_dark_mode(self, state):
         """Toggle the dark mode, both for the window and for the CSD
@@ -1124,6 +1134,12 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.filename = None
             base_path = "/"
         self.settings.set_value("open-file-path", GLib.Variant("s", base_path))
+
+    def on_preview_load_change(self, webview, event):
+        """swaps text editor with preview once the load is complete
+        """
+        if event == WebKit.LoadEvent.FINISHED:
+            self.show_preview()
 
     def on_click_link(self, web_view, decision, _decision_type):
         """provide ability for self.webview to open links in default browser
