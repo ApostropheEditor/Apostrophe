@@ -487,8 +487,8 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.window_height = widget.get_allocation().height
         w_width = widget.get_allocation().width
         # Calculate left / right margin
-        width_request = 600
         if w_width < 900:
+            width_request = 600
             self.markup_buffer.set_multiplier(8)
             self.current_font_size = 12
             self.alignment_padding = 30
@@ -498,8 +498,8 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.get_style_context().add_class("small")
 
         elif w_width < 1400:
-            self.markup_buffer.set_multiplier(10)
             width_request = 800
+            self.markup_buffer.set_multiplier(10)
             self.current_font_size = 15
             self.alignment_padding = 40
             lm = 7 * 10
@@ -508,9 +508,9 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             self.get_style_context().add_class("medium")
 
         else:
+            width_request = 1000
             self.markup_buffer.set_multiplier(13)
             self.current_font_size = 17
-            width_request = 1000
             self.alignment_padding = 60
             lm = 7 * 13
             self.get_style_context().remove_class("medium")
