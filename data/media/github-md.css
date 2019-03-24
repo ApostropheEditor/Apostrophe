@@ -1,11 +1,11 @@
 @font-face {
   font-family: fira-sans;
-  src: url('fonts/fira-sans-v9-greek_latin-ext_latin_cyrillic-ext_cyrillic_greek-ext_vietnamese-regular.woff2') format('woff2');
+  src: url("fonts/fira-sans-v9-vietnamese_latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: fira-mono;
-  src: url('fonts/fira-mono-v7-greek_latin-ext_latin_cyrillic-ext_cyrillic_greek-ext-regular.woff2') format('woff2');
+  src: url("fonts/fira-mono-v7-latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
 }
 
 @font-face {
