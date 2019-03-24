@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: "color-emoji";
+  font-family: color-emoji;
   src: local("Noto Color Emoji"), local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol");
 }
 
