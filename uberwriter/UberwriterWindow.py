@@ -818,7 +818,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.present()
         return False
 
-    def toggle_preview(self, state, opts):
+    def toggle_preview(self, state):
         """Toggle the preview mode
 
         Arguments:
@@ -868,7 +868,6 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             webview_settings = self.preview_webview.get_settings()
             webview_settings.set_allow_universal_access_from_file_urls(
                 True)
-            webview_settings.set_enable_developer_extras(opts.debug)
             self.preview_webview.load_html(output.decode("utf-8"), 'file://localhost/')
 
             # Delete the cursor-scroll mark again
