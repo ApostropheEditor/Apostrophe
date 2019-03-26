@@ -46,4 +46,11 @@ defaultThemes = [
           get_css_path('web_adwaita.css'), False, 'Adwaita-dark'),
     Theme('Adwaita-dark', get_css_path('gtk_adwaita_dark.css'),
           get_css_path('web_adwaita_dark.css'), True, 'Adwaita'),
+    # https://github.com/NicoHood/arc-theme/tree/master/common/gtk-3.0/3.20/sass
+    Theme('Arc', get_css_path('gtk_arc.css'),
+          get_css_path('web_arc.css'), False, 'Arc-Dark'),
+    Theme('Arc-Darker', get_css_path('gtk_arc_darker.css'),
+          get_css_path('web_arc_darker.css'), False, 'Arc-Dark'),
+    Theme('Arc-Dark', get_css_path('gtk_arc_dark.css'),
+          get_css_path('web_arc_dark.css'), True, 'Arc'),
 ]

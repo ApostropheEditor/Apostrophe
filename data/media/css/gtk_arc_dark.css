@@ -1,0 +1,5 @@
+@define-color foreground_color #d3dae3;
+@define-color background_color #383c4a;
+@define-color math_text_color #ffc9b3;
+
+@import url("_gtk_base.css");
