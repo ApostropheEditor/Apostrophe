@@ -264,11 +264,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         """Adjusts both the window and the CSD for the current theme.
         """
 
-        theme = Theme.get_current()
-        if theme.is_dark:
-            self.markup_buffer.dark_mode(True)
-        else:
-            self.markup_buffer.dark_mode(False)
+        self.markup_buffer.update_style()
 
         # Reload preview if it exists, otherwise redraw contents of window (self)
         if self.preview_webview:
