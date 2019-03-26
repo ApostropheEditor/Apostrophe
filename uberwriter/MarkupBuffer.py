@@ -16,6 +16,7 @@
 
 import re
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import Pango
@@ -46,14 +47,10 @@ class MarkupBuffer():
 
         self.normal_indent = self.text_buffer.create_tag('normal_indent', indent=100)
 
-        self.green_text = self.text_buffer.create_tag("greentext",
-                                                      foreground="#00364C")
+        self.math_text = self.text_buffer.create_tag('math_text')
 
-        self.grayfont = self.text_buffer.create_tag('graytag',
-                                                    foreground="gray")
-
-        self.blackfont = self.text_buffer.create_tag('blacktag',
-                                                     foreground="#222")
+        self.unfocused_text = self.text_buffer.create_tag('graytag',
+                                                          foreground="gray")
 
         self.underline = self.text_buffer.create_tag("underline",
                                                      underline=Pango.Underline.SINGLE)
@@ -101,7 +98,8 @@ class MarkupBuffer():
         self.table_env.set_property('pixels-above-lines', 0)
         self.table_env.set_property('pixels-below-lines', 0)
 
-        # self.ftag = self.TextBuffer.create_tag("pix_front", pixels_above_lines = 100)
+        self.update_style()
+
     regex = {
         "ITALIC": re.compile(r"(\*|_)(.*?)\1", re.UNICODE),   # *asdasd* // _asdasd asd asd_
         "STRONG": re.compile(r"(\*\*|__)(.*?)\1", re.UNICODE),   # **as das** // __asdasd asd ad a__
@@ -119,6 +117,13 @@ class MarkupBuffer():
         "TABLE": re.compile(r"^[\-\+]{5,}\n(.+?)\n[\-\+]{5,}\n", re.DOTALL),
         "LINK": re.compile(r"\(http(.+?)\)")
     }
+
+    def update_style(self):
+        (found, color) = self.parent.get_style_context().lookup_color('math_text_color')
+        if not found:
+            (_, color) = self.parent.get_style_context().lookup_color('foreground_color')
+
+        self.math_text.set_property("foreground", color.to_string())
 
     def markup_buffer(self, mode=0):
         buf = self.text_buffer
@@ -178,13 +183,13 @@ class MarkupBuffer():
             end_iter = buf.get_iter_at_offset(context_offset + match.end())
             self.text_buffer.apply_tag(self.strikethrough, start_iter, end_iter)
 
-        self.text_buffer.remove_tag(self.green_text, context_start, context_end)
+        self.text_buffer.remove_tag(self.math_text, context_start, context_end)
 
         matches = re.finditer(self.regex["MATH"], text)
         for match in matches:
             start_iter = buf.get_iter_at_offset(context_offset + match.start())
             end_iter = buf.get_iter_at_offset(context_offset + match.end())
-            self.text_buffer.apply_tag(self.green_text, start_iter, end_iter)
+            self.text_buffer.apply_tag(self.math_text, start_iter, end_iter)
 
         for margin in self.rev_leftmargin:
             self.text_buffer.remove_tag(margin, context_start, context_end)
@@ -266,15 +271,13 @@ class MarkupBuffer():
             self.focusmode_highlight()
 
     def focusmode_highlight(self):
-        self.text_buffer.apply_tag(
-            self.grayfont,
-            self.text_buffer.get_start_iter(),
-            self.text_buffer.get_end_iter())
+        start_document = self.text_buffer.get_start_iter()
+        end_document = self.text_buffer.get_end_iter()
 
         self.text_buffer.remove_tag(
-            self.blackfont,
-            self.text_buffer.get_start_iter(),
-            self.text_buffer.get_end_iter())
+            self.unfocused_text,
+            start_document,
+            end_document)
 
         cursor = self.text_buffer.get_mark("insert")
         cursor_iter = self.text_buffer.get_iter_at_mark(cursor)
@@ -293,9 +296,14 @@ class MarkupBuffer():
         start_sentence = cursor_iter.copy()
         start_sentence.backward_sentence_start()
 
+        # grey out everything before
         self.text_buffer.apply_tag(
-            self.blackfont,
-            start_sentence, end_sentence)
+            self.unfocused_text,
+            self.text_buffer.get_start_iter(), start_sentence)
+
+        self.text_buffer.apply_tag(
+            self.unfocused_text,
+            end_sentence, self.text_buffer.get_end_iter())
 
     def set_multiplier(self, multiplier):
         self.multiplier = multiplier
@@ -311,13 +319,3 @@ class MarkupBuffer():
             new_margin = (lm - multiplier) + multiplier + multiplier * (i + 1)
             self.leftmargin[i].set_property("left-margin", 0 if new_margin < 0 else new_margin)
             self.leftmargin[i].set_property("indent", - (multiplier - 1) * (i + 1) - multiplier)
-
-    def dark_mode(self, active=False):
-        if active:
-            self.green_text.set_property("foreground", "#FA5B0F")
-            self.grayfont.set_property("foreground", "#666")
-            self.blackfont.set_property("foreground", "#CCC")
-        else:
-            self.green_text.set_property("foreground", "#00364C")
-            self.grayfont.set_property("foreground", "gray")
-            self.blackfont.set_property("foreground", "#222")

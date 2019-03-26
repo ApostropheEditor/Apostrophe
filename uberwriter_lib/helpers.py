@@ -49,16 +49,12 @@ def get_builder(builder_file_name):
 
 
 # Owais Lone : To get quick access to icons and stuff.
-def get_media_file(media_file_name):
+def get_media_file(media_file_path):
     """Return the full path of a given filename under the media dir
        (starts with file:///)
     """
 
-    media_filename = get_data_file('media', '%s' % (media_file_name,))
-    if not os.path.exists(media_filename):
-        media_filename = None
-
-    return "file:///" + media_filename
+    return "file:///" + get_media_path(media_file_path)
 
 
 def get_media_path(media_file_name):
@@ -66,19 +62,26 @@ def get_media_path(media_file_name):
        (doesn't start with file:///)
     """
 
-    media_filename = get_data_file('media', '%s' % (media_file_name,))
-    if not os.path.exists(media_filename):
-        media_filename = None
-    return media_filename
+    media_path = get_data_file('media', '%s' % (media_file_name,))
+    if not os.path.exists(media_path):
+        media_path = None
+    return media_path
+
+
+def get_css_path(css_file_name):
+    """Return the full path of a given filename under the css dir
+       (doesn't start with file:///)
+    """
+    return get_media_path("css/{}".format(css_file_name))
 
 
 def get_script_path(script_file_name):
     """Return the full path of a given filename under the script dir
     """
-    script_filename = get_data_file('lua', '%s' % (script_file_name,))
-    if not os.path.exists(script_filename):
-        script_filename = None
-    return script_filename
+    script_path = get_data_file('lua', '%s' % (script_file_name,))
+    if not os.path.exists(script_path):
+        script_path = None
+    return script_path
 
 
 class NullHandler(logging.Handler):

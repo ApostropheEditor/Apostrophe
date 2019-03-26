@@ -16,13 +16,14 @@ from gettext import gettext as _
 
 import gi
 
+from uberwriter.Theme import Theme
+
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
 from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf
 
 from uberwriter import UberwriterWindow
 from uberwriter.Settings import Settings
 from uberwriter_lib import set_up_logging
-from uberwriter_lib import helpers
 from uberwriter_lib.PreferencesDialog import PreferencesDialog
 from . helpers import get_builder, get_media_path
 
@@ -35,30 +36,6 @@ class Application(Gtk.Application):
                          **kwargs)
         self.window = None
         self.settings = Settings.new()
-
-    def init(self):
-        """Init main application"""
-
-        # set theme variant (dark/light) 
-        dark = self.settings.get_value("dark-mode")
-        Gtk.Settings.get_default().set_property("gtk-application-prefer-dark-theme", dark)
-
-        # set css for current theme
-        self.style_provider = Gtk.CssProvider()
-
-        themes = {
-            "Arc": "arc_style.css",
-            "Arc-Dark": "arc_style.css",
-            "Arc-Darker": "arc_style.css",
-        }
-
-        theme = Gtk.Settings.get_default().get_property("gtk-theme-name")
-        self.style_provider.load_from_path(helpers.get_media_path(themes.get(theme,"adwaita_style.css")))
-
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
 
     def do_startup(self, *args, **kwargs):
 
@@ -176,7 +153,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.save", ["<Ctl>s"])
         self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
 
-        self.init()
+        self.apply_current_theme()
 
     def do_activate(self, *args, **kwargs):
         # We only allow a single window and raise any existing ones
@@ -209,6 +186,23 @@ class Application(Gtk.Application):
         self.activate()
         return 0
 
+    def apply_current_theme(self):
+        # get current theme
+        theme = Theme.get_current()
+
+        # set theme variant (dark/light)
+        Gtk.Settings.get_default().set_property(
+            "gtk-application-prefer-dark-theme",
+            GLib.Variant("b", theme.is_dark))
+
+        # set theme css
+        style_provider = Gtk.CssProvider()
+        style_provider.load_from_path(theme.gtk_css_path)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+
     def on_about(self, _action, _param):
         builder = get_builder('About')
         about_dialog = builder.get_object("AboutDialog")
@@ -234,14 +228,13 @@ class Application(Gtk.Application):
 
     def on_dark_mode(self, action, value):
         action.set_state(value)
-        self.settings.set_value("dark-mode",
-                                GLib.Variant("b", value))
-        self.window.toggle_dark_mode(value)
+        self.settings.set_value("dark-mode", GLib.Variant("b", value))
 
         # this changes the headerbar theme accordingly
-        self.dark_setting = Gtk.Settings.get_default()
-        self.dark_setting.set_property(
-            "gtk-application-prefer-dark-theme", value)
+        self.apply_current_theme()
+
+        # adjust window for theme
+        self.window.apply_current_theme()
 
     def on_focus_mode(self, action, value):
         action.set_state(value)

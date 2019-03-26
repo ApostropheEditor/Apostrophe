@@ -27,19 +27,8 @@
 .uberwriter_window {
   -gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
-  background: @light_bg;
-  caret-color: @dark_bg;
-}
-
-.uberwriter_window.dark_mode {
-  background: @dark_bg;
-  caret-color: @light_bg;
-}
-
-.uberwriter_window.dark_mode .uberwriter-editor text{
-  background: @dark_bg;
-  caret-color: @light_bg;
-  color: @light_bg;
+  background: @background_color;
+  caret-color: @foreground_color;
 }
 
 .uberwriter_window.small .uberwriter-editor {
@@ -47,12 +36,7 @@
   font-size: 12px;
 }
 .uberwriter_window grid {
-  background-color: @light_bg;
-}
-
-.uberwriter_window.dark_mode grid, 
-.uberwriter_window.dark_mode scrolledwindow {
-  background-color: @dark_bg;
+  background-color: @background_color;
 }
 
 #UberwriterWindow.medium .uberwriter-editor {
@@ -75,25 +59,22 @@
 }
 
 #titlebar_container { 
-  background: @light_bg; 
-}
-
-#titlebar_container.dark_mode { 
-  background: @dark_bg; 
+  background: @background_color; 
 }
 
 .uberwriter-editor {
   border: none;
   background-color: transparent;
-  color: #222;
+  text-decoration-color: #ff0000;
   /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
   /*-GtkWidget-cursor-aspect-ratio: 0.1;*/
   -gtk-key-bindings: editor-bindings;
 }
 
 .uberwriter-editor text {
-  background-color: @light_bg;
-  color: #222;
+  background-color: @background_color;
+  color: @foreground_color;
+  caret-color: @foreground_color;
 }
 
 .uberwriter-editor:selected {
@@ -120,7 +101,7 @@
 
 .status_bar_box button {
   /* finding reset */
-  background-color: @light_bg;
+  background-color: @background_color;
   text-shadow: inherit;
   /*icon-shadow: inherit;*/
   box-shadow: initial;
@@ -146,13 +127,13 @@
 .status_bar_box button:hover,
 .status_bar_box button:checked {
   transition: 0s ease-in;
-  color: @light_bg;
+  color: @background_color;
   background-color: #666;
 }
 
 .status_bar_box button:hover label,
 .status_bar_box button:checked label {
-  color: @light_bg;
+  color: @background_color;
 }
 
 .status_bar_box button:active {
@@ -161,22 +142,7 @@
   background-image: none;
   box-shadow: 0 0 2px rgba(0,0,0,0.4)
 }
-.dark_mode .status_bar_box button {
-  background-color: @dark_bg;
-}
-.dark_mode .status_bar_box label {
-  color: @light_bg;
-}
-.dark_mode .status_bar_box button:hover,
-.dark_mode .status_bar_box button:checked {
-  background-color: @light_bg;
-  color: #666;
-}
 
-.dark_mode .status_bar_box button:hover label,
-.dark_mode .status_bar_box button:checked label{
-  color: #666;
-}
 .status_bar_box separator {
   border-color: #999;
   border-right: none;
@@ -198,9 +164,9 @@
   /*font: serif 10;*/
   font-family: serif;
   font-size: 10px;
-  background: @light_bg;
+  background: @background_color;
   border-radius: 4px;
-  border-color: @light_bg;
+  border-color: @background_color;
   margin: 5px;
   padding: 5px;
 }
@@ -211,7 +177,7 @@
   border: 1px solid #333;
   background: @ligth_bg;
   border-radius: 3px;
-  border-color: @light_bg;
+  border-color: @background_color;
 } */
 
 #LexikonBubble label {
@@ -219,9 +185,8 @@
 }
 
 #LexikonBubble {
-  background-color: @light_bg;
-   border: 5px solid @light_bg;
-   border-color: @light_bg
+  background-color: @background_color;
+  border: 5px solid @background_color;
 }
 
 #LexikonBubble .lexikon_heading {
@@ -240,15 +205,15 @@
 }
 
 .QuickPreviewPopup {
-	background-color: @light_bg;
+	background-color: @background_color;
 }
 
 .QuickPreviewPopup grid {
-	background-color: @light_bg;
-	color: @dark_bg;
-	border-color: @light_bg;
+	background-color: @background_color;
+	color: @foreground_color;
+	border-color: @background_color;
 }
 
 .QuickPreviewPopup label {
-	color: @dark_bg;
+	color: @foreground_color;
 }

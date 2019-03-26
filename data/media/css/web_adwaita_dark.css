@@ -1,19 +1,17 @@
-@import url("github-md.css");
+@import url("_web_base.css");
 
 :root {
-  --text-color: #dbdbdb;
+  --text-color: #eeeeec;
   --background-color: #353535;
   --alt-background-color: #3a3a3a;
-  --link-color: #4388d6;
-  --blockquote-text-color: #959595;
+  --link-color: #b5daff;
+  --blockquote-text-color: #a8a8a6;
   --blockquote-border-color: #525252;
   --header-border-color: #474747;
   --hr-background-color: #505050;
-  --hr-border-color: #464646;
-  --code-background-color: #3e3e3e;
-  --table-td-border-color: #525252;
   --table-tr-border-color: #696969;
-  --kbd-text-color: #bbbbbb;
+  --table-td-border-color: #525252;
+  --kbd-text-color: #cececc;
   --kbd-background-color: #3c3c3c;
   --kbd-border-color: #696969;
   --kbd-shadow-color: #979797;
