@@ -53,4 +53,9 @@ defaultThemes = [
           get_css_path('web_arc_darker.css'), False, 'Arc-Dark'),
     Theme('Arc-Dark', get_css_path('gtk_arc_dark.css'),
           get_css_path('web_arc_dark.css'), True, 'Arc'),
+    # https://gitlab.gnome.org/GNOME/gtk/tree/master/gtk/theme/HighContrast
+    Theme('HighContrast', get_css_path('gtk_high_contrast.css'),
+          get_css_path('web_high_contrast.css'), False, 'HighContrastInverse'),
+    Theme('HighContrastInverse', get_css_path('gtk_high_contrast_inverse.css'),
+          get_css_path('web_high_contrast_inverse.css'), True, 'HighContrast'),
 ]
