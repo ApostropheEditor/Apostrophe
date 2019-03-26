@@ -842,7 +842,6 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         return True
 
     def show_text_editor(self):
-        print(self.scrolled_window.get_child())
         self.scrolled_window.remove(self.scrolled_window.get_child())
         self.scrolled_window.add(self.text_editor)
         self.text_editor.show()
@@ -877,9 +876,13 @@ class UberwriterWindow(Gtk.ApplicationWindow):
                     '--to=html5',
                     '--mathjax',
                     '--css=' + Theme.get_current().web_css_path,
+                    '--quiet',
                     '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
                     '--lua-filter=' + helpers.get_script_path('task-list.lua')]
 
+            # TODO: find a way to pass something like this instead of the quiet arg        
+            #'--metadata pagetitle="test"',
+            
             proc = subprocess.Popen(
                 args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
