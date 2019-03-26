@@ -14,20 +14,22 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
-import locale
-import subprocess
-import os
 import codecs
-import webbrowser
-import urllib
+import locale
 import logging
-
 import mimetypes
+import os
 import re
-
+import subprocess
+import urllib
+import webbrowser
 from gettext import gettext as _
 
 import gi
+from gi.repository.GObject import param_spec_string
+
+from uberwriter.Theme import Theme
+
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio
@@ -181,21 +183,13 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Init file name with None
         self.set_filename()
 
-        # self.style_provider = Gtk.CssProvider()
-        # self.style_provider.load_from_path(helpers.get_media_path('arc_style.css'))
-
-        # Gtk.StyleContext.add_provider_for_screen(
-        #     Gdk.Screen.get_default(), self.style_provider,
-        #     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        # )
-
         # Markup and Shortcuts for the TextBuffer
         self.markup_buffer = MarkupBuffer(
             self, self.text_buffer, base_leftmargin)
         self.markup_buffer.markup_buffer()
 
-        # Setup dark mode if so
-        self.toggle_dark_mode(self.settings.get_value("dark-mode"))
+        # Set current theme
+        self.apply_current_theme()
 
         # Scrolling -> Dark or not?
         self.textchange = False
@@ -265,6 +259,22 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
         'close-window': (GObject.SIGNAL_ACTION, None, ())
     }
+
+    def apply_current_theme(self):
+        """Adjusts both the window and the CSD for the current theme.
+        """
+
+        theme = Theme.get_current()
+        if theme.is_dark:
+            self.markup_buffer.dark_mode(True)
+        else:
+            self.markup_buffer.dark_mode(False)
+
+        # Reload preview if it exists, otherwise redraw contents of window (self)
+        if self.preview_webview:
+            self.show_preview()
+        else:
+            self.queue_draw()
 
     def scrolled(self, widget):
         """if window scrolled + focusmode make font black again"""
@@ -387,7 +397,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         else:
             self.remove_typewriter()
             self.focusmode = False
-            self.text_buffer.remove_tag(self.markup_buffer.grayfont,
+            self.text_buffer.remove_tag(self.markup_buffer.unfocused_text,
                                         self.text_buffer.get_start_iter(),
                                         self.text_buffer.get_end_iter())
             self.text_buffer.remove_tag(self.markup_buffer.blackfont,
@@ -865,20 +875,13 @@ class UberwriterWindow(Gtk.ApplicationWindow):
                 base_path = ''
             os.environ['PANDOC_PREFIX'] = base_path + '/'
 
-            # Set the styles according the color theme
-            if self.settings.get_value("dark-mode"):
-                stylesheet = helpers.get_media_path('github-md-dark.css')
-            else:
-                stylesheet = helpers.get_media_path('github-md.css')
-
             args = ['pandoc',
                     '-s',
                     '--from=markdown',
                     '--to=html5',
                     '--mathjax',
-                    '--css=' + stylesheet,
-                    '--lua-filter=' +
-                    helpers.get_script_path('relative_to_absolute.lua'),
+                    '--css=' + Theme.get_current().web_css_path,
+                    '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
                     '--lua-filter=' + helpers.get_script_path('task-list.lua')]
 
             proc = subprocess.Popen(
@@ -905,32 +908,6 @@ class UberwriterWindow(Gtk.ApplicationWindow):
                 self.preview_webview.connect("decide-policy", self.on_click_link)
 
             self.preview_webview.load_html(output.decode("utf-8"), 'file://localhost/')
-
-    def toggle_dark_mode(self, state):
-        """Toggle the dark mode, both for the window and for the CSD
-
-        Arguments:
-            state {gtk bool} -- Desired state of the dark mode (enabled/disabled)
-        """
-
-        # Save state for saving settings later
-        if state:
-            # Dark Mode is on
-            self.get_style_context().add_class("dark_mode")
-            self.headerbar.hb_container.get_style_context().add_class("dark_mode")
-            self.markup_buffer.dark_mode(True)
-        else:
-            # Dark mode off
-            self.get_style_context().remove_class("dark_mode")
-            self.headerbar.hb_container.get_style_context().remove_class("dark_mode")
-            self.markup_buffer.dark_mode(False)
-
-        # Reload preview if it exists
-        if self.preview_webview:
-            self.show_preview()
-
-        # Redraw contents of window (self)
-        self.queue_draw()
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
