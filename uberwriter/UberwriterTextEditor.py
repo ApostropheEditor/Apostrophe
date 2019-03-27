@@ -122,6 +122,9 @@ class TextEditor(Gtk.TextView):
         self.not_undoable_action = False
         self.undo_in_progress = False
 
+        self.can_delete = True
+        self.connect('key-press-event', self.on_key_press_event)
+
         self.format_shortcuts = FormatShortcuts(self.get_buffer(), self)
 
         self.connect('insert-italic', self.set_italic)
@@ -392,6 +395,12 @@ class TextEditor(Gtk.TextView):
         """record next actions
         toggles self.not_undoable_action"""
         self.not_undoable_action = False
+
+    def on_key_press_event(self, widget, event):
+        if widget == self and not self.can_delete:
+            return event.keyval == Gdk.KEY_BackSpace or event.keyval == Gdk.KEY_Delete
+        else:
+            return False
 
     def set_italic(self, _widget, _data=None):
         """Ctrl + I"""

@@ -358,7 +358,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.update_line_and_char_count()
         self.check_scroll(self.text_buffer.get_insert())
 
-    def toggle_fullscreen(self, state):
+    def set_fullscreen(self, state):
         """Puts the application in fullscreen mode and show/hides
         the poller for motion in the top border
 
@@ -376,7 +376,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
 
         self.text_editor.grab_focus()
 
-    def set_focusmode(self, state):
+    def set_focus_mode(self, state):
         """toggle focusmode
         """
 
@@ -407,6 +407,12 @@ class UberwriterWindow(Gtk.ApplicationWindow):
             if self.spell_checker:
                 self.spell_checker._misspelled.set_property('underline', 4)
             _click_event = self.text_editor.disconnect(self.click_event)
+
+    def set_hemingway_mode(self, state):
+        """toggle hemingwaymode
+        """
+        self.text_editor.can_delete = not state.get_boolean()
+        self.text_editor.grab_focus()
 
     def on_focusmode_click(self, *_args):
         """call MarkupBuffer to mark as bold the line where the cursor is
