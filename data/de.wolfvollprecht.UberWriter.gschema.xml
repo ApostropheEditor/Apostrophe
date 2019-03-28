@@ -8,16 +8,14 @@
       <default>false</default>
       <summary>Dark mode</summary>
       <description>
-        If enabled, the window will be dark themed
-        If disabled, the window will be light themed
-        asked to install them manually.
+        Enable or disable the dark mode.
       </description>
     </key>
     <key name='spellcheck' type='b'>
       <default>true</default>
       <summary>Spellcheck</summary>
       <description>
-        Enable/disable spellchecking in the application.
+        Enable or disable spellchecking.
       </description>
     </key>
     <key name='gradient-overlay' type='b'>
@@ -25,14 +23,14 @@
       <summary>Show gradient overlay</summary>
       <description>
         Show a gradient overlay over the text at the top anf bottom of the window.
-        It can cause performance problems to some users
+        It can cause performance problems to some users.
       </description>
     </key>
     <key name='poll-motion' type='b'>
       <default>true</default>
       <summary>Allow Uberwriter to poll cursor motion</summary>
       <description>
-        Used for hidding the headerbar after 3 seconds if the cursor is not moving.
+        Hide the header and status bars if the cursor is not moving.
       </description>
     </key>
     <key name='open-file-path' type='s'>

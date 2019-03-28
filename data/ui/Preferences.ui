@@ -55,7 +55,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Autospellcheck</property>
+                <property name="label" translatable="yes">Check spelling while typing</property>
                 <property name="justify">right</property>
               </object>
               <packing>

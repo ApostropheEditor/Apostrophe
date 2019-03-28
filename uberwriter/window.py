@@ -129,7 +129,7 @@ class Window(Gtk.ApplicationWindow):
         self.text_editor.set_vadjustment(self.builder.get_object('vadjustment1'))
         self.text_editor.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.text_editor.connect('focus-out-event', self.focus_out)
-        self.text_editor.get_style_context().connect('changed', self.style_changed)
+        self.text_editor.get_style_context().connect('changed', self.on_style_changed)
 
         self.text_editor.set_top_margin(80)
         self.text_editor.set_bottom_margin(16)
@@ -547,7 +547,7 @@ class Window(Gtk.ApplicationWindow):
             alloc.width = width_request
             self.text_editor.size_allocate(alloc)
 
-    def style_changed(self, _widget, _data=None):
+    def on_style_changed(self, _widget, _data=None):
         pgc = self.text_editor.get_pango_context()
         mets = pgc.get_metrics()
         self.markup_buffer.set_multiplier(
@@ -574,7 +574,7 @@ class Window(Gtk.ApplicationWindow):
         filefilter = Gtk.FileFilter.new()
         filefilter.add_mime_type('text/x-markdown')
         filefilter.add_mime_type('text/plain')
-        filefilter.set_name('MarkDown (.md)')
+        filefilter.set_name('Markdown (.md)')
         filechooser = Gtk.FileChooserDialog(
             _("Save your File"),
             self,
