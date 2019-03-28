@@ -72,6 +72,12 @@ class Application(Gtk.Application):
         action.connect("change-state", self.on_focus_mode)
         self.add_action(action)
 
+        action = Gio.SimpleAction.new_stateful("hemingway_mode",
+                                               None,
+                                               GLib.Variant.new_boolean(False))
+        action.connect("change-state", self.on_hemingway_mode)
+        self.add_action(action)
+
         action = Gio.SimpleAction.new_stateful("fullscreen",
                                                None,
                                                GLib.Variant.new_boolean(False))
@@ -143,6 +149,7 @@ class Application(Gtk.Application):
         # Shortcuts
 
         self.set_accels_for_action("app.focus_mode", ["<Ctl>d"])
+        self.set_accels_for_action("app.hemingway_mode", ["<Ctl>t"])
         self.set_accels_for_action("app.fullscreen", ["F11"])
         self.set_accels_for_action("app.preview", ["<Ctl>p"])
         self.set_accels_for_action("app.search", ["<Ctl>f"])
@@ -238,11 +245,15 @@ class Application(Gtk.Application):
 
     def on_focus_mode(self, action, value):
         action.set_state(value)
-        self.window.set_focusmode(value)
+        self.window.set_focus_mode(value)
+
+    def on_hemingway_mode(self, action, value):
+        action.set_state(value)
+        self.window.set_hemingway_mode(value)
 
     def on_fullscreen(self, action, value):
         action.set_state(value)
-        self.window.toggle_fullscreen(value)
+        self.window.set_fullscreen(value)
 
     def on_preview(self, action, value):
         action.set_state(value)
