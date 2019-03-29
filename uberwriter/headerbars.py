@@ -20,12 +20,12 @@ from collections import namedtuple
 from gettext import gettext as _
 
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from uberwriter.helpers import get_builder
 from uberwriter.helpers import get_descendant
 
-from uberwriter.application import Application as app
 
 class MainHeaderbar:  #pylint: disable=too-few-public-methods
     """Sets up the main application headerbar
@@ -54,7 +54,7 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
         self.hb.show_all()
 
 
-class FsHeaderbar:
+class FullscreenHeaderbar:
     """Sets up and manages the fullscreen headerbar and his events
     """
 
@@ -152,6 +152,7 @@ def buttons(app):
     btn.search.set_action_name("app.search")
 
     return btn
+
 
 def pack_buttons(headerbar, btn, btn_exit=None):
     """Pack the given buttons in the given headerbar

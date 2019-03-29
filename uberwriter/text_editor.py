@@ -81,7 +81,7 @@ class UndoableDelete:
                                   or self.text in ("\r", "\n", " "))
 
 
-class TextEditor(Gtk.TextView):
+class UberwriterTextEditor(Gtk.TextView):
     """TextEditor encapsulates management of TextBuffer and TextIter for
     common functionality, such as cut, copy, paste, undo, redo, and
     highlighting of text.
@@ -442,7 +442,7 @@ class TestWindow(Gtk.Window):
         windowbox = Gtk.VBox(homogeneous=False, spacing=2)
         windowbox.show()
         self.add(windowbox)
-        self.editor = TextEditor()
+        self.editor = UberwriterTextEditor()
         self.editor.show()
         windowbox.pack_end(self.editor, True, True, 0)
         self.set_size_request(200, 200)

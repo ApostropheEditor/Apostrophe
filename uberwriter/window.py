@@ -26,8 +26,9 @@ import webbrowser
 from gettext import gettext as _
 
 import gi
-from gi.repository.GObject import param_spec_string
 
+from uberwriter.export_dialog import UberwriterExportDialog
+from uberwriter.text_editor import UberwriterTextEditor
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
@@ -36,24 +37,21 @@ from gi.repository import WebKit2 as WebKit
 from gi.repository import Pango  # pylint: disable=E0611
 
 import cairo
-# import cairo.Pattern, cairo.SolidPattern
 
-from uberwriter import headerbars
 from uberwriter import helpers
 from uberwriter.theme import Theme
 from uberwriter.helpers import get_builder
 from uberwriter.gtkspellcheck import SpellChecker
 
 from uberwriter.markup_buffer import MarkupBuffer
-from uberwriter.text_editor import TextEditor
 from uberwriter.inline_preview import InlinePreview
 from uberwriter.sidebar import Sidebar
 from uberwriter.search_and_replace import SearchAndReplace
 from uberwriter.settings import Settings
-# from .auto_correct import AutoCorrect
 
-from uberwriter.export_dialog import Export
-# from .plugins.bibtex import BibTex
+from . import headerbars
+
+
 # Some Globals
 # TODO move them somewhere for better
 # accesibility from other files
@@ -89,7 +87,7 @@ class Window(Gtk.ApplicationWindow):
         # Headerbars
         self.headerbar = headerbars.MainHeaderbar(app)
         self.set_titlebar(self.headerbar.hb_container)
-        self.fs_headerbar = headerbars.FsHeaderbar(self.builder, app)
+        self.fs_headerbar = headerbars.FullscreenHeaderbar(self.builder, app)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -116,7 +114,7 @@ class Window(Gtk.ApplicationWindow):
         self.add_accel_group(self.accel_group)
 
         # Setup text editor
-        self.text_editor = TextEditor()
+        self.text_editor = UberwriterTextEditor()
         self.text_editor.set_name('UberwriterEditor')
         self.get_style_context().add_class('uberwriter_window')
 
@@ -964,7 +962,7 @@ class Window(Gtk.ApplicationWindow):
         """open the export and advanced export dialog
         """
 
-        self.export = Export(self.filename)
+        self.export = UberwriterExportDialog(self.filename)
         self.export.dialog.set_transient_for(self)
 
         response = self.export.dialog.run()

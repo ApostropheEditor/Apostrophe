@@ -35,7 +35,7 @@ from uberwriter.helpers import get_builder
 
 LOGGER = logging.getLogger('uberwriter')
 
-class Export:
+class UberwriterExportDialog:
     """
     Manages all the export operations and dialogs
     """
