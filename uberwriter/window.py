@@ -264,13 +264,15 @@ class Window(Gtk.ApplicationWindow):
         """Adjusts both the window and the CSD for the current theme.
         """
 
+        # Update markup buffer's style
         self.markup_buffer.update_style()
 
-        # Reload preview if it exists, otherwise redraw contents of window (self)
+        # Reload preview if it exists
         if self.preview_webview:
             self.show_preview()
-        else:
-            self.queue_draw()
+
+        # Redraw contents of window
+        self.queue_draw()
 
     def scrolled(self, widget):
         """if window scrolled + focusmode make font black again"""

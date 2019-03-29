@@ -31,11 +31,10 @@ class Theme:
     @classmethod
     def get_current(cls):
         theme_name = Gtk.Settings.get_default().get_property('gtk-theme-name')
+        dark_mode_auto = cls.settings.get_value('dark-mode-auto').get_boolean()
         dark_mode = cls.settings.get_value('dark-mode').get_boolean()
         current_theme = cls.get_for_name(theme_name)
-        # Technically, we could very easily allow the user to force the light ui on a dark theme.
-        # However, as there is no inverse of "gtk-application-prefer-dark-theme", we shouldn't do that.
-        if dark_mode and not current_theme.is_dark and current_theme.inverse_name:
+        if not dark_mode_auto and dark_mode != current_theme.is_dark and current_theme.inverse_name:
             current_theme = cls.get_for_name(current_theme.inverse_name, current_theme.name)
         return current_theme
 

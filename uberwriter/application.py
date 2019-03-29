@@ -36,6 +36,7 @@ class Application(Gtk.Application):
                          **kwargs)
         self.window = None
         self.settings = Settings.new()
+        self.dark_mode_action = None
 
     def do_startup(self, *args, **kwargs):
 
@@ -59,33 +60,35 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_quit)
         self.add_action(action)
 
-        set_dark_mode = self.settings.get_value("dark-mode")
+        dark_mode_auto = self.settings.get_value("dark-mode-auto")
+        action = Gio.SimpleAction.new_stateful("dark_mode_auto", None,
+                                               GLib.Variant.new_boolean(dark_mode_auto))
+        action.connect("change-state", self.on_dark_mode_auto)
+        self.add_action(action)
+
+        dark_mode = self.settings.get_value("dark-mode")
         action = Gio.SimpleAction.new_stateful("dark_mode",
                                                None,
-                                               GLib.Variant.new_boolean(set_dark_mode))
+                                               GLib.Variant.new_boolean(dark_mode))
         action.connect("change-state", self.on_dark_mode)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new_stateful("focus_mode",
-                                               None,
+        action = Gio.SimpleAction.new_stateful("focus_mode", None,
                                                GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_focus_mode)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new_stateful("hemingway_mode",
-                                               None,
+        action = Gio.SimpleAction.new_stateful("hemingway_mode", None,
                                                GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_hemingway_mode)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new_stateful("fullscreen",
-                                               None,
+        action = Gio.SimpleAction.new_stateful("fullscreen", None,
                                                GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_fullscreen)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new_stateful("preview",
-                                               None,
+        action = Gio.SimpleAction.new_stateful("preview", None,
                                                GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_preview)
         self.add_action(action)
@@ -94,17 +97,15 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_search)
         self.add_action(action)
 
-        set_spellcheck = self.settings.get_value("spellcheck")
-        action = Gio.SimpleAction.new_stateful("spellcheck",
-                                               None,
-                                               GLib.Variant.new_boolean(set_spellcheck))
+        spellcheck = self.settings.get_value("spellcheck")
+        action = Gio.SimpleAction.new_stateful("spellcheck", None,
+                                               GLib.Variant.new_boolean(spellcheck))
         action.connect("change-state", self.on_spellcheck)
         self.add_action(action)
 
-        set_gradient_overlay = self.settings.get_value("gradient-overlay")
-        action = Gio.SimpleAction.new_stateful("draw_gradient",
-                                               None,
-                                               GLib.Variant.new_boolean(set_gradient_overlay))
+        gradient_overlay = self.settings.get_value("gradient-overlay")
+        action = Gio.SimpleAction.new_stateful("draw_gradient", None,
+                                               GLib.Variant.new_boolean(gradient_overlay))
         action.connect("change-state", self.on_draw_gradient)
         self.add_action(action)
 
@@ -163,6 +164,8 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
         self.set_accels_for_action("app.quit", ["<Ctl>w", "<Ctl>q"])
 
+        # Theme
+
         self.apply_current_theme()
 
     def do_activate(self, *args, **kwargs):
@@ -210,8 +213,8 @@ class Application(Gtk.Application):
         style_provider.load_from_path(theme.gtk_css_path)
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
 
     def on_about(self, _action, _param):
         builder = get_builder('About')
@@ -236,11 +239,25 @@ class Application(Gtk.Application):
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
 
-    def on_dark_mode(self, action, value):
+    def on_dark_mode_auto(self, action, value, update_dark_mode_auto=True):
+        action.set_state(value)
+        self.settings.set_value("dark-mode-auto", GLib.Variant("b", value))
+
+        if update_dark_mode_auto:
+            self.on_dark_mode(self.lookup_action("dark_mode"),
+                              GLib.Variant.new_boolean(not value.get_boolean()),
+                              False)
+
+    def on_dark_mode(self, action, value, update_dark_mode_auto=True):
         action.set_state(value)
         self.settings.set_value("dark-mode", GLib.Variant("b", value))
 
-        # this changes the headerbar theme accordingly
+        if update_dark_mode_auto:
+            self.on_dark_mode_auto(self.lookup_action("dark_mode_auto"),
+                                   GLib.Variant.new_boolean(not value.get_boolean()),
+                                   False)
+
+        # change the app theme accordingly
         self.apply_current_theme()
 
         # adjust window for theme
