@@ -11,6 +11,7 @@ class Theme:
     The light variant is listed first, followed by the dark variant, if any.
     """
 
+    previous = None
     settings = Settings.new()
 
     def __init__(self, name, gtk_css_path, web_css_path, is_dark, inverse_name):
@@ -36,7 +37,17 @@ class Theme:
         current_theme = cls.get_for_name(theme_name)
         if not dark_mode_auto and dark_mode != current_theme.is_dark and current_theme.inverse_name:
             current_theme = cls.get_for_name(current_theme.inverse_name, current_theme.name)
-        return current_theme
+        changed = current_theme != cls.previous
+        cls.previous = current_theme
+        return current_theme, changed
+
+    def __eq__(self, other):
+        return isinstance(other, self.__class__) and \
+               self.name == other.name and \
+               self.gtk_css_path == other.gtk_css_path and \
+               self.web_css_path == other.web_css_path and \
+               self.is_dark == other.is_dark and \
+               self.inverse_name == other.inverse_name
 
 
 defaultThemes = [

@@ -164,10 +164,6 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
         self.set_accels_for_action("app.quit", ["<Ctl>w", "<Ctl>q"])
 
-        # Theme
-
-        self.apply_current_theme()
-
     def do_activate(self, *args, **kwargs):
         # We only allow a single window and raise any existing ones
         if not self.window:
@@ -198,23 +194,6 @@ class Application(Gtk.Application):
 
         self.activate()
         return 0
-
-    def apply_current_theme(self):
-        # get current theme
-        theme = Theme.get_current()
-
-        # set theme variant (dark/light)
-        Gtk.Settings.get_default().set_property(
-            "gtk-application-prefer-dark-theme",
-            GLib.Variant("b", theme.is_dark))
-
-        # set theme css
-        style_provider = Gtk.CssProvider()
-        style_provider.load_from_path(theme.gtk_css_path)
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
 
     def on_about(self, _action, _param):
         builder = get_builder('About')
@@ -257,10 +236,6 @@ class Application(Gtk.Application):
                                    GLib.Variant.new_boolean(not value.get_boolean()),
                                    False)
 
-        # change the app theme accordingly
-        self.apply_current_theme()
-
-        # adjust window for theme
         self.window.apply_current_theme()
 
     def on_focus_mode(self, action, value):

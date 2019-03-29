@@ -23,11 +23,29 @@ from gi.repository import Pango
 
 
 class MarkupBuffer():
+    regex = {
+        "ITALIC": re.compile(r"(\*|_)(.*?)\1", re.UNICODE),  # *asdasd* // _asdasd asd asd_
+        "STRONG": re.compile(r"(\*\*|__)(.*?)\1", re.UNICODE),  # **as das** // __asdasd asd ad a__
+        "STRONGITALIC": re.compile(r"(\*\*\*|___)(.*?)\1"),
+        "BLOCKQUOTE": re.compile(r"^([\>]+ )", re.MULTILINE),
+        "STRIKETHROUGH": re.compile(r"~~[^ `~\n].+?~~"),
+        "LIST": re.compile(r"^[\-\*\+] ", re.MULTILINE),
+        "NUMERICLIST": re.compile(r"^((\d|[a-z]|\#)+[\.\)]) ", re.MULTILINE),
+        "INDENTEDLIST": re.compile(r"^(\t{1,6})((\d|[a-z]|\#)+[\.\)]|[\-\*\+]) ", re.MULTILINE),
+        "HEADINDICATOR": re.compile(r"^(#{1,6}) ", re.MULTILINE),
+        "HEADLINE": re.compile(r"^(#{1,6} [^\n]+)", re.MULTILINE),
+        "HEADLINE_TWO": re.compile(r"^\w.+\n[\=\-]{3,}", re.MULTILINE),
+        "MATH": re.compile(r"[\$]{1,2}([^` ].+?[^`\\ ])[\$]{1,2}"),
+        "HORIZONTALRULE": re.compile(r"(\n\n[\*\-]{3,}\n)"),
+        "TABLE": re.compile(r"^[\-\+]{5,}\n(.+?)\n[\-\+]{5,}\n", re.DOTALL),
+        "LINK": re.compile(r"\(http(.+?)\)")
+    }
 
-    def __init__(self, Parent, TextBuffer, base_leftmargin):
-        self.multiplier = 10
-        self.parent = Parent
-        self.text_buffer = TextBuffer
+    def __init__(self, window, text_editor, base_leftmargin):
+        self.margin_multiplier = 10
+        self.parent = window
+        self.text_editor = text_editor
+        self.text_buffer = text_editor.get_buffer()
 
         # Styles
         self.italic = self.text_buffer.create_tag("italic",
@@ -94,36 +112,23 @@ class MarkupBuffer():
 
         self.table_env = self.text_buffer.create_tag('table_env')
         self.table_env.set_property('wrap-mode', Gtk.WrapMode.NONE)
-        # self.table_env.set_property('font', 'Ubuntu Mono 13px')
         self.table_env.set_property('pixels-above-lines', 0)
         self.table_env.set_property('pixels-below-lines', 0)
 
-        self.update_style()
+        # Theme
+        self.text_editor.connect('style-updated', self.apply_current_theme)
+        self.apply_current_theme()
 
-    regex = {
-        "ITALIC": re.compile(r"(\*|_)(.*?)\1", re.UNICODE),   # *asdasd* // _asdasd asd asd_
-        "STRONG": re.compile(r"(\*\*|__)(.*?)\1", re.UNICODE),   # **as das** // __asdasd asd ad a__
-        "STRONGITALIC": re.compile(r"(\*\*\*|___)(.*?)\1"),
-        "BLOCKQUOTE": re.compile(r"^([\>]+ )", re.MULTILINE),
-        "STRIKETHROUGH": re.compile(r"~~[^ `~\n].+?~~"),
-        "LIST": re.compile(r"^[\-\*\+] ", re.MULTILINE),
-        "NUMERICLIST": re.compile(r"^((\d|[a-z]|\#)+[\.\)]) ", re.MULTILINE),
-        "INDENTEDLIST": re.compile(r"^(\t{1,6})((\d|[a-z]|\#)+[\.\)]|[\-\*\+]) ", re.MULTILINE),
-        "HEADINDICATOR": re.compile(r"^(#{1,6}) ", re.MULTILINE),
-        "HEADLINE": re.compile(r"^(#{1,6} [^\n]+)", re.MULTILINE),
-        "HEADLINE_TWO": re.compile(r"^\w.+\n[\=\-]{3,}", re.MULTILINE),
-        "MATH": re.compile(r"[\$]{1,2}([^` ].+?[^`\\ ])[\$]{1,2}"),
-        "HORIZONTALRULE": re.compile(r"(\n\n[\*\-]{3,}\n)"),
-        "TABLE": re.compile(r"^[\-\+]{5,}\n(.+?)\n[\-\+]{5,}\n", re.DOTALL),
-        "LINK": re.compile(r"\(http(.+?)\)")
-    }
-
-    def update_style(self):
-        (found, color) = self.parent.get_style_context().lookup_color('math_text_color')
+    def apply_current_theme(self, *_):
+        # Math text color
+        (found, color) = self.text_editor.get_style_context().lookup_color('math_text_color')
         if not found:
-            (_, color) = self.parent.get_style_context().lookup_color('foreground_color')
-
+            (_, color) = self.text_editor.get_style_context().lookup_color('foreground_color')
         self.math_text.set_property("foreground", color.to_string())
+
+        # Margin
+        mets = self.text_editor.get_pango_context().get_metrics()
+        self.set_multiplier(Pango.units_to_double(mets.get_approximate_char_width()) + 1)
 
     def markup_buffer(self, mode=0):
         buf = self.text_buffer
@@ -306,10 +311,10 @@ class MarkupBuffer():
             end_sentence, self.text_buffer.get_end_iter())
 
     def set_multiplier(self, multiplier):
-        self.multiplier = multiplier
+        self.margin_multiplier = multiplier
 
     def recalculate(self, lm):
-        multiplier = self.multiplier
+        multiplier = self.margin_multiplier
         for i in range(0, 6):
             new_margin = (lm - multiplier) - multiplier * (i + 1)
             self.rev_leftmargin[i].set_property("left-margin", 0 if new_margin < 0 else new_margin)

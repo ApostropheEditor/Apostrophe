@@ -64,6 +64,15 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
 
 class Window(Gtk.ApplicationWindow):
+    __gsignals__ = {
+        'save-file': (GObject.SIGNAL_ACTION, None, ()),
+        'open-file': (GObject.SIGNAL_ACTION, None, ()),
+        'save-file-as': (GObject.SIGNAL_ACTION, None, ()),
+        'new-file': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-bibtex': (GObject.SIGNAL_ACTION, None, ()),
+        'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
+        'close-window': (GObject.SIGNAL_ACTION, None, ())
+    }
 
     WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
 
@@ -74,6 +83,7 @@ class Window(Gtk.ApplicationWindow):
                                        application=Gio.Application.get_default(),
                                        title="Uberwriter")
 
+        # Set UI
         self.builder = get_builder('UberwriterWindow')
         self.add(self.builder.get_object("FullscreenOverlay"))
 
@@ -127,7 +137,7 @@ class Window(Gtk.ApplicationWindow):
         self.text_editor.set_vadjustment(self.builder.get_object('vadjustment1'))
         self.text_editor.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.text_editor.connect('focus-out-event', self.focus_out)
-        self.text_editor.get_style_context().connect('changed', self.on_style_changed)
+        self.text_editor.connect('style-updated', self.apply_current_theme)
 
         self.text_editor.set_top_margin(80)
         self.text_editor.set_bottom_margin(16)
@@ -183,11 +193,8 @@ class Window(Gtk.ApplicationWindow):
 
         # Markup and Shortcuts for the TextBuffer
         self.markup_buffer = MarkupBuffer(
-            self, self.text_buffer, base_leftmargin)
+            self, self.text_editor, base_leftmargin)
         self.markup_buffer.markup_buffer()
-
-        # Set current theme
-        self.apply_current_theme()
 
         # Scrolling -> Dark or not?
         self.textchange = False
@@ -248,29 +255,34 @@ class Window(Gtk.ApplicationWindow):
         self.connect("configure-event", self.window_resize)
         self.connect("delete-event", self.on_delete_called)
 
-    __gsignals__ = {
-        'save-file': (GObject.SIGNAL_ACTION, None, ()),
-        'open-file': (GObject.SIGNAL_ACTION, None, ()),
-        'save-file-as': (GObject.SIGNAL_ACTION, None, ()),
-        'new-file': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-bibtex': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
-        'close-window': (GObject.SIGNAL_ACTION, None, ())
-    }
+        # Set current theme
+        self.apply_current_theme()
 
-    def apply_current_theme(self):
-        """Adjusts both the window and the CSD for the current theme.
+    def apply_current_theme(self, *_):
+        """Adjusts the window, CSD and preview for the current theme.
         """
+        # Get current theme
+        theme, changed = Theme.get_current()
 
-        # Update markup buffer's style
-        self.markup_buffer.update_style()
+        if changed:
+            # Set theme variant (dark/light)
+            Gtk.Settings.get_default().set_property(
+                "gtk-application-prefer-dark-theme",
+                GLib.Variant("b", theme.is_dark))
 
-        # Reload preview if it exists
-        if self.preview_webview:
-            self.show_preview()
+            # Set theme css
+            style_provider = Gtk.CssProvider()
+            style_provider.load_from_path(theme.gtk_css_path)
+            Gtk.StyleContext.add_provider_for_screen(
+                self.get_screen(), style_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
-        # Redraw contents of window
-        self.queue_draw()
+            # Reload preview if it exists
+            if self.preview_webview:
+                self.show_preview()
+
+            # Redraw contents of window
+            self.queue_draw()
 
     def scrolled(self, widget):
         """if window scrolled + focusmode make font black again"""
@@ -546,12 +558,6 @@ class Window(Gtk.ApplicationWindow):
             alloc = self.text_editor.get_allocation()
             alloc.width = width_request
             self.text_editor.size_allocate(alloc)
-
-    def on_style_changed(self, _widget, _data=None):
-        pgc = self.text_editor.get_pango_context()
-        mets = pgc.get_metrics()
-        self.markup_buffer.set_multiplier(
-            Pango.units_to_double(mets.get_approximate_char_width()) + 1)
 
     # TODO: refactorizable
     def save_document(self, _widget=None, _data=None):
@@ -876,12 +882,13 @@ class Window(Gtk.ApplicationWindow):
                 base_path = ''
             os.environ['PANDOC_PREFIX'] = base_path + '/'
 
+            theme, _ = Theme.get_current()
             args = ['pandoc',
                     '-s',
                     '--from=markdown',
                     '--to=html5',
                     '--mathjax',
-                    '--css=' + Theme.get_current().web_css_path,
+                    '--css=' + theme.web_css_path,
                     '--quiet',
                     '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
                     '--lua-filter=' + helpers.get_script_path('task-list.lua')]
