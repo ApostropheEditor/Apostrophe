@@ -619,9 +619,9 @@ Because `_` is sometimes used inside words and identifiers, pandoc does not inte
 
     feas*ible*, not feas*able*.
 
-#### Strikeout
+#### Strikethrough
 
-To strikeout a section of text with a horizontal line, begin and end it with `~~`. Thus, for example,
+To strikethrough a section of text with a horizontal line, begin and end it with `~~`. Thus, for example,
 
     This ~~is deleted text.~~
 

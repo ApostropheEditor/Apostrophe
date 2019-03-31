@@ -17,18 +17,14 @@
 
 from gettext import gettext as _
 
-from uberwriter.markup_buffer import MarkupBuffer
-
 
 class FormatShortcuts():
     """Manage the insertion of formatting for insert them using shortcuts
     """
 
-
     def __init__(self, textbuffer, texteditor):
         self.text_buffer = textbuffer
         self.text_editor = texteditor
-        self.regex = MarkupBuffer.regex
 
     def rule(self):
         """insert ruler at cursor

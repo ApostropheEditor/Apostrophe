@@ -36,14 +36,14 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
         self.hb.props.show_close_button = True
         self.hb.get_style_context().add_class("titlebar")
 
-        self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
+        self.hb_revealer = Gtk.Revealer(name='titlebar-revealer')
         self.hb_revealer.add(self.hb)
         self.hb_revealer.props.transition_duration = 1000
         self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
         self.hb_revealer.show()
         self.hb_revealer.set_reveal_child(True)
 
-        self.hb_container = Gtk.Frame(name='titlebar_container')
+        self.hb_container = Gtk.Frame(name='titlebar-container')
         self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
         self.hb_container.add(self.hb_revealer)
         self.hb_container.show()

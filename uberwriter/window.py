@@ -17,7 +17,6 @@
 import codecs
 import locale
 import logging
-import mimetypes
 import os
 import re
 import subprocess
@@ -27,14 +26,13 @@ from gettext import gettext as _
 
 import gi
 
-from uberwriter.export_dialog import UberwriterExportDialog
-from uberwriter.text_editor import UberwriterTextEditor
+from uberwriter.export_dialog import Export
+from uberwriter.text_view import TextView
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 from gi.repository import WebKit2 as WebKit
-from gi.repository import Pango  # pylint: disable=E0611
 
 import cairo
 
@@ -43,14 +41,11 @@ from uberwriter.theme import Theme
 from uberwriter.helpers import get_builder
 from uberwriter.gtkspellcheck import SpellChecker
 
-from uberwriter.markup_buffer import MarkupBuffer
-from uberwriter.inline_preview import InlinePreview
 from uberwriter.sidebar import Sidebar
 from uberwriter.search_and_replace import SearchAndReplace
 from uberwriter.settings import Settings
 
 from . import headerbars
-
 
 # Some Globals
 # TODO move them somewhere for better
@@ -59,8 +54,6 @@ from . import headerbars
 LOGGER = logging.getLogger('uberwriter')
 
 CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
-
-# See texteditor_lib.Window.py for more details about how this class works
 
 
 class Window(Gtk.ApplicationWindow):
@@ -85,14 +78,14 @@ class Window(Gtk.ApplicationWindow):
 
         # Set UI
         self.builder = get_builder('UberwriterWindow')
-        self.add(self.builder.get_object("FullscreenOverlay"))
+        root = self.builder.get_object("FullscreenOverlay")
+        root.connect('style-updated', self.apply_current_theme)
+        self.add(root)
 
-        self.set_default_size(850, 500)
+        self.set_default_size(900, 500)
 
-        # preferences
+        # Preferences
         self.settings = Settings.new()
-
-        self.set_name('UberwriterWindow')
 
         # Headerbars
         self.headerbar = headerbars.MainHeaderbar(app)
@@ -102,20 +95,18 @@ class Window(Gtk.ApplicationWindow):
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
 
-        self.focusmode = False
-
         self.word_count = self.builder.get_object('word_count')
         self.char_count = self.builder.get_object('char_count')
 
         # Setup status bar hide after 3 seconds
-
         self.status_bar = self.builder.get_object('status_bar_box')
         self.statusbar_revealer = self.builder.get_object('status_bar_revealer')
-        self.status_bar.get_style_context().add_class('status_bar_box')
+        self.status_bar.get_style_context().add_class('status-bar-box')
         self.status_bar_visible = True
         self.was_motion = True
         self.buffer_modified_for_status_bar = False
 
+        self.timestamp_last_mouse_motion = 0
         if self.settings.get_value("poll-motion"):
             self.connect("motion-notify-event", self.on_motion_notify)
             GObject.timeout_add(3000, self.poll_for_motion)
@@ -124,43 +115,20 @@ class Window(Gtk.ApplicationWindow):
         self.add_accel_group(self.accel_group)
 
         # Setup text editor
-        self.text_editor = UberwriterTextEditor()
-        self.text_editor.set_name('UberwriterEditor')
-        self.get_style_context().add_class('uberwriter_window')
+        self.text_view = TextView()
+        self.text_view.props.halign = Gtk.Align.CENTER
+        self.text_view.connect('focus-out-event', self.focus_out)
+        self.text_view.show()
+        self.text_view.grab_focus()
 
-        base_leftmargin = 100
-        self.text_editor.set_left_margin(base_leftmargin)
-        self.text_editor.set_left_margin(40)
-        self.text_editor.set_top_margin(80)
-        self.text_editor.props.width_request = 600
-        self.text_editor.props.halign = Gtk.Align.CENTER
-        self.text_editor.set_vadjustment(self.builder.get_object('vadjustment1'))
-        self.text_editor.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
-        self.text_editor.connect('focus-out-event', self.focus_out)
-        self.text_editor.connect('style-updated', self.apply_current_theme)
-
-        self.text_editor.set_top_margin(80)
-        self.text_editor.set_bottom_margin(16)
-
-        self.text_editor.set_pixels_above_lines(4)
-        self.text_editor.set_pixels_below_lines(4)
-        self.text_editor.set_pixels_inside_wrap(8)
-
-        tab_array = Pango.TabArray.new(1, True)
-        tab_array.set_tab(0, Pango.TabAlign.LEFT, 20)
-        self.text_editor.set_tabs(tab_array)
-
-        self.text_editor.show()
-        self.text_editor.grab_focus()
+        self.text_view.get_buffer().connect('changed', self.on_text_changed)
 
         # Setup preview webview
         self.preview_webview = None
 
-        self.editor_alignment = self.builder.get_object('editor_alignment')
         self.scrolled_window = self.builder.get_object('editor_scrolledwindow')
-        self.scrolled_window.props.width_request = 600
-        self.scrolled_window.add(self.text_editor)
-        self.alignment_padding = 40
+        self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
+        self.scrolled_window.add(self.text_view)
         self.editor_viewport = self.builder.get_object('editor_viewport')
 
         # some people seems to have performance problems with the overlay.
@@ -169,67 +137,8 @@ class Window(Gtk.ApplicationWindow):
         if self.settings.get_value("gradient-overlay"):
             self.overlay = self.scrolled_window.connect_after("draw", self.draw_gradient)
 
-        self.smooth_scroll_starttime = 0
-        self.smooth_scroll_endtime = 0
-        self.smooth_scroll_acttarget = 0
-        self.smooth_scroll_data = {
-            'target_pos': -1,
-            'source_pos': -1,
-            'duration': 0
-        }
-        self.smooth_scroll_tickid = -1
-
-        self.text_buffer = self.text_editor.get_buffer()
-        self.text_buffer.set_text('')
-
-        # Init Window height for top/bottom padding
-        self.window_height = self.get_size()[1]
-
-        self.text_change_event = self.text_buffer.connect(
-            'changed', self.text_changed)
-
         # Init file name with None
         self.set_filename()
-
-        # Markup and Shortcuts for the TextBuffer
-        self.markup_buffer = MarkupBuffer(
-            self, self.text_editor, base_leftmargin)
-        self.markup_buffer.markup_buffer()
-
-        # Scrolling -> Dark or not?
-        self.textchange = False
-        self.scroll_count = 0
-        self.timestamp_last_mouse_motion = 0
-        self.text_buffer.connect_after('mark-set', self.mark_set)
-
-        # Drag and drop
-
-        # self.TextEditor.drag_dest_unset()
-        # self.TextEditor.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-        self.target_list = Gtk.TargetList.new([])
-        self.target_list.add_uri_targets(1)
-        self.target_list.add_text_targets(2)
-
-        self.text_editor.drag_dest_set_target_list(self.target_list)
-        self.text_editor.connect_after(
-            'drag-data-received', self.on_drag_data_received)
-
-        def on_drop(_widget, *_args):
-            print("drop")
-        self.text_editor.connect('drag-drop', on_drop)
-
-        self.text_buffer.connect('paste-done', self.paste_done)
-        # self.connect('key-press-event', self.alt_mod)
-
-        # Events for Typewriter mode
-
-        # Setting up inline preview
-        self.inline_preview = InlinePreview(
-            self.text_editor, self.text_buffer)
-
-        # Vertical scrolling
-        self.vadjustment = self.scrolled_window.get_vadjustment()
-        self.vadjustment.connect('value-changed', self.scrolled)
 
         # Setting up spellcheck
         self.auto_correct = None
@@ -248,7 +157,7 @@ class Window(Gtk.ApplicationWindow):
         #   Search and replace initialization
         #   Same interface as Sidebar ;)
         ###
-        self.searchreplace = SearchAndReplace(self)
+        self.searchreplace = SearchAndReplace(self, self.text_view)
 
         # Window resize
         self.window_resize(self)
@@ -257,6 +166,7 @@ class Window(Gtk.ApplicationWindow):
 
         # Set current theme
         self.apply_current_theme()
+        self.get_style_context().add_class('uberwriter-window')
 
     def apply_current_theme(self, *_):
         """Adjusts the window, CSD and preview for the current theme.
@@ -284,58 +194,14 @@ class Window(Gtk.ApplicationWindow):
             # Redraw contents of window
             self.queue_draw()
 
-    def scrolled(self, widget):
-        """if window scrolled + focusmode make font black again"""
-        # if self.focusmode:
-        # if self.textchange == False:
-        #     if self.scroll_count >= 4:
-        #         self.TextBuffer.apply_tag(
-        #             self.MarkupBuffer.blackfont,
-        #             self.TextBuffer.get_start_iter(),
-        #             self.TextBuffer.get_end_iter())
-        #     else:
-        #         self.scroll_count += 1
-        # else:
-        #     self.scroll_count = 0
-        #     self.textchange = False
-
-    def paste_done(self, *_):
-        self.markup_buffer.markup_buffer(0)
-
-    def init_typewriter(self):
-        """put the cursor at the center of the screen by setting top and
-        bottom margins to height/2
-        """
-
-        editor_height = self.text_editor.get_allocation().height
-        self.text_editor.props.top_margin = editor_height / 2
-        self.text_editor.props.bottom_margin = editor_height / 2
-
-    def remove_typewriter(self):
-        """set margins to default values
-        """
-
-        self.text_editor.props.top_margin = 80
-        self.text_editor.props.bottom_margin = 16
-        self.text_change_event = self.text_buffer.connect(
-            'changed', self.text_changed)
-
-    def get_text(self):
-        """get text from self.text_buffer
-        """
-
-        start_iter = self.text_buffer.get_start_iter()
-        end_iter = self.text_buffer.get_end_iter()
-        return self.text_buffer.get_text(start_iter, end_iter, False)
-
     def update_line_and_char_count(self):
         """it... it updates line and characters count
         """
 
         if self.status_bar_visible is False:
             return
-        self.char_count.set_text(str(self.text_buffer.get_char_count()))
-        text = self.get_text()
+        text = self.text_view.get_text()
+        self.char_count.set_text(str(len(text)))
         words = re.split(self.WORDCOUNT, text)
         length = len(words)
         # Last word a "space"
@@ -348,12 +214,7 @@ class Window(Gtk.ApplicationWindow):
             length = 0
         self.word_count.set_text(str(length))
 
-    def mark_set(self, _buffer, _location, mark, _data=None):
-        if mark.get_name() in ['insert', 'gtk_drag_target']:
-            self.check_scroll(mark)
-        return True
-
-    def text_changed(self, *_args):
+    def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
            updates the title and the counters to reflect that
         """
@@ -363,12 +224,8 @@ class Window(Gtk.ApplicationWindow):
             title = self.get_title()
             self.set_headerbar_title("* " + title)
 
-        self.markup_buffer.markup_buffer(1)
-        self.textchange = True
-
         self.buffer_modified_for_status_bar = True
         self.update_line_and_char_count()
-        self.check_scroll(self.text_buffer.get_insert())
 
     def set_fullscreen(self, state):
         """Puts the application in fullscreen mode and show/hides
@@ -386,178 +243,52 @@ class Window(Gtk.ApplicationWindow):
             self.unfullscreen()
             self.fs_headerbar.events.hide()
 
-        self.text_editor.grab_focus()
+        self.text_view.grab_focus()
 
     def set_focus_mode(self, state):
         """toggle focusmode
         """
 
-        if state.get_boolean():
-            self.init_typewriter()
-            self.markup_buffer.focusmode_highlight()
-            self.focusmode = True
-            self.text_editor.grab_focus()
-            self.check_scroll(self.text_buffer.get_insert())
-            if self.spell_checker:
-                self.spell_checker._misspelled.set_property('underline', 0)
-            self.click_event = self.text_editor.connect("button-release-event",
-                                                        self.on_focusmode_click)
-        else:
-            self.remove_typewriter()
-            self.focusmode = False
-            self.text_buffer.remove_tag(self.markup_buffer.unfocused_text,
-                                        self.text_buffer.get_start_iter(),
-                                        self.text_buffer.get_end_iter())
-            self.text_buffer.remove_tag(self.markup_buffer.blackfont,
-                                        self.text_buffer.get_start_iter(),
-                                        self.text_buffer.get_end_iter())
-
-            self.markup_buffer.markup_buffer(1)
-            self.text_editor.grab_focus()
-            self.update_line_and_char_count()
-            self.check_scroll()
-            if self.spell_checker:
-                self.spell_checker._misspelled.set_property('underline', 4)
-            _click_event = self.text_editor.disconnect(self.click_event)
+        focus_mode = state.get_boolean()
+        self.text_view.set_focus_mode(focus_mode)
+        if self.spell_checker:
+            self.spell_checker._misspelled.set_property('underline', 0 if focus_mode else 4)
+        self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
         """toggle hemingwaymode
         """
-        self.text_editor.can_delete = not state.get_boolean()
-        self.text_editor.grab_focus()
 
-    def on_focusmode_click(self, *_args):
-        """call MarkupBuffer to mark as bold the line where the cursor is
-        """
+        self.text_view.set_hemingway_mode(state.get_boolean())
+        self.text_view.grab_focus()
 
-        self.markup_buffer.markup_buffer(1)
-
-    def scroll_smoothly(self, widget, frame_clock, _data=None):
-        if self.smooth_scroll_data['target_pos'] == -1:
-            return True
-
-        def ease_out_cubic(time):
-            time = time - 1
-            return pow(time, 3) + 1
-
-        now = frame_clock.get_frame_time()
-        if self.smooth_scroll_acttarget != self.smooth_scroll_data['target_pos']:
-            self.smooth_scroll_starttime = now
-            self.smooth_scroll_endtime = now + \
-                self.smooth_scroll_data['duration'] * 100
-            self.smooth_scroll_acttarget = self.smooth_scroll_data['target_pos']
-
-        if now < self.smooth_scroll_endtime:
-            time = float(now - self.smooth_scroll_starttime) / float(
-                self.smooth_scroll_endtime - self.smooth_scroll_starttime)
-        else:
-            time = 1
-            pos = self.smooth_scroll_data['source_pos'] \
-                + (time * (self.smooth_scroll_data['target_pos']
-                           - self.smooth_scroll_data['source_pos']))
-            widget.get_vadjustment().props.value = pos
-            self.smooth_scroll_data['target_pos'] = -1
-            return True
-
-        time = ease_out_cubic(time)
-        pos = self.smooth_scroll_data['source_pos'] \
-            + (time * (self.smooth_scroll_data['target_pos']
-                       - self.smooth_scroll_data['source_pos']))
-        widget.get_vadjustment().props.value = pos
-        return True  # continue ticking
-
-    def check_scroll(self, mark=None):
-        gradient_offset = 80
-        buf = self.text_editor.get_buffer()
-        if mark:
-            ins_it = buf.get_iter_at_mark(mark)
-        else:
-            ins_it = buf.get_iter_at_mark(buf.get_insert())
-        loc_rect = self.text_editor.get_iter_location(ins_it)
-
-        # alignment offset added from top
-        pos_y = loc_rect.y + loc_rect.height + self.text_editor.props.top_margin  # pylint: disable=no-member
-
-        ha = self.scrolled_window.get_vadjustment()
-        if ha.props.page_size < gradient_offset:
-            return
-        pos = pos_y - ha.props.value
-        # print("pos: %i, pos_y %i, page_sz: %i, val: %i" % (pos, pos_y, ha.props.page_size
-        #                                                    - gradient_offset, ha.props.value))
-        # global t, amount, initvadjustment
-        target_pos = -1
-        if self.focusmode:
-            # print("pos: %i > %i" % (pos, ha.props.page_size * 0.5))
-            if pos != (ha.props.page_size * 0.5):
-                target_pos = pos_y - (ha.props.page_size * 0.5)
-        elif pos > ha.props.page_size - gradient_offset - 60:
-            target_pos = pos_y - ha.props.page_size + gradient_offset + 40
-        elif pos < gradient_offset:
-            target_pos = pos_y - gradient_offset
-        self.smooth_scroll_data = {
-            'target_pos': target_pos,
-            'source_pos': ha.props.value,
-            'duration': 2000
-        }
-        if self.smooth_scroll_tickid == -1:
-            self.smooth_scroll_tickid = self.scrolled_window.add_tick_callback(
-                self.scroll_smoothly)
-
-    def window_resize(self, widget, _data=None):
+    def window_resize(self, window, _data=None):
         """set paddings dependant of the window size
         """
 
-        # To calc padding top / bottom
-        self.window_height = widget.get_allocation().height
-        w_width = widget.get_allocation().width
-        # Calculate left / right margin
+        # Adjust text editor width depending on window width, so that:
+        # - The number of characters per line is adequate (http://webtypography.net/2.1.2)
+        # - The number of characters stays constant while resizing the window / font
+        # - There is enough text margin for MarkupBuffer to apply indents / negative margins
+        w_width = window.get_allocation().width
         if w_width < 900:
-            width_request = 600
-            self.markup_buffer.set_multiplier(8)
-            self.current_font_size = 12
-            self.alignment_padding = 30
-            lm = 7 * 8
-            self.get_style_context().remove_class("medium")
-            self.get_style_context().remove_class("large")
+            width_request = 700  # ~66 characters
             self.get_style_context().add_class("small")
+            self.get_style_context().remove_class("large")
 
-        elif w_width < 1400:
-            width_request = 800
-            self.markup_buffer.set_multiplier(10)
-            self.current_font_size = 15
-            self.alignment_padding = 40
-            lm = 7 * 10
+        elif w_width < 1200:
+            width_request = 870  # ~66 characters
             self.get_style_context().remove_class("small")
             self.get_style_context().remove_class("large")
-            self.get_style_context().add_class("medium")
 
         else:
-            width_request = 1000
-            self.markup_buffer.set_multiplier(13)
-            self.current_font_size = 17
-            self.alignment_padding = 60
-            lm = 7 * 13
-            self.get_style_context().remove_class("medium")
+            width_request = 830  # ~66 characters
             self.get_style_context().remove_class("small")
             self.get_style_context().add_class("large")
 
-        self.editor_alignment.props.margin_bottom = 0
-        self.editor_alignment.props.margin_top = 0
-        self.text_editor.set_left_margin(lm)
-        self.text_editor.set_right_margin(lm)
-
-        self.markup_buffer.recalculate(lm)
-
-        if self.focusmode:
-            self.remove_typewriter()
-            self.init_typewriter()
-
-        if self.text_editor.props.width_request != width_request:  # pylint: disable=no-member
-            self.text_editor.props.width_request = width_request
+        if self.text_view.props.width_request != width_request:
+            self.text_view.props.width_request = width_request
             self.scrolled_window.props.width_request = width_request
-            alloc = self.text_editor.get_allocation()
-            alloc.width = width_request
-            self.text_editor.size_allocate(alloc)
 
     # TODO: refactorizable
     def save_document(self, _widget=None, _data=None):
@@ -569,7 +300,7 @@ class Window(Gtk.ApplicationWindow):
             LOGGER.info("saving")
             filename = self.filename
             file_to_save = codecs.open(filename, encoding="utf-8", mode='w')
-            file_to_save.write(self.get_text())
+            file_to_save.write(self.text_view.get_text())
             file_to_save.close()
             if self.did_change:
                 self.did_change = False
@@ -603,7 +334,7 @@ class Window(Gtk.ApplicationWindow):
                     pass
 
             file_to_save = codecs.open(filename, encoding="utf-8", mode='w')
-            file_to_save.write(self.get_text())
+            file_to_save.write(self.text_view.get_text())
             file_to_save.close()
 
             self.set_filename(filename)
@@ -644,7 +375,7 @@ class Window(Gtk.ApplicationWindow):
                     pass
 
             file_to_save = codecs.open(filename, encoding="utf-8", mode='w')
-            file_to_save.write(self.get_text())
+            file_to_save.write(self.text_view.get_text())
             file_to_save.close()
 
             self.set_filename(filename)
@@ -671,7 +402,7 @@ class Window(Gtk.ApplicationWindow):
         proc = subprocess.Popen(args, stdin=subprocess.PIPE,
                                 stdout=subprocess.PIPE)
 
-        text = bytes(self.get_text(), "utf-8")
+        text = bytes(self.text_view.get_text(), "utf-8")
         output = proc.communicate(text)[0]
 
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -711,14 +442,14 @@ class Window(Gtk.ApplicationWindow):
         """Show dialog to prevent loss of unsaved changes
         """
 
-        if self.did_change and self.get_text():
+        if self.did_change and self.text_view.get_text():
             dialog = Gtk.MessageDialog(self,
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.WARNING,
                                        Gtk.ButtonsType.NONE,
                                        _("You have not saved your changes.")
                                        )
-            dialog.add_button(_("Close without Saving"), Gtk.ResponseType.NO)
+            dialog.add_button(_("Close without saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
             # dialog.set_default_size(200, 60)
@@ -745,9 +476,7 @@ class Window(Gtk.ApplicationWindow):
 
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
-        self.text_buffer.set_text('')
-        self.text_editor.undos = []
-        self.text_editor.redos = []
+        self.text_view.clear()
 
         self.did_change = False
         self.set_filename()
@@ -771,7 +500,7 @@ class Window(Gtk.ApplicationWindow):
             except:
                 try:
                     self.spell_checker = SpellChecker(
-                      self.text_editor, locale.getdefaultlocale()[0],
+                      self.text_view, locale.getdefaultlocale()[0],
                       collapse=False)
                     if self.auto_correct:
                         self.auto_correct.set_language(self.spell_checker.language)
@@ -787,7 +516,7 @@ class Window(Gtk.ApplicationWindow):
                                             _("You can not enable the Spell Checker.")
                                             )
                     dialog.format_secondary_text(
-                        _("Please install 'hunspell' or 'aspell' dictionarys"
+                        _("Please install 'hunspell' or 'aspell' dictionaries"
                         + " for your language from the software center."))
                     _response = dialog.run()
                 return
@@ -798,46 +527,6 @@ class Window(Gtk.ApplicationWindow):
             except:
                 pass
         return
-
-    def on_drag_data_received(self, _widget, drag_context, _x, _y,
-                              data, info, time):
-        """Handle drag and drop events"""
-        if info == 1:
-            # uri target
-            uris = data.get_uris()
-            for uri in uris:
-                uri = urllib.parse.unquote_plus(uri)
-                mime = mimetypes.guess_type(uri)
-
-                if mime[0] is not None and mime[0].startswith('image'):
-                    if uri.startswith("file://"):
-                        uri = uri[7:]
-                    text = "![Insert image title here](%s)" % uri
-                    limit_left = 2
-                    limit_right = 23
-                else:
-                    text = "[Insert link title here](%s)" % uri
-                    limit_left = 1
-                    limit_right = 22
-                self.text_buffer.place_cursor(self.text_buffer.get_iter_at_mark(
-                    self.text_buffer.get_mark('gtk_drag_target')))
-                self.text_buffer.insert_at_cursor(text)
-                insert_mark = self.text_buffer.get_insert()
-                selection_bound = self.text_buffer.get_selection_bound()
-                cursor_iter = self.text_buffer.get_iter_at_mark(insert_mark)
-                cursor_iter.backward_chars(len(text) - limit_left)
-                self.text_buffer.move_mark(insert_mark, cursor_iter)
-                cursor_iter.forward_chars(limit_right)
-                self.text_buffer.move_mark(selection_bound, cursor_iter)
-
-        elif info == 2:
-            # Text target
-            self.text_buffer.place_cursor(self.text_buffer.get_iter_at_mark(
-                self.text_buffer.get_mark('gtk_drag_target')))
-            self.text_buffer.insert_at_cursor(data.get_text())
-        Gtk.drag_finish(drag_context, True, True, time)
-        self.present()
-        return False
 
     def toggle_preview(self, state):
         """Toggle the preview mode
@@ -855,8 +544,8 @@ class Window(Gtk.ApplicationWindow):
 
     def show_text_editor(self):
         self.scrolled_window.remove(self.scrolled_window.get_child())
-        self.scrolled_window.add(self.text_editor)
-        self.text_editor.show()
+        self.scrolled_window.add(self.text_view)
+        self.text_view.show()
         self.preview_webview.destroy()
         self.preview_webview = None
         self.queue_draw()
@@ -868,12 +557,6 @@ class Window(Gtk.ApplicationWindow):
             self.preview_webview.show()
             self.queue_draw()
         else:
-            # Insert a tag with ID to scroll to
-            # self.TextBuffer.insert_at_cursor('<span id="scroll_mark"></span>')
-            # TODO
-            # Find a way to find the next header, scroll to the next header.
-            # TODO: provide a local version of mathjax
-
             # We need to convert relative routes to absolute ones
             # For that first we need to know if the file is saved:
             if self.filename:
@@ -899,18 +582,12 @@ class Window(Gtk.ApplicationWindow):
             proc = subprocess.Popen(
                 args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
-            text = bytes(self.get_text(), "utf-8")
+            text = bytes(self.text_view.get_text(), "utf-8")
             output = proc.communicate(text)[0]
 
             if self.preview_webview is None:
                 self.preview_webview = WebKit.WebView()
                 self.preview_webview.get_settings().set_allow_universal_access_from_file_urls(True)
-
-                # Delete the cursor-scroll mark again
-                # cursor_iter = self.TextBuffer.get_iter_at_mark(self.TextBuffer.get_insert())
-                # begin_del = cursor_iter.copy()
-                # begin_del.backward_chars(30)
-                # self.TextBuffer.delete(begin_del, cursor_iter)
 
                 # Show preview once the load is finished
                 self.preview_webview.connect("load-changed", self.on_preview_load_change)
@@ -930,19 +607,14 @@ class Window(Gtk.ApplicationWindow):
             if filename.startswith('file://'):
                 filename = filename[7:]
             filename = urllib.parse.unquote_plus(filename)
+            self.text_view.clear()
             try:
-                if not os.path.exists(filename):
-                    self.text_buffer.set_text("")
-                else:
+                if os.path.exists(filename):
                     current_file = codecs.open(filename, encoding="utf-8", mode='r')
-                    self.text_buffer.set_text(current_file.read())
+                    self.text_view.set_text(current_file.read())
                     current_file.close()
-                    self.markup_buffer.markup_buffer(0)
 
-                self.set_headerbar_title(
-                    os.path.basename(filename) + self.title_end)
-                self.text_editor.undo_stack = []
-                self.text_editor.redo_stack = []
+                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
                 self.set_filename(filename)
 
             except Exception:
@@ -969,12 +641,12 @@ class Window(Gtk.ApplicationWindow):
         """open the export and advanced export dialog
         """
 
-        self.export = UberwriterExportDialog(self.filename)
+        self.export = Export(self.filename)
         self.export.dialog.set_transient_for(self)
 
         response = self.export.dialog.run()
         if response == 1:
-            self.export.export(bytes(self.get_text(), "utf-8"))
+            self.export.export(bytes(self.text_view.get_text(), "utf-8"))
 
         self.export.dialog.destroy()
 
@@ -998,7 +670,7 @@ class Window(Gtk.ApplicationWindow):
         if (self.was_motion is False
                 and self.status_bar_visible
                 and self.buffer_modified_for_status_bar
-                and self.text_editor.props.has_focus): # pylint: disable=no-member
+                and self.text_view.props.has_focus): # pylint: disable=no-member
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
             self.statusbar_revealer.set_reveal_child(False)
             self.headerbar.hb_revealer.set_reveal_child(False)
@@ -1070,24 +742,6 @@ class Window(Gtk.ApplicationWindow):
 
         cr.set_source(lg_btm)
         cr.fill()
-
-    def use_experimental_features(self, _val):
-        """use experimental features
-        """
-        pass
-        # try:
-        #     self.auto_correct = AutoCorrect(
-        #         self.text_editor, self.text_buffer)
-        # except:
-        #     LOGGER.debug("Couldn't install autocorrect.")
-
-        # self.plugins = [BibTex(self)]
-
-    # def alt_mod(self, _widget, event, _data=None):
-    #     # TODO: Click and open when alt is pressed
-    #     if event.state & Gdk.ModifierType.MOD2_MASK:
-    #         LOGGER.info("Alt pressed")
-    #     return
 
     def on_delete_called(self, _widget, _data=None):
         """Called when the TexteditorWindow is closed.

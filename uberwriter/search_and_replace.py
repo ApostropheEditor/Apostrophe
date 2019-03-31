@@ -14,21 +14,26 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-import re
 import logging
+import re
+
 import gi
+
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
+from gi.repository import Gdk
+
 # from plugins import plugins
 
 LOGGER = logging.getLogger('uberwriter')
 
-class SearchAndReplace():
+
+class SearchAndReplace:
     """
     Adds (regex) search and replace functionality to
     uberwriter
     """
-    def __init__(self, parentwindow):
+
+    def __init__(self, parentwindow, textview):
         self.parentwindow = parentwindow
         self.box = parentwindow.builder.get_object("searchbar_placeholder")
         self.box.set_reveal_child(False)
@@ -41,8 +46,8 @@ class SearchAndReplace():
         self.open_replace_button = parentwindow.builder.get_object("replace")
         self.open_replace_button.connect("toggled", self.toggle_replace)
 
-        self.textbuffer = parentwindow.text_buffer
-        self.texteditor = parentwindow.text_editor
+        self.textview = textview
+        self.textbuffer = textview.get_buffer()
 
         self.nextbutton = parentwindow.builder.get_object("next_result")
         self.prevbutton = parentwindow.builder.get_object("previous_result")
@@ -66,7 +71,7 @@ class SearchAndReplace():
         self.highlight = self.textbuffer.create_tag('search_highlight',
                                                     background="yellow")
 
-        self.texteditor.connect("focus-in-event", self.focused_texteditor)
+        self.textview.connect("focus-in-event", self.focused_texteditor)
 
     def toggle_replace(self, widget, _data=None):
         """toggle the replace box
@@ -99,7 +104,6 @@ class SearchAndReplace():
         else:
             self.hide()
             self.open_replace_button.set_active(False)
-
 
     def search(self, _widget=None, _data=None, scroll=True):
         searchtext = self.searchentry.get_text()
@@ -147,7 +151,7 @@ class SearchAndReplace():
             self.active = 0
 
         matchiter = self.matchiters[self.active]
-        self.texteditor.get_buffer().select_range(matchiter[0], matchiter[1])
+        self.textview.get_buffer().select_range(matchiter[0], matchiter[1])
 
         # self.texteditor.scroll_to_iter(matchiter[0], 0.0, True, 0.0, 0.5)
 
@@ -157,8 +161,7 @@ class SearchAndReplace():
         self.textbuffer.remove_tag(self.highlight,
                                    self.textbuffer.get_start_iter(),
                                    self.textbuffer.get_end_iter())
-        self.texteditor.grab_focus()
-
+        self.textview.grab_focus()
 
     def replace_clicked(self, _widget, _data=None):
         self.replace(self.active)
@@ -177,5 +180,4 @@ class SearchAndReplace():
         active = self.active
         self.search(scroll=False)
         self.active = active
-        self.parentwindow.MarkupBuffer.markup_buffer()
         self.scrollto(self.active)

@@ -23,6 +23,8 @@ import shutil
 
 
 import gi
+from gi.overrides.Pango import Pango
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk  # pylint: disable=E0611
 
@@ -160,6 +162,7 @@ def exist_executable(command):
 
     return shutil.which(command) is not None
 
+
 def get_descendant(widget, child_name, level, doPrint=False):
     if widget is not None:
         if doPrint: print("-"*level + str(Gtk.Buildable.get_name(widget)) +
@@ -188,3 +191,8 @@ def get_descendant(widget, child_name, level, doPrint=False):
             if child is not None:
                 found = get_descendant(child, child_name, level+1, doPrint) # //search the child
                 if found: return found
+
+
+def get_char_width(widget):
+    return Pango.units_to_double(
+        widget.get_pango_context().get_metrics().get_approximate_char_width())

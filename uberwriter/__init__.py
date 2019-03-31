@@ -32,12 +32,4 @@ def main():
     # Run the application.
     app = application.Application()
 
-    # ~ if args:
-    # ~ for arg in args:
-    # ~ pass
-    # ~ else:
-    # ~ pass
-    # ~ if options.experimental_features:
-    # ~ window.use_experimental_features(True)
-
     app.run(sys.argv)

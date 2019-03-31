@@ -173,8 +173,6 @@ class Application(Gtk.Application):
             self.window = window.Window(self)
             if self.args:
                 self.window.load_file(self.args[0])
-            if self.options.experimental_features:
-                self.window.use_experimental_features(True)
 
         self.window.present()
 
