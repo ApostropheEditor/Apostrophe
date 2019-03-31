@@ -196,7 +196,11 @@ class TextView(Gtk.TextView):
 
     def on_mark_set(self, _text_buffer, _location, mark, _data=None):
         if mark.get_name() == 'insert':
-            self.markup.apply(not self.focus_mode)
+            if self.focus_mode:
+                self.scroll_to(mark)
+                self.markup.apply(False)
+            else:
+                self.markup.apply(True)
         elif mark.get_name() == 'gtk_drag_target':
             self.scroll_to(mark)
         return True
