@@ -4,9 +4,8 @@ from uberwriter.inline_preview import InlinePreview
 from uberwriter.text_view_format_inserter import FormatInserter
 from uberwriter.text_view_markup_handler import MarkupHandler
 from uberwriter.text_view_undo_redo_handler import UndoRedoHandler
-from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, \
-    TARGET_TEXT
-from uberwriter.text_view_scroller import Scroller
+from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
+from uberwriter.scroller import Scroller
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GObject
@@ -81,7 +80,7 @@ class TextView(Gtk.TextView):
         self.drag_drop = DragDropHandler(self, TARGET_URI, TARGET_TEXT)
 
         # Scrolling
-        self.scroller = Scroller()
+        self.scroller = None
         self.get_buffer().connect('mark-set', self.on_mark_set)
 
         # Focus mode
@@ -165,7 +164,35 @@ class TextView(Gtk.TextView):
 
         If mark is unspecified, the cursor is used."""
 
-        self.scroller.scroll_to(self, mark, self.focus_mode)
+        margin = 80
+        scrolled_window = self.get_ancestor(Gtk.ScrolledWindow.__gtype__)
+        va = scrolled_window.get_vadjustment()
+        if va.props.page_size < margin * 2:
+            return
+
+        text_buffer = self.get_buffer()
+        if mark:
+            mark_iter = text_buffer.get_iter_at_mark(mark)
+        else:
+            mark_iter = text_buffer.get_iter_at_mark(text_buffer.get_insert())
+        mark_rect = self.get_iter_location(mark_iter)
+
+        pos_y = mark_rect.y + mark_rect.height + self.props.top_margin
+        pos = pos_y - va.props.value
+        target_pos = None
+        if self.focus_mode:
+            if pos != (va.props.page_size * 0.5):
+                target_pos = pos_y - (va.props.page_size * 0.5)
+        elif pos > va.props.page_size - margin:
+            target_pos = pos_y - va.props.page_size + margin
+        elif pos < margin:
+            target_pos = pos_y - margin
+
+        if self.scroller and self.scroller.is_started:
+            self.scroller.end()
+        if target_pos:
+            self.scroller = Scroller(scrolled_window, target_pos, va.props.value)
+            self.scroller.start()
 
     def on_mark_set(self, _text_buffer, _location, mark, _data=None):
         if mark.get_name() == 'insert':
