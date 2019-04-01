@@ -39,10 +39,10 @@ from gi.repository import Pango  # pylint: disable=E0611
 import cairo
 # import cairo.Pattern, cairo.SolidPattern
 
-from . import headerbars
-from uberwriter_lib import helpers
-from uberwriter_lib.helpers import get_builder
-from uberwriter_lib.gtkspellcheck import SpellChecker
+from uberwriter import headerbars
+from uberwriter import helpers
+from uberwriter.helpers import get_builder
+from uberwriter.gtkspellcheck import SpellChecker
 
 from .MarkupBuffer import MarkupBuffer
 from .UberwriterTextEditor import TextEditor

@@ -30,8 +30,8 @@ from uberwriter.Theme import Theme
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
-from uberwriter_lib import helpers
-from uberwriter_lib.helpers import get_builder
+from uberwriter import helpers
+from uberwriter.helpers import get_builder
 
 LOGGER = logging.getLogger('uberwriter')
 

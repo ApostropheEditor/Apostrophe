@@ -22,10 +22,10 @@ from gettext import gettext as _
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from uberwriter_lib.helpers import get_builder
-from uberwriter_lib.helpers import get_descendant
+from uberwriter.helpers import get_builder
+from uberwriter.helpers import get_descendant
 
-from uberwriter_lib.AppWindow import Application as app
+from uberwriter.AppWindow import Application as app
 
 class MainHeaderbar:  #pylint: disable=too-few-public-methods
     """Sets up the main application headerbar

@@ -13,16 +13,16 @@ from gi.repository import Gtk, Gdk
 
 import enchant
 
-from uberwriter_lib import pressagio
-# import uberwriter_lib.pressagio.predictor
-# import uberwriter_lib.pressagio.tokenizer
-# import uberwriter_lib.pressagio.dbconnector
-# import uberwriter_lib.pressagio.context_tracker
-# import uberwriter_lib.pressagio.callback
+from uberwriter import pressagio
+# import uberwriter.pressagio.predictor
+# import uberwriter.pressagio.tokenizer
+# import uberwriter.pressagio.dbconnector
+# import uberwriter.pressagio.context_tracker
+# import uberwriter.pressagio.callback
 
 # from Levenshtein import distance
 
-from uberwriter_lib.helpers import get_media_path
+from uberwriter.helpers import get_media_path
 
 # Define and create PresageCallback object
 class PressagioCallback(pressagio.callback.Callback):

@@ -60,10 +60,10 @@ setup(
         # "": '/opt/uberwriter/'
     },
     packages=[
-        "uberwriter_lib.gtkspellcheck",
-        "uberwriter_lib.pylocales",
-        # "uberwriter_lib.pressagio",
-        "uberwriter_lib",
+        "uberwriter.gtkspellcheck",
+        "uberwriter.pylocales",
+        # "uberwriter.pressagio",
+        "uberwriter",
         "uberwriter",
         "po"
         # "uberwriter.plugins"
@@ -72,7 +72,7 @@ setup(
     include_package_data=True,
 
     package_data={
-        'uberwriter_lib.pylocales' : ['locales.db'],
+        'uberwriter.pylocales' : ['locales.db'],
     },
     data_files=[
         (app_prefix + 'bin', ['bin/uberwriter']),

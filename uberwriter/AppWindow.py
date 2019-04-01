@@ -23,9 +23,9 @@ from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf
 
 from uberwriter import UberwriterWindow
 from uberwriter.Settings import Settings
-from uberwriter_lib import set_up_logging
-from uberwriter_lib.PreferencesDialog import PreferencesDialog
-from . helpers import get_builder, get_media_path
+from uberwriter.helpers import set_up_logging
+from uberwriter.PreferencesDialog import PreferencesDialog
+from uberwriter.helpers import get_builder, get_media_path
 
 
 class Application(Gtk.Application):
@@ -181,7 +181,7 @@ class Application(Gtk.Application):
         parser = argparse.ArgumentParser()
         parser.add_argument(
             "-v", "--verbose", action="count", dest="verbose",
-            help=_("Show debug messages (-vv debugs uberwriter_lib also)"))
+            help=_("Show debug messages (-vv debugs uberwriter also)"))
         parser.add_argument(
             "-e", "--experimental-features", help=_("Use experimental features"),
             action='store_true'

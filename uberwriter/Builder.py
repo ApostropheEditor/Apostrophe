@@ -28,7 +28,7 @@ import gi
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
 from gi.repository import GObject, Gtk  # pylint: disable=E0611
 
-LOGGER = logging.getLogger('uberwriter_lib')
+LOGGER = logging.getLogger('uberwriter')
 
 # this module is big so uses some conventional prefixes and postfixes
 # *s list, except self.widgets is a dictionary

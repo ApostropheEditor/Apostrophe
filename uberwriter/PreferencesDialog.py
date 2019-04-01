@@ -22,9 +22,9 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk # pylint: disable=E0611
 import logging
-logger = logging.getLogger('uberwriter_lib')
+logger = logging.getLogger('uberwriter')
 
-from . helpers import get_builder, show_uri, get_help_uri
+from uberwriter.helpers import get_builder, show_uri, get_help_uri
 
 class PreferencesDialog(Gtk.Window):
     __gtype_name__ = "PreferencesDialog"
