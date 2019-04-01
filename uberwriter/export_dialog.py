@@ -25,12 +25,12 @@ import logging
 from gettext import gettext as _
 import gi
 
-from uberwriter.Theme import Theme
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 from uberwriter import helpers
+from uberwriter.theme import Theme
 from uberwriter.helpers import get_builder
 
 LOGGER = logging.getLogger('uberwriter')
@@ -40,7 +40,7 @@ class Export:
     Manages all the export operations and dialogs
     """
 
-    __gtype_name__ = "UberwriterExportDialog"
+    __gtype_name__ = "export_dialog"
 
     def __init__(self, filename):
         """Set up the about dialog"""

@@ -29,12 +29,12 @@ from gettext import gettext as _
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
-from uberwriter import LatexToPNG
-from .Settings import Settings
+from uberwriter import latex_to_PNG
+from uberwriter.settings import Settings
 
-from .FixTable import FixTable
+from uberwriter.fix_table import FixTable
 
-from .MarkupBuffer import MarkupBuffer
+from uberwriter.markup_buffer import MarkupBuffer
 
 LOGGER = logging.getLogger('uberwriter')
 
@@ -264,12 +264,12 @@ def fill_lexikon_bubble(vocab, lexikon_dict):
     return None
 
 
-class UberwriterInlinePreview():
+class InlinePreview():
 
     def __init__(self, view, text_buffer):
         self.text_view = view
         self.text_buffer = text_buffer
-        self.latex_converter = LatexToPNG.LatexToPNG()
+        self.latex_converter = latex_to_PNG.LatexToPNG()
         cursor_mark = self.text_buffer.get_insert()
         cursor_iter = self.text_buffer.get_iter_at_mark(cursor_mark)
         self.click_mark = self.text_buffer.create_mark('click', cursor_iter)

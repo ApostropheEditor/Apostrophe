@@ -16,15 +16,15 @@ from gettext import gettext as _
 
 import gi
 
-from uberwriter.Theme import Theme
 
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
 from gi.repository import GLib, Gio, Gtk, Gdk, GdkPixbuf
 
-from uberwriter import UberwriterWindow
-from uberwriter.Settings import Settings
+from uberwriter import window
+from uberwriter.theme import Theme
+from uberwriter.settings import Settings
 from uberwriter.helpers import set_up_logging
-from uberwriter.PreferencesDialog import PreferencesDialog
+from uberwriter.preferences_dialog import PreferencesDialog
 from uberwriter.helpers import get_builder, get_media_path
 
 
@@ -168,7 +168,7 @@ class Application(Gtk.Application):
             # Windows are associated with the application
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
-            self.window = UberwriterWindow.UberwriterWindow(self)
+            self.window = window.Window(self)
             if self.args:
                 self.window.load_file(self.args[0])
             if self.options.experimental_features:
@@ -303,10 +303,10 @@ class Application(Gtk.Application):
         self.window.copy_html_to_clipboard()
 
     def on_preferences(self, _action, _value):
-        PreferencesWindow = PreferencesDialog()
-        PreferencesWindow.set_application(self)
-        PreferencesWindow.set_transient_for(self.window)
-        PreferencesWindow.show()
+        preferences_window = PreferencesDialog()
+        preferences_window.set_application(self)
+        preferences_window.set_transient_for(self.window)
+        preferences_window.show()
 
     def on_quit(self, _action, _param):
         self.quit()

@@ -53,7 +53,7 @@ class Shelve():
                     store.append(node[root], [filename, root + "/" + filename])
 
 
-class UberwriterSidebar():
+class Sidebar():
     """
     Presentational class for shelves and files managed by the "sidebar"
 

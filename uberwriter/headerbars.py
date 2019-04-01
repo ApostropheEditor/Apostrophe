@@ -25,7 +25,7 @@ from gi.repository import Gtk
 from uberwriter.helpers import get_builder
 from uberwriter.helpers import get_descendant
 
-from uberwriter.AppWindow import Application as app
+from uberwriter.application import Application as app
 
 class MainHeaderbar:  #pylint: disable=too-few-public-methods
     """Sets up the main application headerbar

@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 
-from uberwriter.Settings import Settings
+from uberwriter.settings import Settings
 from uberwriter.helpers import get_css_path
 
 

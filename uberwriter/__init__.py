@@ -25,8 +25,8 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk # pylint: disable=E0611
 
-from uberwriter import UberwriterWindow
-from uberwriter import AppWindow
+from uberwriter import window
+from uberwriter import application
 from uberwriter.helpers import set_up_logging
 from uberwriter.uberwriterconfig import get_version
 
@@ -36,7 +36,7 @@ def main():
     # (options, args) = parse_options()
     
     # Run the application.
-    app = AppWindow.Application()
+    app = application.Application()
     
     # ~ if args:
         # ~ for arg in args:

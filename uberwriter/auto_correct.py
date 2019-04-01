@@ -36,7 +36,7 @@ class PressagioCallback(pressagio.callback.Callback):
     def future_stream(self):
         return ''
 
-class UberwriterAutoCorrect:
+class AutoCorrect:
 
     def show_bubble(self, iterator, suggestion):
         self.suggestion = suggestion
