@@ -24,6 +24,9 @@ import logging
 
 from gettext import gettext as _
 import gi
+
+from uberwriter.Theme import Theme
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
@@ -215,7 +218,7 @@ class Export:
                 args.append("-o%s.odt" % basename)
 
             elif export_format == "html":
-                css = helpers.get_media_file('github-md.css')
+                css = Theme.ADWAITA.get_gtk_css_file()
                 relativize = helpers.get_script_path('relative_to_absolute.lua')
                 task_list = helpers.get_script_path('task-list.lua')
                 args.append("-c%s" % css)
