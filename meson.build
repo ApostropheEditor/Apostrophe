@@ -1,5 +1,5 @@
 project('uberwriter',
-  version: '2.1.4',
+  version: '2.1.5',
   meson_version: '>= 0.40.0'
 )
 i18n = import('i18n')
@@ -20,6 +20,7 @@ dependency('gtk+-3.0', version :'>=3.20')
 python_dir = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
 LIBEXEC_DIR = join_paths(get_option('prefix'), get_option('libexecdir'))
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+message(DATA_DIR)
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 conf = configuration_data()
@@ -32,22 +33,12 @@ conf.set('libexecdir', LIBEXEC_DIR)
 conf.set('VERSION', meson.project_version())
 conf.set('PYTHON', python_bin.path())
 
-#subdir('data')
+subdir('data')
 #subdir('po')
-
+message(python_dir)
 install_subdir(
   'uberwriter',
   install_dir: python_dir
-)
-
-install_subdir(
-  'data',
-  install_dir: DATA_DIR
-)
-
-install_subdir(
-  'thirdparty',
-  install_dir: join_paths(python_dir, 'lollypop')
 )
 
 message('Preparing init file')
