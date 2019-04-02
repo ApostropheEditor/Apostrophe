@@ -7,6 +7,10 @@
                 <attribute name="action">app.focus_mode</attribute>
             </item>
             <item>
+                <attribute name="label" translatable="yes">Hemingway Mode</attribute>
+                <attribute name="action">app.hemingway_mode</attribute>
+            </item>
+            <item>
                 <attribute name="label" translatable="yes">Preview</attribute>
                 <attribute name="action">app.preview</attribute>
             </item>

@@ -13,8 +13,15 @@
         asked to install them manually.
       </description>
     </key>
-    <key name='gradient-overlay' type='b'>
+    <key name='spellcheck' type='b'>
       <default>true</default>
+      <summary>Spellcheck</summary>
+      <description>
+        Enable/disable spellchecking in the application.
+      </description>
+    </key>
+    <key name='gradient-overlay' type='b'>
+      <default>false</default>
       <summary>Show gradient overlay</summary>
       <description>
         Show a gradient overlay over the text at the top anf bottom of the window.
