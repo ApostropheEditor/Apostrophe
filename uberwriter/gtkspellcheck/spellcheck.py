@@ -29,8 +29,8 @@ import logging
 import re
 import sys
 
-from uberwriter_lib.pylocales import code_to_name as _code_to_name
-from uberwriter_lib.pylocales import LanguageNotFound, CountryNotFound
+from uberwriter.pylocales import code_to_name as _code_to_name
+from uberwriter.pylocales import LanguageNotFound, CountryNotFound
 
 # public objects
 __all__ = ['SpellChecker', 'NoDictionariesFound', 'NoGtkBindingFound']

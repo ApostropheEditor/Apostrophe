@@ -28,7 +28,6 @@ from gettext import gettext as _
 import gi
 from gi.repository.GObject import param_spec_string
 
-from uberwriter.Theme import Theme
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
@@ -39,20 +38,21 @@ from gi.repository import Pango  # pylint: disable=E0611
 import cairo
 # import cairo.Pattern, cairo.SolidPattern
 
-from . import headerbars
-from uberwriter_lib import helpers
-from uberwriter_lib.helpers import get_builder
-from uberwriter_lib.gtkspellcheck import SpellChecker
+from uberwriter import headerbars
+from uberwriter import helpers
+from uberwriter.theme import Theme
+from uberwriter.helpers import get_builder
+from uberwriter.gtkspellcheck import SpellChecker
 
-from .MarkupBuffer import MarkupBuffer
-from .UberwriterTextEditor import TextEditor
-from .UberwriterInlinePreview import UberwriterInlinePreview
-from .UberwriterSidebar import UberwriterSidebar
-from .UberwriterSearchAndReplace import UberwriterSearchAndReplace
-from .Settings import Settings
-# from .UberwriterAutoCorrect import UberwriterAutoCorrect
+from uberwriter.markup_buffer import MarkupBuffer
+from uberwriter.text_editor import TextEditor
+from uberwriter.inline_preview import InlinePreview
+from uberwriter.sidebar import Sidebar
+from uberwriter.search_and_replace import SearchAndReplace
+from uberwriter.settings import Settings
+# from .auto_correct import AutoCorrect
 
-from .UberwriterExportDialog import Export
+from uberwriter.export_dialog import Export
 # from .plugins.bibtex import BibTex
 # Some Globals
 # TODO move them somewhere for better
@@ -65,7 +65,7 @@ CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 # See texteditor_lib.Window.py for more details about how this class works
 
 
-class UberwriterWindow(Gtk.ApplicationWindow):
+class Window(Gtk.ApplicationWindow):
 
     WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
 
@@ -219,7 +219,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         # Events for Typewriter mode
 
         # Setting up inline preview
-        self.inline_preview = UberwriterInlinePreview(
+        self.inline_preview = InlinePreview(
             self.text_editor, self.text_buffer)
 
         # Vertical scrolling
@@ -236,14 +236,14 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         ###
         self.paned_window = self.builder.get_object("main_pained")
         self.sidebar_box = self.builder.get_object("sidebar_box")
-        self.sidebar = UberwriterSidebar(self)
+        self.sidebar = Sidebar(self)
         self.sidebar_box.hide()
 
         ###
         #   Search and replace initialization
         #   Same interface as Sidebar ;)
         ###
-        self.searchreplace = UberwriterSearchAndReplace(self)
+        self.searchreplace = SearchAndReplace(self)
 
         # Window resize
         self.window_resize(self)
@@ -1069,7 +1069,7 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         """
         pass
         # try:
-        #     self.auto_correct = UberwriterAutoCorrect(
+        #     self.auto_correct = AutoCorrect(
         #         self.text_editor, self.text_buffer)
         # except:
         #     LOGGER.debug("Couldn't install autocorrect.")

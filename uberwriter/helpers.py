@@ -26,8 +26,8 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk  # pylint: disable=E0611
 
-from . uberwriterconfig import get_data_file
-from . Builder import Builder
+from uberwriter.uberwriterconfig import get_data_file
+from uberwriter.builder import Builder
 
 
 def get_builder(builder_file_name):
@@ -103,7 +103,7 @@ def set_up_logging(opts):
     logger_sh.setFormatter(formatter)
     logger.addHandler(logger_sh)
 
-    lib_logger = logging.getLogger('uberwriter_lib')
+    lib_logger = logging.getLogger('uberwriter')
     lib_logger_sh = logging.StreamHandler()
     lib_logger_sh.setFormatter(formatter)
     lib_logger.addHandler(lib_logger_sh)

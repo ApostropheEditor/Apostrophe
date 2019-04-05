@@ -25,15 +25,18 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk # pylint: disable=E0611
 
-from . import UberwriterWindow
-from uberwriter_lib import AppWindow
+from uberwriter import window
+from uberwriter import application
+from uberwriter.helpers import set_up_logging
+from uberwriter.uberwriterconfig import get_version
+
 
 def main():
     'constructor for your class instances'
     # (options, args) = parse_options()
     
     # Run the application.
-    app = AppWindow.Application()
+    app = application.Application()
     
     # ~ if args:
         # ~ for arg in args:
