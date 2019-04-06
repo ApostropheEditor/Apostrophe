@@ -173,7 +173,7 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="shortcut window">Cut selected text to clipboard</property>
                 <property name="accelerator">&lt;Primary&gt;X</property>
-              </object>
+                </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut" id="s3-3">
