@@ -148,6 +148,8 @@ class Application(Gtk.Application):
 
         # Shortcuts
 
+        # TODO: be aware that a couple of shortcuts are defined in _gtk_base.css
+
         self.set_accels_for_action("app.focus_mode", ["<Ctl>d"])
         self.set_accels_for_action("app.hemingway_mode", ["<Ctl>t"])
         self.set_accels_for_action("app.fullscreen", ["F11"])
@@ -159,6 +161,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.open", ["<Ctl>o"])
         self.set_accels_for_action("app.save", ["<Ctl>s"])
         self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
+        self.set_accels_for_action("app.quit", ["<Ctl>w", "<Ctl>q"])
 
         self.apply_current_theme()
 
