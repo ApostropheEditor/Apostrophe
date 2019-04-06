@@ -4,11 +4,6 @@
   inclusion in templates
 */
 
-@binding-set window-bindings {
-  bind "<ctl>w" { "close-window" () };
-  bind "<ctl><shift>b" { "toggle-bibtex" () };
-}
-
 @binding-set editor-bindings {
   bind "<ctl>i" { "insert-italic" () };
   bind "<ctl>b" { "insert-bold" () };
@@ -25,7 +20,6 @@
 /* Main window and text colors */
 
 .uberwriter_window {
-  -gtk-key-bindings: window-bindings;
   /*border-radius: 7px 7px 3px 3px;*/
   background: @background_color;
   caret-color: @foreground_color;
