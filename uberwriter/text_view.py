@@ -71,7 +71,6 @@ class TextView(Gtk.TextView):
         # Markup
         self.markup = MarkupHandler(self)
         self.connect('style-updated', self.markup.on_style_updated)
-        self.get_buffer().connect('paste-done', self.on_paste_done)
 
         # Preview popover
         self.preview_popover = InlinePreview(self)
@@ -102,18 +101,14 @@ class TextView(Gtk.TextView):
     def set_text(self, text):
         text_buffer = self.get_buffer()
         text_buffer.set_text(text)
-        self.markup.apply()  # TODO
 
     def on_text_changed(self, *_):
-        self.markup.apply(True)
-        self.scroll_to()
-
-    def on_paste_done(self, *_):
         self.markup.apply()
+        self.scroll_to()
 
     def on_size_allocate(self, *_):
         self.update_vertical_margin()
-        self.markup.update_margins()
+        self.markup.update_margins_indents()
 
     def set_focus_mode(self, focus_mode):
         """Toggle focus mode.
@@ -137,7 +132,7 @@ class TextView(Gtk.TextView):
 
     def on_button_release_event(self, _widget, _event):
         if self.focus_mode:
-            self.markup.apply(True)
+            self.markup.apply()
         return False
 
     def set_hemingway_mode(self, hemingway_mode):
@@ -196,11 +191,9 @@ class TextView(Gtk.TextView):
 
     def on_mark_set(self, _text_buffer, _location, mark, _data=None):
         if mark.get_name() == 'insert':
+            self.markup.apply()
             if self.focus_mode:
                 self.scroll_to(mark)
-                self.markup.apply(False)
-            else:
-                self.markup.apply(True)
         elif mark.get_name() == 'gtk_drag_target':
             self.scroll_to(mark)
         return True
