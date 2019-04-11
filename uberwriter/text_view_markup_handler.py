@@ -36,6 +36,7 @@ class MarkupHandler:
         "BOLD": re.compile(r"(\*\*|__)(.+?)\1"),
         "BOLDITALIC": re.compile(r"(\*\*\*|___)(.+?)\1"),
         "STRIKETHROUGH": re.compile(r"~~.+?~~"),
+        "LINK": re.compile(r"(\[).*(\]\(.+?\))"),
         "HORIZONTALRULE": re.compile(r"\n\n([ ]{0,3}[*\-_]{3,}[ ]*)\n", re.MULTILINE),
         "LIST": re.compile(r"^((?:\t|[ ]{4})*)[\-*+] .+", re.MULTILINE),
         "NUMERICLIST": re.compile(r"^((\d|[a-z]|#)+[.)]) ", re.MULTILINE),
@@ -166,6 +167,15 @@ class MarkupHandler:
             start_iter = buffer.get_iter_at_offset(offset + match.start())
             end_iter = buffer.get_iter_at_offset(offset + match.end())
             buffer.apply_tag(self.strikethrough, start_iter, end_iter)
+
+        matches = re.finditer(self.regex["LINK"], text)
+        for match in matches:
+            start_iter = buffer.get_iter_at_offset(offset + match.start(1))
+            end_iter = buffer.get_iter_at_offset(offset + match.end(1))
+            buffer.apply_tag(self.graytext, start_iter, end_iter)
+            start_iter = buffer.get_iter_at_offset(offset + match.start(2))
+            end_iter = buffer.get_iter_at_offset(offset + match.end(2))
+            buffer.apply_tag(self.graytext, start_iter, end_iter)
 
         # Apply "---" horizontal rule tag (center)
         matches = re.finditer(self.regex["HORIZONTALRULE"], text)
