@@ -8,7 +8,7 @@ from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, 
 from uberwriter.scroller import Scroller
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, GObject
+from gi.repository import Gtk, Gdk, GObject, GLib
 
 import logging
 LOGGER = logging.getLogger('uberwriter')
@@ -104,7 +104,7 @@ class TextView(Gtk.TextView):
 
     def on_text_changed(self, *_):
         self.markup.apply()
-        self.scroll_to()
+        GLib.idle_add(self.scroll_to)
 
     def on_size_allocate(self, *_):
         self.update_vertical_margin()
@@ -186,7 +186,7 @@ class TextView(Gtk.TextView):
         if self.scroller and self.scroller.is_started:
             self.scroller.end()
         if target_pos:
-            self.scroller = Scroller(scrolled_window, target_pos, va.props.value)
+            self.scroller = Scroller(scrolled_window, va.props.value, target_pos)
             self.scroller.start()
 
     def on_mark_set(self, _text_buffer, _location, mark, _data=None):
