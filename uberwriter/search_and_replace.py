@@ -35,6 +35,9 @@ class SearchAndReplace:
 
     def __init__(self, parentwindow, textview):
         self.parentwindow = parentwindow
+        self.textview = textview
+        self.textbuffer = textview.get_buffer()
+
         self.box = parentwindow.builder.get_object("searchbar_placeholder")
         self.box.set_reveal_child(False)
         self.searchbar = parentwindow.builder.get_object("searchbar")
@@ -45,9 +48,6 @@ class SearchAndReplace:
 
         self.open_replace_button = parentwindow.builder.get_object("replace")
         self.open_replace_button.connect("toggled", self.toggle_replace)
-
-        self.textview = textview
-        self.textbuffer = textview.get_buffer()
 
         self.nextbutton = parentwindow.builder.get_object("next_result")
         self.prevbutton = parentwindow.builder.get_object("previous_result")
@@ -68,10 +68,12 @@ class SearchAndReplace:
         self.prevbutton.connect('clicked', self.scrolltoprev)
         self.regexbutton.connect('toggled', self.search)
         self.casesensitivebutton.connect('toggled', self.search)
-        self.highlight = self.textbuffer.create_tag('search_highlight',
-                                                    background="yellow")
+        self.highlight = self.textbuffer.create_tag('search_highlight', background="yellow")
 
         self.textview.connect("focus-in-event", self.focused_texteditor)
+
+        self.matches = []
+        self.active = 0
 
     def toggle_replace(self, widget, _data=None):
         """toggle the replace box
@@ -107,10 +109,9 @@ class SearchAndReplace:
 
     def search(self, _widget=None, _data=None, scroll=True):
         searchtext = self.searchentry.get_text()
-        buf = self.textbuffer
-        context_start = buf.get_start_iter()
-        context_end = buf.get_end_iter()
-        text = buf.get_slice(context_start, context_end, False)
+        context_start = self.textbuffer.get_start_iter()
+        context_end = self.textbuffer.get_end_iter()
+        text = self.textbuffer.get_slice(context_start, context_end, False)
 
         self.textbuffer.remove_tag(self.highlight, context_start, context_end)
 
@@ -125,12 +126,12 @@ class SearchAndReplace:
 
         matches = re.finditer(searchtext, text, flags)
 
-        self.matchiters = []
+        self.matches = []
         self.active = 0
         for match in matches:
-            start_iter = buf.get_iter_at_offset(match.start())
-            end_iter = buf.get_iter_at_offset(match.end())
-            self.matchiters.append((start_iter, end_iter))
+            self.matches.append((match.start(), match.end()))
+            start_iter = self.textbuffer.get_iter_at_offset(match.start())
+            end_iter = self.textbuffer.get_iter_at_offset(match.end())
             self.textbuffer.apply_tag(self.highlight, start_iter, end_iter)
         if scroll:
             self.scrollto(self.active)
@@ -143,17 +144,17 @@ class SearchAndReplace:
         self.scrollto(self.active - 1)
 
     def scrollto(self, index):
-        if not self.matchiters:
+        if not self.matches:
             return
-        if index < len(self.matchiters):
+        if index < len(self.matches):
             self.active = index
         else:
             self.active = 0
 
-        matchiter = self.matchiters[self.active]
-        self.textview.get_buffer().select_range(matchiter[0], matchiter[1])
-
-        # self.texteditor.scroll_to_iter(matchiter[0], 0.0, True, 0.0, 0.5)
+        match = self.matches[self.active]
+        start_iter = self.textbuffer.get_iter_at_offset(match[0])
+        end_iter = self.textbuffer.get_iter_at_offset(match[1])
+        self.textbuffer.select_range(start_iter, end_iter)
 
     def hide(self):
         self.replacebox.set_reveal_child(False)
@@ -167,17 +168,20 @@ class SearchAndReplace:
         self.replace(self.active)
 
     def replace_all(self, _widget=None, _data=None):
-        while self.matchiters:
-            match = self.matchiters[0]
-            self.textbuffer.delete(match[0], match[1])
-            self.textbuffer.insert(match[0], self.replaceentry.get_text())
-            self.search(scroll=False)
+        for match in reversed(self.matches):
+            self.do_replace(match)
+        self.search(scroll=False)
 
     def replace(self, searchindex, _inloop=False):
-        match = self.matchiters[searchindex]
-        self.textbuffer.delete(match[0], match[1])
-        self.textbuffer.insert(match[0], self.replaceentry.get_text())
+        self.do_replace(self.matches[searchindex])
         active = self.active
         self.search(scroll=False)
         self.active = active
         self.scrollto(self.active)
+
+    def do_replace(self, match):
+        start_iter = self.textbuffer.get_iter_at_offset(match[0])
+        end_iter = self.textbuffer.get_iter_at_offset(match[1])
+        self.textbuffer.delete(start_iter, end_iter)
+        start_iter = self.textbuffer.get_iter_at_offset(match[0])
+        self.textbuffer.insert(start_iter, self.replaceentry.get_text())
