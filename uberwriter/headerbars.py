@@ -38,7 +38,7 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
 
         self.hb_revealer = Gtk.Revealer(name='titlebar-revealer')
         self.hb_revealer.add(self.hb)
-        self.hb_revealer.props.transition_duration = 1000
+        self.hb_revealer.props.transition_duration = 750
         self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
         self.hb_revealer.show()
         self.hb_revealer.set_reveal_child(True)
