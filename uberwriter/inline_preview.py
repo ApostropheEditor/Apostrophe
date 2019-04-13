@@ -37,8 +37,6 @@ from uberwriter.fix_table import FixTable
 
 LOGGER = logging.getLogger('uberwriter')
 
-GObject.threads_init()  # Still needed?
-
 # TODO:
 # - Don't insert a span with id, it breaks the text to often
 #   Would be better to search for the nearest title and generate

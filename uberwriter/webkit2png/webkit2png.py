@@ -101,7 +101,6 @@ class PyGTKBrowser:
         if options.delay:
             print("--delay is only supported on Mac OS X (for now). Sorry!")
 
-        gobject.threads_init()
         window = gtk.Window()
         window.resize(int(options.initWidth),int(options.initHeight))
         self.view = webkit.WebView()
