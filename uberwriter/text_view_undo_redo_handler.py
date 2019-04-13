@@ -63,7 +63,7 @@ class UndoRedoHandler:
         self.__end_not_undoable_action()
         self.undo_in_progress = False
 
-    def redo(self, text_view, _data):
+    def redo(self, text_view, _data=None):
         """Redo insertions or deletions. Redone actions are moved to undo stack
 
         This method can be registered to a custom redo signal, or used independently."""
