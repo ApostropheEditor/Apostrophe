@@ -78,10 +78,7 @@ class SearchAndReplace:
     def toggle_replace(self, widget, _data=None):
         """toggle the replace box
         """
-        if widget.get_active():
-            self.replacebox.set_reveal_child(True)
-        else:
-            self.replacebox.set_reveal_child(False)
+        self.replacebox.set_reveal_child(widget.get_active())
 
     # TODO: refactorize!
     def key_pressed(self, _widget, event, _data=None):
@@ -157,7 +154,6 @@ class SearchAndReplace:
         self.textbuffer.select_range(start_iter, end_iter)
 
     def hide(self):
-        self.replacebox.set_reveal_child(False)
         self.box.set_reveal_child(False)
         self.textbuffer.remove_tag(self.highlight,
                                    self.textbuffer.get_start_iter(),
