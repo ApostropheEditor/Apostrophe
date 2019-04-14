@@ -117,6 +117,7 @@ class Window(Gtk.ApplicationWindow):
 
         # Setup text editor
         self.text_editor = TextEditor()
+        self.text_editor.add_events(Gdk.ModifierType.BUTTON1_MASK)
         self.text_editor.set_name('UberwriterEditor')
         self.get_style_context().add_class('uberwriter_window')
 
@@ -474,14 +475,16 @@ class Window(Gtk.ApplicationWindow):
         #                                                    - gradient_offset, ha.props.value))
         # global t, amount, initvadjustment
         target_pos = -1
-        if self.focusmode:
+        if self.focusmode and (self.text_editor.get_events() != 4195088):
             # print("pos: %i > %i" % (pos, ha.props.page_size * 0.5))
+            
+            print(self.text_editor.get_events() == Gdk.ModifierType.BUTTON1_MASK)
             if pos != (ha.props.page_size * 0.5):
                 target_pos = pos_y - (ha.props.page_size * 0.5)
-        elif pos > ha.props.page_size - gradient_offset - 60:
-            target_pos = pos_y - ha.props.page_size + gradient_offset + 40
-        elif pos < gradient_offset:
-            target_pos = pos_y - gradient_offset
+            elif pos > ha.props.page_size - gradient_offset - 60:
+                target_pos = pos_y - ha.props.page_size + gradient_offset + 40
+            elif pos < gradient_offset:
+                target_pos = pos_y - gradient_offset
         self.smooth_scroll_data = {
             'target_pos': target_pos,
             'source_pos': ha.props.value,
@@ -602,7 +605,7 @@ class Window(Gtk.ApplicationWindow):
 
             self.set_filename(filename)
             self.set_headerbar_title(
-                os.path.basename(filename) + self.title_end)
+                os.path.basename(filename) + self.title_end, filename)
 
             self.did_change = False
             filechooser.destroy()
@@ -643,7 +646,7 @@ class Window(Gtk.ApplicationWindow):
 
             self.set_filename(filename)
             self.set_headerbar_title(
-                os.path.basename(filename) + self.title_end)
+                os.path.basename(filename) + self.title_end, filename)
 
             try:
                 self.recent_manager.add_item(filename)
@@ -921,7 +924,7 @@ class Window(Gtk.ApplicationWindow):
 
         if filename:
             if filename.startswith('file://'):
-                filename = filename[7:]
+                filename = filename[8:]
             filename = urllib.parse.unquote_plus(filename)
             try:
                 if not os.path.exists(filename):
@@ -933,7 +936,7 @@ class Window(Gtk.ApplicationWindow):
                     self.markup_buffer.markup_buffer(0)
 
                 self.set_headerbar_title(
-                    os.path.basename(filename) + self.title_end)
+                    os.path.basename(filename) + self.title_end, filename)
                 self.text_editor.undo_stack = []
                 self.text_editor.redo_stack = []
                 self.set_filename(filename)
@@ -1105,11 +1108,13 @@ class Window(Gtk.ApplicationWindow):
         # Clean up code for saving application state should be added here.
         Gtk.main_quit()
 
-    def set_headerbar_title(self, title):
+    def set_headerbar_title(self, title, subtitle=""):
         """set the desired headerbar title
         """
         self.headerbar.hb.props.title = title
         self.fs_headerbar.hb.props.title = title
+        self.headerbar.hb.props.subtitle = subtitle
+        self.fs_headerbar.hb.props.subtitle = subtitle
         self.set_title(title)
 
     def set_filename(self, filename=None):
