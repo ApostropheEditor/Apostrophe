@@ -19,7 +19,6 @@ import locale
 import logging
 import os
 import re
-import subprocess
 import urllib
 import webbrowser
 from gettext import gettext as _
@@ -172,8 +171,7 @@ class Window(Gtk.ApplicationWindow):
         """Adjusts the window, CSD and preview for the current theme.
         """
         # Get current theme
-        theme, changed = Theme.get_current()
-
+        theme, changed = Theme.get_current_changed()
         if changed:
             # Set theme variant (dark/light)
             Gtk.Settings.get_default().set_property(
@@ -398,15 +396,9 @@ class Window(Gtk.ApplicationWindow):
         """Copies only html without headers etc. to Clipboard
         """
 
-        args = ['pandoc', '--from=markdown', '--to=html5']
-        proc = subprocess.Popen(args, stdin=subprocess.PIPE,
-                                stdout=subprocess.PIPE)
-
-        text = bytes(self.text_view.get_text(), "utf-8")
-        output = proc.communicate(text)[0]
-
+        output = helpers.pandoc_convert(self.text_view.get_text())
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        clipboard.set_text(output.decode("utf-8"), -1)
+        clipboard.set_text(output, -1)
         clipboard.store()
 
     def open_document(self, _widget=None):
@@ -422,7 +414,7 @@ class Window(Gtk.ApplicationWindow):
         filefilter.set_name(_('MarkDown or Plain Text'))
 
         filechooser = Gtk.FileChooserDialog(
-            _("Open a .md-File"),
+            _("Open a .md file"),
             self,
             Gtk.FileChooserAction.OPEN,
             ("_Cancel", Gtk.ResponseType.CANCEL,
@@ -557,33 +549,12 @@ class Window(Gtk.ApplicationWindow):
             self.preview_webview.show()
             self.queue_draw()
         else:
-            # We need to convert relative routes to absolute ones
-            # For that first we need to know if the file is saved:
-            if self.filename:
-                base_path = os.path.dirname(self.filename)
-            else:
-                base_path = ''
-            os.environ['PANDOC_PREFIX'] = base_path + '/'
-
-            theme, _ = Theme.get_current()
-            args = ['pandoc',
-                    '-s',
-                    '--from=markdown',
-                    '--to=html5',
+            args = ['--standalone',
                     '--mathjax',
-                    '--css=' + theme.web_css_path,
-                    '--quiet',
+                    '--css=' + Theme.get_current().web_css_path,
                     '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
                     '--lua-filter=' + helpers.get_script_path('task-list.lua')]
-
-            # TODO: find a way to pass something like this instead of the quiet arg        
-            #'--metadata pagetitle="test"',
-            
-            proc = subprocess.Popen(
-                args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-
-            text = bytes(self.text_view.get_text(), "utf-8")
-            output = proc.communicate(text)[0]
+            output = helpers.pandoc_convert(self.text_view.get_text(), to="html5", args=args)
 
             if self.preview_webview is None:
                 self.preview_webview = WebKit.WebView()

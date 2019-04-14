@@ -17,14 +17,11 @@
 """
 
 
-import os
-import subprocess
 import logging
-# import gettext
-
+import os
 from gettext import gettext as _
-import gi
 
+import gi
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -43,6 +40,109 @@ class Export:
 
     __gtype_name__ = "export_dialog"
 
+    formats = [
+        {
+            "name": "LaTeX Source",
+            "ext": "tex",
+            "to": "latex"
+        },
+        {
+            "name": "LaTeX PDF",
+            "ext": "pdf",
+            "to": "pdf"
+        },
+        {
+            "name": "LaTeX beamer slide show Source .tex",
+            "ext": "tex",
+            "to": "beamer"
+        },
+        {
+            "name": "LaTeX beamer slide show PDF",
+            "ext": "pdf",
+            "to": "beamer"
+        },
+        {
+            "name": "HTML",
+            "ext": "html",
+            "to": "html5"
+        },
+        {
+            "name": "Textile",
+            "ext": "txt",
+            "to": "textile"
+        },
+        {
+            "name": "OpenOffice text document",
+            "ext": "odt",
+            "to": "odt"
+        },
+        {
+            "name": "Word docx",
+            "ext": "docx",
+            "to": "docx"
+        },
+        {
+            "name": "reStructuredText txt",
+            "ext": "txt",
+            "to": "rst"
+        },
+        {
+            "name": "ConTeXt tex",
+            "ext": "tex",
+            "to": "context"
+        },
+        {
+            "name": "groff man",
+            "ext": "man",
+            "to": "man"
+        },
+        {
+            "name": "MediaWiki markup",
+            "ext": "txt",
+            "to": "mediawiki"
+        },
+        {
+            "name": "OpenDocument XML",
+            "ext": "xml",
+            "to": "opendocument"
+        },
+        {
+            "name": "OpenDocument XML",
+            "ext": "texi",
+            "to": "texinfo"
+        },
+        {
+            "name": "Slidy HTML and javascript slide show",
+            "ext": "html",
+            "to": "slidy"
+        },
+        {
+            "name": "Slideous HTML and javascript slide show",
+            "ext": "html",
+            "to": "slideous"
+        },
+        {
+            "name": "HTML5 + javascript slide show",
+            "ext": "html",
+            "to": "dzslides"
+        },
+        {
+            "name": "S5 HTML and javascript slide show",
+            "ext": "html",
+            "to": "s5"
+        },
+        {
+            "name": "EPub electronic publication",
+            "ext": "epub",
+            "to": "epub"
+        },
+        {
+            "name": "RTF Rich Text Format",
+            "ext": "rtf",
+            "to": "rtf"
+        }
+    ]
+
     def __init__(self, filename):
         """Set up the about dialog"""
         self.builder = get_builder('Export')
@@ -53,8 +153,8 @@ class Export:
         stack_pdf_disabled = self.builder.get_object("pdf_disabled")
         filename = filename or _("Untitled document.md")
 
-        self.filechoosers = {export_format:self.stack.get_child_by_name(export_format)\
-                   for export_format in ["pdf", "html", "odt", "advanced"]}
+        self.filechoosers = {export_format: self.stack.get_child_by_name(export_format)
+                             for export_format in ["pdf", "html", "odt", "advanced"]}
         for export_format, filechooser in self.filechoosers.items():
             filechooser.set_do_overwrite_confirmation(True)
             filechooser.set_current_folder(os.path.dirname(filename))
@@ -76,9 +176,12 @@ class Export:
 
         self.builder.get_object("highlight_style").set_active(0)
 
+        self.builder.get_object("css_filechooser").set_uri(
+            helpers.path_to_file(Theme.get_current().web_css_path))
+
         format_store = Gtk.ListStore(int, str)
-        for fmt_id in self.formats_dict:
-            format_store.append([fmt_id, self.formats_dict[fmt_id]["name"]])
+        for i, fmt in enumerate(self.formats):
+            format_store.append([i, fmt["name"]])
         self.format_field = self.builder.get_object('choose_format')
         self.format_field.set_model(format_store)
 
@@ -87,171 +190,56 @@ class Export:
         self.format_field.add_attribute(format_renderer, "text", 1)
         self.format_field.set_active(0)
 
-    formats_dict = {
-        1: {
-            "name": "LaTeX Source",
-            "ext": "tex",
-            "to": "latex"
-        },
-        2: {
-            "name": "LaTeX PDF",
-            "ext": "pdf",
-            "to": "pdf"
-        },
-        3: {
-            "name": "LaTeX beamer slide show Source .tex",
-            "ext": "tex",
-            "to": "beamer"
-        },
-        4: {
-            "name": "LaTeX beamer slide show PDF",
-            "ext": "pdf",
-            "to": "beamer"
-        },
-        5: {
-            "name": "HTML",
-            "ext": "html",
-            "to": "html"
-        },
-        6: {
-            "name": "Textile",
-            "ext": "txt",
-            "to": "textile"
-        },
-        7: {
-            "name": "OpenOffice text document",
-            "ext": "odt",
-            "to": "odt"
-        },
-        8: {
-            "name": "Word docx",
-            "ext": "docx",
-            "to": "docx"
-        },
-        9: {
-            "name": "reStructuredText txt",
-            "ext": "txt",
-            "to": "rst"
-        },
-        10: {
-            "name": "ConTeXt tex",
-            "ext": "tex",
-            "to": "context"
-        },
-        11: {
-            "name": "groff man",
-            "ext": "man",
-            "to": "man"
-        },
-        12: {
-            "name": "MediaWiki markup",
-            "ext": "txt",
-            "to": "mediawiki"
-        },
-        13: {
-            "name": "OpenDocument XML",
-            "ext": "xml",
-            "to": "opendocument"
-        },
-        14: {
-            "name": "OpenDocument XML",
-            "ext": "texi",
-            "to": "texinfo"
-        },
-        15: {
-            "name": "Slidy HTML and javascript slide show",
-            "ext": "html",
-            "to": "slidy"
-        },
-        16: {
-            "name": "Slideous HTML and javascript slide show",
-            "ext": "html",
-            "to": "slideous"
-        },
-        17: {
-            "name": "HTML5 + javascript slide show",
-            "ext": "html",
-            "to": "dzslides"
-        },
-        18: {
-            "name": "S5 HTML and javascript slide show",
-            "ext": "html",
-            "to": "s5"
-        },
-        19: {
-            "name": "EPub electronic publication",
-            "ext": "epub",
-            "to": "epub"
-        },
-        20: {
-            "name": "RTF Rich Text Format",
-            "ext": "rtf",
-            "to": "rtf"
-        }
-
-    }
-
     def export(self, text=""):
-        """Export to pdf, html or odt the given text
+        """Export the given text using the specified format.
+        For advanced export, this includes special flags for the enabled options.
 
         Keyword Arguments:
             text {str} -- Text to export (default: {""})
         """
 
-        export_format = self.stack.get_visible_child_name()
+        export_type = self.stack.get_visible_child_name()
+        args = []
+        if export_type == "advanced":
+            filename = self.adv_export_name.get_text()
+            output_dir = os.path.abspath(self.filechoosers["advanced"].get_current_folder())
+            basename = os.path.basename(filename)
 
-        if export_format == "advanced":
-            self.advanced_export(text)
+            fmt = self.formats[self.format_field.get_active()]
+            to = fmt["to"]
+            ext = fmt["ext"]
+
+            if self.builder.get_object("html5").get_active() and to == "html":
+                to = "html5"
+            if self.builder.get_object("smart").get_active():
+                to += "+smart"
+
+            args.extend(self.get_advanced_arguments())
+
         else:
-            filename = self.filechoosers[export_format].get_filename()
-            if filename.endswith("." + export_format):
-                filename = filename[:-len(export_format)-1]
-
+            filename = self.filechoosers[export_type].get_filename()
+            if filename.endswith("." + export_type):
+                filename = filename[:-len(export_type)-1]
             output_dir = os.path.abspath(os.path.join(filename, os.path.pardir))
             basename = os.path.basename(filename)
 
-            args = ['pandoc', '--from=markdown', '-s']
+            to = export_type
+            ext = export_type
 
-            if export_format == "pdf":
-                args.append("-o%s.pdf" % basename)
-
-            elif export_format == "odt":
-                args.append("-o%s.odt" % basename)
-
-            elif export_format == "html":
-                css = Theme.ADWAITA.get_gtk_css_file()
-                relativize = helpers.get_script_path('relative_to_absolute.lua')
-                task_list = helpers.get_script_path('task-list.lua')
-                args.append("-c%s" % css)
-                args.append("-o%s.html" % basename)
+            if export_type == "html":
+                to = "html5"
+                args.append("--standalone")
+                args.append("--css=%s" % Theme.get_current().web_css_path)
                 args.append("--mathjax")
-                args.append("--lua-filter=" + relativize)
-                args.append("--lua-filter=" + task_list)
+                args.append("--lua-filter=%s" % helpers.get_script_path('relative_to_absolute.lua'))
+                args.append("--lua-filter=%s" % helpers.get_script_path('task-list.lua'))
 
-            proc = subprocess.Popen(args, stdin=subprocess.PIPE,
-                                    stdout=subprocess.PIPE, cwd=output_dir)
-            _ = proc.communicate(text)[0]
+        helpers.pandoc_convert(
+            text, to=to, args=args,
+            outputfile="%s/%s.%s" % (output_dir, basename, ext))
 
-    def advanced_export(self, text=""):
-        """Export the given text to special formats with the enabled flags
-
-        Keyword Arguments:
-            text {str} -- The text to export (default: {""})
-        """
-
-        filename = self.adv_export_name.get_text()
-        output_dir = os.path.abspath(self.filechoosers["advanced"].get_current_folder())
-        basename = os.path.basename(filename)
-        args = self.set_arguments(basename)
-
-        LOGGER.info(args)
-
-        proc = subprocess.Popen(args, stdin=subprocess.PIPE,
-                                stdout=subprocess.PIPE, cwd=output_dir)
-        _ = proc.communicate(text)[0]
-
-    def set_arguments(self, basename):
-        """Retrieve a list of the selected arguments
+    def get_advanced_arguments(self):
+        """Retrieve a list of the selected advanced arguments
 
         For most of the advanced option checkboxes, returns a list
         of the related pandoc flags
@@ -265,78 +253,49 @@ class Export:
 
         highlight_style = self.builder.get_object("highlight_style").get_active_text()
 
-        conditions_dict = {
-            1: {
+        conditions = [
+            {
                 "condition": self.builder.get_object("toc").get_active(),
                 "yes": "--toc",
                 "no": None
             },
-            2: {
+            {
                 "condition": self.builder.get_object("highlight").get_active(),
                 "yes": "--highlight-style=%s" % highlight_style,
                 "no": "--no-highlight"
             },
-            3: {
+            {
                 "condition": self.builder.get_object("standalone").get_active(),
                 "yes": "--standalone",
                 "no": None
             },
-            4: {
+            {
                 "condition": self.builder.get_object("number_sections").get_active(),
                 "yes": "--number-sections",
                 "no": None
             },
-            5: {
+            {
                 "condition": self.builder.get_object("strict").get_active(),
                 "yes": "--strict",
                 "no": None
             },
-            6: {
+            {
                 "condition": self.builder.get_object("incremental").get_active(),
                 "yes": "--incremental",
                 "no": None
             },
-            7: {
+            {
                 "condition": self.builder.get_object("self_contained").get_active(),
                 "yes": "--self-contained",
                 "no": None
             }
-        }
+        ]
 
-        tree_iter = self.format_field.get_active_iter()
-        if tree_iter is not None:
-            model = self.format_field.get_model()
-            row_id, _ = model[tree_iter][:2]
+        args = []
 
-        fmt = self.formats_dict[row_id]
+        args.extend([c["yes"] if c["condition"] else c["no"] for c in conditions])
 
-        args = ['pandoc', '--from=markdown']
-
-        extension = "--to=%s" % fmt["to"]
-
-        if basename.endswith("." + fmt["ext"]):
-            output_file = "--output=%s" % basename
-        else:
-            output_file = "--output=%s.%s" % (basename, fmt["ext"])
-
-        args.extend([conditions_dict[c_id]["yes"]\
-                    if conditions_dict[c_id]["condition"]\
-                    else conditions_dict[c_id]["no"]\
-                    for c_id in conditions_dict])
-
-        args = list(filter(None, args))
-
-        if self.builder.get_object("html5").get_active():
-            if fmt["to"] == "html":
-                extension = "--to=%s" % "html5"
-
-        if self.builder.get_object("smart").get_active():
-            extension += '+smart'
-        else:
-            extension += '-smart'
-
-        if fmt["to"] != "pdf":
-            args.append(extension)
+        args = list(filter(lambda arg: arg is not None, args))
 
         css_uri = self.builder.get_object("css_filechooser").get_uri()
         if css_uri:
@@ -349,8 +308,6 @@ class Export:
             if bib_uri.startswith("file://"):
                 bib_uri = bib_uri[7:]
             args.append("--bibliography=%s" % bib_uri)
-
-        args.append(output_file)
 
         return args
 

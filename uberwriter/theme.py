@@ -30,7 +30,7 @@ class Theme:
         return current_theme
 
     @classmethod
-    def get_current(cls):
+    def get_current_changed(cls):
         theme_name = Gtk.Settings.get_default().get_property('gtk-theme-name')
         dark_mode_auto = cls.settings.get_value('dark-mode-auto').get_boolean()
         dark_mode = cls.settings.get_value('dark-mode').get_boolean()
@@ -40,6 +40,11 @@ class Theme:
         changed = current_theme != cls.previous
         cls.previous = current_theme
         return current_theme, changed
+
+    @classmethod
+    def get_current(cls):
+        current_theme, _ = cls.get_current_changed()
+        return current_theme
 
     def __eq__(self, other):
         return isinstance(other, self.__class__) and \
