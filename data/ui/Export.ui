@@ -6,7 +6,12 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="halign">center</property>
+    <property name="margin_left">2</property>
+    <property name="margin_right">2</property>
+    <property name="margin_top">2</property>
+    <property name="margin_bottom">2</property>
     <property name="hexpand">True</property>
+    <property name="row_spacing">2</property>
     <child>
       <object class="GtkGrid" id="advanced_export_grid">
         <property name="visible">True</property>
@@ -19,6 +24,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
+            <property name="margin_right">8</property>
             <property name="label_xalign">0</property>
             <property name="shadow_type">out</property>
             <child>
@@ -30,8 +36,9 @@
                   <object class="GtkBox" id="box6">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
+                    <property name="margin_right">8</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">4</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkCheckButton" id="smart">
@@ -157,6 +164,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
+            <property name="margin_right">8</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkFrame" id="frame1">
@@ -173,13 +181,12 @@
                       <object class="GtkBox" id="box3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
+                        <property name="margin_top">4</property>
+                        <property name="margin_bottom">4</property>
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkCheckButton" id="highlight">
                             <property name="label" translatable="yes">Highlight Syntax</property>
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
@@ -196,11 +203,13 @@
                           <object class="GtkBox" id="box2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="margin_top">4</property>
                             <child>
                               <object class="GtkLabel" id="label1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="tooltip_text" translatable="yes">Choose a color theme for syntax highlighting</property>
+                                <property name="margin_left">4</property>
                                 <property name="label" translatable="yes">Highlight style  </property>
                               </object>
                               <packing>
@@ -214,6 +223,8 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="tooltip_text" translatable="yes">Choose a color theme for syntax highlighting</property>
+                                <property name="margin_left">8</property>
+                                <property name="margin_right">8</property>
                                 <property name="active">0</property>
                                 <property name="active_id">0</property>
                                 <items>
@@ -269,13 +280,40 @@
                   <object class="GtkAlignment" id="alignment3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">4</property>
                     <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkFileChooserButton" id="bib_filechooser">
+                      <object class="GtkBox" id="box7">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
+                        <child>
+                          <object class="GtkLabel" id="label7">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Choose a bibliography file</property>
+                            <property name="label" translatable="yes">File</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFileChooserButton" id="bib_filechooser">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Choose a bibliography file</property>
+                            <property name="margin_left">8</property>
+                            <property name="margin_right">8</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -284,7 +322,7 @@
                   <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Bibliography File&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Bibliography &lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                 </child>
@@ -318,8 +356,8 @@
                   <object class="GtkBox" id="box4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">4</property>
                     <property name="orientation">vertical</property>
                     <property name="homogeneous">True</property>
                     <child>
@@ -366,6 +404,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="tooltip_text" translatable="yes">Choose a CSS File that you want to use</property>
+                            <property name="margin_left">4</property>
                             <property name="label" translatable="yes">CSS File</property>
                           </object>
                           <packing>
@@ -379,6 +418,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="tooltip_text" translatable="yes">Choose a CSS File that you want to use</property>
+                            <property name="margin_left">8</property>
+                            <property name="margin_right">8</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
