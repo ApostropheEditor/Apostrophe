@@ -1,0 +1,18 @@
+@import url("_web_base.css");
+
+:root {
+  --text-color: #3b3e45;
+  --background-color: #f5f6f7;
+  --alt-background-color: #eceff2;
+  --link-color: #1a7bed;
+  --blockquote-text-color: #818894;
+  --blockquote-border-color: #d5d9dd;
+  --header-border-color: #e0e3e7;
+  --hr-background-color: #d7dbe0;
+  --table-tr-border-color: #bcc2c9;
+  --table-td-border-color: #d5d9dd;
+  --kbd-text-color: #5b626d;
+  --kbd-background-color: #f0f2f4;
+  --kbd-border-color: #bcc2c9;
+  --kbd-shadow-color: #8b949d;
+}

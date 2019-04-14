@@ -92,7 +92,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="action_name">app.spellcheck</property>
-                <property name="active">True</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>

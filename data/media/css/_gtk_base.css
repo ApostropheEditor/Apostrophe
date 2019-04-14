@@ -1,0 +1,213 @@
+/*
+  TODO:
+  Look into compiling resources with glib-compile-resource etc. for 
+  inclusion in templates
+*/
+
+@binding-set editor-bindings {
+  bind "<ctl>i" { "insert-italic" () };
+  bind "<ctl>b" { "insert-bold" () };
+  bind "<ctl>r" { "insert-hrule" () };
+  bind "<ctl>u" { "insert-ulistitem" () };
+  bind "<ctl>h" { "insert-heading" () };
+  bind "<ctl>z" { "undo" () };
+  bind "<ctl>y" { "redo" () };
+  bind "<ctl><shift>d" { "insert-strikeout" () };
+  /*bind "<ctl>t" { "insert-at-cursor" ('[ ] ') };*/
+  bind "<ctl><shift>z" { "redo" () };
+}
+
+/* Main window and text colors */
+
+.uberwriter_window {
+  /*border-radius: 7px 7px 3px 3px;*/
+  background: @background_color;
+  caret-color: @foreground_color;
+}
+
+.uberwriter_window.small .uberwriter-editor {
+  font-family: 'Fira Mono', monospace;
+  font-size: 12px;
+}
+.uberwriter_window grid {
+  background-color: @background_color;
+}
+
+#UberwriterWindow.medium .uberwriter-editor {
+  font-family: 'Fira Mono', monospace;
+  font-size: 15px;
+}
+
+#UberwriterWindow.large .uberwriter-editor {
+  font-family: 'Fira Mono', monospace;
+  font-size: 18px;
+}
+
+#titlebar_revealer {
+  padding: 0;
+}
+
+.scrollbars-junction,
+.scrollbar.trough {
+  background: transparent;
+}
+
+#titlebar_container { 
+  background: @background_color; 
+}
+
+.uberwriter-editor {
+  border: none;
+  background-color: transparent;
+  text-decoration-color: #ff0000;
+  /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
+  /*-GtkWidget-cursor-aspect-ratio: 0.1;*/
+  -gtk-key-bindings: editor-bindings;
+}
+
+.uberwriter-editor text {
+  background-color: @background_color;
+  color: @foreground_color;
+  caret-color: @foreground_color;
+}
+
+.uberwriter-editor:selected {
+  background-color: #4D9FCE;
+  color: #FFF;
+}
+
+.uberwriter-editor button {
+  margin: 0;
+  padding: 0;
+  /*background: #CCC;*/
+}
+
+.uberwriter-editor toolbar {
+  /*background: transparent;*/
+  border: none;
+  padding: 0;
+}
+
+
+.status_bar_box label {
+  color: #666;
+}
+
+.status_bar_box button {
+  /* finding reset */
+  background-color: @background_color;
+  text-shadow: inherit;
+  /*icon-shadow: inherit;*/
+  box-shadow: initial;
+  background-clip: initial;
+  background-origin: initial;
+  background-size: initial;
+  background-position: initial;
+  background-repeat: initial;
+  background-image: initial;
+  border-image-source: initial;
+  border-image-repeat: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+
+  border-style: none;
+  -button-images: true;
+  border-radius: 2px;
+  color: #666;
+  padding: 3px 5px;
+  transition: 100ms ease-in;
+}
+
+.status_bar_box button:hover,
+.status_bar_box button:checked {
+  transition: 0s ease-in;
+  color: @background_color;
+  background-color: #666;
+}
+
+.status_bar_box button:hover label,
+.status_bar_box button:checked label {
+  color: @background_color;
+}
+
+.status_bar_box button:active {
+  color: #EEE;
+  background-color: #EEE;
+  background-image: none;
+  box-shadow: 0 0 2px rgba(0,0,0,0.4)
+}
+
+.status_bar_box separator {
+  border-color: #999;
+  border-right: none;
+}
+
+#PreviewMenuItem image {
+  border-radius: 2px;
+  color: #666;
+  padding: 3px 5px;
+  border: none;
+  background: #FFF;
+}
+
+#UberwriterWindow treeview {
+  padding: 3px 3px 3px 3px;
+}
+
+#LexikonBubble {
+  /*font: serif 10;*/
+  font-family: serif;
+  font-size: 10px;
+  background: @background_color;
+  border-radius: 4px;
+  border-color: @background_color;
+  margin: 5px;
+  padding: 5px;
+}
+
+/* .QuickPreviewPopup {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #333;
+  background: @ligth_bg;
+  border-radius: 3px;
+  border-color: @background_color;
+} */
+
+#LexikonBubble label {
+  /*padding: 5px;*/
+}
+
+#LexikonBubble {
+  background-color: @background_color;
+  border: 5px solid @background_color;
+}
+
+#LexikonBubble .lexikon_heading {
+  /*font: serif 12;*/
+  font-family: serif;
+  font-size: 12px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+#LexikonBubble .lexikon_num {
+  padding-right: 5px;
+  padding-left: 20px;
+}
+
+.QuickPreviewPopup {
+	background-color: @background_color;
+}
+
+.QuickPreviewPopup grid {
+	background-color: @background_color;
+	color: @foreground_color;
+	border-color: @background_color;
+}
+
+.QuickPreviewPopup label {
+	color: @foreground_color;
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>de.wolfvollprecht.UberWriter</id>
+  <launchable type="desktop-id">de.wolfvollprecht.UberWriter.desktop</launchable>
+  <name>UberWriter</name>
+  <summary>An elegant, free distraction GTK+ markdown editor</summary>
+  <description>
+    <p>Uberwriter is a GTK+ based distraction free Markdown editor, mainly developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.</p>
+    <p>You can install the recommended TexLive extension with the command:</p>
+    <p>flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive</p>
+    <p>or from Gnome-Software</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/main.png</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/main-dark.png</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/formula.png</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/preview.png</image>
+    </screenshot>
+    <screenshot>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/focus.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release date="2019-03-10" version="2.1.5">
+      <description>
+        <ul>
+          <li>Added italian language</li>
+          <li>Initial themes support: now uberwriter adapts his colors to the current GTK theme</li>
+          <li>Disabled scroll gradient, can be enabled in the preferences dialog</li>
+          <li>Allow to disable headerbar autohidding in Dconf</li>
+          <li>Now a single click is enough to open files in the recent files popover</li>
+          <li>Spellchecking status is now saved between sessions</li>
+          <li>Minor UI fixes</li>
+          <li>Added -d flag to enable webdev tools</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2018-12-06" version="2.1.4">
+      <description>
+        <p>Updated css styles.</p>
+      </description>
+    </release>
+    <release date="2018-11-28" version="2.1.3">
+      <description>
+        <p>This release features a new logo, polishes the Appmenu, fixes usability bugs and flatpak related bugs.</p>
+      </description>
+    </release>
+    <release date="2018-07-27" version="2.1.2">
+      <description>
+        <p>This release provides a fix to a bug that caused Uberwriter to not mark properly **bold**, *cursive*, and ***bold and cursive*** words.</p>
+      </description>
+    </release>
+    <release date="2018-07-26" version="2.1.1">
+      <description>
+        <p>This release solves two minor bugs:</p>
+        <ul>
+          <li>One on focus mode which caused the lines to be highlighted on edit rather than on click</li>
+          <li>Non symbolic icons on the searchbar</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2018-07-18" version="2.1.0">
+      <description>
+        <p>This release features a ton of UX/UI improvements, like:</p>
+        <ul>
+          <li>Drop AppMenu support</li>
+          <li>HeaderBar and menus redesign, with a new unified menu and quick access buttons on the headerbar</li>
+          <li>Now the fullscreen view shows a headerbar when the cursor approaches the top of the screen</li>
+          <li>A new unified export dialog, with updated options, and quick access to pdf, odt and html export</li>
+          <li>Bugfixes.</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2018-06-24" version="2.0.4">
+      <description>
+        <p>Now the menu is a Popover instead a regular menu.</p>
+        <p>The headerbar matches the theme selected for the application.</p>
+        <p>Updated translations.</p>
+      </description>
+    </release>
+    <release date="2018-06-14" version="2.0.3">
+      <description>
+        <p>Small bug fixes, updated links.</p>
+      </description>
+    </release>
+    <release date="2018-05-16" version="2.0.2">
+      <description>
+        <p>Fix a bug with the preview mode.</p>
+      </description>
+    </release>
+    <release date="2018-05-14" version="2.0.1">
+      <description>
+        <p>Don't use env variable to check if in flatpak.</p>
+      </description>
+    </release>
+    <release date="2018-05-12" version="2.0.0">
+      <description>
+        <p>First re-release</p>
+      </description>
+    </release>
+  </releases>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <url type="homepage">http://uberwriter.github.io/uberwriter</url>
+  <content_rating type="oars-1.1"/>
+  <developer_name>Wolf V., Manuel G.</developer_name>
+  <url type="bugtracker">https://github.com/UberWriter/uberwriter/issues</url>
+  <url type="donation">https://liberapay.com/UberWriter/donate</url>
+  <url type="help">http://uberwriter.github.io/uberwriter</url>
+  <url type="translate">https://poeditor.com/join/project/gxVzFyXb2x</url>
+  <update_contact>manuel.genoves_at_gmail.com</update_contact>
+  <translation type="gettext">uberwriter</translation>
+</component>

@@ -1,0 +1,26 @@
+@import url("_web_base.css");
+
+a {
+  text-decoration: underline;
+}
+
+pre {
+  border: 1px solid;
+}
+
+:root {
+  --text-color: #ffffff;
+  --background-color: #000000;
+  --alt-background-color: #000000;
+  --link-color: #ffffff;
+  --blockquote-text-color: #ffffff;
+  --blockquote-border-color: #ffffff;
+  --header-border-color: #ffffff;
+  --hr-background-color: #ffffff;
+  --table-tr-border-color: #ffffff;
+  --table-td-border-color: #ffffff;
+  --kbd-text-color: #ffffff;
+  --kbd-background-color: #000000;
+  --kbd-border-color: #ffffff;
+  --kbd-shadow-color: #ffffff;
+}
