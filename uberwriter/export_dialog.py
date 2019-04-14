@@ -42,29 +42,59 @@ class Export:
 
     formats = [
         {
-            "name": "LaTeX Source",
-            "ext": "tex",
-            "to": "latex"
-        },
-        {
-            "name": "LaTeX PDF",
+            "name": "LaTeX (pdf)",
             "ext": "pdf",
             "to": "pdf"
         },
         {
-            "name": "LaTeX beamer slide show Source .tex",
-            "ext": "tex",
-            "to": "beamer"
-        },
-        {
-            "name": "LaTeX beamer slide show PDF",
+            "name": "LaTeX Beamer Slideshow (pdf)",
             "ext": "pdf",
             "to": "beamer"
         },
         {
+            "name": "LaTeX (tex)",
+            "ext": "tex",
+            "to": "latex"
+        },
+        {
+            "name": "LaTeX Beamer Slideshow (tex)",
+            "ext": "tex",
+            "to": "beamer"
+        },
+        {
+            "name": "ConTeXt",
+            "ext": "tex",
+            "to": "context"
+        },
+        {
             "name": "HTML",
             "ext": "html",
-            "to": "html5"
+            "to": "html"
+        },
+        {
+            "name": "HTML and JavaScript Slideshow (Slidy)",
+            "ext": "html",
+            "to": "slidy"
+        },
+        {
+            "name": "HTML and JavaScript Slideshow (Slideous)",
+            "ext": "html",
+            "to": "slideous"
+        },
+        {
+            "name": "HTML5 and JavaScript Slideshow (DZSlides)",
+            "ext": "html",
+            "to": "dzslides"
+        },
+        {
+            "name": "HTML5 and JavaScript Slideshow (reveal.js)",
+            "ext": "html",
+            "to": "revealjs"
+        },
+        {
+            "name": "HTML and JavaScript Slideshow (S5)",
+            "ext": "html",
+            "to": "s5"
         },
         {
             "name": "Textile",
@@ -72,74 +102,49 @@ class Export:
             "to": "textile"
         },
         {
-            "name": "OpenOffice text document",
-            "ext": "odt",
-            "to": "odt"
-        },
-        {
-            "name": "Word docx",
-            "ext": "docx",
-            "to": "docx"
-        },
-        {
-            "name": "reStructuredText txt",
+            "name": "reStructuredText",
             "ext": "txt",
             "to": "rst"
         },
         {
-            "name": "ConTeXt tex",
-            "ext": "tex",
-            "to": "context"
-        },
-        {
-            "name": "groff man",
-            "ext": "man",
-            "to": "man"
-        },
-        {
-            "name": "MediaWiki markup",
+            "name": "MediaWiki Markup",
             "ext": "txt",
             "to": "mediawiki"
         },
         {
-            "name": "OpenDocument XML",
+            "name": "OpenDocument (xml)",
             "ext": "xml",
             "to": "opendocument"
         },
         {
-            "name": "OpenDocument XML",
+            "name": "OpenDocument (texi)",
             "ext": "texi",
             "to": "texinfo"
         },
         {
-            "name": "Slidy HTML and javascript slide show",
-            "ext": "html",
-            "to": "slidy"
+            "name": "OpenOffice Text Document",
+            "ext": "odt",
+            "to": "odt"
         },
         {
-            "name": "Slideous HTML and javascript slide show",
-            "ext": "html",
-            "to": "slideous"
+            "name": "Microsoft Word (docx)",
+            "ext": "docx",
+            "to": "docx"
         },
         {
-            "name": "HTML5 + javascript slide show",
-            "ext": "html",
-            "to": "dzslides"
-        },
-        {
-            "name": "S5 HTML and javascript slide show",
-            "ext": "html",
-            "to": "s5"
-        },
-        {
-            "name": "EPub electronic publication",
-            "ext": "epub",
-            "to": "epub"
-        },
-        {
-            "name": "RTF Rich Text Format",
+            "name": "Rich Text Format",
             "ext": "rtf",
             "to": "rtf"
+        },
+        {
+            "name": "Groff Man",
+            "ext": "man",
+            "to": "man"
+        },
+        {
+            "name": "EPUB v3",
+            "ext": "epub",
+            "to": "epub"
         }
     ]
 
