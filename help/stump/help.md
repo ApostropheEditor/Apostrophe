@@ -1183,7 +1183,7 @@ Sergey Astanin.
 [Slidy]: http://www.w3.org/Talks/Tools/Slidy/
 [Slideous]: http://goessner.net/articles/slideous/
 [HTML]:  http://www.w3.org/TR/html40/
-[HTML 5]:  http://www.w3.org/TR/html5/
+[HTML5]:  http://www.w3.org/TR/html5/
 [XHTML]:  http://www.w3.org/TR/xhtml1/
 [LaTeX]: http://www.latex-project.org/
 [beamer]: http://www.tex.ac.uk/CTAN/macros/latex/contrib/beamer

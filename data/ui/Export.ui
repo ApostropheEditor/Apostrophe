@@ -42,7 +42,6 @@
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Pandoc can automatically make "--" to a long dash and more</property>
                         <property name="halign">start</property>
-                        <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -120,7 +119,7 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="incremental">
-                        <property name="label" translatable="yes">Slideshow incremental bullets</property>
+                        <property name="label" translatable="yes">Slideshow Incremental Bullets</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -179,13 +178,12 @@
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkCheckButton" id="highlight">
-                            <property name="label" translatable="yes">Highlight syntax</property>
+                            <property name="label" translatable="yes">Highlight Syntax</property>
                             <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="halign">start</property>
-                            <property name="active">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -250,7 +248,7 @@
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Syntax highlighting&lt;/b&gt; (HTML, LaTeX)</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Syntax Highlighting&lt;/b&gt; (HTML, LaTeX)</property>
                     <property name="use_markup">True</property>
                   </object>
                 </child>
@@ -326,7 +324,7 @@
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkCheckButton" id="self_contained">
-                        <property name="label" translatable="yes">Self Contained</property>
+                        <property name="label" translatable="yes">Self-contained</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -343,13 +341,14 @@
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="html5">
-                        <property name="label" translatable="yes">HTML 5</property>
+                        <property name="label" translatable="yes">HTML5</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Use HTML 5 syntax</property>
+                        <property name="tooltip_text" translatable="yes">Use HTML5 syntax</property>
                         <property name="halign">start</property>
+                        <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
