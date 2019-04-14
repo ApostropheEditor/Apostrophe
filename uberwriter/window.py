@@ -408,10 +408,14 @@ class Window(Gtk.ApplicationWindow):
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
 
-        filefilter = Gtk.FileFilter.new()
-        filefilter.add_mime_type('text/x-markdown')
-        filefilter.add_mime_type('text/plain')
-        filefilter.set_name(_('MarkDown or Plain Text'))
+        markdown_filter = Gtk.FileFilter.new()
+        markdown_filter.add_mime_type('text/markdown')
+        markdown_filter.add_mime_type('text/x-markdown')
+        markdown_filter.set_name(_('Markdown Files'))
+
+        plaintext_filter = Gtk.FileFilter.new()
+        plaintext_filter.add_mime_type('text/plain')
+        plaintext_filter.set_name(_('Plain Text Files'))
 
         filechooser = Gtk.FileChooserDialog(
             _("Open a .md file"),
@@ -420,7 +424,8 @@ class Window(Gtk.ApplicationWindow):
             ("_Cancel", Gtk.ResponseType.CANCEL,
              "_Open", Gtk.ResponseType.OK)
         )
-        filechooser.add_filter(filefilter)
+        filechooser.add_filter(markdown_filter)
+        filechooser.add_filter(plaintext_filter)
         response = filechooser.run()
         if response == Gtk.ResponseType.OK:
             filename = filechooser.get_filename()
