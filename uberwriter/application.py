@@ -208,8 +208,7 @@ class Application(Gtk.Application):
     def on_help(self, _action, _param):
         """open pandoc markdown web
         """
-        webbrowser.open(
-            "http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown")
+        webbrowser.open("https://pandoc.org/MANUAL.html#pandocs-markdown")
 
     def on_shortcuts(self, _action, _param):
         builder = get_builder('Shortcuts')
