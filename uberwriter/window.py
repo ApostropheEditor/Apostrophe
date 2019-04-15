@@ -76,7 +76,7 @@ class Window(Gtk.ApplicationWindow):
                                        title="Uberwriter")
 
         # Set UI
-        self.builder = get_builder('UberwriterWindow')
+        self.builder = get_builder('Window')
         root = self.builder.get_object("FullscreenOverlay")
         root.connect('style-updated', self.apply_current_theme)
         self.add(root)
@@ -742,7 +742,7 @@ class Window(Gtk.ApplicationWindow):
         return False
 
     def on_mnu_close_activate(self, _widget, _data=None):
-        """Signal handler for closing the UberwriterWindow.
+        """Signal handler for closing the Window.
            Overriden from parent Window Class
         """
         if self.on_delete_called(self):  # Really destroy?

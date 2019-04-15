@@ -30,7 +30,7 @@ from uberwriter.settings import Settings
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk  # pylint: disable=E0611
 
-from uberwriter.uberwriterconfig import get_data_file
+from uberwriter.config import get_data_file
 from uberwriter.builder import Builder
 
 
