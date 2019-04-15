@@ -132,9 +132,8 @@ class Window(Gtk.ApplicationWindow):
 
         # some people seems to have performance problems with the overlay.
         # Let them disable it
-
-        if self.settings.get_value("gradient-overlay"):
-            self.overlay = self.scrolled_window.connect_after("draw", self.draw_gradient)
+        self.overlay_id = None
+        self.toggle_gradient_overlay(self.settings.get_value("gradient-overlay"))
 
         # Init file name with None
         self.set_filename()
@@ -186,8 +185,7 @@ class Window(Gtk.ApplicationWindow):
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
             # Reload preview if it exists
-            if self.preview_webview:
-                self.show_preview()
+            self.reload_preview()
 
             # Redraw contents of window
             self.queue_draw()
@@ -484,14 +482,14 @@ class Window(Gtk.ApplicationWindow):
         """
         self.sidebar.toggle_sidebar()
 
-    def toggle_spellcheck(self, status):
+    def toggle_spellcheck(self, state):
         """Enable/disable the autospellchecking
 
         Arguments:
             status {gtk bool} -- Desired status of the spellchecking
         """
 
-        if status.get_boolean():
+        if state.get_boolean():
             try:
                 self.spell_checker.enable()
             except:
@@ -524,6 +522,18 @@ class Window(Gtk.ApplicationWindow):
             except:
                 pass
         return
+
+    def toggle_gradient_overlay(self, state):
+        """Toggle the gradient overlay
+
+        Arguments:
+            state {gtk bool} -- Desired state of the gradient overlay (enabled/disabled)
+        """
+
+        if state.get_boolean():
+            self.overlay_id = self.scrolled_window.connect_after("draw", self.draw_gradient)
+        elif self.overlay_id:
+            self.scrolled_window.disconnect(self.overlay_id)
 
     def toggle_preview(self, state):
         """Toggle the preview mode
@@ -572,7 +582,11 @@ class Window(Gtk.ApplicationWindow):
                 # but local files are opened in appropriate apps:
                 self.preview_webview.connect("decide-policy", self.on_click_link)
 
-            self.preview_webview.load_html(output.decode("utf-8"), 'file://localhost/')
+            self.preview_webview.load_html(output, 'file://localhost/')
+
+    def reload_preview(self):
+        if self.preview_webview:
+            self.show_preview()
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""

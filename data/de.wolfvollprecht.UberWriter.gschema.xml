@@ -20,17 +20,24 @@
     </key>
     <key name='spellcheck' type='b'>
       <default>true</default>
-      <summary>Spellcheck</summary>
+      <summary>Check spelling while typing</summary>
       <description>
         Enable or disable spellchecking.
       </description>
     </key>
     <key name='gradient-overlay' type='b'>
       <default>false</default>
-      <summary>Show gradient overlay</summary>
+      <summary>Draw scroll gradient</summary>
       <description>
         Show a gradient overlay over the text at the top anf bottom of the window.
         It can cause performance problems to some users.
+      </description>
+    </key>
+    <key name='input-format' type='s'>
+      <default>"markdown"</default>
+      <summary>Input format</summary>
+      <description>
+        Input format to use when previewing and exporting using Pandoc.
       </description>
     </key>
     <key name='poll-motion' type='b'>
