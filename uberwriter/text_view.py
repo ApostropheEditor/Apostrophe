@@ -161,6 +161,8 @@ class TextView(Gtk.TextView):
 
         margin = 80
         scrolled_window = self.get_ancestor(Gtk.ScrolledWindow.__gtype__)
+        if not scrolled_window:
+            return
         va = scrolled_window.get_vadjustment()
         if va.props.page_size < margin * 2:
             return
