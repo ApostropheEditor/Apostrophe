@@ -143,10 +143,7 @@ class SearchAndReplace:
     def scrollto(self, index):
         if not self.matches:
             return
-        if index < len(self.matches):
-            self.active = index
-        else:
-            self.active = 0
+        self.active = index % len(self.matches)
 
         match = self.matches[self.active]
         start_iter = self.textbuffer.get_iter_at_offset(match[0])
