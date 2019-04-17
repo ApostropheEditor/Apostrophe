@@ -30,14 +30,14 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1015"
+     inkscape:window-height="1016"
      id="namedview8722"
      showgrid="false"
      inkscape:zoom="0.5"
      inkscape:cx="693.82738"
      inkscape:cy="260.3702"
      inkscape:window-x="1280"
-     inkscape:window-y="28"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:current-layer="g8020-9-6"
      inkscape:snap-midpoints="true"
@@ -560,7 +560,10 @@
        id="MainApp"
        class="sprite"
        transform="translate(-0.585037,-0.838695)"
-       style="display:inline">
+       style="display:inline"
+       inkscape:export-filename="/home/manu/mockup.png"
+       inkscape:export-xdpi="300.02115"
+       inkscape:export-ydpi="300.02115">
       <rect
          style="fill:#f2f2f2;stroke:#919191;stroke-width:1.17298734;stroke-linecap:square"
          id="rect8155"
@@ -1366,7 +1369,10 @@
          x="0.75964445"
          y="0.64420468"
          rx="9"
-         ry="9" />
+         ry="9"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#f8f7f7;fill-opacity:1;fill-rule:nonzero;stroke:#aa9f98;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:normal;enable-background:accumulate"
          id="rect11999"
@@ -1376,20 +1382,23 @@
          y="7.6407871"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
          y="46.385921"
          x="0.58286774"
          height="533.56696"
          width="1033.9999"
          id="rect11967"
-         style="display:inline;fill:#f6f5f4;fill-opacity:1;stroke:#919191;stroke-width:0.9999997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+         style="display:inline;fill:#f6f5f4;fill-opacity:1;stroke:#919191;stroke-width:0.9999997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="7.6407871"
@@ -1401,7 +1410,10 @@
       <g
          id="g11971"
          transform="translate(948.26123,-501.85911)"
-         style="display:inline;fill:#888a85">
+         style="display:inline;fill:#888a85"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            style="display:inline;fill:#888a85"
            id="g11973"
@@ -1422,9 +1434,9 @@
          y="7.6407871"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#f8f7f7;fill-opacity:1;fill-rule:nonzero;stroke:#aa9f98;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:normal;enable-background:accumulate"
          id="rect12003"
@@ -1434,13 +1446,16 @@
          y="7.6407871"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <g
          id="g12007"
          transform="translate(888.25075,16.108887)"
-         style="display:inline;fill:#2e3436">
+         style="display:inline;fill:#2e3436"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            style="display:inline;fill:#2e3436"
            id="g12009"
@@ -1495,7 +1510,10 @@
       </g>
       <g
          id="g12049"
-         transform="translate(-3.7403556,-259.85921)">
+         transform="translate(-3.7403556,-259.85921)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <rect
            style="color:#bebebe;display:inline;overflow:visible;visibility:visible;fill:none;stroke:none;stroke-width:1;marker:none"
            id="rect12051"
@@ -1515,7 +1533,10 @@
          style="display:inline"
          transform="translate(948.25964,-259.85921)"
          id="g12029"
-         inkscape:label="open-menu">
+         inkscape:label="open-menu"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <rect
            inkscape:label="a"
            y="276"
@@ -1579,7 +1600,10 @@
          word-spacing="0px"
          style="font-size:40px;line-height:25px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#2e3436;stroke-width:1px"
          xml:space="preserve"
-         id="text8307-4"><tspan
+         id="text8307-4"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            x="412.51163"
            y="18.334013"
            font-size="16px"
@@ -1594,7 +1618,10 @@
          word-spacing="0px"
          style="font-size:40px;line-height:25px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#77767b;stroke-width:1px"
          xml:space="preserve"
-         id="text8307-4-8"><tspan
+         id="text8307-4-8"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            x="397.89084"
            y="38.447578"
            font-size="16px"
@@ -1606,7 +1633,10 @@
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
          x="280"
          y="327.50201"
-         id="text1950"><tspan
+         id="text1950"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            sodipodi:role="line"
            id="tspan1948"
            x="280"
@@ -1621,13 +1651,16 @@
          y="7.6407852"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <g
          id="g12007-0"
          transform="translate(849.25075,16.108885)"
-         style="display:inline;fill:#2e3436">
+         style="display:inline;fill:#2e3436"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            style="display:inline;fill:#2e3436"
            id="g12009-7"
@@ -1681,9 +1714,9 @@
            inkscape:label="categories" />
       </g>
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="7.6407852"
@@ -1695,7 +1728,10 @@
       <g
          id="g1763-0"
          style="color:#bebebe;display:inline;fill:#474747"
-         transform="translate(888.25961,15.925787)">
+         transform="translate(888.25961,15.925787)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1759-6"
            overflow="visible"
@@ -1717,9 +1753,9 @@
        inkscape:label="headerbar buttons"
        style="display:inline">
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="7.6407871"
@@ -1733,22 +1769,28 @@
          d="m 150.35087,40.640666 h -32.46621 v -3 -27 -3.0000002 h 32.46621 c 1.662,0 3,1.338 3,3.0000002 v 27 c 0,1.662 -1.338,3 -3,3 z"
          id="rect18060"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="sccccssss" />
+         sodipodi:nodetypes="sccccssss"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;line-height:125%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#2e3436;fill-opacity:1;stroke:none"
          x="84.878777"
          y="28.914589"
-         id="text18032"><tspan
+         id="text18032"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            sodipodi:role="line"
            id="tspan18034"
            x="84.878777"
            y="28.914589"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cantarell;-inkscape-font-specification:Cantarell">Open</tspan></text>
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="7.6407871"
@@ -1761,7 +1803,10 @@
          id="g1674"
          font-weight="400"
          style="color:#000000;font-weight:400;font-family:sans-serif;white-space:normal;fill:#474747"
-         transform="translate(15.759644,15.640787)">
+         transform="translate(15.759644,15.640787)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1668"
            overflow="visible"
@@ -1785,11 +1830,14 @@
          id="path1694"
          d="m 140.61776,21.640666 -5,5 -5,-5 z"
          inkscape:connector-curvature="0"
-         style="fill:#2e3436" />
+         style="fill:#2e3436"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="7.0020733"
@@ -1803,13 +1851,19 @@
          d="m 263.79527,40.001952 h -32.46621 v -3 -27 -2.9999999 h 32.46621 c 1.662,0 3.00001,1.338 3.00001,2.9999999 v 27 c 0,1.662 -1.33801,3 -3.00001,3 z"
          id="rect18060-0"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="sccccssss" />
+         sodipodi:nodetypes="sccccssss"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;line-height:125%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#2e3436;fill-opacity:1;stroke:none"
          x="198.32318"
          y="28.275875"
-         id="text18032-3"><tspan
+         id="text18032-3"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            sodipodi:role="line"
            id="tspan18034-6"
            x="198.32318"
@@ -1819,7 +1873,10 @@
          id="path1694-1"
          d="m 254.06216,21.001952 -5,5 -5,-5 z"
          inkscape:connector-curvature="0"
-         style="display:inline;fill:#2e3436" />
+         style="display:inline;fill:#2e3436"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#f8f7f7;fill-opacity:1;fill-rule:nonzero;stroke:#aa9f98;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:normal;enable-background:accumulate"
          id="rect12003-6"
@@ -1829,13 +1886,16 @@
          y="7.6407871"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <g
          id="g12007-1"
          transform="translate(928.25074,16.108887)"
-         style="display:inline;fill:#2e3436">
+         style="display:inline;fill:#2e3436"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            style="display:inline;fill:#2e3436"
            id="g12009-5"
@@ -1889,9 +1949,9 @@
            inkscape:label="categories" />
       </g>
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="7.6407866"
@@ -1903,7 +1963,10 @@
       <g
          id="g1850"
          style="color:#000000;fill:#474747"
-         transform="translate(928.26063,16.139803)">
+         transform="translate(928.26063,16.139803)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1836"
            overflow="visible"
@@ -1952,9 +2015,9 @@
            inkscape:connector-curvature="0" />
       </g>
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="304.00208"
@@ -1968,13 +2031,19 @@
          d="m 263.79527,337.00195 h -32.46621 v -3 -27 -3 h 32.46621 c 1.662,0 3.00001,1.338 3.00001,3 v 27 c 0,1.662 -1.33801,3 -3.00001,3 z"
          id="rect18060-0-7"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="sccccssss" />
+         sodipodi:nodetypes="sccccssss"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;line-height:125%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#2e3436;fill-opacity:1;stroke:none"
          x="198.32318"
          y="325.27588"
-         id="text18032-3-4"><tspan
+         id="text18032-3-4"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            sodipodi:role="line"
            id="tspan18034-6-4"
            x="198.32318"
@@ -1983,7 +2052,10 @@
       <g
          id="g1933"
          style="fill:#2e3436"
-         transform="translate(241.06217,313.00195)">
+         transform="translate(241.06217,313.00195)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1925"
            overflow="visible"
@@ -2012,7 +2084,10 @@
       <g
          transform="translate(564.11349,-759.97021)"
          style="display:inline"
-         id="g25370">
+         id="g25370"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <rect
            style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#f8f7f7;fill-opacity:1;fill-rule:nonzero;stroke:#aa9f98;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:normal;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
            id="rect72892"
@@ -2053,7 +2128,10 @@
       <g
          id="g1763-0-9"
          style="color:#bebebe;display:inline;fill:#474747"
-         transform="translate(1167.9186,15.753282)">
+         transform="translate(1167.9186,15.753282)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1759-6-7"
            overflow="visible"
@@ -2071,7 +2149,10 @@
       <g
          id="g13479-1-6"
          transform="matrix(0.66419898,0,0,0.66419898,1234.9208,18.982812)"
-         style="display:inline;fill:#454c4c">
+         style="display:inline;fill:#454c4c"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            transform="translate(-180.96716,-806.99245)"
            style="display:inline;fill:#454c4c"
@@ -2136,7 +2217,10 @@
          overflow="visible"
          style="color:#000000;display:inline;overflow:visible;fill:#474747;marker:none"
          d="m 1236.8511,17.968283 -6,5.999998 6,6 h 9.035 a 1.03,1.03 0 0 0 0.965,-1 v -9.999998 c 0,-0.53 -0.346,-1 -1.009,-1 z m 1,3 h 1.031 c 0.255,0.011 0.51,0.129 0.688,0.313 l 1.281,1.28 1.313,-1.28 c 0.265,-0.231 0.446,-0.306 0.687,-0.313 h 1 v 1 c 0,0.286 -0.034,0.55 -0.25,0.75 l -1.281,1.280998 1.25,1.25 c 0.188,0.188 0.281,0.454 0.281,0.719 v 1 h -1 c -0.265,0 -0.53,-0.093 -0.719,-0.281 l -1.281,-1.281 -1.281,1.28 a 1.015,1.015 0 0 1 -0.719,0.282 h -1 v -1 c 0,-0.265 0.093,-0.53 0.281,-0.719 l 1.282,-1.25 -1.283,-1.280998 a 0.909,0.909 0 0 1 -0.28,-0.75 z"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#f8f7f7;fill-opacity:1;fill-rule:nonzero;stroke:#aa9f98;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:normal;enable-background:accumulate"
          id="rect12003-3-3"
@@ -2146,13 +2230,16 @@
          y="7.6408129"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <g
          id="g12007-0-9"
          transform="translate(1122.2507,16.108913)"
-         style="display:inline;fill:#2e3436">
+         style="display:inline;fill:#2e3436"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            style="display:inline;fill:#2e3436"
            id="g12009-7-0"
@@ -2214,14 +2301,17 @@
          y="7.6408129"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <g
          style="display:inline"
          transform="translate(1298.7088,-259.85918)"
          id="g12029-1"
-         inkscape:label="open-menu">
+         inkscape:label="open-menu"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <rect
            inkscape:label="a"
            y="276"
@@ -2278,9 +2368,9 @@
         </g>
       </g>
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="7.6408129"
@@ -2292,7 +2382,10 @@
       <g
          id="g1850-0"
          style="color:#000000;display:inline;fill:#474747"
-         transform="translate(1278.7098,16.13983)">
+         transform="translate(1278.7098,16.13983)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1836-4"
            overflow="visible"
@@ -2343,7 +2436,10 @@
       <g
          transform="translate(564.11352,-706.97021)"
          style="display:inline"
-         id="g25370-7">
+         id="g25370-7"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <rect
            style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#f8f7f7;fill-opacity:1;fill-rule:nonzero;stroke:#aa9f98;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:normal;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
            id="rect72892-5"
@@ -2384,7 +2480,10 @@
       <g
          id="g1763-0-9-1"
          style="color:#bebebe;display:inline;fill:#474747"
-         transform="translate(1167.9186,68.753284)">
+         transform="translate(1167.9186,68.753284)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1759-6-7-7"
            overflow="visible"
@@ -2402,7 +2501,10 @@
       <g
          id="g13479-1-6-5"
          transform="matrix(0.66419898,0,0,0.66419898,1234.9208,71.982813)"
-         style="display:inline;fill:#454c4c">
+         style="display:inline;fill:#454c4c"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            transform="translate(-180.96716,-806.99245)"
            style="display:inline;fill:#454c4c"
@@ -2467,7 +2569,10 @@
          overflow="visible"
          style="color:#000000;display:inline;overflow:visible;fill:#474747;marker:none"
          d="m 1236.8511,70.968284 -6,5.999998 6,6 h 9.035 a 1.03,1.03 0 0 0 0.965,-1 v -9.999998 c 0,-0.53 -0.346,-1 -1.009,-1 z m 1,3 h 1.031 c 0.255,0.011 0.51,0.129 0.688,0.313 l 1.281,1.28 1.313,-1.28 c 0.265,-0.231 0.446,-0.306 0.687,-0.313 h 1 v 1 c 0,0.286 -0.034,0.55 -0.25,0.75 l -1.281,1.280998 1.25,1.25 c 0.188,0.188 0.281,0.454 0.281,0.719 v 1 h -1 c -0.265,0 -0.53,-0.093 -0.719,-0.281 l -1.281,-1.281 -1.281,1.28 a 1.015,1.015 0 0 1 -0.719,0.282 h -1 v -1 c 0,-0.265 0.093,-0.53 0.281,-0.719 l 1.282,-1.25 -1.283,-1.280998 a 0.909,0.909 0 0 1 -0.28,-0.75 z"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#f8f7f7;fill-opacity:1;fill-rule:nonzero;stroke:#aa9f98;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:normal;enable-background:accumulate"
          id="rect11999-1-1"
@@ -2477,14 +2582,17 @@
          y="60.640812"
          rx="2.9999986"
          ry="3"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90" />
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <g
          style="display:inline"
          transform="translate(1298.7088,-206.85918)"
          id="g12029-1-8"
-         inkscape:label="open-menu">
+         inkscape:label="open-menu"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <rect
            inkscape:label="a"
            y="276"
@@ -2541,9 +2649,9 @@
         </g>
       </g>
       <rect
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/lapo.fedora/SparkleShare/gnome-mockups/content selection/content-selection.png"
+         inkscape:export-ydpi="300.02115"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-filename="/home/manu/mockup.png"
          ry="3"
          rx="2.9999986"
          y="60.640812"
@@ -2555,7 +2663,10 @@
       <g
          id="g1850-0-0"
          style="color:#000000;display:inline;fill:#474747"
-         transform="translate(1278.7098,69.139832)">
+         transform="translate(1278.7098,69.139832)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path1836-4-4"
            overflow="visible"
@@ -2614,13 +2725,19 @@
          d="m 347.03367,54.001652 h -85.27291 l -14.19859,-13.9997 -14.19851,13.9997 h -86.3305 c -4.9859,0 -9.0002,4.0143 -9.0002,9.0002 V 271.0021 c 0,4.9859 4.0143,8.9998 9.0002,8.9998 h 200.00051 c 4.986,0 8.99979,-4.0139 8.99979,-8.9998 V 63.001852 c 0,-4.9859 -4.01379,-9.0002 -8.99979,-9.0002 z"
          id="path39426"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="scccssssssss" />
+         sodipodi:nodetypes="scccssssssss"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <text
          id="text39442"
          y="86.49234"
          x="157.53249"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:0%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.99999994"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            id="tspan19925"
            style="font-size:14px;line-height:1.25;stroke-width:0.99999994"
            y="86.49234"
@@ -2631,7 +2748,10 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:0%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.99999994"
          x="157.53249"
          y="136.49234"
-         id="text39456"><tspan
+         id="text39456"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            sodipodi:role="line"
            id="tspan39454"
            x="157.53249"
@@ -2642,13 +2762,19 @@
          inkscape:connector-curvature="0"
          id="path39458"
          d="m 151.52967,107.99144 h 189.9999"
-         style="fill:none;fill-rule:evenodd;stroke:#a7aba7;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="fill:none;fill-rule:evenodd;stroke:#a7aba7;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:0%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.99999994"
          x="157.53249"
          y="164.49355"
-         id="text39468"><tspan
+         id="text39468"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            sodipodi:role="line"
            id="tspan39466"
            x="157.53249"
@@ -2659,7 +2785,10 @@
          y="194.49356"
          x="157.53249"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:0%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.99999994"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            style="font-size:14px;line-height:1.25;stroke-width:0.99999994"
            y="194.49356"
            x="157.53249"
@@ -2670,7 +2799,10 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:0%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.99999994"
          x="157.53249"
          y="224.49356"
-         id="text2178"><tspan
+         id="text2178"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            sodipodi:role="line"
            id="tspan2176"
            x="157.53249"
@@ -2681,7 +2813,10 @@
          y="254.49355"
          x="157.53249"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:0%;font-family:Cantarell;-inkscape-font-specification:Cantarell;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.99999994"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115"><tspan
            style="font-size:14px;line-height:1.25;stroke-width:0.99999994"
            y="254.49355"
            x="157.53249"
@@ -2690,7 +2825,10 @@
       <g
          style="display:inline"
          transform="translate(650.45131,-679.92239)"
-         id="g8020-9">
+         id="g8020-9"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <title
            id="title8022-2">PopUp Tabs</title>
         <path
@@ -2793,7 +2931,10 @@
       <g
          id="g13479-1"
          transform="matrix(0.66419898,0,0,0.66419898,881.61006,96.926573)"
-         style="display:inline;fill:#454c4c">
+         style="display:inline;fill:#454c4c"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <g
            transform="translate(-180.96716,-806.99245)"
            style="display:inline;fill:#454c4c"
@@ -2858,12 +2999,18 @@
          overflow="visible"
          style="color:#000000;overflow:visible;fill:#474747;marker:none"
          d="m 926.52942,94.771282 -6,5.999998 6,6 h 9.035 a 1.03,1.03 0 0 0 0.965,-1 v -9.999998 c 0,-0.53 -0.346,-1 -1.009,-1 z m 1,3 h 1.031 c 0.255,0.011 0.51,0.129 0.688,0.313 l 1.281,1.28 1.313,-1.28 c 0.265,-0.231 0.446,-0.306 0.687,-0.313 h 1 v 1 c 0,0.286 -0.034,0.55 -0.25,0.75 l -1.281,1.280998 1.25,1.25 c 0.188,0.188 0.281,0.454 0.281,0.719 v 1 h -1 c -0.265,0 -0.53,-0.093 -0.719,-0.281 l -1.281,-1.281 -1.281,1.28 a 1.015,1.015 0 0 1 -0.719,0.282 h -1 v -1 c 0,-0.265 0.093,-0.53 0.281,-0.719 l 1.282,-1.25 -1.283,-1.280998 a 0.909,0.909 0 0 1 -0.28,-0.75 z"
-         inkscape:connector-curvature="0" />
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115" />
       <g
          id="g2155"
          font-weight="400"
          style="color:#bebebe;font-weight:400;font-family:Sans;fill:#474747"
-         transform="translate(993.66842,93.37378)">
+         transform="translate(993.66842,93.37378)"
+         inkscape:export-filename="/home/manu/mockup.png"
+         inkscape:export-xdpi="300.02115"
+         inkscape:export-ydpi="300.02115">
         <path
            id="path2151"
            overflow="visible"
@@ -2888,13 +3035,19 @@
            inkscape:connector-curvature="0"
            id="path18816-6-3"
            d="M 393.50022,749.89316 H 338.2276 l -14.1986,-14 -14.1986,14 H 163.5 c -4.986,0 -9,4.014 -9,9 l 0,74.46904 c 0,4.986 4.014,9 9,9 h 230.00022 c 4.986,0 9,-4.014 9,-9 l 0,-74.46904 c 0,-4.986 -4.014,-9 -9,-9 z"
-           style="display:inline;fill:#f2f2f2;fill-opacity:1;stroke:#a7aba7;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           style="display:inline;fill:#f2f2f2;fill-opacity:1;stroke:#a7aba7;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           inkscape:export-filename="/home/manu/mockup.png"
+           inkscape:export-xdpi="300.02115"
+           inkscape:export-ydpi="300.02115" />
         <text
            id="text4230-0-2"
            y="697.34967"
            x="174.00011"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;line-height:240.00000954%;font-family:Cantarell;-inkscape-font-specification:Cantarell;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none"
-           xml:space="preserve"><tspan
+           xml:space="preserve"
+           inkscape:export-filename="/home/manu/mockup.png"
+           inkscape:export-xdpi="300.02115"
+           inkscape:export-ydpi="300.02115"><tspan
              y="717.97186"
              x="174.00011"
              id="tspan4232-4-5"
@@ -2923,7 +3076,10 @@
            style="fill:#ffffff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
            d="m 128.6912,858.71569 34.6482,-43.84062 v 12.02082 l 21.9203,-11.31371 20.5061,12.72792 26.87,-9.8995 c 0,0 16.9706,7.77818 19.799,7.77818 2.8285,0 45.2549,-10.6066 45.2549,-10.6066 0,0 15.5563,12.72792 20.5061,12.02081 4.9497,-0.7071 23.3345,-12.72792 23.3345,-12.72792 l 23.3345,9.8995 20.5061,-4.94975 30.4056,14.14213 -0.7071,43.84062 -242.5376,17.67767 z"
            id="path2625"
-           inkscape:connector-curvature="0" />
+           inkscape:connector-curvature="0"
+           inkscape:export-filename="/home/manu/mockup.png"
+           inkscape:export-xdpi="300.02115"
+           inkscape:export-ydpi="300.02115" />
       </g>
     </g>
   </g>
