@@ -258,7 +258,7 @@ class Window(Gtk.ApplicationWindow):
         self.text_view.set_hemingway_mode(state.get_boolean())
         self.text_view.grab_focus()
 
-    def window_resize(self, window, _data=None):
+    def window_resize(self, window, event=None):
         """set paddings dependant of the window size
         """
 
@@ -266,24 +266,33 @@ class Window(Gtk.ApplicationWindow):
         # - The number of characters per line is adequate (http://webtypography.net/2.1.2)
         # - The number of characters stays constant while resizing the window / font
         # - There is enough text margin for MarkupBuffer to apply indents / negative margins
-        w_width = window.get_allocation().width
+        #
+        # TODO: Avoid hard-coding. Font size is clearer than unclear dimensions, but not ideal.
+        w_width = event.width if event else window.get_allocation().width
         if w_width < 900:
-            width_request = 700  # ~66 characters
+            font_size = 14
             self.get_style_context().add_class("small")
             self.get_style_context().remove_class("large")
 
-        elif w_width < 1200:
-            width_request = 870  # ~66 characters
+        elif w_width < 1280:
+            font_size = 16
             self.get_style_context().remove_class("small")
             self.get_style_context().remove_class("large")
 
         else:
-            width_request = 830  # ~66 characters
+            font_size = 18
             self.get_style_context().remove_class("small")
             self.get_style_context().add_class("large")
 
+        font_width = int(font_size * 1/1.6)  # Ratio specific to Fira Mono
+        width = 67 * font_width - 1  # 66 characters
+        horizontal_margin = 8 * font_width  # 8 characters
+        width_request = width + horizontal_margin * 2
+
         if self.text_view.props.width_request != width_request:
             self.text_view.props.width_request = width_request
+            self.text_view.set_left_margin(horizontal_margin)
+            self.text_view.set_right_margin(horizontal_margin)
             self.scrolled_window.props.width_request = width_request
 
     # TODO: refactorizable

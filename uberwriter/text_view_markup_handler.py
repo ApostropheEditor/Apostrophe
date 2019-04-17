@@ -93,7 +93,6 @@ class MarkupHandler:
 
         # Margin and indents
         # A baseline margin is set to allow negative offsets for formatting headers, lists, etc
-        self.baseline_margin = 0
         self.margins_indents = {}
         self.update_margins_indents()
 
@@ -283,14 +282,17 @@ class MarkupHandler:
         else:
             return self.margins_indents[level]
 
-    def get_margin_indent(self, margin_level, indent_level, char_width=None):
+    def get_margin_indent(self, margin_level, indent_level, baseline_margin=None, char_width=None):
+        if baseline_margin is None:
+            baseline_margin = self.text_view.get_left_margin()
         if char_width is None:
             char_width = helpers.get_char_width(self.text_view)
-        margin = max(self.baseline_margin + char_width * margin_level, 0)
+        margin = max(baseline_margin + char_width * margin_level, 0)
         indent = char_width * indent_level
         return margin, indent
 
     def update_margins_indents(self):
+        baseline_margin = self.text_view.get_left_margin()
         char_width = helpers.get_char_width(self.text_view)
 
         # Adjust tab size, as character width can change
@@ -298,14 +300,8 @@ class MarkupHandler:
         tab_array.set_tab(0, Pango.TabAlign.LEFT, 4 * char_width)
         self.text_view.set_tabs(tab_array)
 
-        # Adjust baseline margin, as character width can change
-        # Baseline needs to account for
-        self.baseline_margin = char_width * 10
-        self.text_view.set_left_margin(self.baseline_margin)
-        self.text_view.set_right_margin(self.baseline_margin)
-
         # Adjust margins and indents, as character width can change
         for level, tag in self.margins_indents.items():
-            margin, indent = self.get_margin_indent(*level, char_width)
+            margin, indent = self.get_margin_indent(*level, baseline_margin, char_width)
             tag.set_property("left-margin", margin)
             tag.set_property("indent", indent)
