@@ -159,7 +159,7 @@ class Export:
         filename = filename or _("Untitled document.md")
 
         self.filechoosers = {export_format: self.stack.get_child_by_name(export_format)
-                             for export_format in ["pdf", "html", "odt", "advanced"]}
+                             for export_format in ["pdf", "html", "advanced"]}
         for export_format, filechooser in self.filechoosers.items():
             filechooser.set_do_overwrite_confirmation(True)
             filechooser.set_current_folder(os.path.dirname(filename))
