@@ -16,7 +16,6 @@
   <object class="GtkImage" id="avall">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="tooltip_text" translatable="yes">Next Match</property>
     <property name="icon_name">go-down-symbolic</property>
   </object>
   <object class="GtkImage" id="ortografia1">
@@ -33,7 +32,6 @@
   <object class="GtkImage" id="reemplaza">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="tooltip_text" translatable="yes">Open Replace</property>
     <property name="icon_name">edit-find-replace-symbolic</property>
   </object>
   <object class="GtkOverlay" id="FullscreenOverlay">
@@ -283,6 +281,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
+                                    <property name="tooltip_text" translatable="yes">Next Match</property>
                                     <property name="image">avall</property>
                                   </object>
                                   <packing>
@@ -341,6 +340,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
+                                    <property name="tooltip_text" translatable="yes">Open Replace</property>
                                     <property name="image">reemplaza</property>
                                   </object>
                                   <packing>
