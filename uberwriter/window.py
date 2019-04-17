@@ -26,6 +26,7 @@ from gettext import gettext as _
 import gi
 
 from uberwriter.export_dialog import Export
+from uberwriter.stats_counter import StatsCounter
 from uberwriter.text_view import TextView
 
 gi.require_version('Gtk', '3.0')
@@ -66,8 +67,6 @@ class Window(Gtk.ApplicationWindow):
         'close-window': (GObject.SIGNAL_ACTION, None, ())
     }
 
-    WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
-
     def __init__(self, app):
         """Set up the main window"""
 
@@ -82,6 +81,8 @@ class Window(Gtk.ApplicationWindow):
         self.add(root)
 
         self.set_default_size(900, 500)
+
+        self.connect('delete-event', self.on_destroy)
 
         # Preferences
         self.settings = Settings.new()
@@ -129,6 +130,9 @@ class Window(Gtk.ApplicationWindow):
         self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
         self.scrolled_window.add(self.text_view)
         self.editor_viewport = self.builder.get_object('editor_viewport')
+
+        # Stats counter
+        self.stats_counter = StatsCounter()
 
         # some people seems to have performance problems with the overlay.
         # Let them disable it
@@ -190,25 +194,13 @@ class Window(Gtk.ApplicationWindow):
             # Redraw contents of window
             self.queue_draw()
 
-    def update_line_and_char_count(self):
-        """it... it updates line and characters count
+    def update_stats_counts(self, stats):
+        """Updates line and character counts.
         """
 
-        if self.status_bar_visible is False:
-            return
-        text = self.text_view.get_text()
-        self.char_count.set_text(str(len(text)))
-        words = re.split(self.WORDCOUNT, text)
-        length = len(words)
-        # Last word a "space"
-        if not words[-1]:
-            length = length - 1
-        # First word a "space" (happens in focus mode...)
-        if not words[0]:
-            length = length - 1
-        if length == -1:
-            length = 0
-        self.word_count.set_text(str(length))
+        (characters, words, sentences, (hours, minutes, seconds)) = stats
+        self.char_count.set_text(str(characters))
+        self.word_count.set_text(str(words))
 
     def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
@@ -221,7 +213,9 @@ class Window(Gtk.ApplicationWindow):
             self.set_headerbar_title("* " + title)
 
         self.buffer_modified_for_status_bar = True
-        self.update_line_and_char_count()
+
+        if self.status_bar_visible:
+            self.stats_counter.count_stats(self.text_view.get_text(), self.update_stats_counts)
 
     def set_fullscreen(self, state):
         """Puts the application in fullscreen mode and show/hides
@@ -703,7 +697,7 @@ class Window(Gtk.ApplicationWindow):
                 self.headerbar.hb.props.opacity = 1
                 self.status_bar_visible = True
                 self.buffer_modified_for_status_bar = False
-                self.update_line_and_char_count()
+                self.stats_counter.count_stats(self.text_view.get_text(), self.update_stats_counts)
                 # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
             self.was_motion = True
 
@@ -716,7 +710,7 @@ class Window(Gtk.ApplicationWindow):
             self.headerbar.hb.props.opacity = 1
             self.status_bar_visible = True
             self.buffer_modified_for_status_bar = False
-            self.update_line_and_char_count()
+            self.stats_counter.count_stats(self.text_view.get_text(), self.update_stats_counts)
 
     def draw_gradient(self, _widget, cr):
         """draw fading gradient over the top and the bottom of the
@@ -764,12 +758,6 @@ class Window(Gtk.ApplicationWindow):
         self.destroy()
         return
 
-    def on_destroy(self, _widget, _data=None):
-        """Called when the TexteditorWindow is closed.
-        """
-        # Clean up code for saving application state should be added here.
-        Gtk.main_quit()
-
     def set_headerbar_title(self, title):
         """set the desired headerbar title
         """
@@ -801,3 +789,8 @@ class Window(Gtk.ApplicationWindow):
             webbrowser.open(web_view.get_uri())
             decision.ignore()
             return True  # Don't let the event "bubble up"
+
+    def on_destroy(self, _widget, _data=None):
+        """Called when the Window is closing.
+        """
+        self.stats_counter.stop()
