@@ -4,35 +4,47 @@
 
   <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter">
 
+    <key name='dark-mode-auto' type='b'>
+      <default>true</default>
+      <summary>Set dark mode automatically</summary>
+      <description>
+        Whether dark mode depends on the system theme, or is set to what the user specifies.
+      </description>
+    </key>
     <key name='dark-mode' type='b'>
       <default>false</default>
-      <summary>Dark mode</summary>
+      <summary>Force dark mode</summary>
       <description>
-        If enabled, the window will be dark themed
-        If disabled, the window will be light themed
-        asked to install them manually.
+        Enable or disable the dark mode.
       </description>
     </key>
     <key name='spellcheck' type='b'>
       <default>true</default>
-      <summary>Spellcheck</summary>
+      <summary>Check spelling while typing</summary>
       <description>
-        Enable/disable spellchecking in the application.
+        Enable or disable spellchecking.
       </description>
     </key>
     <key name='gradient-overlay' type='b'>
       <default>false</default>
-      <summary>Show gradient overlay</summary>
+      <summary>Draw scroll gradient</summary>
       <description>
         Show a gradient overlay over the text at the top anf bottom of the window.
-        It can cause performance problems to some users
+        It can cause performance problems to some users.
+      </description>
+    </key>
+    <key name='input-format' type='s'>
+      <default>"markdown"</default>
+      <summary>Input format</summary>
+      <description>
+        Input format to use when previewing and exporting using Pandoc.
       </description>
     </key>
     <key name='poll-motion' type='b'>
       <default>true</default>
       <summary>Allow Uberwriter to poll cursor motion</summary>
       <description>
-        Used for hidding the headerbar after 3 seconds if the cursor is not moving.
+        Hide the header and status bars if the cursor is not moving.
       </description>
     </key>
     <key name='open-file-path' type='s'>

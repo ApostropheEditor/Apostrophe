@@ -11,6 +11,7 @@ class Theme:
     The light variant is listed first, followed by the dark variant, if any.
     """
 
+    previous = None
     settings = Settings.new()
 
     def __init__(self, name, gtk_css_path, web_css_path, is_dark, inverse_name):
@@ -29,15 +30,29 @@ class Theme:
         return current_theme
 
     @classmethod
-    def get_current(cls):
+    def get_current_changed(cls):
         theme_name = Gtk.Settings.get_default().get_property('gtk-theme-name')
+        dark_mode_auto = cls.settings.get_value('dark-mode-auto').get_boolean()
         dark_mode = cls.settings.get_value('dark-mode').get_boolean()
         current_theme = cls.get_for_name(theme_name)
-        # Technically, we could very easily allow the user to force the light ui on a dark theme.
-        # However, as there is no inverse of "gtk-application-prefer-dark-theme", we shouldn't do that.
-        if dark_mode and not current_theme.is_dark and current_theme.inverse_name:
+        if not dark_mode_auto and dark_mode != current_theme.is_dark and current_theme.inverse_name:
             current_theme = cls.get_for_name(current_theme.inverse_name, current_theme.name)
+        changed = current_theme != cls.previous
+        cls.previous = current_theme
+        return current_theme, changed
+
+    @classmethod
+    def get_current(cls):
+        current_theme, _ = cls.get_current_changed()
         return current_theme
+
+    def __eq__(self, other):
+        return isinstance(other, self.__class__) and \
+               self.name == other.name and \
+               self.gtk_css_path == other.gtk_css_path and \
+               self.web_css_path == other.web_css_path and \
+               self.is_dark == other.is_dark and \
+               self.inverse_name == other.inverse_name
 
 
 defaultThemes = [

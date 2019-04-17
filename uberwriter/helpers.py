@@ -21,12 +21,16 @@ import logging
 import os
 import shutil
 
-
 import gi
+import pypandoc
+from gi.overrides.Pango import Pango
+
+from uberwriter.settings import Settings
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk  # pylint: disable=E0611
 
-from uberwriter.uberwriterconfig import get_data_file
+from uberwriter.config import get_data_file
 from uberwriter.builder import Builder
 
 
@@ -48,13 +52,18 @@ def get_builder(builder_file_name):
     return builder
 
 
-# Owais Lone : To get quick access to icons and stuff.
+def path_to_file(path):
+    """Return a file path (file:///) for the given path"""
+
+    return "file:///" + path
+
+
 def get_media_file(media_file_path):
     """Return the full path of a given filename under the media dir
        (starts with file:///)
     """
 
-    return "file:///" + get_media_path(media_file_path)
+    return path_to_file(get_media_path(media_file_path))
 
 
 def get_media_path(media_file_name):
@@ -160,6 +169,7 @@ def exist_executable(command):
 
     return shutil.which(command) is not None
 
+
 def get_descendant(widget, child_name, level, doPrint=False):
     if widget is not None:
         if doPrint: print("-"*level + str(Gtk.Buildable.get_name(widget)) +
@@ -188,3 +198,14 @@ def get_descendant(widget, child_name, level, doPrint=False):
             if child is not None:
                 found = get_descendant(child, child_name, level+1, doPrint) # //search the child
                 if found: return found
+
+
+def get_char_width(widget):
+    return Pango.units_to_double(
+        widget.get_pango_context().get_metrics().get_approximate_char_width())
+
+
+def pandoc_convert(text, to="html5", args=[], outputfile=None):
+    fr = Settings.new().get_value('input-format').get_string() or "markdown"
+    args.extend(["--quiet"])
+    return pypandoc.convert_text(text, to, fr, extra_args=args, outputfile=outputfile)
