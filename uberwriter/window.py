@@ -262,6 +262,11 @@ class Window(Gtk.ApplicationWindow):
         """set paddings dependant of the window size
         """
 
+        # Ensure the window receiving the event is the one we care about, ie. the main window.
+        # On Wayland (bug?), sub-windows such as the recents popover will also trigger this.
+        if event and event.window != window.get_window():
+            return
+
         # Adjust text editor width depending on window width, so that:
         # - The number of characters per line is adequate (http://webtypography.net/2.1.2)
         # - The number of characters stays constant while resizing the window / font
