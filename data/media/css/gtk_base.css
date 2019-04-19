@@ -17,12 +17,15 @@
   bind "<ctl><shift>z" { "redo" () };
 }
 
+@define-color math_text_color mix(@theme_fg_color, #00b5ff, 0.15);
+
 /* Main window and text colors */
 
 .uberwriter-window {
   /*border-radius: 7px 7px 3px 3px;*/
-  background: @background_color;
-  caret-color: @foreground_color;
+  background: @theme_base_color;
+  color: @theme_fg_color;
+  caret-color: @theme_fg_color;
 }
 
 .uberwriter-window .uberwriter-editor {
@@ -50,27 +53,25 @@
 }
 
 #titlebar-container {
-  background: @background_color;
+  background: @theme_base_color;
 }
 
 .uberwriter-editor {
   border: none;
   background-color: transparent;
-  text-decoration-color: #ff0000;
-  /*-GtkWidget-cursor-color: shade(#4D9FCE, 0.9);*/
-  /*-GtkWidget-cursor-aspect-ratio: 0.1;*/
+  text-decoration-color: @error_color;
   -gtk-key-bindings: editor-bindings;
 }
 
 .uberwriter-editor text {
-  background-color: @background_color;
-  color: @foreground_color;
-  caret-color: @foreground_color;
+  background-color: @theme_base_color;
+  color: @theme_fg_color;
+  caret-color: @theme_fg_color;
 }
 
-.uberwriter-editor:selected {
-  background-color: #4D9FCE;
-  color: #FFF;
+.uberwriter-editor text selection {
+  background-color: @theme_selected_bg_color;
+  color: @theme_selected_fg_color;
 }
 
 .uberwriter-editor button {
@@ -85,10 +86,9 @@
   padding: 0;
 }
 
-
 .stats-counter {
-  color: alpha(@foreground_color, 0.6);
-  background-color: @background_color;
+  color: alpha(@theme_fg_color, 0.6);
+  background-color: @theme_base_color;
   text-shadow: inherit;
   box-shadow: initial;
   background-clip: initial;
@@ -108,8 +108,8 @@
 
 .stats-counter:hover,
 .stats-counter:checked {
-  color: @foreground_color;
-  background-color: lighter(@background_color);
+  color: @theme_fg_color;
+  background-color: mix(@theme_base_color, @theme_bg_color, 0.5);
 }
 
 #PreviewMenuItem image {
@@ -128,9 +128,9 @@
   /*font: serif 10;*/
   font-family: serif;
   font-size: 10px;
-  background: @background_color;
+  background: @theme_bg_color;
   border-radius: 4px;
-  border-color: @background_color;
+  border-color: @theme_bg_color;
   margin: 5px;
   padding: 5px;
 }
@@ -141,7 +141,7 @@
   border: 1px solid #333;
   background: @ligth_bg;
   border-radius: 3px;
-  border-color: @background_color;
+  border-color: @theme_bg_color;
 } */
 
 #LexikonBubble label {
@@ -149,8 +149,8 @@
 }
 
 #LexikonBubble {
-  background-color: @background_color;
-  border: 5px solid @background_color;
+  background-color: @theme_bg_color;
+  border: 5px solid @theme_bg_color;
 }
 
 #LexikonBubble .lexikon-heading {
@@ -168,15 +168,15 @@
 }
 
 .quick-preview-popup {
-	background-color: @background_color;
+	background-color: @theme_bg_color;
 }
 
 .quick-preview-popup grid {
-	background-color: @background_color;
-	color: @foreground_color;
-	border-color: @background_color;
+	background-color: @theme_bg_color;
+	color: @theme_fg_color;
+	border-color: @theme_bg_color;
 }
 
 .quick-preview-popup label {
-	color: @foreground_color;
+	color: @theme_fg_color;
 }

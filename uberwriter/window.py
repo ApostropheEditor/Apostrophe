@@ -176,7 +176,7 @@ class Window(Gtk.ApplicationWindow):
 
             # Set theme css
             style_provider = Gtk.CssProvider()
-            style_provider.load_from_path(theme.gtk_css_path)
+            style_provider.load_from_path(helpers.get_css_path("gtk_base.css"))
             Gtk.StyleContext.add_provider_for_screen(
                 self.get_screen(), style_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
