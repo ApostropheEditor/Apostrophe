@@ -126,7 +126,7 @@ class Application(Gtk.Application):
 
         # Shortcuts
 
-        # TODO: be aware that a couple of shortcuts are defined in gtk_base.css
+        # TODO: be aware that a couple of shortcuts are defined in base.css
 
         self.set_accels_for_action("app.focus_mode", ["<Ctl>d"])
         self.set_accels_for_action("app.hemingway_mode", ["<Ctl>t"])

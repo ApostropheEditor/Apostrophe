@@ -1,11 +1,11 @@
 @font-face {
   font-family: fira-sans;
-  src: url("../fonts/fira-sans-v9-vietnamese_latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
+  src: url("../../fonts/fira-sans-v9-vietnamese_latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: fira-mono;
-  src: url("../fonts/fira-mono-v7-latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
+  src: url("../../fonts/fira-mono-v7-latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -56,7 +56,6 @@ body {
   background-color: var(--background-color);
   font-family: "Fira Sans", fira-sans, sans-serif, color-emoji;
   line-height: 1.5;
-  text-size-adjust: 100%;
   word-wrap: break-word;
   padding: 2em;
 }
