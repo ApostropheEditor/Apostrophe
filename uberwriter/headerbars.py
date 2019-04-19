@@ -141,7 +141,7 @@ def buttons(app):
     btn.open_recent.pack_start(open_button, False, False, 0)
     btn.open_recent.pack_end(recents_button, False, False, 0)
 
-    btn.search.set_tooltip_text(_("Search and replace"))
+    btn.search.set_tooltip_text(_("Search and Replace"))
     btn.menu.set_tooltip_text(_("Menu"))
     btn.menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
                                                     Gtk.IconSize.BUTTON))
