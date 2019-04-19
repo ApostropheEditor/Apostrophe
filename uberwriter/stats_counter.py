@@ -9,7 +9,7 @@ from uberwriter import helpers
 
 
 class StatsCounter:
-    """Counts characters, words, sentences and reading time using a background thread."""
+    """Counts characters, words, sentences and read time using a background thread."""
 
     # Regexp that matches any character, except for newlines and subsequent spaces.
     CHARACTERS = re.compile(r"[^\s]|(?:[^\S\n](?!\s))")
@@ -26,11 +26,11 @@ class StatsCounter:
         super().__init__()
 
         self.queue = Queue()
-        worker = Thread(target=self.__do_count_stats, name="stats-counter")
+        worker = Thread(target=self.__do_count, name="stats-counter")
         worker.daemon = True
         worker.start()
 
-    def count_stats(self, text, callback):
+    def count(self, text, callback):
         """Count stats for text, calling callback with a result when done.
 
         The callback argument contains the result, in the form:
@@ -44,7 +44,7 @@ class StatsCounter:
 
         self.queue.put((None, None))
 
-    def __do_count_stats(self):
+    def __do_count(self):
         while True:
             while True:
                 (text, callback) = self.queue.get()
@@ -61,10 +61,8 @@ class StatsCounter:
 
             sentence_count = len(re.findall(self.SENTENCES, text))
 
-            dec_, int_ = math.modf(word_count / 200)
-            hours = int(int_ / 60)
-            minutes = int(int_ % 60)
-            seconds = round(dec_ * 0.6)
-            reading_time = (hours, minutes, seconds)
+            read_m, read_s = divmod(word_count / 200 * 60, 60)
+            read_h, read_m = divmod(read_m, 60)
+            read_time = (int(read_h), int(read_m), int(read_s))
 
-            GLib.idle_add(callback, (character_count, word_count, sentence_count, reading_time))
+            GLib.idle_add(callback, (character_count, word_count, sentence_count, read_time))

@@ -86,15 +86,10 @@
 }
 
 
-.status-bar-box label {
-  color: #666;
-}
-
-.status-bar-box button {
-  /* finding reset */
+.stats-counter {
+  color: alpha(@foreground_color, 0.6);
   background-color: @background_color;
   text-shadow: inherit;
-  /*icon-shadow: inherit;*/
   box-shadow: initial;
   background-clip: initial;
   background-origin: initial;
@@ -106,37 +101,15 @@
   border-image-repeat: initial;
   border-image-slice: initial;
   border-image-width: initial;
-
   border-style: none;
-  -button-images: true;
-  border-radius: 2px;
-  color: #666;
-  padding: 3px 5px;
+  padding: 0px 16px;
   transition: 100ms ease-in;
 }
 
-.status-bar-box button:hover,
-.status-bar-box button:checked {
-  transition: 0s ease-in;
-  color: @background_color;
-  background-color: #666;
-}
-
-.status-bar-box button:hover label,
-.status-bar-box button:checked label {
-  color: @background_color;
-}
-
-.status-bar-box button:active {
-  color: #EEE;
-  background-color: #EEE;
-  background-image: none;
-  box-shadow: 0 0 2px rgba(0,0,0,0.4)
-}
-
-.status-bar-box separator {
-  border-color: #999;
-  border-right: none;
+.stats-counter:hover,
+.stats-counter:checked {
+  color: @foreground_color;
+  background-color: lighter(@background_color);
 }
 
 #PreviewMenuItem image {

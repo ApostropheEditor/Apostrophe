@@ -40,6 +40,8 @@ class Application(Gtk.Application):
 
         self.settings.connect("changed", self.on_settings_changed)
 
+        # Header bar
+
         action = Gio.SimpleAction.new("new", None)
         action.connect("activate", self.on_new)
         self.add_action(action)
@@ -59,6 +61,8 @@ class Application(Gtk.Application):
         action = Gio.SimpleAction.new("search", None)
         action.connect("activate", self.on_search)
         self.add_action(action)
+
+        # App Menu
 
         action = Gio.SimpleAction.new_stateful(
             "focus_mode", None, GLib.Variant.new_boolean(False))
@@ -110,6 +114,14 @@ class Application(Gtk.Application):
 
         action = Gio.SimpleAction.new("quit", None)
         action.connect("activate", self.on_quit)
+        self.add_action(action)
+
+        # Stats Menu
+
+        stat_default = self.settings.get_string("stat-default")
+        action = Gio.SimpleAction.new_stateful(
+            "stat_default", GLib.VariantType.new('s'), GLib.Variant.new_string(stat_default))
+        action.connect("activate", self.on_stat_default)
         self.add_action(action)
 
         # Shortcuts
@@ -166,6 +178,8 @@ class Application(Gtk.Application):
             self.window.toggle_gradient_overlay(settings.get_value(key))
         elif key == "input-format":
             self.window.reload_preview()
+        elif key == "stat-default":
+            self.window.update_default_stat()
 
     def on_new(self, _action, _value):
         self.window.new_document()
@@ -231,6 +245,10 @@ class Application(Gtk.Application):
 
     def on_quit(self, _action, _param):
         self.quit()
+
+    def on_stat_default(self, action, value):
+        action.set_state(value)
+        self.settings.set_string("stat-default", value.get_string())
 
 # ~ if __name__ == "__main__":
     # ~ app = Application()
