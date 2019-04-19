@@ -30,6 +30,7 @@ class StatsHandler:
         self.characters = 0
         self.words = 0
         self.sentences = 0
+        self.paragraphs = 0
         self.read_time = (0, 0, 0)
 
         self.settings = Settings.new()
@@ -43,22 +44,11 @@ class StatsHandler:
         self.stats_button.set_state_flags(Gtk.StateFlags.CHECKED, False)
 
         menu = Gio.Menu()
-        characters_menu_item = Gio.MenuItem.new(self.get_text_for_stat(0), None)
-        characters_menu_item.set_action_and_target_value(
-            "app.stat_default", GLib.Variant.new_string("characters"))
-        menu.append_item(characters_menu_item)
-        words_menu_item = Gio.MenuItem.new(self.get_text_for_stat(1), None)
-        words_menu_item.set_action_and_target_value(
-            "app.stat_default", GLib.Variant.new_string("words"))
-        menu.append_item(words_menu_item)
-        sentences_menu_item = Gio.MenuItem.new(self.get_text_for_stat(2), None)
-        sentences_menu_item.set_action_and_target_value(
-            "app.stat_default", GLib.Variant.new_string("sentences"))
-        menu.append_item(sentences_menu_item)
-        read_time_menu_item = Gio.MenuItem.new(self.get_text_for_stat(3), None)
-        read_time_menu_item.set_action_and_target_value(
-            "app.stat_default", GLib.Variant.new_string("read_time"))
-        menu.append_item(read_time_menu_item)
+        stats = self.settings.props.settings_schema.get_key("stat-default").get_range()[1]
+        for i, stat in enumerate(stats):
+            menu_item = Gio.MenuItem.new(self.get_text_for_stat(i), None)
+            menu_item.set_action_and_target_value("app.stat_default", GLib.Variant.new_string(stat))
+            menu.append_item(menu_item)
         self.popover = Gtk.Popover.new_from_model(self.stats_button, menu)
         self.popover.connect('closed', self.on_popover_closed)
         self.popover.popup()
@@ -82,13 +72,18 @@ class StatsHandler:
         elif stat == 2:
             return _("{:n} Sentences".format(self.sentences))
         elif stat == 3:
+            return _("{:n} Paragraphs".format(self.paragraphs))
+        elif stat == 4:
             return _("{:d}:{:02d}:{:02d} Read Time".format(*self.read_time))
+        else:
+            raise ValueError("Unknown stat {}".format(stat))
 
     def update_stats(self, stats):
-        (characters, words, sentences, read_time) = stats
+        (characters, words, sentences, paragraphs, read_time) = stats
         self.characters = characters
         self.words = words
         self.sentences = sentences
+        self.paragraphs = paragraphs
         self.read_time = read_time
         self.update_default_stat(False)
 

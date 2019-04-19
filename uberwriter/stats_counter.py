@@ -22,6 +22,9 @@ class StatsCounter:
     # exclamation mark, paragraph, and variants.
     SENTENCES = re.compile(r"[^\n][.。।෴۔።?՞;⸮؟？፧꘏⳺⳻⁇﹖⁈⁉‽!﹗！՜߹႟᥄\n]+")
 
+    # Regexp that matches paragraphs, ie. anything separated by newlines.
+    PARAGRAPHS = re.compile(r".+\n?")
+
     def __init__(self):
         super().__init__()
 
@@ -61,8 +64,12 @@ class StatsCounter:
 
             sentence_count = len(re.findall(self.SENTENCES, text))
 
+            paragraph_count = len(re.findall(self.PARAGRAPHS, text))
+
             read_m, read_s = divmod(word_count / 200 * 60, 60)
             read_h, read_m = divmod(read_m, 60)
             read_time = (int(read_h), int(read_m), int(read_s))
 
-            GLib.idle_add(callback, (character_count, word_count, sentence_count, read_time))
+            GLib.idle_add(
+                callback,
+                (character_count, word_count, sentence_count, paragraph_count, read_time))
