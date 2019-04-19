@@ -35,7 +35,8 @@ extra_files_media_fonts = package_files('./data/media/fonts')
 extra_files_scripts = package_files('./data/lua')
 from pprint import pprint
 pprint(extra_files_ui)
-pprint(extra_files_media)
+pprint(extra_files_media_css)
+pprint(extra_files_media_fonts)
 
 if os.path.isfile("/.flatpak-info"):
     app_prefix = '/app/'
