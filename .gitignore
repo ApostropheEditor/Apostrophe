@@ -6,13 +6,12 @@ debian/uberwriter/DEBIAN
 debian/uberwriter/opt
 debian/uberwriter/usr
 flatpak/*
-!flatpak/fonts-download
-!flatpak/pandoc-download
-!flatpak/pip-download
 !flatpak/uberwriter.json
 !flatpak/de.wolfvollprecht.UberWriter.*
 !flatpak/flatpak_texlive.json
 !flatpak/texlive_install.sh
+!flatpak/python3-enchant.json
+!flatpak/python3-packages.json
 *.py~
 data/ui/shortcut_handlers
 *.ui~

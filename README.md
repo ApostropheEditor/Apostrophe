@@ -34,8 +34,7 @@ but you'll need to install and compile the schemas before:
 
 It's also possible to build, run and debug a flatpak package. You'll need flatpak-builder for this:
 
-- cd to the flatpak dir of the repo
-- `flatpak-builder --install --force-clean some_folder_name uberwriter.json` (this installs and cleans the build folder)
+- `make flatpak-user-install` (this installs the Flatpak)
 - `flatpak run de.wolfvollprecht.UberWriter`
 
 If you can't find Uberwriter after this, it's due to a Flatpak bug. Try to export it to a local repo before installing it:

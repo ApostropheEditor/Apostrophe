@@ -53,7 +53,6 @@ def get_data_path():
     """
 
     # Get pathname absolute or relative.
-    # TODO: Abstract this (the old env IN_FLATPAK)
     if os.path.isfile("/.flatpak-info"):
         return '/app/share/uberwriter/data/'
 
