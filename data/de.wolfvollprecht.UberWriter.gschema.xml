@@ -2,6 +2,14 @@
 
 <schemalist>
 
+  <enum id='de.wolfvollprecht.UberWriter.Stat'>
+    <value nick='characters' value='0' />
+    <value nick='words' value='1' />
+    <value nick='sentences' value='2' />
+    <value nick='paragraphs' value='3' />
+    <value nick='read_time' value='4' />
+  </enum>
+
   <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter">
 
     <key name='dark-mode-auto' type='b'>
@@ -52,6 +60,13 @@
       <summary>Open file base path</summary>
       <description>
         Open file paths of the current session
+      </description>
+    </key>
+    <key name='stat-default' enum='de.wolfvollprecht.UberWriter.Stat'>
+      <default>"words"</default>
+      <summary>Default statistic</summary>
+      <description>
+        Which statistic is shown on the main window.
       </description>
     </key>
 

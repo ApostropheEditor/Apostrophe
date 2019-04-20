@@ -18,7 +18,6 @@ import codecs
 import locale
 import logging
 import os
-import re
 import urllib
 import webbrowser
 from gettext import gettext as _
@@ -26,6 +25,7 @@ from gettext import gettext as _
 import gi
 
 from uberwriter.export_dialog import Export
+from uberwriter.stats_handler import StatsHandler
 from uberwriter.text_view import TextView
 
 gi.require_version('Gtk', '3.0')
@@ -66,8 +66,6 @@ class Window(Gtk.ApplicationWindow):
         'close-window': (GObject.SIGNAL_ACTION, None, ())
     }
 
-    WORDCOUNT = re.compile(r"(?!\-\w)[\s#*\+\-]+", re.UNICODE)
-
     def __init__(self, app):
         """Set up the main window"""
 
@@ -94,17 +92,6 @@ class Window(Gtk.ApplicationWindow):
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
 
-        self.word_count = self.builder.get_object('word_count')
-        self.char_count = self.builder.get_object('char_count')
-
-        # Setup status bar hide after 3 seconds
-        self.status_bar = self.builder.get_object('status_bar_box')
-        self.statusbar_revealer = self.builder.get_object('status_bar_revealer')
-        self.status_bar.get_style_context().add_class('status-bar-box')
-        self.status_bar_visible = True
-        self.was_motion = True
-        self.buffer_modified_for_status_bar = False
-
         self.timestamp_last_mouse_motion = 0
         if self.settings.get_value("poll-motion"):
             self.connect("motion-notify-event", self.on_motion_notify)
@@ -117,10 +104,9 @@ class Window(Gtk.ApplicationWindow):
         self.text_view = TextView()
         self.text_view.props.halign = Gtk.Align.CENTER
         self.text_view.connect('focus-out-event', self.focus_out)
+        self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
         self.text_view.grab_focus()
-
-        self.text_view.get_buffer().connect('changed', self.on_text_changed)
 
         # Setup preview webview
         self.preview_webview = None
@@ -129,6 +115,17 @@ class Window(Gtk.ApplicationWindow):
         self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
         self.scrolled_window.add(self.text_view)
         self.editor_viewport = self.builder.get_object('editor_viewport')
+
+        # Stats counter
+        self.stats_counter_revealer = self.builder.get_object('stats_counter_revealer')
+        self.stats_button = self.builder.get_object('stats_counter')
+        self.stats_button.get_style_context().add_class('stats-counter')
+        self.stats_handler = StatsHandler(self.stats_button, self.text_view)
+
+        # Setup header/stats bar hide after 3 seconds
+        self.top_bottom_bars_visible = True
+        self.was_motion = True
+        self.buffer_modified_for_status_bar = False
 
         # some people seems to have performance problems with the overlay.
         # Let them disable it
@@ -190,26 +187,6 @@ class Window(Gtk.ApplicationWindow):
             # Redraw contents of window
             self.queue_draw()
 
-    def update_line_and_char_count(self):
-        """it... it updates line and characters count
-        """
-
-        if self.status_bar_visible is False:
-            return
-        text = self.text_view.get_text()
-        self.char_count.set_text(str(len(text)))
-        words = re.split(self.WORDCOUNT, text)
-        length = len(words)
-        # Last word a "space"
-        if not words[-1]:
-            length = length - 1
-        # First word a "space" (happens in focus mode...)
-        if not words[0]:
-            length = length - 1
-        if length == -1:
-            length = 0
-        self.word_count.set_text(str(length))
-
     def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
            updates the title and the counters to reflect that
@@ -221,7 +198,6 @@ class Window(Gtk.ApplicationWindow):
             self.set_headerbar_title("* " + title)
 
         self.buffer_modified_for_status_bar = True
-        self.update_line_and_char_count()
 
     def set_fullscreen(self, state):
         """Puts the application in fullscreen mode and show/hides
@@ -491,6 +467,9 @@ class Window(Gtk.ApplicationWindow):
         self.set_filename()
         self.set_headerbar_title(_("New File") + self.title_end)
 
+    def update_default_stat(self):
+        self.stats_handler.update_default_stat()
+
     def menu_toggle_sidebar(self, _widget=None):
         """WIP
         """
@@ -672,13 +651,13 @@ class Window(Gtk.ApplicationWindow):
         """
 
         if (self.was_motion is False
-                and self.status_bar_visible
+                and self.top_bottom_bars_visible
                 and self.buffer_modified_for_status_bar
                 and self.text_view.props.has_focus): # pylint: disable=no-member
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
-            self.statusbar_revealer.set_reveal_child(False)
+            self.stats_counter_revealer.set_reveal_child(False)
             self.headerbar.hb_revealer.set_reveal_child(False)
-            self.status_bar_visible = False
+            self.top_bottom_bars_visible = False
             self.buffer_modified_for_status_bar = False
 
         self.was_motion = False
@@ -697,26 +676,24 @@ class Window(Gtk.ApplicationWindow):
             return
         if now - self.timestamp_last_mouse_motion > 100:
             # react on motion by fading in headerbar and statusbar
-            if self.status_bar_visible is False:
-                self.statusbar_revealer.set_reveal_child(True)
+            if self.top_bottom_bars_visible is False:
+                self.stats_counter_revealer.set_reveal_child(True)
                 self.headerbar.hb_revealer.set_reveal_child(True)
                 self.headerbar.hb.props.opacity = 1
-                self.status_bar_visible = True
+                self.top_bottom_bars_visible = True
                 self.buffer_modified_for_status_bar = False
-                self.update_line_and_char_count()
                 # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
             self.was_motion = True
 
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
         """
-        if self.status_bar_visible is False:
-            self.statusbar_revealer.set_reveal_child(True)
+        if self.top_bottom_bars_visible is False:
+            self.stats_counter_revealer.set_reveal_child(True)
             self.headerbar.hb_revealer.set_reveal_child(True)
             self.headerbar.hb.props.opacity = 1
-            self.status_bar_visible = True
+            self.top_bottom_bars_visible = True
             self.buffer_modified_for_status_bar = False
-            self.update_line_and_char_count()
 
     def draw_gradient(self, _widget, cr):
         """draw fading gradient over the top and the bottom of the
@@ -763,12 +740,6 @@ class Window(Gtk.ApplicationWindow):
             return
         self.destroy()
         return
-
-    def on_destroy(self, _widget, _data=None):
-        """Called when the TexteditorWindow is closed.
-        """
-        # Clean up code for saving application state should be added here.
-        Gtk.main_quit()
 
     def set_headerbar_title(self, title):
         """set the desired headerbar title
