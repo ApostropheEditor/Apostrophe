@@ -31,8 +31,6 @@
 .uberwriter-window .uberwriter-editor {
   font-family: 'Fira Mono', monospace;
   font-size: 16px;
-  padding-top: 80px;
-  padding-bottom: 16px;
 }
 
 .uberwriter-window.small .uberwriter-editor {
