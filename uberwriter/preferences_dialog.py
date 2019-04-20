@@ -18,23 +18,119 @@
 
 """this dialog adjusts values in gsettings
 """
+import webbrowser
+
 import gi
+
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk # pylint: disable=E0611
+from gi.repository import Gtk, Pango, GLib  # pylint: disable=E0611
 import logging
 logger = logging.getLogger('uberwriter')
 
-from uberwriter.helpers import get_builder, show_uri, get_help_uri
+from uberwriter.helpers import get_builder
 
-class PreferencesDialog(Gtk.Window):
+
+class PreferencesDialog:
+
     __gtype_name__ = "PreferencesDialog"
 
-    def __new__(cls):
-        """Special static method that's automatically called by Python when 
-        constructing a new instance of this class.
-        
-        Returns a fully instantiated PreferencesDialog object.
-        """
-        builder = get_builder('Preferences')
-        new_object = builder.get_object("PreferencesWindow")
-        return new_object
+    formats = [
+        {
+            "name": "Pandoc's Markdown",
+            "format": "markdown",
+            "help": "https://pandoc.org/MANUAL.html#pandocs-markdown"
+        },
+        {
+            "name": "CommonMark",
+            "format": "commonmark",
+            "help": "https://commonmark.org"
+        },
+        {
+            "name": "GitHub Flavored Markdown",
+            "format": "gfm",
+            "help": "https://help.github.com/en/categories/writing-on-github"
+        },
+        {
+            "name": "MultiMarkdown",
+            "format": "markdown_mmd",
+            "help": "https://fletcherpenney.net/multimarkdown"
+        },
+        {
+            "name": "Plain Markdown",
+            "format": "markdown_strict",
+            "help": "https://daringfireball.net/projects/markdown"
+        }
+    ]
+
+    def __init__(self, settings):
+        self.settings = settings
+        self.builder = get_builder("Preferences")
+
+        self.dark_mode_auto_switch = self.builder.get_object("dark_mode_auto_switch")
+        self.dark_mode_auto_switch.set_active(self.settings.get_value("dark-mode-auto"))
+        self.dark_mode_auto_switch.connect("state-set", self.on_dark_mode_auto)
+
+        self.dark_mode_switch = self.builder.get_object("dark_mode_switch")
+        self.dark_mode_switch.set_active(self.settings.get_value("dark-mode"))
+        self.dark_mode_switch.connect("state-set", self.on_dark_mode)
+
+        self.spellcheck_switch = self.builder.get_object("spellcheck_switch")
+        self.spellcheck_switch.set_active(self.settings.get_value("spellcheck"))
+        self.spellcheck_switch.connect("state-set", self.on_spellcheck)
+
+        self.gradient_overlay_switch = self.builder.get_object("gradient_overlay_switch")
+        self.gradient_overlay_switch.set_active(self.settings.get_value("gradient-overlay"))
+        self.gradient_overlay_switch.connect("state-set", self.on_gradient_overlay)
+
+        input_format_store = Gtk.ListStore(int, str)
+        input_format = self.settings.get_value("input-format").get_string()
+        input_format_active = 0
+        for i, fmt in enumerate(self.formats):
+            input_format_store.append([i, fmt["name"]])
+            if fmt["format"] == input_format:
+                input_format_active = i
+        self.input_format_combobox = self.builder.get_object("input_format_combobox")
+        self.input_format_combobox.set_model(input_format_store)
+        input_format_renderer = Gtk.CellRendererText()
+        self.input_format_combobox.pack_start(input_format_renderer, True)
+        self.input_format_combobox.add_attribute(input_format_renderer, "text", 1)
+        self.input_format_combobox.set_active(input_format_active)
+        self.input_format_combobox.connect("changed", self.on_input_format)
+
+        self.input_format_help_button = self.builder.get_object("input_format_help_button")
+        self.input_format_help_button.connect('clicked', self.on_input_format_help)
+
+    def show(self, window):
+        preferences_window = self.builder.get_object("PreferencesWindow")
+        preferences_window.set_application(window.get_application())
+        preferences_window.set_transient_for(window)
+        preferences_window.show()
+
+    def on_dark_mode_auto(self, _, state):
+        self.settings.set_value("dark-mode-auto", GLib.Variant.new_boolean(state))
+        if state and self.dark_mode_switch.get_active():
+            self.dark_mode_switch.set_active(GLib.Variant.new_boolean(False))
+        return False
+
+    def on_dark_mode(self, _, state):
+        self.settings.set_value("dark-mode", GLib.Variant.new_boolean(state))
+        if state and self.dark_mode_auto_switch.get_active():
+            self.dark_mode_auto_switch.set_active(GLib.Variant.new_boolean(False))
+        return False
+
+    def on_spellcheck(self, _, state):
+        self.settings.set_value("spellcheck", GLib.Variant.new_boolean(state))
+        return False
+
+    def on_gradient_overlay(self, _, state):
+        self.settings.set_value("gradient-overlay", GLib.Variant.new_boolean(state))
+        return False
+
+    def on_input_format(self, combobox):
+        fmt = self.formats[combobox.get_active()]
+        self.settings.set_value("input-format", GLib.Variant.new_string(fmt["format"]))
+
+    def on_input_format_help(self, _):
+        fmt = self.formats[self.input_format_combobox.get_active()]
+        webbrowser.open(fmt["help"])
+

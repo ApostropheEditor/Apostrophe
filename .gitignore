@@ -5,7 +5,6 @@ build/
 debian/uberwriter/DEBIAN
 debian/uberwriter/opt
 debian/uberwriter/usr
-bin/
 flatpak/*
 !flatpak/fonts-download
 !flatpak/pandoc-download

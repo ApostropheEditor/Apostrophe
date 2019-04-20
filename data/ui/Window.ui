@@ -16,7 +16,6 @@
   <object class="GtkImage" id="avall">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="tooltip_text" translatable="yes">Next Match</property>
     <property name="icon_name">go-down-symbolic</property>
   </object>
   <object class="GtkImage" id="ortografia1">
@@ -33,7 +32,6 @@
   <object class="GtkImage" id="reemplaza">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="tooltip_text" translatable="yes">Open Replace</property>
     <property name="icon_name">edit-find-replace-symbolic</property>
   </object>
   <object class="GtkOverlay" id="FullscreenOverlay">
@@ -77,97 +75,20 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <child>
-                  <object class="GtkRevealer" id="status_bar_revealer">
+                  <object class="GtkRevealer" id="stats_counter_revealer">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="transition_type">crossfade</property>
                     <property name="transition_duration">750</property>
                     <property name="reveal_child">True</property>
                     <child>
-                      <object class="GtkGrid" id="status_bar_box">
+                      <object class="GtkButton" id="stats_counter">
+                        <property name="label" translatable="yes">0 Words</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkLabel" id="label2">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="hexpand">True</property>
-                            <property name="label" translatable="yes">Words:</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">3</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="word_count">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="label">0</property>
-                            <property name="justify">right</property>
-                            <property name="width_chars">4</property>
-                            <property name="xalign">1</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">4</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator" id="separator1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="margin_left">10</property>
-                            <property name="margin_right">10</property>
-                            <property name="margin_start">10</property>
-                            <property name="margin_end">10</property>
-                            <property name="orientation">vertical</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">5</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="label1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="label" translatable="yes">Characters:</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">6</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="char_count">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="margin_right">11</property>
-                            <property name="margin_end">11</property>
-                            <property name="label">0</property>
-                            <property name="width_chars">6</property>
-                            <property name="xalign">1</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">7</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Show Statistics</property>
+                        <property name="halign">end</property>
                       </object>
                     </child>
                   </object>
@@ -186,23 +107,16 @@
                     <property name="vscroll_policy">natural</property>
                     <property name="shadow_type">none</property>
                     <child>
-                      <object class="GtkAlignment" id="editor_alignment">
+                      <object class="GtkScrolledWindow" id="editor_scrolledwindow">
+                        <property name="height_request">500</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">center</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
+                        <property name="vadjustment">adjustment1</property>
                         <child>
-                          <object class="GtkScrolledWindow" id="editor_scrolledwindow">
-                            <property name="height_request">500</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                            <property name="vadjustment">adjustment1</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </object>
+                          <placeholder/>
                         </child>
                       </object>
                     </child>
@@ -290,6 +204,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
+                                    <property name="tooltip_text" translatable="yes">Next Match</property>
                                     <property name="image">avall</property>
                                   </object>
                                   <packing>
@@ -335,6 +250,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
+                                    <property name="tooltip_text" translatable="yes">Regular Expression</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -347,6 +263,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
+                                    <property name="tooltip_text" translatable="yes">Open Replace</property>
                                     <property name="image">reemplaza</property>
                                   </object>
                                   <packing>

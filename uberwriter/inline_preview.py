@@ -14,31 +14,28 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
-import re
-import urllib
-from urllib.error import URLError
-import webbrowser
-import subprocess
-import tempfile
 import logging
-import threading
+import re
+import subprocess
 import telnetlib
-
+import tempfile
+import threading
+import urllib
+import webbrowser
 from gettext import gettext as _
+from urllib.error import URLError
+from urllib.parse import unquote
 
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
-from uberwriter import latex_to_PNG
+from uberwriter import latex_to_PNG, text_view_markup_handler
 from uberwriter.settings import Settings
 
 from uberwriter.fix_table import FixTable
 
-from uberwriter.markup_buffer import MarkupBuffer
-
 LOGGER = logging.getLogger('uberwriter')
-
-GObject.threads_init()  # Still needed?
 
 # TODO:
 # - Don't insert a span with id, it breaks the text to often
@@ -240,7 +237,7 @@ def fill_lexikon_bubble(vocab, lexikon_dict):
     if lexikon_dict:
         for entry in lexikon_dict:
             vocab_label = Gtk.Label.new(vocab + ' ~ ' + entry['class'])
-            vocab_label.get_style_context().add_class('lexikon_heading')
+            vocab_label.get_style_context().add_class('lexikon-heading')
             vocab_label.set_halign(Gtk.Align.START)
             vocab_label.set_justify(Gtk.Justification.LEFT)
             grid.attach(vocab_label, 0, i, 3, 1)
@@ -248,14 +245,14 @@ def fill_lexikon_bubble(vocab, lexikon_dict):
             for definition in entry['defs']:
                 i = i + 1
                 num_label = Gtk.Label.new(definition['num'])
-                num_label.get_style_context().add_class('lexikon_num')
+                num_label.get_style_context().add_class('lexikon-num')
                 num_label.set_justify(Gtk.Justification.RIGHT)
                 grid.attach(num_label, 0, i, 1, 1)
 
                 def_label = Gtk.Label.new(' '.join(definition['description']))
                 def_label.set_halign(Gtk.Align.START)
                 def_label.set_justify(Gtk.Justification.LEFT)
-                def_label.get_style_context().add_class('lexikon_definition')
+                def_label.get_style_context().add_class('lexikon-definition')
                 def_label.props.wrap = True
                 grid.attach(def_label, 1, i, 1, 1)
             i = i + 1
@@ -264,11 +261,11 @@ def fill_lexikon_bubble(vocab, lexikon_dict):
     return None
 
 
-class InlinePreview():
+class InlinePreview:
 
-    def __init__(self, view, text_buffer):
-        self.text_view = view
-        self.text_buffer = text_buffer
+    def __init__(self, text_view):
+        self.text_view = text_view
+        self.text_buffer = text_view.get_buffer()
         self.latex_converter = latex_to_PNG.LatexToPNG()
         cursor_mark = self.text_buffer.get_insert()
         cursor_iter = self.text_buffer.get_iter_at_mark(cursor_mark)
@@ -307,7 +304,7 @@ class InlinePreview():
         # b.show_all()
         # a.show_all()
         self.popover = Gtk.Popover.new(lbl)
-        self.popover.get_style_context().add_class("QuickPreviewPopup")
+        self.popover.get_style_context().add_class("quick-preview-popup")
         self.popover.add(alignment)
         # a.add(alignment)
         _dismiss, rect = self.popover.get_pointing_to()
@@ -363,8 +360,8 @@ class InlinePreview():
 
         text = self.text_buffer.get_text(start_iter, end_iter, False)
 
-        math = MarkupBuffer.regex["MATH"]
-        link = MarkupBuffer.regex["LINK"]
+        math = text_view_markup_handler.regex["MATH"]
+        link = text_view_markup_handler.regex["LINK"]
 
         footnote = re.compile(r'\[\^([^\s]+?)\]')
         image = re.compile(r"!\[(.*?)\]\((.+?)\)")

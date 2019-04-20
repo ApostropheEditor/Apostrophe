@@ -20,12 +20,12 @@ from collections import namedtuple
 from gettext import gettext as _
 
 import gi
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from uberwriter.helpers import get_builder
 from uberwriter.helpers import get_descendant
 
-from uberwriter.application import Application as app
 
 class MainHeaderbar:  #pylint: disable=too-few-public-methods
     """Sets up the main application headerbar
@@ -36,14 +36,14 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
         self.hb.props.show_close_button = True
         self.hb.get_style_context().add_class("titlebar")
 
-        self.hb_revealer = Gtk.Revealer(name='titlebar_revealer')
+        self.hb_revealer = Gtk.Revealer(name='titlebar-revealer')
         self.hb_revealer.add(self.hb)
-        self.hb_revealer.props.transition_duration = 1000
+        self.hb_revealer.props.transition_duration = 750
         self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
         self.hb_revealer.show()
         self.hb_revealer.set_reveal_child(True)
 
-        self.hb_container = Gtk.Frame(name='titlebar_container')
+        self.hb_container = Gtk.Frame(name='titlebar-container')
         self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
         self.hb_container.add(self.hb_revealer)
         self.hb_container.show()
@@ -54,7 +54,7 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
         self.hb.show_all()
 
 
-class FsHeaderbar:
+class FullscreenHeaderbar:
     """Sets up and manages the fullscreen headerbar and his events
     """
 
@@ -141,7 +141,7 @@ def buttons(app):
     btn.open_recent.pack_start(open_button, False, False, 0)
     btn.open_recent.pack_end(recents_button, False, False, 0)
 
-    btn.search.set_tooltip_text(_("Search and replace"))
+    btn.search.set_tooltip_text(_("Search and Replace"))
     btn.menu.set_tooltip_text(_("Menu"))
     btn.menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
                                                     Gtk.IconSize.BUTTON))
@@ -152,6 +152,7 @@ def buttons(app):
     btn.search.set_action_name("app.search")
 
     return btn
+
 
 def pack_buttons(headerbar, btn, btn_exit=None):
     """Pack the given buttons in the given headerbar

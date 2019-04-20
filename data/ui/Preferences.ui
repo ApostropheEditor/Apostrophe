@@ -2,6 +2,11 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="help">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">dialog-information-symbolic</property>
+  </object>
   <object class="GtkWindow" id="PreferencesWindow">
     <property name="can_focus">False</property>
     <property name="modal">True</property>
@@ -30,19 +35,18 @@
             <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="margin_left">30</property>
-            <property name="margin_right">30</property>
-            <property name="margin_top">30</property>
-            <property name="margin_bottom">30</property>
-            <property name="row_spacing">10</property>
-            <property name="column_spacing">10</property>
+            <property name="margin_left">16</property>
+            <property name="margin_right">16</property>
+            <property name="margin_top">16</property>
+            <property name="margin_bottom">16</property>
+            <property name="row_spacing">8</property>
+            <property name="column_spacing">8</property>
             <child>
-              <object class="GtkLabel" id="Dark_mode_label">
+              <object class="GtkLabel" id="dark_mode_auto_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="valign">start</property>
-                <property name="label" translatable="yes">Use dark mode</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Set dark mode automatically</property>
                 <property name="justify">right</property>
               </object>
               <packing>
@@ -51,11 +55,22 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="Spellcheck_label">
+              <object class="GtkSwitch" id="dark_mode_auto_switch">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">end</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="dark_mode_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="label" translatable="yes">Autospellcheck</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Force dark mode</property>
                 <property name="justify">right</property>
               </object>
               <packing>
@@ -64,66 +79,121 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="Gradient_label">
+              <object class="GtkSwitch" id="dark_mode_switch">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">end</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="spellcheck_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Check spelling while typing</property>
+                <property name="justify">right</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="spellcheck_switch">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
                 <property name="halign">end</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="gradient_overlay_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
                 <property name="label" translatable="yes">Draw scroll gradient</property>
                 <property name="justify">right</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">2</property>
+                <property name="top_attach">3</property>
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="Dark_mode_switch">
+              <object class="GtkSwitch" id="gradient_overlay_switch">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="action_name">app.dark_mode</property>
+                <property name="halign">end</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
+                <property name="left_attach">2</property>
+                <property name="top_attach">3</property>
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="Spellcheck_switch">
+              <object class="GtkLabel" id="format_label">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="action_name">app.spellcheck</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Input format</property>
+                <property name="justify">right</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
+                <property name="left_attach">0</property>
+                <property name="top_attach">4</property>
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="Gradient_switch">
+              <object class="GtkButton" id="input_format_help_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="valign">start</property>
-                <property name="action_name">app.draw_gradient</property>
+                <property name="receives_default">False</property>
+                <property name="image">help</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="top_attach">2</property>
+                <property name="top_attach">4</property>
               </packing>
             </child>
-          </object>
-          <packing>
-            <property name="tab_expand">True</property>
-          </packing>
-        </child>
-        <child type="tab">
-          <object class="GtkLabel" id="Label1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">page 1</property>
+            <child>
+              <object class="GtkComboBox" id="input_format_combobox">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">end</property>
+                <property name="active">0</property>
+                <property name="active_id">0</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">4</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="tab_fill">False</property>
           </packing>
+        </child>
+        <child type="tab">
+          <placeholder/>
         </child>
         <child>
           <placeholder/>
