@@ -84,8 +84,6 @@ class TextView(Gtk.TextView):
 
         # Focus mode
         self.focus_mode = False
-        self.original_top_margin = self.props.top_margin
-        self.original_bottom_margin = self.props.bottom_margin
         self.connect('button-release-event', self.on_button_release_event)
 
         # Hemingway mode
@@ -127,8 +125,8 @@ class TextView(Gtk.TextView):
             self.props.top_margin = height / 2
             self.props.bottom_margin = height / 2
         else:
-            self.props.top_margin = self.original_top_margin
-            self.props.bottom_margin = self.original_bottom_margin
+            self.props.top_margin = 80
+            self.props.bottom_margin = 64
 
     def on_button_release_event(self, _widget, _event):
         if self.focus_mode:
@@ -159,7 +157,7 @@ class TextView(Gtk.TextView):
 
         If mark is unspecified, the cursor is used."""
 
-        margin = 80
+        margin = 32
         scrolled_window = self.get_ancestor(Gtk.ScrolledWindow.__gtype__)
         if not scrolled_window:
             return

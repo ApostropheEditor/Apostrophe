@@ -176,7 +176,7 @@ class Window(Gtk.ApplicationWindow):
 
             # Set theme css
             style_provider = Gtk.CssProvider()
-            style_provider.load_from_path(theme.gtk_css_path)
+            style_provider.load_from_path(helpers.get_css_path("gtk/base.css"))
             Gtk.StyleContext.add_provider_for_screen(
                 self.get_screen(), style_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
@@ -701,7 +701,7 @@ class Window(Gtk.ApplicationWindow):
         """
         bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
 
-        lg_top = cairo.LinearGradient(0, 0, 0, 35)  # pylint: disable=no-member
+        lg_top = cairo.LinearGradient(0, 0, 0, 32)  # pylint: disable=no-member
         lg_top.add_color_stop_rgba(
             0, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_top.add_color_stop_rgba(
@@ -710,12 +710,12 @@ class Window(Gtk.ApplicationWindow):
         width = self.scrolled_window.get_allocation().width
         height = self.scrolled_window.get_allocation().height
 
-        cr.rectangle(0, 0, width, 35)
+        cr.rectangle(0, 0, width, 32)
         cr.set_source(lg_top)
         cr.fill()
-        cr.rectangle(0, height - 35, width, height)
+        cr.rectangle(0, height - 32, width, height)
 
-        lg_btm = cairo.LinearGradient(0, height - 35, 0, height)  # pylint: disable=no-member
+        lg_btm = cairo.LinearGradient(0, height - 32, 0, height)  # pylint: disable=no-member
         lg_btm.add_color_stop_rgba(
             1, bg_color.red, bg_color.green, bg_color.blue, 1)
         lg_btm.add_color_stop_rgba(
