@@ -27,6 +27,7 @@ import gi
 from uberwriter.export_dialog import Export
 from uberwriter.stats_handler import StatsHandler
 from uberwriter.text_view import TextView
+from uberwriter.web_view_scroller import WebViewScroller
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
@@ -108,7 +109,8 @@ class Window(Gtk.ApplicationWindow):
         self.text_view.grab_focus()
 
         # Setup preview webview
-        self.preview_webview = None
+        self.web_view = None
+        self.web_view_scroller = None
 
         self.scrolled_window = self.builder.get_object('editor_scrolledwindow')
         self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
@@ -503,25 +505,36 @@ class Window(Gtk.ApplicationWindow):
         """
 
         if state.get_boolean():
-            self.show_preview()
+            self.show_web_view()
         else:
             self.show_text_editor()
 
         return True
 
     def show_text_editor(self):
+        # Swap web view with text view
         self.scrolled_window.remove(self.scrolled_window.get_child())
         self.scrolled_window.add(self.text_view)
         self.text_view.show()
-        self.preview_webview.destroy()
-        self.preview_webview = None
         self.queue_draw()
 
-    def show_preview(self, loaded=False):
+        # Sync scroll between web view and text view
+        self.text_view.set_scroll_scale(self.web_view_scroller.get_scroll_scale())
+
+        # Destroy web view to clean up resources
+        self.web_view.destroy()
+        self.web_view = None
+        self.web_view_scroller = None
+
+    def show_web_view(self, loaded=False):
         if loaded:
+            # Sync scroll between text view and web view
+            self.web_view_scroller.set_scroll_scale(self.text_view.get_scroll_scale())
+
+            # Swap text view with web view
             self.scrolled_window.remove(self.scrolled_window.get_child())
-            self.scrolled_window.add(self.preview_webview)
-            self.preview_webview.show()
+            self.scrolled_window.add(self.web_view)
+            self.web_view.show()
             self.queue_draw()
         else:
             args = ['--standalone',
@@ -531,22 +544,23 @@ class Window(Gtk.ApplicationWindow):
                     '--lua-filter=' + helpers.get_script_path('task-list.lua')]
             output = helpers.pandoc_convert(self.text_view.get_text(), to="html5", args=args)
 
-            if self.preview_webview is None:
-                self.preview_webview = WebKit.WebView()
-                self.preview_webview.get_settings().set_allow_universal_access_from_file_urls(True)
+            if self.web_view is None:
+                self.web_view = WebKit.WebView()
+                self.web_view.get_settings().set_allow_universal_access_from_file_urls(True)
+                self.web_view_scroller = WebViewScroller(self.web_view)
 
                 # Show preview once the load is finished
-                self.preview_webview.connect("load-changed", self.on_preview_load_change)
+                self.web_view.connect("load-changed", self.on_preview_load_change)
 
                 # This saying that all links will be opened in default browser, \
                 # but local files are opened in appropriate apps:
-                self.preview_webview.connect("decide-policy", self.on_click_link)
+                self.web_view.connect("decide-policy", self.on_click_link)
 
-            self.preview_webview.load_html(output, 'file://localhost/')
+            self.web_view.load_html(output, 'file://localhost/')
 
     def reload_preview(self):
-        if self.preview_webview:
-            self.show_preview()
+        if self.web_view:
+            self.show_web_view()
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
@@ -726,11 +740,11 @@ class Window(Gtk.ApplicationWindow):
             base_path = "/"
         self.settings.set_value("open-file-path", GLib.Variant("s", base_path))
 
-    def on_preview_load_change(self, webview, event):
+    def on_preview_load_change(self, _web_view, event):
         """swaps text editor with preview once the load is complete
         """
         if event == WebKit.LoadEvent.FINISHED:
-            self.show_preview(loaded=True)
+            self.show_web_view(loaded=True)
 
     def on_click_link(self, web_view, decision, _decision_type):
         """provide ability for self.webview to open links in default browser
