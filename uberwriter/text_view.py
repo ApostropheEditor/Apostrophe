@@ -39,7 +39,9 @@ class TextView(Gtk.TextView):
         'redo': (GObject.SignalFlags.ACTION, None, ())
     }
 
-    def __init__(self):
+    font_sizes = [18, 17, 16, 15, 14]  # Must match CSS selectors in gtk/base.css
+
+    def __init__(self, line_chars):
         super().__init__()
 
         # Appearance
@@ -49,9 +51,15 @@ class TextView(Gtk.TextView):
         self.set_pixels_inside_wrap(8)
         self.get_style_context().add_class('uberwriter-editor')
 
+        # Text sizing
+        self.props.halign = Gtk.Align.FILL
+        self.font_size = 16
+        self.line_chars = line_chars
+        self.get_style_context().add_class('size16')
+
         # General behavior
-        self.get_buffer().connect('changed', self.on_text_changed)
         self.connect('size-allocate', self.on_size_allocate)
+        self.get_buffer().connect('changed', self.on_text_changed)
 
         # Spell checking
         self.gspell_view = Gspell.TextView.get_from_gtk_text_view(self)
@@ -113,18 +121,22 @@ class TextView(Gtk.TextView):
         if self.scroller:
             self.scroller.set_scroll_scale(scale)
 
+    def on_size_allocate(self, *_):
+        self.update_horizontal_margin()
+        self.update_vertical_margin()
+        self.markup.update_margins_indents()
+
     def on_text_changed(self, *_):
         self.markup.apply()
         self.smooth_scroll_to()
-
-    def on_size_allocate(self, *_):
-        self.update_vertical_margin()
-        self.markup.update_margins_indents()
 
     def on_parent_set(self, *_):
         parent = self.get_parent()
         if parent:
             self.scroller = TextViewScroller(self, parent)
+            # Request a size that fits the minimum font size comfortably.
+            parent.set_size_request(
+                self.pad_chars(self.font_sizes[-1]) * self.font_width(self.font_sizes[-1]), 500)
         else:
             self.scroller = None
 
@@ -152,6 +164,26 @@ class TextView(Gtk.TextView):
         self.update_vertical_margin()
         self.markup.apply()
         self.smooth_scroll_to()
+
+    def update_horizontal_margin(self):
+        width = self.get_allocation().width
+
+        # Ensure the appropriate font size is being used
+        for size in self.font_sizes:
+            min_width = (self.line_chars + self.pad_chars(size) + 1) * self.font_width(size) - 1
+            if width >= min_width:
+                if size != self.font_size:
+                    self.font_size = size
+                    for s in self.font_sizes:
+                        self.get_style_context().remove_class("size{}".format(s))
+                    self.get_style_context().add_class("size{}".format(size))
+                break
+
+        # Apply margin with the remaining space to allow for markup
+        line_width = (self.line_chars + 1) * int(self.font_width(self.font_size)) - 1
+        horizontal_margin = (width - line_width) / 2
+        self.props.left_margin = horizontal_margin
+        self.props.right_margin = horizontal_margin
 
     def update_vertical_margin(self):
         if self.focus_mode:
@@ -191,3 +223,16 @@ class TextView(Gtk.TextView):
         if mark is None:
             mark = self.get_buffer().get_insert()
         GLib.idle_add(self.scroller.smooth_scroll_to_mark, mark, self.focus_mode)
+
+    def pad_chars(self, font_size):
+        """Returns the amount of character padding for font_size.
+
+        Markup can use up to 6 in normal conditions."""
+
+        return 8 * (1 + font_size - self.font_sizes[-1])
+
+    @staticmethod
+    def font_width(font_size):
+        """Returns the font width for a given size. Specific to Fira Mono."""
+
+        return font_size * 1 / 1.6

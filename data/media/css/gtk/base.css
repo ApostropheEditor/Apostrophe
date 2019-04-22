@@ -33,11 +33,23 @@
   font-size: 16px;
 }
 
-.uberwriter-window.small .uberwriter-editor {
+.uberwriter-window .uberwriter-editor.size14  {
   font-size: 14px;
 }
 
-.uberwriter-window.large .uberwriter-editor {
+.uberwriter-window .uberwriter-editor.size15  {
+  font-size: 15px;
+}
+
+.uberwriter-window .uberwriter-editor.size16  {
+  font-size: 16px;
+}
+
+.uberwriter-window .uberwriter-editor.size17  {
+  font-size: 17px;
+}
+
+.uberwriter-window .uberwriter-editor.size18 {
   font-size: 18px;
 }
 

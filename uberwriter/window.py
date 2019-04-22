@@ -77,9 +77,10 @@ class Window(Gtk.ApplicationWindow):
         self.builder = get_builder('Window')
         root = self.builder.get_object("FullscreenOverlay")
         root.connect('style-updated', self.apply_current_theme)
+        self.connect("delete-event", self.on_delete_called)
         self.add(root)
 
-        self.set_default_size(900, 500)
+        self.set_default_size(1000, 600)
 
         # Preferences
         self.settings = Settings.new()
@@ -155,11 +156,6 @@ class Window(Gtk.ApplicationWindow):
         ###
         self.searchreplace = SearchAndReplace(self, self.text_view)
 
-        # Window resize
-        self.window_resize(self)
-        self.connect("configure-event", self.window_resize)
-        self.connect("delete-event", self.on_delete_called)
-
         # Set current theme
         self.apply_current_theme()
         self.get_style_context().add_class('uberwriter-window')
@@ -232,48 +228,6 @@ class Window(Gtk.ApplicationWindow):
 
         self.text_view.set_hemingway_mode(state.get_boolean())
         self.text_view.grab_focus()
-
-    def window_resize(self, window, event=None):
-        """set paddings dependant of the window size
-        """
-
-        # Ensure the window receiving the event is the one we care about, ie. the main window.
-        # On Wayland (bug?), sub-windows such as the recents popover will also trigger this.
-        if event and event.window != window.get_window():
-            return
-
-        # Adjust text editor width depending on window width, so that:
-        # - The number of characters per line is adequate (http://webtypography.net/2.1.2)
-        # - The number of characters stays constant while resizing the window / font
-        # - There is enough text margin for MarkupBuffer to apply indents / negative margins
-        #
-        # TODO: Avoid hard-coding. Font size is clearer than unclear dimensions, but not ideal.
-        w_width = event.width if event else window.get_allocation().width
-        if w_width < 900:
-            font_size = 14
-            self.get_style_context().add_class("small")
-            self.get_style_context().remove_class("large")
-
-        elif w_width < 1280:
-            font_size = 16
-            self.get_style_context().remove_class("small")
-            self.get_style_context().remove_class("large")
-
-        else:
-            font_size = 18
-            self.get_style_context().remove_class("small")
-            self.get_style_context().add_class("large")
-
-        font_width = int(font_size * 1/1.6)  # Ratio specific to Fira Mono
-        width = 67 * font_width - 1  # 66 characters
-        horizontal_margin = 8 * font_width  # 8 characters
-        width_request = width + horizontal_margin * 2
-
-        if self.text_view.props.width_request != width_request:
-            self.text_view.props.width_request = width_request
-            self.text_view.set_left_margin(horizontal_margin)
-            self.text_view.set_right_margin(horizontal_margin)
-            self.scrolled_window.props.width_request = width_request
 
     # TODO: refactorizable
     def save_document(self, _widget=None, _data=None):
