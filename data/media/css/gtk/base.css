@@ -96,7 +96,7 @@
   padding: 0;
 }
 
-.stats-counter {
+.stats-button {
   color: alpha(@theme_fg_color, 0.6);
   background-color: @theme_base_color;
   text-shadow: inherit;
@@ -116,8 +116,8 @@
   transition: 100ms ease-in;
 }
 
-.stats-counter:hover,
-.stats-counter:checked {
+.stats-button :hover,
+.stats-button :checked {
   color: @theme_fg_color;
   background-color: mix(@theme_base_color, @theme_bg_color, 0.5);
 }

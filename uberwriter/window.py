@@ -101,28 +101,28 @@ class Window(Gtk.ApplicationWindow):
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
+        self.content = self.builder.get_object('content')
+
+        self.scrolled_window = self.builder.get_object('editor_scrolledwindow')
+        self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
+
         # Setup text editor
-        self.text_view = TextView()
-        self.text_view.props.halign = Gtk.Align.CENTER
+        self.text_view = TextView(self.settings.get_int("characters-per-line"))
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
         self.text_view.grab_focus()
+        self.scrolled_window.add(self.text_view)
+
+        # Stats stats counter
+        self.stats_revealer = self.builder.get_object('editor_stats_revealer')
+        self.stats_button = self.builder.get_object('editor_stats_button')
+        self.stats_button.get_style_context().add_class('stats-button')
+        self.stats_handler = StatsHandler(self.stats_button, self.text_view)
 
         # Setup preview webview
         self.web_view = None
         self.web_view_scroller = None
-
-        self.scrolled_window = self.builder.get_object('editor_scrolledwindow')
-        self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
-        self.scrolled_window.add(self.text_view)
-        self.editor_viewport = self.builder.get_object('editor_viewport')
-
-        # Stats counter
-        self.stats_counter_revealer = self.builder.get_object('stats_counter_revealer')
-        self.stats_button = self.builder.get_object('stats_counter')
-        self.stats_button.get_style_context().add_class('stats-counter')
-        self.stats_handler = StatsHandler(self.stats_button, self.text_view)
 
         # Setup header/stats bar hide after 3 seconds
         self.top_bottom_bars_visible = True
@@ -145,7 +145,7 @@ class Window(Gtk.ApplicationWindow):
         ###
         #   Sidebar initialization test
         ###
-        self.paned_window = self.builder.get_object("main_pained")
+        self.paned_window = self.builder.get_object("main_paned")
         self.sidebar_box = self.builder.get_object("sidebar_box")
         self.sidebar = Sidebar(self)
         self.sidebar_box.hide()
@@ -466,10 +466,14 @@ class Window(Gtk.ApplicationWindow):
         return True
 
     def show_text_editor(self):
-        # Swap web view with text view
-        self.scrolled_window.remove(self.scrolled_window.get_child())
-        self.scrolled_window.add(self.text_view)
-        self.text_view.show()
+        # Remove web view
+        if self.settings.get_boolean("preview-side-by-side"):
+            self.set_size_request(-1, -1)
+            self.content.remove(self.web_view)
+        else:
+            self.scrolled_window.remove(self.scrolled_window.get_child())
+            self.scrolled_window.add(self.text_view)
+            self.text_view.show()
         self.queue_draw()
 
         # Sync scroll between web view and text view
@@ -485,9 +489,13 @@ class Window(Gtk.ApplicationWindow):
             # Sync scroll between text view and web view
             self.web_view_scroller.set_scroll_scale(self.text_view.get_scroll_scale())
 
-            # Swap text view with web view
-            self.scrolled_window.remove(self.scrolled_window.get_child())
-            self.scrolled_window.add(self.web_view)
+            # Show web view
+            if self.settings.get_boolean("preview-side-by-side"):
+                self.content.add(self.web_view)
+                self.set_size_request(self.text_view.get_min_width() * 2, -1)
+            else:
+                self.scrolled_window.remove(self.scrolled_window.get_child())
+                self.scrolled_window.add(self.web_view)
             self.web_view.show()
             self.queue_draw()
         else:
@@ -590,7 +598,7 @@ class Window(Gtk.ApplicationWindow):
                 and self.buffer_modified_for_status_bar
                 and self.text_view.props.has_focus): # pylint: disable=no-member
             # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
-            self.stats_counter_revealer.set_reveal_child(False)
+            self.stats_revealer.set_reveal_child(False)
             self.headerbar.hb_revealer.set_reveal_child(False)
             self.top_bottom_bars_visible = False
             self.buffer_modified_for_status_bar = False
@@ -612,7 +620,7 @@ class Window(Gtk.ApplicationWindow):
         if now - self.timestamp_last_mouse_motion > 100:
             # react on motion by fading in headerbar and statusbar
             if self.top_bottom_bars_visible is False:
-                self.stats_counter_revealer.set_reveal_child(True)
+                self.stats_revealer.set_reveal_child(True)
                 self.headerbar.hb_revealer.set_reveal_child(True)
                 self.headerbar.hb.props.opacity = 1
                 self.top_bottom_bars_visible = True
@@ -624,7 +632,7 @@ class Window(Gtk.ApplicationWindow):
         """events called when the window losses focus
         """
         if self.top_bottom_bars_visible is False:
-            self.stats_counter_revealer.set_reveal_child(True)
+            self.stats_revealer.set_reveal_child(True)
             self.headerbar.hb_revealer.set_reveal_child(True)
             self.headerbar.hb.props.opacity = 1
             self.top_bottom_bars_visible = True

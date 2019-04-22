@@ -12,6 +12,7 @@ gi.require_version('Gspell', '1')
 from gi.repository import Gtk, Gdk, GObject, GLib, Gspell
 
 import logging
+
 LOGGER = logging.getLogger('uberwriter')
 
 
@@ -53,8 +54,8 @@ class TextView(Gtk.TextView):
 
         # Text sizing
         self.props.halign = Gtk.Align.FILL
-        self.font_size = 16
         self.line_chars = line_chars
+        self.font_size = 16
         self.get_style_context().add_class('size16')
 
         # General behavior
@@ -133,10 +134,8 @@ class TextView(Gtk.TextView):
     def on_parent_set(self, *_):
         parent = self.get_parent()
         if parent:
+            parent.set_size_request(self.get_min_width(), 500)
             self.scroller = TextViewScroller(self, parent)
-            # Request a size that fits the minimum font size comfortably.
-            parent.set_size_request(
-                self.pad_chars(self.font_sizes[-1]) * self.font_width(self.font_sizes[-1]), 500)
         else:
             self.scroller = None
 
@@ -169,18 +168,17 @@ class TextView(Gtk.TextView):
         width = self.get_allocation().width
 
         # Ensure the appropriate font size is being used
-        for size in self.font_sizes:
-            min_width = (self.line_chars + self.pad_chars(size) + 1) * self.font_width(size) - 1
-            if width >= min_width:
-                if size != self.font_size:
-                    self.font_size = size
-                    for s in self.font_sizes:
-                        self.get_style_context().remove_class("size{}".format(s))
-                    self.get_style_context().add_class("size{}".format(size))
+        for font_size in self.font_sizes:
+            if width >= self.get_min_width(font_size) or font_size == self.font_sizes[-1]:
+                if font_size != self.font_size:
+                    self.font_size = font_size
+                    for fs in self.font_sizes:
+                        self.get_style_context().remove_class("size{}".format(fs))
+                    self.get_style_context().add_class("size{}".format(font_size))
                 break
 
         # Apply margin with the remaining space to allow for markup
-        line_width = (self.line_chars + 1) * int(self.font_width(self.font_size)) - 1
+        line_width = (self.line_chars + 1) * int(self.get_char_width(self.font_size)) - 1
         horizontal_margin = (width - line_width) / 2
         self.props.left_margin = horizontal_margin
         self.props.right_margin = horizontal_margin
@@ -224,15 +222,23 @@ class TextView(Gtk.TextView):
             mark = self.get_buffer().get_insert()
         GLib.idle_add(self.scroller.smooth_scroll_to_mark, mark, self.focus_mode)
 
-    def pad_chars(self, font_size):
+    def get_min_width(self, font_size=None):
+        """Returns the minimum width of this text view."""
+
+        if font_size is None:
+            font_size = self.font_sizes[-1]
+        return (self.line_chars + self.get_pad_chars(font_size) + 1) \
+            * self.get_char_width(font_size) - 1
+
+    def get_pad_chars(self, font_size):
         """Returns the amount of character padding for font_size.
 
-        Markup can use up to 6 in normal conditions."""
+        Markup can use up to 7 in normal conditions."""
 
         return 8 * (1 + font_size - self.font_sizes[-1])
 
     @staticmethod
-    def font_width(font_size):
-        """Returns the font width for a given size. Specific to Fira Mono."""
+    def get_char_width(font_size):
+        """Returns the font width for a given size. Note: specific to Fira Mono!"""
 
         return font_size * 1 / 1.6

@@ -76,6 +76,13 @@
         Maximum number of characters per line within the editor.
       </description>
     </key>
+    <key name='preview-side-by-side' type='b'>
+      <default>false</default>
+      <summary>Side-by-side preview</summary>
+      <description>
+        Show the preview side by side, instead of full-width.
+      </description>
+    </key>
 
   </schema>
 
