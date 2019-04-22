@@ -8,7 +8,8 @@ from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, 
 from uberwriter.scroller import Scroller
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, GObject, GLib
+gi.require_version('Gspell', '1')
+from gi.repository import Gtk, Gdk, GObject, GLib, Gspell
 
 import logging
 LOGGER = logging.getLogger('uberwriter')
@@ -51,6 +52,10 @@ class TextView(Gtk.TextView):
         # General behavior
         self.get_buffer().connect('changed', self.on_text_changed)
         self.connect('size-allocate', self.on_size_allocate)
+
+        # Spell checking
+        self.gspell_view = Gspell.TextView.get_from_gtk_text_view(self)
+        self.gspell_view.basic_setup()
 
         # Undo / redo
         self.undo_redo = UndoRedoHandler()
@@ -115,6 +120,7 @@ class TextView(Gtk.TextView):
         and the surrounding text is greyed out."""
 
         self.focus_mode = focus_mode
+        self.gspell_view.set_inline_spell_checking(not focus_mode)
         self.update_vertical_margin()
         self.markup.apply()
         self.scroll_to()

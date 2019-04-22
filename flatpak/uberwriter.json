@@ -1,10 +1,10 @@
 {
-    "app-id": "de.wolfvollprecht.UberWriter",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.32",
-    "sdk": "org.gnome.Sdk",
-    "command": "uberwriter",
-    "finish-args": [
+    "app-id":"de.wolfvollprecht.UberWriter",
+    "runtime":"org.gnome.Platform",
+    "runtime-version":"3.32",
+    "sdk":"org.gnome.Sdk",
+    "command":"uberwriter",
+    "finish-args":[
         "--socket=x11",
         "--socket=wayland",
         "--share=ipc",
@@ -16,86 +16,99 @@
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
         "--env=PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/bin:/usr/bin"
     ],
-    "build-options" : {
-      "env": {
-        "PYTHON": "python3"
+    "build-options":{
+        "env":{
+            "PYTHON":"python3"
         }
     },
-    "add-extensions": {
-        "de.wolfvollprecht.UberWriter.Plugin": {
-          "directory": "extensions",
-          "version": "stable",
-          "subdirectories": true,
-          "no-autodownload": true,
-          "autodelete": true
-    }
+    "add-extensions":{
+        "de.wolfvollprecht.UberWriter.Plugin":{
+            "directory":"extensions",
+            "version":"stable",
+            "subdirectories":true,
+            "no-autodownload":true,
+            "autodelete":true
+        }
     },
-    "modules": [
+    "modules":[
         {
-        "name": "enchant",
-        "config-opts": ["--disable-static", "--with-myspell-dir=/usr/share/hunspell"],
-        "cleanup": [
-            "/bin"
-        ],
-        "sources": [
-            {
-                "type" : "archive",
-                "url" : "https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
-                "sha256" : "bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
-            }
-        ]
+            "name":"enchant",
+            "config-opts":[
+                "--disable-static",
+                "--with-myspell-dir=/usr/share/hunspell"
+            ],
+            "cleanup":[
+                "/bin"
+            ],
+            "sources":[
+                {
+                    "type":"archive",
+                    "url":"https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
+                    "sha256":"bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
+                }
+            ]
         },
         {
-        "name": "pandoc",
-        "only-arches": [
-          "x86_64"
-            ],
-        "buildsystem": "simple",
-        "build-commands": [
-          "mkdir -p /app/bin",
-          "cp bin/pandoc /app/bin/pandoc",
-          "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
-            ],
-        "sources": [
+            "name":"gspell",
+            "sources":[
                 {
-            "type": "archive",
-            "url": "https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
-            "sha256": "06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
+                    "type":"archive",
+                    "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz",
+                    "sha256":"819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5"
+                }
+            ]
+        },
+        {
+            "name":"pandoc",
+            "only-arches":[
+                "x86_64"
+            ],
+            "buildsystem":"simple",
+            "build-commands":[
+                "mkdir -p /app/bin",
+                "cp bin/pandoc /app/bin/pandoc",
+                "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
+            ],
+            "sources":[
+                {
+                    "type":"archive",
+                    "url":"https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
+                    "sha256":"06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
                 }
             ]
         },
         "de.wolfvollprecht.UberWriter.pipdeps.json",
         {
-        "name": "fonts",
-            "buildsystem": "simple",
-            "build-commands": [
-          "mkdir -p /app/share/fonts/",
-          "cp ttf/* /app/share/fonts/"
+            "name":"fonts",
+            "buildsystem":"simple",
+            "build-commands":[
+                "mkdir -p /app/share/fonts/",
+                "cp ttf/* /app/share/fonts/"
             ],
-            "sources": [
+            "sources":[
                 {
-            "type": "git",
-            "url": "https://github.com/mozilla/Fira",
-            "tag": "4.202"
+                    "type":"git",
+                    "url":"https://github.com/mozilla/Fira",
+                    "tag":"4.202"
                 }
             ]
         },
         {
-            "name": "uberwriter",
-            "sources": [
-                    {
-                        "type" : "git",
-                        "url" : "../",
-                        "branch" : "various-improvements"
-                    }
-                ],
-                "build-commands": [
-                    "install -Dm644 data/de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml "
-                ],
-                "post-install": [
+            "name":"uberwriter",
+            "sources":[
+                {
+                    "type":"git",
+                    "url":"../",
+                    "branch":"various-improvements"
+                }
+            ],
+            "build-commands":[
+                "install -Dm644 data/de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml "
+            ],
+            "post-install":[
                 "glib-compile-schemas /app/share/glib-2.0/schemas",
                 "install -d /app/extensions"
-                ]
+            ]
         }
     ]
-    }
+}

@@ -38,7 +38,6 @@ import cairo
 from uberwriter import helpers
 from uberwriter.theme import Theme
 from uberwriter.helpers import get_builder
-from uberwriter.gtkspellcheck import SpellChecker
 
 from uberwriter.sidebar import Sidebar
 from uberwriter.search_and_replace import SearchAndReplace
@@ -223,8 +222,6 @@ class Window(Gtk.ApplicationWindow):
 
         focus_mode = state.get_boolean()
         self.text_view.set_focus_mode(focus_mode)
-        if self.spell_checker:
-            self.spell_checker._misspelled.set_property('underline', 0 if focus_mode else 4)
         self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
@@ -482,39 +479,9 @@ class Window(Gtk.ApplicationWindow):
             status {gtk bool} -- Desired status of the spellchecking
         """
 
-        if state.get_boolean():
-            try:
-                self.spell_checker.enable()
-            except:
-                try:
-                    self.spell_checker = SpellChecker(
-                      self.text_view, locale.getdefaultlocale()[0],
-                      collapse=False)
-                    if self.auto_correct:
-                        self.auto_correct.set_language(self.spell_checker.language)
-                        self.spell_checker.connect_language_change(  # pylint: disable=no-member
-                            self.auto_correct.set_language)
-                except:
-                    self.spell_checker = None
-                    dialog = Gtk.MessageDialog(self,
-                                            Gtk.DialogFlags.MODAL \
-                                            | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                            Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.NONE,
-                                            _("You can not enable the Spell Checker.")
-                                            )
-                    dialog.format_secondary_text(
-                        _("Please install 'hunspell' or 'aspell' dictionaries"
-                        + " for your language from the software center."))
-                    _response = dialog.run()
-                return
-            return
-        else:
-            try:
-                self.spell_checker.disable()
-            except:
-                pass
-        return
+        self.text_view.gspell_view\
+            .set_inline_spell_checking(state.get_boolean()
+                                       and not self.text_view.focus_mode)
 
     def toggle_gradient_overlay(self, state):
         """Toggle the gradient overlay
