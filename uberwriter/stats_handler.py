@@ -60,15 +60,15 @@ class StatsHandler:
 
     def get_text_for_stat(self, stat):
         if stat == 0:
-            return _("{:n} Characters".format(self.characters))
+            return _("{:n} Characters").format(self.characters)
         elif stat == 1:
-            return _("{:n} Words".format(self.words))
+            return _("{:n} Words").format(self.words)
         elif stat == 2:
-            return _("{:n} Sentences".format(self.sentences))
+            return _("{:n} Sentences").format(self.sentences)
         elif stat == 3:
-            return _("{:n} Paragraphs".format(self.paragraphs))
+            return _("{:n} Paragraphs").format(self.paragraphs)
         elif stat == 4:
-            return _("{:d}:{:02d}:{:02d} Read Time".format(*self.read_time))
+            return _("{:d}:{:02d}:{:02d} Read Time").format(*self.read_time)
         else:
             raise ValueError("Unknown stat {}".format(stat))
 
