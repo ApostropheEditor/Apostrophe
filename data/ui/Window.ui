@@ -115,6 +115,9 @@
                             <property name="image">pan-down</property>
                             <property name="image_position">right</property>
                             <property name="always_show_image">True</property>
+                            <style>
+                              <class name="toggle-button"/>
+                            </style>
                           </object>
                         </child>
                       </object>

@@ -15,7 +15,6 @@
 # END LICENSE
 
 import codecs
-import locale
 import logging
 import os
 import urllib
@@ -24,7 +23,7 @@ from gettext import gettext as _
 import gi
 
 from uberwriter.export_dialog import Export
-from uberwriter.previewer import Previewer
+from uberwriter.preview_handler import PreviewHandler
 from uberwriter.stats_handler import StatsHandler
 from uberwriter.text_view import TextView
 
@@ -112,13 +111,12 @@ class Window(Gtk.ApplicationWindow):
         # Setup stats counter
         self.stats_revealer = builder.get_object('editor_stats_revealer')
         self.stats_button = builder.get_object('editor_stats_button')
-        self.stats_button.get_style_context().add_class('toggle-button')
         self.stats_handler = StatsHandler(self.stats_button, self.text_view)
 
         # Setup preview
         content = builder.get_object('content')
         editor = builder.get_object('editor')
-        self.previewer = Previewer(content, editor, self.text_view)
+        self.preview_handler = PreviewHandler(self, content, editor, self.text_view)
 
         # Setup header/stats bar hide after 3 seconds
         self.top_bottom_bars_visible = True
@@ -419,6 +417,9 @@ class Window(Gtk.ApplicationWindow):
     def update_default_stat(self):
         self.stats_handler.update_default_stat()
 
+    def update_preview_mode(self):
+        self.preview_handler.update_preview_mode()
+
     def menu_toggle_sidebar(self, _widget=None):
         """WIP
         """
@@ -455,14 +456,14 @@ class Window(Gtk.ApplicationWindow):
         """
 
         if state.get_boolean():
-            self.previewer.show()
+            self.preview_handler.show()
         else:
-            self.previewer.hide()
+            self.preview_handler.hide()
 
         return True
 
     def reload_preview(self):
-        self.previewer.reload()
+        self.preview_handler.reload()
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""

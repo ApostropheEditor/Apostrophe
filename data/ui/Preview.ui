@@ -11,6 +11,7 @@
   <object class="GtkBox" id="preview">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="vexpand">True</property>
     <property name="orientation">vertical</property>
     <child>
       <placeholder/>
@@ -33,6 +34,9 @@
             <property name="image">pan-down</property>
             <property name="image_position">right</property>
             <property name="always_show_image">True</property>
+            <style>
+              <class name="toggle-button"/>
+            </style>
           </object>
         </child>
       </object>

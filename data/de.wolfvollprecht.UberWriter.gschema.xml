@@ -10,6 +10,13 @@
     <value nick='read_time' value='4' />
   </enum>
 
+  <enum id='de.wolfvollprecht.UberWriter.PreviewMode'>
+    <value nick='full-width' value='0' />
+    <value nick='half-width' value='1' />
+    <value nick='half-height' value='2' />
+    <value nick='windowed' value='3' />
+  </enum>
+
   <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter">
 
     <key name='dark-mode-auto' type='b'>
@@ -76,11 +83,11 @@
         Maximum number of characters per line within the editor.
       </description>
     </key>
-    <key name='preview-side-by-side' type='b'>
-      <default>false</default>
-      <summary>Side-by-side preview</summary>
+    <key name='preview-mode' enum='de.wolfvollprecht.UberWriter.PreviewMode'>
+      <default>"full-width"</default>
+      <summary>Preview mode</summary>
       <description>
-        Show the preview side by side, instead of full-width.
+        How to display the preview.
       </description>
     </key>
 

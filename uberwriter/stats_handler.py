@@ -9,6 +9,13 @@ from uberwriter.stats_counter import StatsCounter
 class StatsHandler:
     """Shows a default statistic on the stats button, and allows the user to toggle which one."""
 
+    # Must match the order/index defined in gschema.xml
+    CHARACTERS = 0
+    WORDS = 1
+    SENTENCES = 2
+    PARAGRAPHS = 3
+    READ_TIME = 4
+
     def __init__(self, stats_button, text_view):
         super().__init__()
 
@@ -28,7 +35,6 @@ class StatsHandler:
         self.read_time = (0, 0, 0)
 
         self.settings = Settings.new()
-        self.default_stat = self.settings.get_enum("stat-default")
 
         self.stats_counter = StatsCounter()
 
@@ -59,15 +65,15 @@ class StatsHandler:
             self.update_stats)
 
     def get_text_for_stat(self, stat):
-        if stat == 0:
+        if stat == self.CHARACTERS:
             return _("{:n} Characters").format(self.characters)
-        elif stat == 1:
+        elif stat == self.WORDS:
             return _("{:n} Words").format(self.words)
-        elif stat == 2:
+        elif stat == self.SENTENCES:
             return _("{:n} Sentences").format(self.sentences)
-        elif stat == 3:
+        elif stat == self.PARAGRAPHS:
             return _("{:n} Paragraphs").format(self.paragraphs)
-        elif stat == 4:
+        elif stat == self.READ_TIME:
             return _("{:d}:{:02d}:{:02d} Read Time").format(*self.read_time)
         else:
             raise ValueError("Unknown stat {}".format(stat))

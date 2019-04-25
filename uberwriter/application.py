@@ -120,8 +120,16 @@ class Application(Gtk.Application):
 
         stat_default = self.settings.get_string("stat-default")
         action = Gio.SimpleAction.new_stateful(
-            "stat_default", GLib.VariantType.new('s'), GLib.Variant.new_string(stat_default))
+            "stat_default", GLib.VariantType.new("s"), GLib.Variant.new_string(stat_default))
         action.connect("activate", self.on_stat_default)
+        self.add_action(action)
+
+        # Preview Menu
+
+        preview_mode = self.settings.get_string("preview-mode")
+        action = Gio.SimpleAction.new_stateful(
+            "preview_mode", GLib.VariantType.new("s"), GLib.Variant.new_string(preview_mode))
+        action.connect("activate", self.on_preview_mode)
         self.add_action(action)
 
         # Shortcuts
@@ -180,6 +188,8 @@ class Application(Gtk.Application):
             self.window.reload_preview()
         elif key == "stat-default":
             self.window.update_default_stat()
+        elif key == "preview-mode":
+            self.window.update_preview_mode()
 
     def on_new(self, _action, _value):
         self.window.new_document()
@@ -249,6 +259,10 @@ class Application(Gtk.Application):
     def on_stat_default(self, action, value):
         action.set_state(value)
         self.settings.set_string("stat-default", value.get_string())
+
+    def on_preview_mode(self, action, value):
+        action.set_state(value)
+        self.settings.set_string("preview-mode", value.get_string())
 
 # ~ if __name__ == "__main__":
     # ~ app = Application()
