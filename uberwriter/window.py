@@ -19,20 +19,17 @@ import locale
 import logging
 import os
 import urllib
-import webbrowser
 from gettext import gettext as _
 
 import gi
 
 from uberwriter.export_dialog import Export
+from uberwriter.previewer import Previewer
 from uberwriter.stats_handler import StatsHandler
 from uberwriter.text_view import TextView
-from uberwriter.web_view_scroller import WebViewScroller
 
 gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio
-from gi.repository import WebKit2 as WebKit
 
 import cairo
 
@@ -74,8 +71,8 @@ class Window(Gtk.ApplicationWindow):
                                        title="Uberwriter")
 
         # Set UI
-        self.builder = get_builder('Window')
-        root = self.builder.get_object("FullscreenOverlay")
+        builder = get_builder('Window')
+        root = builder.get_object("FullscreenOverlay")
         root.connect('style-updated', self.apply_current_theme)
         self.connect("delete-event", self.on_delete_called)
         self.add(root)
@@ -88,7 +85,7 @@ class Window(Gtk.ApplicationWindow):
         # Headerbars
         self.headerbar = headerbars.MainHeaderbar(app)
         self.set_titlebar(self.headerbar.hb_container)
-        self.fs_headerbar = headerbars.FullscreenHeaderbar(self.builder, app)
+        self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -101,9 +98,7 @@ class Window(Gtk.ApplicationWindow):
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
-        self.content = self.builder.get_object('content')
-
-        self.scrolled_window = self.builder.get_object('editor_scrolledwindow')
+        self.scrolled_window = builder.get_object('editor_scrolledwindow')
         self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
 
         # Setup text editor
@@ -114,15 +109,16 @@ class Window(Gtk.ApplicationWindow):
         self.text_view.grab_focus()
         self.scrolled_window.add(self.text_view)
 
-        # Stats stats counter
-        self.stats_revealer = self.builder.get_object('editor_stats_revealer')
-        self.stats_button = self.builder.get_object('editor_stats_button')
-        self.stats_button.get_style_context().add_class('stats-button')
+        # Setup stats counter
+        self.stats_revealer = builder.get_object('editor_stats_revealer')
+        self.stats_button = builder.get_object('editor_stats_button')
+        self.stats_button.get_style_context().add_class('toggle-button')
         self.stats_handler = StatsHandler(self.stats_button, self.text_view)
 
-        # Setup preview webview
-        self.web_view = None
-        self.web_view_scroller = None
+        # Setup preview
+        content = builder.get_object('content')
+        editor = builder.get_object('editor')
+        self.previewer = Previewer(content, editor, self.text_view)
 
         # Setup header/stats bar hide after 3 seconds
         self.top_bottom_bars_visible = True
@@ -145,8 +141,8 @@ class Window(Gtk.ApplicationWindow):
         ###
         #   Sidebar initialization test
         ###
-        self.paned_window = self.builder.get_object("main_paned")
-        self.sidebar_box = self.builder.get_object("sidebar_box")
+        self.paned_window = builder.get_object("main_paned")
+        self.sidebar_box = builder.get_object("sidebar_box")
         self.sidebar = Sidebar(self)
         self.sidebar_box.hide()
 
@@ -154,7 +150,7 @@ class Window(Gtk.ApplicationWindow):
         #   Search and replace initialization
         #   Same interface as Sidebar ;)
         ###
-        self.searchreplace = SearchAndReplace(self, self.text_view)
+        self.searchreplace = SearchAndReplace(self, self.text_view, builder)
 
         # Set current theme
         self.apply_current_theme()
@@ -459,70 +455,14 @@ class Window(Gtk.ApplicationWindow):
         """
 
         if state.get_boolean():
-            self.show_web_view()
+            self.previewer.show()
         else:
-            self.show_text_editor()
+            self.previewer.hide()
 
         return True
 
-    def show_text_editor(self):
-        # Remove web view
-        if self.settings.get_boolean("preview-side-by-side"):
-            self.set_size_request(-1, -1)
-            self.content.remove(self.web_view)
-        else:
-            self.scrolled_window.remove(self.scrolled_window.get_child())
-            self.scrolled_window.add(self.text_view)
-            self.text_view.show()
-        self.queue_draw()
-
-        # Sync scroll between web view and text view
-        self.text_view.set_scroll_scale(self.web_view_scroller.get_scroll_scale())
-
-        # Destroy web view to clean up resources
-        self.web_view.destroy()
-        self.web_view = None
-        self.web_view_scroller = None
-
-    def show_web_view(self, loaded=False):
-        if loaded:
-            # Sync scroll between text view and web view
-            self.web_view_scroller.set_scroll_scale(self.text_view.get_scroll_scale())
-
-            # Show web view
-            if self.settings.get_boolean("preview-side-by-side"):
-                self.content.add(self.web_view)
-                self.set_size_request(self.text_view.get_min_width() * 2, -1)
-            else:
-                self.scrolled_window.remove(self.scrolled_window.get_child())
-                self.scrolled_window.add(self.web_view)
-            self.web_view.show()
-            self.queue_draw()
-        else:
-            args = ['--standalone',
-                    '--mathjax',
-                    '--css=' + Theme.get_current().web_css_path,
-                    '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
-                    '--lua-filter=' + helpers.get_script_path('task-list.lua')]
-            output = helpers.pandoc_convert(self.text_view.get_text(), to="html5", args=args)
-
-            if self.web_view is None:
-                self.web_view = WebKit.WebView()
-                self.web_view.get_settings().set_allow_universal_access_from_file_urls(True)
-                self.web_view_scroller = WebViewScroller(self.web_view)
-
-                # Show preview once the load is finished
-                self.web_view.connect("load-changed", self.on_preview_load_change)
-
-                # This saying that all links will be opened in default browser, \
-                # but local files are opened in appropriate apps:
-                self.web_view.connect("decide-policy", self.on_click_link)
-
-            self.web_view.load_html(output, 'file://localhost/')
-
     def reload_preview(self):
-        if self.web_view:
-            self.show_web_view()
+        self.previewer.reload()
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
@@ -701,17 +641,3 @@ class Window(Gtk.ApplicationWindow):
             self.filename = None
             base_path = "/"
         self.settings.set_value("open-file-path", GLib.Variant("s", base_path))
-
-    def on_preview_load_change(self, _web_view, event):
-        """swaps text editor with preview once the load is complete
-        """
-        if event == WebKit.LoadEvent.FINISHED:
-            self.show_web_view(loaded=True)
-
-    def on_click_link(self, web_view, decision, _decision_type):
-        """provide ability for self.webview to open links in default browser
-        """
-        if web_view.get_uri().startswith(("http://", "https://", "www.")):
-            webbrowser.open(web_view.get_uri())
-            decision.ignore()
-            return True  # Don't let the event "bubble up"

@@ -1,13 +1,7 @@
-import math
-import re
 from gettext import gettext as _
-from queue import Queue
-from threading import Thread
 
 from gi.repository import GLib, Gio, Gtk
 
-from uberwriter import helpers
-from uberwriter.helpers import get_builder
 from uberwriter.settings import Settings
 from uberwriter.stats_counter import StatsCounter
 

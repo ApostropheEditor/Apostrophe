@@ -37,7 +37,8 @@ class TextView(Gtk.TextView):
         'insert-header': (GObject.SignalFlags.ACTION, None, ()),
         'insert-strikethrough': (GObject.SignalFlags.ACTION, None, ()),
         'undo': (GObject.SignalFlags.ACTION, None, ()),
-        'redo': (GObject.SignalFlags.ACTION, None, ())
+        'redo': (GObject.SignalFlags.ACTION, None, ()),
+        'scroll-scale-changed': (GObject.SIGNAL_RUN_LAST, None, (float,)),
     }
 
     font_sizes = [18, 17, 16, 15, 14]  # Must match CSS selectors in gtk/base.css
@@ -136,6 +137,8 @@ class TextView(Gtk.TextView):
         if parent:
             parent.set_size_request(self.get_min_width(), 500)
             self.scroller = TextViewScroller(self, parent)
+            parent.get_vadjustment().connect("changed", self.on_scroll_scale_changed)
+            parent.get_vadjustment().connect("value-changed", self.on_scroll_scale_changed)
         else:
             self.scroller = None
 
@@ -151,6 +154,9 @@ class TextView(Gtk.TextView):
         if self.focus_mode:
             self.markup.apply()
         return False
+
+    def on_scroll_scale_changed(self, *_):
+        self.emit("scroll-scale-changed", self.get_scroll_scale())
 
     def set_focus_mode(self, focus_mode):
         """Toggle focus mode.

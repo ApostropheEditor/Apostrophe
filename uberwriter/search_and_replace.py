@@ -33,32 +33,32 @@ class SearchAndReplace:
     uberwriter
     """
 
-    def __init__(self, parentwindow, textview):
+    def __init__(self, parentwindow, textview, builder):
         self.parentwindow = parentwindow
         self.textview = textview
         self.textbuffer = textview.get_buffer()
 
-        self.box = parentwindow.builder.get_object("searchbar_placeholder")
+        self.box = builder.get_object("searchbar_placeholder")
         self.box.set_reveal_child(False)
-        self.searchbar = parentwindow.builder.get_object("searchbar")
-        self.searchentry = parentwindow.builder.get_object("searchentrybox")
+        self.searchbar = builder.get_object("searchbar")
+        self.searchentry = builder.get_object("searchentrybox")
         self.searchentry.connect('changed', self.search)
         self.searchentry.connect('activate', self.scrolltonext)
         self.searchentry.connect('key-press-event', self.key_pressed)
 
-        self.open_replace_button = parentwindow.builder.get_object("replace")
+        self.open_replace_button = builder.get_object("replace")
         self.open_replace_button.connect("toggled", self.toggle_replace)
 
-        self.nextbutton = parentwindow.builder.get_object("next_result")
-        self.prevbutton = parentwindow.builder.get_object("previous_result")
-        self.regexbutton = parentwindow.builder.get_object("regex")
-        self.casesensitivebutton = parentwindow.builder.get_object("case_sensitive")
+        self.nextbutton = builder.get_object("next_result")
+        self.prevbutton = builder.get_object("previous_result")
+        self.regexbutton = builder.get_object("regex")
+        self.casesensitivebutton = builder.get_object("case_sensitive")
 
-        self.replacebox = parentwindow.builder.get_object("replace_placeholder")
+        self.replacebox = builder.get_object("replace_placeholder")
         self.replacebox.set_reveal_child(False)
-        self.replace_one_button = parentwindow.builder.get_object("replace_one")
-        self.replace_all_button = parentwindow.builder.get_object("replace_all")
-        self.replaceentry = parentwindow.builder.get_object("replaceentrybox")
+        self.replace_one_button = builder.get_object("replace_one")
+        self.replace_all_button = builder.get_object("replace_all")
+        self.replaceentry = builder.get_object("replaceentrybox")
 
         self.replace_all_button.connect('clicked', self.replace_all)
         self.replace_one_button.connect('clicked', self.replace_clicked)
