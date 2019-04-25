@@ -28,22 +28,30 @@ class PreviewRenderer:
         self.mode = self.settings.get_enum("preview-mode")
 
     def show(self, web_view):
+        """Show the preview, depending on the currently selected mode."""
+
         self.preview.pack_start(web_view, True, True, 0)
 
+        # Full-width preview: swap editor with preview.
         if self.mode == self.FULL_WIDTH:
             self.content.remove(self.editor)
             self.content.add(self.preview)
 
+        # Half-width preview: set horizontal orientation and add the preview.
+        # Ask for a minimum width that respects the editor's minimum requirements.
         elif self.mode == self.HALF_WIDTH:
             self.content.set_orientation(Gtk.Orientation.HORIZONTAL)
             self.content.set_size_request(self.text_view.get_min_width() * 2, -1)
             self.content.add(self.preview)
 
+        # Half-height preview: set vertical orientation and add the preview.
+        # Ask for a minimum height that provides a comfortable experience.
         elif self.mode == self.HALF_HEIGHT:
             self.content.set_orientation(Gtk.Orientation.VERTICAL)
-            self.content.set_size_request(-1, 800)
+            self.content.set_size_request(-1, 768)
             self.content.add(self.preview)
 
+        # Windowed preview: create a window and show the preview in it.
         elif self.mode == self.WINDOWED:
             self.window = Gtk.Window(title=_("Preview"))
             self.window.set_application(self.main_window.get_application())
@@ -61,14 +69,21 @@ class PreviewRenderer:
         web_view.show()
 
     def hide(self, web_view):
+        """Hide the preview, depending on the currently selected mode."""
+
+        self.preview.remove(web_view)
+
+        # Full-width preview: swap preview with editor.
         if self.mode == self.FULL_WIDTH:
             self.content.remove(self.preview)
             self.content.add(self.editor)
 
+        # Half-width/height previews: remove preview and reset size requirements.
         elif self.mode == self.HALF_WIDTH or self.mode == self.HALF_HEIGHT:
             self.content.remove(self.preview)
             self.content.set_size_request(-1, -1)
 
+        # Windowed preview: remove preview and destroy window.
         elif self.mode == self.WINDOWED:
             self.window.remove(self.preview)
             self.window.destroy()
@@ -77,9 +92,9 @@ class PreviewRenderer:
         else:
             raise ValueError("Unknown preview mode {}".format(self.mode))
 
-        self.preview.remove(web_view)
-
     def update_mode(self, web_view):
+        """Update preview mode, adjusting the mode button and the preview itself."""
+
         mode = self.settings.get_enum("preview-mode")
         if mode != self.mode:
             if web_view:
@@ -92,6 +107,8 @@ class PreviewRenderer:
                 self.popover.popdown()
 
     def show_mode_popover(self, _button):
+        """Show preview mode popover."""
+
         self.mode_button.set_state_flags(Gtk.StateFlags.CHECKED, False)
 
         menu = Gio.Menu()

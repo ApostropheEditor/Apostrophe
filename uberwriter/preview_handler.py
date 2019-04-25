@@ -21,6 +21,11 @@ class Step(IntEnum):
 
 
 class PreviewHandler:
+    """Handles showing/hiding the preview, and allows the user to toggle between modes.
+
+    The rendering itself is handled by `PreviewRendered`. This class handles conversion/loading and
+    connects it all together (including synchronization, ie. text changes, scroll)."""
+
     def __init__(self, window, content, editor, text_view):
         self.text_view = text_view
 
@@ -73,7 +78,7 @@ class PreviewHandler:
                 self.web_view.load_html(html, 'file://localhost/')
 
         elif step == Step.RENDER:
-            # Last and one-time step: show the preview.
+            # Last step: show the preview. This is a one-time step.
             if self.shown:
                 return
             self.shown = True
