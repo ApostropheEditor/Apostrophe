@@ -96,7 +96,8 @@ class SearchAndReplace:
         """
         show search box
         """
-        if self.box.get_reveal_child() is False or self.searchbar.get_search_mode() is False:
+        if self.textview.get_mapped() and (
+                self.box.get_reveal_child() is False or self.searchbar.get_search_mode() is False):
             self.searchbar.set_search_mode(True)
             self.box.set_reveal_child(True)
             self.searchentry.grab_focus()
