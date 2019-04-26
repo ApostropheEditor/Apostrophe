@@ -35,7 +35,7 @@
             <property name="image_position">right</property>
             <property name="always_show_image">True</property>
             <style>
-              <class name="toggle-button"/>
+              <class name="inline-button"/>
             </style>
           </object>
         </child>

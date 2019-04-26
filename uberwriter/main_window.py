@@ -15,6 +15,7 @@
 # END LICENSE
 
 import codecs
+import locale
 import logging
 import os
 import urllib
@@ -25,6 +26,7 @@ import gi
 from uberwriter.export_dialog import Export
 from uberwriter.preview_handler import PreviewHandler
 from uberwriter.stats_handler import StatsHandler
+from uberwriter.styled_window import StyledWindow
 from uberwriter.text_view import TextView
 
 gi.require_version('Gtk', '3.0')
@@ -51,7 +53,7 @@ LOGGER = logging.getLogger('uberwriter')
 CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
 
-class Window(Gtk.ApplicationWindow):
+class MainWindow(StyledWindow):
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
@@ -65,14 +67,13 @@ class Window(Gtk.ApplicationWindow):
     def __init__(self, app):
         """Set up the main window"""
 
-        Gtk.ApplicationWindow.__init__(self,
-                                       application=Gio.Application.get_default(),
-                                       title="Uberwriter")
+        super().__init__(application=Gio.Application.get_default(), title="Uberwriter")
+
+        self.get_style_context().add_class('uberwriter-window')
 
         # Set UI
         builder = get_builder('Window')
         root = builder.get_object("FullscreenOverlay")
-        root.connect('style-updated', self.apply_current_theme)
         self.connect("delete-event", self.on_delete_called)
         self.add(root)
 
@@ -149,34 +150,6 @@ class Window(Gtk.ApplicationWindow):
         #   Same interface as Sidebar ;)
         ###
         self.searchreplace = SearchAndReplace(self, self.text_view, builder)
-
-        # Set current theme
-        self.apply_current_theme()
-        self.get_style_context().add_class('uberwriter-window')
-
-    def apply_current_theme(self, *_):
-        """Adjusts the window, CSD and preview for the current theme.
-        """
-        # Get current theme
-        theme, changed = Theme.get_current_changed()
-        if changed:
-            # Set theme variant (dark/light)
-            Gtk.Settings.get_default().set_property(
-                "gtk-application-prefer-dark-theme",
-                GLib.Variant("b", theme.is_dark))
-
-            # Set theme css
-            style_provider = Gtk.CssProvider()
-            style_provider.load_from_path(helpers.get_css_path("gtk/base.css"))
-            Gtk.StyleContext.add_provider_for_screen(
-                self.get_screen(), style_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
-            # Reload preview if it exists
-            self.reload_preview()
-
-            # Redraw contents of window
-            self.queue_draw()
 
     def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
@@ -534,15 +507,10 @@ class Window(Gtk.ApplicationWindow):
             True -- Gtk things
         """
 
-        if (self.was_motion is False
-                and self.top_bottom_bars_visible
+        if (not self.was_motion
                 and self.buffer_modified_for_status_bar
-                and self.text_view.props.has_focus): # pylint: disable=no-member
-            # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
-            self.stats_revealer.set_reveal_child(False)
-            self.headerbar.hb_revealer.set_reveal_child(False)
-            self.top_bottom_bars_visible = False
-            self.buffer_modified_for_status_bar = False
+                and self.text_view.props.has_focus):
+            self.reveal_top_bottom_bars(False)
 
         self.was_motion = False
         return True
@@ -560,24 +528,22 @@ class Window(Gtk.ApplicationWindow):
             return
         if now - self.timestamp_last_mouse_motion > 100:
             # react on motion by fading in headerbar and statusbar
-            if self.top_bottom_bars_visible is False:
-                self.stats_revealer.set_reveal_child(True)
-                self.headerbar.hb_revealer.set_reveal_child(True)
-                self.headerbar.hb.props.opacity = 1
-                self.top_bottom_bars_visible = True
-                self.buffer_modified_for_status_bar = False
-                # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
+            self.reveal_top_bottom_bars(True)
             self.was_motion = True
 
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
         """
-        if self.top_bottom_bars_visible is False:
-            self.stats_revealer.set_reveal_child(True)
-            self.headerbar.hb_revealer.set_reveal_child(True)
-            self.headerbar.hb.props.opacity = 1
-            self.top_bottom_bars_visible = True
-            self.buffer_modified_for_status_bar = False
+        self.reveal_top_bottom_bars(True)
+
+    def reveal_top_bottom_bars(self, reveal):
+        if self.top_bottom_bars_visible != reveal:
+            self.headerbar.hb_revealer.set_reveal_child(reveal)
+            self.stats_revealer.set_reveal_child(reveal)
+            for revealer in self.preview_handler.get_top_bottom_bar_revealers():
+                revealer.set_reveal_child(reveal)
+            self.top_bottom_bars_visible = reveal
+            self.buffer_modified_for_status_bar = reveal
 
     def draw_gradient(self, _widget, cr):
         """draw fading gradient over the top and the bottom of the

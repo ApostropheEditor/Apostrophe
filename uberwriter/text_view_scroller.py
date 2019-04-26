@@ -1,6 +1,3 @@
-from gi.repository import Gtk
-
-
 class TextViewScroller:
     def __init__(self, text_view, scrolled_window):
         super().__init__()

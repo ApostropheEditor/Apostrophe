@@ -15,10 +15,12 @@ from gettext import gettext as _
 
 import gi
 
+from uberwriter.main_window import MainWindow
+
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
 from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 
-from uberwriter import window
+from uberwriter import main_window
 from uberwriter.settings import Settings
 from uberwriter.helpers import set_up_logging
 from uberwriter.preferences_dialog import PreferencesDialog
@@ -155,7 +157,7 @@ class Application(Gtk.Application):
             # Windows are associated with the application
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
-            self.window = window.Window(self)
+            self.window = MainWindow(self)
             if self.args:
                 self.window.load_file(self.args[0])
 

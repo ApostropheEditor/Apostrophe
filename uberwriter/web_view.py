@@ -37,10 +37,10 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         self.connect("destroy", self.on_destroy)
 
         self.scroll_scale = 0.0
+        self.pending_scroll_scale = None
 
         self.state_loaded = False
         self.state_load_failed = False
-        self.state_dirty = False
         self.state_waiting = False
 
         self.timeout_id = None
@@ -49,13 +49,13 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         return self.scroll_scale
 
     def set_scroll_scale(self, scale):
-        self.state_dirty = True
-        self.scroll_scale = scale
+        self.pending_scroll_scale = scale
         self.state_loop()
 
     def on_load_changed(self, _web_view, event):
         self.state_loaded = event >= WebKit2.LoadEvent.COMMITTED and not self.state_load_failed
         self.state_load_failed = False
+        self.pending_scroll_scale = self.scroll_scale
         self.state_loop()
 
     def on_load_failed(self, _web_view, _event):
@@ -72,10 +72,9 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         self.run_javascript(
             self.GET_SCROLL_SCALE_JS, None, self.sync_scroll_scale)
 
-    def write_scroll_scale(self):
-        self.state_dirty = False
+    def write_scroll_scale(self, scroll_scale):
         self.run_javascript(
-            self.SET_SCROLL_SCALE_JS.format(self.scroll_scale), None, None)
+            self.SET_SCROLL_SCALE_JS.format(scroll_scale), None, None)
 
     def sync_scroll_scale(self, _web_view, result):
         self.state_waiting = False
@@ -96,9 +95,11 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         # Handle the current state
         if not self.state_loaded or self.state_load_failed or self.state_waiting:
             return
-        if self.state_dirty:
-            self.write_scroll_scale()
-        if delay > 0:
+        if self.pending_scroll_scale:
+            self.write_scroll_scale(self.pending_scroll_scale)
+            self.pending_scroll_scale = None
+            self.read_scroll_scale()
+        elif delay > 0:
             self.timeout_id = GLib.timeout_add(delay, self.state_loop, None, 0)
         else:
             self.read_scroll_scale()
