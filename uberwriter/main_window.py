@@ -417,9 +417,7 @@ class MainWindow(StyledWindow):
             status {gtk bool} -- Desired status of the spellchecking
         """
 
-        self.text_view.gspell_view\
-            .set_inline_spell_checking(state.get_boolean()
-                                       and not self.text_view.focus_mode)
+        self.text_view.set_spellcheck(state.get_boolean())
 
     def toggle_gradient_overlay(self, state):
         """Toggle the gradient overlay

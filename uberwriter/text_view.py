@@ -65,6 +65,7 @@ class TextView(Gtk.TextView):
         self.get_buffer().connect('changed', self.on_text_changed)
 
         # Spell checking
+        self.spellcheck = True
         self.gspell_view = Gspell.TextView.get_from_gtk_text_view(self)
         self.gspell_view.basic_setup()
 
@@ -184,10 +185,14 @@ class TextView(Gtk.TextView):
         and the surrounding text is greyed out."""
 
         self.focus_mode = focus_mode
-        self.gspell_view.set_inline_spell_checking(not focus_mode)
         self.update_vertical_margin()
         self.markup.apply()
         self.smooth_scroll_to()
+        self.set_spellcheck(self.spellcheck)
+
+    def set_spellcheck(self, spellcheck):
+        self.spellcheck = spellcheck
+        self.gspell_view.set_inline_spell_checking(self.spellcheck and not self.focus_mode)
 
     def update_horizontal_margin(self):
         width = self.get_allocation().width
