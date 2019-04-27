@@ -1,4 +1,5 @@
 import gi
+from gi.repository.GObject import SignalMatchType
 
 from uberwriter.inline_preview import InlinePreview
 from uberwriter.text_view_format_inserter import FormatInserter
@@ -106,6 +107,12 @@ class TextView(Gtk.TextView):
         self.hemingway_mode = False
         self.connect('key-press-event', self.on_key_press_event)
 
+        # While resizing the TextView, there is unwanted scroll upwards if a top margin is present.
+        # When a size allocation is detected, this variable will hold the scroll to re-set until the
+        # UI is idle again.
+        # TODO: Find a better way to handle unwanted scroll.
+        self.frozen_scroll_scale = None
+
     def get_text(self):
         text_buffer = self.get_buffer()
         start_iter = text_buffer.get_start_iter()
@@ -127,6 +134,11 @@ class TextView(Gtk.TextView):
         self.update_horizontal_margin()
         self.update_vertical_margin()
         self.markup.update_margins_indents()
+        self.queue_draw()
+
+        # TODO: Find a better way to handle unwanted scroll on resize.
+        self.frozen_scroll_scale = self.get_scroll_scale()
+        GLib.idle_add(self.unfreeze_scroll_scale)
 
     def on_text_changed(self, *_):
         self.markup.apply()
@@ -156,7 +168,14 @@ class TextView(Gtk.TextView):
         return False
 
     def on_scroll_scale_changed(self, *_):
-        self.emit("scroll-scale-changed", self.get_scroll_scale())
+        if self.frozen_scroll_scale is not None:
+            self.set_scroll_scale(self.frozen_scroll_scale)
+        else:
+            self.emit("scroll-scale-changed", self.get_scroll_scale())
+
+    def unfreeze_scroll_scale(self):
+        self.frozen_scroll_scale = None
+        self.queue_draw()
 
     def set_focus_mode(self, focus_mode):
         """Toggle focus mode.
