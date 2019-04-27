@@ -457,8 +457,7 @@ class InlinePreview:
                         path = path[7:]
                     elif not path.startswith("/"):
                         # then the path is relative
-                        base_path = self.settings.get_value(
-                            "open-file-path").get_string()
+                        base_path = self.settings.get_string("open-file-path")
                         path = base_path + "/" + path
 
                     LOGGER.info(path)

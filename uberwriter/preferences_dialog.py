@@ -83,7 +83,7 @@ class PreferencesDialog:
         self.gradient_overlay_switch.connect("state-set", self.on_gradient_overlay)
 
         input_format_store = Gtk.ListStore(int, str)
-        input_format = self.settings.get_value("input-format").get_string()
+        input_format = self.settings.get_string("input-format")
         input_format_active = 0
         for i, fmt in enumerate(self.formats):
             input_format_store.append([i, fmt["name"]])
