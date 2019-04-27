@@ -18,6 +18,8 @@ class PreviewRenderer:
 
     def __init__(
             self, main_window, content, editor, text_view, preview, mode_revealer, mode_button):
+        self.main_window = main_window
+        self.main_window.connect("delete-event", self.on_window_closed)
         self.content = content
         self.editor = editor
         self.text_view = text_view
@@ -25,14 +27,13 @@ class PreviewRenderer:
         self.mode_revealer = mode_revealer
         self.mode_button = mode_button
         self.mode_button.connect("clicked", self.show_mode_popover)
-        self.popover = None
+
         self.settings = Settings.new()
-        self.main_window = main_window
-        self.main_window.connect("delete-event", self.on_window_closed)
+        self.popover = None
         self.window = None
         self.headerbar = None
-        self.mode = self.settings.get_enum("preview-mode")
 
+        self.mode = self.settings.get_enum("preview-mode")
         self.update_mode()
 
     def show(self, web_view):

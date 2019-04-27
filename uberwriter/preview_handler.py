@@ -6,6 +6,7 @@ import gi
 
 from uberwriter.helpers import get_builder
 from uberwriter.preview_renderer import PreviewRenderer
+from uberwriter.settings import Settings
 
 gi.require_version('WebKit2', '4.0')
 from gi.repository import WebKit2, GLib
@@ -43,9 +44,11 @@ class PreviewHandler:
 
         window.connect("style-updated", self.reload)
 
+        self.text_changed_handler_id = None
+
+        self.settings = Settings.new()
         self.web_scroll_handler_id = None
         self.text_scroll_handler_id = None
-        self.text_changed_handler_id = None
 
         self.loading = False
         self.shown = False
@@ -78,7 +81,7 @@ class PreviewHandler:
             if self.web_view.is_loading():
                 self.web_view_pending_html = html
             else:
-                self.web_view.load_html(html, 'file://localhost/')
+                self.web_view.load_html(html, "file://localhost/")
 
         elif step == Step.RENDER:
             # Last step: show the preview. This is a one-time step.
@@ -86,32 +89,41 @@ class PreviewHandler:
                 return
             self.shown = True
 
+            self.text_changed_handler_id = \
+                self.text_view.get_buffer().connect("changed", self.__show)
+
             GLib.idle_add(self.web_view.set_scroll_scale, self.text_view.get_scroll_scale())
 
             self.preview_renderer.show(self.web_view)
 
-            self.text_changed_handler_id = \
-                self.text_view.get_buffer().connect("changed", self.__show)
-            self.web_scroll_handler_id = \
-                self.web_view.connect("scroll-scale-changed", self.on_web_view_scrolled)
-            self.text_scroll_handler_id = \
-                self.text_view.connect("scroll-scale-changed", self.on_text_view_scrolled)
+            if self.settings.get_boolean("sync-scroll"):
+                self.web_scroll_handler_id = \
+                    self.web_view.connect("scroll-scale-changed", self.on_web_view_scrolled)
+                self.text_scroll_handler_id = \
+                    self.text_view.connect("scroll-scale-changed", self.on_text_view_scrolled)
 
-    def reload(self, *_):
+    def reload(self, *_widget, reshow=False):
         if self.shown:
+            if reshow:
+                self.hide()
             self.show()
 
     def hide(self):
         if self.shown:
             self.shown = False
 
+            self.text_view.get_buffer().disconnect(self.text_changed_handler_id)
+
             GLib.idle_add(self.text_view.set_scroll_scale, self.web_view.get_scroll_scale())
 
             self.preview_renderer.hide(self.web_view)
 
-            self.text_view.get_buffer().disconnect(self.text_changed_handler_id)
-            self.text_view.disconnect(self.text_scroll_handler_id)
-            self.web_view.disconnect(self.web_scroll_handler_id)
+            if self.text_scroll_handler_id:
+                self.text_view.disconnect(self.text_scroll_handler_id)
+                self.text_scroll_handler_id = None
+            if self.web_scroll_handler_id:
+                self.web_view.disconnect(self.web_scroll_handler_id)
+                self.web_scroll_handler_id = None
 
         if self.loading:
             self.loading = False

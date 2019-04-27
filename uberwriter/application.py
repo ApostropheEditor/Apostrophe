@@ -188,6 +188,8 @@ class Application(Gtk.Application):
             self.window.toggle_gradient_overlay(settings.get_value(key))
         elif key == "input-format":
             self.window.reload_preview()
+        elif key == "sync-scroll":
+            self.window.reload_preview(reshow=True)
         elif key == "stat-default":
             self.window.update_default_stat()
         elif key == "preview-mode":

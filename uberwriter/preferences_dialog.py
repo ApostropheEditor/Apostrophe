@@ -82,6 +82,10 @@ class PreferencesDialog:
         self.gradient_overlay_switch.set_active(self.settings.get_value("gradient-overlay"))
         self.gradient_overlay_switch.connect("state-set", self.on_gradient_overlay)
 
+        self.sync_scroll_switch = self.builder.get_object("sync_scroll_switch")
+        self.sync_scroll_switch.set_active(self.settings.get_value("sync-scroll"))
+        self.sync_scroll_switch.connect("state-set", self.on_sync_scroll)
+
         input_format_store = Gtk.ListStore(int, str)
         input_format = self.settings.get_string("input-format")
         input_format_active = 0
@@ -124,6 +128,10 @@ class PreferencesDialog:
 
     def on_gradient_overlay(self, _, state):
         self.settings.set_value("gradient-overlay", GLib.Variant.new_boolean(state))
+        return False
+
+    def on_sync_scroll(self, _, state):
+        self.settings.set_value("sync-scroll", GLib.Variant.new_boolean(state))
         return False
 
     def on_input_format(self, combobox):

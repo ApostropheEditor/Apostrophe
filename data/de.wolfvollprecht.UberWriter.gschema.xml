@@ -48,6 +48,13 @@
         It can cause performance problems to some users.
       </description>
     </key>
+    <key name='sync-scroll' type='b'>
+      <default>true</default>
+      <summary>Synchronize editor/preview scrolling</summary>
+      <description>
+        Keep the editor and preview scroll positions in sync.
+      </description>
+    </key>
     <key name='input-format' type='s'>
       <default>"markdown"</default>
       <summary>Input format</summary>

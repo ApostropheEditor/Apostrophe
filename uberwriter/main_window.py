@@ -433,8 +433,8 @@ class MainWindow(StyledWindow):
         elif self.overlay_id:
             self.scrolled_window.disconnect(self.overlay_id)
 
-    def reload_preview(self):
-        self.preview_handler.reload()
+    def reload_preview(self, reshow=False):
+        self.preview_handler.reload(reshow=reshow)
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
