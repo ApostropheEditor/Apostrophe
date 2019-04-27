@@ -34,6 +34,7 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
 
         self.connect("load-changed", self.on_load_changed)
         self.connect("load-failed", self.on_load_failed)
+        self.connect("size-allocate", self.on_size_allocate)
         self.connect("destroy", self.on_destroy)
 
         self.scroll_scale = 0.0
@@ -62,6 +63,9 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         self.state_loaded = False
         self.state_load_failed = True
         self.state_loop()
+
+    def on_size_allocate(self, *_):
+        self.set_scroll_scale(self.scroll_scale)
 
     def on_destroy(self, _widget):
         self.state_loaded = False
