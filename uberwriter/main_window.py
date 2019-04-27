@@ -99,7 +99,6 @@ class MainWindow(StyledWindow):
         self.add_accel_group(self.accel_group)
 
         self.scrolled_window = builder.get_object('editor_scrolledwindow')
-        self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
 
         # Setup text editor
         self.text_view = TextView(self.settings.get_int("characters-per-line"))
