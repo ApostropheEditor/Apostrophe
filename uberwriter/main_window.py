@@ -173,19 +173,16 @@ class MainWindow(StyledWindow):
         if state.get_boolean():
             self.fullscreen()
             self.fs_headerbar.events.show()
-
         else:
             self.unfullscreen()
             self.fs_headerbar.events.hide()
-
         self.text_view.grab_focus()
 
     def set_focus_mode(self, state):
         """toggle focusmode
         """
 
-        focus_mode = state.get_boolean()
-        self.text_view.set_focus_mode(focus_mode)
+        self.text_view.set_focus_mode(state.get_boolean())
         self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
@@ -194,6 +191,22 @@ class MainWindow(StyledWindow):
 
         self.text_view.set_hemingway_mode(state.get_boolean())
         self.text_view.grab_focus()
+
+    def toggle_preview(self, state):
+        """Toggle the preview mode
+
+        Arguments:
+            state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
+        """
+
+        if state.get_boolean():
+            self.text_view.grab_focus()
+            self.preview_handler.show()
+        else:
+            self.preview_handler.hide()
+            self.text_view.grab_focus()
+
+        return True
 
     # TODO: refactorizable
     def save_document(self, _widget=None, _data=None):
@@ -419,20 +432,6 @@ class MainWindow(StyledWindow):
             self.overlay_id = self.scrolled_window.connect_after("draw", self.draw_gradient)
         elif self.overlay_id:
             self.scrolled_window.disconnect(self.overlay_id)
-
-    def toggle_preview(self, state):
-        """Toggle the preview mode
-
-        Arguments:
-            state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
-        """
-
-        if state.get_boolean():
-            self.preview_handler.show()
-        else:
-            self.preview_handler.hide()
-
-        return True
 
     def reload_preview(self):
         self.preview_handler.reload()
