@@ -605,4 +605,4 @@ class MainWindow(StyledWindow):
         else:
             self.filename = None
             base_path = "/"
-        self.settings.set_value("open-file-path", GLib.Variant("s", base_path))
+        self.settings.set_string("open-file-path", base_path)

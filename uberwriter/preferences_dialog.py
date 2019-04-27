@@ -111,32 +111,32 @@ class PreferencesDialog:
         preferences_window.show()
 
     def on_dark_mode_auto(self, _, state):
-        self.settings.set_value("dark-mode-auto", GLib.Variant.new_boolean(state))
+        self.settings.set_boolean("dark-mode-auto", state)
         if state and self.dark_mode_switch.get_active():
             self.dark_mode_switch.set_active(GLib.Variant.new_boolean(False))
         return False
 
     def on_dark_mode(self, _, state):
-        self.settings.set_value("dark-mode", GLib.Variant.new_boolean(state))
+        self.settings.set_boolean("dark-mode", state)
         if state and self.dark_mode_auto_switch.get_active():
             self.dark_mode_auto_switch.set_active(GLib.Variant.new_boolean(False))
         return False
 
     def on_spellcheck(self, _, state):
-        self.settings.set_value("spellcheck", GLib.Variant.new_boolean(state))
+        self.settings.set_boolean("spellcheck", state)
         return False
 
     def on_gradient_overlay(self, _, state):
-        self.settings.set_value("gradient-overlay", GLib.Variant.new_boolean(state))
+        self.settings.set_boolean("gradient-overlay", state)
         return False
 
     def on_sync_scroll(self, _, state):
-        self.settings.set_value("sync-scroll", GLib.Variant.new_boolean(state))
+        self.settings.set_boolean("sync-scroll", state)
         return False
 
     def on_input_format(self, combobox):
         fmt = self.formats[combobox.get_active()]
-        self.settings.set_value("input-format", GLib.Variant.new_string(fmt["format"]))
+        self.settings.set_string("input-format", fmt["format"])
 
     def on_input_format_help(self, _):
         fmt = self.formats[self.input_format_combobox.get_active()]
