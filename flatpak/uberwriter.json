@@ -3,7 +3,7 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "3.32",
     "sdk": "org.gnome.Sdk",
-    "command": "uberwriter",
+    "command": "start-uberwriter",
     "finish-args": [
         "--socket=x11",
         "--socket=wayland",
@@ -13,14 +13,8 @@
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf",
-        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-        "--env=PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/bin:/usr/bin"
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
-    "build-options" : {
-      "env": {
-        "PYTHON": "python3"
-        }
-    },
     "add-extensions": {
         "de.wolfvollprecht.UberWriter.Plugin": {
           "directory": "extensions",
@@ -33,7 +27,7 @@
     "modules": [
         {
         "name": "enchant",
-        "config-opts": ["--disable-static", "--with-myspell-dir=/usr/share/hunspell"],
+        "config-opts": ["--disable-static", "--with-myspell-dir=/usr/share/myspell"],
         "cleanup": [
             "/bin"
         ],
@@ -45,26 +39,6 @@
             }
         ]
         },
-        {
-        "name": "pandoc",
-        "only-arches": [
-          "x86_64"
-            ],
-        "buildsystem": "simple",
-        "build-commands": [
-          "mkdir -p /app/bin",
-          "cp bin/pandoc /app/bin/pandoc",
-          "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
-            ],
-        "sources": [
-                {
-            "type": "archive",
-            "url": "https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
-            "sha256": "06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
-                }
-            ]
-        },
-        "de.wolfvollprecht.UberWriter.pipdeps.json",
         {
         "name": "fonts",
             "buildsystem": "simple",
@@ -81,21 +55,58 @@
             ]
         },
         {
-            "name": "uberwriter",
-            "sources": [
-                    {
-                        "type" : "git",
-                        "url" : "../",
-                        "branch" : "various-improvements"
-                    }
-                ],
-                "build-commands": [
-                    "install -Dm644 data/de.wolfvollprecht.UberWriter.appdata.xml /app/share/appdata/de.wolfvollprecht.UberWriter.appdata.xml "
-                ],
-                "post-install": [
-                "glib-compile-schemas /app/share/glib-2.0/schemas",
-                "install -d /app/extensions"
-                ]
+        "name": "pandoc",
+        "only-arches": [
+          "x86_64"
+            ],
+        "buildsystem": "simple",
+        "build-commands": [
+          "install -Dm 755 bin/pandoc /app/bin/pandoc",
+          "install -Dm 755 bin/pandoc-citeproc /app/bin/pandoc-citeproc"
+            ],
+        "sources": [
+                {
+            "type": "archive",
+            "url": "https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
+            "sha256": "06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
+                }
+            ]
+        },
+        "de.wolfvollprecht.UberWriter.pipdeps.json",
+        {
+        "name": "uberwriter",
+        "buildsystem": "simple",
+        "build-commands": [
+            "desktop-file-edit --set-key=Exec --set-value='uberwriter.in %U' data/de.wolfvollprecht.UberWriter.desktop",
+            "python3 -m pip install --prefix=/app --install-option=--optimize=1 ."
+        ],
+        "sources": [
+                {
+                    "type" : "dir",
+                    "path" : "../"
+                }
+            ],
+            "post-install": [
+                "install -d /app/extensions",
+                "glib-compile-schemas /app/share/glib-2.0/schemas"
+            ]
+        },
+        {
+          "name": "scripts",
+          "buildsystem": "simple",
+          "build-commands": [
+                "install -Dm 755 start-uberwriter.sh /app/bin/start-uberwriter"
+          ],
+          "sources": [
+              {
+                  "type": "script",
+                  "dest-filename": "start-uberwriter.sh",
+                  "commands": [
+                      "export PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/$(uname -a)-linux:$PATH",
+                      "exec uberwriter.in \"$@\""
+                  ]
+              }
+          ]
         }
     ]
-    }
+}
