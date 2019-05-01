@@ -1,10 +1,10 @@
 {
-    "app-id": "de.wolfvollprecht.UberWriter",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.32",
-    "sdk": "org.gnome.Sdk",
-    "command": "start-uberwriter",
-    "finish-args": [
+    "app-id":"de.wolfvollprecht.UberWriter",
+    "runtime":"org.gnome.Platform",
+    "runtime-version":"3.32",
+    "sdk":"org.gnome.Sdk",
+    "command":"start-uberwriter",
+    "finish-args":[
         "--socket=x11",
         "--socket=wayland",
         "--share=ipc",
@@ -15,98 +15,101 @@
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
-    "add-extensions": {
-        "de.wolfvollprecht.UberWriter.Plugin": {
-          "directory": "extensions",
-          "version": "stable",
-          "subdirectories": true,
-          "no-autodownload": true,
-          "autodelete": true
-    }
+    "add-extensions":{
+        "de.wolfvollprecht.UberWriter.Plugin":{
+            "directory":"extensions",
+            "version":"stable",
+            "subdirectories":true,
+            "no-autodownload":true,
+            "autodelete":true
+        }
     },
-    "modules": [
+    "modules":[
         {
-        "name": "enchant",
-        "config-opts": ["--disable-static", "--with-myspell-dir=/usr/share/myspell"],
-        "cleanup": [
-            "/bin"
-        ],
-        "sources": [
-            {
-                "type" : "archive",
-                "url" : "https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
-                "sha256" : "bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
-            }
-        ]
-        },
-        {
-        "name": "fonts",
-            "buildsystem": "simple",
-            "build-commands": [
-          "mkdir -p /app/share/fonts/",
-          "cp ttf/* /app/share/fonts/"
+            "name":"enchant",
+            "config-opts":[
+                "--disable-static",
+                "--with-myspell-dir=/usr/share/myspell"
             ],
-            "sources": [
+            "cleanup":[
+                "/bin"
+            ],
+            "sources":[
                 {
-            "type": "git",
-            "url": "https://github.com/mozilla/Fira",
-            "tag": "4.202"
+                    "type":"archive",
+                    "url":"https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
+                    "sha256":"bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
                 }
             ]
         },
         {
-        "name": "pandoc",
-        "only-arches": [
-          "x86_64"
+            "name":"fonts",
+            "buildsystem":"simple",
+            "build-commands":[
+                "mkdir -p /app/share/fonts/",
+                "cp ttf/* /app/share/fonts/"
             ],
-        "buildsystem": "simple",
-        "build-commands": [
-          "install -Dm 755 bin/pandoc /app/bin/pandoc",
-          "install -Dm 755 bin/pandoc-citeproc /app/bin/pandoc-citeproc"
-            ],
-        "sources": [
+            "sources":[
                 {
-            "type": "archive",
-            "url": "https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
-            "sha256": "06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
+                    "type":"git",
+                    "url":"https://github.com/mozilla/Fira",
+                    "tag":"4.202"
+                }
+            ]
+        },
+        {
+            "name":"pandoc",
+            "only-arches":[
+                "x86_64"
+            ],
+            "buildsystem":"simple",
+            "build-commands":[
+                "install -Dm 755 bin/pandoc /app/bin/pandoc",
+                "install -Dm 755 bin/pandoc-citeproc /app/bin/pandoc-citeproc"
+            ],
+            "sources":[
+                {
+                    "type":"archive",
+                    "url":"https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
+                    "sha256":"06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
                 }
             ]
         },
         "de.wolfvollprecht.UberWriter.pipdeps.json",
         {
-        "name": "uberwriter",
-        "buildsystem": "simple",
-        "build-commands": [
-            "desktop-file-edit --set-key=Exec --set-value='uberwriter.in %U' data/de.wolfvollprecht.UberWriter.desktop",
-            "python3 -m pip install --prefix=/app --install-option=--optimize=1 ."
-        ],
-        "sources": [
+            "name":"uberwriter",
+            "buildsystem":"simple",
+            "build-commands":[
+                "desktop-file-edit --set-key=Exec --set-value='uberwriter.in %U' data/de.wolfvollprecht.UberWriter.desktop",
+                "python3 -m pip install --prefix=/app --install-option=--optimize=1 ."
+            ],
+            "sources":[
                 {
-                    "type" : "dir",
-                    "path" : "../"
+                    "type":"dir",
+                    "path":"../"
                 }
             ],
-            "post-install": [
+            "post-install":[
                 "install -d /app/extensions",
                 "glib-compile-schemas /app/share/glib-2.0/schemas"
             ]
         },
         {
-          "name": "scripts",
-          "buildsystem": "simple",
-          "build-commands": [
+            "name":"scripts",
+            "buildsystem":"simple",
+            "build-commands":[
                 "install -Dm 755 start-uberwriter.sh /app/bin/start-uberwriter"
-          ],
-          "sources": [
-              {
-                  "type": "script",
-                  "dest-filename": "start-uberwriter.sh",
-                  "commands": [
-                      "export PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/$(uname -a)-linux:$PATH",
-                      "exec uberwriter.in \"$@\""
-                  ]
-              }
-          ]
+            ],
+            "sources":[
+                {
+                    "type":"script",
+                    "dest-filename":"start-uberwriter.sh",
+                    "commands":[
+                        "export PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/$(uname -a)-linux:$PATH",
+                        "exec uberwriter.in \"$@\""
+                    ]
+                }
+            ]
         }
     ]
 }
