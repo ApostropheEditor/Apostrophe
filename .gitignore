@@ -19,3 +19,5 @@ data/ui/shortcut_handlers
 *.glade~
 dist/uberwriter-2.0b0-py3.7.egg
 builddir/*
+dist/
+uberwriter.egg-info
