@@ -11,8 +11,11 @@ from uberwriter import helpers
 class StatsCounter:
     """Counts characters, words, sentences and read time using a background thread."""
 
-    # Regexp that matches any character, except for newlines and subsequent spaces.
-    CHARACTERS = re.compile(r"[^\s]|(?:[^\S\n](?!\s))")
+    # Regexp that matches characters, with the following exceptions:
+    # * Newlines
+    # * Sequential spaces
+    # * Sequential dashes
+    CHARACTERS = re.compile(r"[^\s-]|(?:[^\S\n](?!\s)|-(?![-\n]))")
 
     # Regexp that matches Asian letters, general symbols and hieroglyphs,
     # as well as sequences of word characters optionally containing non-word characters in-between.
