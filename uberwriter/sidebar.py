@@ -58,7 +58,7 @@ class Sidebar():
     Presentational class for shelves and files managed by the "sidebar"
 
     parentwindow:
-        Reference to UberwriterWindow
+        Reference to Window
     """
     def __init__(self, parentwindow):
         """

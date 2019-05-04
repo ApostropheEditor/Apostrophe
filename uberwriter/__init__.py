@@ -15,36 +15,21 @@
 ### END LICENSE
 import sys
 
-import locale
-import os
-
-import gettext
-from gettext import gettext as _
-
 import gi
+
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk # pylint: disable=E0611
 
 from uberwriter import window
 from uberwriter import application
 from uberwriter.helpers import set_up_logging
-from uberwriter.uberwriterconfig import get_version
+from uberwriter.config import get_version
 
 
 def main():
     'constructor for your class instances'
     # (options, args) = parse_options()
-    
+
     # Run the application.
     app = application.Application()
-    
-    # ~ if args:
-        # ~ for arg in args:
-            # ~ pass 
-    # ~ else:
-        # ~ pass
-    # ~ if options.experimental_features:
-        # ~ window.use_experimental_features(True)
-        
+
     app.run(sys.argv)
-    

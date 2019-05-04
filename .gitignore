@@ -5,15 +5,13 @@ build/
 debian/uberwriter/DEBIAN
 debian/uberwriter/opt
 debian/uberwriter/usr
-bin/
 flatpak/*
-!flatpak/fonts-download
-!flatpak/pandoc-download
-!flatpak/pip-download
 !flatpak/uberwriter.json
 !flatpak/de.wolfvollprecht.UberWriter.*
 !flatpak/flatpak_texlive.json
 !flatpak/texlive_install.sh
+!flatpak/python3-enchant.json
+!flatpak/python3-packages.json
 *.py~
 data/ui/shortcut_handlers
 *.ui~
@@ -21,3 +19,5 @@ data/ui/shortcut_handlers
 *.glade~
 dist/uberwriter-2.0b0-py3.7.egg
 builddir/*
+dist/
+uberwriter.egg-info

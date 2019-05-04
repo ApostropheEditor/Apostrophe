@@ -30,17 +30,7 @@
             </item>
             <item>
                 <attribute name="label" translatable="yes">Copy HTML</attribute>
-                <attribute name="action">app.HTML_copy</attribute>
-            </item>
-        </section>
-        <section>
-            <item>
-                <attribute name="label" translatable="yes">Open Tutorial</attribute>
-                <attribute name="action">app.open_examples</attribute>
-            </item>
-            <item>
-                <attribute name="action">app.help</attribute>
-                <attribute name="label" translatable="yes">Pandoc _Help</attribute>
+                <attribute name="action">app.copy_html</attribute>
             </item>
         </section>
         <section>
@@ -51,6 +41,10 @@
             <item>
                 <attribute name="action">app.shortcuts</attribute>
                 <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+            </item>
+            <item>
+                <attribute name="label" translatable="yes">Open Tutorial</attribute>
+                <attribute name="action">app.open_tutorial</attribute>
             </item>
             <item>
                 <attribute name="action">app.about</attribute>

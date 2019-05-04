@@ -27,7 +27,8 @@ class Settings(Gio.Settings):
         """
         Gio.Settings.__init__(self)
 
-    def new():
+    @classmethod
+    def new(cls):
         """
             Return a new Settings object
         """
