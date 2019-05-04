@@ -16,6 +16,7 @@ flatpak/*
 data/ui/shortcut_handlers
 *.ui~
 .vscode/
+.idea/
 *.glade~
 dist/uberwriter-2.0b0-py3.7.egg
 builddir/*
