@@ -29,7 +29,7 @@
             "name":"enchant",
             "config-opts":[
                 "--disable-static",
-                "--with-myspell-dir=/usr/share/myspell"
+                "--with-myspell-dir=/usr/share/hunspell"
             ],
             "cleanup":[
                 "/bin"
@@ -39,6 +39,16 @@
                     "type":"archive",
                     "url":"https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
                     "sha256":"bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
+                }
+            ]
+        },
+        {
+            "name":"gspell",
+            "sources":[
+                {
+                    "type":"archive",
+                    "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz",
+                    "sha256":"819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5"
                 }
             ]
         },

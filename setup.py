@@ -56,7 +56,6 @@ setup(
         # "": '/opt/uberwriter/'
     },
     packages=[
-        "uberwriter.gtkspellcheck",
         "uberwriter.pylocales",
         # "uberwriter.pressagio",
         "uberwriter",
