@@ -42,6 +42,7 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
 
         self.state_loaded = False
         self.state_load_failed = False
+        self.state_discard_result = False
         self.state_waiting = False
 
         self.timeout_id = None
@@ -56,6 +57,7 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
     def on_load_changed(self, _web_view, event):
         self.state_loaded = event >= WebKit2.LoadEvent.COMMITTED and not self.state_load_failed
         self.state_load_failed = False
+        self.state_discard_result = event == WebKit2.LoadEvent.STARTED and self.state_waiting
         self.pending_scroll_scale = self.scroll_scale
         self.state_loop()
 
@@ -74,16 +76,20 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
     def read_scroll_scale(self):
         self.state_waiting = True
         self.run_javascript(
-            self.GET_SCROLL_SCALE_JS, None, self.sync_scroll_scale)
+            self.GET_SCROLL_SCALE_JS, None, self.finish_read_scroll_scale)
 
     def write_scroll_scale(self, scroll_scale):
         self.run_javascript(
             self.SET_SCROLL_SCALE_JS.format(scroll_scale), None, None)
 
-    def sync_scroll_scale(self, _web_view, result):
+    def finish_read_scroll_scale(self, _web_view, result):
         self.state_waiting = False
-        result = self.run_javascript_finish(result)
-        self.state_loop(result.get_js_value().to_double())
+        if not self.state_discard_result:
+            result = self.run_javascript_finish(result)
+            self.state_loop(result.get_js_value().to_double())
+        else:
+            self.state_discard_result = False
+            self.state_loop()
 
     def state_loop(self, scroll_scale=None, delay=16):  # 16ms ~ 60hz
         # Remove any pending callbacks
