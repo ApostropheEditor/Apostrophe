@@ -37,13 +37,13 @@ class MarkupHandler:
         "BOLDITALIC": re.compile(r"(\*\*\*|___)(.+?)\1"),
         "STRIKETHROUGH": re.compile(r"~~.+?~~"),
         "LINK": re.compile(r"(\[).*(\]\(.+?\))"),
-        "HORIZONTALRULE": re.compile(r"\n\n([ ]{0,3}[*\-_]{3,}[ ]*)\n", re.MULTILINE),
+        "HORIZONTALRULE": re.compile(r"\n\n([ ]{0,3}[*\-_]{3,}[ ]*)\n\n", re.MULTILINE),
         "LIST": re.compile(r"^((?:\t|[ ]{4})*)[\-*+] .+", re.MULTILINE),
         "NUMERICLIST": re.compile(r"^((\d|[a-z]|#)+[.)]) ", re.MULTILINE),
         "NUMBEREDLIST": re.compile(r"^((?:\t|[ ]{4})*)((?:\d|[a-z])+[.)]) .+", re.MULTILINE),
         "BLOCKQUOTE": re.compile(r"^[ ]{0,3}(?:>|(?:> )+).+", re.MULTILINE),
         "HEADER": re.compile(r"^[ ]{0,3}(#{1,6}) [^\n]+", re.MULTILINE),
-        "HEADER_UNDER": re.compile(r"^[ ]{0,3}\w.+\n[ ]{0,3}[=\-]{3,}", re.MULTILINE),
+        "HEADER_UNDER": re.compile(r"^\n[ ]{0,3}\w.+\n[ ]{0,3}[=\-]{3,}", re.MULTILINE),
         "CODE": re.compile(r"(?:^|\n)[ ]{0,3}(([`~]{3}).+?[ ]{0,3}\2)(?:\n|$)", re.DOTALL),
         "TABLE": re.compile(r"^[\-+]{5,}\n(.+?)\n[\-+]{5,}\n", re.DOTALL),
         "MATH": re.compile(r"[$]{1,2}([^` ].+?[^`\\ ])[$]{1,2}"),
@@ -79,10 +79,10 @@ class MarkupHandler:
                                            strikethrough=False,
                                            justification=Gtk.Justification.LEFT)
 
-        self.table = buffer.create_tag('table')
-        self.table.set_property('wrap-mode', Gtk.WrapMode.NONE)
-        self.table.set_property('pixels-above-lines', 0)
-        self.table.set_property('pixels-below-lines', 0)
+        self.table = buffer.create_tag('table',
+                                       wrap_mode=Gtk.WrapMode.NONE,
+                                       pixels_above_lines=0,
+                                       pixels_below_lines=0)
 
         self.mathtext = buffer.create_tag('mathtext')
 
@@ -94,6 +94,8 @@ class MarkupHandler:
         # Margin and indents
         # A baseline margin is set to allow negative offsets for formatting headers, lists, etc
         self.margins_indents = {}
+        self.baseline_margin = 0
+        self.char_width = 0
         self.update_margins_indents()
 
         # Style
@@ -272,11 +274,10 @@ class MarkupHandler:
     def get_margin_indent_tag(self, margin_level, indent_level):
         level = (margin_level, indent_level)
         if level not in self.margins_indents:
-            tag = self.text_buffer.create_tag(
-                "margin_indent_" + str(margin_level) + "_" + str(indent_level))
             margin, indent = self.get_margin_indent(margin_level, indent_level)
-            tag.set_property("left-margin", margin)
-            tag.set_property("indent", indent)
+            tag = self.text_buffer.create_tag(
+                "margin_indent_{}_{}".format(margin_level, indent_level),
+                left_margin=margin, indent=indent)
             self.margins_indents[level] = tag
             return tag
         else:
@@ -284,7 +285,7 @@ class MarkupHandler:
 
     def get_margin_indent(self, margin_level, indent_level, baseline_margin=None, char_width=None):
         if baseline_margin is None:
-            baseline_margin = self.text_view.get_left_margin()
+            baseline_margin = self.text_view.props.left_margin
         if char_width is None:
             char_width = helpers.get_char_width(self.text_view)
         margin = max(baseline_margin + char_width * margin_level, 0)
@@ -292,16 +293,21 @@ class MarkupHandler:
         return margin, indent
 
     def update_margins_indents(self):
-        baseline_margin = self.text_view.get_left_margin()
+        baseline_margin = self.text_view.props.left_margin
         char_width = helpers.get_char_width(self.text_view)
 
-        # Adjust tab size, as character width can change
+        # Bail out if neither the baseline margin nor character width change
+        if baseline_margin == self.baseline_margin and char_width == self.char_width:
+            return
+        self.baseline_margin = baseline_margin
+        self.char_width = char_width
+
+        # Adjust tab size
         tab_array = Pango.TabArray.new(1, True)
         tab_array.set_tab(0, Pango.TabAlign.LEFT, 4 * char_width)
         self.text_view.set_tabs(tab_array)
 
-        # Adjust margins and indents, as character width can change
+        # Adjust margins and indents
         for level, tag in self.margins_indents.items():
             margin, indent = self.get_margin_indent(*level, baseline_margin, char_width)
-            tag.set_property("left-margin", margin)
-            tag.set_property("indent", indent)
+            tag.set_properties(left_margin=margin, indent=indent)

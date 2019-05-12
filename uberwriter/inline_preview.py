@@ -28,9 +28,11 @@ from urllib.parse import unquote
 
 import gi
 
+from uberwriter.text_view_markup_handler import MarkupHandler
+
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
-from uberwriter import latex_to_PNG, text_view_markup_handler
+from gi.repository import Gtk, Gdk, GdkPixbuf
+from uberwriter import latex_to_PNG
 from uberwriter.settings import Settings
 
 from uberwriter.fix_table import FixTable
@@ -360,8 +362,8 @@ class InlinePreview:
 
         text = self.text_buffer.get_text(start_iter, end_iter, False)
 
-        math = text_view_markup_handler.regex["MATH"]
-        link = text_view_markup_handler.regex["LINK"]
+        math = MarkupHandler.regex["MATH"]
+        link = MarkupHandler.regex["LINK"]
 
         footnote = re.compile(r'\[\^([^\s]+?)\]')
         image = re.compile(r"!\[(.*?)\]\((.+?)\)")
@@ -455,8 +457,7 @@ class InlinePreview:
                         path = path[7:]
                     elif not path.startswith("/"):
                         # then the path is relative
-                        base_path = self.settings.get_value(
-                            "open-file-path").get_string()
+                        base_path = self.settings.get_string("open-file-path")
                         path = base_path + "/" + path
 
                     LOGGER.info(path)

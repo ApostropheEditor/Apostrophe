@@ -1,17 +1,19 @@
 import gi
+from gi.repository.GObject import SignalMatchType
 
 from uberwriter.inline_preview import InlinePreview
 from uberwriter.text_view_format_inserter import FormatInserter
 from uberwriter.text_view_markup_handler import MarkupHandler
+from uberwriter.text_view_scroller import TextViewScroller
 from uberwriter.text_view_undo_redo_handler import UndoRedoHandler
 from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
-from uberwriter.scroller import Scroller
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gspell', '1')
 from gi.repository import Gtk, Gdk, GObject, GLib, Gspell
 
 import logging
+
 LOGGER = logging.getLogger('uberwriter')
 
 
@@ -36,10 +38,13 @@ class TextView(Gtk.TextView):
         'insert-header': (GObject.SignalFlags.ACTION, None, ()),
         'insert-strikethrough': (GObject.SignalFlags.ACTION, None, ()),
         'undo': (GObject.SignalFlags.ACTION, None, ()),
-        'redo': (GObject.SignalFlags.ACTION, None, ())
+        'redo': (GObject.SignalFlags.ACTION, None, ()),
+        'scroll-scale-changed': (GObject.SIGNAL_RUN_LAST, None, (float,)),
     }
 
-    def __init__(self):
+    font_sizes = [18, 17, 16, 15, 14]  # Must match CSS selectors in gtk/base.css
+
+    def __init__(self, line_chars):
         super().__init__()
 
         # Appearance
@@ -49,11 +54,18 @@ class TextView(Gtk.TextView):
         self.set_pixels_inside_wrap(8)
         self.get_style_context().add_class('uberwriter-editor')
 
+        # Text sizing
+        self.props.halign = Gtk.Align.FILL
+        self.line_chars = line_chars
+        self.font_size = 16
+        self.get_style_context().add_class('size16')
+
         # General behavior
-        self.get_buffer().connect('changed', self.on_text_changed)
         self.connect('size-allocate', self.on_size_allocate)
+        self.get_buffer().connect('changed', self.on_text_changed)
 
         # Spell checking
+        self.spellcheck = True
         self.gspell_view = Gspell.TextView.get_from_gtk_text_view(self)
         self.gspell_view.basic_setup()
 
@@ -85,6 +97,7 @@ class TextView(Gtk.TextView):
 
         # Scrolling
         self.scroller = None
+        self.connect('parent-set', self.on_parent_set)
         self.get_buffer().connect('mark-set', self.on_mark_set)
 
         # Focus mode
@@ -94,6 +107,12 @@ class TextView(Gtk.TextView):
         # Hemingway mode
         self.hemingway_mode = False
         self.connect('key-press-event', self.on_key_press_event)
+
+        # While resizing the TextView, there is unwanted scroll upwards if a top margin is present.
+        # When a size allocation is detected, this variable will hold the scroll to re-set until the
+        # UI is idle again.
+        # TODO: Find a better way to handle unwanted scroll.
+        self.frozen_scroll_scale = None
 
     def get_text(self):
         text_buffer = self.get_buffer()
@@ -105,13 +124,59 @@ class TextView(Gtk.TextView):
         text_buffer = self.get_buffer()
         text_buffer.set_text(text)
 
-    def on_text_changed(self, *_):
-        self.markup.apply()
-        GLib.idle_add(self.scroll_to)
+    def get_scroll_scale(self):
+        return self.scroller.get_scroll_scale() if self.scroller else 0
+
+    def set_scroll_scale(self, scale):
+        if self.scroller:
+            self.scroller.set_scroll_scale(scale)
 
     def on_size_allocate(self, *_):
+        self.update_horizontal_margin()
         self.update_vertical_margin()
         self.markup.update_margins_indents()
+        self.queue_draw()
+
+        # TODO: Find a better way to handle unwanted scroll on resize.
+        self.frozen_scroll_scale = self.get_scroll_scale()
+        GLib.idle_add(self.unfreeze_scroll_scale)
+
+    def on_text_changed(self, *_):
+        self.markup.apply()
+        self.smooth_scroll_to()
+
+    def on_parent_set(self, *_):
+        parent = self.get_parent()
+        if parent:
+            parent.set_size_request(self.get_min_width(), 500)
+            self.scroller = TextViewScroller(self, parent)
+            parent.get_vadjustment().connect("changed", self.on_scroll_scale_changed)
+            parent.get_vadjustment().connect("value-changed", self.on_scroll_scale_changed)
+        else:
+            self.scroller = None
+
+    def on_mark_set(self, _text_buffer, _location, mark, _data=None):
+        if mark.get_name() == 'insert':
+            self.markup.apply()
+            self.smooth_scroll_to(mark)
+        elif mark.get_name() == 'gtk_drag_target':
+            self.smooth_scroll_to(mark)
+        return True
+
+    def on_button_release_event(self, _widget, _event):
+        if self.focus_mode:
+            self.markup.apply()
+        return False
+
+    def on_scroll_scale_changed(self, *_):
+        if self.frozen_scroll_scale is not None:
+            self.set_scroll_scale(self.frozen_scroll_scale)
+        else:
+            self.emit("scroll-scale-changed", self.get_scroll_scale())
+
+    def unfreeze_scroll_scale(self):
+        self.frozen_scroll_scale = None
+        self.queue_draw()
 
     def set_focus_mode(self, focus_mode):
         """Toggle focus mode.
@@ -120,10 +185,33 @@ class TextView(Gtk.TextView):
         and the surrounding text is greyed out."""
 
         self.focus_mode = focus_mode
-        self.gspell_view.set_inline_spell_checking(not focus_mode)
         self.update_vertical_margin()
         self.markup.apply()
-        self.scroll_to()
+        self.smooth_scroll_to()
+        self.set_spellcheck(self.spellcheck)
+
+    def set_spellcheck(self, spellcheck):
+        self.spellcheck = spellcheck
+        self.gspell_view.set_inline_spell_checking(self.spellcheck and not self.focus_mode)
+
+    def update_horizontal_margin(self):
+        width = self.get_allocation().width
+
+        # Ensure the appropriate font size is being used
+        for font_size in self.font_sizes:
+            if width >= self.get_min_width(font_size) or font_size == self.font_sizes[-1]:
+                if font_size != self.font_size:
+                    self.font_size = font_size
+                    for fs in self.font_sizes:
+                        self.get_style_context().remove_class("size{}".format(fs))
+                    self.get_style_context().add_class("size{}".format(font_size))
+                break
+
+        # Apply margin with the remaining space to allow for markup
+        line_width = (self.line_chars + 1) * int(self.get_char_width(self.font_size)) - 1
+        horizontal_margin = (width - line_width) / 2
+        self.props.left_margin = horizontal_margin
+        self.props.right_margin = horizontal_margin
 
     def update_vertical_margin(self):
         if self.focus_mode:
@@ -133,11 +221,6 @@ class TextView(Gtk.TextView):
         else:
             self.props.top_margin = 80
             self.props.bottom_margin = 64
-
-    def on_button_release_event(self, _widget, _event):
-        if self.focus_mode:
-            self.markup.apply()
-        return False
 
     def set_hemingway_mode(self, hemingway_mode):
         """Toggle hemingway mode.
@@ -158,48 +241,34 @@ class TextView(Gtk.TextView):
         self.get_buffer().set_text('')
         self.undo_redo.clear()
 
-    def scroll_to(self, mark=None):
+    def smooth_scroll_to(self, mark=None):
         """Scrolls if needed to ensure mark is visible.
 
         If mark is unspecified, the cursor is used."""
 
-        margin = 32
-        scrolled_window = self.get_ancestor(Gtk.ScrolledWindow.__gtype__)
-        if not scrolled_window:
+        if self.scroller is None:
             return
-        va = scrolled_window.get_vadjustment()
-        if va.props.page_size < margin * 2:
-            return
+        if mark is None:
+            mark = self.get_buffer().get_insert()
+        GLib.idle_add(self.scroller.smooth_scroll_to_mark, mark, self.focus_mode)
 
-        text_buffer = self.get_buffer()
-        if mark:
-            mark_iter = text_buffer.get_iter_at_mark(mark)
-        else:
-            mark_iter = text_buffer.get_iter_at_mark(text_buffer.get_insert())
-        mark_rect = self.get_iter_location(mark_iter)
+    def get_min_width(self, font_size=None):
+        """Returns the minimum width of this text view."""
 
-        pos_y = mark_rect.y + mark_rect.height + self.props.top_margin
-        pos = pos_y - va.props.value
-        target_pos = None
-        if self.focus_mode:
-            if pos != (va.props.page_size * 0.5):
-                target_pos = pos_y - (va.props.page_size * 0.5)
-        elif pos > va.props.page_size - margin:
-            target_pos = pos_y - va.props.page_size + margin
-        elif pos < margin:
-            target_pos = pos_y - margin
+        if font_size is None:
+            font_size = self.font_sizes[-1]
+        return (self.line_chars + self.get_pad_chars(font_size) + 1) \
+            * self.get_char_width(font_size) - 1
 
-        if self.scroller and self.scroller.is_started:
-            self.scroller.end()
-        if target_pos:
-            self.scroller = Scroller(scrolled_window, va.props.value, target_pos)
-            self.scroller.start()
+    def get_pad_chars(self, font_size):
+        """Returns the amount of character padding for font_size.
 
-    def on_mark_set(self, _text_buffer, _location, mark, _data=None):
-        if mark.get_name() == 'insert':
-            self.markup.apply()
-            if self.focus_mode:
-                self.scroll_to(mark)
-        elif mark.get_name() == 'gtk_drag_target':
-            self.scroll_to(mark)
-        return True
+        Markup can use up to 7 in normal conditions."""
+
+        return 8 * (1 + font_size - self.font_sizes[-1])
+
+    @staticmethod
+    def get_char_width(font_size):
+        """Returns the font width for a given size. Note: specific to Fira Mono!"""
+
+        return font_size * 1 / 1.6

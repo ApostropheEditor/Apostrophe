@@ -138,11 +138,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="format_label">
+              <object class="GtkLabel" id="sync_scroll_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">Input format</property>
+                <property name="label" translatable="yes">Synchronize editor/preview scrolling</property>
                 <property name="justify">right</property>
               </object>
               <packing>
@@ -151,15 +151,27 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="input_format_help_button">
+              <object class="GtkSwitch" id="sync_scroll_switch">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
-                <property name="image">help</property>
+                <property name="halign">end</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="input_format_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Input format</property>
+                <property name="justify">right</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">5</property>
               </packing>
             </child>
             <child>
@@ -172,8 +184,23 @@
               </object>
               <packing>
                 <property name="left_attach">2</property>
-                <property name="top_attach">4</property>
+                <property name="top_attach">5</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="input_format_help_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="image">help</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">5</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>

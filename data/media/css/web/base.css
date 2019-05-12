@@ -45,7 +45,7 @@ html {
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1280px) {
   html {
     font-size: 18px;
   }
@@ -57,9 +57,9 @@ body {
   font-family: "Fira Sans", fira-sans, sans-serif, color-emoji;
   line-height: 1.5;
   word-wrap: break-word;
-  max-width: 978px;
+  max-width: 980px;
   margin: auto;
-  padding: 2em;
+  padding: 4em;
 }
 
 a {

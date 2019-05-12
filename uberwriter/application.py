@@ -15,10 +15,12 @@ from gettext import gettext as _
 
 import gi
 
+from uberwriter.main_window import MainWindow
+
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
 from gi.repository import GLib, Gio, Gtk, GdkPixbuf
 
-from uberwriter import window
+from uberwriter import main_window
 from uberwriter.settings import Settings
 from uberwriter.helpers import set_up_logging
 from uberwriter.preferences_dialog import PreferencesDialog
@@ -120,8 +122,16 @@ class Application(Gtk.Application):
 
         stat_default = self.settings.get_string("stat-default")
         action = Gio.SimpleAction.new_stateful(
-            "stat_default", GLib.VariantType.new('s'), GLib.Variant.new_string(stat_default))
+            "stat_default", GLib.VariantType.new("s"), GLib.Variant.new_string(stat_default))
         action.connect("activate", self.on_stat_default)
+        self.add_action(action)
+
+        # Preview Menu
+
+        preview_mode = self.settings.get_string("preview-mode")
+        action = Gio.SimpleAction.new_stateful(
+            "preview_mode", GLib.VariantType.new("s"), GLib.Variant.new_string(preview_mode))
+        action.connect("activate", self.on_preview_mode)
         self.add_action(action)
 
         # Shortcuts
@@ -147,7 +157,7 @@ class Application(Gtk.Application):
             # Windows are associated with the application
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="UberWriter")
-            self.window = window.Window(self)
+            self.window = MainWindow(self)
             if self.args:
                 self.window.load_file(self.args[0])
 
@@ -178,8 +188,12 @@ class Application(Gtk.Application):
             self.window.toggle_gradient_overlay(settings.get_value(key))
         elif key == "input-format":
             self.window.reload_preview()
+        elif key == "sync-scroll":
+            self.window.reload_preview(reshow=True)
         elif key == "stat-default":
             self.window.update_default_stat()
+        elif key == "preview-mode":
+            self.window.update_preview_mode()
 
     def on_new(self, _action, _value):
         self.window.new_document()
@@ -249,6 +263,10 @@ class Application(Gtk.Application):
     def on_stat_default(self, action, value):
         action.set_state(value)
         self.settings.set_string("stat-default", value.get_string())
+
+    def on_preview_mode(self, action, value):
+        action.set_state(value)
+        self.settings.set_string("preview-mode", value.get_string())
 
 # ~ if __name__ == "__main__":
     # ~ app = Application()

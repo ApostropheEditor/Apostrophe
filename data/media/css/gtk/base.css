@@ -22,23 +22,9 @@
 /* Main window and text colors */
 
 .uberwriter-window {
-  /*border-radius: 7px 7px 3px 3px;*/
   background: @theme_base_color;
   color: @theme_fg_color;
   caret-color: @theme_fg_color;
-}
-
-.uberwriter-window .uberwriter-editor {
-  font-family: 'Fira Mono', monospace;
-  font-size: 16px;
-}
-
-.uberwriter-window.small .uberwriter-editor {
-  font-size: 14px;
-}
-
-.uberwriter-window.large .uberwriter-editor {
-  font-size: 18px;
 }
 
 #titlebar-revealer {
@@ -55,10 +41,32 @@
 }
 
 .uberwriter-editor {
+  -gtk-key-bindings: editor-bindings;
   border: none;
   background-color: transparent;
   text-decoration-color: @error_color;
-  -gtk-key-bindings: editor-bindings;
+  font-family: 'Fira Mono', monospace;
+  font-size: 16px;
+}
+
+.uberwriter-editor.size14  {
+  font-size: 14px;
+}
+
+.uberwriter-editor.size15  {
+  font-size: 15px;
+}
+
+.uberwriter-editor.size16  {
+  font-size: 16px;
+}
+
+.uberwriter-editor.size17  {
+  font-size: 17px;
+}
+
+.uberwriter-editor.size18 {
+  font-size: 18px;
 }
 
 .uberwriter-editor text {
@@ -84,9 +92,8 @@
   padding: 0;
 }
 
-.stats-counter {
+.inline-button {
   color: alpha(@theme_fg_color, 0.6);
-  background-color: @theme_base_color;
   text-shadow: inherit;
   box-shadow: initial;
   background-clip: initial;
@@ -104,8 +111,8 @@
   transition: 100ms ease-in;
 }
 
-.stats-counter:hover,
-.stats-counter:checked {
+.inline-button:hover,
+.inline-button:checked {
   color: @theme_fg_color;
   background-color: mix(@theme_base_color, @theme_bg_color, 0.5);
 }
