@@ -55,7 +55,7 @@ def get_builder(builder_file_name):
 def path_to_file(path):
     """Return a file path (file:///) for the given path"""
 
-    return "file:///" + path
+    return "file://" + path
 
 
 def get_media_file(media_file_path):
