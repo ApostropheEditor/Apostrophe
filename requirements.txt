@@ -1,5 +1,2 @@
 regex
-enchant
 pypandoc==1.4
-pyenchant
-pygtkspellcheck

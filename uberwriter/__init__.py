@@ -19,7 +19,7 @@ import gi
 
 gi.require_version('Gtk', '3.0')
 
-from uberwriter import window
+from uberwriter import main_window
 from uberwriter import application
 from uberwriter.helpers import set_up_logging
 from uberwriter.config import get_version

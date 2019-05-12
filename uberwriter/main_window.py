@@ -19,19 +19,18 @@ import locale
 import logging
 import os
 import urllib
-import webbrowser
 from gettext import gettext as _
 
 import gi
 
 from uberwriter.export_dialog import Export
+from uberwriter.preview_handler import PreviewHandler
 from uberwriter.stats_handler import StatsHandler
+from uberwriter.styled_window import StyledWindow
 from uberwriter.text_view import TextView
 
 gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit2', '4.0')  # pylint: disable=wrong-import-position
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio
-from gi.repository import WebKit2 as WebKit
 
 import cairo
 
@@ -54,7 +53,7 @@ LOGGER = logging.getLogger('uberwriter')
 CONFIG_PATH = os.path.expanduser("~/.config/uberwriter/")
 
 
-class Window(Gtk.ApplicationWindow):
+class MainWindow(StyledWindow):
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
@@ -68,17 +67,17 @@ class Window(Gtk.ApplicationWindow):
     def __init__(self, app):
         """Set up the main window"""
 
-        Gtk.ApplicationWindow.__init__(self,
-                                       application=Gio.Application.get_default(),
-                                       title="Uberwriter")
+        super().__init__(application=Gio.Application.get_default(), title="Uberwriter")
+
+        self.get_style_context().add_class('uberwriter-window')
 
         # Set UI
-        self.builder = get_builder('Window')
-        root = self.builder.get_object("FullscreenOverlay")
-        root.connect('style-updated', self.apply_current_theme)
+        builder = get_builder('Window')
+        root = builder.get_object("FullscreenOverlay")
+        self.connect("delete-event", self.on_delete_called)
         self.add(root)
 
-        self.set_default_size(900, 500)
+        self.set_default_size(1000, 600)
 
         # Preferences
         self.settings = Settings.new()
@@ -86,7 +85,7 @@ class Window(Gtk.ApplicationWindow):
         # Headerbars
         self.headerbar = headerbars.MainHeaderbar(app)
         self.set_titlebar(self.headerbar.hb_container)
-        self.fs_headerbar = headerbars.FullscreenHeaderbar(self.builder, app)
+        self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -99,27 +98,25 @@ class Window(Gtk.ApplicationWindow):
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
+        self.scrolled_window = builder.get_object('editor_scrolledwindow')
+
         # Setup text editor
-        self.text_view = TextView()
-        self.text_view.props.halign = Gtk.Align.CENTER
+        self.text_view = TextView(self.settings.get_int("characters-per-line"))
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
         self.text_view.grab_focus()
-
-        # Setup preview webview
-        self.preview_webview = None
-
-        self.scrolled_window = self.builder.get_object('editor_scrolledwindow')
-        self.scrolled_window.get_style_context().add_class('uberwriter-scrolled-window')
         self.scrolled_window.add(self.text_view)
-        self.editor_viewport = self.builder.get_object('editor_viewport')
 
-        # Stats counter
-        self.stats_counter_revealer = self.builder.get_object('stats_counter_revealer')
-        self.stats_button = self.builder.get_object('stats_counter')
-        self.stats_button.get_style_context().add_class('stats-counter')
+        # Setup stats counter
+        self.stats_revealer = builder.get_object('editor_stats_revealer')
+        self.stats_button = builder.get_object('editor_stats_button')
         self.stats_handler = StatsHandler(self.stats_button, self.text_view)
+
+        # Setup preview
+        content = builder.get_object('content')
+        editor = builder.get_object('editor')
+        self.preview_handler = PreviewHandler(self, content, editor, self.text_view)
 
         # Setup header/stats bar hide after 3 seconds
         self.top_bottom_bars_visible = True
@@ -142,8 +139,8 @@ class Window(Gtk.ApplicationWindow):
         ###
         #   Sidebar initialization test
         ###
-        self.paned_window = self.builder.get_object("main_pained")
-        self.sidebar_box = self.builder.get_object("sidebar_box")
+        self.paned_window = builder.get_object("main_paned")
+        self.sidebar_box = builder.get_object("sidebar_box")
         self.sidebar = Sidebar(self)
         self.sidebar_box.hide()
 
@@ -151,40 +148,7 @@ class Window(Gtk.ApplicationWindow):
         #   Search and replace initialization
         #   Same interface as Sidebar ;)
         ###
-        self.searchreplace = SearchAndReplace(self, self.text_view)
-
-        # Window resize
-        self.window_resize(self)
-        self.connect("configure-event", self.window_resize)
-        self.connect("delete-event", self.on_delete_called)
-
-        # Set current theme
-        self.apply_current_theme()
-        self.get_style_context().add_class('uberwriter-window')
-
-    def apply_current_theme(self, *_):
-        """Adjusts the window, CSD and preview for the current theme.
-        """
-        # Get current theme
-        theme, changed = Theme.get_current_changed()
-        if changed:
-            # Set theme variant (dark/light)
-            Gtk.Settings.get_default().set_property(
-                "gtk-application-prefer-dark-theme",
-                GLib.Variant("b", theme.is_dark))
-
-            # Set theme css
-            style_provider = Gtk.CssProvider()
-            style_provider.load_from_path(helpers.get_css_path("gtk/base.css"))
-            Gtk.StyleContext.add_provider_for_screen(
-                self.get_screen(), style_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
-            # Reload preview if it exists
-            self.reload_preview()
-
-            # Redraw contents of window
-            self.queue_draw()
+        self.searchreplace = SearchAndReplace(self, self.text_view, builder)
 
     def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
@@ -209,19 +173,16 @@ class Window(Gtk.ApplicationWindow):
         if state.get_boolean():
             self.fullscreen()
             self.fs_headerbar.events.show()
-
         else:
             self.unfullscreen()
             self.fs_headerbar.events.hide()
-
         self.text_view.grab_focus()
 
     def set_focus_mode(self, state):
         """toggle focusmode
         """
 
-        focus_mode = state.get_boolean()
-        self.text_view.set_focus_mode(focus_mode)
+        self.text_view.set_focus_mode(state.get_boolean())
         self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
@@ -231,47 +192,21 @@ class Window(Gtk.ApplicationWindow):
         self.text_view.set_hemingway_mode(state.get_boolean())
         self.text_view.grab_focus()
 
-    def window_resize(self, window, event=None):
-        """set paddings dependant of the window size
+    def toggle_preview(self, state):
+        """Toggle the preview mode
+
+        Arguments:
+            state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
         """
 
-        # Ensure the window receiving the event is the one we care about, ie. the main window.
-        # On Wayland (bug?), sub-windows such as the recents popover will also trigger this.
-        if event and event.window != window.get_window():
-            return
-
-        # Adjust text editor width depending on window width, so that:
-        # - The number of characters per line is adequate (http://webtypography.net/2.1.2)
-        # - The number of characters stays constant while resizing the window / font
-        # - There is enough text margin for MarkupBuffer to apply indents / negative margins
-        #
-        # TODO: Avoid hard-coding. Font size is clearer than unclear dimensions, but not ideal.
-        w_width = event.width if event else window.get_allocation().width
-        if w_width < 900:
-            font_size = 14
-            self.get_style_context().add_class("small")
-            self.get_style_context().remove_class("large")
-
-        elif w_width < 1280:
-            font_size = 16
-            self.get_style_context().remove_class("small")
-            self.get_style_context().remove_class("large")
-
+        if state.get_boolean():
+            self.text_view.grab_focus()
+            self.preview_handler.show()
         else:
-            font_size = 18
-            self.get_style_context().remove_class("small")
-            self.get_style_context().add_class("large")
+            self.preview_handler.hide()
+            self.text_view.grab_focus()
 
-        font_width = int(font_size * 1/1.6)  # Ratio specific to Fira Mono
-        width = 67 * font_width - 1  # 66 characters
-        horizontal_margin = 8 * font_width  # 8 characters
-        width_request = width + horizontal_margin * 2
-
-        if self.text_view.props.width_request != width_request:
-            self.text_view.props.width_request = width_request
-            self.text_view.set_left_margin(horizontal_margin)
-            self.text_view.set_right_margin(horizontal_margin)
-            self.scrolled_window.props.width_request = width_request
+        return True
 
     # TODO: refactorizable
     def save_document(self, _widget=None, _data=None):
@@ -467,6 +402,9 @@ class Window(Gtk.ApplicationWindow):
     def update_default_stat(self):
         self.stats_handler.update_default_stat()
 
+    def update_preview_mode(self):
+        self.preview_handler.update_preview_mode()
+
     def menu_toggle_sidebar(self, _widget=None):
         """WIP
         """
@@ -479,9 +417,7 @@ class Window(Gtk.ApplicationWindow):
             status {gtk bool} -- Desired status of the spellchecking
         """
 
-        self.text_view.gspell_view\
-            .set_inline_spell_checking(state.get_boolean()
-                                       and not self.text_view.focus_mode)
+        self.text_view.set_spellcheck(state.get_boolean())
 
     def toggle_gradient_overlay(self, state):
         """Toggle the gradient overlay
@@ -495,58 +431,8 @@ class Window(Gtk.ApplicationWindow):
         elif self.overlay_id:
             self.scrolled_window.disconnect(self.overlay_id)
 
-    def toggle_preview(self, state):
-        """Toggle the preview mode
-
-        Arguments:
-            state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
-        """
-
-        if state.get_boolean():
-            self.show_preview()
-        else:
-            self.show_text_editor()
-
-        return True
-
-    def show_text_editor(self):
-        self.scrolled_window.remove(self.scrolled_window.get_child())
-        self.scrolled_window.add(self.text_view)
-        self.text_view.show()
-        self.preview_webview.destroy()
-        self.preview_webview = None
-        self.queue_draw()
-
-    def show_preview(self, loaded=False):
-        if loaded:
-            self.scrolled_window.remove(self.scrolled_window.get_child())
-            self.scrolled_window.add(self.preview_webview)
-            self.preview_webview.show()
-            self.queue_draw()
-        else:
-            args = ['--standalone',
-                    '--mathjax',
-                    '--css=' + Theme.get_current().web_css_path,
-                    '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
-                    '--lua-filter=' + helpers.get_script_path('task-list.lua')]
-            output = helpers.pandoc_convert(self.text_view.get_text(), to="html5", args=args)
-
-            if self.preview_webview is None:
-                self.preview_webview = WebKit.WebView()
-                self.preview_webview.get_settings().set_allow_universal_access_from_file_urls(True)
-
-                # Show preview once the load is finished
-                self.preview_webview.connect("load-changed", self.on_preview_load_change)
-
-                # This saying that all links will be opened in default browser, \
-                # but local files are opened in appropriate apps:
-                self.preview_webview.connect("decide-policy", self.on_click_link)
-
-            self.preview_webview.load_html(output, 'file://localhost/')
-
-    def reload_preview(self):
-        if self.preview_webview:
-            self.show_preview()
+    def reload_preview(self, reshow=False):
+        self.preview_handler.reload(reshow=reshow)
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
@@ -617,15 +503,10 @@ class Window(Gtk.ApplicationWindow):
             True -- Gtk things
         """
 
-        if (self.was_motion is False
-                and self.top_bottom_bars_visible
+        if (not self.was_motion
                 and self.buffer_modified_for_status_bar
-                and self.text_view.props.has_focus): # pylint: disable=no-member
-            # self.status_bar.set_state_flags(Gtk.StateFlags.INSENSITIVE, True)
-            self.stats_counter_revealer.set_reveal_child(False)
-            self.headerbar.hb_revealer.set_reveal_child(False)
-            self.top_bottom_bars_visible = False
-            self.buffer_modified_for_status_bar = False
+                and self.text_view.props.has_focus):
+            self.reveal_top_bottom_bars(False)
 
         self.was_motion = False
         return True
@@ -643,24 +524,22 @@ class Window(Gtk.ApplicationWindow):
             return
         if now - self.timestamp_last_mouse_motion > 100:
             # react on motion by fading in headerbar and statusbar
-            if self.top_bottom_bars_visible is False:
-                self.stats_counter_revealer.set_reveal_child(True)
-                self.headerbar.hb_revealer.set_reveal_child(True)
-                self.headerbar.hb.props.opacity = 1
-                self.top_bottom_bars_visible = True
-                self.buffer_modified_for_status_bar = False
-                # self.status_bar.set_state_flags(Gtk.StateFlags.NORMAL, True)
+            self.reveal_top_bottom_bars(True)
             self.was_motion = True
 
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
         """
-        if self.top_bottom_bars_visible is False:
-            self.stats_counter_revealer.set_reveal_child(True)
-            self.headerbar.hb_revealer.set_reveal_child(True)
-            self.headerbar.hb.props.opacity = 1
-            self.top_bottom_bars_visible = True
-            self.buffer_modified_for_status_bar = False
+        self.reveal_top_bottom_bars(True)
+
+    def reveal_top_bottom_bars(self, reveal):
+        if self.top_bottom_bars_visible != reveal:
+            self.headerbar.hb_revealer.set_reveal_child(reveal)
+            self.stats_revealer.set_reveal_child(reveal)
+            for revealer in self.preview_handler.get_top_bottom_bar_revealers():
+                revealer.set_reveal_child(reveal)
+            self.top_bottom_bars_visible = reveal
+            self.buffer_modified_for_status_bar = reveal
 
     def draw_gradient(self, _widget, cr):
         """draw fading gradient over the top and the bottom of the
@@ -724,18 +603,4 @@ class Window(Gtk.ApplicationWindow):
         else:
             self.filename = None
             base_path = "/"
-        self.settings.set_value("open-file-path", GLib.Variant("s", base_path))
-
-    def on_preview_load_change(self, webview, event):
-        """swaps text editor with preview once the load is complete
-        """
-        if event == WebKit.LoadEvent.FINISHED:
-            self.show_preview(loaded=True)
-
-    def on_click_link(self, web_view, decision, _decision_type):
-        """provide ability for self.webview to open links in default browser
-        """
-        if web_view.get_uri().startswith(("http://", "https://", "www.")):
-            webbrowser.open(web_view.get_uri())
-            decision.ignore()
-            return True  # Don't let the event "bubble up"
+        self.settings.set_string("open-file-path", base_path)

@@ -48,8 +48,32 @@ class MainHeaderbar:  #pylint: disable=too-few-public-methods
         self.hb_container.add(self.hb_revealer)
         self.hb_container.show()
 
-        self.btns = buttons(app)
-        pack_buttons(self.hb, self.btns)
+        self.btns = main_buttons(app)
+        pack_main_buttons(self.hb, self.btns)
+
+        self.hb.show_all()
+
+
+class PreviewHeaderbar:
+    """Sets up the preview headerbar
+    """
+
+    def __init__(self):
+        self.hb = Gtk.HeaderBar().new()
+        self.hb.props.show_close_button = True
+        self.hb.get_style_context().add_class("titlebar")
+
+        self.hb_revealer = Gtk.Revealer(name="titlebar-revealer")
+        self.hb_revealer.add(self.hb)
+        self.hb_revealer.props.transition_duration = 750
+        self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
+        self.hb_revealer.show()
+        self.hb_revealer.set_reveal_child(True)
+
+        self.hb_container = Gtk.Frame(name="titlebar-container")
+        self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
+        self.hb_container.add(self.hb_revealer)
+        self.hb_container.show()
 
         self.hb.show_all()
 
@@ -70,14 +94,14 @@ class FullscreenHeaderbar:
         self.hb.show()
         self.events.hide()
 
-        self.btns = buttons(app)
+        self.btns = main_buttons(app)
 
         fs_btn_exit = Gtk.Button().new_from_icon_name("view-restore-symbolic",
                                                       Gtk.IconSize.BUTTON)
         fs_btn_exit.set_tooltip_text(_("Exit Fullscreen"))
         fs_btn_exit.set_action_name("app.fullscreen")
 
-        pack_buttons(self.hb, self.btns, fs_btn_exit)
+        pack_main_buttons(self.hb, self.btns, fs_btn_exit)
 
         self.hb.show_all()
 
@@ -101,7 +125,8 @@ class FullscreenHeaderbar:
         else:
             self.revealer.set_reveal_child(False)
 
-def buttons(app):
+
+def main_buttons(app):
     """constructor for the headerbar buttons
 
     Returns:
@@ -154,7 +179,7 @@ def buttons(app):
     return btn
 
 
-def pack_buttons(headerbar, btn, btn_exit=None):
+def pack_main_buttons(headerbar, btn, btn_exit=None):
     """Pack the given buttons in the given headerbar
 
     Arguments:

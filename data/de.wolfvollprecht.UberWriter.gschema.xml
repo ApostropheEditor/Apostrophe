@@ -10,6 +10,13 @@
     <value nick='read_time' value='4' />
   </enum>
 
+  <enum id='de.wolfvollprecht.UberWriter.PreviewMode'>
+    <value nick='full-width' value='0' />
+    <value nick='half-width' value='1' />
+    <value nick='half-height' value='2' />
+    <value nick='windowed' value='3' />
+  </enum>
+
   <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter">
 
     <key name='dark-mode-auto' type='b'>
@@ -41,6 +48,13 @@
         It can cause performance problems to some users.
       </description>
     </key>
+    <key name='sync-scroll' type='b'>
+      <default>true</default>
+      <summary>Synchronize editor/preview scrolling</summary>
+      <description>
+        Keep the editor and preview scroll positions in sync.
+      </description>
+    </key>
     <key name='input-format' type='s'>
       <default>"markdown"</default>
       <summary>Input format</summary>
@@ -67,6 +81,20 @@
       <summary>Default statistic</summary>
       <description>
         Which statistic is shown on the main window.
+      </description>
+    </key>
+    <key name='characters-per-line' type='i'>
+      <default>66</default>
+      <summary>Characters per line</summary>
+      <description>
+        Maximum number of characters per line within the editor.
+      </description>
+    </key>
+    <key name='preview-mode' enum='de.wolfvollprecht.UberWriter.PreviewMode'>
+      <default>"full-width"</default>
+      <summary>Preview mode</summary>
+      <description>
+        How to display the preview.
       </description>
     </key>
 
