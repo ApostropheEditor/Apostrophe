@@ -13,9 +13,9 @@
     <property name="website">http://uberwriter.github.io/uberwriter</property>
     <property name="website_label" translatable="yes">Uberwriter website</property>
     <property name="authors">Wolf Vollprecht &lt;w.vollprecht@gmail.com&gt;
-Manuel Genovés &lt;manuel.genoves@gmail.com&gt;</property>
-    <property name="translator_credits">
-Andrea Somaini (Italian)
+Manuel Genovés &lt;manuel.genoves@gmail.com&gt;
+Gonçalo Silva &lt;goncalossilva@gmail.com&gt;</property>
+    <property name="translator_credits">Andrea Somaini (Italian)
 Daniel Artfors (Swedish)
 shorez (German)
 TomBoss (French)
