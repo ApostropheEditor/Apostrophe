@@ -14,16 +14,37 @@ class WebView(WebKit2.WebView):
     Reference: https://github.com/aperezdc/webkit2gtk-python-webextension-example
     """
 
-    GET_SCROLL_SCALE_JS = """
-e = document.documentElement;
-e.scrollHeight > e.clientHeight ? e.scrollTop / (e.scrollHeight - e.clientHeight) : -1;
-"""
-
-    SET_SCROLL_SCALE_JS = """
+    SYNC_SCROLL_SCALE_JS = """
 scale = {:.16f};
+write = {};
+
+// Configure MathJax.
+if (typeof hasMathJax === "undefined") {{
+    hasMathJax = typeof MathJax !== "undefined";
+    if (hasMathJax) {{
+        MathJax.Hub.Config({{ messageStyle: "none" }});
+    }}
+}} 
+
+// Figure out if scrollable and rendered.
 e = document.documentElement;
-e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
-"""
+canScroll = e.scrollHeight > e.clientHeight;
+wasRendered = typeof isRendered !== "undefined" && isRendered;
+isRendered = wasRendered ||
+        hasMathJax && MathJax.Hub.queue.running == 0 && MathJax.Hub.queue.pending == 0;
+
+// Write the current scroll if instructed or if it was just rendered.
+if (canScroll && (write || isRendered && !wasRendered)) {{
+    e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
+}}
+
+// Return the current scroll if scrollable and rendered, or -1.
+if (canScroll && isRendered) {{
+    e.scrollTop / (e.scrollHeight - e.clientHeight);
+}} else {{
+    -1;
+}}
+""".strip()
 
     __gsignals__ = {
         "scroll-scale-changed": (GObject.SIGNAL_RUN_LAST, None, (float,)),
@@ -38,11 +59,11 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         self.connect("destroy", self.on_destroy)
 
         self.scroll_scale = 0.0
-        self.pending_scroll_scale = None
 
         self.state_loaded = False
         self.state_load_failed = False
-        self.state_discard_result = False
+        self.state_discard_read = False
+        self.state_dirty = False
         self.state_waiting = False
 
         self.timeout_id = None
@@ -51,14 +72,15 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         return self.scroll_scale
 
     def set_scroll_scale(self, scale):
-        self.pending_scroll_scale = scale
+        self.state_dirty = scale != self.scroll_scale
+        self.scroll_scale = scale
         self.state_loop()
 
     def on_load_changed(self, _web_view, event):
         self.state_loaded = event >= WebKit2.LoadEvent.COMMITTED and not self.state_load_failed
         self.state_load_failed = False
-        self.state_discard_result = event == WebKit2.LoadEvent.STARTED and self.state_waiting
-        self.pending_scroll_scale = self.scroll_scale
+        self.state_discard_read = event == WebKit2.LoadEvent.STARTED and self.state_waiting
+        self.state_dirty = True
         self.state_loop()
 
     def on_load_failed(self, _web_view, _event):
@@ -73,23 +95,16 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
         self.state_loaded = False
         self.state_loop()
 
-    def read_scroll_scale(self):
+    def sync_scroll_scale(self, scroll_scale, write):
         self.state_waiting = True
         self.run_javascript(
-            self.GET_SCROLL_SCALE_JS, None, self.finish_read_scroll_scale)
+            self.SYNC_SCROLL_SCALE_JS.format(scroll_scale, "true" if write else "false"),
+            None, self.finish_sync_scroll_scale)
 
-    def write_scroll_scale(self, scroll_scale):
-        self.run_javascript(
-            self.SET_SCROLL_SCALE_JS.format(scroll_scale), None, None)
-
-    def finish_read_scroll_scale(self, _web_view, result):
+    def finish_sync_scroll_scale(self, _web_view, result):
         self.state_waiting = False
-        if not self.state_discard_result:
-            result = self.run_javascript_finish(result)
-            self.state_loop(result.get_js_value().to_double())
-        else:
-            self.state_discard_result = False
-            self.state_loop()
+        result = self.run_javascript_finish(result)
+        self.state_loop(result.get_js_value().to_double())
 
     def state_loop(self, scroll_scale=None, delay=16):  # 16ms ~ 60hz
         # Remove any pending callbacks
@@ -98,18 +113,17 @@ e.scrollTop = (e.scrollHeight - e.clientHeight) * scale;
             self.timeout_id = None
 
         # Set scroll scale if specified, and the state is not dirty
-        if scroll_scale not in (None, -1, self.scroll_scale):
+        if not self.state_discard_read and scroll_scale not in (None, -1, self.scroll_scale):
             self.scroll_scale = scroll_scale
             self.emit("scroll-scale-changed", self.scroll_scale)
+        else:
+            self.state_discard_read = False
 
         # Handle the current state
         if not self.state_loaded or self.state_load_failed or self.state_waiting:
             return
-        if self.pending_scroll_scale:
-            self.write_scroll_scale(self.pending_scroll_scale)
-            self.pending_scroll_scale = None
-            self.read_scroll_scale()
-        elif delay > 0:
-            self.timeout_id = GLib.timeout_add(delay, self.state_loop, None, 0)
+        elif self.state_dirty or delay == 0:
+            self.sync_scroll_scale(self.scroll_scale, self.state_dirty)
+            self.state_dirty = False
         else:
-            self.read_scroll_scale()
+            self.timeout_id = GLib.timeout_add(delay, self.state_loop, None, 0)
