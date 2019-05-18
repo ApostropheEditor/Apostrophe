@@ -3,13 +3,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: POEditor.com\n"
 "Project-Id-Version: UberWriter\n"
 "Language: ca\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 #: uberwriter_lib/gtkspellcheck/spellcheck.py:487
 msgid "(no suggestions)"
@@ -304,8 +300,7 @@ msgid "Commandline Reference"
 msgstr "Referència de la línea d'ordres"
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:1
-msgid ""
-"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+msgid "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
 "# This program is free software: you can redistribute it and/or modify it \n"
 "# under the terms of the GNU General Public License version 3, as published \n"
 "# by the Free Software Foundation.\n"
@@ -317,8 +312,8 @@ msgid ""
 "# \n"
 "# You should have received a copy of the GNU General Public License along \n"
 "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-msgstr ""
-"# Drets d’autor © 2012 Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+""
+msgstr "# Drets d’autor © 2012 Wolf Vollprecht <w.vollprecht@gmail.com>\n"
 "# Aquest programa és programari lliure; modeu redistribuir-lo i/o modificar-lo \n"
 "# d’acord amb els termes de la Llicència Pública General de GNU (versió 3),\n"
 "# tal com ha estat publicada per la Free Software Foundation.\n"
@@ -329,7 +324,7 @@ msgstr ""
 "# DETERMINAT. Vegeu la Llicència Pública General de GNU per a conèixer-ne més.\n"
 "# \n"
 "# Heu d’haver rebut una còpia de la Llicència Pública General de GNU juntament\n"
-"# amb aquest programa. Si no, vegeu <http://www.gnu.org/licenses/>.\n"
+"# amb aquest programa. Si no, vegeu <http://www.gnu.org/licenses/>."
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:14
 msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
@@ -388,8 +383,9 @@ msgid "Dark mode"
 msgstr "Mode fosc"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:10
+#, fuzzy
 msgid "If enabled, the window will be dark themed If disabled, the window will be light themed asked to install them manually."
-msgstr "Si engegat, la finestra tindrà un tema fosc."
+msgstr "Si engegat, la finestra tindrà un tema fosc"
 
 #. <attribute name="action">win.change_label</attribute>
 #. <attribute name="target">String 1</attribute>
@@ -700,6 +696,7 @@ msgid "Open Tutorial"
 msgstr "Obre el tutorial"
 
 #: data/ui/Preferences.ui:45
+#, fuzzy
 msgid "Use dark mode"
 msgstr "Utilitza el mode fosc"
 
@@ -717,7 +714,9 @@ msgstr "Document sense títol.md"
 
 #: uberwriter/UberwriterExportDialog.py:372
 msgid "Please, install the TexLive extension from Gnome Software or running\n"
+""
 msgstr "Instal·leu el connector del TexLive mitjançant Programari del GNOME o executant\n"
+""
 
 #: uberwriter/UberwriterExportDialog.py:375
 msgid "Please, install TexLive from your distribuiton repositories"
@@ -751,3 +750,4 @@ msgstr "Menú"
 #: uberwriter/UberwriterWindow.py:961
 msgid "Exit Fullscreen"
 msgstr "Sortir de pantalla completa"
+
