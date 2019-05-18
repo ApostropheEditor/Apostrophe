@@ -3,13 +3,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: POEditor.com\n"
 "Project-Id-Version: UberWriter\n"
 "Language: fr\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 #: uberwriter_lib/gtkspellcheck/spellcheck.py:487
 msgid "(no suggestions)"
@@ -304,8 +300,7 @@ msgid "Commandline Reference"
 msgstr "Référence de Ligne de Commande"
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:1
-msgid ""
-"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+msgid "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
 "# This program is free software: you can redistribute it and/or modify it \n"
 "# under the terms of the GNU General Public License version 3, as published \n"
 "# by the Free Software Foundation.\n"
@@ -317,8 +312,8 @@ msgid ""
 "# \n"
 "# You should have received a copy of the GNU General Public License along \n"
 "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-msgstr ""
-"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+""
+msgstr "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
 "# This program is free software: you can redistribute it and/or modify it\n"
 "# under the terms of the GNU General Public License version 3, as published\n"
 "# by the Free Software Foundation.\n"
@@ -330,6 +325,7 @@ msgstr ""
 "#\n"
 "# You should have received a copy of the GNU General Public License along\n"
 "# with this program. If not, see <http://www.gnu.org/licenses/>.\n"
+""
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:14
 msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
@@ -341,7 +337,7 @@ msgstr "Sauvegarder le document"
 
 #: uberwriter/UberwriterWindow.py:490
 msgid "You can not export to PDF."
-msgstr "Impossible d'exporter en PDF."
+msgstr "Impossible d'exporter en PDF"
 
 #: uberwriter/UberwriterWindow.py:492
 msgid "Please install <a href=\"apt:texlive\">texlive</a> from the software center."
@@ -614,7 +610,7 @@ msgstr "texte barré"
 #: uberwriter/plugins/bibtex/bibtex_item.glade:32
 #: uberwriter/plugins/bibtex/bibtex_item.glade:45
 msgid "label"
-msgstr ""
+msgstr "tag"
 
 #: uberwriter_lib/AppWindow.py:248
 msgid "Use experimental features"
@@ -642,11 +638,11 @@ msgstr "Inconnu"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:18
 msgid "Open file base path"
-msgstr ""
+msgstr "Ouvrir le chemin d'accès au fichier"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:19
 msgid "Open file paths of the current session"
-msgstr ""
+msgstr "Ouvrir les chemins d'accès aux fichiers de la session en cours"
 
 #: data/ui/App_menu.ui:36
 msgid "Help to _translate"
@@ -676,27 +672,27 @@ msgstr "Donations :"
 
 #: data/ui/About.ui:69
 msgid "Liberapay"
-msgstr ""
+msgstr "Liberapay"
 
 #: data/ui/About.ui:100
 msgid "Help to translate:"
-msgstr "Aider à la _traduction:"
+msgstr "Aider à la _traduction"
 
 #: data/ui/About.ui:109
 msgid "Poeditor"
-msgstr ""
+msgstr "Poeditor"
 
 #: data/ui/Export.ui:559 data/ui/Export.ui:569
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: data/ui/Export.ui:582
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: data/ui/Export.ui:595
 msgid "ODT"
-msgstr ""
+msgstr "ODT"
 
 #: data/ui/Export.ui:607
 msgid "Advanced"
@@ -714,7 +710,7 @@ msgstr "Copier le HTML"
 
 #: data/ui/Menu.ui:38 data/ui/Preferences.ui:14
 msgid "Preferences"
-msgstr ""
+msgstr "Préférences"
 
 #: data/ui/Menu.ui:44
 msgid "Open Tutorial"
@@ -732,7 +728,7 @@ msgstr "Autocorrection"
 
 #: data/ui/Preferences.ui:95
 msgid "page 1"
-msgstr ""
+msgstr "page 1"
 
 #: uberwriter/UberwriterExportDialog.py:48
 msgid "Untitled document.md"
@@ -740,7 +736,8 @@ msgstr "Sans titre.md"
 
 #: uberwriter/UberwriterExportDialog.py:372
 msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr "Veuillez installer l'extension TexLive depuis la logithèque de Gnome\n"
+""
+msgstr "Veuillez installer l'extension TexLive depuis la logithèque de Gnome"
 
 #: uberwriter/UberwriterExportDialog.py:375
 msgid "Please, install TexLive from your distribuiton repositories"
@@ -773,9 +770,10 @@ msgstr "Rechercher et remplacer"
 
 #: uberwriter/UberwriterWindow.py:906 uberwriter/UberwriterWindow.py:956
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #: uberwriter/UberwriterWindow.py:961
 #, fuzzy
 msgid "Exit Fullscreen"
 msgstr "Sortir du Plein écran"
+
