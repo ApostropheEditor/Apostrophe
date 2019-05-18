@@ -3,13 +3,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: POEditor.com\n"
 "Project-Id-Version: UberWriter\n"
 "Language: es\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 #: uberwriter_lib/gtkspellcheck/spellcheck.py:487
 msgid "(no suggestions)"
@@ -304,8 +300,7 @@ msgid "Commandline Reference"
 msgstr "Referencia de consola"
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:1
-msgid ""
-"# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+msgid "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
 "# This program is free software: you can redistribute it and/or modify it \n"
 "# under the terms of the GNU General Public License version 3, as published \n"
 "# by the Free Software Foundation.\n"
@@ -317,11 +312,13 @@ msgid ""
 "# \n"
 "# You should have received a copy of the GNU General Public License along \n"
 "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+""
 msgstr ""
 
 #: ../data/ui/AboutUberwriterDialog.ui.h:14
 msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-msgstr "Derechos de autor © 2012 Wolf Vollprecht <w.vollprecht@gmail.com>"
+msgstr "Derechos de autor © 2012 Wolf Vollprecht <w.vollprecht@gmail.com>\n"
+""
 
 #: uberwriter/UberwriterWindow.py:347
 msgid "Save your File"
@@ -668,6 +665,7 @@ msgid "ODT"
 msgstr "ODT"
 
 #: data/ui/Export.ui:607
+#, fuzzy
 msgid "Advanced"
 msgstr "Avanzado"
 
@@ -705,7 +703,8 @@ msgstr "Documento sin título.md"
 
 #: uberwriter/UberwriterExportDialog.py:372
 msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr "Instale la extensión de TexLive desde Software de GNOME o ejecutando\n"
+""
+msgstr "Instale la extensión de TexLive desde Software de GNOME o ejecutando"
 
 #: uberwriter/UberwriterExportDialog.py:375
 msgid "Please, install TexLive from your distribuiton repositories"
@@ -739,3 +738,4 @@ msgstr "Menú"
 #: uberwriter/UberwriterWindow.py:961
 msgid "Exit Fullscreen"
 msgstr "Salir de pantalla completa"
+
