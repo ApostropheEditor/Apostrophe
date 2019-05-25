@@ -32,7 +32,7 @@ from uberwriter.text_view_markup_handler import MarkupHandler
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf
-from uberwriter import latex_to_PNG
+from uberwriter import latex_to_PNG, markup_regex
 from uberwriter.settings import Settings
 
 from uberwriter.fix_table import FixTable
@@ -179,7 +179,7 @@ def check_url(url, item, spinner):
         text = "Error! Reason: %s" % e.reason
 
     if not error:
-        if (response.code / 100) >= 4:
+        if response.code >= 400:
             LOGGER.debug("Website not available")
             text = _("Website is not available")
         else:
@@ -362,15 +362,12 @@ class InlinePreview:
 
         text = self.text_buffer.get_text(start_iter, end_iter, False)
 
-        math = MarkupHandler.regex["MATH"]
-        link = MarkupHandler.regex["LINK"]
-
         footnote = re.compile(r'\[\^([^\s]+?)\]')
         image = re.compile(r"!\[(.*?)\]\((.+?)\)")
 
         found_match = False
 
-        matches = re.finditer(math, text)
+        matches = re.finditer(markup_regex.MATH, text)
         for match in matches:
             LOGGER.debug(match.group(1))
             if match.start() < line_offset < match.end():
@@ -400,7 +397,7 @@ class InlinePreview:
 
         if not found_match:
             # Links
-            matches = re.finditer(link, text)
+            matches = re.finditer(markup_regex.LINK, text)
             for match in matches:
                 if match.start() < line_offset < match.end():
                     text = text[text.find("http://"):-1]
