@@ -39,7 +39,6 @@ class MarkupHandler:
         "LINK": re.compile(r"(\[).*(\]\(.+?\))"),
         "HORIZONTALRULE": re.compile(r"\n\n([ ]{0,3}[*\-_]{3,}[ ]*)\n\n", re.MULTILINE),
         "LIST": re.compile(r"^((?:\t|[ ]{4})*)[\-*+] .+", re.MULTILINE),
-        "NUMERICLIST": re.compile(r"^((\d|[a-z]|#)+[.)]) ", re.MULTILINE),
         "NUMBEREDLIST": re.compile(r"^((?:\t|[ ]{4})*)((?:\d|[a-z])+[.)]) .+", re.MULTILINE),
         "BLOCKQUOTE": re.compile(r"^[ ]{0,3}(?:>|(?:> )+).+", re.MULTILINE),
         "HEADER": re.compile(r"^[ ]{0,3}(#{1,6}) [^\n]+", re.MULTILINE),
