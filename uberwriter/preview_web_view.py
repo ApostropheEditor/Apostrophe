@@ -4,7 +4,7 @@ gi.require_version('WebKit2', '4.0')
 from gi.repository import WebKit2, GLib, GObject
 
 
-class WebView(WebKit2.WebView):
+class PreviewWebView(WebKit2.WebView):
     """A WebView that provides read/write access to scroll.
 
     It does so using JavaScript, by continuously monitoring it while loaded.

@@ -12,7 +12,7 @@ gi.require_version('WebKit2', '4.0')
 from gi.repository import WebKit2, GLib
 
 from uberwriter.preview_converter import PreviewConverter
-from uberwriter.web_view import WebView
+from uberwriter.preview_web_view import PreviewWebView
 
 
 class Step(IntEnum):
@@ -69,7 +69,7 @@ class PreviewHandler:
             self.loading = True
 
             if not self.web_view:
-                self.web_view = WebView()
+                self.web_view = PreviewWebView()
                 self.web_view.get_settings().set_allow_universal_access_from_file_urls(True)
 
                 # Show preview once the load is finished
