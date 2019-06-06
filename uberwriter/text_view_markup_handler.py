@@ -65,7 +65,10 @@ class MarkupHandler:
                                        pixels_above_lines=0,
                                        pixels_below_lines=0)
 
-        self.mathtext = buffer.create_tag('mathtext')
+        self.mathtext = buffer.create_tag('mathtext',
+                                          weight=Pango.Weight.NORMAL,
+                                          style=Pango.Style.NORMAL,
+                                          strikethrough=False)
 
         self.graytext = buffer.create_tag('graytext',
                                           foreground='gray',
@@ -104,8 +107,6 @@ class MarkupHandler:
         buffer = self.text_buffer
         start = buffer.get_start_iter()
         end = buffer.get_end_iter()
-        offset = 0
-
         text = buffer.get_slice(start, end, False)
 
         # Remove tags
@@ -120,59 +121,58 @@ class MarkupHandler:
         for tag in self.margins_indents.values():
             buffer.remove_tag(tag, start, end)
         buffer.remove_tag(self.graytext, start, end)
-        buffer.remove_tag(self.graytext, start, end)
 
         # Apply "_italic_" tag (italic)
-        matches = re.finditer(markup_regex.MATH, text)
+        matches = re.finditer(markup_regex.ITALIC, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             buffer.apply_tag(self.italic, start_iter, end_iter)
 
         # Apply "**bold**" tag (bold)
         matches = re.finditer(markup_regex.BOLD, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             buffer.apply_tag(self.bold, start_iter, end_iter)
 
         # Apply "***bolditalic***" tag (bold/italic)
         matches = re.finditer(markup_regex.BOLD_ITALIC, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             buffer.apply_tag(self.bolditalic, start_iter, end_iter)
 
         # Apply "~~strikethrough~~" tag (strikethrough)
         matches = re.finditer(markup_regex.STRIKETHROUGH, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             buffer.apply_tag(self.strikethrough, start_iter, end_iter)
 
         # Apply "[description](url)" (gray out)
         matches = re.finditer(markup_regex.LINK, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start("text") - 1)
+            start_iter = buffer.get_iter_at_offset(match.start("text") - 1)
             end_iter = start_iter.copy()
             end_iter.forward_char()
             buffer.apply_tag(self.graytext, start_iter, end_iter)
-            start_iter = buffer.get_iter_at_offset(offset + match.start("url") - 2)
-            end_iter = buffer.get_iter_at_offset(offset + match.end("url") + 1)
+            start_iter = buffer.get_iter_at_offset(match.start("url") - 2)
+            end_iter = buffer.get_iter_at_offset(match.end("url") + 1)
             buffer.apply_tag(self.graytext, start_iter, end_iter)
 
         # Apply "---" horizontal rule tag (center)
         matches = re.finditer(markup_regex.HORIZONTAL_RULE, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start("symbols"))
-            end_iter = buffer.get_iter_at_offset(offset + match.end("symbols"))
+            start_iter = buffer.get_iter_at_offset(match.start("symbols"))
+            end_iter = buffer.get_iter_at_offset(match.end("symbols"))
             buffer.apply_tag(self.horizontalrule, start_iter, end_iter)
 
         # Apply "* list" tag (offset)
         matches = re.finditer(markup_regex.LIST, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             # Lists use character+space (eg. "* ")
             length = 2
             nest = len(match.group("indent").replace("    ", "\t"))
@@ -183,8 +183,8 @@ class MarkupHandler:
         # Apply "1. ordered list" tag (offset)
         matches = re.finditer(markup_regex.ORDERED_LIST, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             # Numeric lists use numbers/letters+dot/parens+space (eg. "123. ")
             length = len(match.group("prefix")) + 1
             nest = len(match.group("indent").replace("    ", "\t"))
@@ -195,15 +195,15 @@ class MarkupHandler:
         # Apply "> blockquote" tag (offset)
         matches = re.finditer(markup_regex.BLOCK_QUOTE, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             buffer.apply_tag(self.get_margin_indent_tag(2, -2), start_iter, end_iter)
 
-        # Apply "#" tag (offset + bold)
+        # Apply "#" tag (bold)
         matches = re.finditer(markup_regex.HEADER, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             margin = -len(match.group("level")) - 1
             buffer.apply_tag(self.get_margin_indent_tag(margin, 0), start_iter, end_iter)
             buffer.apply_tag(self.bold, start_iter, end_iter)
@@ -211,30 +211,30 @@ class MarkupHandler:
         # Apply "======" header underline tag (bold)
         matches = re.finditer(markup_regex.HEADER_UNDER, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             buffer.apply_tag(self.bold, start_iter, end_iter)
 
         # Apply "```" code tag (offset)
         matches = re.finditer(markup_regex.CODE_BLOCK, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start("block"))
-            end_iter = buffer.get_iter_at_offset(offset + match.end("block"))
+            start_iter = buffer.get_iter_at_offset(match.start("block"))
+            end_iter = buffer.get_iter_at_offset(match.end("block"))
             buffer.apply_tag(self.get_margin_indent_tag(0, 2), start_iter, end_iter)
             buffer.apply_tag(self.plaintext, start_iter, end_iter)
 
-        # # Apply "---" table tag (wrap/pixels)
-        # matches = re.finditer(markup_regex.TABLE, text)
-        # for match in matches:
-        #     start_iter = buffer.get_iter_at_offset(offset + match.start())
-        #     end_iter = buffer.get_iter_at_offset(offset + match.end())
-        #     buffer.apply_tag(self.table, start_iter, end_iter)
+        # Apply "---" table tag (wrap/pixels)
+        matches = re.finditer(markup_regex.TABLE, text)
+        for match in matches:
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
+            buffer.apply_tag(self.table, start_iter, end_iter)
 
         # Apply "$math$" tag (colorize)
         matches = re.finditer(markup_regex.MATH, text)
         for match in matches:
-            start_iter = buffer.get_iter_at_offset(offset + match.start())
-            end_iter = buffer.get_iter_at_offset(offset + match.end())
+            start_iter = buffer.get_iter_at_offset(match.start())
+            end_iter = buffer.get_iter_at_offset(match.end())
             buffer.apply_tag(self.mathtext, start_iter, end_iter)
 
         # Apply focus mode tag (grey out before/after current sentence)
@@ -244,10 +244,8 @@ class MarkupHandler:
             start_sentence.backward_sentence_start()
             end_sentence = cursor_iter.copy()
             end_sentence.forward_sentence_end()
-            if start.compare(start_sentence) <= 0:
-                buffer.apply_tag(self.graytext, start, start_sentence)
-            if end.compare(end_sentence) >= 0:
-                buffer.apply_tag(self.graytext, end_sentence, end)
+            buffer.apply_tag(self.graytext, start, start_sentence)
+            buffer.apply_tag(self.graytext, end_sentence, end)
 
     # Margin and indent are cumulative. They differ in two ways:
     # * Margin is always in the beginning, which means it effectively only affects the first line
