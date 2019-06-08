@@ -1,21 +1,19 @@
-import math
 import re
 from queue import Queue
 from threading import Thread
 
 from gi.repository import GLib
 
-from uberwriter import helpers
+from uberwriter.markup_regex import ITALIC, BOLD_ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, \
+    HORIZONTAL_RULE, LIST, MATH, TABLE, CODE_BLOCK, HEADER_UNDER, HEADER, BLOCK_QUOTE, ORDERED_LIST, \
+    FOOTNOTE_ID, FOOTNOTE
 
 
 class StatsCounter:
     """Counts characters, words, sentences and read time using a background thread."""
 
-    # Regexp that matches characters, with the following exceptions:
-    # * Newlines
-    # * Sequential spaces
-    # * Sequential dashes
-    CHARACTERS = re.compile(r"[^\s-]|(?:[^\S\n](?!\s)|-(?![-\n]))")
+    # Regexp that matches any character, except for newlines and subsequent spaces.
+    CHARACTERS = re.compile(r"[^\s]|(?:[^\S\n](?!\s))")
 
     # Regexp that matches Asian letters, general symbols and hieroglyphs,
     # as well as sequences of word characters optionally containing non-word characters in-between.
@@ -27,6 +25,17 @@ class StatsCounter:
 
     # Regexp that matches paragraphs, ie. anything separated by newlines.
     PARAGRAPHS = re.compile(r".+\n?")
+
+    # List of regexp whose matches should be replaced by their "text" group. Order is important.
+    MARKUP_REGEXP_REPLACE = (
+        BOLD_ITALIC, ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LIST, ORDERED_LIST, BLOCK_QUOTE,
+        HEADER, HEADER_UNDER, CODE_BLOCK, TABLE, MATH, FOOTNOTE_ID, FOOTNOTE
+    )
+
+    # List of regexp whose matches should be removed. Order is important.
+    MARKUP_REGEXP_REMOVE = (
+        HORIZONTAL_RULE,
+    )
 
     def __init__(self):
         super().__init__()
@@ -59,7 +68,10 @@ class StatsCounter:
                 if self.queue.empty():
                     break
 
-            text = helpers.pandoc_convert(text, to="plain")
+            for regexp in self.MARKUP_REGEXP_REPLACE:
+                text = re.sub(regexp, r"\g<text>", text)
+            for regexp in self.MARKUP_REGEXP_REMOVE:
+                text = re.sub(regexp, "", text)
 
             character_count = len(re.findall(self.CHARACTERS, text))
 

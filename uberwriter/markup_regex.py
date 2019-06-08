@@ -31,6 +31,6 @@ TABLE = re.compile(
 MATH = re.compile(
     r"([$]{1,2})[^` ](?P<text>.+?)[^`\\ ]\1")
 FOOTNOTE_ID = re.compile(
-    r"[^\s]+\[\^(?P<id>[^\s]+)\]")
+    r"[^\s]+\[\^(?P<id>(?P<text>[^\s]+))\]")
 FOOTNOTE = re.compile(
     r"(?:^\n*|\n\n)\[\^(?P<id>[^\s]+)\]: (?P<text>(?:[^\n]+|\n+(?=(?:\t| {4})))+)(?:\n+|$)", re.M)
