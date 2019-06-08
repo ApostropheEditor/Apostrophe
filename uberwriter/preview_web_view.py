@@ -31,7 +31,8 @@ e = document.documentElement;
 canScroll = e.scrollHeight > e.clientHeight;
 wasRendered = typeof isRendered !== "undefined" && isRendered;
 isRendered = wasRendered ||
-        hasMathJax && MathJax.Hub.queue.running == 0 && MathJax.Hub.queue.pending == 0;
+        !hasMathJax ||
+        MathJax.Hub.queue.running == 0 && MathJax.Hub.queue.pending == 0;
 
 // Write the current scroll if instructed or if it was just rendered.
 if (canScroll && (write || isRendered && !wasRendered)) {{
