@@ -59,7 +59,7 @@ if (canScroll && isRendered) {{
         self.connect("size-allocate", self.on_size_allocate)
         self.connect("destroy", self.on_destroy)
 
-        self.scroll_scale = 0.0
+        self.scroll_scale = -1
 
         self.state_loaded = False
         self.state_load_failed = False
@@ -68,6 +68,9 @@ if (canScroll && isRendered) {{
         self.state_waiting = False
 
         self.timeout_id = None
+
+    def can_scroll(self):
+        return self.scroll_scale != -1
 
     def get_scroll_scale(self):
         return self.scroll_scale
@@ -114,11 +117,11 @@ if (canScroll && isRendered) {{
             self.timeout_id = None
 
         # Set scroll scale if specified, and the state is not dirty
-        if not self.state_discard_read and scroll_scale not in (None, -1, self.scroll_scale):
+        if not self.state_discard_read and scroll_scale not in (None, self.scroll_scale):
             self.scroll_scale = scroll_scale
-            self.emit("scroll-scale-changed", self.scroll_scale)
-        else:
-            self.state_discard_read = False
+            if self.scroll_scale != -1:
+                self.emit("scroll-scale-changed", self.scroll_scale)
+        self.state_discard_read = False
 
         # Handle the current state
         if not self.state_loaded or self.state_load_failed or self.state_waiting:

@@ -124,6 +124,9 @@ class TextView(Gtk.TextView):
         text_buffer = self.get_buffer()
         text_buffer.set_text(text)
 
+    def can_scroll(self):
+        return self.scroller.can_scroll()
+
     def get_scroll_scale(self):
         return self.scroller.get_scroll_scale() if self.scroller else 0
 
@@ -150,8 +153,8 @@ class TextView(Gtk.TextView):
         if parent:
             parent.set_size_request(self.get_min_width(), 500)
             self.scroller = TextViewScroller(self, parent)
-            parent.get_vadjustment().connect("changed", self.on_scroll_scale_changed)
-            parent.get_vadjustment().connect("value-changed", self.on_scroll_scale_changed)
+            parent.get_vadjustment().connect("changed", self.on_vadjustment_changed)
+            parent.get_vadjustment().connect("value-changed", self.on_vadjustment_changed)
         else:
             self.scroller = None
 
@@ -168,10 +171,10 @@ class TextView(Gtk.TextView):
             self.markup.apply()
         return False
 
-    def on_scroll_scale_changed(self, *_):
+    def on_vadjustment_changed(self, *_):
         if self.frozen_scroll_scale is not None:
             self.set_scroll_scale(self.frozen_scroll_scale)
-        else:
+        elif self.can_scroll():
             self.emit("scroll-scale-changed", self.get_scroll_scale())
 
     def unfreeze_scroll_scale(self):
