@@ -23,8 +23,8 @@ class StatsCounter:
     # exclamation mark, paragraph, and variants.
     SENTENCES = re.compile(r"[^\n][.。।෴۔።?՞;⸮؟？፧꘏⳺⳻⁇﹖⁈⁉‽!﹗！՜߹႟᥄\n]+")
 
-    # Regexp that matches paragraphs, ie. anything separated by newlines.
-    PARAGRAPHS = re.compile(r".+\n?")
+    # Regexp that matches paragraphs, ie. anything separated by at least 2 newlines.
+    PARAGRAPHS = re.compile(r"[^\n]+(\n{2,}|$)")
 
     # List of regexp whose matches should be replaced by their "text" group. Order is important.
     MARKUP_REGEXP_REPLACE = (
