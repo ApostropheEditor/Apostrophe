@@ -1,6 +1,5 @@
 import re
-from queue import Queue
-from threading import Thread
+from multiprocessing import Process, Pipe
 
 from gi.repository import GLib
 
@@ -10,7 +9,7 @@ from uberwriter.markup_regex import ITALIC, BOLD_ITALIC, BOLD, STRIKETHROUGH, IM
 
 
 class StatsCounter:
-    """Counts characters, words, sentences and read time using a background thread."""
+    """Counts characters, words, sentences and read time using a worker process."""
 
     # Regexp that matches any character, except for newlines and subsequent spaces.
     CHARACTERS = re.compile(r"[^\s]|(?:[^\S\n](?!\s))")
@@ -37,36 +36,44 @@ class StatsCounter:
         HORIZONTAL_RULE,
     )
 
-    def __init__(self):
+    def __init__(self, callback):
         super().__init__()
 
-        self.queue = Queue()
-        worker = Thread(target=self.__do_count, name="stats-counter")
-        worker.daemon = True
-        worker.start()
+        # Worker process to handle counting.
+        self.counting = False
+        self.count_pending_text = None
+        self.parent_conn, child_conn = Pipe()
+        Process(target=self.do_count, args=(child_conn,), daemon=True).start()
+        GLib.io_add_watch(
+            self.parent_conn.fileno(), GLib.PRIORITY_LOW, GLib.IO_IN, self.on_counted, callback)
 
-    def count(self, text, callback):
-        """Count stats for text, calling callback with a result when done.
+    def count(self, text):
+        """Count stats for text.
 
-        The callback argument contains the result, in the form:
+        In case counting is already running, it will re-count once it finishes. This ensure that
+        the pipe doesn't fill (and block) if multiple requests are made in quick succession."""
 
-        (characters, words, sentences, (hours, minutes, seconds))"""
+        if not self.counting:
+            self.counting = True
+            self.count_pending_text = None
+            self.parent_conn.send(text)
+        else:
+            self.count_pending_text = text
 
-        self.queue.put((text, callback))
+    def do_count(self, child_conn):
+        """Counts stats in a worker process.
+        
+        The result is in the format: (characters, words, sentences, (hours, minutes, seconds))"""
 
-    def stop(self):
-        """Stops the background worker. StatsCounter shouldn't be used after this."""
-
-        self.queue.put((None, None))
-
-    def __do_count(self):
         while True:
             while True:
-                (text, callback) = self.queue.get()
-                if text is None and callback is None:
+                try:
+                    text = child_conn.recv()
+                    if not child_conn.poll():
+                        break
+                except EOFError:
+                    child_conn.close()
                     return
-                if self.queue.empty():
-                    break
 
             for regexp in self.MARKUP_REGEXP_REPLACE:
                 text = re.sub(regexp, r"\g<text>", text)
@@ -85,6 +92,24 @@ class StatsCounter:
             read_h, read_m = divmod(read_m, 60)
             read_time = (int(read_h), int(read_m), int(read_s))
 
-            GLib.idle_add(
-                callback,
+            child_conn.send(
                 (character_count, word_count, sentence_count, paragraph_count, read_time))
+
+    def on_counted(self, _source, _condition, callback):
+        """Reads the counting result from the pipe and triggers any pending count."""
+
+        self.counting = False
+        if self.count_pending_text is not None:
+            self.count(self.count_pending_text)  # self.count clears the pending text.
+
+        try:
+            if self.parent_conn.poll():
+                callback(self.parent_conn.recv())
+            return True
+        except EOFError:
+            return False
+
+    def stop(self):
+        """Stops the worker process. StatsCounter shouldn't be used after this."""
+
+        self.parent_conn.close()
