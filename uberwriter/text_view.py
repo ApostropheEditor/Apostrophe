@@ -1,12 +1,11 @@
 import gi
-from gi.repository.GObject import SignalMatchType
 
 from uberwriter.inline_preview import InlinePreview
+from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
 from uberwriter.text_view_format_inserter import FormatInserter
 from uberwriter.text_view_markup_handler import MarkupHandler
 from uberwriter.text_view_scroller import TextViewScroller
 from uberwriter.text_view_undo_redo_handler import UndoRedoHandler
-from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gspell', '1')
@@ -88,6 +87,7 @@ class TextView(Gtk.TextView):
         # Markup
         self.markup = MarkupHandler(self)
         self.connect('style-updated', self.markup.on_style_updated)
+        self.connect('destroy', self.markup.stop)
 
         # Preview popover
         self.preview_popover = InlinePreview(self)
