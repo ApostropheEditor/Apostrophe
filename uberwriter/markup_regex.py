@@ -13,11 +13,11 @@ LINK = re.compile(
 IMAGE = re.compile(
     r"!\[(?P<text>.*)\]\((?P<url>.+?)(?: \"(?P<title>.+)\")?\)")
 HORIZONTAL_RULE = re.compile(
-    r"(?:^\n*|\n\n)(?P<symbols> {0,3}[*\-_]{3,} *)(?:\n+|$)")
+    r"(?:^|\n)(?P<symbols> {0,3}[*\-_]{3,} *)(?:\n+|$)")
 LIST = re.compile(
-    r"(?:^\n*|\n\n)(?P<indent>(?:\t| {4})*)[\-*+]( +)(?P<text>.+(?:\n+ \2.+)*)")
+    r"(?:^|\n)(?P<content>(?P<indent>(?:\t| {4})*)[\-*+]( +)(?P<text>.+(?:\n+ \2.+)*))")
 ORDERED_LIST = re.compile(
-    r"(?:^\n*|\n\n)(?P<indent>(?:\t| {4})*)(?P<prefix>(?:\d|[a-z])+[.)]) (?P<text>.+(?:\n+ {2}\2.+)*)")
+    r"(?:^|\n)(?P<content>(?P<indent>(?:\t| {4})*)(?P<prefix>(?:\d|[a-z])+[.)]) (?P<text>.+(?:\n+ {2}\2.+)*))")
 BLOCK_QUOTE = re.compile(
     r"^ {0,3}(?:> ?)+(?P<text>.+)", re.M)
 HEADER = re.compile(
