@@ -159,7 +159,7 @@ class TextView(Gtk.TextView):
             self.scroller = None
 
     def on_mark_set(self, _text_buffer, _location, mark, _data=None):
-        if mark.get_name() == 'insert':
+        if mark.get_name() == 'selection_bound':
             self.markup.apply()
             self.smooth_scroll_to(mark)
         elif mark.get_name() == 'gtk_drag_target':
