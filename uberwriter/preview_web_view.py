@@ -1,3 +1,5 @@
+import webbrowser
+
 import gi
 
 gi.require_version('WebKit2', '4.0')
@@ -54,9 +56,10 @@ if (canScroll && isRendered) {{
     def __init__(self):
         super().__init__()
 
+        self.connect("size-allocate", self.on_size_allocate)
+        self.connect("decide-policy", self.on_decide_policy)
         self.connect("load-changed", self.on_load_changed)
         self.connect("load-failed", self.on_load_failed)
-        self.connect("size-allocate", self.on_size_allocate)
         self.connect("destroy", self.on_destroy)
 
         self.scroll_scale = -1
@@ -80,6 +83,16 @@ if (canScroll && isRendered) {{
         self.scroll_scale = scale
         self.state_loop()
 
+    def on_size_allocate(self, *_):
+        self.set_scroll_scale(self.scroll_scale)
+
+    def on_decide_policy(self, _web_view, decision, decision_type):
+        if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION and \
+                decision.get_navigation_action().is_user_gesture():
+            webbrowser.open(decision.get_request().get_uri())
+            return True
+        return False
+
     def on_load_changed(self, _web_view, event):
         self.state_loaded = event >= WebKit2.LoadEvent.COMMITTED and not self.state_load_failed
         self.state_load_failed = False
@@ -91,9 +104,6 @@ if (canScroll && isRendered) {{
         self.state_loaded = False
         self.state_load_failed = True
         self.state_loop()
-
-    def on_size_allocate(self, *_):
-        self.set_scroll_scale(self.scroll_scale)
 
     def on_destroy(self, _widget):
         self.state_loaded = False
