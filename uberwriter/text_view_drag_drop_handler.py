@@ -58,5 +58,5 @@ class DragDropHandler:
             text_buffer.insert_at_cursor(data.get_text())
 
         Gtk.drag_finish(drag_context, True, True, time)
-        text_view.get_window().present_with_time(time)
+        text_view.get_toplevel().present_with_time(time)
         return False
