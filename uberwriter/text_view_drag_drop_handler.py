@@ -28,7 +28,6 @@ class DragDropHandler:
         if info == TARGET_URI:
             uris = data.get_uris()
             for uri in uris:
-                uri = urllib.parse.unquote_plus(uri)
                 mime = mimetypes.guess_type(uri)
 
                 if mime[0] is not None and mime[0].startswith('image'):
