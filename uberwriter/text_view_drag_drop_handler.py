@@ -31,8 +31,6 @@ class DragDropHandler:
                 mime = mimetypes.guess_type(uri)
 
                 if mime[0] is not None and mime[0].startswith('image'):
-                    if uri.startswith("file://"):
-                        uri = uri[7:]
                     text = "![Image caption](%s)" % uri
                     limit_left = 2
                     limit_right = 23
