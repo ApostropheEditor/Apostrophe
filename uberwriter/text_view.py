@@ -70,6 +70,8 @@ class TextView(Gtk.TextView):
 
         # Undo / redo
         self.undo_redo = UndoRedoHandler()
+        self.get_buffer().connect('begin-user-action', self.undo_redo.on_begin_user_action)
+        self.get_buffer().connect('end-user-action', self.undo_redo.on_end_user_action)
         self.get_buffer().connect('insert-text', self.undo_redo.on_insert_text)
         self.get_buffer().connect('delete-range', self.undo_redo.on_delete_range)
         self.connect('undo', self.undo_redo.undo)
