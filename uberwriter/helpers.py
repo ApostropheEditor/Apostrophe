@@ -20,6 +20,7 @@
 import logging
 import os
 import shutil
+from contextlib import contextmanager
 
 import gi
 import pypandoc
@@ -50,6 +51,13 @@ def get_builder(builder_file_name):
     builder.set_translation_domain()
     builder.add_from_file(ui_filename)
     return builder
+
+
+@contextmanager
+def user_action(text_buffer):
+    text_buffer.begin_user_action()
+    yield text_buffer
+    text_buffer.end_user_action()
 
 
 def path_to_file(path):

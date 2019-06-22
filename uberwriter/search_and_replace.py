@@ -19,6 +19,8 @@ import re
 
 import gi
 
+from uberwriter.helpers import user_action
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gdk
 
@@ -162,18 +164,20 @@ class SearchAndReplace:
         self.replace(self.active)
 
     def replace_all(self, _widget=None, _data=None):
-        for match in reversed(self.matches):
-            self.do_replace(match)
+        with user_action(self.textbuffer):
+            for match in reversed(self.matches):
+                self.__do_replace(match)
         self.search(scroll=False)
 
     def replace(self, searchindex, _inloop=False):
-        self.do_replace(self.matches[searchindex])
+        with user_action(self.textbuffer):
+            self.__do_replace(self.matches[searchindex])
         active = self.active
         self.search(scroll=False)
         self.active = active
         self.scrollto(self.active)
 
-    def do_replace(self, match):
+    def __do_replace(self, match):
         start_iter = self.textbuffer.get_iter_at_offset(match[0])
         end_iter = self.textbuffer.get_iter_at_offset(match[1])
         self.textbuffer.delete(start_iter, end_iter)
