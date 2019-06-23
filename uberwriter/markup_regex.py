@@ -5,7 +5,7 @@ ITALIC = re.compile(
 BOLD = re.compile(
     r"(\*\*|__)(?P<text>.+?)\1")
 BOLD_ITALIC = re.compile(
-    r"(\*\*\*|___)(?P<text>.+?)\1")
+    r"((\*\*|__)([*_])|([*_])(\*\*|__))(?P<text>.+?)(?:\5\4|\3\2)")
 STRIKETHROUGH = re.compile(
     r"~~(?P<text>.+?)~~")
 CODE = re.compile(
