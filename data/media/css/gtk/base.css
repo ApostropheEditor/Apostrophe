@@ -17,7 +17,7 @@
   bind "<ctl><shift>z" { "redo" () };
 }
 
-@define-color math_text_color mix(@theme_fg_color, #00b5ff, 0.15);
+@define-color code_bg_color mix(@theme_base_color, @theme_fg_color, 0.05);
 
 /* Main window and text colors */
 

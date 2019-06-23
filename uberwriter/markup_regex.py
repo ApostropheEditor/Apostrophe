@@ -8,6 +8,8 @@ BOLD_ITALIC = re.compile(
     r"(\*\*\*|___)(?P<text>.+?)\1")
 STRIKETHROUGH = re.compile(
     r"~~(?P<text>.+?)~~")
+CODE = re.compile(
+    r"`(?P<text>[^`].*?)`")
 LINK = re.compile(
     r"\[(?P<text>.*)\]\((?P<url>.+?)(?: \"(?P<title>.+)\")?\)")
 IMAGE = re.compile(

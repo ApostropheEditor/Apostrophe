@@ -21,7 +21,7 @@ import gi
 
 from uberwriter import helpers, markup_regex
 from uberwriter.markup_regex import STRIKETHROUGH, BOLD_ITALIC, BOLD, ITALIC, IMAGE, LINK, \
-    HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER, TABLE, MATH
+    HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER, TABLE, MATH, CODE
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib
@@ -37,7 +37,7 @@ class MarkupHandler:
     TAG_NAME_WRAP_NONE = 'wrap_none'
     TAG_NAME_PLAIN_TEXT = 'plain_text'
     TAG_NAME_GRAY_TEXT = 'gray_text'
-    TAG_NAME_MATH_TEXT = 'math_text'
+    TAG_NAME_CODE_TEXT = 'code_text'
     TAG_NAME_UNFOCUSED_TEXT = 'unfocused_text'
     TAG_NAME_MARGIN_INDENT = 'margin_indent'
 
@@ -83,7 +83,7 @@ class MarkupHandler:
                                                weight=Pango.Weight.NORMAL,
                                                style=Pango.Style.NORMAL)
 
-        self.tag_math_text = buffer.create_tag(self.TAG_NAME_MATH_TEXT,
+        self.tag_code_text = buffer.create_tag(self.TAG_NAME_CODE_TEXT,
                                                weight=Pango.Weight.NORMAL,
                                                style=Pango.Style.NORMAL,
                                                strikethrough=False)
@@ -97,7 +97,7 @@ class MarkupHandler:
             self.TAG_NAME_WRAP_NONE: lambda args: self.tag_wrap_none,
             self.TAG_NAME_PLAIN_TEXT: lambda args: self.tag_plain_text,
             self.TAG_NAME_GRAY_TEXT: lambda args: self.tag_gray_text,
-            self.TAG_NAME_MATH_TEXT: lambda args: self.tag_math_text,
+            self.TAG_NAME_CODE_TEXT: lambda args: self.tag_code_text,
             self.TAG_NAME_MARGIN_INDENT: lambda args: self.get_margin_indent_tag(*args)
         }
 
@@ -126,10 +126,12 @@ class MarkupHandler:
             self.parent_conn.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.on_parsed)
 
     def on_style_updated(self, *_):
-        (found, color) = self.text_view.get_style_context().lookup_color('math_text_color')
+        style_context = self.text_view.get_style_context()
+        (found, color) = style_context.lookup_color('code_bg_color')
         if not found:
-            (_, color) = self.text_view.get_style_context().lookup_color('foreground_color')
-        self.tag_math_text.set_property("foreground", color.to_string())
+            (_, color) = style_context.lookup_color('background_color')
+        self.tag_code_text.set_property("background", color.to_string())
+        self.tag_code_text.set_property("paragraph-background", color.to_string())
 
     def apply(self):
         """Applies markup, parsing it in a worker process if the text has changed.
@@ -171,6 +173,7 @@ class MarkupHandler:
             # - "**bold**" (bold)
             # - "***bolditalic***" (bold/italic)
             # - "~~strikethrough~~" (strikethrough)
+            # - "`code`" (colorize)
             # - "$math$" (colorize)
             # - "---" table (wrap/pixels)
             regexps = (
@@ -178,7 +181,8 @@ class MarkupHandler:
                 (BOLD, self.TAG_NAME_BOLD),
                 (BOLD_ITALIC, self.TAG_NAME_BOLD_ITALIC),
                 (STRIKETHROUGH, self.TAG_NAME_STRIKETHROUGH),
-                (MATH, self.TAG_NAME_MATH_TEXT),
+                (CODE, self.TAG_NAME_CODE_TEXT),
+                (MATH, self.TAG_NAME_CODE_TEXT),
                 (TABLE, self.TAG_NAME_WRAP_NONE)
             )
             for regexp, tag_name in regexps:
@@ -244,8 +248,8 @@ class MarkupHandler:
             matches = re.finditer(HEADER, text)
             for match in matches:
                 margin = -len(match.group("level")) - 1
-                result.append(
-                    (self.TAG_NAME_MARGIN_INDENT, (margin, 0), match.start(), match.end()))
+                result.append((
+                    self.TAG_NAME_MARGIN_INDENT, (margin, 0), match.start(), match.end()))
                 result.append((self.TAG_NAME_BOLD, (), match.start(), match.end()))
 
             # Find "=======" header underline (bold).
@@ -257,9 +261,9 @@ class MarkupHandler:
             matches = re.finditer(markup_regex.CODE_BLOCK, text)
             for match in matches:
                 result.append((
-                    self.TAG_NAME_MARGIN_INDENT, (0, 2), match.start("block"), match.end("block")))
+                    self.TAG_NAME_MARGIN_INDENT, (0, 1), match.start("block"), match.end("block")))
                 result.append((
-                    self.TAG_NAME_PLAIN_TEXT, (), match.start("block"), match.end("block")))
+                    self.TAG_NAME_CODE_TEXT, (), match.start("block"), match.end("block")))
 
             # Send parsed data back.
             child_conn.send((text, result))
@@ -295,7 +299,7 @@ class MarkupHandler:
             buffer.remove_tag(self.tag_center, start, end)
             buffer.remove_tag(self.tag_plain_text, start, end)
             buffer.remove_tag(self.tag_gray_text, start, end)
-            buffer.remove_tag(self.tag_math_text, start, end)
+            buffer.remove_tag(self.tag_code_text, start, end)
             buffer.remove_tag(self.tag_wrap_none, start, end)
             for tag in self.tags_margins_indents.values():
                 buffer.remove_tag(tag, start, end)
