@@ -467,11 +467,11 @@ class MainWindow(StyledWindow):
 
         self.load_file(helpers.get_media_file('uberwriter_markdown.md'))
 
-    def open_search_and_replace(self):
+    def open_search(self, replace=False):
         """toggle the search box
         """
 
-        self.searchreplace.toggle_search()
+        self.searchreplace.toggle_search(replace=replace)
 
     def open_advanced_export(self, _widget=None, _data=None):
         """open the export and advanced export dialog

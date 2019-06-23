@@ -98,6 +98,10 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_copy_html)
         self.add_action(action)
 
+        action = Gio.SimpleAction.new("search_replace", None)
+        action.connect("activate", self.on_search_replace)
+        self.add_action(action)
+
         action = Gio.SimpleAction.new("preferences", None)
         action.connect("activate", self.on_preferences)
         self.add_action(action)
@@ -143,6 +147,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.fullscreen", ["F11"])
         self.set_accels_for_action("app.preview", ["<Ctl>p"])
         self.set_accels_for_action("app.search", ["<Ctl>f"])
+        self.set_accels_for_action("app.search_replace", ["<Ctl>h"])
         self.set_accels_for_action("app.spellcheck", ["F7"])
 
         self.set_accels_for_action("app.new", ["<Ctl>n"])
@@ -208,7 +213,10 @@ class Application(Gtk.Application):
         self.window.save_document()
 
     def on_search(self, _action, _value):
-        self.window.open_search_and_replace()
+        self.window.open_search()
+
+    def on_search_replace(self, _action, _value):
+        self.window.open_search(replace=True)
 
     def on_focus_mode(self, action, value):
         action.set_state(value)

@@ -92,12 +92,19 @@
         <child>
           <object class="GtkShortcutsGroup" id="search">
             <property name="visible">True</property>
-            <property name="title" translatable="yes" context="shortcut window">Search</property>
+            <property name="title" translatable="yes" context="shortcut window">Find</property>
             <child>
               <object class="GtkShortcutsShortcut" id="s1-10">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes" context="shortcut window">Search</property>
+                <property name="title" translatable="yes" context="shortcut window">Find</property>
                 <property name="accelerator">&lt;Primary&gt;f</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut" id="s1-11">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes" context="shortcut window">Find and replace</property>
+                <property name="accelerator">&lt;Primary&gt;h</property>
               </object>
             </child>
           </object>

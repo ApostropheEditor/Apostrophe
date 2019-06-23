@@ -82,11 +82,10 @@ class SearchAndReplace:
         """
         self.replacebox.set_reveal_child(widget.get_active())
 
-    # TODO: refactorize!
     def key_pressed(self, _widget, event, _data=None):
         """hide the search and replace content box when ESC is pressed
         """
-        if event.keyval in [Gdk.KEY_Escape]:
+        if event.keyval == Gdk.KEY_Escape:
             self.hide()
 
     def focused_texteditor(self, _widget, _data=None):
@@ -94,15 +93,19 @@ class SearchAndReplace:
         """
         self.hide()
 
-    def toggle_search(self, _widget=None, _data=None):
+    def toggle_search(self, replace=False):
         """
-        show search box
+        toggle search box
         """
-        if self.textview.get_mapped() and (
-                self.box.get_reveal_child() is False or self.searchbar.get_search_mode() is False):
+        search_hidden = self.textview.get_mapped() and (
+                self.box.get_reveal_child() is False or self.searchbar.get_search_mode() is False)
+        replace_hidden = not self.open_replace_button.get_active()
+        if search_hidden or (replace and replace_hidden):
             self.searchbar.set_search_mode(True)
             self.box.set_reveal_child(True)
             self.searchentry.grab_focus()
+            if replace:
+                self.open_replace_button.set_active(True)
         else:
             self.hide()
             self.open_replace_button.set_active(False)
