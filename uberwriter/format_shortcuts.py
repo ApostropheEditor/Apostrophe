@@ -17,7 +17,7 @@
 
 from gettext import gettext as _
 
-from . MarkupBuffer import MarkupBuffer
+from uberwriter.markup_buffer import MarkupBuffer
 
 
 class FormatShortcuts():

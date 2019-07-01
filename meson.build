@@ -1,7 +1,6 @@
 project(
   'uberwriter',
   version: '2.2.0',
-  license: 'GPL2+',
   meson_version: '>= 0.50.0'
 )
 

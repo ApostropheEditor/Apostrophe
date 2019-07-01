@@ -47,7 +47,7 @@ def get_data_file(*path_segments):
 def get_data_path():
     """Retrieve uberwriter data path
 
-    This path is by default <uberwriter_lib_path>/../data/ in trunk
+    This path is by default <uberwriter_path>/../data/ in trunk
     and /opt/uberwriter/data in an installed version but this path
     is specified at installation time.
     """

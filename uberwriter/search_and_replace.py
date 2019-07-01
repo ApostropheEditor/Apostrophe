@@ -23,7 +23,7 @@ from gi.repository import Gtk, Gdk
 
 LOGGER = logging.getLogger('uberwriter')
 
-class UberwriterSearchAndReplace():
+class SearchAndReplace():
     """
     Adds (regex) search and replace functionality to
     uberwriter

@@ -48,7 +48,7 @@ A TextEditor is Gtk.TextView
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GObject
-from .FormatShortcuts import FormatShortcuts
+from uberwriter.format_shortcuts import FormatShortcuts
 
 import logging
 LOGGER = logging.getLogger('uberwriter')
