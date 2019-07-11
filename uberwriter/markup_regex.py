@@ -21,9 +21,9 @@ ORDERED_LIST = re.compile(
 BLOCK_QUOTE = re.compile(
     r"^ {0,3}(?:> ?)+(?P<text>.+)", re.M)
 HEADER = re.compile(
-    r"^ {0,3}(?P<level>#{1,6}) (?P<text>[^\n]+)", re.M)
+    r"^ {0,3}(?P<level>#{1,6})(?P<text>[^\n]+)", re.M)
 HEADER_UNDER = re.compile(
-    r"(?:^\n*|\n\n)(?P<text>[^\s].+)\n {0,3}[=\-]+(?:\s+?\n|$)")
+    r"(?:^\n*|\n\n)(?P<text>[^\s].+)\n[=\-]+(?: +?\n|$)")
 CODE_BLOCK = re.compile(
     r"(?:^|\n) {0,3}(?P<block>([`~]{3})(?P<text>.+?) {0,3}\2)(?:\s+?\n|$)", re.S)
 TABLE = re.compile(
