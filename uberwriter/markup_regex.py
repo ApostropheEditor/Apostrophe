@@ -1,15 +1,15 @@
 import re
 
 ITALIC = re.compile(
-    r"(\*|_)(?P<text>.+?)\1")
+    r"(\*|_)(?P<text>.*?\S.*?)\1")
 BOLD = re.compile(
-    r"(\*\*|__)(?P<text>.+?)\1")
+    r"(\*\*|__)(?P<text>.*?\S.*?)\1")
 BOLD_ITALIC = re.compile(
-    r"((\*\*|__)([*_])|([*_])(\*\*|__))(?P<text>.+?)(?:\5\4|\3\2)")
+    r"((\*\*|__)([*_])|([*_])(\*\*|__))(?P<text>.*?\S.*?)(?:\5\4|\3\2)")
 STRIKETHROUGH = re.compile(
-    r"~~(?P<text>.+?)~~")
+    r"~~(?P<text>.*?\S.*?)~~")
 CODE = re.compile(
-    r"`(?P<text>[^`].*?)`")
+    r"`(?P<text>[^`].+?)`")
 LINK = re.compile(
     r"\[(?P<text>.*)\]\((?P<url>.+?)(?: \"(?P<title>.+)\")?\)")
 IMAGE = re.compile(
@@ -23,9 +23,9 @@ ORDERED_LIST = re.compile(
 BLOCK_QUOTE = re.compile(
     r"^ {0,3}(?:> ?)+(?P<text>.+)", re.M)
 HEADER = re.compile(
-    r"^ {0,3}(?P<level>#{1,6})(?P<text>[^\n]+)", re.M)
+    r"^ {0,3}(?P<level>#{1,6}) (?P<text>[^\n]+)", re.M)
 HEADER_UNDER = re.compile(
-    r"(?:^\n*|\n\n)(?P<text>[^\s].+)\n[=\-]+(?: +?\n|$)")
+    r"(?:^\n*|\n\n)(?P<text>[^\s].+)\n {0,3}[=\-]+(?: +?\n|$)")
 CODE_BLOCK = re.compile(
     r"(?:^|\n) {0,3}(?P<block>([`~]{3})(?P<text>.+?) {0,3}\2)(?:\s+?\n|$)", re.S)
 TABLE = re.compile(

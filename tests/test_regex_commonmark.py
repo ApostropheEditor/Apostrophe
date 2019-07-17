@@ -22,10 +22,14 @@ from uberwriter import markup_regex
 
 
 class TestRegex(unittest.TestCase):
-    """Test cases from Windows CommunityToolkit
-       https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/master/UnitTests/Markdown/Parse/
+    """Test cases based on CommonMark's specs and demo:
+       - https://spec.commonmark.org/
+       - https://spec.commonmark.org/dingus/
 
-       TODO: use decorators. This needs decorators everywhere
+       CommonMark is the Markdown variant chosen as first-class. It's great and encouraged that
+       others are supported as well, but when in conflict or undecided, CommonMark should be picked.
+
+       TODO: Use decorators. This needs decorators everywhere.
     """
 
     def test_bold(self):
@@ -36,39 +40,37 @@ class TestRegex(unittest.TestCase):
             "This is __bold__ text": "bold",
             "before**middle**end": "middle",
             "before** middle **end": " middle ",
-            "before******after": "**"
+            "empty * * bold": None
         }
 
         for test, result in test_texts.items():
             with self.subTest(name=test):
                 match = re.search(markup_regex.BOLD, test)
                 if not match:
-                    self.assertFalse(result)
+                    self.assertFalse(result, msg=test)
                 else:
-                    self.assertEqual(match.group("text"), result)
+                    self.assertEqual(match.group("text"), result, msg=test)
 
     def test_header(self):
         test_texts = {
-            "#Header 1": "Header 1",
-            "##Header 2": "Header 2",
-            "###Header 3": "Header 3",
-            "####Header 4": "Header 4",
-            "#####Header 5": "Header 5",
-            "######Header 6": "Header 6",
-            "#######Header 6": "#Header 6",
-            "#": "",
-            "## # # ##": "# #",
-            "#######": "",
-            "before\n#Header\nafter": "Header"
+            "# Header 1": "Header 1",
+            "## Header 2": "Header 2",
+            "### Header 3": "Header 3",
+            "#### Header 4": "Header 4",
+            "##### Header 5": "Header 5",
+            "###### Header 6": "Header 6",
+            "#": None,
+            "#######": None,
+            "before\n# Header\nafter": "Header"
         }
 
         for test, result in test_texts.items():
             with self.subTest(name=test):
                 match = re.search(markup_regex.HEADER, test)
                 if not match:
-                    self.assertFalse(result)
+                    self.assertFalse(result, msg=test)
                 else:
-                    self.assertEqual(match.group("text"), result)
+                    self.assertEqual(match.group("text"), result, msg=test)
 
     def test_header_under(self):
         test_texts = {
@@ -76,16 +78,16 @@ class TestRegex(unittest.TestCase):
             "Header 1##\n=": "Header 1##",
             "Header 2\n--  \n": "Header 2",
             "Header 1\n=f": None,
-            "Header 1\n =": None
+            "Header 1\n =": "Header 1"
         }
 
         for test, result in test_texts.items():
             with self.subTest(name=test):
                 match = re.search(markup_regex.HEADER_UNDER, test)
                 if not match:
-                    self.assertFalse(result)
+                    self.assertFalse(result, msg=test)
                 else:
-                    self.assertEqual(match.group("text"), result)
+                    self.assertEqual(match.group("text"), result, msg=test)
 
 
 if __name__ == '__main__':
