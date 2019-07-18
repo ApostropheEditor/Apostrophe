@@ -168,6 +168,7 @@ class InlinePreview:
             markup_regex.MATH: self.get_view_for_math,
             markup_regex.IMAGE: self.get_view_for_image,
             markup_regex.LINK: self.get_view_for_link,
+            markup_regex.LINK_ALT: self.get_view_for_link,
             markup_regex.FOOTNOTE_ID: self.get_view_for_footnote,
             re.compile(r"(?P<text>\w+)"): self.get_view_for_lexikon
         }

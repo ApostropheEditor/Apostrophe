@@ -3,7 +3,7 @@ from multiprocessing import Process, Pipe
 
 from gi.repository import GLib
 
-from uberwriter.markup_regex import ITALIC, BOLD_ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, \
+from uberwriter.markup_regex import ITALIC, BOLD_ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LINK_ALT,\
     HORIZONTAL_RULE, LIST, MATH, TABLE, CODE_BLOCK, HEADER_UNDER, HEADER, BLOCK_QUOTE, ORDERED_LIST, \
     FOOTNOTE_ID, FOOTNOTE
 
@@ -29,6 +29,9 @@ class StatsCounter:
     MARKUP_REGEXP_REPLACE = (
         BOLD_ITALIC, ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LIST, ORDERED_LIST, BLOCK_QUOTE,
         HEADER, HEADER_UNDER, CODE_BLOCK, TABLE, MATH, FOOTNOTE_ID, FOOTNOTE
+    )
+    MARKUP_REGEXP_URL_REPLACE = (
+        LINK_ALT,
     )
 
     # List of regexp whose matches should be removed. Order is important.
@@ -75,6 +78,8 @@ class StatsCounter:
                     child_conn.close()
                     return
 
+            for regexp in self.MARKUP_REGEXP_URL_REPLACE:
+                text = re.sub(regexp, r"\g<url>", text)
             for regexp in self.MARKUP_REGEXP_REPLACE:
                 text = re.sub(regexp, r"\g<text>", text)
             for regexp in self.MARKUP_REGEXP_REMOVE:
