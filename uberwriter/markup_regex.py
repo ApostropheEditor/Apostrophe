@@ -13,7 +13,7 @@ CODE = re.compile(
 LINK = re.compile(
     r"\[(?P<text>.*)\]\((?P<url>.+?)(?: \"(?P<title>.+)\")?\)")
 LINK_ALT = re.compile(
-    r"(?:<)(?P<url>http://[^\s]+)(?:>)")
+    r"(?:<)(?P<url>https?://[^\s]+)(?:>)")
 IMAGE = re.compile(
     r"!\[(?P<text>.*)\]\((?P<url>.+?)(?: \"(?P<title>.+)\")?\)")
 HORIZONTAL_RULE = re.compile(
