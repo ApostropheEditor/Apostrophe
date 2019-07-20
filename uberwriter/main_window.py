@@ -482,7 +482,18 @@ class MainWindow(StyledWindow):
 
         response = self.export.dialog.run()
         if response == 1:
-            self.export.export(bytes(self.text_view.get_text(), "utf-8"))
+            try:
+                self.export.export(bytes(self.text_view.get_text(), "utf-8"))
+            except Exception as e:
+                dialog = Gtk.MessageDialog(self,
+                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.MessageType.ERROR,
+                                       Gtk.ButtonsType.CLOSE,
+                                       _("An error happened while trying to export:\n\n{err_msg}")
+                                           .format(err_msg= str(e).encode().decode("unicode-escape"))
+                                       )
+                dialog.run()
+                dialog.destroy()
 
         self.export.dialog.destroy()
 
