@@ -39,6 +39,7 @@ class MarkupHandler:
     TAG_NAME_PLAIN_TEXT = 'plain_text'
     TAG_NAME_GRAY_TEXT = 'gray_text'
     TAG_NAME_CODE_TEXT = 'code_text'
+    TAG_NAME_CODE_BLOCK = 'code_block'
     TAG_NAME_UNFOCUSED_TEXT = 'unfocused_text'
     TAG_NAME_MARGIN_INDENT = 'margin_indent'
 
@@ -89,6 +90,12 @@ class MarkupHandler:
                                                style=Pango.Style.NORMAL,
                                                strikethrough=False)
 
+        self.tag_code_block = buffer.create_tag(self.TAG_NAME_CODE_BLOCK,
+                                                weight=Pango.Weight.NORMAL,
+                                                style=Pango.Style.NORMAL,
+                                                strikethrough=False,
+                                                indent=self.get_margin_indent(0, 1)[1])
+
         self.tags_markup = {
             self.TAG_NAME_ITALIC: lambda args: self.tag_italic,
             self.TAG_NAME_BOLD: lambda args: self.tag_bold,
@@ -99,6 +106,7 @@ class MarkupHandler:
             self.TAG_NAME_PLAIN_TEXT: lambda args: self.tag_plain_text,
             self.TAG_NAME_GRAY_TEXT: lambda args: self.tag_gray_text,
             self.TAG_NAME_CODE_TEXT: lambda args: self.tag_code_text,
+            self.TAG_NAME_CODE_BLOCK: lambda args: self.tag_code_block,
             self.TAG_NAME_MARGIN_INDENT: lambda args: self.get_margin_indent_tag(*args)
         }
 
@@ -132,7 +140,7 @@ class MarkupHandler:
         if not found:
             (_, color) = style_context.lookup_color('background_color')
         self.tag_code_text.set_property("background", color.to_string())
-        self.tag_code_text.set_property("paragraph-background", color.to_string())
+        self.tag_code_block.set_property("paragraph-background", color.to_string())
 
     def apply(self):
         """Applies markup, parsing it in a worker process if the text has changed.
@@ -264,13 +272,11 @@ class MarkupHandler:
             for match in matches:
                 result.append((self.TAG_NAME_BOLD, (), match.start(), match.end()))
 
-            # Find "```" code tag (offset+remove other markup).
+            # Find "```" code block tag (offset + colorize paragraph).
             matches = re.finditer(markup_regex.CODE_BLOCK, text)
             for match in matches:
                 result.append((
-                    self.TAG_NAME_MARGIN_INDENT, (0, 1), match.start("block"), match.end("block")))
-                result.append((
-                    self.TAG_NAME_CODE_TEXT, (), match.start("block"), match.end("block")))
+                    self.TAG_NAME_CODE_BLOCK, (), match.start("block"), match.end("block")))
 
             # Send parsed data back.
             child_conn.send((text, result))
@@ -307,6 +313,7 @@ class MarkupHandler:
             buffer.remove_tag(self.tag_plain_text, start, end)
             buffer.remove_tag(self.tag_gray_text, start, end)
             buffer.remove_tag(self.tag_code_text, start, end)
+            buffer.remove_tag(self.tag_code_block, start, end)
             buffer.remove_tag(self.tag_wrap_none, start, end)
             for tag in self.tags_margins_indents.values():
                 buffer.remove_tag(tag, start, end)
