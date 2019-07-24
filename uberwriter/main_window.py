@@ -445,16 +445,15 @@ class MainWindow(StyledWindow):
             self.text_view.clear()
             try:
                 if os.path.exists(filename):
-                    current_file = codecs.open(filename, encoding="utf-8", mode='r')
-                    self.text_view.set_text(current_file.read())
-                    current_file.close()
+                    with codecs.open(filename, encoding="utf-8", mode='r') as current_file:
+                        self.text_view.set_text(current_file.read())
                 else:
                     dialog = Gtk.MessageDialog(self,
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.WARNING,
                                        Gtk.ButtonsType.CLOSE,
                                        _("The file you tried to open doesn't exist.\
-                                            \nA new file will be created in its place when you save the current one")
+                                            \nA new file will be created in its place when you save the current one.")
                                        )
                     dialog.run()
                     dialog.destroy()

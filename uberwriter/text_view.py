@@ -1,5 +1,6 @@
 import gi
 
+from uberwriter.helpers import user_action
 from uberwriter.inline_preview import InlinePreview
 from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
 from uberwriter.text_view_format_inserter import FormatInserter
@@ -124,8 +125,12 @@ class TextView(Gtk.TextView):
         return text_buffer.get_text(start_iter, end_iter, False)
 
     def set_text(self, text):
+        """Set text and clear undo history"""
+        
         text_buffer = self.get_buffer()
-        text_buffer.set_text(text)
+        with user_action(text_buffer):
+            text_buffer.set_text(text)
+        self.undo_redo.clear()
 
     def can_scroll(self):
         return self.scroller.can_scroll()
@@ -247,8 +252,7 @@ class TextView(Gtk.TextView):
     def clear(self):
         """Clear text and undo history"""
 
-        self.get_buffer().set_text('')
-        self.undo_redo.clear()
+        self.set_text('')
 
     def smooth_scroll_to(self, mark=None):
         """Scrolls if needed to ensure mark is visible.
