@@ -442,7 +442,6 @@ class MainWindow(StyledWindow):
         if filename:
             if filename.startswith('file://'):
                 filename = filename[7:]
-            filename = urllib.parse.unquote_plus(filename)
             self.text_view.clear()
             try:
                 if os.path.exists(filename):
