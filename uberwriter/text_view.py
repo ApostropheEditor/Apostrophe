@@ -62,6 +62,7 @@ class TextView(Gtk.TextView):
         # General behavior
         self.connect('size-allocate', self.on_size_allocate)
         self.get_buffer().connect('changed', self.on_text_changed)
+        self.get_buffer().connect('paste-done', self.on_paste_done)
 
         # Spell checking
         self.spellcheck = True
@@ -148,6 +149,8 @@ class TextView(Gtk.TextView):
 
     def on_text_changed(self, *_):
         self.markup.apply()
+
+    def on_paste_done(self, *_):
         self.smooth_scroll_to()
 
     def on_parent_set(self, *_):
@@ -163,7 +166,8 @@ class TextView(Gtk.TextView):
     def on_mark_set(self, _text_buffer, _location, mark, _data=None):
         if mark.get_name() == 'selection_bound':
             self.markup.apply()
-            self.smooth_scroll_to(mark)
+            if not self.get_buffer().get_has_selection():
+                self.smooth_scroll_to(mark)
         elif mark.get_name() == 'gtk_drag_target':
             self.smooth_scroll_to(mark)
         return True
