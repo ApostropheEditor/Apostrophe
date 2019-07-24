@@ -20,8 +20,9 @@ from multiprocessing import Pipe, Process
 import gi
 
 from uberwriter import helpers, markup_regex
-from uberwriter.markup_regex import STRIKETHROUGH, BOLD_ITALIC, BOLD, ITALIC, IMAGE, LINK, LINK_ALT, \
-    HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER, TABLE, MATH, CODE
+from uberwriter.markup_regex import STRIKETHROUGH, BOLD_ITALIC, BOLD, ITALIC, IMAGE, LINK,\
+    LINK_ALT, HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER, TABLE, MATH, \
+    CODE
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib
@@ -203,11 +204,11 @@ class MarkupHandler:
                     result.append((tag_name, (), match.start(), match.start("text")))
                     result.append((tag_name, (), match.end("text"), match.end()))
 
-            # - "<url>" (gray out)
+            # Find "<url>" links (gray out).
             matches = re.finditer(LINK_ALT, text)
             for match in matches:
                 result.append((
-                    self.TAG_NAME_GRAY_TEXT, (), match.start("url"), match.end("url")))
+                    self.TAG_NAME_GRAY_TEXT, (), match.start("text"), match.end("text")))
 
             # Find "---" horizontal rule (center).
             matches = re.finditer(HORIZONTAL_RULE, text)

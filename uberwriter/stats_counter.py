@@ -27,11 +27,8 @@ class StatsCounter:
 
     # List of regexp whose matches should be replaced by their "text" group. Order is important.
     MARKUP_REGEXP_REPLACE = (
-        BOLD_ITALIC, ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LIST, ORDERED_LIST, BLOCK_QUOTE,
-        HEADER, HEADER_UNDER, CODE_BLOCK, TABLE, MATH, FOOTNOTE_ID, FOOTNOTE
-    )
-    MARKUP_REGEXP_URL_REPLACE = (
-        LINK_ALT,
+        BOLD_ITALIC, ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LINK_ALT, LIST, ORDERED_LIST,
+        BLOCK_QUOTE, HEADER, HEADER_UNDER, CODE_BLOCK, TABLE, MATH, FOOTNOTE_ID, FOOTNOTE
     )
 
     # List of regexp whose matches should be removed. Order is important.
@@ -78,8 +75,6 @@ class StatsCounter:
                     child_conn.close()
                     return
 
-            for regexp in self.MARKUP_REGEXP_URL_REPLACE:
-                text = re.sub(regexp, r"\g<url>", text)
             for regexp in self.MARKUP_REGEXP_REPLACE:
                 text = re.sub(regexp, r"\g<text>", text)
             for regexp in self.MARKUP_REGEXP_REMOVE:
