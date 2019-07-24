@@ -449,12 +449,31 @@ class MainWindow(StyledWindow):
                     current_file = codecs.open(filename, encoding="utf-8", mode='r')
                     self.text_view.set_text(current_file.read())
                     current_file.close()
+                else:
+                    dialog = Gtk.MessageDialog(self,
+                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.MessageType.WARNING,
+                                       Gtk.ButtonsType.CLOSE,
+                                       _("The file you tried to open doesn't exist.\
+                                            \nA new file will be created in its place when you save the current one")
+                                       )
+                    dialog.run()
+                    dialog.destroy()
 
                 self.set_headerbar_title(os.path.basename(filename) + self.title_end)
                 self.set_filename(filename)
 
-            except Exception:
-                LOGGER.warning("Error Reading File: %r" % Exception)
+            except Exception as e:
+                LOGGER.warning(_("Error Reading File: %r") % e)
+                dialog = Gtk.MessageDialog(self,
+                                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                    Gtk.MessageType.WARNING,
+                                    Gtk.ButtonsType.CLOSE,
+                                    _("Error reading file:\
+                                         \n%r" %e)
+                                    )
+                dialog.run()
+                dialog.destroy()
             self.did_change = False
         else:
             LOGGER.warning("No File arg")
