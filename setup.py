@@ -69,7 +69,7 @@ setup(
         'uberwriter.pylocales' : ['locales.db'],
     },
     data_files=[
-        ('bin', ['bin/uberwriter']),
+        ('bin', ['uberwriter.in']),
         ('share/applications', ['data/de.wolfvollprecht.UberWriter.desktop']),
         ('share/metainfo', ['data/de.wolfvollprecht.UberWriter.appdata.xml']),
         ('share/icons/hicolor/scalable/apps', ['data/media/de.wolfvollprecht.UberWriter.svg']),
