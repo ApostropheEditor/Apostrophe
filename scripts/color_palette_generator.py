@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #
 # Generates color palettes based on the specified background/foreground colors.
 #

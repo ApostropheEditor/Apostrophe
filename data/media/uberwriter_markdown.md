@@ -95,7 +95,7 @@ To give your document some meta-information and a nice title, you can use title 
 
 Emphasizing some text is done by surrounding it with *s:
 
-This is *emphasized with asterisks*, and this will be a **bold text**. And even more ***krass***. And if you want to erase something: ~~completely gone~~ (sorrounded by ~)
+This is *emphasized with asterisks*, and this will be a **bold text**. And even more ***krass***. And if you want to erase something: ~~completely gone~~ (surrounded by ~)
 
 ### Horizontal Rules
 

@@ -442,19 +442,36 @@ class MainWindow(StyledWindow):
         if filename:
             if filename.startswith('file://'):
                 filename = filename[7:]
-            filename = urllib.parse.unquote_plus(filename)
             self.text_view.clear()
             try:
                 if os.path.exists(filename):
-                    current_file = codecs.open(filename, encoding="utf-8", mode='r')
-                    self.text_view.set_text(current_file.read())
-                    current_file.close()
+                    with codecs.open(filename, encoding="utf-8", mode='r') as current_file:
+                        self.text_view.set_text(current_file.read())
+                else:
+                    dialog = Gtk.MessageDialog(self,
+                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.MessageType.WARNING,
+                                       Gtk.ButtonsType.CLOSE,
+                                       _("The file you tried to open doesn't exist.\
+                                            \nA new file will be created in its place when you save the current one.")
+                                       )
+                    dialog.run()
+                    dialog.destroy()
 
                 self.set_headerbar_title(os.path.basename(filename) + self.title_end)
                 self.set_filename(filename)
 
-            except Exception:
-                LOGGER.warning("Error Reading File: %r" % Exception)
+            except Exception as e:
+                LOGGER.warning(_("Error Reading File: %r") % e)
+                dialog = Gtk.MessageDialog(self,
+                                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                    Gtk.MessageType.WARNING,
+                                    Gtk.ButtonsType.CLOSE,
+                                    _("Error reading file:\
+                                         \n%r" %e)
+                                    )
+                dialog.run()
+                dialog.destroy()
             self.did_change = False
         else:
             LOGGER.warning("No File arg")
@@ -467,11 +484,11 @@ class MainWindow(StyledWindow):
 
         self.load_file(helpers.get_media_file('uberwriter_markdown.md'))
 
-    def open_search_and_replace(self):
+    def open_search(self, replace=False):
         """toggle the search box
         """
 
-        self.searchreplace.toggle_search()
+        self.searchreplace.toggle_search(replace=replace)
 
     def open_advanced_export(self, _widget=None, _data=None):
         """open the export and advanced export dialog
@@ -482,7 +499,18 @@ class MainWindow(StyledWindow):
 
         response = self.export.dialog.run()
         if response == 1:
-            self.export.export(bytes(self.text_view.get_text(), "utf-8"))
+            try:
+                self.export.export(bytes(self.text_view.get_text(), "utf-8"))
+            except Exception as e:
+                dialog = Gtk.MessageDialog(self,
+                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.MessageType.ERROR,
+                                       Gtk.ButtonsType.CLOSE,
+                                       _("An error happened while trying to export:\n\n{err_msg}")
+                                           .format(err_msg= str(e).encode().decode("unicode-escape"))
+                                       )
+                dialog.run()
+                dialog.destroy()
 
         self.export.dialog.destroy()
 

@@ -1,10 +1,12 @@
+import webbrowser
+
 import gi
 
 gi.require_version('WebKit2', '4.0')
 from gi.repository import WebKit2, GLib, GObject
 
 
-class WebView(WebKit2.WebView):
+class PreviewWebView(WebKit2.WebView):
     """A WebView that provides read/write access to scroll.
 
     It does so using JavaScript, by continuously monitoring it while loaded.
@@ -31,7 +33,8 @@ e = document.documentElement;
 canScroll = e.scrollHeight > e.clientHeight;
 wasRendered = typeof isRendered !== "undefined" && isRendered;
 isRendered = wasRendered ||
-        hasMathJax && MathJax.Hub.queue.running == 0 && MathJax.Hub.queue.pending == 0;
+        !hasMathJax ||
+        MathJax.Hub.queue.running == 0 && MathJax.Hub.queue.pending == 0;
 
 // Write the current scroll if instructed or if it was just rendered.
 if (canScroll && (write || isRendered && !wasRendered)) {{
@@ -53,12 +56,13 @@ if (canScroll && isRendered) {{
     def __init__(self):
         super().__init__()
 
+        self.connect("size-allocate", self.on_size_allocate)
+        self.connect("decide-policy", self.on_decide_policy)
         self.connect("load-changed", self.on_load_changed)
         self.connect("load-failed", self.on_load_failed)
-        self.connect("size-allocate", self.on_size_allocate)
         self.connect("destroy", self.on_destroy)
 
-        self.scroll_scale = 0.0
+        self.scroll_scale = -1
 
         self.state_loaded = False
         self.state_load_failed = False
@@ -68,6 +72,9 @@ if (canScroll && isRendered) {{
 
         self.timeout_id = None
 
+    def can_scroll(self):
+        return self.scroll_scale != -1
+
     def get_scroll_scale(self):
         return self.scroll_scale
 
@@ -75,6 +82,16 @@ if (canScroll && isRendered) {{
         self.state_dirty = scale != self.scroll_scale
         self.scroll_scale = scale
         self.state_loop()
+
+    def on_size_allocate(self, *_):
+        self.set_scroll_scale(self.scroll_scale)
+
+    def on_decide_policy(self, _web_view, decision, decision_type):
+        if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION and \
+                decision.get_navigation_action().is_user_gesture():
+            webbrowser.open(decision.get_request().get_uri())
+            return True
+        return False
 
     def on_load_changed(self, _web_view, event):
         self.state_loaded = event >= WebKit2.LoadEvent.COMMITTED and not self.state_load_failed
@@ -87,9 +104,6 @@ if (canScroll && isRendered) {{
         self.state_loaded = False
         self.state_load_failed = True
         self.state_loop()
-
-    def on_size_allocate(self, *_):
-        self.set_scroll_scale(self.scroll_scale)
 
     def on_destroy(self, _widget):
         self.state_loaded = False
@@ -113,11 +127,11 @@ if (canScroll && isRendered) {{
             self.timeout_id = None
 
         # Set scroll scale if specified, and the state is not dirty
-        if not self.state_discard_read and scroll_scale not in (None, -1, self.scroll_scale):
+        if not self.state_discard_read and scroll_scale not in (None, self.scroll_scale):
             self.scroll_scale = scroll_scale
-            self.emit("scroll-scale-changed", self.scroll_scale)
-        else:
-            self.state_discard_read = False
+            if self.scroll_scale != -1:
+                self.emit("scroll-scale-changed", self.scroll_scale)
+        self.state_discard_read = False
 
         # Handle the current state
         if not self.state_loaded or self.state_load_failed or self.state_waiting:
