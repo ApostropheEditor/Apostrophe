@@ -1,40 +1,23 @@
 pkgname=uberwriter
-_pkgname=uberwriter
-pkgver=2.1.3
+pkgver=2.1.5
 pkgrel=1
-pkgdesc='A distraction free Markdown editor for GNU/Linux made with GTK+'
+pkgdesc="A distraction free Markdown editor for GNU/Linux made with GTK+"
 arch=('any')
-url='http://uberwriter.github.io/uberwriter/'
+url="https://uberwriter.github.io"
 license=('GPL3')
-depends=('gtk3' 'pandoc' 'gspell')
+depends=('gtk3' 'webkit2gtk' 'gspell' 'python-pypandoc' 'python-regex' 'python-levenshtein' 
+	'python-pyenchant' 'python-cairo')
 makedepends=('python-setuptools')
-optdepends=('texlive-core' 'otf-fira-mono: Recommended font')
-provides=("$_pkgname")
-conflicts=("$_pkgname")
-source=('git+https://github.com/UberWriter/uberwriter.git#branch=refactoring')
-sha256sums=('SKIP')
+optdepends=('texlive-core: For the pdftex module' 'otf-fira-mono: Recommended font')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/UberWriter/uberwriter/archive/v$pkgver.tar.gz")
+sha256sums=('2b62cecfdbe226d71fa86778b08a2d7500e43c28eaeea9bb574a57eb6cd7d15e')
 
-pkgver() {
-    cd $_pkgname
-    git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
-}
-
-build() {
-    cd $_pkgname
+ build() {
+    cd "$pkgname-$pkgver"
     python setup.py build
 }
 
-package() {
-    cd $_pkgname
+ package() {
+    cd "$pkgname-$pkgver"
     python setup.py install --skip-build --root="$pkgdir" --optimize=1
-}
-
-post_install() {
-    /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
-}
-post_upgrade() {
-    /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
-}
-post_remove() {
-    /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
 }
