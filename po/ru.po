@@ -689,7 +689,7 @@ msgstr "Без названия.md"
 #: uberwriter/export_dialog.py:340
 msgid "Please, install the TexLive extension from Gnome Software or running\n"
 msgstr ""
-"Пожалуйста, установите расширение TexLive из Gnome Software или запустите"
+"Пожалуйста, установите расширение TexLive из Gnome Software или запустите\n"
 
 #: uberwriter/export_dialog.py:343
 msgid "Please, install TexLive from your distribuiton repositories"
