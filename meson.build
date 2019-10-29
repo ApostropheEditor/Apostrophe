@@ -43,7 +43,7 @@ find_program('update-desktop-database', required: false)
 
 gettext_package = meson.project_name()
 localedir = get_option('prefix') / get_option('localedir')
-pythondir = get_option('prefix') / python.sysconfig_path('purelib')
+pythondir = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
 datadir = get_option('prefix') / get_option('datadir')
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 pkgdatadir = datadir / meson.project_name()
@@ -64,7 +64,7 @@ subdir('po')
 
 install_subdir(
   'uberwriter',
-  install_dir: python3
+  install_dir: pythondir
 )
 
 message('Preparing init file')
