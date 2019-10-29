@@ -2,6 +2,7 @@ build/lib.linux-x86_64-2.7
 *.pyc
 __pycache__/
 build/
+_build/
 debian/uberwriter/DEBIAN
 debian/uberwriter/opt
 debian/uberwriter/usr

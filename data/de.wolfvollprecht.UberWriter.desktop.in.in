@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=UberWriter
+Comment=UberWriter, a simple and distraction free Markdown Editor
+Categories=GNOME;GTK;Office;
+Exec=uberwriter %U
+Icon=@icon@
+Terminal=false
+Type=Application
+MimeType=text/x-markdown;text/plain;
