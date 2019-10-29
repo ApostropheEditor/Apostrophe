@@ -1,20 +1,20 @@
 {
     "app-id": "de.wolfvollprecht.UberWriter",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.32",
+    "runtime-version": "3.34",
     "sdk": "org.gnome.Sdk",
     "command": "uberwriter",
     "finish-args": [
         "--socket=x11",
+        "--socket=wayland",
         "--share=ipc",
+        "--share=network",
         "--filesystem=host",
         "--env=IN_FLATPAK=1",
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf",
-        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-        "--env=XDG_DATA_DIRS=/app/usr/share",
-        "--env=PATH=/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/usr/bin:/app/bin"
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
     "add-extensions": {
         "de.wolfvollprecht.UberWriter.Plugin": {
@@ -26,17 +26,28 @@
     }
     },
     "modules": [{
-        "name": "uberwriter",
-        "buildsystem": "meson",
-        "sources": [{
-            "type" : "git",
-            "url" : "../",
-            "branch" : "refactoring"
-        }],
-		"post-install": [
-			"install -d /app/extensions"
-		]
-	},
+        "name":"enchant",
+        "config-opts":[
+          "--disable-static",
+          "--with-myspell-dir=/usr/share/hunspell"
+        ],
+        "cleanup":[
+          "/bin"
+        ],
+        "sources":[{
+            "type":"archive",
+            "url":"https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
+            "sha256":"bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
+        }]
+    },
+    {
+        "name":"gspell",
+        "sources":[{
+            "type":"archive",
+            "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz",
+            "sha256":"819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5"
+        }]
+    },
     {
 		"name": "pandoc",
 		"only-arches": [
@@ -44,8 +55,8 @@
 		],
 		"buildsystem": "simple",
 		"build-commands": [
-			"cp bin/pandoc /app/usr/bin/pandoc",
-			"cp bin/pandoc-citeproc /app/usr/bin/pandoc-citeproc"
+			"cp bin/pandoc /app/bin/pandoc",
+			"cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
 		],
 		"sources": [{
 		    "type": "archive",
@@ -97,6 +108,18 @@
             "url": "https://github.com/mozilla/Fira",
             "tag": "4.202"
         }]
+    },
+    {
+        "name": "uberwriter",
+        "buildsystem": "meson",
+        "sources": [{
+            "type" : "git",
+            "url" : "../../",
+            "branch" : "bilelmoussaoui-meson"
+        }],
+		"post-install": [
+			"install -d /app/extensions"
+		]
     }
 	]
 }
