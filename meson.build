@@ -21,9 +21,6 @@ endif
 application_id = 'de.wolfvollprecht.UberWriter@0@'.format(profile)
 
 
-# This doesn't work yet. It's doesn't find the python3 from the sandboxed env first
-# python = import('python')
-# python3 = python.find_installation('python3')
 python = import('python3')
 python3 = python.find_python()
 if not python3.found()
@@ -64,6 +61,11 @@ conf.set('PYTHON', python3.path())
 subdir('data')
 #subdir('help')
 subdir('po')
+
+install_subdir(
+  'uberwriter',
+  install_dir: python3
+)
 
 message('Preparing init file')
 configure_file(
