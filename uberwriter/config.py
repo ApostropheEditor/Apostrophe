@@ -54,7 +54,7 @@ def get_data_path():
 
     # Get pathname absolute or relative.
     if os.path.isfile("/.flatpak-info"):
-        return '/app/share/uberwriter/data/'
+        return '/app/share/uberwriter/'
 
     path = os.path.join(
         os.path.dirname(__file__), __uberwriter_data_directory__)
