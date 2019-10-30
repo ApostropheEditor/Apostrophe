@@ -1,9 +1,9 @@
 # Download the installer! 
 # Currently using 2017 edition, upgrade to 2018 tomorrow! (just released, needs)
 # time to propagate everywhere
-wget ftp://tug.org/historic/systems/texlive/2018/install-tl-unx.tar.gz
+wget ftp://tug.org/historic/systems/texlive/2019/install-tl-unx.tar.gz
 myhash=$(sha256sum install-tl-unx.tar.gz | cut -d' ' -f1)
-if [ $myhash != "82c13110852af162c4c5ef1579fa2f4f51c2040850ec02fb7f97497da45eb446" ] ; then echo "CHECKSUM MISMATCH!"; exit 1 ; fi
+if [ $myhash != "44aa41b5783e345b7021387f19ac9637ff1ce5406a59754230c666642dfe7750" ] ; then echo "CHECKSUM MISMATCH!"; exit 1 ; fi
 
 tar xvf install-tl-unx.tar.gz
 
@@ -18,13 +18,13 @@ cat <<EOF > texlive.profile
 # It will NOT be updated and reflects only the
 # installation profile at installation time.
 selected_scheme scheme-basic
-TEXDIR /app/extensions/TexLive/2018
-TEXMFCONFIG ~/.texlive2018/texmf-config
+TEXDIR /app/extensions/TexLive/2019
+TEXMFCONFIG ~/.texlive2019/texmf-config
 TEXMFHOME ~/texmf
 TEXMFLOCAL /app/extensions/TexLive/texmf-local
-TEXMFSYSCONFIG /app/extensions/TexLive/2018/texmf-config
-TEXMFSYSVAR /app/extensions/TexLive/2018/texmf-var
-TEXMFVAR ~/.texlive2018/texmf-var
+TEXMFSYSCONFIG /app/extensions/TexLive/2019/texmf-config
+TEXMFSYSVAR /app/extensions/TexLive/2019/texmf-var
+TEXMFVAR ~/.texlive2019/texmf-var
 binary_x86_64-linux 1
 collection-latex 1
 collection-binextra 1
@@ -58,5 +58,5 @@ all:
 	echo "I am a pretty empty Makefile."
 
 install:
-	./install-tl-20180414/install-tl --profile texlive.profile
+	./install-tl-20190410/install-tl --profile texlive.profile
 EOF
