@@ -1,25 +1,32 @@
 [![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app)
 
-Uberwriter
+# Uberwriter
 ==========
 
 ![](screenshots/main.png)
 
-# About
+## About
 
 Uberwriter is a GTK+ based distraction free Markdown editor, mainly developed by Wolf Vollprecht. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.
 
-# Install
+## Install
 
-You can get now UberWriter on Flathub!
+You can get UberWriter on Flathub!
 [Get it now](https://flathub.org/apps/details/de.wolfvollprecht.UberWriter)
 
-# Contributions and localization
+## Contributions and localization
 
 If you want to help to localize the project, just join us at [Poeditor](https://poeditor.com/join/project/gxVzFyXb2x)
 Any help is appreciated!
 
-# Running and building it
+## Building from Git
+
+```bash
+$ git clone https://github.com/UberWriter/uberwriter.git`
+$ cd uberwriter
+$ meson builddir --prefix=/usr
+# sudo ninja -C builddir install
+```
 
 To use uberwriter, please make sure you have some dependencies installed:
 
@@ -29,30 +36,21 @@ To use uberwriter, please make sure you have some dependencies installed:
 - Please find these packages on your distribution: `python3 python3-regex python3-setuptools python3-levenshtein python3-enchant python3-gi python3-cairo`
 - Optional dependencies are `texlive` for the pdftex module.
 
-You can run UberWriter with `./bin/uberwriter` without installing it in the system,
+### Running it without installing it
+
+You can run UberWriter with `./uberwriter.in` without installing it in the system,
 but you'll need to install and compile the schemas before:
-`sudo cp data/de.wolfvollprecht.UberWriter.gschema.xml /usr/share/glib-2.0/schemas/de.wolfvollprecht.UberWriter.gschema.xml`
-`sudo glib-compile-schemas /usr/share/glib-2.0/schemas`
+
+```bash
+# sudo cp data/de.wolfvollprecht.UberWriter.gschema.xml /usr/share/glib-2.0/schemas/de.wolfvollprecht.UberWriter.gschema.xml
+# sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+```
+
+### Building a flatpak package
 
 It's also possible to build, run and debug a flatpak package. You'll need flatpak-builder for this:
 
-- `make flatpak-user-install` (this installs the Flatpak)
-- `flatpak run de.wolfvollprecht.UberWriter`
-
-If you can't find Uberwriter after this, it's due to a Flatpak bug. Try to export it to a local repo before installing it:
-
-- `cd flatpak`
-- `flatpak-builder --repo=org.foo.Uberwriter --force-clean build uberwriter.json`
-- `flatpak remote-add --no-gpg-verify user org.foo.Uberwriter`
-- `flatpak install foo de.wolfvollprecht.UberWriter`
-
-Where `org.foo.repo` is the name of your repo, you can change 'foo' with the name you want
-Then you can run it as before or from your system launcher.
-
-If you want to update an existing installation, just run
-
-- `flatpak update de.wolfvollprecht.UberWriter`
-
-You can also debug it with the following: `flatpak-builder --run --share=network some_folder_name uberwriter.json sh`
-
-If you want to install it using setuptools, simply run `python3 setup.py build install`
+```bash
+$ cd build-aux/flatpak
+$ flatpak-builder --force-clean --install --user _build de.wolfvollprecht.UberWriter.json
+```
