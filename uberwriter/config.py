@@ -63,7 +63,7 @@ def get_data_path():
     # in the system installation path
     abs_data_path = os.path.abspath(path)
     if not os.path.exists(abs_data_path):
-        abs_data_path = '/usr/share/uberwriter/data/'
+        abs_data_path = '/usr/share/uberwriter/'
     elif not os.path.exists(abs_data_path):
         raise ProjectPathNotFound
 
