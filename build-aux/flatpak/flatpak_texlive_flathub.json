@@ -2,7 +2,7 @@
     "id": "de.wolfvollprecht.UberWriter.Plugin.TexLive",
     "runtime": "de.wolfvollprecht.UberWriter",
     "branch": "stable",
-    "sdk": "org.gnome.Sdk//3.32",
+    "sdk": "org.gnome.Sdk//3.34",
     "build-extension": true,
     "separate-locales": false,
     "appstream-compose": false,
@@ -13,7 +13,7 @@
         "cflags": "-O2 -g",
         "cxxflags": "-O2 -g",
         "env": {
-          "PATH": "/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/bin:/usr/bin"
+          "PATH": "/app/extensions/TexLive/bin:/app/extensions/TexLive/2019/bin/x86_64-linux:/app/bin:/usr/bin"
         }
     },
     "cleanup": ["/bin/wget"],
@@ -55,7 +55,7 @@
 				{
 					"type":"file",
 					"url": "http://mirrors.ctan.org/systems/texlive/Images/texlive.iso",
-					"sha512": "7b7f0dd0eab3bfffe52c5cd1139c7f75d029b9ff4c4ce0e57e06834705522f4ec0c02cd99a80b053c6619abda51c20a60f8e91e91781bdc2b9b60fc2e5708adb"
+					"sha512": "a00a943ce4438fe2aecf8b1e05f9055135ef03c56b6782a49205bac9023d77c781f3cab50f2f9555ac116bb0d97d6570afffe7c60b8745325b9941f82af7ef83 "
 				},
 				{
 			                "type": "file",

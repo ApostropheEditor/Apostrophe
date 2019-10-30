@@ -10,11 +10,8 @@
         "--share=ipc",
         "--share=network",
         "--filesystem=host",
-        "--env=IN_FLATPAK=1",
-        "--filesystem=xdg-run/dconf",
-        "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf",
-        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+        "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2019/bin/x86_64-linux/",
+        "--metadata=X-DConf=migrate-path=/de/wolfvollprecht/UberWriter/"
     ],
     "add-extensions": {
         "de.wolfvollprecht.UberWriter.Plugin": {
@@ -26,49 +23,34 @@
     }
     },
     "modules": [{
-        "name":"enchant",
-        "config-opts":[
-          "--disable-static",
-          "--with-myspell-dir=/usr/share/hunspell"
-        ],
-        "cleanup":[
-          "/bin"
-        ],
-        "sources":[{
-            "type":"archive",
-            "url":"https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
-            "sha256":"bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
-        }]
+      "name":"gspell",
+      "sources":[{
+          "type":"archive",
+          "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz",
+          "sha256":"819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5"
+      }]
     },
     {
-        "name":"gspell",
-        "sources":[{
-            "type":"archive",
-            "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz",
-            "sha256":"819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5"
-        }]
-    },
-    {
-		"name": "pandoc",
-		"only-arches": [
-		  "x86_64"
-		],
-		"buildsystem": "simple",
-		"build-commands": [
-			"cp bin/pandoc /app/bin/pandoc",
-			"cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
-		],
-		"sources": [{
-		    "type": "archive",
-		    "url": "https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
-		    "sha256": "06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
-		}]
+      "name": "pandoc",
+      "only-arches": [
+        "x86_64"
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "cp bin/pandoc /app/bin/pandoc",
+        "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
+      ],
+      "sources": [{
+          "type": "archive",
+          "url": "https://github.com/jgm/pandoc/releases/download/2.2/pandoc-2.2-linux.tar.gz",
+          "sha256": "06ecd882e42ef9b7390b1c82e1e71b3ea48679181289b9b810a8797825bed8ed"
+      }]
     },
     {
 		"name": "pipdeps",
      	"buildsystem": "simple",
       	"build-commands": [
-			"pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pyenchant regex pypandoc"
+			"pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} regex pypandoc"
 		],
       	"sources": [{
 			"type": "file",
@@ -113,9 +95,8 @@
         "name": "uberwriter",
         "buildsystem": "meson",
         "sources": [{
-            "type" : "git",
-            "url" : "../../",
-            "branch" : "bilelmoussaoui-meson"
+            "type" : "dir",
+            "path" : "../../"
         }],
 		"post-install": [
 			"install -d /app/extensions"

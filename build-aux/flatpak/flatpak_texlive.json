@@ -2,7 +2,7 @@
     "id": "de.wolfvollprecht.UberWriter.Plugin.TexLive",
     "runtime": "de.wolfvollprecht.UberWriter",
     "branch": "stable",
-    "sdk": "org.gnome.Sdk//3.32",
+    "sdk": "org.gnome.Sdk//3.34",
     "build-extension": true,
     "separate-locales": false,
     "appstream-compose": false,
@@ -13,7 +13,7 @@
         "cflags": "-O2 -g",
         "cxxflags": "-O2 -g",
         "env": {
-          "PATH": "/app/extensions/TexLive/bin:/app/extensions/TexLive/2018/bin/x86_64-linux:/app/bin:/usr/bin"
+          "PATH": "/app/extensions/TexLive/bin:/app/extensions/TexLive/2019/bin/x86_64-linux:/app/bin:/usr/bin"
         }
     },
     "cleanup": ["/bin/wget"],
