@@ -14,6 +14,7 @@ desktop_file = i18n.merge_file(
   install: true,
   install_dir: get_option('datadir') / 'applications'
 )
+
 # Validate Desktop File
 desktop_file_validate = find_program('desktop-file-validate', required: false)
 if desktop_file_validate.found()
@@ -57,6 +58,33 @@ install_data(
 	rename: '@0@.gschema.xml'.format(application_id)
 )
 
+# Resources
+ui_config = configuration_data()
+ui_config.set('app-id', application_id)
+ui_config.set('version', meson.project_version() + version_suffix)
+ui_config.set('package_url', 'http://uberwriter.github.io/uberwriter/')
+ui_preconfigured_files = files(
+  'ui/About.ui.in'
+)
+ui_dependencies = []
+foreach ui_file: ui_preconfigured_files
+  ui_dependencies += configure_file(
+    input:  ui_file,
+    output: '@BASENAME@',
+    configuration: ui_config
+  )
+endforeach
+
+resources = gnome.compile_resources(
+  meson.project_name(),
+  meson.project_name() + '.gresource.xml',
+  gresource_bundle: true,
+  install:true,
+  install_dir: join_paths(datadir, meson.project_name()),
+  dependencies: ui_dependencies
+)
+message('datadir')
+message(datadir)
 subdir('icons')
 
 install_subdir(

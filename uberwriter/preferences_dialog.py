@@ -27,7 +27,6 @@ from gi.repository import Gtk, Pango, GLib  # pylint: disable=E0611
 import logging
 logger = logging.getLogger('uberwriter')
 
-from uberwriter.helpers import get_builder
 
 
 class PreferencesDialog:
@@ -64,7 +63,9 @@ class PreferencesDialog:
 
     def __init__(self, settings):
         self.settings = settings
-        self.builder = get_builder("Preferences")
+        self.builder = Gtk.Builder()
+        self.builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Preferences.ui")
 
         self.dark_mode_auto_switch = self.builder.get_object("dark_mode_auto_switch")
         self.dark_mode_auto_switch.set_active(self.settings.get_value("dark-mode-auto"))

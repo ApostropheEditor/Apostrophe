@@ -4,7 +4,7 @@ from uberwriter import helpers
 from uberwriter.theme import Theme
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk, GLib, Gio
 
 
 class StyledWindow(Gtk.ApplicationWindow):
@@ -27,8 +27,10 @@ class StyledWindow(Gtk.ApplicationWindow):
                 GLib.Variant("b", theme.is_dark))
 
             # Set theme css
+            css_provider_file = Gio.File.new_for_uri(
+                "resource:///de/wolfvollprecht/UberWriter/media/css/gtk/base.css")
             style_provider = Gtk.CssProvider()
-            style_provider.load_from_path(helpers.get_css_path("gtk/base.css"))
+            style_provider.load_from_file(css_provider_file)
             Gtk.StyleContext.add_provider_for_screen(
                 self.get_screen(), style_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)

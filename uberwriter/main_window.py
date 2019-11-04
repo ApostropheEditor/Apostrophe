@@ -36,7 +36,6 @@ import cairo
 
 from uberwriter import helpers
 from uberwriter.theme import Theme
-from uberwriter.helpers import get_builder
 
 from uberwriter.sidebar import Sidebar
 from uberwriter.search_and_replace import SearchAndReplace
@@ -72,7 +71,9 @@ class MainWindow(StyledWindow):
         self.get_style_context().add_class('uberwriter-window')
 
         # Set UI
-        builder = get_builder('Window')
+        builder = Gtk.Builder()
+        builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Window.ui")
         root = builder.get_object("FullscreenOverlay")
         self.connect("delete-event", self.on_delete_called)
         self.add(root)
