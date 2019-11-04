@@ -24,7 +24,7 @@ from uberwriter import main_window
 from uberwriter.settings import Settings
 from uberwriter.helpers import set_up_logging
 from uberwriter.preferences_dialog import PreferencesDialog
-from uberwriter.helpers import get_builder, get_media_path
+from uberwriter.helpers import get_media_path
 
 
 class Application(Gtk.Application):
@@ -247,7 +247,9 @@ class Application(Gtk.Application):
         PreferencesDialog(self.settings).show(self.window)
 
     def on_shortcuts(self, _action, _param):
-        builder = get_builder('Shortcuts')
+        builder = Gtk.Builder()
+        builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Shortcuts.ui")
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
 
@@ -255,14 +257,11 @@ class Application(Gtk.Application):
         self.window.open_uberwriter_markdown()
 
     def on_about(self, _action, _param):
-        builder = get_builder('About')
+        builder = Gtk.Builder()
+        builder.add_from_resource("/de/wolfvollprecht/UberWriter/About.ui")
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
 
-        logo_file = get_media_path("de.wolfvollprecht.UberWriter.svg")
-        logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
-
-        about_dialog.set_logo(logo)
         about_dialog.present()
 
     def on_quit(self, _action, _param):

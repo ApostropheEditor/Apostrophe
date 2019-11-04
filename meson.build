@@ -50,7 +50,7 @@ pkgdatadir = datadir / meson.project_name()
 podir = meson.source_root() / 'po'
 
 conf = configuration_data()
-conf.set('PACKAGE_URL', 'http://uberwriter.github.io/uberwriter/#1')
+conf.set('PACKAGE_URL', 'http://uberwriter.github.io/uberwriter/')
 conf.set('DATA_DIR', datadir)
 conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
 conf.set('PYTHON_DIR', pythondir)

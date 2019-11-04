@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/de/wolfvollprecht/UberWriter/">
+    <file compressed="true">media/css/gtk/base.css</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Menu.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Preferences.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Preview.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Recents.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Shortcuts.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">About.ui</file>
+  </gresource>
+</gresources>

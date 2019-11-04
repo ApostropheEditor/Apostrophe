@@ -4,12 +4,11 @@ from enum import auto, IntEnum
 
 import gi
 
-from uberwriter.helpers import get_builder
 from uberwriter.preview_renderer import PreviewRenderer
 from uberwriter.settings import Settings
 
 gi.require_version('WebKit2', '4.0')
-from gi.repository import WebKit2, GLib
+from gi.repository import WebKit2, GLib, Gtk
 
 from uberwriter.preview_converter import PreviewConverter
 from uberwriter.preview_web_view import PreviewWebView
@@ -33,7 +32,9 @@ class PreviewHandler:
         self.web_view = None
         self.web_view_pending_html = None
 
-        builder = get_builder("Preview")
+        builder = Gtk.Builder()
+        builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Preview.ui")
         preview = builder.get_object("preview")
         mode_button = builder.get_object("preview_mode_button")
         self.mode_revealer = builder.get_object("preview_mode_revealer")
