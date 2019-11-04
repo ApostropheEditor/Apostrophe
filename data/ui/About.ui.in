@@ -13,7 +13,7 @@
     <property name="website">@package_url@</property>
     <property name="website_label" translatable="yes">Uberwriter website</property>
     <property name="authors">Wolf Vollprecht &lt;w.vollprecht@gmail.com&gt;
-Manuel Genovés &lt;manuel.genoves@gmail.com&gt;</property>
+Manuel Genovés &lt;manuel.genoves@gmail.com&gt;Gonçalo Silva &lt;goncalossilva@gmail.com&gt;</property>
     <property name="translator_credits">
 Andrea Somaini (Italian)
 Daniel Artfors (Swedish)
