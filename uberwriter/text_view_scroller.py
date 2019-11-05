@@ -6,6 +6,10 @@ class TextViewScroller:
         self.scrolled_window = scrolled_window
         self.smooth_scroller = None
 
+    def can_scroll(self):
+        vap = self.scrolled_window.get_vadjustment().props
+        return vap.upper > vap.page_size
+
     def get_scroll_scale(self):
         vap = self.scrolled_window.get_vadjustment().props
         if vap.upper > vap.page_size:

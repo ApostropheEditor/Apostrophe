@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 ### BEGIN LICENSE
-# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it 
 # under the terms of the GNU General Public License version 3, as published 
 # by the Free Software Foundation.
@@ -27,7 +27,6 @@ from gi.repository import Gtk, Pango, GLib  # pylint: disable=E0611
 import logging
 logger = logging.getLogger('uberwriter')
 
-from uberwriter.helpers import get_builder
 
 
 class PreferencesDialog:
@@ -64,7 +63,9 @@ class PreferencesDialog:
 
     def __init__(self, settings):
         self.settings = settings
-        self.builder = get_builder("Preferences")
+        self.builder = Gtk.Builder()
+        self.builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Preferences.ui")
 
         self.dark_mode_auto_switch = self.builder.get_object("dark_mode_auto_switch")
         self.dark_mode_auto_switch.set_active(self.settings.get_value("dark-mode-auto"))

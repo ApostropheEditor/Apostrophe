@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 ### BEGIN LICENSE
-# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -54,7 +54,7 @@ def get_data_path():
 
     # Get pathname absolute or relative.
     if os.path.isfile("/.flatpak-info"):
-        return '/app/share/uberwriter/data/'
+        return '/app/share/uberwriter/'
 
     path = os.path.join(
         os.path.dirname(__file__), __uberwriter_data_directory__)
@@ -63,7 +63,7 @@ def get_data_path():
     # in the system installation path
     abs_data_path = os.path.abspath(path)
     if not os.path.exists(abs_data_path):
-        abs_data_path = '/usr/share/uberwriter/data/'
+        abs_data_path = '/usr/share/uberwriter/'
     elif not os.path.exists(abs_data_path):
         raise ProjectPathNotFound
 

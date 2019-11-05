@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 ### BEGIN LICENSE
-# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -18,6 +18,8 @@ import logging
 import re
 
 import gi
+
+from uberwriter.helpers import user_action
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gdk
@@ -80,11 +82,10 @@ class SearchAndReplace:
         """
         self.replacebox.set_reveal_child(widget.get_active())
 
-    # TODO: refactorize!
     def key_pressed(self, _widget, event, _data=None):
         """hide the search and replace content box when ESC is pressed
         """
-        if event.keyval in [Gdk.KEY_Escape]:
+        if event.keyval == Gdk.KEY_Escape:
             self.hide()
 
     def focused_texteditor(self, _widget, _data=None):
@@ -92,15 +93,19 @@ class SearchAndReplace:
         """
         self.hide()
 
-    def toggle_search(self, _widget=None, _data=None):
+    def toggle_search(self, replace=False):
         """
-        show search box
+        toggle search box
         """
-        if self.textview.get_mapped() and (
-                self.box.get_reveal_child() is False or self.searchbar.get_search_mode() is False):
+        search_hidden = self.textview.get_mapped() and (
+                self.box.get_reveal_child() is False or self.searchbar.get_search_mode() is False)
+        replace_hidden = not self.open_replace_button.get_active()
+        if search_hidden or (replace and replace_hidden):
             self.searchbar.set_search_mode(True)
             self.box.set_reveal_child(True)
             self.searchentry.grab_focus()
+            if replace:
+                self.open_replace_button.set_active(True)
         else:
             self.hide()
             self.open_replace_button.set_active(False)
@@ -162,18 +167,20 @@ class SearchAndReplace:
         self.replace(self.active)
 
     def replace_all(self, _widget=None, _data=None):
-        for match in reversed(self.matches):
-            self.do_replace(match)
+        with user_action(self.textbuffer):
+            for match in reversed(self.matches):
+                self.__do_replace(match)
         self.search(scroll=False)
 
     def replace(self, searchindex, _inloop=False):
-        self.do_replace(self.matches[searchindex])
+        with user_action(self.textbuffer):
+            self.__do_replace(self.matches[searchindex])
         active = self.active
         self.search(scroll=False)
         self.active = active
         self.scrollto(self.active)
 
-    def do_replace(self, match):
+    def __do_replace(self, match):
         start_iter = self.textbuffer.get_iter_at_offset(match[0])
         end_iter = self.textbuffer.get_iter_at_offset(match[1])
         self.textbuffer.delete(start_iter, end_iter)

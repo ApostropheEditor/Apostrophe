@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 # BEGIN LICENSE
-# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -20,6 +20,7 @@
 import logging
 import os
 import shutil
+from contextlib import contextmanager
 
 import gi
 import pypandoc
@@ -34,22 +35,13 @@ from uberwriter.config import get_data_file
 from uberwriter.builder import Builder
 
 
-def get_builder(builder_file_name):
-    """Return a fully-instantiated Gtk.Builder instance from specified ui
-    file
 
-    :param builder_file_name: The name of the builder file, without extension.
-        Assumed to be in the 'ui' directory under the data path.
-    """
-    # Look for the ui file that describes the user interface.
-    ui_filename = get_data_file('ui', '%s.ui' % (builder_file_name,))
-    if not os.path.exists(ui_filename):
-        ui_filename = None
 
-    builder = Builder()
-    builder.set_translation_domain()
-    builder.add_from_file(ui_filename)
-    return builder
+@contextmanager
+def user_action(text_buffer):
+    text_buffer.begin_user_action()
+    yield text_buffer
+    text_buffer.end_user_action()
 
 
 def path_to_file(path):
@@ -148,12 +140,14 @@ def show_uri(parent, link):
 
 def alias(alternative_function_name):
     '''see http://www.drdobbs.com/web-development/184406073#l9'''
+
     def decorator(function):
         '''attach alternative_function_name(s) to function'''
         if not hasattr(function, 'aliases'):
             function.aliases = []
         function.aliases.append(alternative_function_name)
         return function
+
     return decorator
 
 
@@ -172,21 +166,21 @@ def exist_executable(command):
 
 def get_descendant(widget, child_name, level, doPrint=False):
     if widget is not None:
-        if doPrint: print("-"*level + str(Gtk.Buildable.get_name(widget)) +
+        if doPrint: print("-" * level + str(Gtk.Buildable.get_name(widget)) +
                           " :: " + widget.get_name())
     else:
-        if doPrint: print("-"*level + "None")
+        if doPrint: print("-" * level + "None")
         return None
-    #/*** If it is what we are looking for ***/
-    if Gtk.Buildable.get_name(widget) == child_name: # not widget.get_name() !
+    # /*** If it is what we are looking for ***/
+    if Gtk.Buildable.get_name(widget) == child_name:  # not widget.get_name() !
         return widget
-    #/*** If this widget has one child only search its child ***/
+    # /*** If this widget has one child only search its child ***/
     if (hasattr(widget, 'get_child') and
             callable(getattr(widget, 'get_child')) and
             child_name != ""):
         child = widget.get_child()
         if child is not None:
-            return get_descendant(child, child_name, level+1,doPrint)
+            return get_descendant(child, child_name, level + 1, doPrint)
     # /*** Ity might have many children, so search them ***/
     elif (hasattr(widget, 'get_children') and
           callable(getattr(widget, 'get_children')) and
@@ -196,7 +190,7 @@ def get_descendant(widget, child_name, level, doPrint=False):
         found = None
         for child in children:
             if child is not None:
-                found = get_descendant(child, child_name, level+1, doPrint) # //search the child
+                found = get_descendant(child, child_name, level + 1, doPrint)  # //search the child
                 if found: return found
 
 

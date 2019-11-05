@@ -24,7 +24,7 @@ from uberwriter import main_window
 from uberwriter.settings import Settings
 from uberwriter.helpers import set_up_logging
 from uberwriter.preferences_dialog import PreferencesDialog
-from uberwriter.helpers import get_builder, get_media_path
+from uberwriter.helpers import get_media_path
 
 
 class Application(Gtk.Application):
@@ -98,6 +98,10 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_copy_html)
         self.add_action(action)
 
+        action = Gio.SimpleAction.new("search_replace", None)
+        action.connect("activate", self.on_search_replace)
+        self.add_action(action)
+
         action = Gio.SimpleAction.new("preferences", None)
         action.connect("activate", self.on_preferences)
         self.add_action(action)
@@ -143,6 +147,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.fullscreen", ["F11"])
         self.set_accels_for_action("app.preview", ["<Ctl>p"])
         self.set_accels_for_action("app.search", ["<Ctl>f"])
+        self.set_accels_for_action("app.search_replace", ["<Ctl>h"])
         self.set_accels_for_action("app.spellcheck", ["F7"])
 
         self.set_accels_for_action("app.new", ["<Ctl>n"])
@@ -208,7 +213,10 @@ class Application(Gtk.Application):
         self.window.save_document()
 
     def on_search(self, _action, _value):
-        self.window.open_search_and_replace()
+        self.window.open_search()
+
+    def on_search_replace(self, _action, _value):
+        self.window.open_search(replace=True)
 
     def on_focus_mode(self, action, value):
         action.set_state(value)
@@ -239,7 +247,9 @@ class Application(Gtk.Application):
         PreferencesDialog(self.settings).show(self.window)
 
     def on_shortcuts(self, _action, _param):
-        builder = get_builder('Shortcuts')
+        builder = Gtk.Builder()
+        builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Shortcuts.ui")
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
 
@@ -247,14 +257,11 @@ class Application(Gtk.Application):
         self.window.open_uberwriter_markdown()
 
     def on_about(self, _action, _param):
-        builder = get_builder('About')
+        builder = Gtk.Builder()
+        builder.add_from_resource("/de/wolfvollprecht/UberWriter/About.ui")
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
 
-        logo_file = get_media_path("de.wolfvollprecht.UberWriter.svg")
-        logo = GdkPixbuf.Pixbuf.new_from_file(logo_file)
-
-        about_dialog.set_logo(logo)
         about_dialog.present()
 
     def on_quit(self, _action, _param):

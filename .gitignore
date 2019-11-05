@@ -2,6 +2,7 @@ build/lib.linux-x86_64-2.7
 *.pyc
 __pycache__/
 build/
+_build/
 debian/uberwriter/DEBIAN
 debian/uberwriter/opt
 debian/uberwriter/usr
@@ -22,3 +23,4 @@ dist/uberwriter-2.0b0-py3.7.egg
 builddir/*
 dist/
 uberwriter.egg-info
+build-aux/flatpak/.flatpak-builder/*

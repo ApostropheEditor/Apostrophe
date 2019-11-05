@@ -1,5 +1,7 @@
 from gettext import gettext as _
 
+from uberwriter.helpers import user_action
+
 
 class FormatInserter:
     """Manages insertion of formatting.
@@ -25,7 +27,8 @@ class FormatInserter:
         """Insert horizontal rule"""
 
         text_buffer = text_view.get_buffer()
-        text_buffer.insert_at_cursor("\n\n---\n")
+        with user_action(text_buffer):
+            text_buffer.insert_at_cursor("\n\n---\n")
         text_view.scroll_mark_onscreen(text_buffer.get_insert())
 
     def insert_list_item(self, text_view, _data=None):
@@ -35,12 +38,14 @@ class FormatInserter:
         if text_buffer.get_has_selection():
             (start, end) = text_buffer.get_selection_bounds()
             if start.starts_line():
-                text = text_buffer.get_text(start, end, False)
-                if text.startswith(("- ", "* ", "+ ")):
-                    delete_end = start.forward_chars(2)
-                    text_buffer.delete(start, delete_end)
-                else:
-                    text_buffer.insert(start, "- ")
+                with user_action(text_buffer):
+                    text = text_buffer.get_text(start, end, False)
+                    if text.startswith(("- ", "* ", "+ ")):
+                        delete_end = start.copy()
+                        delete_end.forward_chars(2)
+                        text_buffer.delete(start, delete_end)
+                    else:
+                        text_buffer.insert(start, "- ")
         else:
             helptext = _("Item")
             text_length = len(helptext)
@@ -53,25 +58,25 @@ class FormatInserter:
             text = text_buffer.get_text(cursor_iter, start_ext, False)
             lines = text.splitlines()
 
-            for line in reversed(lines):
-                if line and line.startswith(("- ", "* ", "+ ")):
-                    if cursor_iter.starts_line():
-                        text_buffer.insert_at_cursor(line[:2] + helptext)
-                    else:
-                        text_buffer.insert_at_cursor(
-                            "\n" + line[:2] + helptext)
-                    break
-                else:
-                    if not lines[-1] and not lines[-2]:
-                        text_buffer.insert_at_cursor("- " + helptext)
-                    elif not lines[-1]:
+            with user_action(text_buffer):
+                for line in reversed(lines):
+                    if line and line.startswith(("- ", "* ", "+ ")):
                         if cursor_iter.starts_line():
-                            text_buffer.insert_at_cursor("- " + helptext)
+                            text_buffer.insert_at_cursor(line[:2] + helptext)
                         else:
-                            text_buffer.insert_at_cursor("\n- " + helptext)
+                            text_buffer.insert_at_cursor("\n" + line[:2] + helptext)
+                        break
                     else:
-                        text_buffer.insert_at_cursor("\n\n- " + helptext)
-                    break
+                        if not lines[-1] and not lines[-2]:
+                            text_buffer.insert_at_cursor("- " + helptext)
+                        elif not lines[-1]:
+                            if cursor_iter.starts_line():
+                                text_buffer.insert_at_cursor("- " + helptext)
+                            else:
+                                text_buffer.insert_at_cursor("\n- " + helptext)
+                        else:
+                            text_buffer.insert_at_cursor("\n\n- " + helptext)
+                        break
 
             self.__select_text(text_view, 0, text_length)
 
@@ -83,56 +88,59 @@ class FormatInserter:
         """Insert header or mark a selection as a list header"""
 
         text_buffer = text_view.get_buffer()
-        if text_buffer.get_has_selection():
-            (start, end) = text_buffer.get_selection_bounds()
-            text = text_buffer.get_text(start, end, False)
-            text_buffer.delete(start, end)
-        else:
-            text = _("Header")
+        with user_action(text_buffer):
+            if text_buffer.get_has_selection():
+                (start, end) = text_buffer.get_selection_bounds()
+                text = text_buffer.get_text(start, end, False)
+                text_buffer.delete(start, end)
+            else:
+                text = _("Header")
 
-        text_buffer.insert_at_cursor("#" + " " + text)
+            text_buffer.insert_at_cursor("#" + " " + text)
+
         self.__select_text(text_view, 0, len(text))
 
     @staticmethod
     def __wrap(text_view, wrap, helptext=""):
         """Inserts wrap format to the selected text (helper text when nothing selected)"""
         text_buffer = text_view.get_buffer()
-        if text_buffer.get_has_selection():
-            # Find current highlighting
-            (start, end) = text_buffer.get_selection_bounds()
-            moved = False
-            if (start.get_offset() >= len(wrap) and
-                    end.get_offset() <= text_buffer.get_char_count() - len(wrap)):
-                moved = True
-                ext_start = start.copy()
-                ext_start.backward_chars(len(wrap))
-                ext_end = end.copy()
-                ext_end.forward_chars(len(wrap))
-                text = text_buffer.get_text(ext_start, ext_end, True)
-            else:
-                text = text_buffer.get_text(start, end, True)
+        with user_action(text_buffer):
+            if text_buffer.get_has_selection():
+                # Find current highlighting
+                (start, end) = text_buffer.get_selection_bounds()
+                moved = False
+                if (start.get_offset() >= len(wrap) and
+                        end.get_offset() <= text_buffer.get_char_count() - len(wrap)):
+                    moved = True
+                    ext_start = start.copy()
+                    ext_start.backward_chars(len(wrap))
+                    ext_end = end.copy()
+                    ext_end.forward_chars(len(wrap))
+                    text = text_buffer.get_text(ext_start, ext_end, True)
+                else:
+                    text = text_buffer.get_text(start, end, True)
 
-            if moved and text.startswith(wrap) and text.endswith(wrap):
-                text = text[len(wrap):-len(wrap)]
-                new_text = text
-                text_buffer.delete(ext_start, ext_end)
-                move_back = 0
-            else:
-                if moved:
+                if moved and text.startswith(wrap) and text.endswith(wrap):
                     text = text[len(wrap):-len(wrap)]
-                new_text = text.lstrip().rstrip()
-                text = text.replace(new_text, wrap + new_text + wrap)
+                    new_text = text
+                    text_buffer.delete(ext_start, ext_end)
+                    move_back = 0
+                else:
+                    if moved:
+                        text = text[len(wrap):-len(wrap)]
+                    new_text = text.lstrip().rstrip()
+                    text = text.replace(new_text, wrap + new_text + wrap)
 
-                text_buffer.delete(start, end)
+                    text_buffer.delete(start, end)
+                    move_back = len(wrap)
+
+                text_buffer.insert_at_cursor(text)
+                text_length = len(new_text)
+
+            else:
+                text_buffer.insert_at_cursor(wrap + helptext + wrap)
+                text_length = len(helptext)
                 move_back = len(wrap)
-
-            text_buffer.insert_at_cursor(text)
-            text_length = len(new_text)
-
-        else:
-            text_buffer.insert_at_cursor(wrap + helptext + wrap)
-            text_length = len(helptext)
-            move_back = len(wrap)
 
         cursor_mark = text_buffer.get_insert()
         cursor_iter = text_buffer.get_iter_at_mark(cursor_mark)

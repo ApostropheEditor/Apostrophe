@@ -6,6 +6,7 @@
   <object class="GtkImage" id="edit-find-replace">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="xpad">12</property>
     <property name="icon_name">edit-find-replace-symbolic</property>
   </object>
   <object class="GtkImage" id="go-up">
@@ -268,7 +269,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="tooltip_text" translatable="yes">Open Replace</property>
+                                    <property name="tooltip_text" translatable="yes">Replace</property>
                                     <property name="image">edit-find-replace</property>
                                   </object>
                                   <packing>
@@ -360,7 +361,7 @@
                                     </child>
                                     <child>
                                       <object class="GtkButton" id="replace_all">
-                                        <property name="label" translatable="yes">Replace all</property>
+                                        <property name="label" translatable="yes">Replace All</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>

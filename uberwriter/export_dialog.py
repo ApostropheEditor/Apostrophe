@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 ### BEGIN LICENSE
-# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -28,7 +28,6 @@ from gi.repository import Gtk
 
 from uberwriter import helpers
 from uberwriter.theme import Theme
-from uberwriter.helpers import get_builder
 
 LOGGER = logging.getLogger('uberwriter')
 
@@ -150,7 +149,9 @@ class Export:
 
     def __init__(self, filename):
         """Set up the about dialog"""
-        self.builder = get_builder('Export')
+        self.builder = Gtk.Builder()
+        self.builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Export.ui")
         self.dialog = self.builder.get_object("Export")
         self.stack = self.builder.get_object("export_stack")
         self.stack_switcher = self.builder.get_object("format_switcher")

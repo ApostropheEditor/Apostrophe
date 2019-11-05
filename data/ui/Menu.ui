@@ -21,16 +21,22 @@
         </section>
         <section>
             <item>
-                <attribute name="label" translatable="yes">Save _As</attribute>
+                <attribute name="label" translatable="yes">Save As</attribute>
                 <attribute name="action">app.save_as</attribute>
             </item>
             <item>
-                <attribute name="label" translatable="yes">_Export</attribute>
+                <attribute name="label" translatable="yes">Export</attribute>
                 <attribute name="action">app.export</attribute>
             </item>
             <item>
                 <attribute name="label" translatable="yes">Copy HTML</attribute>
                 <attribute name="action">app.copy_html</attribute>
+            </item>
+        </section>
+        <section>
+            <item>
+                <attribute name="label" translatable="yes">Find and Replace</attribute>
+                <attribute name="action">app.search_replace</attribute>
             </item>
         </section>
         <section>

@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 # BEGIN LICENSE
-# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -23,7 +23,6 @@ import gi
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from uberwriter.helpers import get_builder
 from uberwriter.helpers import get_descendant
 
 
@@ -141,13 +140,17 @@ def main_buttons(app):
                                                  Gtk.IconSize.BUTTON),
                  Gtk.MenuButton().new())
 
-    builder_window_menu = get_builder('Menu')
+    builder_window_menu = Gtk.Builder()
+    builder_window_menu.add_from_resource(
+        "/de/wolfvollprecht/UberWriter/ui/Menu.ui")
     model = builder_window_menu.get_object("Menu")
 
     open_button = Gtk.Button().new_with_label(_("Open"))
     open_button.set_action_name("app.open")
 
-    recents_builder = get_builder('Recents')
+    recents_builder = Gtk.Builder()
+    recents_builder.add_from_resource(
+        "/de/wolfvollprecht/UberWriter/ui/Recents.ui")
     recents = recents_builder.get_object("recent_md_popover")
 
     recents_treeview = get_descendant(recents, "recent_view", level=0)
@@ -166,7 +169,7 @@ def main_buttons(app):
     btn.open_recent.pack_start(open_button, False, False, 0)
     btn.open_recent.pack_end(recents_button, False, False, 0)
 
-    btn.search.set_tooltip_text(_("Search and Replace"))
+    btn.search.set_tooltip_text(_("Find"))
     btn.menu.set_tooltip_text(_("Menu"))
     btn.menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
                                                     Gtk.IconSize.BUTTON))

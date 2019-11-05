@@ -4,15 +4,14 @@ from enum import auto, IntEnum
 
 import gi
 
-from uberwriter.helpers import get_builder
 from uberwriter.preview_renderer import PreviewRenderer
 from uberwriter.settings import Settings
 
 gi.require_version('WebKit2', '4.0')
-from gi.repository import WebKit2, GLib
+from gi.repository import WebKit2, GLib, Gtk
 
 from uberwriter.preview_converter import PreviewConverter
-from uberwriter.web_view import WebView
+from uberwriter.preview_web_view import PreviewWebView
 
 
 class Step(IntEnum):
@@ -33,7 +32,9 @@ class PreviewHandler:
         self.web_view = None
         self.web_view_pending_html = None
 
-        builder = get_builder("Preview")
+        builder = Gtk.Builder()
+        builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Preview.ui")
         preview = builder.get_object("preview")
         mode_button = builder.get_object("preview_mode_button")
         self.mode_revealer = builder.get_object("preview_mode_revealer")
@@ -69,7 +70,7 @@ class PreviewHandler:
             self.loading = True
 
             if not self.web_view:
-                self.web_view = WebView()
+                self.web_view = PreviewWebView()
                 self.web_view.get_settings().set_allow_universal_access_from_file_urls(True)
 
                 # Show preview once the load is finished
@@ -150,12 +151,12 @@ class PreviewHandler:
                 self.__show(step=Step.RENDER)
 
     def on_text_view_scrolled(self, _text_view, scale):
-        if self.shown and not math.isclose(scale, self.web_view.get_scroll_scale(), rel_tol=1e-5):
+        if self.shown and not math.isclose(scale, self.web_view.get_scroll_scale(), rel_tol=1e-4):
             self.web_view.set_scroll_scale(scale)
 
     def on_web_view_scrolled(self, _web_view, scale):
         if self.shown and self.text_view.get_mapped() and \
-                not math.isclose(scale, self.text_view.get_scroll_scale(), rel_tol=1e-5):
+                not math.isclose(scale, self.text_view.get_scroll_scale(), rel_tol=1e-4):
             self.text_view.set_scroll_scale(scale)
 
     @staticmethod

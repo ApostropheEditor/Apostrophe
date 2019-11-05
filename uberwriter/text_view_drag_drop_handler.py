@@ -1,5 +1,6 @@
 import mimetypes
 import urllib
+from os.path import basename
 
 from gi.repository import Gtk
 
@@ -28,17 +29,15 @@ class DragDropHandler:
         if info == TARGET_URI:
             uris = data.get_uris()
             for uri in uris:
-                uri = urllib.parse.unquote_plus(uri)
+                name = basename(urllib.parse.unquote_plus(uri))
                 mime = mimetypes.guess_type(uri)
 
-                if mime[0] is not None and mime[0].startswith('image'):
-                    if uri.startswith("file://"):
-                        uri = uri[7:]
-                    text = "![Image caption](%s)" % uri
+                if mime[0] is not None and mime[0].startswith('image/'):
+                    text = "![{}]({})".format(name, uri)
                     limit_left = 2
                     limit_right = 23
                 else:
-                    text = "[Link description](%s)" % uri
+                    text = "[{}]({})".format(name, uri)
                     limit_left = 1
                     limit_right = 22
                 text_buffer.place_cursor(text_buffer.get_iter_at_mark(
@@ -58,5 +57,5 @@ class DragDropHandler:
             text_buffer.insert_at_cursor(data.get_text())
 
         Gtk.drag_finish(drag_context, True, True, time)
-        text_view.get_window().present_with_time(time)
+        text_view.get_toplevel().present_with_time(time)
         return False

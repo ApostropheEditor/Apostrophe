@@ -1,12 +1,12 @@
 import gi
-from gi.repository.GObject import SignalMatchType
 
+from uberwriter.helpers import user_action
 from uberwriter.inline_preview import InlinePreview
+from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
 from uberwriter.text_view_format_inserter import FormatInserter
 from uberwriter.text_view_markup_handler import MarkupHandler
 from uberwriter.text_view_scroller import TextViewScroller
 from uberwriter.text_view_undo_redo_handler import UndoRedoHandler
-from uberwriter.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gspell', '1')
@@ -63,6 +63,7 @@ class TextView(Gtk.TextView):
         # General behavior
         self.connect('size-allocate', self.on_size_allocate)
         self.get_buffer().connect('changed', self.on_text_changed)
+        self.get_buffer().connect('paste-done', self.on_paste_done)
 
         # Spell checking
         self.spellcheck = True
@@ -71,6 +72,8 @@ class TextView(Gtk.TextView):
 
         # Undo / redo
         self.undo_redo = UndoRedoHandler()
+        self.get_buffer().connect('begin-user-action', self.undo_redo.on_begin_user_action)
+        self.get_buffer().connect('end-user-action', self.undo_redo.on_end_user_action)
         self.get_buffer().connect('insert-text', self.undo_redo.on_insert_text)
         self.get_buffer().connect('delete-range', self.undo_redo.on_delete_range)
         self.connect('undo', self.undo_redo.undo)
@@ -88,6 +91,7 @@ class TextView(Gtk.TextView):
         # Markup
         self.markup = MarkupHandler(self)
         self.connect('style-updated', self.markup.on_style_updated)
+        self.connect('destroy', self.markup.stop)
 
         # Preview popover
         self.preview_popover = InlinePreview(self)
@@ -121,8 +125,15 @@ class TextView(Gtk.TextView):
         return text_buffer.get_text(start_iter, end_iter, False)
 
     def set_text(self, text):
+        """Set text and clear undo history"""
+        
         text_buffer = self.get_buffer()
-        text_buffer.set_text(text)
+        with user_action(text_buffer):
+            text_buffer.set_text(text)
+        self.undo_redo.clear()
+
+    def can_scroll(self):
+        return self.scroller.can_scroll()
 
     def get_scroll_scale(self):
         return self.scroller.get_scroll_scale() if self.scroller else 0
@@ -143,6 +154,8 @@ class TextView(Gtk.TextView):
 
     def on_text_changed(self, *_):
         self.markup.apply()
+
+    def on_paste_done(self, *_):
         self.smooth_scroll_to()
 
     def on_parent_set(self, *_):
@@ -150,15 +163,16 @@ class TextView(Gtk.TextView):
         if parent:
             parent.set_size_request(self.get_min_width(), 500)
             self.scroller = TextViewScroller(self, parent)
-            parent.get_vadjustment().connect("changed", self.on_scroll_scale_changed)
-            parent.get_vadjustment().connect("value-changed", self.on_scroll_scale_changed)
+            parent.get_vadjustment().connect("changed", self.on_vadjustment_changed)
+            parent.get_vadjustment().connect("value-changed", self.on_vadjustment_changed)
         else:
             self.scroller = None
 
     def on_mark_set(self, _text_buffer, _location, mark, _data=None):
-        if mark.get_name() == 'insert':
+        if mark.get_name() == 'selection_bound':
             self.markup.apply()
-            self.smooth_scroll_to(mark)
+            if not self.get_buffer().get_has_selection():
+                self.smooth_scroll_to(mark)
         elif mark.get_name() == 'gtk_drag_target':
             self.smooth_scroll_to(mark)
         return True
@@ -168,10 +182,10 @@ class TextView(Gtk.TextView):
             self.markup.apply()
         return False
 
-    def on_scroll_scale_changed(self, *_):
+    def on_vadjustment_changed(self, *_):
         if self.frozen_scroll_scale is not None:
             self.set_scroll_scale(self.frozen_scroll_scale)
-        else:
+        elif self.can_scroll():
             self.emit("scroll-scale-changed", self.get_scroll_scale())
 
     def unfreeze_scroll_scale(self):
@@ -238,8 +252,7 @@ class TextView(Gtk.TextView):
     def clear(self):
         """Clear text and undo history"""
 
-        self.get_buffer().set_text('')
-        self.undo_redo.clear()
+        self.set_text('')
 
     def smooth_scroll_to(self, mark=None):
         """Scrolls if needed to ensure mark is visible.

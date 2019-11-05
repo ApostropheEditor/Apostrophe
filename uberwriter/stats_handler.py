@@ -36,7 +36,7 @@ class StatsHandler:
 
         self.settings = Settings.new()
 
-        self.stats_counter = StatsCounter()
+        self.stats_counter = StatsCounter(self.update_stats)
 
         self.update_default_stat()
 
@@ -60,9 +60,7 @@ class StatsHandler:
         self.text_view.grab_focus()
 
     def on_text_changed(self, buf):
-        self.stats_counter.count(
-            buf.get_text(buf.get_start_iter(), buf.get_end_iter(), False),
-            self.update_stats)
+        self.stats_counter.count(buf.get_text(buf.get_start_iter(), buf.get_end_iter(), False))
 
     def get_text_for_stat(self, stat):
         if stat == self.CHARACTERS:
