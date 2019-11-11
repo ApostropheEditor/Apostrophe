@@ -414,7 +414,6 @@
     <child type="overlay">
       <object class="GtkEventBox" id="FullscreenEventbox">
         <property name="height_request">1</property>
-        <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">start</property>
         <child>
@@ -423,14 +422,7 @@
             <property name="can_focus">False</property>
             <property name="valign">start</property>
             <child>
-              <object class="GtkHeaderBar" id="FullscreenHeaderbar">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">start</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
+              <placeholder/>
             </child>
           </object>
         </child>
