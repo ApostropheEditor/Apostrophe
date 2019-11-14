@@ -9,6 +9,7 @@
     <file compressed="true" preprocess="xml-stripblanks">ui/Recents.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Shortcuts.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/Headerbar.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">About.ui</file>
   </gresource>
 </gresources>
