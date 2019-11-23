@@ -84,9 +84,20 @@ class MainWindow(StyledWindow):
         self.settings = Settings.new()
 
         # Headerbars
+        self.last_height = 0
         self.headerbar = headerbars.MainHeaderbar(app)
-        self.set_titlebar(self.headerbar.hb_container)
+        self.headerbar.hb_revealer.connect(
+            "size_allocate", self.header_size_allocate)
+        self.set_titlebar(self.headerbar.hb_revealer)
+
         self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
+
+        # The dummy headerbar is a cosmetic hack to be able to
+        # crossfade the hb on top of the window
+        self.dm_headerbar = headerbars.DummyHeaderbar(app)
+        root.add_overlay(self.dm_headerbar.hb_revealer)
+        root.reorder_overlay(self.dm_headerbar.hb_revealer, 0)
+        root.set_overlay_pass_through(self.dm_headerbar.hb_revealer, True)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
@@ -103,6 +114,7 @@ class MainWindow(StyledWindow):
 
         # Setup text editor
         self.text_view = TextView(self.settings.get_int("characters-per-line"))
+        self.text_view.set_top_margin(80)
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
@@ -151,6 +163,24 @@ class MainWindow(StyledWindow):
         ###
         self.searchreplace = SearchAndReplace(self, self.text_view, builder)
 
+    def header_size_allocate(self, widget, allocation):
+        """ When the main hb starts to shrink its size, add that size
+            to the textview margin, so it stays in place
+        """
+
+        # prevent 1px jumps
+        if allocation.height == 1 and not widget.get_child_revealed():
+            allocation.height = 0
+
+        height = self.headerbar.hb.get_allocated_height() - allocation.height
+        if height == self.last_height:
+            return
+
+        self.last_height = height
+
+        self.text_view.update_vertical_margin(height)
+        self.text_view.queue_draw()
+
     def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
            updates the title and the counters to reflect that
@@ -183,7 +213,7 @@ class MainWindow(StyledWindow):
         """toggle focusmode
         """
 
-        self.text_view.set_focus_mode(state.get_boolean())
+        self.text_view.set_focus_mode(state.get_boolean(), self.headerbar.hb.get_allocated_height())
         self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
@@ -519,7 +549,6 @@ class MainWindow(StyledWindow):
     def open_recent(self, _widget, data=None):
         """open the given recent document
         """
-        print("open")
 
         if data:
             if self.check_change() == Gtk.ResponseType.CANCEL:
@@ -563,8 +592,30 @@ class MainWindow(StyledWindow):
         self.reveal_top_bottom_bars(True)
 
     def reveal_top_bottom_bars(self, reveal):
+        """handles (in conjunction with header_size_allocate)
+           the fading in and out of the headerbar
+        """
+        #   The logic may seem confusing because similar things are
+        #   handled in headerbars.py, but for convenience (adding classes
+        #   to the main window, and delayed calls) some functions are split
+        #   between here and there
+
+        # TODO: rework this logic?
+
+        def reveal_hb():
+            self.headerbar.hb_revealer.set_reveal_child(True)
+            self.get_style_context().remove_class("focus")
+            return False
+
         if self.top_bottom_bars_visible != reveal:
-            self.headerbar.hb_revealer.set_reveal_child(reveal)
+            if reveal:
+                self.dm_headerbar.hide_dm_hb()
+                GLib.timeout_add(400, reveal_hb)
+            else:
+                self.headerbar.hb_revealer.set_reveal_child(False)
+                self.dm_headerbar.show_dm_hb()
+                self.get_style_context().add_class("focus")
+                
             self.stats_revealer.set_reveal_child(reveal)
             for revealer in self.preview_handler.get_top_bottom_bar_revealers():
                 revealer.set_reveal_child(reveal)

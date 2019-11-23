@@ -54,6 +54,9 @@ class TextView(Gtk.TextView):
         self.set_pixels_inside_wrap(8)
         self.get_style_context().add_class('uberwriter-editor')
 
+        self.set_margin_left(8)
+        self.set_margin_right(8)
+
         # Text sizing
         self.props.halign = Gtk.Align.FILL
         self.line_chars = line_chars
@@ -144,7 +147,6 @@ class TextView(Gtk.TextView):
 
     def on_size_allocate(self, *_):
         self.update_horizontal_margin()
-        self.update_vertical_margin()
         self.markup.update_margins_indents()
         self.queue_draw()
 
@@ -192,14 +194,14 @@ class TextView(Gtk.TextView):
         self.frozen_scroll_scale = None
         self.queue_draw()
 
-    def set_focus_mode(self, focus_mode):
+    def set_focus_mode(self, focus_mode, hb_height):
         """Toggle focus mode.
 
         When in focus mode, the cursor sits in the middle of the text view,
         and the surrounding text is greyed out."""
 
         self.focus_mode = focus_mode
-        self.update_vertical_margin()
+        self.update_vertical_margin(hb_size=hb_height)
         self.markup.apply()
         self.smooth_scroll_to()
         self.set_spellcheck(self.spellcheck)
@@ -227,13 +229,14 @@ class TextView(Gtk.TextView):
         self.props.left_margin = horizontal_margin
         self.props.right_margin = horizontal_margin
 
-    def update_vertical_margin(self):
+    def update_vertical_margin(self, top_margin=0, hb_size=0):
         if self.focus_mode:
-            height = self.get_allocation().height
-            self.props.top_margin = height / 2
-            self.props.bottom_margin = height / 2
+            height = self.get_allocation().height + top_margin + hb_size
+
+            self.props.top_margin = height / 2 + top_margin
+            self.props.bottom_margin = height / 2 - top_margin
         else:
-            self.props.top_margin = 80
+            self.props.top_margin = 80 + top_margin
             self.props.bottom_margin = 64
 
     def set_hemingway_mode(self, hemingway_mode):

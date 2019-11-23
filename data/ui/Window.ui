@@ -417,14 +417,7 @@
         <property name="can_focus">False</property>
         <property name="valign">start</property>
         <child>
-          <object class="GtkRevealer" id="FullscreenHbPlaceholder">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="valign">start</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
+          <placeholder/>
         </child>
       </object>
     </child>
