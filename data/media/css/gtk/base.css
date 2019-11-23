@@ -27,6 +27,19 @@
   caret-color: @theme_fg_color;
 }
 
+.uberwriter-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.uberwriter-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(ltr) scrollbar {
+  border-top-right-radius: 8px;
+}
+
+.uberwriter-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(rtl) scrollbar {
+  border-top-left-radius: 8px;
+}
+
 #titlebar-revealer {
   padding: 0;
 }
