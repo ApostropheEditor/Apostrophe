@@ -205,7 +205,9 @@ class Export:
         """
 
         export_type = self.stack.get_visible_child_name()
-        args = []
+        args = [
+            "--variable=papersize:a4"
+        ]
         if export_type == "advanced":
             filename = self.adv_export_name.get_text()
             output_dir = os.path.abspath(self.filechoosers["advanced"].get_current_folder())
