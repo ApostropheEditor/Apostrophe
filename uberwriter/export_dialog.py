@@ -121,7 +121,7 @@ class Export:
             "to": "texinfo"
         },
         {
-            "name": "OpenOffice Text Document",
+            "name": "LibreOffice Text Document",
             "ext": "odt",
             "to": "odt"
         },
