@@ -62,11 +62,11 @@
         Input format to use when previewing and exporting using Pandoc.
       </description>
     </key>
-    <key name='poll-motion' type='b'>
+    <key name='autohide-headerbar' type='b'>
       <default>true</default>
-      <summary>Allow Uberwriter to poll cursor motion</summary>
+      <summary>Autohide Headerbar</summary>
       <description>
-        Hide the header and status bars if the cursor is not moving.
+        Hide the header and status bars when typing.
       </description>
     </key>
     <key name='open-file-path' type='s'>
