@@ -74,7 +74,7 @@ class MainWindow(StyledWindow):
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/de/wolfvollprecht/UberWriter/ui/Window.ui")
-        root = builder.get_object("FullscreenOverlay")
+        root = builder.get_object("AppOverlay")
         self.connect("delete-event", self.on_delete_called)
         self.add(root)
 
@@ -102,11 +102,6 @@ class MainWindow(StyledWindow):
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
 
-        self.timestamp_last_mouse_motion = 0
-        if self.settings.get_value("poll-motion"):
-            self.connect("motion-notify-event", self.on_motion_notify)
-            GObject.timeout_add(3000, self.poll_for_motion)
-
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
@@ -131,9 +126,10 @@ class MainWindow(StyledWindow):
         editor = builder.get_object('editor')
         self.preview_handler = PreviewHandler(self, content, editor, self.text_view)
 
-        # Setup header/stats bar hide after 3 seconds
-        self.top_bottom_bars_visible = True
-        self.was_motion = True
+        # Setup header/stats bar
+        self.headerbar_visible = True
+        self.bottombar_visible = True
+        self.previewbars_visible = True
         self.buffer_modified_for_status_bar = False
 
         # some people seems to have performance problems with the overlay.
@@ -162,6 +158,14 @@ class MainWindow(StyledWindow):
         #   Same interface as Sidebar ;)
         ###
         self.searchreplace = SearchAndReplace(self, self.text_view, builder)
+
+        # EventBoxes
+
+        self.headerbar_eventbox = builder.get_object("HeaderbarEventbox")
+        self.headerbar_eventbox.connect('enter_notify_event',
+                                        self.reveal_headerbar_bottombar)
+
+        self.stats_revealer.connect('enter_notify_event', self.reveal_bottombar)
 
     def header_size_allocate(self, widget, allocation):
         """ When the main hb starts to shrink its size, add that size
@@ -192,6 +196,8 @@ class MainWindow(StyledWindow):
             self.set_headerbar_title("* " + title)
 
         self.buffer_modified_for_status_bar = True
+        if self.settings.get_value("autohide-headerbar"):
+            self.hide_headerbar_bottombar()
 
     def set_fullscreen(self, state):
         """Puts the application in fullscreen mode and show/hides
@@ -555,72 +561,62 @@ class MainWindow(StyledWindow):
                 return
             self.load_file(data)
 
-    def poll_for_motion(self):
-        """check if the user has moved the cursor to show the headerbar
-
-        Returns:
-            True -- Gtk things
-        """
-
-        if (not self.was_motion
-                and self.buffer_modified_for_status_bar
-                and self.text_view.props.has_focus):
-            self.reveal_top_bottom_bars(False)
-
-        self.was_motion = False
-        return True
-
-    def on_motion_notify(self, _widget, event, _data=None):
-        """check the motion of the mouse to fade in the headerbar
-        """
-        now = event.get_time()
-        if now - self.timestamp_last_mouse_motion > 150:
-            # filter out accidental motions
-            self.timestamp_last_mouse_motion = now
-            return
-        if now - self.timestamp_last_mouse_motion < 100:
-            # filter out accidental motion
-            return
-        if now - self.timestamp_last_mouse_motion > 100:
-            # react on motion by fading in headerbar and statusbar
-            self.reveal_top_bottom_bars(True)
-            self.was_motion = True
-
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
         """
-        self.reveal_top_bottom_bars(True)
+        self.reveal_headerbar_bottombar()
 
-    def reveal_top_bottom_bars(self, reveal):
-        """handles (in conjunction with header_size_allocate)
-           the fading in and out of the headerbar
-        """
-        #   The logic may seem confusing because similar things are
-        #   handled in headerbars.py, but for convenience (adding classes
-        #   to the main window, and delayed calls) some functions are split
-        #   between here and there
+    def reveal_headerbar_bottombar(self, _widget=None, _data=None):
 
-        # TODO: rework this logic?
-
-        def reveal_hb():
+        def __reveal_hb():
             self.headerbar.hb_revealer.set_reveal_child(True)
             self.get_style_context().remove_class("focus")
             return False
 
-        if self.top_bottom_bars_visible != reveal:
-            if reveal:
-                self.dm_headerbar.hide_dm_hb()
-                GLib.timeout_add(400, reveal_hb)
-            else:
-                self.headerbar.hb_revealer.set_reveal_child(False)
-                self.dm_headerbar.show_dm_hb()
-                self.get_style_context().add_class("focus")
-                
-            self.stats_revealer.set_reveal_child(reveal)
+        self.reveal_bottombar()
+
+        if not self.headerbar_visible:
+            self.dm_headerbar.hide_dm_hb()
+            GLib.timeout_add(400, __reveal_hb)
+
+            self.headerbar_visible = True
+
+        if not self.previewbars_visible:
             for revealer in self.preview_handler.get_top_bottom_bar_revealers():
-                revealer.set_reveal_child(reveal)
-            self.top_bottom_bars_visible = reveal
-            self.buffer_modified_for_status_bar = reveal
+                revealer.set_reveal_child(True)
+
+            self.previewbars_visible = True
+
+    def reveal_bottombar(self, _widget=None, _data=None):
+
+        if not self.bottombar_visible:
+            self.stats_revealer.set_reveal_child(True)
+
+            self.bottombar_visible = True
+
+        self.buffer_modified_for_status_bar = True
+
+    def hide_headerbar_bottombar(self):
+
+        if self.headerbar_visible:
+            self.headerbar.hb_revealer.set_reveal_child(False)
+            self.dm_headerbar.show_dm_hb()
+            self.get_style_context().add_class("focus")
+
+            self.headerbar_visible = False
+
+        if self.bottombar_visible:
+            self.stats_revealer.set_reveal_child(False)
+
+            self.bottombar_visible = False
+
+        if self.previewbars_visible:
+            for revealer in self.preview_handler.get_top_bottom_bar_revealers():
+                revealer.set_reveal_child(False)
+
+            self.previewbars_visible = False
+
+        self.buffer_modified_for_status_bar = False
 
     def draw_gradient(self, _widget, cr):
         """draw fading gradient over the top and the bottom of the
@@ -668,13 +664,16 @@ class MainWindow(StyledWindow):
         self.destroy()
         return
 
-    def set_headerbar_title(self, title, subtitle=""):
+    def set_headerbar_title(self, title, subtitle=None):
         """set the desired headerbar title
         """
         self.headerbar.hb.props.title = title
+        self.dm_headerbar.hb.props.title = title
         self.fs_headerbar.hb.props.title = title
-        self.headerbar.hb.props.subtitle = subtitle
-        self.fs_headerbar.hb.props.subtitle = subtitle
+        if subtitle:
+            self.headerbar.hb.props.subtitle = subtitle
+            self.dm_headerbar.hb.props.subtitle = subtitle
+            self.fs_headerbar.hb.props.subtitle = subtitle
         self.set_title(title)
 
     def set_filename(self, filename=None):

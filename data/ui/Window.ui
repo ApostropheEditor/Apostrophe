@@ -6,7 +6,6 @@
   <object class="GtkImage" id="edit-find-replace">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="xpad">12</property>
     <property name="icon_name">edit-find-replace-symbolic</property>
   </object>
   <object class="GtkImage" id="go-up">
@@ -30,12 +29,12 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-spell-check</property>
   </object>
-  <object class="GtkOverlay" id="FullscreenOverlay">
+  <object class="GtkOverlay" id="AppOverlay">
     <property name="name">FullscreenOverlay</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkGrid" id="grid1">
+      <object class="GtkGrid" id="app_grid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
@@ -71,10 +70,9 @@
                 <property name="can_focus">False</property>
                 <property name="homogeneous">True</property>
                 <child>
-                  <object class="GtkBox" id="editor">
+                  <object class="GtkOverlay" id="editor">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkScrolledWindow" id="editor_scrolledwindow">
                         <property name="visible">True</property>
@@ -87,15 +85,15 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="index">-1</property>
                       </packing>
                     </child>
-                    <child>
+                    <child type="overlay">
                       <object class="GtkRevealer" id="editor_stats_revealer">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="events">GDK_ENTER_NOTIFY_MASK | GDK_STRUCTURE_MASK</property>
+                        <property name="valign">end</property>
                         <property name="transition_type">crossfade</property>
                         <property name="transition_duration">750</property>
                         <property name="reveal_child">True</property>
@@ -116,11 +114,6 @@
                           </object>
                         </child>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -236,6 +229,7 @@
                               <object class="GtkBox" id="searchtools_box">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="homogeneous">True</property>
                                 <child>
                                   <object class="GtkToggleButton" id="case_sensitive">
                                     <property name="label" translatable="yes">aA</property>
@@ -416,10 +410,28 @@
         <property name="height_request">1</property>
         <property name="can_focus">False</property>
         <property name="valign">start</property>
+        <property name="visible_window">False</property>
+        <property name="above_child">True</property>
         <child>
           <placeholder/>
         </child>
       </object>
+    </child>
+    <child type="overlay">
+      <object class="GtkEventBox" id="HeaderbarEventbox">
+        <property name="height_request">60</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">start</property>
+        <property name="visible_window">False</property>
+        <property name="above_child">True</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="index">1</property>
+      </packing>
     </child>
   </object>
 </interface>
