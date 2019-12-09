@@ -1,8 +1,10 @@
 *.pyc
 __pycache__/
+_build/*
 build/
 *.*~
 .vscode/
 .idea/
 builddir/*
 build-aux/*
+flatpak/*
