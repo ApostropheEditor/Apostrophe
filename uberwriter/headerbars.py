@@ -78,6 +78,7 @@ class FullscreenHeaderbar(BaseHeaderbar):
         self.events.connect('enter_notify_event', self.show_fs_hb)
         self.events.connect('leave_notify_event', self.hide_fs_hb)
         self.menu_button.get_popover().connect('closed', self.hide_fs_hb)
+        self.recents_button.get_popover().connect('closed', self.hide_fs_hb)
 
     def show_fs_hb(self, _widget=None, _data=None):
         """show headerbar of the fullscreen mode
@@ -87,7 +88,8 @@ class FullscreenHeaderbar(BaseHeaderbar):
     def hide_fs_hb(self, _widget=None, _data=None):
         """hide headerbar of the fullscreen mode
         """
-        if self.menu_button.get_active():
+        if (self.menu_button.get_active() or
+           self.recents_button.get_active()):
             pass
         else:
             self.hb_revealer.set_reveal_child(False)
