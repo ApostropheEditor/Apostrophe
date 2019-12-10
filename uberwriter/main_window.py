@@ -210,9 +210,12 @@ class MainWindow(StyledWindow):
         if state.get_boolean():
             self.fullscreen()
             self.fs_headerbar.events.show()
+            self.fs_headerbar.hide_fs_hb()
+            self.headerbar_eventbox.hide()
         else:
             self.unfullscreen()
             self.fs_headerbar.events.hide()
+            self.headerbar_eventbox.show()
         self.text_view.grab_focus()
 
     def set_focus_mode(self, state):
