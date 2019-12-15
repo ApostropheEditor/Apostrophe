@@ -221,7 +221,7 @@ class Export:
             if self.builder.get_object("smart").get_active():
                 to += "+smart"
 
-            args.extend(self.get_advanced_arguments())
+            args.extend(self.get_advanced_arguments(to, ext))
 
         else:
             args = [
@@ -244,11 +244,12 @@ class Export:
                 args.append("--lua-filter=%s" % helpers.get_script_path('relative_to_absolute.lua'))
                 args.append("--lua-filter=%s" % helpers.get_script_path('task-list.lua'))
 
+
         helpers.pandoc_convert(
             text, to=to, args=args,
             outputfile="%s/%s.%s" % (output_dir, basename, ext))
 
-    def get_advanced_arguments(self):
+    def get_advanced_arguments(self, to_fmt, ext_fmt):
         """Retrieve a list of the selected advanced arguments
 
         For most of the advanced option checkboxes, returns a list
@@ -256,6 +257,8 @@ class Export:
 
         Arguments:
             basename {str} -- the name of the file
+            to_fmt {str} -- the format of the export
+            ext_fmt {str} -- the extension of the export
 
         Returns:
             list of {str} -- related pandoc flags
@@ -265,8 +268,13 @@ class Export:
 
         conditions = [
             {
-                "condition": True,
+                "condition": to_fmt == "pdf",
                 "yes": "--variable=papersize:" + self.get_paper_size(),
+                "no": None
+            },
+            {
+                "condition": self.get_paper_size() == "a4" and (to_fmt == "odt" or to_fmt == "docx"),
+                "yes": "--reference-doc " + helpers.get_reference_files_path('reference-a4.'+to_fmt) + to_fmt,
                 "no": None
             },
             {
