@@ -1,11 +1,11 @@
 import re
 
 ITALIC = re.compile(
-    r"(\*|_)(?P<text>.*?\S.*?)\1")
+    r"(\*|_)[^\s*](?P<text>.*?\S.*?)\1")
 BOLD = re.compile(
-    r"(\*\*|__)(?P<text>.*?\S.*?)\1")
+    r"(\*\*|__)[^\s*](?P<text>.*?\S.*?)\1")
 BOLD_ITALIC = re.compile(
-    r"((\*\*|__)([*_])|([*_])(\*\*|__))(?P<text>.*?\S.*?)(?:\5\4|\3\2)")
+    r"((\*\*|__)([*_])|([*_])(\*\*|__))[^\s*](?P<text>.*?\S.*?)(?:\5\4|\3\2)")
 STRIKETHROUGH = re.compile(
     r"~~(?P<text>.*?\S.*?)~~")
 CODE = re.compile(
