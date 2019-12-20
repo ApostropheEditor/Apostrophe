@@ -85,6 +85,15 @@ def get_script_path(script_file_name):
     return script_path
 
 
+def get_reference_files_path(reference_file_name):
+    """Return the full path of a given filename under the reference_files dir
+    """
+    refs_path = get_data_file('reference_files', '%s' % (reference_file_name,))
+    if not os.path.exists(refs_path):
+        refs_path = None
+    return refs_path
+
+
 class NullHandler(logging.Handler):
     def emit(self, record):
         pass
