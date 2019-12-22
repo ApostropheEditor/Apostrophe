@@ -155,6 +155,7 @@ class Export:
         self.dialog = self.builder.get_object("Export")
         self.stack = self.builder.get_object("export_stack")
         self.stack_switcher = self.builder.get_object("format_switcher")
+        self.paper_size = self.builder.get_object("combobox_paper_size")
 
         stack_pdf_disabled = self.builder.get_object("pdf_disabled")
         filename = filename or _("Untitled document.md")
@@ -205,9 +206,7 @@ class Export:
         """
 
         export_type = self.stack.get_visible_child_name()
-        args = [
-            "--variable=papersize:a4"
-        ]
+        args = []
         if export_type == "advanced":
             filename = self.adv_export_name.get_text()
             output_dir = os.path.abspath(self.filechoosers["advanced"].get_current_folder())
@@ -222,9 +221,12 @@ class Export:
             if self.builder.get_object("smart").get_active():
                 to += "+smart"
 
-            args.extend(self.get_advanced_arguments())
+            args.extend(self.get_advanced_arguments(to, ext))
 
         else:
+            args = [
+                "--variable=papersize:a4"
+            ]
             filename = self.filechoosers[export_type].get_filename()
             if filename.endswith("." + export_type):
                 filename = filename[:-len(export_type)-1]
@@ -242,11 +244,12 @@ class Export:
                 args.append("--lua-filter=%s" % helpers.get_script_path('relative_to_absolute.lua'))
                 args.append("--lua-filter=%s" % helpers.get_script_path('task-list.lua'))
 
+
         helpers.pandoc_convert(
             text, to=to, args=args,
             outputfile="%s/%s.%s" % (output_dir, basename, ext))
 
-    def get_advanced_arguments(self):
+    def get_advanced_arguments(self, to_fmt, ext_fmt):
         """Retrieve a list of the selected advanced arguments
 
         For most of the advanced option checkboxes, returns a list
@@ -254,6 +257,8 @@ class Export:
 
         Arguments:
             basename {str} -- the name of the file
+            to_fmt {str} -- the format of the export
+            ext_fmt {str} -- the extension of the export
 
         Returns:
             list of {str} -- related pandoc flags
@@ -262,6 +267,16 @@ class Export:
         highlight_style = self.builder.get_object("highlight_style").get_active_text()
 
         conditions = [
+            {
+                "condition": to_fmt == "pdf",
+                "yes": "--variable=papersize:" + self.get_paper_size(),
+                "no": None
+            },
+            {
+                "condition": (self.get_paper_size() == "a4" and (to_fmt in ("odt", "docx"))),
+                "yes": "--reference-doc=" + helpers.get_reference_files_path('reference-a4.' + to_fmt),
+                "no": None
+            },
             {
                 "condition": self.builder.get_object("toc").get_active(),
                 "yes": "--toc",
@@ -318,6 +333,16 @@ class Export:
             args.append("--bibliography=%s" % bib_uri)
 
         return args
+
+    def get_paper_size(self):
+        paper_size = self.paper_size.get_active_text()
+
+        paper_formats = {
+            "A4": "a4",
+            "US Letter": "letter"
+        }
+
+        return paper_formats[paper_size]
 
     def allow_export(self, widget, data, signal):
         """Disable export button if the visible child is "pdf_disabled"

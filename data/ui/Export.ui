@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkGrid" id="advanced_export_options">
@@ -341,71 +341,40 @@
           </packing>
         </child>
         <child>
-          <object class="GtkFrame" id="frame2">
+          <object class="GtkBox" id="advanced_export_right">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="valign">start</property>
-            <property name="label_xalign">0</property>
-            <property name="shadow_type">out</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkAlignment" id="alignment2">
+              <object class="GtkFrame" id="frame2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="left_padding">12</property>
+                <property name="valign">start</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">out</property>
                 <child>
-                  <object class="GtkBox" id="box4">
+                  <object class="GtkAlignment" id="alignment2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_top">4</property>
-                    <property name="margin_bottom">4</property>
-                    <property name="orientation">vertical</property>
-                    <property name="homogeneous">True</property>
+                    <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkCheckButton" id="self_contained">
-                        <property name="label" translatable="yes">Self-contained</property>
-                        <property name="use_action_appearance">False</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Produces a HTML that has no external dependencies (all images and stylesheets are included)</property>
-                        <property name="halign">start</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="html5">
-                        <property name="label" translatable="yes">HTML5</property>
-                        <property name="use_action_appearance">False</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Use HTML5 syntax</property>
-                        <property name="halign">start</property>
-                        <property name="active">True</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="box5">
+                      <object class="GtkBox" id="box4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_top">4</property>
+                        <property name="margin_bottom">4</property>
+                        <property name="orientation">vertical</property>
+                        <property name="homogeneous">True</property>
                         <child>
-                          <object class="GtkLabel" id="label5">
+                          <object class="GtkCheckButton" id="self_contained">
+                            <property name="label" translatable="yes">Self-contained</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">Choose a CSS File that you want to use</property>
-                            <property name="margin_left">4</property>
-                            <property name="label" translatable="yes">CSS File</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">Produces a HTML that has no external dependencies (all images and stylesheets are included)</property>
+                            <property name="halign">start</property>
+                            <property name="draw_indicator">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -414,37 +383,151 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkFileChooserButton" id="css_filechooser">
+                          <object class="GtkCheckButton" id="html5">
+                            <property name="label" translatable="yes">HTML5</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">Choose a CSS File that you want to use</property>
-                            <property name="margin_left">8</property>
-                            <property name="margin_right">8</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="tooltip_text" translatable="yes">Use HTML5 syntax</property>
+                            <property name="halign">start</property>
+                            <property name="active">True</property>
+                            <property name="draw_indicator">True</property>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
+                            <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
+                        <child>
+                          <object class="GtkBox" id="box5">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="label5">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">Choose a CSS File that you want to use</property>
+                                <property name="margin_left">4</property>
+                                <property name="label" translatable="yes">CSS File</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkFileChooserButton" id="css_filechooser">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">Choose a CSS File that you want to use</property>
+                                <property name="margin_left">8</property>
+                                <property name="margin_right">8</property>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
                     </child>
                   </object>
                 </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">&lt;b&gt;HTML Options&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
               </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
             </child>
-            <child type="label">
-              <object class="GtkLabel" id="label2">
+            <child>
+              <object class="GtkFrame" id="frame5">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">&lt;b&gt;HTML Options&lt;/b&gt;</property>
-                <property name="use_markup">True</property>
+                <property name="valign">start</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">out</property>
+                <child>
+                  <object class="GtkAlignment" id="alignement_pdf_options">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="left_padding">12</property>
+                    <child>
+                      <object class="GtkBox" id="box_pdf_options">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_top">4</property>
+                        <property name="margin_bottom">4</property>
+                        <child>
+                          <object class="GtkLabel" id="label_paper_size">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">4</property>
+                            <property name="label" translatable="yes">Paper size</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBoxText" id="combobox_paper_size">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_left">8</property>
+                            <property name="margin_right">8</property>
+                            <property name="active">0</property>
+                            <property name="active_id">0</property>
+                            <items>
+                              <item translatable="yes">A4</item>
+                              <item translatable="yes">US Letter</item>
+                            </items>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="pack_type">end</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label_pdf_options">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Paper size</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
               </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="padding">5</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -465,6 +548,7 @@
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
         <property name="has_tooltip">True</property>
+        <property name="valign">start</property>
         <property name="relief">none</property>
         <property name="uri">https://pandoc.org/MANUAL.html</property>
       </object>
@@ -529,44 +613,6 @@
       <action-widget response="cancel">cancel_btn</action-widget>
       <action-widget response="1" default="true">export_btn</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="Export_hb">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child>
-          <object class="GtkButton" id="cancel_btn">
-            <property name="label">gtk-cancel</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="use_stock">True</property>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child type="title">
-          <object class="GtkStackSwitcher" id="format_switcher">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="stack">export_stack</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="export_btn">
-            <property name="label" translatable="yes">Export</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="can_default">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="DialogBox">
         <property name="can_focus">False</property>
@@ -597,19 +643,6 @@
               <packing>
                 <property name="name">html</property>
                 <property name="title" translatable="yes">HTML</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFileChooserWidget" id="pdf">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="action">save</property>
-                <property name="filter">pdf_filter</property>
-              </object>
-              <packing>
-                <property name="name">pdf</property>
-                <property name="title" translatable="yes">PDF</property>
               </packing>
             </child>
             <child>
@@ -624,6 +657,19 @@
               </packing>
             </child>
             <child>
+              <object class="GtkFileChooserWidget" id="pdf">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action">save</property>
+                <property name="filter">pdf_filter</property>
+              </object>
+              <packing>
+                <property name="name">pdf</property>
+                <property name="title" translatable="yes">PDF</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkFileChooserWidget" id="advanced">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -632,7 +678,7 @@
               <packing>
                 <property name="name">advanced</property>
                 <property name="title" translatable="yes">Advanced</property>
-                <property name="position">4</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -640,6 +686,44 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="Export_hb">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child type="title">
+          <object class="GtkStackSwitcher" id="format_switcher">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stack">export_stack</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="cancel_btn">
+            <property name="label">gtk-cancel</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_stock">True</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="export_btn">
+            <property name="label" translatable="yes">Export</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="can_default">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>

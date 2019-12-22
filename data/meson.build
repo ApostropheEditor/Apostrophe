@@ -99,3 +99,7 @@ install_subdir(
 	'ui',
 	install_dir: pkgdatadir
 )
+install_subdir(
+	'reference_files',
+	install_dir: pkgdatadir
+)
