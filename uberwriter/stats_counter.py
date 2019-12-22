@@ -3,7 +3,7 @@ from multiprocessing import Process, Pipe
 
 from gi.repository import GLib
 
-from uberwriter.markup_regex import ITALIC, BOLD_ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LINK_ALT,\
+from uberwriter.markup_regex import ITALIC_ASTERISK, ITALIC_UNDERSCORE, BOLD_ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LINK_ALT,\
     HORIZONTAL_RULE, LIST, MATH, TABLE, CODE_BLOCK, HEADER_UNDER, HEADER, BLOCK_QUOTE, ORDERED_LIST, \
     FOOTNOTE_ID, FOOTNOTE
 
@@ -27,7 +27,7 @@ class StatsCounter:
 
     # List of regexp whose matches should be replaced by their "text" group. Order is important.
     MARKUP_REGEXP_REPLACE = (
-        BOLD_ITALIC, ITALIC, BOLD, STRIKETHROUGH, IMAGE, LINK, LINK_ALT, LIST, ORDERED_LIST,
+        BOLD_ITALIC, ITALIC_ASTERISK, ITALIC_UNDERSCORE, BOLD, STRIKETHROUGH, IMAGE, LINK, LINK_ALT, LIST, ORDERED_LIST,
         BLOCK_QUOTE, HEADER, HEADER_UNDER, CODE_BLOCK, TABLE, MATH, FOOTNOTE_ID, FOOTNOTE
     )
 

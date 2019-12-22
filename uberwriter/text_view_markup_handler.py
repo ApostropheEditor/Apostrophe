@@ -20,7 +20,7 @@ from multiprocessing import Pipe, Process
 import gi
 
 from uberwriter import helpers, markup_regex
-from uberwriter.markup_regex import STRIKETHROUGH, BOLD_ITALIC, BOLD, ITALIC, IMAGE, LINK,\
+from uberwriter.markup_regex import STRIKETHROUGH, BOLD_ITALIC, BOLD, ITALIC_ASTERISK, ITALIC_UNDERSCORE, IMAGE, LINK,\
     LINK_ALT, HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER, TABLE, MATH, \
     CODE
 
@@ -186,7 +186,8 @@ class MarkupHandler:
             # - "$math$" (colorize)
             # - "---" table (wrap/pixels)
             regexps = (
-                (ITALIC, self.TAG_NAME_ITALIC),
+                (ITALIC_ASTERISK, self.TAG_NAME_ITALIC),
+                (ITALIC_UNDERSCORE, self.TAG_NAME_ITALIC),
                 (BOLD, self.TAG_NAME_BOLD),
                 (BOLD_ITALIC, self.TAG_NAME_BOLD_ITALIC),
                 (STRIKETHROUGH, self.TAG_NAME_STRIKETHROUGH),
