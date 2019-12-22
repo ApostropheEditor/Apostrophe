@@ -191,10 +191,9 @@ class InlinePreview:
 
     def get_view_for_image(self, match):
         path = match.group("url")
-        if not path.startswith(("file://", "/")):
+        if not path.startswith(("/")):
             return self.get_view_for_link(match)
-        elif path.startswith("file://"):
-            path = path[7:]
+        path = unquote(path)
         return Gtk.Image.new_from_pixbuf(
             GdkPixbuf.Pixbuf.new_from_file_at_size(path, self.WIDTH, self.HEIGHT))
 
