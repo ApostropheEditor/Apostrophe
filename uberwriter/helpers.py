@@ -90,7 +90,7 @@ def get_reference_files_path(reference_file_name):
     """
     refs_path = get_data_file('reference_files', '%s' % (reference_file_name,))
     if not os.path.exists(refs_path):
-        refs_path = None
+        refs_path = ""
     return refs_path
 
 
