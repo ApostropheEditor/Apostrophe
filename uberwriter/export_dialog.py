@@ -273,8 +273,8 @@ class Export:
                 "no": None
             },
             {
-                "condition": self.get_paper_size() == "a4" and (to_fmt == "odt" or to_fmt == "docx"),
-                "yes": "--reference-doc " + helpers.get_reference_files_path('reference-a4.'+to_fmt) + to_fmt,
+                "condition": (self.get_paper_size() == "a4" and (to_fmt in ("odt", "docx"))),
+                "yes": "--reference-doc=" + helpers.get_reference_files_path('reference-a4.' + to_fmt),
                 "no": None
             },
             {
