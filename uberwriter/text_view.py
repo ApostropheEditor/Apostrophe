@@ -246,8 +246,19 @@ class TextView(Gtk.TextView):
     def on_key_press_event(self, _widget, event):
         if self.hemingway_mode:
             return event.keyval == Gdk.KEY_BackSpace or event.keyval == Gdk.KEY_Delete
+        if event.state & Gdk.ModifierType.SHIFT_MASK == Gdk.ModifierType.SHIFT_MASK \
+                and event.keyval == Gdk.KEY_ISO_Left_Tab: # Capure Shift-Tab
+            self.on_shift_tab()
+            return True
         else:
             return False
+
+    def on_shift_tab(self):
+        """Delete last character if it is a tab"""
+
+        text = self.get_text()
+        if text[-1] == "\t":
+            self.set_text(text[:-1])
 
     def clear(self):
         """Clear text and undo history"""
