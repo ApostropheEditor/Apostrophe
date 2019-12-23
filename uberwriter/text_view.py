@@ -255,10 +255,14 @@ class TextView(Gtk.TextView):
 
     def on_shift_tab(self):
         """Delete last character if it is a tab"""
+        text_buffer = self.get_buffer()
+        iter = text_buffer.get_end_iter()
+        end = text_buffer.get_end_iter()
 
-        text = self.get_text()
-        if text[-1] == "\t":
-            self.set_text(text[:-1])
+        iter.backward_char()
+
+        if iter.get_char() == "\t":
+            text_buffer.delete(iter, end)
 
     def clear(self):
         """Clear text and undo history"""
