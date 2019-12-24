@@ -262,7 +262,9 @@ class TextView(Gtk.TextView):
         iter.backward_char()
 
         if iter.get_char() == "\t":
-            text_buffer.delete(iter, end)
+            with user_action(text_buffer):
+	            text_buffer.delete(iter, end)
+
 
     def clear(self):
         """Clear text and undo history"""
