@@ -16,41 +16,123 @@
 """Manage all the headerbars related stuff
 """
 
-from collections import namedtuple
-from gettext import gettext as _
-
 import gi
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 from uberwriter.helpers import get_descendant
 
 
-class MainHeaderbar:  #pylint: disable=too-few-public-methods
+class BaseHeaderbar:
+    """Base class for all headerbars
+    """
+    def __init__(self, app):
+
+        self.builder = Gtk.Builder()
+        self.builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/Headerbar.ui")
+
+        self.hb = self.builder.get_object("Headerbar")
+        self.hb_revealer = self.builder.get_object("titlebar_revealer")
+
+        self.menu_button = self.builder.get_object("menu_button")
+        self.recents_button = self.builder.get_object("recents_button")
+
+
+class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
     """Sets up the main application headerbar
     """
 
     def __init__(self, app):
-        self.hb = Gtk.HeaderBar().new() #pylint: disable=C0103
-        self.hb.props.show_close_button = True
-        self.hb.get_style_context().add_class("titlebar")
 
-        self.hb_revealer = Gtk.Revealer(name='titlebar-revealer')
-        self.hb_revealer.add(self.hb)
-        self.hb_revealer.props.transition_duration = 750
-        self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
-        self.hb_revealer.show()
+        BaseHeaderbar.__init__(self, app)
+
+        self.hb.set_show_close_button(True)
+
+        add_menus(self, app)
+
+        self.hb_revealer.props.transition_duration = 0
+
+
+class FullscreenHeaderbar(BaseHeaderbar):
+    """Sets up and manages the fullscreen headerbar and his events
+    """
+
+    def __init__(self, fs_builder, app):
+
+        BaseHeaderbar.__init__(self, app)
+
+        self.hb.set_show_close_button(False)
+
+        self.exit_fs_button = self.builder.get_object("exit_fs_button")
+        self.exit_fs_button.set_visible(True)
+
+        add_menus(self, app)
+
+        self.events = fs_builder.get_object("FullscreenEventbox")
+        self.events.add(self.hb_revealer)
+
+        # this is a little tricky
+        # we show hb when the cursor enters an area of 1px at the top
+        # as the hb is shown the height of the eventbox grows to accomodate it
+        self.events.connect('enter_notify_event', self.show_fs_hb)
+        self.events.connect('leave_notify_event', self.hide_fs_hb)
+        self.menu_button.get_popover().connect('closed', self.hide_fs_hb)
+        self.recents_button.get_popover().connect('closed', self.hide_fs_hb)
+
+    def show_fs_hb(self, _widget=None, _data=None):
+        """show headerbar of the fullscreen mode
+        """
         self.hb_revealer.set_reveal_child(True)
 
-        self.hb_container = Gtk.Frame(name='titlebar-container')
-        self.hb_container.set_shadow_type(Gtk.ShadowType.NONE)
-        self.hb_container.add(self.hb_revealer)
-        self.hb_container.show()
+    def hide_fs_hb(self, _widget=None, _data=None):
+        """hide headerbar of the fullscreen mode
+        """
+        if (self.menu_button.get_active() or
+           self.recents_button.get_active()):
+            pass
+        else:
+            self.hb_revealer.set_reveal_child(False)
 
-        self.btns = main_buttons(app)
-        pack_main_buttons(self.hb, self.btns)
 
-        self.hb.show_all()
+class DummyHeaderbar(BaseHeaderbar):
+    """Sets up and manages the dummy headerbar wich fades away when entering
+       the free-distracting mode
+    """
+
+    def __init__(self, app):
+
+        BaseHeaderbar.__init__(self, app)
+
+        self.hb.set_show_close_button(True)
+        self.hb_revealer.set_transition_type(
+            Gtk.RevealerTransitionType.CROSSFADE)
+        self.hb_revealer.set_reveal_child(False)
+
+        self.menu_button.set_sensitive(True)
+        self.recents_button.set_sensitive(True)
+
+    def show_dm_hb(self):
+        """show dummy headerbar:
+           It appears instantly to inmediatly fade away
+        """
+        self.hb_revealer.set_transition_duration(0)
+        self.hb_revealer.set_reveal_child(True)
+        self.hb_revealer.set_transition_duration(600)
+        self.hb_revealer.set_reveal_child(False)
+
+    def hide_dm_hb(self):
+        """hide dummy headerbar
+           It appears slowly to inmediatly dissapear
+        """
+        self.hb_revealer.set_transition_duration(400)
+        self.hb_revealer.set_reveal_child(True)
+        GLib.timeout_add(400, self.hide_dm_hb_with_wait)
+
+    def hide_dm_hb_with_wait(self):
+        self.hb_revealer.set_transition_duration(0)
+        self.hb_revealer.set_reveal_child(False)
+        return False
 
 
 class PreviewHeaderbar:
@@ -62,10 +144,11 @@ class PreviewHeaderbar:
         self.hb.props.show_close_button = True
         self.hb.get_style_context().add_class("titlebar")
 
-        self.hb_revealer = Gtk.Revealer(name="titlebar-revealer")
+        self.hb_revealer = Gtk.Revealer(name="titlebar-revealer-pv")
         self.hb_revealer.add(self.hb)
         self.hb_revealer.props.transition_duration = 750
-        self.hb_revealer.props.transition_type = Gtk.RevealerTransitionType.CROSSFADE
+        self.hb_revealer.set_transition_type(
+            Gtk.RevealerTransitionType.CROSSFADE)
         self.hb_revealer.show()
         self.hb_revealer.set_reveal_child(True)
 
@@ -77,76 +160,20 @@ class PreviewHeaderbar:
         self.hb.show_all()
 
 
-class FullscreenHeaderbar:
-    """Sets up and manages the fullscreen headerbar and his events
+def add_menus(headerbar, app):
+    """ Add menu models to hb buttons
     """
 
-    def __init__(self, builder, app):
-        self.events = builder.get_object("FullscreenEventbox")
-        self.revealer = builder.get_object(
-            "FullscreenHbPlaceholder")
-        self.revealer.show()
-        self.revealer.set_reveal_child(False)
-
-        self.hb = builder.get_object("FullscreenHeaderbar") #pylint: disable=C0103
-        self.hb.get_style_context().add_class("titlebar")
-        self.hb.show()
-        self.events.hide()
-
-        self.btns = main_buttons(app)
-
-        fs_btn_exit = Gtk.Button().new_from_icon_name("view-restore-symbolic",
-                                                      Gtk.IconSize.BUTTON)
-        fs_btn_exit.set_tooltip_text(_("Exit Fullscreen"))
-        fs_btn_exit.set_action_name("app.fullscreen")
-
-        pack_main_buttons(self.hb, self.btns, fs_btn_exit)
-
-        self.hb.show_all()
-
-        # this is a little tricky
-        # we show hb when the cursor enters an area of 1 px at the top of the window
-        # as the hb is shown the height of the eventbox grows to accomodate it
-        self.events.connect('enter_notify_event', self.show_fs_hb)
-        self.events.connect('leave_notify_event', self.hide_fs_hb)
-        self.btns.menu.get_popover().connect('closed', self.hide_fs_hb)
-
-    def show_fs_hb(self, _widget, _data=None):
-        """show headerbar of the fullscreen mode
-        """
-        self.revealer.set_reveal_child(True)
-
-    def hide_fs_hb(self, _widget, _data=None):
-        """hide headerbar of the fullscreen mode
-        """
-        if self.btns.menu.get_active():
-            pass
-        else:
-            self.revealer.set_reveal_child(False)
-
-
-def main_buttons(app):
-    """constructor for the headerbar buttons
-
-    Returns:
-        [NamedTupple] -- tupple of Gtk.Buttons
-    """
-
-    Button = namedtuple("Button", "new open_recent save search menu")
-    btn = Button(Gtk.Button().new_with_label(_("New")),
-                 Gtk.Box().new(0, 0),
-                 Gtk.Button().new_with_label(_("Save")),
-                 Gtk.Button().new_from_icon_name("system-search-symbolic",
-                                                 Gtk.IconSize.BUTTON),
-                 Gtk.MenuButton().new())
+    # Add menu model to the menu button
 
     builder_window_menu = Gtk.Builder()
     builder_window_menu.add_from_resource(
         "/de/wolfvollprecht/UberWriter/ui/Menu.ui")
     model = builder_window_menu.get_object("Menu")
 
-    open_button = Gtk.Button().new_with_label(_("Open"))
-    open_button.set_action_name("app.open")
+    headerbar.menu_button.set_menu_model(model)
+
+    # Add recents menu to the open recents button
 
     recents_builder = Gtk.Builder()
     recents_builder.add_from_resource(
@@ -159,44 +186,5 @@ def main_buttons(app):
     recents_wd = recents_builder.get_object("recent_md_widget")
     recents_wd.connect('item-activated', app.on_open_recent)
 
-    recents_button = Gtk.MenuButton().new()
-    recents_button.set_image(Gtk.Image.new_from_icon_name("pan-down-symbolic",
-                                                          Gtk.IconSize.BUTTON))
-    recents_button.set_tooltip_text(_("Open Recent"))
-    recents_button.set_popover(recents)
-
-    btn.open_recent.get_style_context().add_class("linked")
-    btn.open_recent.pack_start(open_button, False, False, 0)
-    btn.open_recent.pack_end(recents_button, False, False, 0)
-
-    btn.search.set_tooltip_text(_("Find"))
-    btn.menu.set_tooltip_text(_("Menu"))
-    btn.menu.set_image(Gtk.Image.new_from_icon_name("open-menu-symbolic",
-                                                    Gtk.IconSize.BUTTON))
-    btn.menu.set_use_popover(True)
-    btn.menu.set_menu_model(model)
-    btn.new.set_action_name("app.new")
-    btn.save.set_action_name("app.save")
-    btn.search.set_action_name("app.search")
-
-    return btn
-
-
-def pack_main_buttons(headerbar, btn, btn_exit=None):
-    """Pack the given buttons in the given headerbar
-
-    Arguments:
-        headerbar {Gtk.HeaderBar} -- The headerbar where to put the buttons
-        btn {Tupple of Gtk.Buttons} -- The buttons to pack
-
-    Keyword Arguments:
-        btn_exit {Gtk.Button} -- Optional exit fullscreen button (default: {None})
-    """
-
-    headerbar.pack_start(btn.new)
-    headerbar.pack_start(btn.open_recent)
-    if btn_exit:
-        headerbar.pack_end(btn_exit)
-    headerbar.pack_end(btn.menu)
-    headerbar.pack_end(btn.search)
-    headerbar.pack_end(btn.save)
+    headerbar.recents_button.set_popover(recents)
+    headerbar.recents_button.set_sensitive(True)

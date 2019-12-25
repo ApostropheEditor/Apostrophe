@@ -75,6 +75,10 @@ class PreferencesDialog:
         self.dark_mode_switch.set_active(self.settings.get_value("dark-mode"))
         self.dark_mode_switch.connect("state-set", self.on_dark_mode)
 
+        self.autohide_headerbar_switch = self.builder.get_object("autohide_headerbar_switch")
+        self.autohide_headerbar_switch.set_active(self.settings.get_value("autohide-headerbar"))
+        self.autohide_headerbar_switch.connect("state-set", self.on_autohide_headerbar)
+
         self.spellcheck_switch = self.builder.get_object("spellcheck_switch")
         self.spellcheck_switch.set_active(self.settings.get_value("spellcheck"))
         self.spellcheck_switch.connect("state-set", self.on_spellcheck)
@@ -121,6 +125,10 @@ class PreferencesDialog:
         self.settings.set_boolean("dark-mode", state)
         if state and self.dark_mode_auto_switch.get_active():
             self.dark_mode_auto_switch.set_active(GLib.Variant.new_boolean(False))
+        return False
+
+    def on_autohide_headerbar(self, _, state):
+        self.settings.set_boolean("autohide-headerbar", state)
         return False
 
     def on_spellcheck(self, _, state):
