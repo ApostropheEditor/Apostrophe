@@ -21,7 +21,7 @@ Any help is appreciated!
 ## Building from Git
 
 ```bash
-$ git clone https://github.com/UberWriter/uberwriter.git`
+$ git clone https://github.com/UberWriter/uberwriter.git
 $ cd uberwriter
 $ meson builddir --prefix=/usr
 # sudo ninja -C builddir install
