@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
-
+import os
 import re
 import telnetlib
 from gettext import gettext as _
@@ -27,6 +27,10 @@ from gi.repository import Gtk, Gdk, GdkPixbuf, GLib
 from gi.repository import WebKit2
 from uberwriter import latex_to_PNG, markup_regex
 from uberwriter.settings import Settings
+
+import logging
+
+LOGGER = logging.getLogger('uberwriter')
 
 
 class DictAccessor:
@@ -191,8 +195,12 @@ class InlinePreview:
 
     def get_view_for_image(self, match):
         path = match.group("url")
-        if not path.startswith(("/")):
+        if path.startswith(("https://", "http://", "www.")):
             return self.get_view_for_link(match)
+        if path.startswith(("file://")):
+            path = path[7:]
+        if not path.startswith(("/", "file://")):
+            path = os.path.join(os.path.dirname(self.text_view.get_filepath()), path)
         path = unquote(path)
         return Gtk.Image.new_from_pixbuf(
             GdkPixbuf.Pixbuf.new_from_file_at_size(path, self.WIDTH, self.HEIGHT))

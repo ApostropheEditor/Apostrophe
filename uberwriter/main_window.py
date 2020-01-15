@@ -70,6 +70,8 @@ class MainWindow(StyledWindow):
 
         self.get_style_context().add_class('uberwriter-window')
 
+        self.filename = None
+
         # Set UI
         builder = Gtk.Builder()
         builder.add_from_resource(
@@ -102,7 +104,7 @@ class MainWindow(StyledWindow):
         self.scrolled_window = builder.get_object('editor_scrolledwindow')
 
         # Setup text editor
-        self.text_view = TextView(self.settings.get_int("characters-per-line"))
+        self.text_view = TextView(self.settings.get_int("characters-per-line"), self.filename)
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
@@ -629,6 +631,7 @@ class MainWindow(StyledWindow):
         if filename:
             self.filename = filename
             base_path = os.path.dirname(self.filename)
+            self.text_view.set_filepath(os.path.join(os.getcwd(), filename))
         else:
             self.filename = None
             base_path = "/"

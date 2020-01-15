@@ -44,8 +44,10 @@ class TextView(Gtk.TextView):
 
     font_sizes = [18, 17, 16, 15, 14]  # Must match CSS selectors in gtk/base.css
 
-    def __init__(self, line_chars):
+    def __init__(self, line_chars, filepath=None):
         super().__init__()
+        # Store the filename of the edited file
+        self.set_filepath(filepath)
 
         # Appearance
         self.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
@@ -299,3 +301,10 @@ class TextView(Gtk.TextView):
         if pen_iter.get_char() == "\t":
             with user_action(text_buffer):
                 text_buffer.delete(pen_iter, end_iter)
+
+    def set_filepath(self, filepath):
+        """Change the file edited by this TextView"""
+        self.filepath = filepath
+
+    def get_filepath(self):
+        return self.filepath
