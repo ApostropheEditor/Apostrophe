@@ -10,8 +10,8 @@ Uberwriter is a GTK+ based distraction free Markdown editor, mainly developed by
 
 ## Install
 
-You can get UberWriter on Flathub!
-[Get it now](https://flathub.org/apps/details/de.wolfvollprecht.UberWriter)
+* Flatpak: [Get it on Flathub](https://flathub.org/apps/details/de.wolfvollprecht.UberWriter)
+* Nix(OS): [`pkgs.uberwriter`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/uberwriter/default.nix#L47)
 
 ## Contributions and localization
 
