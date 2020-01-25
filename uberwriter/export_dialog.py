@@ -238,7 +238,7 @@ class Export:
 
             if export_type == "html":
                 to = "html5"
-                args.append("--standalone")
+                args.append("--self-contained")
                 args.append("--css=%s" % Theme.get_current().web_css_path)
                 args.append("--mathjax")
                 args.append("--lua-filter=%s" % helpers.get_script_path('relative_to_absolute.lua'))

@@ -57,7 +57,6 @@ class DragDropHandler:
             text_buffer.delete(cursor_iter_l, cursor_iter_r)
 
             if text.startswith(("http://", "https://", "www.")):
-                print("web")
                 text = "[{}]({})".format(_("web page"), text)
                 limit_left = 1
                 limit_right = len(_("web page"))
