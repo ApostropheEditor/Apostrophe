@@ -2,6 +2,7 @@ import mimetypes
 import urllib
 from gettext import gettext as _
 from os.path import basename
+from uberwriter.settings import Settings
 
 from gi.repository import Gtk
 
@@ -13,6 +14,8 @@ class DragDropHandler:
 
     def __init__(self, text_view, *targets):
         super().__init__()
+
+        self.settings = Settings.new()
 
         self.target_list = Gtk.TargetList.new([])
         if TARGET_URI in targets:
@@ -35,8 +38,17 @@ class DragDropHandler:
                 mime = mimetypes.guess_type(uri)
 
                 if mime[0] is not None and mime[0].startswith('image/'):
+                    basepath = self.settings.get_string("open-file-path")
+                    basepath = urllib.parse.quote(basepath)
+
                     if uri.startswith("file://"):
                         uri = uri[7:]
+
+                    # for handling local URIs we need to substract the basepath
+                    # except when it is "/" (document not saved)
+                    if uri.startswith(basepath) and basepath != "/":
+                        uri = uri[len(basepath)+1:]
+
                     text = "![{}]({})".format(name, uri)
                     limit_left = 2
                     limit_right = len(name)
