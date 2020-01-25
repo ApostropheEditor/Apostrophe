@@ -15,6 +15,7 @@
 # END LICENSE
 
 import re
+import os
 import telnetlib
 from gettext import gettext as _
 from urllib.parse import unquote
@@ -151,6 +152,8 @@ class InlinePreview:
     HEIGHT = 300
 
     def __init__(self, text_view):
+        self.settings = Settings.new()
+
         self.text_view = text_view
         self.text_view.connect("button-press-event", self.on_button_press_event)
         self.text_buffer = text_view.get_buffer()
@@ -158,7 +161,7 @@ class InlinePreview:
             "click", self.text_buffer.get_iter_at_mark(self.text_buffer.get_insert()))
 
         self.latex_converter = latex_to_PNG.LatexToPNG()
-        self.characters_per_line = Settings.new().get_int("characters-per-line")
+        self.characters_per_line = self.settings.get_int("characters-per-line")
 
         self.popover = Gtk.Popover.new(self.text_view)
         self.popover.get_style_context().add_class("quick-preview-popup")
@@ -191,9 +194,15 @@ class InlinePreview:
 
     def get_view_for_image(self, match):
         path = match.group("url")
-        if not path.startswith(("/")):
+
+        if path.startswith(("https://", "http://", "www.")):
             return self.get_view_for_link(match)
+        if path.startswith(("file://")):
+            path = path[7:]
+        if not path.startswith(("/", "file://")):
+            path = os.path.join(self.settings.get_string("open-file-path"), path)
         path = unquote(path)
+
         return Gtk.Image.new_from_pixbuf(
             GdkPixbuf.Pixbuf.new_from_file_at_size(path, self.WIDTH, self.HEIGHT))
 
