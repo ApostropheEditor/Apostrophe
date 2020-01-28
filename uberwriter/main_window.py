@@ -242,9 +242,15 @@ class MainWindow(StyledWindow):
         if state.get_boolean():
             self.text_view.grab_focus()
             self.preview_handler.show()
+            self.headerbar.preview_toggle_revealer.set_reveal_child(True)
+            self.fs_headerbar.preview_toggle_revealer.set_reveal_child(True)
+            self.dm_headerbar.preview_toggle_revealer.set_reveal_child(True)
         else:
             self.preview_handler.hide()
             self.text_view.grab_focus()
+            self.headerbar.preview_toggle_revealer.set_reveal_child(False)
+            self.fs_headerbar.preview_toggle_revealer.set_reveal_child(False)
+            self.dm_headerbar.preview_toggle_revealer.set_reveal_child(False)
 
         return True
 

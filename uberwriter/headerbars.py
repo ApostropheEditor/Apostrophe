@@ -35,8 +35,14 @@ class BaseHeaderbar:
         self.hb = self.builder.get_object("Headerbar")
         self.hb_revealer = self.builder.get_object("titlebar_revealer")
 
+        self.preview_toggle_revealer = self.builder.get_object("preview_switch_revealer")
+
         self.menu_button = self.builder.get_object("menu_button")
         self.recents_button = self.builder.get_object("recents_button")
+
+    def set_preview_layout_icon(self, icon):
+
+        self.preview_switcher_icon = self.builder.get_object("preview_switch_toggle_icon")
 
 
 class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
