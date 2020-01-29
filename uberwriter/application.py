@@ -18,7 +18,7 @@ import gi
 from uberwriter.main_window import MainWindow
 
 gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
-from gi.repository import GLib, Gio, Gtk, GdkPixbuf
+from gi.repository import GLib, Gio, Gtk
 
 from uberwriter import main_window
 from uberwriter.settings import Settings
@@ -261,8 +261,8 @@ class Application(Gtk.Application):
         builder.add_from_resource("/de/wolfvollprecht/UberWriter/About.ui")
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
-
-        about_dialog.present()
+        about_dialog.run()
+        about_dialog.destroy()
 
     def on_quit(self, _action, _param):
         self.quit()

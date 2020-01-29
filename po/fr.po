@@ -268,14 +268,12 @@ msgid "How to display the preview."
 msgstr ""
 
 #: data/ui/About.ui:12
-#, fuzzy
 msgid "Copyright (C) 2018, Wolf Vollprecht"
 msgstr "Copyright (C) 2018, Wolf Vollprecht"
 
 #: data/ui/About.ui:14
-#, fuzzy
 msgid "Uberwriter website"
-msgstr "Site de UberWriter"
+msgstr "Site web d'UberWriter"
 
 #: data/ui/About.ui:71
 msgid "Donations:"
@@ -444,17 +442,14 @@ msgid "Fullscreen"
 msgstr "Plein écran"
 
 #: data/ui/Menu.ui:24
-#, fuzzy
 msgid "Save _As"
 msgstr "Enregistrer _Sous"
 
 #: data/ui/Menu.ui:28
-#, fuzzy
 msgid "_Export"
 msgstr "_Exporter"
 
 #: data/ui/Menu.ui:32
-#, fuzzy
 msgid "Copy HTML"
 msgstr "Copier le HTML"
 
@@ -464,7 +459,7 @@ msgstr "Préférences"
 
 #: data/ui/Menu.ui:43
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "Raccourcis _Clavier"
 
 #: data/ui/Menu.ui:46
 msgid "Open Tutorial"
@@ -498,7 +493,6 @@ msgid "Open"
 msgstr "Ouvrir"
 
 #: data/ui/Shortcuts.ui:31
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Enregistrer"
@@ -511,7 +505,7 @@ msgstr "Enregistrer comme"
 #: data/ui/Shortcuts.ui:45
 msgctxt "shortcut window"
 msgid "Close document"
-msgstr ""
+msgstr "Fermer le document"
 
 #: data/ui/Shortcuts.ui:52
 msgctxt "shortcut window"
@@ -524,7 +518,6 @@ msgid "Modes"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:65
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Focus mode"
 msgstr "Mode focus"
@@ -535,13 +528,11 @@ msgid "Hemingway mode"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:79
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Preview"
 msgstr "Aperçu"
 
 #: data/ui/Shortcuts.ui:86
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Fullscreen"
 msgstr "Plein écran"
@@ -554,7 +545,7 @@ msgstr "Rechercher"
 #: data/ui/Shortcuts.ui:108
 msgctxt "shortcut window"
 msgid "Markdown"
-msgstr ""
+msgstr "Markdown"
 
 #: data/ui/Shortcuts.ui:112
 msgctxt "shortcut window"
@@ -583,10 +574,9 @@ msgid "Strikeout"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:147
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Header"
-msgstr "Entête"
+msgstr "En-tête"
 
 #: data/ui/Shortcuts.ui:154
 msgctxt "shortcut window"
@@ -668,7 +658,7 @@ msgstr ""
 
 #: data/ui/Window.ui:258
 msgid "Regular Expression"
-msgstr ""
+msgstr "Expression Régulière"
 
 #: data/ui/Window.ui:271
 #, fuzzy
@@ -712,7 +702,6 @@ msgid "strong text"
 msgstr "texte en gras"
 
 #: uberwriter/format_shortcuts.py:99
-#, fuzzy
 msgid "striked out text"
 msgstr "texte barré"
 
@@ -730,22 +719,18 @@ msgid "Exit Fullscreen"
 msgstr "Sortir du Plein écran"
 
 #: uberwriter/headerbars.py:137
-#, fuzzy
 msgid "New"
 msgstr "Nouveau"
 
 #: uberwriter/headerbars.py:139
-#, fuzzy
 msgid "Save"
 msgstr "Enregistrer"
 
 #: uberwriter/headerbars.py:147
-#, fuzzy
 msgid "Open"
 msgstr "Ouvrir"
 
 #: uberwriter/headerbars.py:162
-#, fuzzy
 msgid "Open Recent"
 msgstr "Ouvrir un document récent"
 
@@ -787,7 +772,7 @@ msgstr ""
 
 #: uberwriter/main_window.py:341
 msgid "Open a .md file"
-msgstr ""
+msgstr "Ouvrir un fichier .md"
 
 #: uberwriter/main_window.py:367
 msgid "You have not saved your changes."
@@ -807,7 +792,7 @@ msgstr "Enregistrer maintenant"
 
 #: uberwriter/main_window.py:400
 msgid "New File"
-msgstr ""
+msgstr "Nouveau Fichier"
 
 #: uberwriter/preview_renderer.py:168
 msgid "Half-Width"
@@ -985,201 +970,3 @@ msgstr ""
 #~ msgid "<b>Bibliography File</b>"
 #~ msgstr "Fichier de bibliographie"
 
-#~ msgid ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it \n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-#~ msgstr ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it\n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published\n"
-#~ "# by the Free Software Foundation.\n"
-#~ "#\n"
-#~ "# This program is distributed in the hope that it will be useful, but\n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of\n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR\n"
-#~ "# PURPOSE. See the GNU General Public License for more details.\n"
-#~ "#\n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along\n"
-#~ "# with this program. If not, see <http://www.gnu.org/licenses/>.\n"
-
-#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-#~ msgstr "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-
-#~ msgid "You can not export to PDF."
-#~ msgstr "Impossible d'exporter en PDF"
-
-#~ msgid ""
-#~ "Please install <a href=\"apt:texlive\">texlive</a> from the software "
-#~ "center."
-#~ msgstr ""
-#~ "Veuillez installer <a href=\"apt:texlive\">texlive</a> du software center."
-
-#~ msgid "MarkDown or Plain Text"
-#~ msgstr "Markdown ou texte brut"
-
-#~ msgid "Open a .md-File"
-#~ msgstr "Ouvrir un fichier .md"
-
-#~ msgid "Close without Saving"
-#~ msgstr "Fermer sans sauvegarder"
-
-#~ msgid "Unsaved changes"
-#~ msgstr "Modifications non enregistrées"
-
-#~ msgid "You can not enable the Spell Checker."
-#~ msgstr "Vous ne pouvez pas activer le Correcteur orthographique."
-
-#~ msgid ""
-#~ "Please install 'hunspell' or 'aspell' dictionarys for your language from "
-#~ "the software center."
-#~ msgstr ""
-#~ "Veuillez installer les dictionnaires 'hunspell' ou 'aspell' pour votre "
-#~ "langue depuis le software center."
-
-#, fuzzy
-#~ msgid "Dark mode"
-#~ msgstr "Mode sombre"
-
-#~ msgid ""
-#~ "If enabled, the window will be dark themed If disabled, the window will "
-#~ "be light themed asked to install them manually."
-#~ msgstr ""
-#~ "S'il est activé, la fenêtre s'affichera avec le thème sombre. Si non, la "
-#~ "fenêtre s'affichera avec le thème clair telle qu'elle est lors de "
-#~ "l'installation initiale."
-
-#~ msgid "New window"
-#~ msgstr "Nouvelle fenêtre"
-
-#~ msgid "_Shortcuts"
-#~ msgstr "_Mots clés"
-
-#~ msgid "Pandoc _Help"
-#~ msgstr "Aide _Pandoc"
-
-#~ msgid "_About"
-#~ msgstr "_À propos"
-
-#~ msgid "_Quit"
-#~ msgstr "_Quitter"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Quit"
-#~ msgstr "Quitter"
-
-#, fuzzy
-#~ msgctxt "shortcut window"
-#~ msgid "Editor"
-#~ msgstr "Édition"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Cut"
-#~ msgstr "Couper"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Copy"
-#~ msgstr "Copier"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Paste"
-#~ msgstr "Coller"
-
-#~ msgid "Activate Regex"
-#~ msgstr "Activer les expressions régulières"
-
-#~ msgid "_New"
-#~ msgstr "_Nouveau"
-
-#~ msgid "_Open"
-#~ msgstr "_Ouvrir"
-
-#, fuzzy
-#~ msgid "Open examples"
-#~ msgstr "Ouvrir les exemples"
-
-#, fuzzy
-#~ msgid "_Quick markdown tutorial"
-#~ msgstr "_Tutoriel Markdown rapide"
-
-#, fuzzy
-#~ msgid "_Save"
-#~ msgstr "_Enregistrer"
-
-#, fuzzy
-#~ msgid "Export as HTML"
-#~ msgstr "Exporter en HTML"
-
-#, fuzzy
-#~ msgid "Export as PDF"
-#~ msgstr "Exporter en PDF"
-
-#, fuzzy
-#~ msgid "Copy Raw HTML to Clipboard"
-#~ msgstr "Copier le HTML brut dans le presse-papiers"
-
-#~ msgid "Sidebar"
-#~ msgstr "Barre de navigation"
-
-#~ msgid "Open Search and Replace"
-#~ msgstr "Ouvrir Rechercher et remplacer"
-
-#~ msgid "Search and Replace ..."
-#~ msgstr "Rechercher et remplacer..."
-
-#~ msgid "extension \"{}\" is not a valid ZIP file"
-#~ msgstr "l'extension \"{}\" n'est pas un fichier ZIP valide"
-
-#~ msgid "extension \"{}\" has no valid XML dictionary registry"
-#~ msgstr "l'extension \"{}\" n'est pas un dictionnaire XML valide"
-
-#~ msgid ""
-#~ "unable to move extension, file with same name exists within move_path"
-#~ msgstr ""
-#~ "impossible de modifier l'extension, un fichier portant le même nom existe "
-#~ "dans la destination"
-
-#~ msgid "unable to move extension, move_path is not a directory"
-#~ msgstr ""
-#~ "impossible de modifier l'extension, la destination n'est pas un dossier"
-
-#~ msgid "Unknown"
-#~ msgstr "Inconnu"
-
-#~ msgid "Help to _translate"
-#~ msgstr "Aider à la _traduction"
-
-#~ msgid "Donate to the project"
-#~ msgstr "Donner au projet"
-
-#~ msgid "ODT"
-#~ msgstr "ODT"
-
-#, fuzzy
-#~ msgid "Use dark mode"
-#~ msgstr "Mode sombre"
-
-#, fuzzy
-#~ msgid "Autospellcheck"
-#~ msgstr "Autocorrection"
-
-#~ msgid "page 1"
-#~ msgstr "page 1"
-
-#~ msgid "Search and replace"
-#~ msgstr "Rechercher et remplacer"
