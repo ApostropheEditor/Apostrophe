@@ -18,31 +18,97 @@
 
 import gi
 
+from gettext import gettext as _
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib
 from uberwriter.helpers import get_descendant
+from uberwriter.settings import Settings
 
 
 class BaseHeaderbar:
     """Base class for all headerbars
     """
+    # preview modes
+    FULL_WIDTH = 0
+    HALF_WIDTH = 1
+    HALF_HEIGHT = 2
+    WINDOWED = 3
+
     def __init__(self, app):
+
+        self.settings = Settings.new()
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
             "/de/wolfvollprecht/UberWriter/ui/Headerbar.ui")
 
-        self.hb = self.builder.get_object("Headerbar")
-        self.hb_revealer = self.builder.get_object("titlebar_revealer")
+        self.hb = self.builder.get_object(
+            "Headerbar")
+        self.hb_revealer = self.builder.get_object(
+            "titlebar_revealer")
 
-        self.preview_toggle_revealer = self.builder.get_object("preview_switch_revealer")
+        self.preview_toggle_revealer = self.builder.get_object(
+            "preview_switch_revealer")
+        self.preview_switcher_icon = self.builder.get_object(
+            "preview_switch_toggle_icon")
+
+        self.__populate_layout_switcher_menu()
+        self.update_preview_layout_icon()
 
         self.menu_button = self.builder.get_object("menu_button")
         self.recents_button = self.builder.get_object("recents_button")
 
-    def set_preview_layout_icon(self, icon):
+    def update_preview_layout_icon(self):
+        mode = self.settings.get_enum("preview-mode")
+        self.preview_switcher_icon.set_from_icon_name(
+            self.__get_icon_for_preview_mode(mode), 4)
 
-        self.preview_switcher_icon = self.builder.get_object("preview_switch_toggle_icon")
+    def __populate_layout_switcher_menu(self):
+        preview_menu = self.builder.get_object("preview_switch_options")
+        modes = self.settings.props.settings_schema.get_key("preview-mode").get_range()[1]
+
+        for i, mode in enumerate(modes):
+            item_builder = Gtk.Builder()
+            item_builder.add_from_resource(
+                "/de/wolfvollprecht/UberWriter/ui/PreviewLayoutSwitcherItem.ui")
+            menu_item = item_builder.get_object("switcherItem")
+
+            menu_item.label = item_builder.get_object("label")
+            menu_item.label.set_text(self.__get_text_for_preview_mode(i))
+
+            menu_item.icon = item_builder.get_object("icon")
+            menu_item.icon.set_from_icon_name(self.__get_icon_for_preview_mode(i), 16)
+
+            menu_item.set_action_name("app.preview_mode")
+            menu_item.set_action_target_value(GLib.Variant.new_string(mode))
+
+            menu_item.show_all()
+            preview_menu.insert(menu_item, -1)
+
+    def __get_text_for_preview_mode(self, mode):
+        if mode == self.FULL_WIDTH:
+            return _("Full-Width")
+        elif mode == self.HALF_WIDTH:
+            return _("Half-Width")
+        elif mode == self.HALF_HEIGHT:
+            return _("Half-Height")
+        elif mode == self.WINDOWED:
+            return _("Windowed")
+        else:
+            raise ValueError("Unknown preview mode {}".format(mode))
+
+    def __get_icon_for_preview_mode(self, mode):
+        if mode == self.FULL_WIDTH:
+            return "preview-layout-full-width-symbolic"
+        elif mode == self.HALF_WIDTH:
+            return "preview-layout-half-width-symbolic"
+        elif mode == self.HALF_HEIGHT:
+            return "preview-layout-half-height-symbolic"
+        elif mode == self.WINDOWED:
+            return "preview-layout-windowed-symbolic"
+        else:
+            raise ValueError("Unknown preview mode {}".format(mode))
 
 
 class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods

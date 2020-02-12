@@ -173,3 +173,7 @@
 .quick-preview-popup label {
 	color: @theme_fg_color;
 }
+
+.plain-listview {
+  background-color: @fg-color;
+}
