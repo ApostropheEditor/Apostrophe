@@ -197,13 +197,13 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">6</property>
-            <property name="margin_right">6</property>
+            <property name="margin_left">12</property>
+            <property name="margin_right">12</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">12</property>
             <property name="spacing">10</property>
             <child>
-              <object class="GtkSwitch">
+              <object class="GtkSwitch" id="sync_scroll_switch">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
               </object>
