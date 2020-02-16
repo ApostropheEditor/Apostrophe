@@ -56,6 +56,10 @@ class BaseHeaderbar:
         self.__populate_layout_switcher_menu()
         self.update_preview_layout_icon()
 
+        self.sync_scroll_switch = self.builder.get_object("sync_scroll_switch")
+        self.sync_scroll_switch.set_active(self.settings.get_value("sync-scroll"))
+        self.sync_scroll_switch.connect("state-set", self.__on_sync_scroll)
+
         self.menu_button = self.builder.get_object("menu_button")
         self.recents_button = self.builder.get_object("recents_button")
 
@@ -109,6 +113,10 @@ class BaseHeaderbar:
             return "preview-layout-windowed-symbolic"
         else:
             raise ValueError("Unknown preview mode {}".format(mode))
+
+    def __on_sync_scroll(self, _, state):
+        self.settings.set_boolean("sync-scroll", state)
+        return False
 
 
 class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
