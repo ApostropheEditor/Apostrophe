@@ -18,7 +18,7 @@ msgid "UberWriter"
 msgstr "UberWriter"
 
 #: data/de.wolfvollprecht.UberWriter.appdata.xml:6
-msgid "An elegant, free distraction GTK+ markdown editor"
+msgid "An elegant, distraction-free GTK+ markdown editor"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.appdata.xml:8
