@@ -405,16 +405,27 @@ class MainWindow(StyledWindow):
         """Show dialog to prevent loss of unsaved changes
         """
 
+        if self.filename:
+            title = os.path.basename(self.filename)
+        else:
+            title = _("New File")
+
         if self.did_change and self.text_view.get_text():
             dialog = Gtk.MessageDialog(self,
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.WARNING,
                                        Gtk.ButtonsType.NONE,
-                                       _("You have not saved your changes.")
+                                       _("Save changes to document “%s” before closing?") %
+                                       title
                                        )
-            dialog.add_button(_("Close without saving"), Gtk.ResponseType.NO)
+            
+            dialog.props.secondary_text = _("If you don’t save, " +
+                                            "all your changes will be permanently lost.")
+            close_button = dialog.add_button(_("Close without saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
+
+            close_button.get_style_context().add_class("destructive-action")
             # dialog.set_default_size(200, 60)
             dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
