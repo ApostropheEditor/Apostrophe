@@ -35,7 +35,6 @@ from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 import cairo
 
 from uberwriter import helpers
-from uberwriter.theme import Theme
 
 from uberwriter.sidebar import Sidebar
 from uberwriter.search_and_replace import SearchAndReplace

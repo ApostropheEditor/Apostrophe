@@ -63,6 +63,17 @@ class BaseHeaderbar:
         self.menu_button = self.builder.get_object("menu_button")
         self.recents_button = self.builder.get_object("recents_button")
 
+        add_menus(self, app)
+
+        settings = Gtk.Settings.get_default()
+        if global_dark:= settings.props.gtk_theme_name.endswith("-dark"):
+            self.light_button.set_sensitive(False)
+            self.light_button.set_tooltip_text(_("Light mode isn't available while using a dark global theme"))
+
+        self.dark_button.set_active(self.settings.get_boolean("dark-mode") or global_dark)
+
+        self.light_button.connect("toggled", self.__on_dark_mode)
+
     def update_preview_layout_icon(self):
         mode = self.settings.get_enum("preview-mode")
         self.preview_switcher_icon.set_from_icon_name(
@@ -118,6 +129,8 @@ class BaseHeaderbar:
         self.settings.set_boolean("sync-scroll", state)
         return False
 
+    def __on_dark_mode(self, _):
+        self.settings.set_boolean("dark-mode", self.dark_button.get_active())
 
 class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
     """Sets up the main application headerbar
@@ -129,7 +142,7 @@ class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
 
         self.hb.set_show_close_button(True)
 
-        add_menus(self, app)
+        #add_menus(self, app)
 
         self.hb_revealer.props.transition_duration = 0
 
@@ -147,7 +160,7 @@ class FullscreenHeaderbar(BaseHeaderbar):
         self.exit_fs_button = self.builder.get_object("exit_fs_button")
         self.exit_fs_button.set_visible(True)
 
-        add_menus(self, app)
+        #add_menus(self, app)
 
         self.events = fs_builder.get_object("FullscreenEventbox")
         self.events.add(self.hb_revealer)
@@ -248,10 +261,12 @@ def add_menus(headerbar, app):
 
     builder_window_menu = Gtk.Builder()
     builder_window_menu.add_from_resource(
-        "/de/wolfvollprecht/UberWriter/ui/Menu.ui")
+        "/de/wolfvollprecht/UberWriter/ui/Menu2.ui")
     model = builder_window_menu.get_object("Menu")
+    headerbar.light_button = builder_window_menu.get_object("light_mode_button")
+    headerbar.dark_button = builder_window_menu.get_object("dark_mode_button")
 
-    headerbar.menu_button.set_menu_model(model)
+    headerbar.menu_button.set_popover(model)
 
     # Add recents menu to the open recents button
 
