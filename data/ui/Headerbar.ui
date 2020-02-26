@@ -406,7 +406,7 @@
                 <property name="can_focus">False</property>
                 <property name="transition_type">slide-right</property>
                 <child>
-                  <object class="GtkMenuButton">
+                  <object class="GtkMenuButton" id="preview_switch_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>

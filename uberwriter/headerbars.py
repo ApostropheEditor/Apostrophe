@@ -62,6 +62,8 @@ class BaseHeaderbar:
 
         self.menu_button = self.builder.get_object("menu_button")
         self.recents_button = self.builder.get_object("recents_button")
+        self.export_button = self.builder.get_object("export_button")
+        self.preview_switch_button = self.builder.get_object("preview_switch_button")
 
         add_menus(self, app)
 
@@ -172,6 +174,8 @@ class FullscreenHeaderbar(BaseHeaderbar):
         self.events.connect('leave_notify_event', self.hide_fs_hb)
         self.menu_button.get_popover().connect('closed', self.hide_fs_hb)
         self.recents_button.get_popover().connect('closed', self.hide_fs_hb)
+        self.export_button.get_popover().connect('closed', self.hide_fs_hb)
+        self.preview_switch_button.get_popover().connect('closed', self.hide_fs_hb)
 
     def show_fs_hb(self, _widget=None, _data=None):
         """show headerbar of the fullscreen mode
@@ -182,7 +186,9 @@ class FullscreenHeaderbar(BaseHeaderbar):
         """hide headerbar of the fullscreen mode
         """
         if (self.menu_button.get_active() or
-           self.recents_button.get_active()):
+                self.recents_button.get_active() or
+                self.export_button.get_active() or
+                self.preview_switch_button.get_active()):
             pass
         else:
             self.hb_revealer.set_reveal_child(False)
@@ -261,7 +267,7 @@ def add_menus(headerbar, app):
 
     builder_window_menu = Gtk.Builder()
     builder_window_menu.add_from_resource(
-        "/de/wolfvollprecht/UberWriter/ui/Menu2.ui")
+        "/de/wolfvollprecht/UberWriter/ui/Menu.ui")
     model = builder_window_menu.get_object("Menu")
     headerbar.light_button = builder_window_menu.get_object("light_mode_button")
     headerbar.dark_button = builder_window_menu.get_object("dark_mode_button")
