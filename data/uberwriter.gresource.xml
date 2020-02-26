@@ -8,7 +8,6 @@
     <file compressed="true">media/css/gtk/base.css</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Menu.ui</file>
-    <file compressed="true" preprocess="xml-stripblanks">ui/Menu2.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Preferences.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Preview.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Recents.ui</file>

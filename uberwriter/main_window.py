@@ -91,6 +91,17 @@ class MainWindow(StyledWindow):
 
         self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
 
+        # Bind properties between normal and fs headerbar
+        self.headerbar.light_button.bind_property(
+            "active", self.fs_headerbar.light_button, "active",
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.SYNC_CREATE)
+
+        self.headerbar.dark_button.bind_property(
+            "active", self.fs_headerbar.dark_button, "active",
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.SYNC_CREATE)
+
         # The dummy headerbar is a cosmetic hack to be able to
         # crossfade the hb on top of the window
         self.dm_headerbar = headerbars.DummyHeaderbar(app)

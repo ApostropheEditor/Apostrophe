@@ -18,17 +18,9 @@
   </enum>
 
   <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter">
-
-    <key name='dark-mode-auto' type='b'>
-      <default>true</default>
-      <summary>Set dark mode automatically</summary>
-      <description>
-        Whether dark mode depends on the system theme, or is set to what the user specifies.
-      </description>
-    </key>
     <key name='dark-mode' type='b'>
       <default>false</default>
-      <summary>Force dark mode</summary>
+      <summary>Use dark mode</summary>
       <description>
         Enable or disable the dark mode.
       </description>

@@ -67,11 +67,6 @@ class Application(Gtk.Application):
 
         # App Menu
         action = Gio.SimpleAction.new_stateful(
-            "dark_mode", None, GLib.Variant.new_boolean(False))
-        action.connect("change-state", self.on_dark_mode)
-        self.add_action(action)
-
-        action = Gio.SimpleAction.new_stateful(
             "focus_mode", None, GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_focus_mode)
         self.add_action(action)
@@ -218,9 +213,6 @@ class Application(Gtk.Application):
 
     def on_new(self, _action, _value):
         self.window.new_document()
-
-    def on_dark_mode(self, action, value):
-        print(action, value)
 
     def on_open(self, _action, _value):
         self.window.open_document()
