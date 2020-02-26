@@ -142,11 +142,6 @@ class MainWindow(StyledWindow):
         self.previewbars_visible = True
         self.buffer_modified_for_status_bar = False
 
-        # some people seems to have performance problems with the overlay.
-        # Let them disable it
-        self.overlay_id = None
-        self.toggle_gradient_overlay(self.settings.get_value("gradient-overlay"))
-
         # Init file name with None
         self.set_filename()
 
@@ -487,18 +482,6 @@ class MainWindow(StyledWindow):
 
         self.text_view.set_spellcheck(state.get_boolean())
 
-    def toggle_gradient_overlay(self, state):
-        """Toggle the gradient overlay
-
-        Arguments:
-            state {gtk bool} -- Desired state of the gradient overlay (enabled/disabled)
-        """
-
-        if state.get_boolean():
-            self.overlay_id = self.scrolled_window.connect_after("draw", self.draw_gradient)
-        elif self.overlay_id:
-            self.scrolled_window.disconnect(self.overlay_id)
-
     def reload_preview(self, reshow=False):
         self.preview_handler.reload(reshow=reshow)
 
@@ -648,35 +631,6 @@ class MainWindow(StyledWindow):
             self.previewbars_visible = False
 
         self.buffer_modified_for_status_bar = False
-
-    def draw_gradient(self, _widget, cr):
-        """draw fading gradient over the top and the bottom of the
-           TextWindow
-        """
-        bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
-
-        lg_top = cairo.LinearGradient(0, 0, 0, 32)  # pylint: disable=no-member
-        lg_top.add_color_stop_rgba(
-            0, bg_color.red, bg_color.green, bg_color.blue, 1)
-        lg_top.add_color_stop_rgba(
-            1, bg_color.red, bg_color.green, bg_color.blue, 0)
-
-        width = self.scrolled_window.get_allocation().width
-        height = self.scrolled_window.get_allocation().height
-
-        cr.rectangle(0, 0, width, 32)
-        cr.set_source(lg_top)
-        cr.fill()
-        cr.rectangle(0, height - 32, width, height)
-
-        lg_btm = cairo.LinearGradient(0, height - 32, 0, height)  # pylint: disable=no-member
-        lg_btm.add_color_stop_rgba(
-            1, bg_color.red, bg_color.green, bg_color.blue, 1)
-        lg_btm.add_color_stop_rgba(
-            0, bg_color.red, bg_color.green, bg_color.blue, 0)
-
-        cr.set_source(lg_btm)
-        cr.fill()
 
     def on_delete_called(self, _widget, _data=None):
         """Called when the TexteditorWindow is closed.

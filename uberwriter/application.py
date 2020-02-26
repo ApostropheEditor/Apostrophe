@@ -196,12 +196,10 @@ class Application(Gtk.Application):
             settings.props.gtk_theme_name = "HighContrast"
 
     def on_settings_changed(self, settings, key):
-        if key == "dark-mode-auto" or key == "dark-mode":
+        if key == "dark-mode":
             self._set_dark_mode ()
         elif key == "spellcheck":
             self.window.toggle_spellcheck(settings.get_value(key))
-        elif key == "gradient-overlay":
-            self.window.toggle_gradient_overlay(settings.get_value(key))
         elif key == "input-format":
             self.window.reload_preview()
         elif key == "sync-scroll":
