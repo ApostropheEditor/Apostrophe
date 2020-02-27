@@ -62,6 +62,8 @@ if (canScroll && isRendered) {{
         self.connect("load-failed", self.on_load_failed)
         self.connect("destroy", self.on_destroy)
 
+        self.props.expand = True
+
         self.scroll_scale = -1
 
         self.state_loaded = False

@@ -9,7 +9,6 @@
     <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Menu.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Preferences.ui</file>
-    <file compressed="true" preprocess="xml-stripblanks">ui/Preview.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Recents.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Shortcuts.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Window.ui</file>

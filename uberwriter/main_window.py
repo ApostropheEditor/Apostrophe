@@ -139,7 +139,6 @@ class MainWindow(StyledWindow):
         # Setup header/stats bar
         self.headerbar_visible = True
         self.bottombar_visible = True
-        self.previewbars_visible = True
         self.buffer_modified_for_status_bar = False
 
         # Init file name with None
@@ -595,12 +594,6 @@ class MainWindow(StyledWindow):
 
             self.headerbar_visible = True
 
-        if not self.previewbars_visible:
-            for revealer in self.preview_handler.get_top_bottom_bar_revealers():
-                revealer.set_reveal_child(True)
-
-            self.previewbars_visible = True
-
     def reveal_bottombar(self, _widget=None, _data=None):
 
         if not self.bottombar_visible:
@@ -624,11 +617,6 @@ class MainWindow(StyledWindow):
 
             self.bottombar_visible = False
 
-        if self.previewbars_visible:
-            for revealer in self.preview_handler.get_top_bottom_bar_revealers():
-                revealer.set_reveal_child(False)
-
-            self.previewbars_visible = False
 
         self.buffer_modified_for_status_bar = False
 
