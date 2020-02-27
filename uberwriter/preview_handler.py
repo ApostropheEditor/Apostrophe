@@ -35,13 +35,13 @@ class PreviewHandler:
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/de/wolfvollprecht/UberWriter/ui/Preview.ui")
-        preview = builder.get_object("preview")
+        # preview = builder.get_object("preview")
         mode_button = builder.get_object("preview_mode_button")
         self.mode_revealer = builder.get_object("preview_mode_revealer")
 
         self.preview_converter = PreviewConverter()
         self.preview_renderer = PreviewRenderer(
-            window, content, editor, text_view, preview, self.mode_revealer, mode_button)
+            window, content, editor, text_view, self.mode_revealer, mode_button)
 
         window.connect("style-updated", self.reload)
 

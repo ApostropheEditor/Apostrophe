@@ -17,13 +17,12 @@ class PreviewRenderer:
     WINDOWED = 3
 
     def __init__(
-            self, main_window, content, editor, text_view, preview, mode_revealer, mode_button):
+            self, main_window, content, editor, text_view, mode_revealer, mode_button):
         self.main_window = main_window
         self.main_window.connect("delete-event", self.on_window_closed)
         self.content = content
         self.editor = editor
         self.text_view = text_view
-        self.preview = preview
         self.mode_revealer = mode_revealer
         self.mode_button = mode_button
         self.mode_button.connect("clicked", self.show_mode_popover)
@@ -67,8 +66,7 @@ class PreviewRenderer:
             self.window.show()
 
         else:
-            self.preview.pack_start(web_view, True, True, 0)
-            self.content.add(self.preview)
+            self.content.pack_start(web_view, True, True, 0)
 
             # Full-width preview: swap editor with preview.
             if self.mode == self.FULL_WIDTH:
@@ -106,8 +104,7 @@ class PreviewRenderer:
             self.window = None
 
         else:
-            self.preview.remove(web_view)
-            self.content.remove(self.preview)
+            self.content.remove(web_view)
 
             # Full-width preview: swap preview with editor.
             if self.mode == self.FULL_WIDTH:
