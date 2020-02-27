@@ -466,6 +466,9 @@ class MainWindow(StyledWindow):
     def update_preview_mode(self):
         self.preview_handler.update_preview_mode()
         self.headerbar.update_preview_layout_icon()
+        self.headerbar.select_preview_layout_row()
+        self.fs_headerbar.update_preview_layout_icon()
+        self.fs_headerbar.select_preview_layout_row()
 
     def menu_toggle_sidebar(self, _widget=None):
         """WIP

@@ -80,13 +80,20 @@ class BaseHeaderbar:
 
         self.light_button.connect("toggled", self.__on_dark_mode)
 
+        self.select_preview_layout_row()
+
     def update_preview_layout_icon(self):
         mode = self.settings.get_enum("preview-mode")
         self.preview_switcher_icon.set_from_icon_name(
             self.__get_icon_for_preview_mode(mode), 4)
 
+    def select_preview_layout_row(self):
+        mode = self.settings.get_enum("preview-mode")
+        row = self.preview_menu.get_row_at_index(mode)
+        self.preview_menu.select_row(row)
+
     def __populate_layout_switcher_menu(self):
-        preview_menu = self.builder.get_object("preview_switch_options")
+        self.preview_menu = self.builder.get_object("preview_switch_options")
         modes = self.settings.props.settings_schema.get_key("preview-mode").get_range()[1]
 
         for i, mode in enumerate(modes):
@@ -105,7 +112,7 @@ class BaseHeaderbar:
             menu_item.set_action_target_value(GLib.Variant.new_string(mode))
 
             menu_item.show_all()
-            preview_menu.insert(menu_item, -1)
+            self.preview_menu.insert(menu_item, -1)
 
     def __get_text_for_preview_mode(self, mode):
         if mode == self.FULL_WIDTH:
@@ -148,8 +155,6 @@ class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
 
         self.hb.set_show_close_button(True)
 
-        #add_menus(self, app)
-
         self.hb_revealer.props.transition_duration = 0
 
 
@@ -165,8 +170,6 @@ class FullscreenHeaderbar(BaseHeaderbar):
 
         self.exit_fs_button = self.builder.get_object("exit_fs_button")
         self.exit_fs_button.set_visible(True)
-
-        #add_menus(self, app)
 
         self.events = fs_builder.get_object("FullscreenEventbox")
         self.events.add(self.hb_revealer)
