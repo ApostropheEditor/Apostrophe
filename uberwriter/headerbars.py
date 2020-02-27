@@ -68,9 +68,13 @@ class BaseHeaderbar:
         add_menus(self, app)
 
         settings = Gtk.Settings.get_default()
-        if global_dark:= settings.props.gtk_theme_name.endswith("-dark"):
+        # TODO: use walrust operator whenever Python3.8 lands on SDK
+        # if global_dark:= settings.props.gtk_theme_name.endswith("-dark"):
+        global_dark = settings.props.gtk_theme_name.endswith("-dark")
+        if global_dark:
             self.light_button.set_sensitive(False)
-            self.light_button.set_tooltip_text(_("Light mode isn't available while using a dark global theme"))
+            self.light_button.set_tooltip_text(_(
+                "Light mode isn't available while using a dark global theme"))
 
         self.dark_button.set_active(self.settings.get_boolean("dark-mode") or global_dark)
 
