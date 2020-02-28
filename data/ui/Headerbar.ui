@@ -259,6 +259,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">New</property>
             <property name="action_name">app.new</property>
             <property name="image">new_icon</property>
           </object>
@@ -329,6 +330,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Save as...</property>
                 <property name="popover">export_menu</property>
                 <child>
                   <placeholder/>
@@ -390,6 +392,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Preview</property>
                 <property name="action_name">app.preview</property>
                 <property name="image">preview_icon</property>
                 <property name="always_show_image">True</property>
