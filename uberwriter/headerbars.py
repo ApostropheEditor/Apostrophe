@@ -42,6 +42,8 @@ class BaseHeaderbar:
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
             "/de/wolfvollprecht/UberWriter/ui/Headerbar.ui")
+        self.builder.add_from_resource(
+            "/de/wolfvollprecht/UberWriter/ui/ExportPopover.ui")
 
         self.hb = self.builder.get_object(
             "Headerbar")
@@ -63,7 +65,10 @@ class BaseHeaderbar:
         self.menu_button = self.builder.get_object("menu_button")
         self.recents_button = self.builder.get_object("recents_button")
         self.export_button = self.builder.get_object("export_button")
+        export_popover = self.builder.get_object("export_menu")        
         self.preview_switch_button = self.builder.get_object("preview_switch_button")
+
+        self.export_button.set_popover(export_popover)
 
         add_menus(self, app)
 

@@ -544,11 +544,11 @@ class MainWindow(StyledWindow):
 
         self.searchreplace.toggle_search(replace=replace)
 
-    def open_advanced_export(self, _widget=None, _data=None):
+    def open_advanced_export(self, export_format):
         """open the export and advanced export dialog
         """
 
-        self.export = Export(self.filename)
+        self.export = Export(self.filename, export_format)
         self.export.dialog.set_transient_for(self)
 
         response = self.export.dialog.run()

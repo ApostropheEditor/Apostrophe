@@ -7,6 +7,7 @@
     <file compressed="true" alias="icons/scalable/status/preview-layout-half-height-symbolic.svg">media/icons/preview-layout-half-height-symbolic.svg</file>
     <file compressed="true">media/css/gtk/base.css</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/ExportPopover.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Menu.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Preferences.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Recents.ui</file>

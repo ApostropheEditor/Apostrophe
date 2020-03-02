@@ -39,6 +39,35 @@ class Export:
 
     __gtype_name__ = "export_dialog"
 
+    export_menu = {
+        "pdf":
+        {
+            "extension": "pdf",
+            "name": "PDF",
+            "mimetype": "application/pdf",
+            "dialog": regular_export_dialog()
+        },
+        "html":
+        {
+            "extension": "html",
+            "name": "HTML",
+            "mimetype": "text/html"
+        },
+        "odt":
+        {
+            "extension": "odt",
+            "name": "ODT",
+            "mimetype": "application/vnd.oasis.opendocument.text"
+        },
+        "advanced":
+        {
+            "extension": "",
+            "name": "",
+            "mimetype": "",
+            "dialog": advanced_export_dialog()
+        },
+    }
+
     formats = [
         {
             "name": "LaTeX (pdf)",
@@ -147,12 +176,30 @@ class Export:
         }
     ]
 
-    def __init__(self, filename):
-        """Set up the about dialog"""
+    def __init__(self, filename, export_format):
+        """Set up the export dialog"""
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
             "/de/wolfvollprecht/UberWriter/ui/Export.ui")
-        self.dialog = self.builder.get_object("Export")
+        #self.dialog = self.builder.get_object("Export")
+
+        self.dialog = Gtk.FileChooserNative.new(_("Export"),
+                                                None,
+                                                Gtk.FileChooserAction.SAVE,
+                                                _("Export to %s") % 
+                                                self.export_menu[export_format]["extension"],
+                                                _("Cancel"))
+        print(self.export_menu[export_format]["mimetype"])
+        filter = Gtk.FileFilter.new()
+        filter.set_name(self.export_menu[export_format]["name"])
+        filter.add_mime_type(self.export_menu[export_format]["mimetype"])
+        self.dialog.add_filter(filter)
+        self.dialog.set_do_overwrite_confirmation(True)
+        self.dialog.set_current_name("%s.%s" % (filename, self.export_menu[export_format]["extension"]))
+        #filechooser.connect("response", self.__on_save_response)
+        #filechooser.run()
+
+
         self.stack = self.builder.get_object("export_stack")
         self.stack_switcher = self.builder.get_object("format_switcher")
 
@@ -195,6 +242,9 @@ class Export:
         self.format_field.pack_start(format_renderer, True)
         self.format_field.add_attribute(format_renderer, "text", 1)
         self.format_field.set_active(0)
+
+    def regular_export_dialog():
+        
 
     def export(self, text=""):
         """Export the given text using the specified format.
@@ -329,6 +379,7 @@ class Export:
             export_btn.set_sensitive(False)
         else:
             export_btn.set_sensitive(True)
+
 
 def disabled_text():
     """Return the TexLive installation instructions

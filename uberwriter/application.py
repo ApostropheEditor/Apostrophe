@@ -90,7 +90,7 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_save_as)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new("export", None)
+        action = Gio.SimpleAction.new("export", GLib.VariantType("s"))
         action.connect("activate", self.on_export)
         self.add_action(action)
 
@@ -246,8 +246,8 @@ class Application(Gtk.Application):
     def on_save_as(self, _action, _value):
         self.window.save_document_as()
 
-    def on_export(self, _action, _value):
-        self.window.open_advanced_export()
+    def on_export(self, _action, value):
+        self.window.open_advanced_export(value.get_string())
 
     def on_copy_html(self, _action, _value):
         self.window.copy_html_to_clipboard()
