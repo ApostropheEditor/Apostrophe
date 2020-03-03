@@ -507,28 +507,9 @@
       </packing>
     </child>
   </object>
-  <object class="GtkFileFilter" id="html_filter">
-    <mime-types>
-      <mime-type>text/html</mime-type>
-    </mime-types>
-  </object>
-  <object class="GtkFileFilter" id="odt_filter">
-    <mime-types>
-      <mime-type>application/vnd.oasis.opendocument.text</mime-type>
-    </mime-types>
-  </object>
-  <object class="GtkFileFilter" id="pdf_filter">
-    <mime-types>
-      <mime-type>application/pdf</mime-type>
-    </mime-types>
-  </object>
   <object class="GtkDialog" id="Export">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
-    <action-widgets>
-      <action-widget response="cancel">cancel_btn</action-widget>
-      <action-widget response="1" default="true">export_btn</action-widget>
-    </action-widgets>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="Export_hb">
         <property name="visible">True</property>
@@ -549,7 +530,6 @@
           <object class="GtkStackSwitcher" id="format_switcher">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="stack">export_stack</property>
           </object>
         </child>
         <child>
@@ -583,58 +563,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkStack" id="export_stack">
+          <object class="GtkFileChooserWidget" id="advanced">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="transition_type">crossfade</property>
-            <child>
-              <object class="GtkFileChooserWidget" id="html">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="action">save</property>
-                <property name="filter">html_filter</property>
-              </object>
-              <packing>
-                <property name="name">html</property>
-                <property name="title" translatable="yes">HTML</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFileChooserWidget" id="pdf">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="action">save</property>
-                <property name="filter">pdf_filter</property>
-              </object>
-              <packing>
-                <property name="name">pdf</property>
-                <property name="title" translatable="yes">PDF</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="pdf_disabled">
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">label</property>
-              </object>
-              <packing>
-                <property name="name">pdf_disabled</property>
-                <property name="title" translatable="yes">PDF</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFileChooserWidget" id="advanced">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="extra_widget">advanced_export_options</property>
-              </object>
-              <packing>
-                <property name="name">advanced</property>
-                <property name="title" translatable="yes">Advanced</property>
-                <property name="position">4</property>
-              </packing>
-            </child>
+            <property name="extra_widget">advanced_export_options</property>
           </object>
           <packing>
             <property name="expand">False</property>
