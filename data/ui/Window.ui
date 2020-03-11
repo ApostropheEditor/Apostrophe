@@ -410,7 +410,6 @@
         <property name="height_request">1</property>
         <property name="can_focus">False</property>
         <property name="valign">start</property>
-        <property name="visible_window">False</property>
         <child>
           <placeholder/>
         </child>

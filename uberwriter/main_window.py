@@ -634,6 +634,8 @@ class MainWindow(StyledWindow):
             self.headerbar.hb.props.subtitle = subtitle
             self.dm_headerbar.hb.props.subtitle = subtitle
             self.fs_headerbar.hb.props.subtitle = subtitle
+            self.headerbar.hb.set_tooltip_text(subtitle)
+            self.fs_headerbar.hb.set_tooltip_text(subtitle)
         self.set_title(title)
 
     def set_filename(self, filename=None):
