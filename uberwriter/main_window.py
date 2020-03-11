@@ -568,6 +568,7 @@ class MainWindow(StyledWindow):
     def reveal_headerbar_bottombar(self, _widget=None, _data=None):
 
         def __reveal_hb():
+            self.headerbar_eventbox.hide()
             self.headerbar.hb_revealer.set_reveal_child(True)
             self.get_style_context().remove_class("focus")
             return False
@@ -603,7 +604,7 @@ class MainWindow(StyledWindow):
 
             self.bottombar_visible = False
 
-
+        self.headerbar_eventbox.show()
         self.buffer_modified_for_status_bar = False
 
     def on_delete_called(self, _widget, _data=None):
