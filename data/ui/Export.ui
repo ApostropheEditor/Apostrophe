@@ -500,6 +500,9 @@
             <property name="position">1</property>
           </packing>
         </child>
+        <style>
+          <class name="linked"/>
+        </style>
       </object>
       <packing>
         <property name="left_attach">0</property>
@@ -510,10 +513,15 @@
   <object class="GtkDialog" id="Export">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
+    <action-widgets>
+      <action-widget response="cancel">cancel_btn</action-widget>
+      <action-widget response="accept" default="true">export_btn</action-widget>
+    </action-widgets>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="Export_hb">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="has_subtitle">False</property>
         <child>
           <object class="GtkButton" id="cancel_btn">
             <property name="label">gtk-cancel</property>
@@ -525,12 +533,6 @@
           <packing>
             <property name="position">1</property>
           </packing>
-        </child>
-        <child type="title">
-          <object class="GtkStackSwitcher" id="format_switcher">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
         </child>
         <child>
           <object class="GtkButton" id="export_btn">
@@ -566,6 +568,8 @@
           <object class="GtkFileChooserWidget" id="advanced">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="action">select-folder</property>
+            <property name="do_overwrite_confirmation">True</property>
             <property name="extra_widget">advanced_export_options</property>
           </object>
           <packing>

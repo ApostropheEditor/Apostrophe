@@ -547,26 +547,9 @@ class MainWindow(StyledWindow):
     def open_advanced_export(self, export_format):
         """open the export and advanced export dialog
         """
+        text = bytes(self.text_view.get_text(), "utf-8")
 
-        self.export = Export(self.filename, export_format)
-        self.export.dialog.set_transient_for(self)
-
-        response = self.export.dialog.run()
-        if response == 1:
-            try:
-                self.export.export(bytes(self.text_view.get_text(), "utf-8"))
-            except Exception as e:
-                dialog = Gtk.MessageDialog(self,
-                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                       Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.CLOSE,
-                                       _("An error happened while trying to export:\n\n{err_msg}")
-                                           .format(err_msg= str(e).encode().decode("unicode-escape"))
-                                       )
-                dialog.run()
-                dialog.destroy()
-
-        self.export.dialog.destroy()
+        self.export = Export(self.filename, export_format, text)
 
     def open_recent(self, _widget, data=None):
         """open the given recent document
