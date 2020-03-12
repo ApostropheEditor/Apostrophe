@@ -442,7 +442,6 @@ class MainWindow(StyledWindow):
             return
 
         if filename:
-            print(urllib.parse.unquote(filename))
             if filename.startswith('file://'):
                 filename = urllib.parse.unquote(filename)[7:]
             self.text_view.clear()
@@ -520,7 +519,6 @@ class MainWindow(StyledWindow):
     def open_recent(self, _widget, data=None):
         """open the given recent document
         """
-        print("open")
 
         if data:
             if self.check_change() == Gtk.ResponseType.CANCEL:
@@ -631,6 +629,7 @@ class MainWindow(StyledWindow):
         if filename:
             self.filename = filename
             base_path = os.path.dirname(self.filename)
+            os.chdir(base_path)
         else:
             self.filename = None
             base_path = "/"
