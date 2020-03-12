@@ -1,7 +1,7 @@
 # UberwriterAutoCorrect
 # The Uberwriter Auto Correct is a auto correction
 # mechanism to prevent stupid typos
-# import presage
+# CURRENTLY DISABLED
 
 import os
 import pickle
