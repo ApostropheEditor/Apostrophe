@@ -1,11 +1,13 @@
 import re
 
-ITALIC = re.compile(
-    r"(\*|_)(?P<text>.*?\S.*?)\1")
+ITALIC_ASTERISK = re.compile(
+    r"(?<!\\)\*[^\s\*](?P<text>.*?\S?.*?)(?<!\\)\*")
+ITALIC_UNDERSCORE = re.compile(
+    r"(?<!(\\|\S))_[^\s_](?P<text>.*?\S?.*?)(?<!\\)_(?=\s)")
 BOLD = re.compile(
-    r"(\*\*|__)(?P<text>.*?\S.*?)\1")
+    r"(\*\*|__)[^\s*](?P<text>.*?\S.*?)\1")
 BOLD_ITALIC = re.compile(
-    r"((\*\*|__)([*_])|([*_])(\*\*|__))(?P<text>.*?\S.*?)(?:\5\4|\3\2)")
+    r"((\*\*|__)([*_])|([*_])(\*\*|__))[^\s*](?P<text>.*?\S.*?)(?:\5\4|\3\2)")
 STRIKETHROUGH = re.compile(
     r"~~(?P<text>.*?\S.*?)~~")
 CODE = re.compile(
@@ -17,7 +19,7 @@ LINK_ALT = re.compile(
 IMAGE = re.compile(
     r"!\[(?P<text>.*)\]\((?P<url>.+?)(?: \"(?P<title>.+)\")?\)")
 HORIZONTAL_RULE = re.compile(
-    r"(?:^|\n)(?P<symbols> {0,3}[*\-_]{3,} *)(?:\n+|$)")
+    r"(?:^|\n{2,})(?P<symbols> {0,3}[*\-_]{3,} *)(?:\n{2,}|$)")
 LIST = re.compile(
     r"(?:^|\n)(?P<content>(?P<indent>(?:\t| {4})*)[\-*+]( +)(?P<text>.+(?:\n+ \2.+)*))")
 ORDERED_LIST = re.compile(

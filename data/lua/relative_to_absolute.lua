@@ -6,7 +6,7 @@ function fix_path (path)
   if string.starts(path, "/") then
     return path
   else
-    return (os.getenv('PANDOC_PREFIX') or '') .. path
+    return (pandoc.system.get_working_directory() or '') .. "/" .. path
   end
 end
 

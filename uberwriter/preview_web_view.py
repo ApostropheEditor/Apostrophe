@@ -92,6 +92,7 @@ if (canScroll && isRendered) {{
         if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION and \
                 decision.get_navigation_action().is_user_gesture():
             webbrowser.open(decision.get_request().get_uri())
+            decision.ignore()       # Do not follow the link in the WebView
             return True
         return False
 

@@ -113,7 +113,7 @@ class TextView(Gtk.TextView):
 
         # Hemingway mode
         self.hemingway_mode = False
-        self.connect('key-press-event', self.on_key_press_event)
+        self.connect('key-press-event', self._on_key_press_event)
 
         # While resizing the TextView, there is unwanted scroll upwards if a top margin is present.
         # When a size allocation is detected, this variable will hold the scroll to re-set until the
@@ -246,12 +246,6 @@ class TextView(Gtk.TextView):
 
         self.hemingway_mode = hemingway_mode
 
-    def on_key_press_event(self, _widget, event):
-        if self.hemingway_mode:
-            return event.keyval == Gdk.KEY_BackSpace or event.keyval == Gdk.KEY_Delete
-        else:
-            return False
-
     def clear(self):
         """Clear text and undo history"""
 
@@ -288,3 +282,23 @@ class TextView(Gtk.TextView):
         """Returns the font width for a given size. Note: specific to Fira Mono!"""
 
         return font_size * 1 / 1.6
+
+    def _on_key_press_event(self, _widget, event):
+        if self.hemingway_mode:
+            return event.keyval == Gdk.KEY_BackSpace or event.keyval == Gdk.KEY_Delete
+
+        if event.state & Gdk.ModifierType.SHIFT_MASK == Gdk.ModifierType.SHIFT_MASK \
+                and event.keyval == Gdk.KEY_ISO_Left_Tab:  # Capure Shift-Tab
+            self._on_shift_tab()
+            return True
+
+    def _on_shift_tab(self):
+        """Delete last character if it is a tab"""
+        text_buffer = self.get_buffer()
+        pen_iter = text_buffer.get_end_iter()
+        pen_iter.backward_char()
+        end_iter = text_buffer.get_end_iter()
+
+        if pen_iter.get_char() == "\t":
+            with user_action(text_buffer):
+                text_buffer.delete(pen_iter, end_iter)

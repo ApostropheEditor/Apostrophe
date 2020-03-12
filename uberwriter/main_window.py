@@ -14,7 +14,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
-import codecs
+import io
 import locale
 import logging
 import os
@@ -267,7 +267,7 @@ class MainWindow(StyledWindow):
         if self.filename:
             LOGGER.info("saving")
             filename = self.filename
-            file_to_save = codecs.open(filename, encoding="utf-8", mode='w')
+            file_to_save = io.open(filename, encoding="utf-8", mode='w')
             file_to_save.write(self.text_view.get_text())
             file_to_save.close()
             if self.did_change:
@@ -301,7 +301,7 @@ class MainWindow(StyledWindow):
                 except:
                     pass
 
-            file_to_save = codecs.open(filename, encoding="utf-8", mode='w')
+            file_to_save = io.open(filename, encoding="utf-8", mode='w')
             file_to_save.write(self.text_view.get_text())
             file_to_save.close()
 
@@ -342,7 +342,7 @@ class MainWindow(StyledWindow):
                 except:
                     pass
 
-            file_to_save = codecs.open(filename, encoding="utf-8", mode='w')
+            file_to_save = io.open(filename, encoding="utf-8", mode='w')
             file_to_save.write(self.text_view.get_text())
             file_to_save.close()
 
@@ -489,6 +489,7 @@ class MainWindow(StyledWindow):
 
     def load_file(self, filename=None):
         """Open File from command line or open / open recent etc."""
+        LOGGER.info("trying to open " + filename)
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
 
@@ -499,7 +500,7 @@ class MainWindow(StyledWindow):
             self.text_view.clear()
             try:
                 if os.path.exists(filename):
-                    with codecs.open(filename, encoding="utf-8", mode='r') as current_file:
+                    with io.open(filename, encoding="utf-8", mode='r') as current_file:
                         self.text_view.set_text(current_file.read())
                 else:
                     dialog = Gtk.MessageDialog(self,
@@ -644,6 +645,7 @@ class MainWindow(StyledWindow):
         if filename:
             self.filename = filename
             base_path = os.path.dirname(self.filename)
+            os.chdir(base_path)
         else:
             self.filename = None
             base_path = "/"
