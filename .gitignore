@@ -6,5 +6,6 @@ build/
 .vscode/
 .idea/
 builddir/*
-build-aux/*
+build-aux/flatpak/_build/*
+build-aux/flatpak/.flatpak-builder/*
 flatpak/*
