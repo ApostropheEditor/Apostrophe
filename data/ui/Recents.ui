@@ -17,6 +17,10 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">start</property>
+        <property name="margin_left">6</property>
+        <property name="margin_right">6</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="filter">recent_md_filter</property>
         <property name="limit">20</property>
         <property name="show_icons">False</property>

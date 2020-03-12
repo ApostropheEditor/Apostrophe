@@ -24,7 +24,7 @@ from gettext import gettext as _
 import gi
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 from uberwriter import helpers
 from uberwriter.theme import Theme
@@ -147,42 +147,101 @@ class Export:
         }
     ]
 
-    def __init__(self, filename):
-        """Set up the about dialog"""
+    def __init__(self, filename, export_format, text):
+        """Set up the export dialog"""
+
+        self.export_menu = {
+            "pdf":
+            {
+                "extension": "pdf",
+                "name": "PDF",
+                "mimetype": "application/pdf",
+                "dialog": self.regular_export_dialog
+            },
+            "html":
+            {
+                "extension": "html",
+                "name": "HTML",
+                "mimetype": "text/html",
+                "dialog": self.regular_export_dialog
+            },
+            "odt":
+            {
+                "extension": "odt",
+                "name": "ODT",
+                "mimetype": "application/vnd.oasis.opendocument.text",
+                "dialog": self.regular_export_dialog
+            },
+            "advanced":
+            {
+                "extension": "",
+                "name": "",
+                "mimetype": "",
+                "dialog": self.advanced_export_dialog
+            }
+        }
+
+        self.filename = filename or _("Untitled document.md")
+        self.export_format = export_format
+
+        self.dialog = self.export_menu[export_format]["dialog"]()
+
+        response = self.dialog.run()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            try:
+                self.export(export_format, text)
+            except (NotADirectoryError, Exception) as e:
+                dialog = Gtk.MessageDialog(None,
+                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.MessageType.ERROR,
+                                       Gtk.ButtonsType.CLOSE,
+                                       _("An error happened while trying to export:\n\n{err_msg}")
+                                           .format(err_msg= str(e).encode().decode("unicode-escape"))
+                                       )
+                dialog.run()
+                dialog.destroy()
+
+        
+    def regular_export_dialog(self):
+        texlive_installed = helpers.exist_executable("pdftex")
+
+        if (self.export_menu[self.export_format]["extension"] == "pdf" and
+           not texlive_installed):
+            dialog = Gtk.MessageDialog(None,
+                            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                            Gtk.MessageType.INFO,
+                            Gtk.ButtonsType.CLOSE,
+                            _("Oh, no!")
+                            )
+            
+            dialog.props.secondary_text = _("Seems that you don't have TexLive installed.\n" +
+                                            disabled_text())
+        else:
+            dialog = Gtk.FileChooserNative.new(_("Export"),
+                                                None,
+                                                Gtk.FileChooserAction.SAVE,
+                                                _("Export to %s") % 
+                                                self.export_menu[self.export_format]["extension"],
+                                                _("Cancel"))
+            dialog_filter = Gtk.FileFilter.new()
+            dialog_filter.set_name(self.export_menu[self.export_format]["name"])
+            dialog_filter.add_mime_type(self.export_menu[self.export_format]["mimetype"])
+            dialog.add_filter(dialog_filter)
+            dialog.set_do_overwrite_confirmation(True)
+            dialog.set_current_folder(os.path.dirname(self.filename))
+            dialog.set_current_name(os.path.basename(self.filename)[:-2] +
+                                    self.export_menu[self.export_format]["extension"])
+
+        return dialog
+
+    def advanced_export_dialog(self):
+
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
             "/de/wolfvollprecht/UberWriter/ui/Export.ui")
-        self.dialog = self.builder.get_object("Export")
-        self.stack = self.builder.get_object("export_stack")
-        self.stack_switcher = self.builder.get_object("format_switcher")
-        self.paper_size = self.builder.get_object("combobox_paper_size")
-
-        stack_pdf_disabled = self.builder.get_object("pdf_disabled")
-        filename = filename or _("Untitled document.md")
-
-        self.filechoosers = {export_format: self.stack.get_child_by_name(export_format)
-                             for export_format in ["pdf", "html", "advanced"]}
-        for export_format, filechooser in self.filechoosers.items():
-            filechooser.set_do_overwrite_confirmation(True)
-            filechooser.set_current_folder(os.path.dirname(filename))
-            if export_format == "advanced":
-                self.adv_export_name = self.builder.get_object("advanced_export_name")
-                self.adv_export_name.set_text(os.path.basename(filename)[:-3])
-            else:
-                filechooser.set_current_name(os.path.basename(filename)[:-2] + export_format)
-
-        # Disable pdf if Texlive not installed
-        texlive_installed = helpers.exist_executable("pdftex")
-
-        if not texlive_installed:
-            self.filechoosers["pdf"].set_visible(False)
-            stack_pdf_disabled.set_visible(True)
-            stack_pdf_disabled.set_text(disabled_text())
-            stack_pdf_disabled.set_justify(Gtk.Justification.CENTER)
-            self.stack.connect('notify', self.allow_export, 'visible_child_name')
 
         self.builder.get_object("highlight_style").set_active(0)
-
         self.builder.get_object("css_filechooser").set_uri(
             helpers.path_to_file(Theme.get_current().web_css_path))
 
@@ -197,7 +256,14 @@ class Export:
         self.format_field.add_attribute(format_renderer, "text", 1)
         self.format_field.set_active(0)
 
-    def export(self, text=""):
+        self.adv_export_folder = self.builder.get_object("advanced")
+
+        self.adv_export_name = self.builder.get_object("advanced_export_name")
+        self.adv_export_name.set_text(os.path.basename(self.filename)[:-3])
+
+        return self.builder.get_object("Export")
+
+    def export(self, export_type, text=""):
         """Export the given text using the specified format.
         For advanced export, this includes special flags for the enabled options.
 
@@ -205,11 +271,16 @@ class Export:
             text {str} -- Text to export (default: {""})
         """
 
-        export_type = self.stack.get_visible_child_name()
         args = []
         if export_type == "advanced":
             filename = self.adv_export_name.get_text()
-            output_dir = os.path.abspath(self.filechoosers["advanced"].get_current_folder())
+
+            # TODO: use walrust operator
+            output_uri = self.adv_export_folder.get_uri()
+            if output_uri:
+                output_dir = GLib.filename_from_uri(output_uri)[0]
+            else:
+                raise NotADirectoryError(_("A folder must be selected before proceeding"))
             basename = os.path.basename(filename)
 
             fmt = self.formats[self.format_field.get_active()]
@@ -227,7 +298,6 @@ class Export:
             args = [
                 "--variable=papersize:a4"
             ]
-            filename = self.filechoosers[export_type].get_filename()
             if filename.endswith("." + export_type):
                 filename = filename[:-len(export_type)-1]
             output_dir = os.path.abspath(os.path.join(filename, os.path.pardir))
@@ -343,19 +413,6 @@ class Export:
         }
 
         return paper_formats[paper_size]
-
-    def allow_export(self, widget, data, signal):
-        """Disable export button if the visible child is "pdf_disabled"
-        """
-
-        del widget, data, signal
-
-        export_btn = self.builder.get_object("export_btn")
-
-        if self.stack.get_visible_child_name() == "pdf_disabled":
-            export_btn.set_sensitive(False)
-        else:
-            export_btn.set_sensitive(True)
 
 def disabled_text():
     """Return the TexLive installation instructions

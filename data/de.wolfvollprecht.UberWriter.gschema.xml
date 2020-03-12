@@ -18,17 +18,9 @@
   </enum>
 
   <schema path="/de/wolfvollprecht/UberWriter/" id="de.wolfvollprecht.UberWriter">
-
-    <key name='dark-mode-auto' type='b'>
-      <default>true</default>
-      <summary>Set dark mode automatically</summary>
-      <description>
-        Whether dark mode depends on the system theme, or is set to what the user specifies.
-      </description>
-    </key>
     <key name='dark-mode' type='b'>
       <default>false</default>
-      <summary>Force dark mode</summary>
+      <summary>Use dark mode</summary>
       <description>
         Enable or disable the dark mode.
       </description>
@@ -38,14 +30,6 @@
       <summary>Check spelling while typing</summary>
       <description>
         Enable or disable spellchecking.
-      </description>
-    </key>
-    <key name='gradient-overlay' type='b'>
-      <default>false</default>
-      <summary>Draw scroll gradient</summary>
-      <description>
-        Show a gradient overlay over the text at the top anf bottom of the window.
-        It can cause performance problems to some users.
       </description>
     </key>
     <key name='sync-scroll' type='b'>
@@ -62,11 +46,11 @@
         Input format to use when previewing and exporting using Pandoc.
       </description>
     </key>
-    <key name='poll-motion' type='b'>
+    <key name='autohide-headerbar' type='b'>
       <default>true</default>
-      <summary>Allow Uberwriter to poll cursor motion</summary>
+      <summary>Autohide Headerbar</summary>
       <description>
-        Hide the header and status bars if the cursor is not moving.
+        Hide the header and status bars when typing.
       </description>
     </key>
     <key name='open-file-path' type='s'>

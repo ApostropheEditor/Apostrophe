@@ -32,16 +32,9 @@ class PreviewHandler:
         self.web_view = None
         self.web_view_pending_html = None
 
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/de/wolfvollprecht/UberWriter/ui/Preview.ui")
-        preview = builder.get_object("preview")
-        mode_button = builder.get_object("preview_mode_button")
-        self.mode_revealer = builder.get_object("preview_mode_revealer")
-
         self.preview_converter = PreviewConverter()
         self.preview_renderer = PreviewRenderer(
-            window, content, editor, text_view, preview, self.mode_revealer, mode_button)
+            window, content, editor, text_view)
 
         window.connect("style-updated", self.reload)
 
@@ -134,12 +127,6 @@ class PreviewHandler:
 
     def update_preview_mode(self):
         self.preview_renderer.update_mode(self.web_view)
-
-    def get_top_bottom_bar_revealers(self):
-        if self.shown and not self.preview_renderer.window:
-            return [self.mode_revealer]
-        else:
-            return []
 
     def on_load_changed(self, _web_view, event):
         if event == WebKit2.LoadEvent.FINISHED:

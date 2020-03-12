@@ -17,16 +17,12 @@ class PreviewRenderer:
     WINDOWED = 3
 
     def __init__(
-            self, main_window, content, editor, text_view, preview, mode_revealer, mode_button):
+            self, main_window, content, editor, text_view):
         self.main_window = main_window
         self.main_window.connect("delete-event", self.on_window_closed)
         self.content = content
         self.editor = editor
         self.text_view = text_view
-        self.preview = preview
-        self.mode_revealer = mode_revealer
-        self.mode_button = mode_button
-        self.mode_button.connect("clicked", self.show_mode_popover)
 
         self.settings = Settings.new()
         self.popover = None
@@ -49,9 +45,6 @@ class PreviewRenderer:
             headerbar = headerbars.PreviewHeaderbar()
             self.headerbar = headerbar.hb
             self.headerbar.set_title(_("Preview"))
-            self.mode_button.get_style_context().remove_class("inline-button")
-            self.mode_revealer.remove(self.mode_button)
-            self.headerbar.pack_end(self.mode_button)
             self.window.set_titlebar(headerbar.hb_container)
 
             # Position it next to the main window.
@@ -67,8 +60,7 @@ class PreviewRenderer:
             self.window.show()
 
         else:
-            self.preview.pack_start(web_view, True, True, 0)
-            self.content.add(self.preview)
+            self.content.pack_start(web_view, True, True, 0)
 
             # Full-width preview: swap editor with preview.
             if self.mode == self.FULL_WIDTH:
@@ -97,17 +89,13 @@ class PreviewRenderer:
         # Windowed preview: remove preview and destroy window.
         if self.mode == self.WINDOWED:
             self.main_window.present()
-            self.headerbar.remove(self.mode_button)
-            self.mode_button.get_style_context().add_class("inline-button")
-            self.mode_revealer.add(self.mode_button)
             self.headerbar = None
             self.window.remove(web_view)
             self.window.destroy()
             self.window = None
 
         else:
-            self.preview.remove(web_view)
-            self.content.remove(self.preview)
+            self.content.remove(web_view)
 
             # Full-width preview: swap preview with editor.
             if self.mode == self.FULL_WIDTH:
@@ -130,32 +118,6 @@ class PreviewRenderer:
             self.show(web_view)
         else:
             self.mode = mode
-        if self.mode_button:
-            text = self.get_text_for_preview_mode(self.mode)
-            self.mode_button.set_label(text)
-        if self.popover:
-            self.popover.popdown()
-
-    def show_mode_popover(self, button):
-        """Show preview mode popover."""
-
-        self.mode_button.set_state_flags(Gtk.StateFlags.CHECKED, False)
-
-        menu = Gio.Menu()
-        modes = self.settings.props.settings_schema.get_key("preview-mode").get_range()[1]
-        for i, mode in enumerate(modes):
-            menu_item = Gio.MenuItem.new(self.get_text_for_preview_mode(i), None)
-            menu_item.set_action_and_target_value("app.preview_mode", GLib.Variant.new_string(mode))
-            menu.append_item(menu_item)
-        self.popover = Gtk.Popover.new_from_model(button, menu)
-        self.popover.connect('closed', self.on_popover_closed)
-        self.popover.popup()
-
-    def on_popover_closed(self, _popover):
-        self.mode_button.unset_state_flags(Gtk.StateFlags.CHECKED)
-
-        self.popover = None
-        self.text_view.grab_focus()
 
     def on_window_closed(self, window, _event):
         preview_action = window.get_application().lookup_action("preview")

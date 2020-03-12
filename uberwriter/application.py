@@ -41,6 +41,7 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
 
         self.settings.connect("changed", self.on_settings_changed)
+        self._set_dark_mode ()
 
         # Header bar
 
@@ -65,7 +66,6 @@ class Application(Gtk.Application):
         self.add_action(action)
 
         # App Menu
-
         action = Gio.SimpleAction.new_stateful(
             "focus_mode", None, GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_focus_mode)
@@ -90,7 +90,7 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_save_as)
         self.add_action(action)
 
-        action = Gio.SimpleAction.new("export", None)
+        action = Gio.SimpleAction.new("export", GLib.VariantType("s"))
         action.connect("activate", self.on_export)
         self.add_action(action)
 
@@ -184,13 +184,22 @@ class Application(Gtk.Application):
         self.activate()
         return 0
 
+    def _set_dark_mode (self):
+        dark = self.settings.get_value("dark-mode")
+        settings = Gtk.Settings.get_default()
+
+        settings.props.gtk_application_prefer_dark_theme = dark
+
+        if settings.props.gtk_theme_name == "HighContrast" and dark:
+            settings.props.gtk_theme_name = "HighContrastInverse"
+        elif settings.props.gtk_theme_name == "HighContrastInverse" and not dark:
+            settings.props.gtk_theme_name = "HighContrast"
+
     def on_settings_changed(self, settings, key):
-        if key == "dark-mode-auto" or key == "dark-mode":
-            self.window.apply_current_theme()
+        if key == "dark-mode":
+            self._set_dark_mode ()
         elif key == "spellcheck":
             self.window.toggle_spellcheck(settings.get_value(key))
-        elif key == "gradient-overlay":
-            self.window.toggle_gradient_overlay(settings.get_value(key))
         elif key == "input-format":
             self.window.reload_preview()
         elif key == "sync-scroll":
@@ -237,8 +246,8 @@ class Application(Gtk.Application):
     def on_save_as(self, _action, _value):
         self.window.save_document_as()
 
-    def on_export(self, _action, _value):
-        self.window.open_advanced_export()
+    def on_export(self, _action, value):
+        self.window.open_advanced_export(value.get_string())
 
     def on_copy_html(self, _action, _value):
         self.window.copy_html_to_clipboard()

@@ -35,7 +35,6 @@ from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 import cairo
 
 from uberwriter import helpers
-from uberwriter.theme import Theme
 
 from uberwriter.sidebar import Sidebar
 from uberwriter.search_and_replace import SearchAndReplace
@@ -74,7 +73,7 @@ class MainWindow(StyledWindow):
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/de/wolfvollprecht/UberWriter/ui/Window.ui")
-        root = builder.get_object("FullscreenOverlay")
+        root = builder.get_object("AppOverlay")
         self.connect("delete-event", self.on_delete_called)
         self.add(root)
 
@@ -84,17 +83,34 @@ class MainWindow(StyledWindow):
         self.settings = Settings.new()
 
         # Headerbars
+        self.last_height = 0
         self.headerbar = headerbars.MainHeaderbar(app)
-        self.set_titlebar(self.headerbar.hb_container)
+        self.headerbar.hb_revealer.connect(
+            "size_allocate", self.header_size_allocate)
+        self.set_titlebar(self.headerbar.hb_revealer)
+
         self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
+
+        # Bind properties between normal and fs headerbar
+        self.headerbar.light_button.bind_property(
+            "active", self.fs_headerbar.light_button, "active",
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.SYNC_CREATE)
+
+        self.headerbar.dark_button.bind_property(
+            "active", self.fs_headerbar.dark_button, "active",
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.SYNC_CREATE)
+
+        # The dummy headerbar is a cosmetic hack to be able to
+        # crossfade the hb on top of the window
+        self.dm_headerbar = headerbars.DummyHeaderbar(app)
+        root.add_overlay(self.dm_headerbar.hb_revealer)
+        root.reorder_overlay(self.dm_headerbar.hb_revealer, 0)
+        root.set_overlay_pass_through(self.dm_headerbar.hb_revealer, True)
 
         self.title_end = "  –  UberWriter"
         self.set_headerbar_title("New File" + self.title_end)
-
-        self.timestamp_last_mouse_motion = 0
-        if self.settings.get_value("poll-motion"):
-            self.connect("motion-notify-event", self.on_motion_notify)
-            GObject.timeout_add(3000, self.poll_for_motion)
 
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
@@ -103,6 +119,7 @@ class MainWindow(StyledWindow):
 
         # Setup text editor
         self.text_view = TextView(self.settings.get_int("characters-per-line"))
+        self.text_view.set_top_margin(80)
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
@@ -119,15 +136,10 @@ class MainWindow(StyledWindow):
         editor = builder.get_object('editor')
         self.preview_handler = PreviewHandler(self, content, editor, self.text_view)
 
-        # Setup header/stats bar hide after 3 seconds
-        self.top_bottom_bars_visible = True
-        self.was_motion = True
+        # Setup header/stats bar
+        self.headerbar_visible = True
+        self.bottombar_visible = True
         self.buffer_modified_for_status_bar = False
-
-        # some people seems to have performance problems with the overlay.
-        # Let them disable it
-        self.overlay_id = None
-        self.toggle_gradient_overlay(self.settings.get_value("gradient-overlay"))
 
         # Init file name with None
         self.set_filename()
@@ -151,6 +163,32 @@ class MainWindow(StyledWindow):
         ###
         self.searchreplace = SearchAndReplace(self, self.text_view, builder)
 
+        # EventBoxes
+
+        self.headerbar_eventbox = builder.get_object("HeaderbarEventbox")
+        self.headerbar_eventbox.connect('enter_notify_event',
+                                        self.reveal_headerbar_bottombar)
+
+        self.stats_revealer.connect('enter_notify_event', self.reveal_bottombar)
+
+    def header_size_allocate(self, widget, allocation):
+        """ When the main hb starts to shrink its size, add that size
+            to the textview margin, so it stays in place
+        """
+
+        # prevent 1px jumps
+        if allocation.height == 1 and not widget.get_child_revealed():
+            allocation.height = 0
+
+        height = self.headerbar.hb.get_allocated_height() - allocation.height
+        if height == self.last_height:
+            return
+
+        self.last_height = height
+
+        self.text_view.update_vertical_margin(height)
+        self.text_view.queue_draw()
+
     def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
            updates the title and the counters to reflect that
@@ -162,6 +200,8 @@ class MainWindow(StyledWindow):
             self.set_headerbar_title("* " + title)
 
         self.buffer_modified_for_status_bar = True
+        if self.settings.get_value("autohide-headerbar"):
+            self.hide_headerbar_bottombar()
 
     def set_fullscreen(self, state):
         """Puts the application in fullscreen mode and show/hides
@@ -174,16 +214,19 @@ class MainWindow(StyledWindow):
         if state.get_boolean():
             self.fullscreen()
             self.fs_headerbar.events.show()
+            self.fs_headerbar.hide_fs_hb()
+            self.headerbar_eventbox.hide()
         else:
             self.unfullscreen()
             self.fs_headerbar.events.hide()
+            self.headerbar_eventbox.show()
         self.text_view.grab_focus()
 
     def set_focus_mode(self, state):
         """toggle focusmode
         """
 
-        self.text_view.set_focus_mode(state.get_boolean())
+        self.text_view.set_focus_mode(state.get_boolean(), self.headerbar.hb.get_allocated_height())
         self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
@@ -203,9 +246,15 @@ class MainWindow(StyledWindow):
         if state.get_boolean():
             self.text_view.grab_focus()
             self.preview_handler.show()
+            self.headerbar.preview_toggle_revealer.set_reveal_child(True)
+            self.fs_headerbar.preview_toggle_revealer.set_reveal_child(True)
+            self.dm_headerbar.preview_toggle_revealer.set_reveal_child(True)
         else:
             self.preview_handler.hide()
             self.text_view.grab_focus()
+            self.headerbar.preview_toggle_revealer.set_reveal_child(False)
+            self.fs_headerbar.preview_toggle_revealer.set_reveal_child(False)
+            self.dm_headerbar.preview_toggle_revealer.set_reveal_child(False)
 
         return True
 
@@ -258,7 +307,7 @@ class MainWindow(StyledWindow):
 
             self.set_filename(filename)
             self.set_headerbar_title(
-                os.path.basename(filename) + self.title_end)
+                os.path.basename(filename) + self.title_end, filename)
 
             self.did_change = False
             filechooser.destroy()
@@ -299,7 +348,7 @@ class MainWindow(StyledWindow):
 
             self.set_filename(filename)
             self.set_headerbar_title(
-                os.path.basename(filename) + self.title_end)
+                os.path.basename(filename) + self.title_end, filename)
 
             try:
                 self.recent_manager.add_item(filename)
@@ -360,16 +409,27 @@ class MainWindow(StyledWindow):
         """Show dialog to prevent loss of unsaved changes
         """
 
+        if self.filename:
+            title = os.path.basename(self.filename)
+        else:
+            title = _("New File")
+
         if self.did_change and self.text_view.get_text():
             dialog = Gtk.MessageDialog(self,
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.WARNING,
                                        Gtk.ButtonsType.NONE,
-                                       _("You have not saved your changes.")
+                                       _("Save changes to document “%s” before closing?") %
+                                       title
                                        )
-            dialog.add_button(_("Close without saving"), Gtk.ResponseType.NO)
+            
+            dialog.props.secondary_text = _("If you don’t save, " +
+                                            "all your changes will be permanently lost.")
+            close_button = dialog.add_button(_("Close without saving"), Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
+
+            close_button.get_style_context().add_class("destructive-action")
             # dialog.set_default_size(200, 60)
             dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
@@ -405,6 +465,10 @@ class MainWindow(StyledWindow):
 
     def update_preview_mode(self):
         self.preview_handler.update_preview_mode()
+        self.headerbar.update_preview_layout_icon()
+        self.headerbar.select_preview_layout_row()
+        self.fs_headerbar.update_preview_layout_icon()
+        self.fs_headerbar.select_preview_layout_row()
 
     def menu_toggle_sidebar(self, _widget=None):
         """WIP
@@ -420,18 +484,6 @@ class MainWindow(StyledWindow):
 
         self.text_view.set_spellcheck(state.get_boolean())
 
-    def toggle_gradient_overlay(self, state):
-        """Toggle the gradient overlay
-
-        Arguments:
-            state {gtk bool} -- Desired state of the gradient overlay (enabled/disabled)
-        """
-
-        if state.get_boolean():
-            self.overlay_id = self.scrolled_window.connect_after("draw", self.draw_gradient)
-        elif self.overlay_id:
-            self.scrolled_window.disconnect(self.overlay_id)
-
     def reload_preview(self, reshow=False):
         self.preview_handler.reload(reshow=reshow)
 
@@ -443,7 +495,8 @@ class MainWindow(StyledWindow):
 
         if filename:
             if filename.startswith('file://'):
-                filename = urllib.parse.unquote(filename)[7:]
+                filename = filename[7:]
+            filename = urllib.parse.unquote_plus(filename)
             self.text_view.clear()
             try:
                 if os.path.exists(filename):
@@ -460,7 +513,7 @@ class MainWindow(StyledWindow):
                     dialog.run()
                     dialog.destroy()
 
-                self.set_headerbar_title(os.path.basename(filename) + self.title_end)
+                self.set_headerbar_title(os.path.basename(filename) + self.title_end, filename)
                 self.set_filename(filename)
 
             except Exception as e:
@@ -492,29 +545,12 @@ class MainWindow(StyledWindow):
 
         self.searchreplace.toggle_search(replace=replace)
 
-    def open_advanced_export(self, _widget=None, _data=None):
+    def open_advanced_export(self, export_format):
         """open the export and advanced export dialog
         """
+        text = bytes(self.text_view.get_text(), "utf-8")
 
-        self.export = Export(self.filename)
-        self.export.dialog.set_transient_for(self)
-
-        response = self.export.dialog.run()
-        if response == 1:
-            try:
-                self.export.export(bytes(self.text_view.get_text(), "utf-8"))
-            except Exception as e:
-                dialog = Gtk.MessageDialog(self,
-                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                       Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.CLOSE,
-                                       _("An error happened while trying to export:\n\n{err_msg}")
-                                           .format(err_msg= str(e).encode().decode("unicode-escape"))
-                                       )
-                dialog.run()
-                dialog.destroy()
-
-        self.export.dialog.destroy()
+        self.export = Export(self.filename, export_format, text)
 
     def open_recent(self, _widget, data=None):
         """open the given recent document
@@ -525,79 +561,52 @@ class MainWindow(StyledWindow):
                 return
             self.load_file(data)
 
-    def poll_for_motion(self):
-        """check if the user has moved the cursor to show the headerbar
-
-        Returns:
-            True -- Gtk things
-        """
-
-        if (not self.was_motion
-                and self.buffer_modified_for_status_bar
-                and self.text_view.props.has_focus):
-            self.reveal_top_bottom_bars(False)
-
-        self.was_motion = False
-        return True
-
-    def on_motion_notify(self, _widget, event, _data=None):
-        """check the motion of the mouse to fade in the headerbar
-        """
-        now = event.get_time()
-        if now - self.timestamp_last_mouse_motion > 150:
-            # filter out accidental motions
-            self.timestamp_last_mouse_motion = now
-            return
-        if now - self.timestamp_last_mouse_motion < 100:
-            # filter out accidental motion
-            return
-        if now - self.timestamp_last_mouse_motion > 100:
-            # react on motion by fading in headerbar and statusbar
-            self.reveal_top_bottom_bars(True)
-            self.was_motion = True
-
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
         """
-        self.reveal_top_bottom_bars(True)
+        self.reveal_headerbar_bottombar()
 
-    def reveal_top_bottom_bars(self, reveal):
-        if self.top_bottom_bars_visible != reveal:
-            self.headerbar.hb_revealer.set_reveal_child(reveal)
-            self.stats_revealer.set_reveal_child(reveal)
-            for revealer in self.preview_handler.get_top_bottom_bar_revealers():
-                revealer.set_reveal_child(reveal)
-            self.top_bottom_bars_visible = reveal
-            self.buffer_modified_for_status_bar = reveal
+    def reveal_headerbar_bottombar(self, _widget=None, _data=None):
 
-    def draw_gradient(self, _widget, cr):
-        """draw fading gradient over the top and the bottom of the
-           TextWindow
-        """
-        bg_color = self.get_style_context().get_background_color(Gtk.StateFlags.ACTIVE)
+        def __reveal_hb():
+            self.headerbar_eventbox.hide()
+            self.headerbar.hb_revealer.set_reveal_child(True)
+            self.get_style_context().remove_class("focus")
+            return False
 
-        lg_top = cairo.LinearGradient(0, 0, 0, 32)  # pylint: disable=no-member
-        lg_top.add_color_stop_rgba(
-            0, bg_color.red, bg_color.green, bg_color.blue, 1)
-        lg_top.add_color_stop_rgba(
-            1, bg_color.red, bg_color.green, bg_color.blue, 0)
+        self.reveal_bottombar()
 
-        width = self.scrolled_window.get_allocation().width
-        height = self.scrolled_window.get_allocation().height
+        if not self.headerbar_visible:
+            self.dm_headerbar.hide_dm_hb()
+            GLib.timeout_add(400, __reveal_hb)
 
-        cr.rectangle(0, 0, width, 32)
-        cr.set_source(lg_top)
-        cr.fill()
-        cr.rectangle(0, height - 32, width, height)
+            self.headerbar_visible = True
 
-        lg_btm = cairo.LinearGradient(0, height - 32, 0, height)  # pylint: disable=no-member
-        lg_btm.add_color_stop_rgba(
-            1, bg_color.red, bg_color.green, bg_color.blue, 1)
-        lg_btm.add_color_stop_rgba(
-            0, bg_color.red, bg_color.green, bg_color.blue, 0)
+    def reveal_bottombar(self, _widget=None, _data=None):
 
-        cr.set_source(lg_btm)
-        cr.fill()
+        if not self.bottombar_visible:
+            self.stats_revealer.set_reveal_child(True)
+
+            self.bottombar_visible = True
+
+        self.buffer_modified_for_status_bar = True
+
+    def hide_headerbar_bottombar(self):
+
+        if self.headerbar_visible:
+            self.headerbar.hb_revealer.set_reveal_child(False)
+            self.dm_headerbar.show_dm_hb()
+            self.get_style_context().add_class("focus")
+
+            self.headerbar_visible = False
+
+        if self.bottombar_visible:
+            self.stats_revealer.set_reveal_child(False)
+
+            self.bottombar_visible = False
+
+        self.headerbar_eventbox.show()
+        self.buffer_modified_for_status_bar = False
 
     def on_delete_called(self, _widget, _data=None):
         """Called when the TexteditorWindow is closed.
@@ -616,11 +625,18 @@ class MainWindow(StyledWindow):
         self.destroy()
         return
 
-    def set_headerbar_title(self, title):
+    def set_headerbar_title(self, title, subtitle=None):
         """set the desired headerbar title
         """
         self.headerbar.hb.props.title = title
+        self.dm_headerbar.hb.props.title = title
         self.fs_headerbar.hb.props.title = title
+        if subtitle:
+            self.headerbar.hb.props.subtitle = subtitle
+            self.dm_headerbar.hb.props.subtitle = subtitle
+            self.fs_headerbar.hb.props.subtitle = subtitle
+            self.headerbar.hb.set_tooltip_text(subtitle)
+            self.fs_headerbar.hb.set_tooltip_text(subtitle)
         self.set_title(title)
 
     def set_filename(self, filename=None):

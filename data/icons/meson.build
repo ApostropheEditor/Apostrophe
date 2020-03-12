@@ -1,7 +1,6 @@
 install_data(
-	'de.wolfvollprecht.UberWriter.svg',
-	install_dir: datadir / 'icons' / 'hicolor' / 'scalable' / 'apps',
-	rename: '@0@.svg'.format(application_id)
+	'@0@.svg'.format(application_id),
+	install_dir: datadir / 'icons' / 'hicolor' / 'scalable' / 'apps'
 )
 
 install_data(
