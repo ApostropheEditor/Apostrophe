@@ -191,7 +191,7 @@ class Export:
         if response == Gtk.ResponseType.ACCEPT:
             try:
                 self.export(export_format, text)
-            except (NotADirectoryError, Exception) as e:
+            except (NotADirectoryError, RuntimeError) as e:
                 dialog = Gtk.MessageDialog(None,
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.ERROR,
@@ -201,8 +201,9 @@ class Export:
                                        )
                 dialog.run()
                 dialog.destroy()
-
         
+        self.dialog.destroy()
+
     def regular_export_dialog(self):
         texlive_installed = helpers.exist_executable("pdftex")
 
@@ -260,6 +261,7 @@ class Export:
 
         self.adv_export_name = self.builder.get_object("advanced_export_name")
         self.adv_export_name.set_text(os.path.basename(self.filename)[:-3])
+        self.paper_size = self.builder.get_object("combobox_paper_size")
 
         return self.builder.get_object("Export")
 
@@ -298,6 +300,7 @@ class Export:
             args = [
                 "--variable=papersize:a4"
             ]
+            filename = self.dialog.get_filename()
             if filename.endswith("." + export_type):
                 filename = filename[:-len(export_type)-1]
             output_dir = os.path.abspath(os.path.join(filename, os.path.pardir))

@@ -597,40 +597,27 @@
   <object class="GtkDialog" id="Export">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
+    <property name="use-header-bar">1</property>
     <action-widgets>
       <action-widget response="cancel">cancel_btn</action-widget>
       <action-widget response="accept" default="true">export_btn</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="Export_hb">
+    <child type="action">
+      <object class="GtkButton" id="cancel_btn">
+        <property name="label">gtk-cancel</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="has_subtitle">False</property>
-        <child>
-          <object class="GtkButton" id="cancel_btn">
-            <property name="label">gtk-cancel</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="use_stock">True</property>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="export_btn">
-            <property name="label" translatable="yes">Export</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="can_default">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="use_stock">True</property>
+      </object>
+    </child>
+    <child type="action">
+      <object class="GtkButton" id="export_btn">
+        <property name="label" translatable="yes">Export</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="can_default">True</property>
+        <property name="receives_default">True</property>
       </object>
     </child>
     <child internal-child="vbox">
@@ -660,44 +647,6 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="Export_hb">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child type="title">
-          <object class="GtkStackSwitcher" id="format_switcher">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="stack">export_stack</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="cancel_btn">
-            <property name="label">gtk-cancel</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="use_stock">True</property>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="export_btn">
-            <property name="label" translatable="yes">Export</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="can_default">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-            <property name="position">2</property>
           </packing>
         </child>
       </object>
