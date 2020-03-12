@@ -227,6 +227,7 @@ class DummyHeaderbar(BaseHeaderbar):
         """show dummy headerbar:
            It appears instantly to inmediatly fade away
         """
+        self.hb_revealer.show()
         self.hb_revealer.set_transition_duration(0)
         self.hb_revealer.set_reveal_child(True)
         self.hb_revealer.set_transition_duration(600)
@@ -243,6 +244,7 @@ class DummyHeaderbar(BaseHeaderbar):
     def hide_dm_hb_with_wait(self):
         self.hb_revealer.set_transition_duration(0)
         self.hb_revealer.set_reveal_child(False)
+        self.hb_revealer.hide()
         return False
 
 
