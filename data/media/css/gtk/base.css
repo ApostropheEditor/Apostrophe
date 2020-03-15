@@ -21,22 +21,22 @@
 
 /* Main window and text colors */
 
-.uberwriter-window {
+.apostrophe-window {
   background: @theme_base_color;
   color: @theme_fg_color;
   caret-color: @theme_fg_color;
 }
 
-.uberwriter-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) {
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-.uberwriter-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(ltr) scrollbar {
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(ltr) scrollbar {
   border-top-right-radius: 8px;
 }
 
-.uberwriter-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(rtl) scrollbar {
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(rtl) scrollbar {
   border-top-left-radius: 8px;
 }
 
@@ -53,7 +53,7 @@
   background: @theme_base_color;
 }
 
-.uberwriter-editor {
+.apostrophe-editor {
   -gtk-key-bindings: editor-bindings;
   border: none;
   background-color: transparent;
@@ -62,44 +62,44 @@
   font-size: 16px;
 }
 
-.uberwriter-editor.size14  {
+.apostrophe-editor.size14  {
   font-size: 14px;
 }
 
-.uberwriter-editor.size15  {
+.apostrophe-editor.size15  {
   font-size: 15px;
 }
 
-.uberwriter-editor.size16  {
+.apostrophe-editor.size16  {
   font-size: 16px;
 }
 
-.uberwriter-editor.size17  {
+.apostrophe-editor.size17  {
   font-size: 17px;
 }
 
-.uberwriter-editor.size18 {
+.apostrophe-editor.size18 {
   font-size: 18px;
 }
 
-.uberwriter-editor text {
+.apostrophe-editor text {
   background-color: @theme_base_color;
   color: @theme_fg_color;
   caret-color: @theme_fg_color;
 }
 
-.uberwriter-editor text selection {
+.apostrophe-editor text selection {
   background-color: @theme_selected_bg_color;
   color: @theme_selected_fg_color;
 }
 
-.uberwriter-editor button {
+.apostrophe-editor button {
   margin: 0;
   padding: 0;
   /*background: #CCC;*/
 }
 
-.uberwriter-editor toolbar {
+.apostrophe-editor toolbar {
   /*background: transparent;*/
   border: none;
   padding: 0;
@@ -131,7 +131,7 @@
   background-color: mix(@theme_base_color, @theme_bg_color, 0.5);
 }
 
-.uberwriter-window treeview {
+.apostrophe-window treeview {
   padding: 4px 4px 4px 4px;
 }
 

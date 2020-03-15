@@ -1,13 +1,13 @@
-% UberWriter & Pandoc User Guide
+% Apostrophe & Pandoc User Guide
 % John MacFarlane, Wolf Vollprecht
 % 01.08.2012
 
-## UberWriter's goals
+## Apostrophe's goals
 
-UberWriter aims to make the writing process very easy and beautiful. The editor offers inline highlighting for a specific subset of markdown, which is used to do the formatting of your text.
+Apostrophe aims to make the writing process very easy and beautiful. The editor offers inline highlighting for a specific subset of markdown, which is used to do the formatting of your text.
 
 A short explanation of the core markdown features you'll find below. Pandoc is used to generate PDF, HTML or RTF files from markdown. Please note that Pandoc's syntax offers many, many more features which are well documented on the (pandoc homepage)[http://johnmacfarlane.net/pandoc/README.html].  
-However, please note that not all of the advanced features play well with inline highlighting of UberWriter.
+However, please note that not all of the advanced features play well with inline highlighting of Apostrophe.
 
 But for a quick start, this will be sufficient.
 
@@ -607,4 +607,4 @@ Inline and regular footnotes may be mixed freely.
 
 © 2006-2012 John MacFarlane (jgm at berkeley dot edu). Released under the [GPL], version 2 or greater.  This software carries no warranty of any kind.  (See COPYRIGHT for full copyright and warranty notices.) Other contributors include Recai Oktaş, Paulo Tanimoto, Peter Wang, Andrea Rossato, Eric Kow, infinity0x, Luke Plant, shreevatsa.public, Puneeth Chaganti, Paul Rivier, rodja.trappe, Bradley Kuhn, thsutton, Nathan Gass, Jonathan Daugherty, Jérémy Bobbio, Justin Bogner, qerub, Christopher Sawicki, Kelsey Hightower, Masayoshi Takahashi, Antoine Latter, Ralf Stephan, Eric Seidel, B. Scott Michel, Gavin Beatty, Sergey Astanin.
 
-© Reworked for UberWriter: Wolf Vollprecht
+© Reworked for Apostrophe: Wolf Vollprecht

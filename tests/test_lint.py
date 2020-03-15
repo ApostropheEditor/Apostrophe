@@ -24,7 +24,7 @@ class TestPylint(unittest.TestCase):
         
         your code may well work even with pylint errors
         but have some unusual code'''
-        return_code = subprocess.call(["pylint", '-E', 'uberwriter'])
+        return_code = subprocess.call(["pylint", '-E', 'apostrophe'])
         # not needed because nosetests displays pylint console output
         #self.assertEqual(return_code, 0)
 
@@ -34,7 +34,7 @@ class TestPylint(unittest.TestCase):
 #~ 
         #~ you will have to make judgement calls about your code standards
         #~ that differ from the norm'''
-        #~ return_code = subprocess.call(["pylint", 'uberwriter'])
+        #~ return_code = subprocess.call(["pylint", 'apostrophe'])
 
 if __name__ == '__main__':
     'you will get better results with nosetests'

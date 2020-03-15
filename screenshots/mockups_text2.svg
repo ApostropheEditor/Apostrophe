@@ -17,7 +17,7 @@
    id="svg8720"
    sodipodi:docname="mockups_text2.svg"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   inkscape:export-filename="/home/manu/Documentos/Programacion/Uberwriter/uberwriter/screenshots/mockups.svg.png"
+   inkscape:export-filename="/home/manu/Documentos/Programacion/Apostrophe/apostrophe/screenshots/mockups.svg.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <sodipodi:namedview
@@ -705,7 +705,7 @@
              font-size="21.3333px"
              font-weight="bold"
              style="font-weight:bold;font-size:21.33329964px;font-family:'Fira Mono';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
-             id="tspan8217">UberWriter helps your textediting workflow</tspan></tspan><tspan
+             id="tspan8217">Apostrophe helps your textediting workflow</tspan></tspan><tspan
            x="178.98633"
            y="161.24852"
            style="font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
@@ -892,7 +892,7 @@
          font-size="16px"
          font-weight="bold"
          style="font-weight:bold;font-size:16px;font-family:Cantarell;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;fill:#2e3436"
-         id="tspan8305">UberWriter.md - UberWriter</tspan></text>
+         id="tspan8305">Apostrophe.md - Apostrophe</tspan></text>
     <g
        transform="translate(750.32102,2.8991699e-4)"
        style="display:inline"
@@ -1644,7 +1644,7 @@
            y="371.00919"
            font-size="18.6667px"
            style="font-size:18.66670036px;font-family:'Fira Mono';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
-           id="tspan8398">feature of UberWriter it's his <tspan
+           id="tspan8398">feature of Apostrophe it's his <tspan
    font-style="italic"
    id="tspan8396"
    style="font-style:italic">*Inline Preview*</tspan></tspan><tspan
@@ -1668,6 +1668,6 @@
          font-size="16px"
          font-weight="bold"
          style="font-weight:bold;font-size:16px;font-family:Cantarell;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;fill:#ededeb"
-         id="tspan8406">Dark Mode.md - UberWriter</tspan></text>
+         id="tspan8406">Dark Mode.md - Apostrophe</tspan></text>
   </g>
 </svg>

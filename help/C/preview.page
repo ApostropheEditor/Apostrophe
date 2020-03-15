@@ -9,11 +9,11 @@
     <email>w.vollprecht@gmail.com</email>
     <years>2012</years>
   </credit>
-  <desc>UberWriters preview functionalities</desc>
+  <desc>Apostrophes preview functionalities</desc>
 </info>
 
-<title>UberWriter Preview</title>
-<p>There are 2 different ways to preview your Markdown files in UberWriter and
+<title>Apostrophe Preview</title>
+<p>There are 2 different ways to preview your Markdown files in Apostrophe and
 quickly check, what you have written.
 </p>
 <section id="inline-preview">
@@ -28,7 +28,7 @@ quickly check, what you have written.
 <section>
 <title>Complete Preview</title>
 <p>If you want a complete Preview of your document, you just need to hit the
-  preview Button on the statusbar at the bottom of the UberWriter window.
+  preview Button on the statusbar at the bottom of the Apostrophe window.
   It will render the complete HTML Output of your Markdown file.</p>
 </section>
 </page>

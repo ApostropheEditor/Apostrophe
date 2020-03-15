@@ -13,7 +13,7 @@
 </info>
 
 <title>Pandoc's Markdown</title>
-<h1 id="markdown-tutorial-for-uberwriter">Markdown Tutorial for UberWriter</h1>
+<h1 id="markdown-tutorial-for-apostrophe">Markdown Tutorial for Apostrophe</h1>
 <p>I will try to give a short impressions on how I use markdown/pandocs capabilities to greatly reduce the time spent on formatting anything – from websites to PDF Documents.</p>
 <p>You can find a much more exhaustive documentation for all features pandoc offers on pandoc’s help page: <a href="http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown">Link</a></p>
 <h3 id="headers">Headers</h3>

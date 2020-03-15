@@ -4,8 +4,8 @@
 
 <info>
   <!-- This shows in the title bar so does not show [icon] -->
-  <title type="text">UberWriter</title>
-  <desc>The <app>UberWriter</app> help.</desc>
+  <title type="text">Apostrophe</title>
+  <desc>The <app>Apostrophe</app> help.</desc>
   <credit type="author">
     <name>Wolf Vollprecht</name>
     <email>w.vollprecht@gmail.com</email>
@@ -20,10 +20,10 @@
 <!-- This shows on the page in title font -->
 <!-- the icon only shows when installed -->
 <media type="image" mime="image/png" src="figures/icon_down.png" width="16">[icon]</media>
-<app>UberWriter</app> Help
+<app>Apostrophe</app> Help
 </title>
 
-<p>Help Topics for UberWriter:</p>
+<p>Help Topics for Apostrophe:</p>
 
 <!-- This is the visible index -->
 <section id="contents" style="2column">

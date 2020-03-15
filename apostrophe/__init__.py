@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 ### BEGIN LICENSE
 # Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
@@ -14,24 +13,23 @@
 # You should have received a copy of the GNU General Public License along 
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
-
 import sys
-import os.path
-import unittest
-sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), "..")))
 
-from apostrophe import AboutApostropheDialog
+import gi
 
-class TestExample(unittest.TestCase):
-    def setUp(self):
-        self.AboutApostropheDialog_members = [
-        'AboutDialog', 'AboutApostropheDialog', 'gettext', 'logger', 'logging']
+gi.require_version('Gtk', '3.0')
 
-    def test_AboutApostropheDialog_members(self):
-        all_members = dir(AboutApostropheDialog)
-        public_members = [x for x in all_members if not x.startswith('_')]
-        public_members.sort()
-        self.assertEqual(self.AboutApostropheDialog_members, public_members)
+from apostrophe import main_window
+from apostrophe import application
+from apostrophe.helpers import set_up_logging
+from apostrophe.config import get_version
 
-if __name__ == '__main__':    
-    unittest.main()
+
+def main():
+    'constructor for your class instances'
+    # (options, args) = parse_options()
+
+    # Run the application.
+    app = application.Application()
+
+    app.run(sys.argv)

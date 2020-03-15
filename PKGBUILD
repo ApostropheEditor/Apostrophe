@@ -1,17 +1,17 @@
-pkgname=uberwriter
-_pkgname=uberwriter
+pkgname=apostrophe
+_pkgname=apostrophe
 pkgver=2.1.3
 pkgrel=1
 pkgdesc='A distraction free Markdown editor for GNU/Linux made with GTK+'
 arch=('any')
-url='http://uberwriter.github.io/uberwriter/'
+url='http://apostrophe.github.io/apostrophe/'
 license=('GPL3')
 depends=('gtk3' 'pandoc' 'gspell')
 makedepends=('python-setuptools')
 optdepends=('texlive-core' 'otf-fira-mono: Recommended font')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-source=('git+https://github.com/UberWriter/uberwriter.git#branch=refactoring')
+source=('git+https://github.com/Apostrophe/apostrophe.git#branch=refactoring')
 sha256sums=('SKIP')
 
 pkgver() {

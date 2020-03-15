@@ -17,7 +17,7 @@
    id="svg8720"
    sodipodi:docname="mockups_text.svg"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   inkscape:export-filename="/home/manu/Documentos/Programacion/Uberwriter/uberwriter/screenshots/mockups.svg.png"
+   inkscape:export-filename="/home/manu/Documentos/Programacion/Apostrophe/apostrophe/screenshots/mockups.svg.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <sodipodi:namedview
@@ -718,7 +718,7 @@
                font-size="21.3333px"
                font-weight="bold"
                style="font-weight:bold;font-size:21.33329964px;font-family:'Fira Mono';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
-               id="tspan8217">UberWriter helps your textediting workflow</tspan></tspan><tspan
+               id="tspan8217">Apostrophe helps your textediting workflow</tspan></tspan><tspan
              x="178.98633"
              y="161.24852"
              style="font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
@@ -905,7 +905,7 @@
            font-size="16px"
            font-weight="bold"
            style="font-weight:bold;font-size:16px;font-family:Cantarell;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;fill:#2e3436"
-           id="tspan8305">UberWriter.md - UberWriter</tspan></text>
+           id="tspan8305">Apostrophe.md - Apostrophe</tspan></text>
       <g
          transform="translate(750.32102,2.8991699e-4)"
          style="display:inline"
@@ -1609,7 +1609,7 @@
            font-size="16px"
            font-weight="bold"
            style="font-weight:bold;font-size:16px;font-family:Cantarell;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;fill:#2e3436"
-           id="tspan8305-7">UberWriter.md - UberWriter</tspan></text>
+           id="tspan8305-7">Apostrophe.md - Apostrophe</tspan></text>
       <text
          x="397.89084"
          y="38.447578"
@@ -1627,7 +1627,7 @@
            font-size="16px"
            font-weight="bold"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333302px;font-family:Cantarell;-inkscape-font-specification:Cantarell;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;fill:#77767b"
-           id="tspan8305-7-4">~/Documents/examples/UberWriter.md</tspan></text>
+           id="tspan8305-7-4">~/Documents/examples/Apostrophe.md</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -2912,7 +2912,7 @@
              y="1011.7719"
              x="174.00011"
              sodipodi:role="line"
-             style="line-height:300%">About UberWriter</tspan><tspan
+             style="line-height:300%">About Apostrophe</tspan><tspan
              id="tspan15648-6"
              y="1049.5719"
              x="174.00011"
@@ -3355,7 +3355,7 @@
            y="371.00919"
            font-size="18.6667px"
            style="font-size:18.66670036px;font-family:'Fira Mono';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
-           id="tspan8398">feature of UberWriter it's his <tspan
+           id="tspan8398">feature of Apostrophe it's his <tspan
    font-style="italic"
    id="tspan8396"
    style="font-style:italic">*Inline Preview*</tspan></tspan><tspan
@@ -3379,6 +3379,6 @@
          font-size="16px"
          font-weight="bold"
          style="font-weight:bold;font-size:16px;font-family:Cantarell;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;fill:#ededeb"
-         id="tspan8406">Dark Mode.md - UberWriter</tspan></text>
+         id="tspan8406">Dark Mode.md - Apostrophe</tspan></text>
   </g>
 </svg>

@@ -18,7 +18,7 @@
 import unittest
 import re
 
-from uberwriter import markup_regex
+from apostrophe import markup_regex
 
 
 class TestRegex(unittest.TestCase):
