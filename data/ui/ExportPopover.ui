@@ -42,7 +42,7 @@
                 <property name="receives_default">True</property>
                 <property name="action_name">app.export</property>
                 <property name="action_target">"pdf"</property>
-                <property name="text" translatable="yes">Pdf</property>
+                <property name="text" translatable="no">PDF</property>
             </object>
             <packing>
                 <property name="expand">False</property>
@@ -57,7 +57,7 @@
                 <property name="receives_default">True</property>
                 <property name="action_name">app.export</property>
                 <property name="action_target">"html"</property>
-                <property name="text" translatable="yes">Html</property>
+                <property name="text" translatable="no">HTML</property>
             </object>
             <packing>
                 <property name="expand">False</property>
@@ -72,7 +72,7 @@
                 <property name="receives_default">True</property>
                 <property name="action_name">app.export</property>
                 <property name="action_target">"odt"</property>
-                <property name="text" translatable="yes">ODT</property>
+                <property name="text" translatable="no">ODT</property>
             </object>
             <packing>
                 <property name="expand">False</property>
@@ -87,7 +87,7 @@
                 <property name="receives_default">True</property>
                 <property name="action_name">app.export</property>
                 <property name="action_target">"advanced"</property>
-                <property name="text" translatable="yes">Advanced</property>
+                <property name="text" translatable="yes">Advanced...</property>
             </object>
             <packing>
                 <property name="expand">False</property>
