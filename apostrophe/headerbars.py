@@ -219,6 +219,7 @@ class DummyHeaderbar(BaseHeaderbar):
         self.hb_revealer.set_transition_type(
             Gtk.RevealerTransitionType.CROSSFADE)
         self.hb_revealer.set_reveal_child(False)
+        self.hb_revealer.hide()
 
         self.menu_button.set_sensitive(True)
         self.recents_button.set_sensitive(True)
