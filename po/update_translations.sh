@@ -1,7 +1,7 @@
 function generate_po()
 {
     >LINGUAS
-    for po in */LC_MESSAGES/*.po
+    for po in *.po
     do
         msgmerge -N $po uberwriter.pot > /tmp/$$language_new.po
         mv /tmp/$$language_new.po $po
