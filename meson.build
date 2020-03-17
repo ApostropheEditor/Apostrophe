@@ -1,5 +1,5 @@
 project(
-  'uberwriter',
+  'apostrophe',
   version: '2.2.0',
   meson_version: '>= 0.50.0'
 )
@@ -50,7 +50,7 @@ pkgdatadir = datadir / meson.project_name()
 podir = meson.source_root() / 'po'
 
 conf = configuration_data()
-conf.set('PACKAGE_URL', 'http://uberwriter.github.io/uberwriter/')
+conf.set('PACKAGE_URL', 'http://apostrophe.github.io/apostrophe/')
 conf.set('DATA_DIR', datadir)
 conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
 conf.set('PYTHON_DIR', pythondir)
@@ -63,14 +63,14 @@ subdir('data')
 subdir('po')
 
 install_subdir(
-  'uberwriter',
+  'apostrophe',
   install_dir: pythondir
 )
 
 message('Preparing init file')
 configure_file(
-  input: 'uberwriter.in',
-  output: 'uberwriter',
+  input: 'apostrophe.in',
+  output: 'apostrophe',
   configuration: conf,
   install_dir: bindir
 )

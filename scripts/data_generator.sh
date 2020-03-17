@@ -24,5 +24,5 @@ function generate_resource()
     echo '</gresources>'
 }
 
-generate_resource > ../data/uberwriter.gresource.xml
+generate_resource > ../data/apostrophe.gresource.xml
 

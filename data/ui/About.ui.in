@@ -7,11 +7,11 @@
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
-    <property name="program_name">Uberwriter</property>
+    <property name="program_name">Apostrophe</property>
     <property name="version">@version@</property>
     <property name="copyright" translatable="yes">Copyright (C) 2018, Wolf Vollprecht</property>
     <property name="website">@package_url@</property>
-    <property name="website_label" translatable="yes">Uberwriter website</property>
+    <property name="website_label" translatable="yes">Apostrophe website</property>
     <property name="authors">Wolf Vollprecht &lt;w.vollprecht@gmail.com&gt;
 Manuel Genovés &lt;manuel.genoves@gmail.com&gt;
 Gonçalo Silva &lt;goncalossilva@gmail.com&gt;</property>
@@ -84,7 +84,7 @@ Manuel (Spanish, Catalan)</property>
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="relief">none</property>
-                    <property name="uri">https://liberapay.com/UberWriter/donate</property>
+                    <property name="uri">https://liberapay.com/Apostrophe/donate</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

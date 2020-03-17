@@ -1,16 +1,16 @@
 [![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app)
 
-# Uberwriter
+# Apostrophe
 
 ![](screenshots/main.png)
 
 ## About
 
-Uberwriter is a GTK+ based distraction free Markdown editor, mainly developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.
+Apostrophe is a GTK+ based distraction free Markdown editor, mainly developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.
 
 ## Install
 
-You can get UberWriter on Flathub!
+You can get Apostrophe on Flathub!
 [Get it now](https://flathub.org/apps/details/de.wolfvollprecht.UberWriter)
 
 ## Contributions and localization
@@ -21,13 +21,13 @@ Any help is appreciated!
 ## Building from Git
 
 ```bash
-$ git clone https://github.com/UberWriter/uberwriter.git
-$ cd uberwriter
+$ git clone https://github.com/Apostrophe/apostrophe.git
+$ cd apostrophe
 $ meson builddir --prefix=/usr
 # sudo ninja -C builddir install
 ```
 
-To use uberwriter, please make sure you have some dependencies installed:
+To use apostrophe, please make sure you have some dependencies installed:
 
 - Pandoc, the program used to convert Markdown to basically anything else (the package name should be pandoc in most distributions)
 - Of course, gtk3 etc. needs to be installed as well since this is a gtk application
@@ -37,7 +37,7 @@ To use uberwriter, please make sure you have some dependencies installed:
 
 ### Running it without installing it
 
-You can run UberWriter with `./uberwriter.in` without installing it in the system,
+You can run Apostrophe with `./apostrophe.in` without installing it in the system,
 but you'll need to install and compile the schemas before:
 
 ```bash

@@ -4,7 +4,7 @@
 #
 # Usage: python color_palette_generator.py #fg_hex #bg_hex light|dark
 #
-# The light variant is based on GitHub's style, while the dark variant is based on pre-existing UberWriter styles.
+# The light variant is based on GitHub's style, while the dark variant is based on pre-existing Apostrophe styles.
 #
 # Accessibility is not accounted for, so make sure to verify contrast: https://webaim.org/resources/contrastchecker/
 

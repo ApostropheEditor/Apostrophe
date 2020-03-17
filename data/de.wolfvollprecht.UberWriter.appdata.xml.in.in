@@ -2,36 +2,56 @@
 <component type="desktop-application">
   <id>@app-id@</id>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
-  <name>UberWriter</name>
-  <summary>An elegant, distraction-free GTK+ markdown editor</summary>
+  <name>Apostrophe</name>
+  <summary>An elegant, distraction-free GTK markdown editor</summary>
   <description>
-    <p>Uberwriter is a GTK+ based distraction free Markdown editor, mainly developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.</p>
+    <p>Apostrophe is a GTK based distraction free Markdown editor, originally created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.</p>
     <p>You can install the recommended TexLive extension with the command:</p>
     <p>flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive</p>
     <p>or from Gnome-Software</p>
   </description>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/main.png</image>
+      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/main.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/main-dark.png</image>
+      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/main-dark.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/formula.png</image>
+      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/formula.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/preview.png</image>
+      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/preview.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/uberwriter/master/screenshots/focus.png</image>
+      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/focus.png</image>
     </screenshot>
   </screenshots>
   <releases>
-    <release date="2019-04-17" version="2.2.0-beta1">
+    <release date="2020-03-19" version="2.2.0">
       <description>
+        <p>UI/UX/Functionality</p>
         <ul>
-          <li>...</li>
+          <li>New headerbar design</li>
+          <li>New preview modes, with the option to sync them to the edit view</li>
+          <li>New preview mode selector</li>
+          <li>New theme selector</li>
+          <li>Rework the autohiding mechanism; now the headerbar fades away when typing, only to reappear when the cursor moves to the top portion of the window</li>
+          <li>Now the content of the texview goes visually bellow the headerbar</li>
+          <li>Overall better styling</li>
+          <li>Added Hemingway mode, which disables the backspace key</li>
+          <li>Added Github Flavoured Markdow, MultiMarkdown, Pandoc's Markdown and Commonmark support, being CommonMark the default from now on</li>
+          <li>New stats counter, with the option to show count of characters/words/sentences/paragrafs/reading time</li>
+          <li>Better handling of DnD events</li>
+          <li>Export to A4 by default</li>
+        </ul>
+        <p>Technical improvements</p>
+        <ul>
+          <li>Port of the buildsystem to Meson. Now you can hit the "build" button on Builder and everything works as expected</li>
+          <li>Port to gspell</li>
+          <li>Partial port to gresources</li>
+          <li>Overall refactorization of the codebase</li>
+          <li>General bugfixes and improvements</li>
         </ul>
       </description>
     </release>
@@ -39,7 +59,7 @@
       <description>
         <ul>
           <li>Added italian language</li>
-          <li>Initial themes support: now uberwriter adapts his colors to the current GTK theme</li>
+          <li>Initial themes support: now apostrophe adapts his colors to the current GTK theme</li>
           <li>Disabled scroll gradient, can be enabled in the preferences dialog</li>
           <li>Allow to disable headerbar autohidding in Dconf</li>
           <li>Now a single click is enough to open files in the recent files popover</li>
@@ -61,7 +81,7 @@
     </release>
     <release date="2018-07-27" version="2.1.2">
       <description>
-        <p>This release provides a fix to a bug that caused Uberwriter to not mark properly **bold**, *cursive*, and ***bold and cursive*** words.</p>
+        <p>This release provides a fix to a bug that caused Apostrophe to not mark properly **bold**, *cursive*, and ***bold and cursive*** words.</p>
       </description>
     </release>
     <release date="2018-07-26" version="2.1.1">
@@ -115,12 +135,12 @@
   </releases>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <url type="homepage">http://uberwriter.github.io/uberwriter</url>
+  <url type="homepage">http://apostrophe.github.io/apostrophe</url>
   <content_rating type="oars-1.1"/>
   <developer_name>Wolf V., Manuel G.</developer_name>
-  <url type="bugtracker">https://github.com/UberWriter/uberwriter/issues</url>
-  <url type="donation">https://liberapay.com/UberWriter/donate</url>
-  <url type="help">http://uberwriter.github.io/uberwriter</url>
+  <url type="bugtracker">https://github.com/Apostrophe/apostrophe/issues</url>
+  <url type="donation">https://liberapay.com/Apostrophe/donate</url>
+  <url type="help">http://apostrophe.github.io/apostrophe</url>
   <url type="translate">https://poeditor.com/join/project/gxVzFyXb2x</url>
   <update_contact>manuel.genoves_at_gmail.com</update_contact>
   <translation type="gettext">@gettext-package@</translation>

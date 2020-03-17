@@ -17,12 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: uberwriter\n"
+"X-Poedit-SearchPath-0: apostrophe\n"
 "X-Poedit-SearchPath-1: data\n"
 
 #: data/de.wolfvollprecht.UberWriter.appdata.xml:5
 #: data/de.wolfvollprecht.UberWriter.desktop:3
-msgid "UberWriter"
+msgid "Apostrophe"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.appdata.xml:6
@@ -31,7 +31,7 @@ msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.appdata.xml:8
 msgid ""
-"Uberwriter is a GTK+ based distraction free Markdown editor, mainly "
+"Apostrophe is a GTK+ based distraction free Markdown editor, mainly "
 "developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as backend "
 "for markdown parsing and offers a very clean and sleek user interface."
 msgstr ""
@@ -58,7 +58,7 @@ msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.appdata.xml:42
 msgid ""
-"Initial themes support: now uberwriter adapts his colors to the current GTK "
+"Initial themes support: now apostrophe adapts his colors to the current GTK "
 "theme"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.appdata.xml:64
 msgid ""
-"This release provides a fix to a bug that caused Uberwriter to not mark "
+"This release provides a fix to a bug that caused Apostrophe to not mark "
 "properly **bold**, *cursive*, and ***bold and cursive*** words."
 msgstr ""
 
@@ -179,7 +179,7 @@ msgid "Wolf V., Manuel G."
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.desktop:4
-msgid "UberWriter, a simple and distraction free Markdown Editor"
+msgid "Apostrophe, a simple and distraction free Markdown Editor"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.desktop:7
@@ -239,7 +239,7 @@ msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:67
-msgid "Allow Uberwriter to poll cursor motion"
+msgid "Allow Apostrophe to poll cursor motion"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:68
@@ -283,7 +283,7 @@ msgid "Copyright (C) 2018, Wolf Vollprecht"
 msgstr ""
 
 #: data/ui/About.ui:14
-msgid "Uberwriter website"
+msgid "Apostrophe website"
 msgstr ""
 
 #: data/ui/About.ui:71
@@ -422,9 +422,9 @@ msgstr ""
 msgid "PDF"
 msgstr ""
 
-#: data/ui/Export.ui:618 uberwriter/plugins/bibtex/bibtex_item.glade:18
-#: uberwriter/plugins/bibtex/bibtex_item.glade:32
-#: uberwriter/plugins/bibtex/bibtex_item.glade:45
+#: data/ui/Export.ui:618 apostrophe/plugins/bibtex/bibtex_item.glade:18
+#: apostrophe/plugins/bibtex/bibtex_item.glade:32
+#: apostrophe/plugins/bibtex/bibtex_item.glade:45
 msgid "label"
 msgstr ""
 
@@ -440,7 +440,7 @@ msgstr ""
 msgid "Hemingway Mode"
 msgstr ""
 
-#: data/ui/Menu.ui:14 uberwriter/preview_renderer.py:51
+#: data/ui/Menu.ui:14 apostrophe/preview_renderer.py:51
 msgid "Preview"
 msgstr ""
 
@@ -473,10 +473,10 @@ msgid "Open Tutorial"
 msgstr ""
 
 #: data/ui/Menu.ui:51
-msgid "_About UberWriter"
+msgid "_About Apostrophe"
 msgstr ""
 
-#: data/ui/Preview.ui:28 uberwriter/preview_renderer.py:166
+#: data/ui/Preview.ui:28 apostrophe/preview_renderer.py:166
 msgid "Full-Width"
 msgstr ""
 
@@ -678,174 +678,174 @@ msgstr ""
 msgid "Replace all"
 msgstr ""
 
-#: uberwriter/application.py:171
-msgid "Show debug messages (-vv debugs uberwriter also)"
+#: apostrophe/application.py:171
+msgid "Show debug messages (-vv debugs apostrophe also)"
 msgstr ""
 
-#: uberwriter/application.py:173
+#: apostrophe/application.py:173
 msgid "Use experimental features"
 msgstr ""
 
-#: uberwriter/export_dialog.py:159
+#: apostrophe/export_dialog.py:159
 msgid "Untitled document.md"
 msgstr ""
 
-#: uberwriter/export_dialog.py:340
+#: apostrophe/export_dialog.py:340
 msgid "Please, install the TexLive extension from Gnome Software or running\n"
 msgstr ""
 
-#: uberwriter/export_dialog.py:343
+#: apostrophe/export_dialog.py:343
 msgid "Please, install TexLive from your distribuiton repositories"
 msgstr ""
 
-#: uberwriter/format_shortcuts.py:95
+#: apostrophe/format_shortcuts.py:95
 msgid "emphasized text"
 msgstr ""
 
-#: uberwriter/format_shortcuts.py:97
+#: apostrophe/format_shortcuts.py:97
 msgid "strong text"
 msgstr ""
 
-#: uberwriter/format_shortcuts.py:99
+#: apostrophe/format_shortcuts.py:99
 msgid "striked out text"
 msgstr ""
 
-#: uberwriter/format_shortcuts.py:117
+#: apostrophe/format_shortcuts.py:117
 msgid "List item"
 msgstr ""
 
-#: uberwriter/format_shortcuts.py:177
+#: apostrophe/format_shortcuts.py:177
 msgid "Heading"
 msgstr ""
 
-#: uberwriter/headerbars.py:101
+#: apostrophe/headerbars.py:101
 msgid "Exit Fullscreen"
 msgstr ""
 
-#: uberwriter/headerbars.py:137
+#: apostrophe/headerbars.py:137
 msgid "New"
 msgstr ""
 
-#: uberwriter/headerbars.py:139
+#: apostrophe/headerbars.py:139
 msgid "Save"
 msgstr ""
 
-#: uberwriter/headerbars.py:147
+#: apostrophe/headerbars.py:147
 msgid "Open"
 msgstr ""
 
-#: uberwriter/headerbars.py:162
+#: apostrophe/headerbars.py:162
 msgid "Open Recent"
 msgstr ""
 
-#: uberwriter/headerbars.py:169
+#: apostrophe/headerbars.py:169
 msgid "Search and Replace"
 msgstr ""
 
-#: uberwriter/headerbars.py:170
+#: apostrophe/headerbars.py:170
 msgid "Menu"
 msgstr ""
 
-#: uberwriter/inline_preview.py:184
+#: apostrophe/inline_preview.py:184
 msgid "Website is not available"
 msgstr ""
 
-#: uberwriter/inline_preview.py:186
+#: apostrophe/inline_preview.py:186
 msgid "Website is available"
 msgstr ""
 
-#: uberwriter/inline_preview.py:436
+#: apostrophe/inline_preview.py:436
 msgid "Open Link in Webbrowser"
 msgstr ""
 
-#: uberwriter/inline_preview.py:500
+#: apostrophe/inline_preview.py:500
 msgid "No matching footnote found"
 msgstr ""
 
-#: uberwriter/main_window.py:234
+#: apostrophe/main_window.py:234
 msgid "Save your File"
 msgstr ""
 
-#: uberwriter/main_window.py:334
+#: apostrophe/main_window.py:334
 msgid "Markdown Files"
 msgstr ""
 
-#: uberwriter/main_window.py:338
+#: apostrophe/main_window.py:338
 msgid "Plain Text Files"
 msgstr ""
 
-#: uberwriter/main_window.py:341
+#: apostrophe/main_window.py:341
 msgid "Open a .md file"
 msgstr ""
 
-#: uberwriter/main_window.py:367
+#: apostrophe/main_window.py:367
 msgid "You have not saved your changes."
 msgstr ""
 
-#: uberwriter/main_window.py:369
+#: apostrophe/main_window.py:369
 msgid "Close without saving"
 msgstr ""
 
-#: uberwriter/main_window.py:370
+#: apostrophe/main_window.py:370
 msgid "Cancel"
 msgstr ""
 
-#: uberwriter/main_window.py:371
+#: apostrophe/main_window.py:371
 msgid "Save now"
 msgstr ""
 
-#: uberwriter/main_window.py:400
+#: apostrophe/main_window.py:400
 msgid "New File"
 msgstr ""
 
-#: uberwriter/preview_renderer.py:168
+#: apostrophe/preview_renderer.py:168
 msgid "Half-Width"
 msgstr ""
 
-#: uberwriter/preview_renderer.py:170
+#: apostrophe/preview_renderer.py:170
 msgid "Half-Height"
 msgstr ""
 
-#: uberwriter/preview_renderer.py:172
+#: apostrophe/preview_renderer.py:172
 msgid "Windowed"
 msgstr ""
 
-#: uberwriter/stats_handler.py:69
+#: apostrophe/stats_handler.py:69
 msgid "{:n} Characters"
 msgstr ""
 
-#: uberwriter/stats_handler.py:71
+#: apostrophe/stats_handler.py:71
 msgid "{:n} Words"
 msgstr ""
 
-#: uberwriter/stats_handler.py:73
+#: apostrophe/stats_handler.py:73
 msgid "{:n} Sentences"
 msgstr ""
 
-#: uberwriter/stats_handler.py:75
+#: apostrophe/stats_handler.py:75
 msgid "{:n} Paragraphs"
 msgstr ""
 
-#: uberwriter/stats_handler.py:77
+#: apostrophe/stats_handler.py:77
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr ""
 
-#: uberwriter/text_view_format_inserter.py:12
+#: apostrophe/text_view_format_inserter.py:12
 msgid "italic text"
 msgstr ""
 
-#: uberwriter/text_view_format_inserter.py:17
+#: apostrophe/text_view_format_inserter.py:17
 msgid "bold text"
 msgstr ""
 
-#: uberwriter/text_view_format_inserter.py:22
+#: apostrophe/text_view_format_inserter.py:22
 msgid "strikethrough text"
 msgstr ""
 
-#: uberwriter/text_view_format_inserter.py:45
+#: apostrophe/text_view_format_inserter.py:45
 msgid "Item"
 msgstr ""
 
-#: uberwriter/text_view_format_inserter.py:91
+#: apostrophe/text_view_format_inserter.py:91
 msgid "Header"
 msgstr ""
