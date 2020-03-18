@@ -12,19 +12,19 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/main.png</image>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/main.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/main-dark.png</image>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/main-dark.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/formula.png</image>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/formula.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/preview.png</image>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/preview.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/Apostrophe/apostrophe/master/screenshots/focus.png</image>
+      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/focus.png</image>
     </screenshot>
   </screenshots>
   <releases>
