@@ -56,7 +56,7 @@ msgstr ""
 
 #: apostrophe/export_dialog.py:428
 msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr "Veuillez installer l'extension TexLive depuis la logithèque de Gnome"
+msgstr "Veuillez installer l'extension TexLive depuis la logithèque de Gnome\n"
 
 #: apostrophe/export_dialog.py:431
 msgid "Please, install TexLive from your distribuiton repositories"

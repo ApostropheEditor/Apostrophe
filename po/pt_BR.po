@@ -56,7 +56,7 @@ msgstr ""
 
 #: apostrophe/export_dialog.py:428
 msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr "Por favor, instale a extensão TexLive do Gnome Software ou executando"
+msgstr "Por favor, instale a extensão TexLive do Gnome Software ou executando\n"
 
 #: apostrophe/export_dialog.py:431
 msgid "Please, install TexLive from your distribuiton repositories"
@@ -179,7 +179,7 @@ msgstr "{:n} Caracteres"
 
 #: apostrophe/stats_handler.py:69
 msgid "{:n} Words"
-msgstr "{:n} Palavras\n"
+msgstr "{:n} Palavras"
 
 #: apostrophe/stats_handler.py:71
 msgid "{:n} Sentences"
@@ -187,7 +187,7 @@ msgstr "{:n} Sentenças"
 
 #: apostrophe/stats_handler.py:73
 msgid "{:n} Paragraphs"
-msgstr "{:n} Parágrafos\n"
+msgstr "{:n} Parágrafos"
 
 #: apostrophe/stats_handler.py:75
 msgid "{:d}:{:02d}:{:02d} Read Time"
@@ -662,7 +662,7 @@ msgstr "Próxima combinação"
 
 #: data/ui/Window.ui:235
 msgid "aA"
-msgstr "aA\n"
+msgstr "aA"
 
 #: data/ui/Window.ui:239
 msgid "Case Sensitive"
