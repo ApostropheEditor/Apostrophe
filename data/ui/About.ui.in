@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkAboutDialog" id="AboutDialog">
@@ -9,22 +9,15 @@
     <property name="type_hint">dialog</property>
     <property name="program_name">Apostrophe</property>
     <property name="version">@version@</property>
-    <property name="copyright" translatable="yes">Copyright (C) 2018, Wolf Vollprecht</property>
+    <property name="copyright" translatable="yes">Copyright (C) 2020, Wolf Vollprecht</property>
     <property name="website">@package_url@</property>
     <property name="website_label" translatable="yes">Apostrophe website</property>
     <property name="authors">Wolf Vollprecht &lt;w.vollprecht@gmail.com&gt;
 Manuel Genovés &lt;manuel.genoves@gmail.com&gt;
-Gonçalo Silva &lt;goncalossilva@gmail.com&gt;</property>
-    <property name="translator_credits">
-Andrea Somaini (Italian)
-Daniel Artfors (Swedish)
-shorez (German)
-TomBoss (French)
-Adolfo Jayme Barrientos (Catalan)
-Maxence Dubois (French)
-naxuroqa (German)
-Wolf
-Manuel (Spanish, Catalan)</property>
+Gonçalo Silva &lt;goncalossilva@gmail.com&gt;
+Thomas Lavend &lt;lavendthomas@outlook.be&gt;
+Vova Kolobok </property>
+    <property name="translator_credits" translatable="yes" comments="Put your name in here, like this:&#10;Manuel Genovés &lt;manuel.genoves@gmail.com&gt;">translator-credits</property>
     <property name="artists">Tobias Bernard &lt;hi@tobiasbernard.com&gt;</property>
     <property name="logo_icon_name">@app-id@</property>
     <property name="license_type">gpl-3-0</property>
@@ -78,13 +71,13 @@ Manuel (Spanish, Catalan)</property>
                 </child>
                 <child>
                   <object class="GtkLinkButton" id="donations_link">
-                    <property name="label" translatable="yes">Liberapay</property>
+                    <property name="label" translatable="yes">Paypal</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="relief">none</property>
-                    <property name="uri">https://liberapay.com/Apostrophe/donate</property>
+                    <property name="uri">https://paypal.me/manuelgenoves</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

@@ -97,7 +97,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.hemingway_mode</property>
-            <property name="text" translatable="yes">Hemingway mode</property>
+            <property name="text" translatable="yes">Hemingway Mode</property>
           </object>
           <packing>
             <property name="expand">False</property>
