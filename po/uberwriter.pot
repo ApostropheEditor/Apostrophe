@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-17 19:08+0100\n"
+"POT-Creation-Date: 2020-03-20 02:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,8 @@ msgid "A folder must be selected before proceeding"
 msgstr ""
 
 #: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
+msgid ""
+"Please, install the TexLive extension from Gnome Software or running\n"
 msgstr ""
 
 #: apostrophe/export_dialog.py:431
@@ -421,16 +422,20 @@ msgstr ""
 msgid "Commandline Reference"
 msgstr ""
 
-#: data/ui/ExportPopover.ui:19 data/ui/Headerbar.ui:242
-msgid "Save as..."
+#: data/ui/ExportPopover.ui:19
+msgid "Save As..."
 msgstr ""
 
-#: data/ui/ExportPopover.ui:90
-msgid "Advanced..."
+#: data/ui/ExportPopover.ui:101
+msgid "Advanced Export..."
+msgstr ""
+
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
 msgstr ""
 
 #: data/ui/Headerbar.ui:130
-msgid "Sync views"
+msgid "Sync Views"
 msgstr ""
 
 #: data/ui/Headerbar.ui:171
@@ -449,6 +454,10 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: data/ui/Headerbar.ui:242
+msgid "Save as..."
+msgstr ""
+
 #: data/ui/Headerbar.ui:283
 msgid "Menu"
 msgstr ""
@@ -458,7 +467,7 @@ msgid "Find"
 msgstr ""
 
 #: data/ui/Menu.ui:100
-msgid "Hemingway mode"
+msgid "Hemingway Mode"
 msgstr ""
 
 #: data/ui/Menu.ui:114
