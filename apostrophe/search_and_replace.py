@@ -152,8 +152,15 @@ class SearchAndReplace:
         self.active = index % len(self.matches)
 
         match = self.matches[self.active]
+
         start_iter = self.textbuffer.get_iter_at_offset(match[0])
         end_iter = self.textbuffer.get_iter_at_offset(match[1])
+
+        # create a mark at the start of the coincidence to scroll to it
+        mark = self.textbuffer.create_mark(None, start_iter, False)
+        self.textview.scroller.scroll_to_mark(mark, center=True)
+
+        # select coincidence
         self.textbuffer.select_range(start_iter, end_iter)
 
     def hide(self):
