@@ -1,6 +1,6 @@
 {
-    "id": "de.wolfvollprecht.UberWriter.Plugin.TexLive",
-    "runtime": "de.wolfvollprecht.UberWriter",
+    "id": "org.gnome.wolf.Apostrophe.Plugin.TexLive",
+    "runtime": "org.gnome.wolf.Apostrophe",
     "branch": "stable",
     "sdk": "org.gnome.Sdk//3.34",
     "build-extension": true,
@@ -52,13 +52,13 @@
             "buildsystem": "simple",
             "build-commands": [
                 "mkdir -p /app/extensions/TexLive/share/appdata",
-                "install -Dm644 de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml /app/extensions/TexLive/share/appdata/de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml",
-                "appstream-compose --basename=de.wolfvollprecht.UberWriter.Plugin.TexLive --prefix=/app/extensions/TexLive --origin=flatpak de.wolfvollprecht.UberWriter.Plugin.TexLive"
+                "install -Dm644 org.gnome.wolf.Apostrophe.Plugin.TexLive.appdata.xml /app/extensions/TexLive/share/appdata/org.gnome.wolf.Apostrophe.Plugin.TexLive.appdata.xml",
+                "appstream-compose --basename=org.gnome.wolf.Apostrophe.Plugin.TexLive --prefix=/app/extensions/TexLive --origin=flatpak org.gnome.wolf.Apostrophe.Plugin.TexLive"
             ],
             "sources": [
                 {
                     "type": "file",
-                    "path": "de.wolfvollprecht.UberWriter.Plugin.TexLive.appdata.xml"
+                    "path": "org.gnome.wolf.Apostrophe.Plugin.TexLive.appdata.xml"
                 }
             ]
         }

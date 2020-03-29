@@ -7,7 +7,7 @@
   <description>
     <p>Apostrophe is a GTK based distraction free Markdown editor, originally created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.</p>
     <p>You can install the recommended TexLive extension with the command:</p>
-    <p>flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive</p>
+    <p>flatpak install flathub org.gnome.wolf.Apostrophe.Plugin.TexLive</p>
     <p>or from Gnome-Software</p>
   </description>
   <screenshots>

@@ -4,7 +4,7 @@ desktop_conf.set('icon', application_id)
 desktop_file = i18n.merge_file(
   'desktop',
   input: configure_file(
-    input: 'de.wolfvollprecht.UberWriter.desktop.in.in',
+    input: 'org.gnome.wolf.Apostrophe.desktop.in.in',
     output: '@BASENAME@',
     configuration: desktop_conf
   ),
@@ -32,7 +32,7 @@ appdata_conf.set('gettext-package', gettext_package)
 appdata_file = i18n.merge_file(
   'appdata',
   input: configure_file(
-    input: 'de.wolfvollprecht.UberWriter.appdata.xml.in.in',
+    input: 'org.gnome.wolf.Apostrophe.appdata.xml.in.in',
     output: '@BASENAME@',
     configuration: appdata_conf
   ),
@@ -53,7 +53,7 @@ endif
 
 # Gschema
 install_data(
-	'de.wolfvollprecht.UberWriter.gschema.xml',
+	'org.gnome.wolf.Apostrophe.gschema.xml',
 	install_dir:  get_option('datadir') / 'glib-2.0' / 'schemas',
 	rename: '@0@.gschema.xml'.format(application_id)
 )

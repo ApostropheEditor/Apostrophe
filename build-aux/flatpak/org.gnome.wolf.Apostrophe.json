@@ -1,9 +1,9 @@
 {
-    "app-id": "de.wolfvollprecht.UberWriter",
+    "app-id": "org.gnome.wolf.Apostrophe",
     "runtime": "org.gnome.Platform",
     "runtime-version": "3.36",
     "sdk": "org.gnome.Sdk",
-    "command": "uberwriter",
+    "command": "apostrophe",
     "finish-args": [
         "--socket=x11",
         "--socket=wayland",
@@ -14,7 +14,7 @@
         "--metadata=X-DConf=migrate-path=/de/wolfvollprecht/UberWriter/"
     ],
     "add-extensions": {
-        "de.wolfvollprecht.UberWriter.Plugin": {
+        "org.gnome.wolf.Apostrophe.Plugin": {
           "directory": "extensions",
           "version": "stable",
           "subdirectories": true,
@@ -92,7 +92,7 @@
         }]
     },
     {
-        "name": "uberwriter",
+        "name": "apostrophe",
         "buildsystem": "meson",
         "config-opts" : [
           "-Dprofile=development"
