@@ -30,7 +30,7 @@ from apostrophe.helpers import get_media_path
 class Application(Gtk.Application):
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="de.wolfvollprecht.UberWriter",
+        super().__init__(*args, application_id="org.gnome.wolf.Apostrophe",
                          flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
                          **kwargs)
         self.window = None

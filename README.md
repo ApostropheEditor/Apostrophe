@@ -11,7 +11,7 @@ Apostrophe is a GTK+ based distraction free Markdown editor, mainly developed by
 ## Install
 
 You can get Apostrophe on Flathub!
-[Get it now](https://flathub.org/apps/details/de.wolfvollprecht.UberWriter)
+[Get it now](https://flathub.org/apps/details/org.gnome.wolf.Apostrophe)
 
 ## Contributions and localization
 
@@ -21,7 +21,7 @@ Any help is appreciated!
 ## Building from Git
 
 ```bash
-$ git clone https://github.com/Apostrophe/apostrophe.git
+$ git clone https://github.com/ApostropheEditor/Apostrophe
 $ cd apostrophe
 $ meson builddir --prefix=/usr
 # sudo ninja -C builddir install
@@ -41,7 +41,7 @@ You can run Apostrophe with `./apostrophe.in` without installing it in the syste
 but you'll need to install and compile the schemas before:
 
 ```bash
-# sudo cp data/de.wolfvollprecht.UberWriter.gschema.xml /usr/share/glib-2.0/schemas/de.wolfvollprecht.UberWriter.gschema.xml
+# sudo cp data/org.gnome.wolf.Apostrophe.gschema.xml /usr/share/glib-2.0/schemas/org.gnome.wolf.Apostrophe.gschema.xml
 # sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 ```
 
@@ -51,5 +51,5 @@ It's also possible to build, run and debug a flatpak package. You'll need flatpa
 
 ```bash
 $ cd build-aux/flatpak
-$ flatpak-builder --force-clean --install --user _build de.wolfvollprecht.UberWriter.json
+$ flatpak-builder --force-clean --install --user _build org.gnome.wolf.Apostrophe.json
 ```
