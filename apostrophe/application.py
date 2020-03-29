@@ -10,6 +10,7 @@
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 
+import os
 import argparse
 from gettext import gettext as _
 
@@ -164,7 +165,7 @@ class Application(Gtk.Application):
             # self.window = Window(application=self, title="Apostrophe")
             self.window = MainWindow(self)
             if self.args:
-                self.window.load_file(self.args[0])
+                self.window.load_file(os.getcwd() + '/' + self.args[0])
 
         self.window.present()
 
