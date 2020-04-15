@@ -627,18 +627,20 @@ class MainWindow(StyledWindow):
         self.destroy()
         return
 
-    def set_headerbar_title(self, title, subtitle=None):
+    def set_headerbar_title(self, title, subtitle=""):
         """set the desired headerbar title
         """
-        self.headerbar.hb.props.title = title
-        self.dm_headerbar.hb.props.title = title
-        self.fs_headerbar.hb.props.title = title
-        if subtitle:
-            self.headerbar.hb.props.subtitle = subtitle
-            self.dm_headerbar.hb.props.subtitle = subtitle
-            self.fs_headerbar.hb.props.subtitle = subtitle
-            self.headerbar.hb.set_tooltip_text(subtitle)
-            self.fs_headerbar.hb.set_tooltip_text(subtitle)
+        self.headerbar.hb.set_title(title)
+        self.dm_headerbar.hb.set_title(title)
+        self.fs_headerbar.hb.set_title(title)
+        
+        self.headerbar.hb.set_subtitle(subtitle)
+        self.dm_headerbar.hb.set_subtitle(subtitle)
+        self.fs_headerbar.hb.set_subtitle(subtitle)
+
+        self.headerbar.hb.set_tooltip_text(subtitle)
+        self.fs_headerbar.hb.set_tooltip_text(subtitle)
+        
         self.set_title(title)
 
     def set_filename(self, filename=None):
