@@ -177,7 +177,7 @@ class MainWindow(StyledWindow):
         """
 
         # prevent 1px jumps
-        if allocation.height == 1 and not widget.get_child_revealed():
+        if not widget.get_child_revealed():
             allocation.height = 0
 
         height = self.headerbar.hb.get_allocated_height() - allocation.height
@@ -502,6 +502,8 @@ class MainWindow(StyledWindow):
                 if os.path.exists(filename):
                     with io.open(filename, encoding="utf-8", mode='r') as current_file:
                         self.text_view.set_text(current_file.read())
+                        start_iter = self.text_view.get_buffer().get_start_iter()
+                        self.text_view.get_buffer().place_cursor(start_iter)
                 else:
                     dialog = Gtk.MessageDialog(self,
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,

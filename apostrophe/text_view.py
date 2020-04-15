@@ -156,6 +156,8 @@ class TextView(Gtk.TextView):
 
     def on_text_changed(self, *_):
         self.markup.apply()
+        if self.focus_mode:
+            self.smooth_scroll_to()
 
     def on_paste_done(self, *_):
         self.smooth_scroll_to()
@@ -232,9 +234,11 @@ class TextView(Gtk.TextView):
     def update_vertical_margin(self, top_margin=0, hb_size=0):
         if self.focus_mode:
             height = self.get_allocation().height + top_margin + hb_size
-
-            self.props.top_margin = height / 2 + top_margin
-            self.props.bottom_margin = height / 2 - top_margin
+            # The height/6 may seem strange. It's a workaround for a GTK bug
+            # If a top-margin is larger than a certain amount of the TextView height,
+            # jumps may occur when pressing enter.
+            self.set_top_margin(height / 2 + top_margin - height/6)
+            self.set_bottom_margin(height / 2)
         else:
             self.props.top_margin = 80 + top_margin
             self.props.bottom_margin = 64
