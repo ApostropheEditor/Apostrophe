@@ -197,7 +197,7 @@ def FixTable():
     if are_in_a_table(line):
         fix_table(row - 1)
     else:
-        print("No estoy en una tabla. Terminando...")
+        print("No estoy en una tabla. Terminando…")
 
 
 def CreateTable():

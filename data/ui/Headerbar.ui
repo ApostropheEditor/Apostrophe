@@ -239,7 +239,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Save as...</property>
+                <property name="tooltip_text" translatable="yes">Save as…</property>
                 <child>
                   <placeholder/>
                 </child>

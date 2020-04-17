@@ -509,7 +509,7 @@ class MainWindow(StyledWindow):
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.WARNING,
                                        Gtk.ButtonsType.CLOSE,
-                                       _("The file you tried to open doesn't exist.\
+                                       _("The file you tried to open doesn’t exist.\
                                             \nA new file will be created in its place when you save the current one.")
                                        )
                     dialog.run()

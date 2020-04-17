@@ -216,7 +216,7 @@ class Export:
                             _("Oh, no!")
                             )
             
-            dialog.props.secondary_text = _("Seems that you don't have TexLive installed.\n" +
+            dialog.props.secondary_text = _("Seems that you don’t have TexLive installed.\n" +
                                             disabled_text())
         else:
             dialog = Gtk.FileChooserNative.new(_("Export"),
