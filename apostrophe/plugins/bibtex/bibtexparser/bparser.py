@@ -281,7 +281,7 @@ class BibTexParser(object):
                     logger.debug('The line is the end of the record.')
                     d[key] = self._add_val(val)
             elif inkey:
-                logger.debug('Continues the previous line to complete the key pair value...')
+                logger.debug('Continues the previous line to complete the key pair value…')
                 # if this line continues the value from a previous line, append
                 inval += ', ' + kv
                 # if it looks like this line finishes the value, store it and clear for next loop

@@ -79,7 +79,7 @@ class BaseHeaderbar:
         if global_dark:
             self.light_button.set_sensitive(False)
             self.light_button.set_tooltip_text(_(
-                "Light mode isn't available while using a dark global theme"))
+                "Light mode isn’t available while using a dark global theme"))
 
         self.dark_button.set_active(self.settings.get_boolean("dark-mode") or global_dark)
 

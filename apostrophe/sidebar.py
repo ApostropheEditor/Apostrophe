@@ -152,7 +152,7 @@ class Sidebar():
                 treeiter = self.store.get_iter(path)
                 filename = self.store.get_value(treeiter, 1)
                 item = Gtk.MenuItem.new()
-                item.set_label("Open ...")
+                item.set_label("Open…")
                 # item.connect("activate", self.context_menu_open_file)
                 # item.filename = filename
                 item.show()

@@ -47,7 +47,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Pandoc can automatically make "--" to a long dash and more</property>
+                        <property name="tooltip_text" translatable="yes">Pandoc can automatically make “--” to a long dash and more</property>
                         <property name="halign">start</property>
                         <property name="draw_indicator">True</property>
                       </object>
@@ -114,7 +114,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Use "strict" markdown instead of "pandoc" markdown</property>
+                        <property name="tooltip_text" translatable="yes">Use “strict” markdown instead of “pandoc” markdown</property>
                         <property name="halign">start</property>
                         <property name="draw_indicator">True</property>
                       </object>

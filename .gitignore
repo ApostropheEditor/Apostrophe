@@ -9,3 +9,4 @@ builddir/*
 build-aux/flatpak/_build/*
 build-aux/flatpak/.flatpak-builder/*
 flatpak/*
+.mypy_cache/

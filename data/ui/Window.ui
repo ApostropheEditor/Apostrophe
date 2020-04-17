@@ -99,7 +99,7 @@
                         <property name="reveal_child">True</property>
                         <child>
                           <object class="GtkButton" id="editor_stats_button">
-                            <property name="label" translatable="yes">0 Words</property>
+                            <property name="label">0 Words</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
