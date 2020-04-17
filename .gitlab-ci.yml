@@ -3,7 +3,7 @@ pages:
   - mkdir .public
   - cp -r * .public
   - mv .public public
-  - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
+  # - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
   artifacts:
     paths:
     - public
