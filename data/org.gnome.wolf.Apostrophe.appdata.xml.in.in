@@ -12,23 +12,23 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/main.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/main-dark.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main-dark.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/formula.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/formula.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/preview.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/preview.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://raw.githubusercontent.com/UberWriter/apostrophe/master/screenshots/focus.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/focus.png</image>
     </screenshot>
   </screenshots>
   <releases>
-    <release date="2020-03-19" version="2.2.0">
+    <release date="2020-04-17" version="2.2.0">
       <description>
         <p>UI/UX/Functionality</p>
         <ul>
