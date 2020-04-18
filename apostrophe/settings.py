@@ -32,6 +32,6 @@ class Settings(Gio.Settings):
         """
             Return a new Settings object
         """
-        settings = Gio.Settings.new("org.gnome.wolf.Apostrophe")
+        settings = Gio.Settings.new("org.gnome.gitlab.somas.Apostrophe")
         settings.__class__ = Settings
         return settings

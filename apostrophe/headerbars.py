@@ -41,9 +41,9 @@ class BaseHeaderbar:
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/de/wolfvollprecht/UberWriter/ui/Headerbar.ui")
+            "/org/gnome/gitlab/somas/Apostrophe/ui/Headerbar.ui")
         self.builder.add_from_resource(
-            "/de/wolfvollprecht/UberWriter/ui/ExportPopover.ui")
+            "/org/gnome/gitlab/somas/Apostrophe/ui/ExportPopover.ui")
 
         self.hb = self.builder.get_object(
             "Headerbar")
@@ -104,7 +104,7 @@ class BaseHeaderbar:
         for i, mode in enumerate(modes):
             item_builder = Gtk.Builder()
             item_builder.add_from_resource(
-                "/de/wolfvollprecht/UberWriter/ui/PreviewLayoutSwitcherItem.ui")
+                "/org/gnome/gitlab/somas/Apostrophe/ui/PreviewLayoutSwitcherItem.ui")
             menu_item = item_builder.get_object("switcherItem")
 
             menu_item.label = item_builder.get_object("label")
@@ -282,7 +282,7 @@ def add_menus(headerbar, app):
 
     builder_window_menu = Gtk.Builder()
     builder_window_menu.add_from_resource(
-        "/de/wolfvollprecht/UberWriter/ui/Menu.ui")
+        "/org/gnome/gitlab/somas/Apostrophe/ui/Menu.ui")
     model = builder_window_menu.get_object("Menu")
     headerbar.light_button = builder_window_menu.get_object("light_mode_button")
     headerbar.dark_button = builder_window_menu.get_object("dark_mode_button")
@@ -293,7 +293,7 @@ def add_menus(headerbar, app):
 
     recents_builder = Gtk.Builder()
     recents_builder.add_from_resource(
-        "/de/wolfvollprecht/UberWriter/ui/Recents.ui")
+        "/org/gnome/gitlab/somas/Apostrophe/ui/Recents.ui")
     recents = recents_builder.get_object("recent_md_popover")
 
     recents_treeview = get_descendant(recents, "recent_view", level=0)

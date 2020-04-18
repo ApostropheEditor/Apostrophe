@@ -65,7 +65,7 @@ class PreferencesDialog:
         self.settings = settings
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/de/wolfvollprecht/UberWriter/ui/Preferences.ui")
+            "/org/gnome/gitlab/somas/Apostrophe/ui/Preferences.ui")
 
         self.autohide_headerbar_switch = self.builder.get_object("autohide_headerbar_switch")
         self.autohide_headerbar_switch.set_active(self.settings.get_value("autohide-headerbar"))

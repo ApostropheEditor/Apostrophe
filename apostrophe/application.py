@@ -31,7 +31,7 @@ from apostrophe.helpers import get_media_path
 class Application(Gtk.Application):
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="org.gnome.wolf.Apostrophe",
+        super().__init__(*args, application_id="org.gnome.gitlab.somas.Apostrophe",
                          flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
                          **kwargs)
         self.window = None
@@ -259,7 +259,7 @@ class Application(Gtk.Application):
     def on_shortcuts(self, _action, _param):
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/de/wolfvollprecht/UberWriter/ui/Shortcuts.ui")
+            "/org/gnome/gitlab/somas/Apostrophe/ui/Shortcuts.ui")
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
 
@@ -268,7 +268,7 @@ class Application(Gtk.Application):
 
     def on_about(self, _action, _param):
         builder = Gtk.Builder()
-        builder.add_from_resource("/de/wolfvollprecht/UberWriter/About.ui")
+        builder.add_from_resource("/org/gnome/gitlab/somas/Apostrophe/About.ui")
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
 

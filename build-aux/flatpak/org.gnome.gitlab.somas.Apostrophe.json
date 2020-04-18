@@ -1,5 +1,5 @@
 {
-    "app-id": "org.gnome.wolf.Apostrophe",
+    "app-id": "org.gnome.gitlab.somas.Apostrophe",
     "runtime": "org.gnome.Platform",
     "runtime-version": "3.36",
     "sdk": "org.gnome.Sdk",
@@ -11,10 +11,10 @@
         "--share=network",
         "--filesystem=host",
         "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2019/bin/x86_64-linux/",
-        "--metadata=X-DConf=migrate-path=/de/wolfvollprecht/UberWriter/"
+        "--metadata=X-DConf=migrate-path=/org/gnome/gitlab/somas/Apostrophe/"
     ],
     "add-extensions": {
-        "org.gnome.wolf.Apostrophe.Plugin": {
+        "org.gnome.gitlab.somas.Apostrophe.Plugin": {
           "directory": "extensions",
           "version": "stable",
           "subdirectories": true,

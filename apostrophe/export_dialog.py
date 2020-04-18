@@ -240,7 +240,7 @@ class Export:
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/de/wolfvollprecht/UberWriter/ui/Export.ui")
+            "/org/gnome/gitlab/somas/Apostrophe/ui/Export.ui")
 
         self.builder.get_object("highlight_style").set_active(0)
         self.builder.get_object("css_filechooser").set_uri(
@@ -426,7 +426,7 @@ def disabled_text():
 
     if os.path.isfile("/.flatpak-info"):
         text = _("Please, install the TexLive extension from Gnome Software or running\n")\
-                + ("flatpak install flathub org.gnome.wolf.Apostrophe.Plugin.TexLive")
+                + ("flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive")
     else:
         text = _("Please, install TexLive from your distribuiton repositories")
     return text

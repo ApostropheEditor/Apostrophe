@@ -18,7 +18,7 @@ else
   name_suffix = ''
   version_suffix = ''
 endif
-application_id = 'org.gnome.wolf.Apostrophe@0@'.format(profile)
+application_id = 'org.gnome.gitlab.somas.Apostrophe@0@'.format(profile)
 
 
 python = import('python3')

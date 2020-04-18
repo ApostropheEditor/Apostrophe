@@ -1,6 +1,6 @@
 {
-    "id": "org.gnome.wolf.Apostrophe.Plugin.TexLive",
-    "runtime": "org.gnome.wolf.Apostrophe",
+    "id": "org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive",
+    "runtime": "org.gnome.gitlab.somas.Apostrophe",
     "branch": "stable",
     "sdk": "org.gnome.Sdk//3.34",
     "build-extension": true,
@@ -77,13 +77,13 @@
             "buildsystem": "simple",
             "build-commands": [
                 "mkdir -p /app/extensions/TexLive/share/appdata",
-                "install -Dm644 org.gnome.wolf.Apostrophe.Plugin.TexLive.appdata.xml /app/extensions/TexLive/share/appdata/org.gnome.wolf.Apostrophe.Plugin.TexLive.appdata.xml",
-                "appstream-compose --basename=org.gnome.wolf.Apostrophe.Plugin.TexLive --prefix=/app/extensions/TexLive --origin=flatpak org.gnome.wolf.Apostrophe.Plugin.TexLive"
+                "install -Dm644 org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive.appdata.xml /app/extensions/TexLive/share/appdata/org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive.appdata.xml",
+                "appstream-compose --basename=org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive --prefix=/app/extensions/TexLive --origin=flatpak org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
             ],
             "sources": [
                 {
                     "type": "file",
-                    "path": "org.gnome.wolf.Apostrophe.Plugin.TexLive.appdata.xml"
+                    "path": "org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive.appdata.xml"
                 }
             ]
         }

@@ -72,7 +72,7 @@ class MainWindow(StyledWindow):
         # Set UI
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/de/wolfvollprecht/UberWriter/ui/Window.ui")
+            "/org/gnome/gitlab/somas/Apostrophe/ui/Window.ui")
         root = builder.get_object("AppOverlay")
         self.connect("delete-event", self.on_delete_called)
         self.add(root)

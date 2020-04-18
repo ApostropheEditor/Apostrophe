@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="addon">
-  <id>org.gnome.wolf.Apostrophe.Plugin.TexLive</id>
-  <extends>org.gnome.wolf.Apostrophe</extends>
+  <id>org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive</id>
+  <extends>org.gnome.gitlab.somas.Apostrophe</extends>
   <name>TexLive Plugin</name>
   <summary>Allows to export to pdf and to show formulas in the inline preview</summary>
   <url type="homepage">https://www.tug.org/texlive//</url>

@@ -2,7 +2,7 @@
 
 <schemalist>
 
-  <enum id='org.gnome.wolf.Apostrophe.Stat'>
+  <enum id='org.gnome.gitlab.somas.Apostrophe.Stat'>
     <value nick='characters' value='0' />
     <value nick='words' value='1' />
     <value nick='sentences' value='2' />
@@ -10,14 +10,14 @@
     <value nick='read_time' value='4' />
   </enum>
 
-  <enum id='org.gnome.wolf.Apostrophe.PreviewMode'>
+  <enum id='org.gnome.gitlab.somas.Apostrophe.PreviewMode'>
     <value nick='full-width' value='0' />
     <value nick='half-width' value='1' />
     <value nick='half-height' value='2' />
     <value nick='windowed' value='3' />
   </enum>
 
-  <schema path="/de/wolfvollprecht/UberWriter/" id="org.gnome.wolf.Apostrophe">
+  <schema path="/org/gnome/gitlab/somas/Apostrophe/" id="org.gnome.gitlab.somas.Apostrophe">
     <key name='dark-mode' type='b'>
       <default>false</default>
       <summary>Use dark mode</summary>
@@ -60,7 +60,7 @@
         Open file paths of the current session
       </description>
     </key>
-    <key name='stat-default' enum='org.gnome.wolf.Apostrophe.Stat'>
+    <key name='stat-default' enum='org.gnome.gitlab.somas.Apostrophe.Stat'>
       <default>"words"</default>
       <summary>Default statistic</summary>
       <description>
@@ -74,7 +74,7 @@
         Maximum number of characters per line within the editor.
       </description>
     </key>
-    <key name='preview-mode' enum='org.gnome.wolf.Apostrophe.PreviewMode'>
+    <key name='preview-mode' enum='org.gnome.gitlab.somas.Apostrophe.PreviewMode'>
       <default>"full-width"</default>
       <summary>Preview mode</summary>
       <description>

@@ -14,7 +14,7 @@ class StyledWindow(Gtk.ApplicationWindow):
 
         # Set theme css
         css_provider_file = Gio.File.new_for_uri(
-            "resource:///de/wolfvollprecht/UberWriter/media/css/gtk/base.css")
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/base.css")
         style_provider = Gtk.CssProvider()
         style_provider.load_from_file(css_provider_file)
         Gtk.StyleContext.add_provider_for_screen(
