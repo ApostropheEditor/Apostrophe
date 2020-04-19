@@ -253,6 +253,10 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         self.connect("configure-event", self.window_resize)
         self.connect("delete-event", self.on_delete_called)
 
+        #EOL
+        self.eol_message = self.builder.get_object("EOL")
+        self.eol_message.connect("response", self.on_eol_close)
+
     __gsignals__ = {
         'save-file': (GObject.SIGNAL_ACTION, None, ()),
         'open-file': (GObject.SIGNAL_ACTION, None, ()),
@@ -262,6 +266,10 @@ class UberwriterWindow(Gtk.ApplicationWindow):
         'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
         'close-window': (GObject.SIGNAL_ACTION, None, ())
     }
+
+    def on_eol_close(self, widget, response):
+        if response == Gtk.ResponseType.CLOSE:
+            widget.set_revealed(False)
 
     def scrolled(self, widget):
         """if window scrolled + focusmode make font black again"""
