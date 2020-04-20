@@ -189,12 +189,14 @@ header {
     }
 
     .spotlight .image {
-		background-color: rgba(0, 0, 0, 0.125);
+        /*background-color: rgba(0, 0, 0, 0.125);*/
+        background-color: transparent;
 		padding: 30px;
 	}
 
     .spotlight .image.no-padding{
-		background-color: rgba(0, 0, 0, 0.125);
+        /*background-color: rgba(0, 0, 0, 0.125);*/
+        background-color: transparent;
 		padding: 0px;
 	}
 
