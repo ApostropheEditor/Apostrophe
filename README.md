@@ -16,6 +16,7 @@ You can get Apostrophe on Flathub!
 Unofficial builds are also available for some platforms:
 * Nix(OS): [`pkgs.uberwriter`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/apostrophe/default.nix)
 * ArchLinux (AUR)
+* [Fedora](https://src.fedoraproject.org/rpms/apostrophe): `sudo dnf install apostrophe`
 
 ## Contributions and localization
 
