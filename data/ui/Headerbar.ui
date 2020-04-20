@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkPopover">
@@ -284,6 +284,9 @@
                 <property name="icon_name">open-menu-symbolic</property>
               </object>
             </child>
+            <style>
+              <class name="image-button"/>
+            </style>
           </object>
           <packing>
             <property name="pack_type">end</property>
@@ -382,6 +385,10 @@
             <property name="position">4</property>
           </packing>
         </child>
+        <style>
+          <class name="titlebar"/>
+          <class name="flat"/>
+        </style>
       </object>
     </child>
   </object>

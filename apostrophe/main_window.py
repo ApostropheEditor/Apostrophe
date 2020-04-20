@@ -89,6 +89,10 @@ class MainWindow(StyledWindow):
             "size_allocate", self.header_size_allocate)
         self.set_titlebar(self.headerbar.hb_revealer)
 
+        # remove .titlebar class from hb_revealer 
+        # to don't mess things up on Elementary OS 
+        self.headerbar.hb_revealer.get_style_context().remove_class("titlebar")
+
         self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
 
         # Bind properties between normal and fs headerbar

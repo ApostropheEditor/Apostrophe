@@ -256,7 +256,6 @@ class PreviewHeaderbar:
     def __init__(self):
         self.hb = Gtk.HeaderBar().new()
         self.hb.props.show_close_button = True
-        self.hb.get_style_context().add_class("titlebar")
 
         self.hb_revealer = Gtk.Revealer(name="titlebar-revealer-pv")
         self.hb_revealer.add(self.hb)
