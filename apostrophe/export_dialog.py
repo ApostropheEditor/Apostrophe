@@ -425,8 +425,8 @@ def disabled_text():
     """
 
     if os.path.isfile("/.flatpak-info"):
-        text = _("Please, install the TexLive extension from Gnome Software or running\n")\
-                + ("flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive")
+        text = _("Please install the TexLive extension from GNOME Software or run\n")\
+                + ("“flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive”")
     else:
-        text = _("Please, install TexLive from your distribuiton repositories")
+        text = _("Please install TexLive from your distribution’s repositories")
     return text
