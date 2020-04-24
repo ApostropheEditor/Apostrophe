@@ -127,8 +127,8 @@ class MainWindow(StyledWindow):
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
-        self.text_view.grab_focus()
         self.scrolled_window.add(self.text_view)
+        self.text_view.grab_focus()
 
         # Setup stats counter
         self.stats_revealer = builder.get_object('editor_stats_revealer')
