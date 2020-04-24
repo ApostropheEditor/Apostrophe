@@ -165,7 +165,12 @@ class Application(Gtk.Application):
             # self.window = Window(application=self, title="Apostrophe")
             self.window = MainWindow(self)
             if self.args:
-                self.window.load_file(os.getcwd() + '/' + self.args[0])
+                #TODO: Implement proper path handling once and for all
+                if self.args[0].startswith("/"):
+                    prefix = ""
+                else:
+                    prefix = os.getcwd() + '/'
+                self.window.load_file(prefix + self.args[0])
 
         self.window.present()
 
