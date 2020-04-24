@@ -505,9 +505,10 @@ class MainWindow(StyledWindow):
             try:
                 if os.path.exists(filename):
                     with io.open(filename, encoding="utf-8", mode='r') as current_file:
-                        self.text_view.set_text(current_file.read())
-                        start_iter = self.text_view.get_buffer().get_start_iter()
-                        self.text_view.get_buffer().place_cursor(start_iter)
+                        text = current_file.read()
+                    self.text_view.set_text(text)
+                    start_iter = self.text_view.get_buffer().get_start_iter()
+                    GLib.idle_add(lambda: self.text_view.get_buffer().place_cursor(start_iter))
                 else:
                     dialog = Gtk.MessageDialog(self,
                                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
