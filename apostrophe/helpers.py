@@ -113,17 +113,12 @@ def set_up_logging(opts):
     logger_sh.setFormatter(formatter)
     logger.addHandler(logger_sh)
 
-    lib_logger = logging.getLogger('apostrophe')
-    lib_logger_sh = logging.StreamHandler()
-    lib_logger_sh.setFormatter(formatter)
-    lib_logger.addHandler(lib_logger_sh)
-
     # Set the logging level to show debug messages.
     if opts.verbose:
         logger.setLevel(logging.DEBUG)
         logger.debug('logging enabled')
     if opts.verbose and opts.verbose > 1:
-        lib_logger.setLevel(logging.DEBUG)
+        logger.setLevel(logging.DEBUG)
 
 
 def get_help_uri(page=None):
