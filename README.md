@@ -38,11 +38,13 @@ $ meson builddir --prefix=/usr
 
 To use apostrophe, please make sure you have some dependencies installed:
 
+- `meson` and `ninja-build` are requiref to build and install Apostrophe
 - Pandoc, the program used to convert Markdown to basically anything else (the package name should be pandoc in most distributions)
-- Of course, gtk3 etc. needs to be installed as well since this is a gtk application
+- Of course, gtk3 and glib development packages need to be installed: libktk3-dev libglib2.0-dev`
 - webkit2gtk is also needed for the preview panel
-- Please find these packages on your distribution/pip: `python3 python3-regex python3-setuptools python3-levenshtein python3-enchant python3-gi python3-cairo pypandoc`
-- Optional dependencies are `texlive` for the pdftex module.
+- GSpell and GObject-introspection libraries for spell checking: `gobject-introspection libgirepository1.0-dev gir1.2-gspell1 gettext`
+- Please find these packages on your distribution/pip: `python3 python3-regex python3-setuptools python3-levenshtein python3-enchant python3-gi python3-cairo python3-pypandoc`
+- Optional dependencies are `texlive` and `texlie-latex-extra` for the pdftex module; `libjs-mathjax` for formula preview.
 
 Depending where you install it you may need to install the schemas before:
 
