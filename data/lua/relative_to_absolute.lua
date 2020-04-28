@@ -16,12 +16,10 @@ end
 
 function Link (element)
   element.target = fix_path(element.target)
-  print(element.target)
   return element
 end
 
 function Image (element)
   element.src = fix_path(element.src)
-  print(element.src)
   return element
 end
