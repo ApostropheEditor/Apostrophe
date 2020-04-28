@@ -623,15 +623,6 @@ class MainWindow(StyledWindow):
             return True
         return False
 
-    def on_mnu_close_activate(self, _widget, _data=None):
-        """Signal handler for closing the Window.
-           Overriden from parent Window Class
-        """
-        if self.on_delete_called(self):  # Really destroy?
-            return
-        self.destroy()
-        return
-
     def set_headerbar_title(self, title, subtitle=""):
         """set the desired headerbar title
         """
