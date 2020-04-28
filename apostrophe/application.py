@@ -280,7 +280,8 @@ class Application(Gtk.Application):
         about_dialog.present()
 
     def on_quit(self, _action, _param):
-        self.quit()
+        if not self.window.on_delete_called(self):
+            self.quit()
 
     def on_stat_default(self, action, value):
         action.set_state(value)
