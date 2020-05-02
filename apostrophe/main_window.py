@@ -593,6 +593,8 @@ class MainWindow(StyledWindow):
 
         if not self.bottombar_visible:
             self.stats_revealer.set_reveal_child(True)
+            self.stats_revealer.set_halign(Gtk.Align.END)
+            self.stats_revealer.queue_resize()
 
             self.bottombar_visible = True
 
@@ -609,6 +611,7 @@ class MainWindow(StyledWindow):
 
         if self.bottombar_visible:
             self.stats_revealer.set_reveal_child(False)
+            self.stats_revealer.set_halign(Gtk.Align.FILL)
 
             self.bottombar_visible = False
 
