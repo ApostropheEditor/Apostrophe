@@ -30,8 +30,8 @@
   <releases>
     <release date="2020-05-04" version="2.2.0.3">
       <description>
+        <p>Bugfixes and improvements:</p>
         <ul>
-          <p>Bugfixes and improvements:</p>
           <li>Better wording for some areas</li>
           <li>Fixed some issues where Apostrophe couldn't open files from CLI/context menu</li>
           <li>Now Apostrophe checks if there is unsaved work before exiting via CTRL + Q/W</li>
