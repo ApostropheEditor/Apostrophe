@@ -28,6 +28,18 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release date="2020-05-04" version="2.2.0.3">
+      <description>
+        <ul>
+          <p>Bugfixes and improvements:</p>
+          <li>Better wording for some areas</li>
+          <li>Fixed some issues where Apostrophe couldn't open files from CLI/context menu</li>
+          <li>Now Apostrophe checks if there is unsaved work before exiting via CTRL + Q/W</li>
+          <li>Better parsing of weblinks and links to files</li>
+          <li>Fixed a bug where the bottom portion of the screen was insensitive to mouse input</li>
+        </ul>
+      </description>
+    </release>
     <release date="2020-04-20" version="2.2.0.2">
       <description>
         <ul>
