@@ -25,7 +25,7 @@ Any help is appreciated!
 
 ## Building with GNOME Builder
 
-The easiest methos, just follow [this guide](https://wiki.gnome.org/Newcomers/BuildProject), you'll be up and running in one minute.
+The easiest method, just follow [this guide](https://wiki.gnome.org/Newcomers/BuildProject), you'll be up and running in one minute.
 
 ## Building from Git
 
