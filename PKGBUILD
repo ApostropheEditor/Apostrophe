@@ -4,14 +4,14 @@ pkgver=2.1.3
 pkgrel=1
 pkgdesc='A distraction free Markdown editor for GNU/Linux made with GTK+'
 arch=('any')
-url='http://apostrophe.github.io/apostrophe/'
+url='https://somas.pages.gitlab.gnome.org/apostrophe/'
 license=('GPL3')
 depends=('gtk3' 'pandoc' 'gspell')
 makedepends=('python-setuptools')
 optdepends=('texlive-core' 'otf-fira-mono: Recommended font')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-source=('git+https://github.com/Apostrophe/apostrophe.git#branch=refactoring')
+source=('git+https://gitlab.gnome.org/somas/apostrophe')
 sha256sums=('SKIP')
 
 pkgver() {
