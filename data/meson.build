@@ -62,7 +62,7 @@ install_data(
 ui_config = configuration_data()
 ui_config.set('app-id', application_id)
 ui_config.set('version', meson.project_version() + version_suffix)
-ui_config.set('package_url', 'http://apostrophe.github.io/apostrophe/')
+ui_config.set('package_url', 'https://somas.pages.gitlab.gnome.org/apostrophe/')
 ui_preconfigured_files = files(
   'ui/About.ui.in'
 )
