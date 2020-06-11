@@ -1,0 +1,724 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-20 02:51+0100\n"
+"PO-Revision-Date: 2020-06-11 14:07+0200\n"
+"Language-Team: Dutch <vistausss@outlook.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3.1\n"
+"X-Poedit-Basepath: ..\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+"X-Poedit-SearchPath-0: apostrophe\n"
+"X-Poedit-SearchPath-1: data\n"
+
+#: apostrophe/application.py:176
+msgid "Show debug messages (-vv debugs apostrophe also)"
+msgstr ""
+"Foutopsporingsberichten tonen (-vv voert tevens apostrophe-"
+"foutopsporing uit)"
+
+#: apostrophe/application.py:178
+msgid "Use experimental features"
+msgstr "Experimentele functies gebruiken"
+
+#: apostrophe/export_dialog.py:184
+msgid "Untitled document.md"
+msgstr "Naamloos document.md"
+
+#: apostrophe/export_dialog.py:199
+#, python-brace-format
+msgid ""
+"An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+"Er is een fout opgetreden tijdens het exporteren:\n"
+"\n"
+"{err_msg}"
+
+#: apostrophe/export_dialog.py:216
+msgid "Oh, no!"
+msgstr "Oh, nee!"
+
+#: apostrophe/export_dialog.py:219
+msgid "Seems that you don't have TexLive installed.\n"
+msgstr "Het lijkt er op dat TexLive niet geïnstalleerd is.\n"
+
+#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
+msgid "Export"
+msgstr "Exporteren"
+
+#: apostrophe/export_dialog.py:225
+#, python-format
+msgid "Export to %s"
+msgstr "Exporteren naar %s"
+
+#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: apostrophe/export_dialog.py:285
+msgid "A folder must be selected before proceeding"
+msgstr "Kies een map om door te gaan"
+
+#: apostrophe/export_dialog.py:428
+msgid ""
+"Please, install the TexLive extension from Gnome Software or running\n"
+msgstr "Installeer de TexLive-uitbreiding middels GNOME Software of\n"
+
+#: apostrophe/export_dialog.py:431
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr "Installeer TexLive uit de pakketbronnen van je distributie"
+
+#: apostrophe/headerbars.py:82
+msgid "Light mode isn't available while using a dark global theme"
+msgstr ""
+"Het lichte thema is niet beschikbaar als je het donkere systeemthema "
+"hebt ingesteld"
+
+#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
+msgstr "Volledige breedte"
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr "Halve breedte"
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr "Halve hoogte"
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr "Venster"
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr "De formule is onjuist:"
+
+#: apostrophe/inline_preview.py:226
+msgid "No matching footnote found"
+msgstr "Geen overeenkomende voetnoot gevonden"
+
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr "zelfstandig naamwoord"
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr "werkwoord"
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr "bijvoeglijk naamwoord"
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr "bijwoord"
+
+#: apostrophe/main_window.py:284
+msgid "Save your File"
+msgstr "Bestand opslaan"
+
+#: apostrophe/main_window.py:384
+msgid "Markdown Files"
+msgstr "Markdown-bestanden"
+
+#: apostrophe/main_window.py:388
+msgid "Plain Text Files"
+msgstr "Plattetekstbestanden"
+
+#: apostrophe/main_window.py:391
+msgid "Open a .md file"
+msgstr ".md-bestand openen"
+
+#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
+msgid "New File"
+msgstr "Nieuw bestand"
+
+#: apostrophe/main_window.py:422
+#, python-format
+msgid "Save changes to document “%s” before closing?"
+msgstr "Wil je de aanpassingen aan '%s' opslaan alvorens af te sluiten?"
+
+#: apostrophe/main_window.py:426
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr ""
+"Als je dat niet doet, gaan alle aanpassingen definitief verloren."
+
+#: apostrophe/main_window.py:428
+msgid "Close without saving"
+msgstr "Sluiten zonder opslaan"
+
+#: apostrophe/main_window.py:430
+msgid "Save now"
+msgstr "Nu opslaan"
+
+#: apostrophe/main_window.py:510
+msgid ""
+"The file you tried to open doesn't "
+"exist.                                            \n"
+"A new file will be created in its place when you save the current one."
+msgstr ""
+"Het bestand dat je probeert te openen bestaat "
+"niet.                                            \n"
+"Er wordt een nieuw bestand met dezelfde naam aangemaakt zodra je het "
+"huidige opslaat."
+
+#: apostrophe/main_window.py:520
+#, python-format
+msgid "Error Reading File: %r"
+msgstr "Kan bestand niet uitlezen: %r"
+
+#: apostrophe/main_window.py:525
+#, python-format
+msgid ""
+"Error reading file:                                         \n"
+"%r"
+msgstr ""
+"Kan bestand niet uitlezen:                                         \n"
+"%r"
+
+#: apostrophe/plugins/bibtex/bibtex_item.glade:18
+#: apostrophe/plugins/bibtex/bibtex_item.glade:32
+#: apostrophe/plugins/bibtex/bibtex_item.glade:45
+msgid "label"
+msgstr "label"
+
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+msgid "Preview"
+msgstr "Voorvertoning"
+
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr "{:n} Tekens"
+
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr "{:n} Woorden"
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr "{:n} Zinnen"
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr "{:n} Paragrafen"
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} Leestijd"
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr "webpagina"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "cursieve tekst"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "vetgedrukte tekst"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "doorgehaalde tekst"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Item"
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr "Kop"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
+msgid "Use dark mode"
+msgstr "Donker thema gebruiken"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
+msgid "Enable or disable the dark mode."
+msgstr "Schakel het donkere thema in of uit."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+#: data/ui/Preferences.ui:49
+msgid "Check spelling while typing"
+msgstr "Spelling controleren tijdens typen"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
+msgid "Enable or disable spellchecking."
+msgstr "Schakel de spellingcontrole in of uit."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+msgid "Synchronize editor/preview scrolling"
+msgstr "Scrollen in bewerker en voorvertoning synchroniseren"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr ""
+"Houdt de scrollposities in de bewerker en voorvertoning "
+"gesynchroniseerd."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+#: data/ui/Preferences.ui:73
+msgid "Input format"
+msgstr "Invoerformaat"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr ""
+"Het te gebruiken invoerformaat bij het voorvertonen en exporteren "
+"middels Pandoc."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr "Kopbalk automatisch verbergen"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr "Verbergt de kop- en statusbalken tijdens het typen."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+msgid "Open file base path"
+msgstr "Hoofdpad geopend bestand"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
+msgid "Open file paths of the current session"
+msgstr "Geopende bestandspaden van de huidige sessie"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+msgid "Default statistic"
+msgstr "Standaardstatistiek"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
+msgid "Which statistic is shown on the main window."
+msgstr "Welke statistiek wordt getoond in het hoofdvenster."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+msgid "Characters per line"
+msgstr "Aantal tekens per regel"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
+msgid "Maximum number of characters per line within the editor."
+msgstr "Het maximumaantal tekens per regel in de bewerker."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+msgid "Preview mode"
+msgstr "Voorvertoningsmodus"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
+msgid "How to display the preview."
+msgstr "Hoe de voorvertoning wordt getoond."
+
+#: data/ui/Export.ui:45
+msgid "Smart"
+msgstr "Slim"
+
+#: data/ui/Export.ui:50
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr ""
+"Pandoc kan automatisch '--' omzetten naar een lange streep, en meer"
+
+#: data/ui/Export.ui:62
+msgid "Table of Contents"
+msgstr "Inhoudsopgave"
+
+#: data/ui/Export.ui:78
+msgid "Standalone"
+msgstr "Vrij"
+
+#: data/ui/Export.ui:83
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+"Gebruik een kop en voetnoten om meta-informatie en stijlbladen op te "
+"nemen"
+
+#: data/ui/Export.ui:96
+msgid "Number Sections"
+msgstr "Secties nummeren"
+
+#: data/ui/Export.ui:112
+msgid "Strict Markdown"
+msgstr "Strikte Markdown"
+
+#: data/ui/Export.ui:117
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr "Gebruik 'strikte' markdown in plaats van die van 'pandoc'"
+
+#: data/ui/Export.ui:129
+msgid "Slideshow Incremental Bullets"
+msgstr "Inspringende opsommingen in diavoorstelling"
+
+#: data/ui/Export.ui:134
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Toont de ene na de andere opsomming in diavoorstellingen"
+
+#: data/ui/Export.ui:152
+msgid "<b>General Options</b>"
+msgstr "<b>Algemene opties</b>"
+
+#: data/ui/Export.ui:189
+msgid "Highlight Syntax"
+msgstr "Syntax markeren"
+
+#: data/ui/Export.ui:211 data/ui/Export.ui:225
+msgid "Choose a color theme for syntax highlighting"
+msgstr "Kies een kleurenschema voor de syntaxmarkering"
+
+#: data/ui/Export.ui:213
+msgid "Highlight style  "
+msgstr "Markeerstijl  "
+
+#: data/ui/Export.ui:262
+msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
+msgstr "<b>Syntaxmarkering</b> (HTML, LaTeX)"
+
+#: data/ui/Export.ui:294 data/ui/Export.ui:307
+msgid "Choose a bibliography file"
+msgstr "Kies een bibliografiebestand"
+
+#: data/ui/Export.ui:295
+msgid "File"
+msgstr "Bestand"
+
+#: data/ui/Export.ui:325
+msgid "<b>Bibliography </b>"
+msgstr "<b>Bibliografie</b>"
+
+#: data/ui/Export.ui:370
+msgid "Self-contained"
+msgstr "Allesomvattend"
+
+#: data/ui/Export.ui:375
+msgid ""
+"Produces a HTML that has no external dependencies (all images and "
+"stylesheets are included)"
+msgstr ""
+"Genereert HTML zonder externe afhankelijkheden (alle afbeeldingen en "
+"stijlbladen worden bijgevoegd)"
+
+#: data/ui/Export.ui:387
+msgid "HTML5"
+msgstr "HTML5"
+
+#: data/ui/Export.ui:392
+msgid "Use HTML5 syntax"
+msgstr "HTML5-syntax gebruiken"
+
+#: data/ui/Export.ui:411 data/ui/Export.ui:425
+msgid "Choose a CSS File that you want to use"
+msgstr "Kies het te gebruiken CSS-bestand"
+
+#: data/ui/Export.ui:413
+msgid "CSS File"
+msgstr "CSS-bestand"
+
+#: data/ui/Export.ui:450
+msgid "<b>HTML Options</b>"
+msgstr "<b>HTML-opties</b>"
+
+#: data/ui/Export.ui:484 data/ui/Export.ui:520
+msgid "Paper size"
+msgstr "Papierafmetingen"
+
+#: data/ui/Export.ui:501
+msgid "A4"
+msgstr "A4"
+
+#: data/ui/Export.ui:502
+msgid "US Letter"
+msgstr "Amerikaanse brief"
+
+#: data/ui/Export.ui:546
+msgid "Commandline Reference"
+msgstr "Opdrachtregelopties"
+
+#: data/ui/ExportPopover.ui:19
+msgid "Save As..."
+msgstr "Opslaan als..."
+
+#: data/ui/ExportPopover.ui:101
+msgid "Advanced Export..."
+msgstr "Geavanceerd exporteren..."
+
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
+msgstr "HTML kopiëren"
+
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr "Weergaven synchroniseren"
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr "Nieuw"
+
+#: data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr "Openen"
+
+#: data/ui/Headerbar.ui:199
+msgid "Open Recent"
+msgstr "Recent bestand openen"
+
+#: data/ui/Headerbar.ui:225
+msgid "Save"
+msgstr "Opslaan"
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as..."
+msgstr "Opslaan als..."
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "Menu"
+
+#: data/ui/Headerbar.ui:375
+msgid "Find"
+msgstr "Zoeken"
+
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr "Hemingway-modus"
+
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "Focusmodus"
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr "Zoeken en vervangen"
+
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
+msgstr "Rondleiding tonen"
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr "Sneltoetsen"
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr "Over Apostrophe"
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr "Kop- en statusbalken automatisch verbergen tijdens typen"
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr "Kopbalk automatisch verbergen"
+
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Algemeen"
+
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr "Nieuw"
+
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Openen"
+
+#: data/ui/Shortcuts.ui:31
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Opslaan"
+
+#: data/ui/Shortcuts.ui:38
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "Opslaan als"
+
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Document sluiten"
+
+#: data/ui/Shortcuts.ui:52
+msgctxt "shortcut window"
+msgid "Quit application"
+msgstr "Toepassing afsluiten"
+
+#: data/ui/Shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Modes"
+msgstr "Modi"
+
+#: data/ui/Shortcuts.ui:65
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "Focusmodus"
+
+#: data/ui/Shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Hemingway mode"
+msgstr "Hemingway-modus"
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Voorvertoning"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Beeldvullend"
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr "Zoeken"
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr "Zoeken en vervangen"
+
+#: data/ui/Shortcuts.ui:115
+msgctxt "shortcut window"
+msgid "Markdown"
+msgstr "Markdown"
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr "Scheidingsteken"
+
+#: data/ui/Shortcuts.ui:126
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "Lijstitem"
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Cursief"
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Vetgedrukt"
+
+#: data/ui/Shortcuts.ui:147
+msgctxt "shortcut window"
+msgid "Strikeout"
+msgstr "Doorhalen"
+
+#: data/ui/Shortcuts.ui:154
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Kop"
+
+#: data/ui/Shortcuts.ui:161
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Alles selecteren"
+
+#: data/ui/Shortcuts.ui:170
+msgctxt "shortcut window"
+msgid "Copy and paste"
+msgstr "Kopiëren en plakken"
+
+#: data/ui/Shortcuts.ui:174
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "Geselecteerde tekst kopiëren naar klembord"
+
+#: data/ui/Shortcuts.ui:181
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "Geselecteerde tekst knippen naar klembord"
+
+#: data/ui/Shortcuts.ui:188
+msgctxt "shortcut window"
+msgid "Paste selected text from clipboard"
+msgstr "Geselecteerde tekst plakken van klembord"
+
+#: data/ui/Shortcuts.ui:197
+msgctxt "shortcut window"
+msgid "Undo and redo"
+msgstr "Ongedaan maken/Opnieuw"
+
+#: data/ui/Shortcuts.ui:201
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "Vorige actie ongedaan maken"
+
+#: data/ui/Shortcuts.ui:208
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "Vorige actie opnieuw uitvoeren"
+
+#: data/ui/Shortcuts.ui:217
+msgctxt "shortcut window"
+msgid "Selection"
+msgstr "Selectie"
+
+#: data/ui/Shortcuts.ui:221
+msgctxt "shortcut window"
+msgid "Select all text"
+msgstr "Alle tekst selecteren"
+
+#: data/ui/Window.ui:102
+msgid "0 Words"
+msgstr "0 woorden"
+
+#: data/ui/Window.ui:106
+msgid "Show Statistics"
+msgstr "Statistieken tonen"
+
+#: data/ui/Window.ui:192
+msgid "Previous Match"
+msgstr "Vorige overeenkomst"
+
+#: data/ui/Window.ui:206
+msgid "Next Match"
+msgstr "Volgende overeenkomst"
+
+#: data/ui/Window.ui:235
+msgid "aA"
+msgstr "aA"
+
+#: data/ui/Window.ui:239
+msgid "Case Sensitive"
+msgstr "Hoofdlettergevoelig"
+
+#: data/ui/Window.ui:249
+msgid "(.*)"
+msgstr "(.*)"
+
+#: data/ui/Window.ui:253
+msgid "Regular Expression"
+msgstr "Reguliere expressie"
+
+#: data/ui/Window.ui:266 data/ui/Window.ui:344
+msgid "Replace"
+msgstr "Vervangen"
+
+#: data/ui/Window.ui:358
+msgid "Replace All"
+msgstr "Alles vervangen"
