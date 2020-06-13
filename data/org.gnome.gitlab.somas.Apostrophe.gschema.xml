@@ -68,7 +68,7 @@
       </description>
     </key>
     <key name='characters-per-line' type='i'>
-      <default>66</default>
+      <default>40</default>
       <summary>Characters per line</summary>
       <description>
         Maximum number of characters per line within the editor.

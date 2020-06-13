@@ -42,7 +42,7 @@ class TextView(Gtk.TextView):
         'scroll-scale-changed': (GObject.SIGNAL_RUN_LAST, None, (float,)),
     }
 
-    font_sizes = [18, 17, 16, 15, 14]  # Must match CSS selectors in gtk/base.css
+    font_sizes = [36, 26, 18, 17, 16, 15, 14]  # Must match CSS selectors in gtk/base.css
 
     def __init__(self, line_chars):
         super().__init__()
@@ -217,6 +217,7 @@ class TextView(Gtk.TextView):
 
         # Ensure the appropriate font size is being used
         for font_size in self.font_sizes:
+            #print(str(width) + " " + str(self.get_min_width(font_size)) + " " + str(font_size))
             if width >= self.get_min_width(font_size) or font_size == self.font_sizes[-1]:
                 if font_size != self.font_size:
                     self.font_size = font_size
@@ -278,8 +279,10 @@ class TextView(Gtk.TextView):
         """Returns the amount of character padding for font_size.
 
         Markup can use up to 7 in normal conditions."""
+        #print(font_size)
+        #print(8 * (1 + font_size - self.font_sizes[-1]))
 
-        return 8 * (1 + font_size - self.font_sizes[-1])
+        return max(min(2 * (1 + font_size - self.font_sizes[-1]), 15), 0)
 
     @staticmethod
     def get_char_width(font_size):

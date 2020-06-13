@@ -82,6 +82,13 @@
   font-size: 18px;
 }
 
+.apostrophe-editor.size26 {
+  font-size: 26px;
+}
+.apostrophe-editor.size36 {
+  font-size: 36px;
+}
+
 .apostrophe-editor text {
   background-color: @theme_base_color;
   color: @theme_fg_color;
