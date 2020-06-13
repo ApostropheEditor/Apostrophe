@@ -1,6 +1,6 @@
 project(
   'apostrophe',
-  version: '2.2.0.2',
+  version: '2.2.0.3',
   meson_version: '>= 0.50.0'
 )
 
@@ -56,6 +56,7 @@ conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), '
 conf.set('PYTHON_DIR', pythondir)
 conf.set('VERSION', meson.project_version())
 conf.set('PYTHON', python3.path())
+
 
 
 subdir('data')
