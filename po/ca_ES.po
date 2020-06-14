@@ -1,169 +1,193 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: UberWriter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-17 19:08+0100\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-
-#: apostrophe/application.py:176
-msgid "Show debug messages (-vv debugs apostrophe also)"
-msgstr ""
-
-#: apostrophe/application.py:178
-msgid "Use experimental features"
-msgstr "Utilitzar característiques experimentals"
-
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
-msgstr "Document sense títol.md"
-
-#: apostrophe/export_dialog.py:199
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr ""
-
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
-msgstr ""
-
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don't have TexLive installed.\n"
-msgstr ""
-
-#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
-msgid "Export"
-msgstr "Exporta"
-
-#: apostrophe/export_dialog.py:225
-#, python-format
-msgid "Export to %s"
-msgstr ""
-
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
-msgstr ""
-
-#: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr ""
-"Instal·leu el connector del TexLive mitjançant Programari del GNOME o "
-"executant\n"
-
-#: apostrophe/export_dialog.py:431
-msgid "Please, install TexLive from your distribuiton repositories"
-msgstr "Instal·leu el TexLive des dels repositoris de la distribució"
-
-#: apostrophe/headerbars.py:82
-msgid "Light mode isn't available while using a dark global theme"
-msgstr ""
-
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr ""
-
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
-msgid "Half-Width"
-msgstr ""
-
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
-msgid "Half-Height"
-msgstr ""
-
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
-msgid "Windowed"
-msgstr ""
-
-#: apostrophe/inline_preview.py:191
-msgid "Formula looks incorrect:"
-msgstr ""
+"Project-Id-Version: Apostrophe\n"
+"Language: ca\n"
 
 #: apostrophe/inline_preview.py:226
 msgid "No matching footnote found"
 msgstr "No s'ha pogut trobar la nota de peu corresponent"
 
-#: apostrophe/inline_preview.py:246
-msgid "noun"
-msgstr ""
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+msgid "Preview"
+msgstr "Previsualització"
 
-#: apostrophe/inline_preview.py:248
-msgid "verb"
-msgstr ""
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "Mode de concentració"
 
-#: apostrophe/inline_preview.py:250
-msgid "adjective"
-msgstr ""
+#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
+msgid "Export"
+msgstr "Exporta"
 
-#: apostrophe/inline_preview.py:252
-msgid "adverb"
-msgstr ""
+#: data/ui/Export.ui:45
+msgid "Smart"
+msgstr "Intel·ligent"
+
+#: data/ui/Export.ui:50
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr "El Pandoc pot convertir automàticament «--» a un guió y més"
+
+#: data/ui/Export.ui:62
+msgid "Table of Contents"
+msgstr "Índex"
+
+#: data/ui/Export.ui:78
+msgid "Standalone"
+msgstr "Independent"
+
+#: data/ui/Export.ui:83
+msgid "Use a header and footer to include things like stylesheets and meta information"
+msgstr "Utilitza la capçalera i el peu per incloure coses com fulls d'estil o metainformació"
+
+#: data/ui/Export.ui:96
+msgid "Number Sections"
+msgstr "Numera les seccions"
+
+#: data/ui/Export.ui:112
+msgid "Strict Markdown"
+msgstr "Markdown estricte"
+
+#: data/ui/Export.ui:117
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr "Utilitza markdown «estricte» en comptes de markdown «pandoc»"
+
+#: data/ui/Export.ui:134
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Mostra una vinyeta rere l'altra en una presentació"
+
+#: data/ui/Export.ui:152
+msgid "<b>General Options</b>"
+msgstr "<b>Opcions generals</b>"
+
+#: data/ui/Export.ui:211 data/ui/Export.ui:225
+msgid "Choose a color theme for syntax highlighting"
+msgstr "Tria un tema de color per al realçat de sintaxi"
+
+#: data/ui/Export.ui:213
+msgid "Highlight style  "
+msgstr "Estil de realçat  "
+
+#: data/ui/Export.ui:375
+msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
+msgstr "Produeix HTML sense dependències externes (totes les imatges i fulls d'estil estan inclosos)"
+
+#: data/ui/Export.ui:411 data/ui/Export.ui:425
+msgid "Choose a CSS File that you want to use"
+msgstr "Trieu un fitxer CSS que volgueu utilitzar"
+
+#: data/ui/Export.ui:413
+msgid "CSS File"
+msgstr "Fitxer CSS"
+
+#: data/ui/Export.ui:450
+msgid "<b>HTML Options</b>"
+msgstr "<b>Opcions d'HTML</b>"
+
+#: data/ui/Export.ui:546
+msgid "Commandline Reference"
+msgstr "Referència de la línea d'ordres"
 
 #: apostrophe/main_window.py:284
 msgid "Save your File"
 msgstr "Deseu el vostre fitxer"
 
-#: apostrophe/main_window.py:384
-msgid "Markdown Files"
-msgstr ""
-
-#: apostrophe/main_window.py:388
-msgid "Plain Text Files"
-msgstr ""
-
-#: apostrophe/main_window.py:391
-msgid "Open a .md file"
-msgstr ""
-
-#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
-msgid "New File"
-msgstr ""
-
-#: apostrophe/main_window.py:422
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr ""
-
-#: apostrophe/main_window.py:426
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr ""
-
-#: apostrophe/main_window.py:428
-msgid "Close without saving"
-msgstr ""
+#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
+msgid "Cancel"
+msgstr "Cancel·la"
 
 #: apostrophe/main_window.py:430
 msgid "Save now"
 msgstr "Desa ara"
 
-#: apostrophe/main_window.py:510
-msgid ""
-"The file you tried to open doesn't "
-"exist.                                            \n"
-"A new file will be created in its place when you save the current one."
-msgstr ""
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "General"
 
-#: apostrophe/main_window.py:520
-#, python-format
-msgid "Error Reading File: %r"
-msgstr ""
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr "Nou"
 
-#: apostrophe/main_window.py:525
-#, python-format
-msgid ""
-"Error reading file:                                         \n"
-"%r"
-msgstr ""
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Obre"
+
+#: data/ui/Shortcuts.ui:31
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Desa"
+
+#: data/ui/Shortcuts.ui:38
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "Anomena i desa"
+
+#: data/ui/Shortcuts.ui:65
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "Mode de concentració"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Pantalla completa"
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Previsualització"
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr "Separador"
+
+#: data/ui/Shortcuts.ui:126
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "Element de llista"
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Cursiva"
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Negreta"
+
+#: data/ui/Shortcuts.ui:154
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Encapçalament"
+
+#: data/ui/Shortcuts.ui:161
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Selecciona-ho tot"
+
+#: data/ui/Window.ui:206
+msgid "Next Match"
+msgstr "Següent coincidència"
+
+#: data/ui/Window.ui:192
+msgid "Previous Match"
+msgstr "Coincidència anterior"
+
+#: data/ui/Window.ui:239
+msgid "Case Sensitive"
+msgstr "Coincidència de majúscules i minúscules"
+
+#: data/ui/Window.ui:266 data/ui/Window.ui:344
+msgid "Replace"
+msgstr "Reemplaça"
 
 #: apostrophe/plugins/bibtex/bibtex_item.glade:18
 #: apostrophe/plugins/bibtex/bibtex_item.glade:32
@@ -171,59 +195,64 @@ msgstr ""
 msgid "label"
 msgstr "etiqueta"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
-msgid "Preview"
-msgstr "Previsualització"
+#: apostrophe/application.py:178
+msgid "Use experimental features"
+msgstr "Utilitzar característiques experimentals"
 
-#: apostrophe/stats_handler.py:67
-msgid "{:n} Characters"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
+msgid "Open file base path"
 msgstr ""
 
-#: apostrophe/stats_handler.py:69
-msgid "{:n} Words"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
+msgid "Open file paths of the current session"
 msgstr ""
 
-#: apostrophe/stats_handler.py:71
-msgid "{:n} Sentences"
-msgstr ""
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "Preferències"
 
-#: apostrophe/stats_handler.py:73
-msgid "{:n} Paragraphs"
-msgstr ""
-
-#: apostrophe/stats_handler.py:75
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr ""
-
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
-msgid "web page"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:97
-msgid "Header"
-msgstr ""
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
+msgstr "Obre el tutorial"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:23
 #, fuzzy
 msgid "Use dark mode"
 msgstr "Utilitza el mode fosc"
+
+#: apostrophe/export_dialog.py:184
+msgid "Untitled document.md"
+msgstr "Document sense títol.md"
+
+#: apostrophe/export_dialog.py:428
+msgid "Please, install the TexLive extension from Gnome Software or running\n"
+""
+msgstr "Instal·leu el connector del TexLive mitjançant Programari del GNOME o executant\n"
+""
+
+#: apostrophe/export_dialog.py:431
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr "Instal·leu el TexLive des dels repositoris de la distribució"
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr "Nou"
+
+#: data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr "Obre"
+
+#: data/ui/Headerbar.ui:199
+msgid "Open Recent"
+msgstr "Obre un fitxer recent"
+
+#: data/ui/Headerbar.ui:225
+msgid "Save"
+msgstr "Desa"
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "Menú"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:24
 msgid "Enable or disable the dark mode."
@@ -253,22 +282,6 @@ msgstr ""
 msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr ""
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
-msgid "Open file base path"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr ""
-
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:65
 msgid "Default statistic"
 msgstr ""
@@ -293,65 +306,13 @@ msgstr ""
 msgid "How to display the preview."
 msgstr ""
 
-#: data/ui/Export.ui:45
-msgid "Smart"
-msgstr "Intel·ligent"
-
-#: data/ui/Export.ui:50
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr "El Pandoc pot convertir automàticament «--» a un guió y més"
-
-#: data/ui/Export.ui:62
-msgid "Table of Contents"
-msgstr "Índex"
-
-#: data/ui/Export.ui:78
-msgid "Standalone"
-msgstr "Independent"
-
-#: data/ui/Export.ui:83
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr ""
-"Utilitza la capçalera i el peu per incloure coses com fulls d'estil o "
-"metainformació"
-
-#: data/ui/Export.ui:96
-msgid "Number Sections"
-msgstr "Numera les seccions"
-
-#: data/ui/Export.ui:112
-msgid "Strict Markdown"
-msgstr "Markdown estricte"
-
-#: data/ui/Export.ui:117
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "Utilitza markdown «estricte» en comptes de markdown «pandoc»"
-
 #: data/ui/Export.ui:129
 msgid "Slideshow Incremental Bullets"
 msgstr ""
 
-#: data/ui/Export.ui:134
-msgid "Show one bullet point after another in a slideshow"
-msgstr "Mostra una vinyeta rere l'altra en una presentació"
-
-#: data/ui/Export.ui:152
-msgid "<b>General Options</b>"
-msgstr "<b>Opcions generals</b>"
-
 #: data/ui/Export.ui:189
 msgid "Highlight Syntax"
 msgstr ""
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:225
-msgid "Choose a color theme for syntax highlighting"
-msgstr "Tria un tema de color per al realçat de sintaxi"
-
-#: data/ui/Export.ui:213
-msgid "Highlight style  "
-msgstr "Estil de realçat  "
 
 #: data/ui/Export.ui:262
 msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
@@ -373,14 +334,6 @@ msgstr ""
 msgid "Self-contained"
 msgstr ""
 
-#: data/ui/Export.ui:375
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
-msgstr ""
-"Produeix HTML sense dependències externes (totes les imatges i fulls d'estil "
-"estan inclosos)"
-
 #: data/ui/Export.ui:387
 msgid "HTML5"
 msgstr ""
@@ -389,130 +342,10 @@ msgstr ""
 msgid "Use HTML5 syntax"
 msgstr ""
 
-#: data/ui/Export.ui:411 data/ui/Export.ui:425
-msgid "Choose a CSS File that you want to use"
-msgstr "Trieu un fitxer CSS que volgueu utilitzar"
-
-#: data/ui/Export.ui:413
-msgid "CSS File"
-msgstr "Fitxer CSS"
-
-#: data/ui/Export.ui:450
-msgid "<b>HTML Options</b>"
-msgstr "<b>Opcions d'HTML</b>"
-
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
+#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
 msgstr ""
-
-#: data/ui/Export.ui:501
-msgid "A4"
-msgstr ""
-
-#: data/ui/Export.ui:502
-msgid "US Letter"
-msgstr ""
-
-#: data/ui/Export.ui:546
-msgid "Commandline Reference"
-msgstr "Referència de la línea d'ordres"
-
-#: data/ui/ExportPopover.ui:19 data/ui/Headerbar.ui:242
-msgid "Save as..."
-msgstr ""
-
-#: data/ui/ExportPopover.ui:90
-msgid "Advanced..."
-msgstr ""
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync views"
-msgstr ""
-
-#: data/ui/Headerbar.ui:171
-msgid "New"
-msgstr "Nou"
-
-#: data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr "Obre"
-
-#: data/ui/Headerbar.ui:199
-msgid "Open Recent"
-msgstr "Obre un fitxer recent"
-
-#: data/ui/Headerbar.ui:225
-msgid "Save"
-msgstr "Desa"
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr "Menú"
-
-#: data/ui/Headerbar.ui:375
-msgid "Find"
-msgstr ""
-
-#: data/ui/Menu.ui:100
-msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr "Mode de concentració"
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr ""
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr "Preferències"
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr "Obre el tutorial"
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr ""
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr ""
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:13
-msgctxt "shortcut window"
-msgid "General"
-msgstr "General"
-
-#: data/ui/Shortcuts.ui:17
-msgctxt "shortcut window"
-msgid "New"
-msgstr "Nou"
-
-#: data/ui/Shortcuts.ui:24
-msgctxt "shortcut window"
-msgid "Open"
-msgstr "Obre"
-
-#: data/ui/Shortcuts.ui:31
-msgctxt "shortcut window"
-msgid "Save"
-msgstr "Desa"
-
-#: data/ui/Shortcuts.ui:38
-msgctxt "shortcut window"
-msgid "Save as"
-msgstr "Anomena i desa"
 
 #: data/ui/Shortcuts.ui:45
 msgctxt "shortcut window"
@@ -529,34 +362,9 @@ msgctxt "shortcut window"
 msgid "Modes"
 msgstr ""
 
-#: data/ui/Shortcuts.ui:65
-msgctxt "shortcut window"
-msgid "Focus mode"
-msgstr "Mode de concentració"
-
 #: data/ui/Shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:79
-msgctxt "shortcut window"
-msgid "Preview"
-msgstr "Previsualització"
-
-#: data/ui/Shortcuts.ui:86
-msgctxt "shortcut window"
-msgid "Fullscreen"
-msgstr "Pantalla completa"
-
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
-msgctxt "shortcut window"
-msgid "Find"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:115
@@ -564,40 +372,10 @@ msgctxt "shortcut window"
 msgid "Markdown"
 msgstr ""
 
-#: data/ui/Shortcuts.ui:119
-msgctxt "shortcut window"
-msgid "Separator"
-msgstr "Separador"
-
-#: data/ui/Shortcuts.ui:126
-msgctxt "shortcut window"
-msgid "List item"
-msgstr "Element de llista"
-
-#: data/ui/Shortcuts.ui:133
-msgctxt "shortcut window"
-msgid "Italic"
-msgstr "Cursiva"
-
-#: data/ui/Shortcuts.ui:140
-msgctxt "shortcut window"
-msgid "Bold"
-msgstr "Negreta"
-
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr ""
-
-#: data/ui/Shortcuts.ui:154
-msgctxt "shortcut window"
-msgid "Header"
-msgstr "Encapçalament"
-
-#: data/ui/Shortcuts.ui:161
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr "Selecciona-ho tot"
 
 #: data/ui/Shortcuts.ui:170
 msgctxt "shortcut window"
@@ -652,21 +430,9 @@ msgstr ""
 msgid "Show Statistics"
 msgstr ""
 
-#: data/ui/Window.ui:192
-msgid "Previous Match"
-msgstr "Coincidència anterior"
-
-#: data/ui/Window.ui:206
-msgid "Next Match"
-msgstr "Següent coincidència"
-
 #: data/ui/Window.ui:235
 msgid "aA"
 msgstr ""
-
-#: data/ui/Window.ui:239
-msgid "Case Sensitive"
-msgstr "Coincidència de majúscules i minúscules"
 
 #: data/ui/Window.ui:249
 msgid "(.*)"
@@ -676,395 +442,235 @@ msgstr ""
 msgid "Regular Expression"
 msgstr ""
 
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
-msgid "Replace"
-msgstr "Reemplaça"
+#: apostrophe/main_window.py:384
+msgid "Markdown Files"
+msgstr ""
+
+#: apostrophe/main_window.py:388
+msgid "Plain Text Files"
+msgstr ""
+
+#: apostrophe/main_window.py:391
+msgid "Open a .md file"
+msgstr ""
+
+#: apostrophe/main_window.py:428
+msgid "Close without saving"
+msgstr ""
+
+#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
+msgid "New File"
+msgstr ""
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr ""
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr ""
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr ""
+
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr ""
+
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr ""
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr ""
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr ""
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr ""
+
+#: apostrophe/application.py:176
+msgid "Show debug messages (-vv debugs apostrophe also)"
+msgstr ""
+
+#: apostrophe/export_dialog.py:199
+msgid "An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+
+#: apostrophe/export_dialog.py:216
+msgid "Oh, no!"
+msgstr ""
+
+#: apostrophe/export_dialog.py:219
+msgid "Seems that you don't have TexLive installed.\n"
+""
+msgstr ""
+
+#: apostrophe/export_dialog.py:225
+msgid "Export to %s"
+msgstr ""
+
+#: apostrophe/export_dialog.py:285
+msgid "A folder must be selected before proceeding"
+msgstr ""
+
+#: apostrophe/headerbars.py:82
+msgid "Light mode isn't available while using a dark global theme"
+msgstr ""
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr ""
+
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr ""
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr ""
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr ""
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr ""
+
+#: apostrophe/main_window.py:422
+msgid "Save changes to document “%s” before closing?"
+msgstr ""
+
+#: apostrophe/main_window.py:426
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr ""
+
+#: apostrophe/main_window.py:510
+msgid "The file you tried to open doesn't exist.                                            \n"
+"A new file will be created in its place when you save the current one."
+msgstr ""
+
+#: apostrophe/main_window.py:520
+msgid "Error Reading File: %r"
+msgstr ""
+
+#: apostrophe/main_window.py:525
+msgid "Error reading file:                                         \n"
+"%r"
+msgstr ""
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr ""
+
+#: data/ui/Export.ui:484 data/ui/Export.ui:520
+msgid "Paper size"
+msgstr ""
+
+#: data/ui/Export.ui:501
+msgid "A4"
+msgstr ""
+
+#: data/ui/Export.ui:502
+msgid "US Letter"
+msgstr ""
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as..."
+msgstr ""
+
+#: data/ui/Headerbar.ui:375
+msgid "Find"
+msgstr ""
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr ""
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr ""
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr ""
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr ""
 
 #: data/ui/Window.ui:358
 msgid "Replace All"
 msgstr ""
 
-#~ msgid "(no suggestions)"
-#~ msgstr "(cap suggeriment)"
+#: data/ui/ExportPopover.ui:19
+msgid "Save As..."
+msgstr ""
 
-#~ msgid "Add \"{}\" to Dictionary"
-#~ msgstr "Afegeix «{}» al diccionari"
+#: data/ui/ExportPopover.ui:101
+msgid "Advanced Export..."
+msgstr ""
 
-#~ msgid "Ignore All"
-#~ msgstr "Ignora-ho tot"
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
+msgstr ""
 
-#~ msgid "Languages"
-#~ msgstr "Idiomes"
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr ""
 
-#~ msgid "Suggestions"
-#~ msgstr "Suggeriments"
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr ""
 
-#~ msgid "UberWriter"
-#~ msgstr "UberWriter"
-
-#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
-#~ msgstr "UberWriter, un editor Markdown senzill i lliure de distraccions"
-
-#~ msgid "Website is not available"
-#~ msgstr "El lloc web no està disponible"
-
-#~ msgid "Website is available"
-#~ msgstr "El lloc web està disponible"
-
-#~ msgid "Open Link in Webbrowser"
-#~ msgstr "Obre l'enllaç en un navegador web"
-
-#~ msgid "_File"
-#~ msgstr "_Fitxer"
-
-#~ msgid "Open Recent File"
-#~ msgstr "Obre un fitxer recent"
-
-#~ msgid "Export as ODT"
-#~ msgstr "Exporta com a ODT"
-
-#~ msgid "Advanced Export..."
-#~ msgstr "Exportació avançada…"
-
-#~ msgid "Copy raw HTML to clipboard"
-#~ msgstr "Copia el codi HTML al porta-retalls"
-
-#~ msgid "_Edit"
-#~ msgstr "_Editor"
-
-#~ msgid "_View"
-#~ msgstr "_Visualitza"
-
-#~ msgid "Light text on a dark background"
-#~ msgstr "Text clar sobre fons fosc"
-
-#~ msgid "Dark Mode"
-#~ msgstr "Mode fosc"
-
-#~ msgid "Switch to preview mode"
-#~ msgstr "Canvia al mode de previsualització"
-
-#~ msgid "Auto _Spellcheck"
-#~ msgstr "_Correcció ortogràfica automàtica"
-
-#~ msgid "F_ormat"
-#~ msgstr "F_ormatació"
-
-#~ msgid "Unordered List Item"
-#~ msgstr "Element de llista no ordenada"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "Regle horitzontal"
-
-#~ msgid "Heading"
-#~ msgstr "Encapçalament"
-
-#~ msgid "_Help"
-#~ msgstr "Aj_uda"
-
-#~ msgid "Contents"
-#~ msgstr "Contingut"
-
-#~ msgid "Short Markdown Tutorial"
-#~ msgstr "Tutorial breu de Markdown"
-
-#~ msgid "Open Pandoc Online Markdown Help ..."
-#~ msgstr "Obre l'ajuda en línea de Markdown Pandoc…"
-
-#~ msgid "Translate This Application..."
-#~ msgstr "Traduïu aquesta aplicació…"
-
-#~ msgid "Go into focus mode"
-#~ msgstr "Vés al mode de concentració"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Pantalla completa"
-
-#~ msgid "Go into fullscreen mode"
-#~ msgstr "Vés al mode de pantalla completa"
-
-#~ msgid "Show HTML preview"
-#~ msgstr "Mostra previsualització d'HTML"
-
-#~ msgid "Words:"
-#~ msgstr "Paraules:"
-
-#~ msgid "Characters:"
-#~ msgstr "Caràcters:"
-
-#~ msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-#~ msgstr "Mostra missatges de depuració (-vv depura uberwriter_lib també)"
-
-#~ msgid "emphasized text"
-#~ msgstr "text destacat"
-
-#~ msgid "strong text"
-#~ msgstr "text en negreta"
-
-#~ msgid "List item"
-#~ msgstr "Element de llista"
-
-#~ msgid "Normalize"
-#~ msgstr "Normalitza"
-
-#~ msgid ""
-#~ "Removes things like double spaces or spaces at the beginning of a "
-#~ "paragraph"
-#~ msgstr ""
-#~ "Suprimeix elements com espais o espais dobles al començament d'un paràgraf"
-
-#~ msgid "Slideshow incremental bullets"
-#~ msgstr "Vinyetes incrementals de presentació"
-
-#~ msgid "Highlight syntax"
-#~ msgstr "Realça la sintaxi"
-
-#~ msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
-#~ msgstr "<b>Realçat de sintaxi</b> (HTML, LaTeX)"
-
-#~ msgid "Self Contained"
-#~ msgstr "Autocontingut"
-
-#~ msgid "HTML 5"
-#~ msgstr "HTML 5"
-
-#~ msgid "Use HTML 5 syntax"
-#~ msgstr "Utilitza la sintaxi HTML5"
-
-#~ msgid "<b>Bibliography File</b>"
-#~ msgstr "<b>Fitxer de bibliografía</b>"
-
-#~ msgid ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it \n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-#~ msgstr ""
-#~ "# Drets d’autor © 2012 Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# Aquest programa és programari lliure; modeu redistribuir-lo i/o "
-#~ "modificar-lo \n"
-#~ "# d’acord amb els termes de la Llicència Pública General de GNU (versió "
-#~ "3),\n"
-#~ "# tal com ha estat publicada per la Free Software Foundation.\n"
-#~ "# \n"
-#~ "# Aquest programa es distribueix amb l’expectativa què pugui ser útil, "
-#~ "però\n"
-#~ "# SENSE CAP GARANTIA, fins i tot sense les garanties implícites de\n"
-#~ "# COMERCIABILITAT, QUALITAT SATISFACTÒRIA o ADEQUACIÓ PER A UN PROPÒSIT\n"
-#~ "# DETERMINAT. Vegeu la Llicència Pública General de GNU per a conèixer-ne "
-#~ "més.\n"
-#~ "# \n"
-#~ "# Heu d’haver rebut una còpia de la Llicència Pública General de GNU "
-#~ "juntament\n"
-#~ "# amb aquest programa. Si no, vegeu <http://www.gnu.org/licenses/>."
-
-#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-#~ msgstr "Drets d’autor © 2012 Wolf Vollprecht <w.vollprecht@gmail.com>"
-
-#~ msgid "You can not export to PDF."
-#~ msgstr "No es pot exportar a PDF."
-
-#~ msgid ""
-#~ "Please install <a href=\"apt:texlive\">texlive</a> from the software "
-#~ "center."
-#~ msgstr ""
-#~ "Instal·leu <a href=\"apt:texlive\">texlive</a> des del centre de "
-#~ "programari."
-
-#~ msgid "MarkDown or Plain Text"
-#~ msgstr "Markdown o text simple"
-
-#~ msgid "Open a .md-File"
-#~ msgstr "Obre un fitxer .md"
-
-#~ msgid "You have not saved your changes."
-#~ msgstr "No heu desat els canvis."
-
-#~ msgid "Close without Saving"
-#~ msgstr "Tanca sense desar"
-
-#~ msgid "Unsaved changes"
-#~ msgstr "Canvis sense desar"
-
-#~ msgid "You can not enable the Spell Checker."
-#~ msgstr "No es pot activar el corrector ortogràfic."
-
-#~ msgid ""
-#~ "Please install 'hunspell' or 'aspell' dictionarys for your language from "
-#~ "the software center."
-#~ msgstr ""
-#~ "Instal·leu els diccionaris de «hunspell» o «aspell» per al vostre idioma "
-#~ "des del centre de programari."
-
-#~ msgid "Dark mode"
-#~ msgstr "Mode fosc"
-
-#, fuzzy
-#~ msgid ""
-#~ "If enabled, the window will be dark themed If disabled, the window will "
-#~ "be light themed asked to install them manually."
-#~ msgstr "Si engegat, la finestra tindrà un tema fosc"
-
-#~ msgid "New window"
-#~ msgstr "Finestra nova"
-
-#~ msgid "_Shortcuts"
-#~ msgstr "_Dreceres"
-
-#~ msgid "Pandoc _Help"
-#~ msgstr "Ajuda del Pandoc"
-
-#~ msgid "_About"
-#~ msgstr "_Quant a"
-
-#~ msgid "_Quit"
-#~ msgstr "_Surt"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Quit"
-#~ msgstr "Surt"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Search"
-#~ msgstr "Cerca"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Editor"
-#~ msgstr "_Editor"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Cut"
-#~ msgstr "Corta"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Copy"
-#~ msgstr "Copia"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Paste"
-#~ msgstr "Pega"
-
-#~ msgid "Open Replace"
-#~ msgstr "Reemplaçar"
-
-#~ msgid "Activate Regex"
-#~ msgstr "Expressió regular"
-
-#~ msgid "_New"
-#~ msgstr "_Nou"
-
-#~ msgid "_Open"
-#~ msgstr "_Obre"
-
-#~ msgid "Open examples"
-#~ msgstr "Exemples"
-
-#~ msgid "_Quick markdown tutorial"
-#~ msgstr "Tutorial breu de Markdown"
-
-#~ msgid "_Save"
-#~ msgstr "De_sa"
-
-#~ msgid "Save _As"
-#~ msgstr "_Anomena i desa"
-
-#~ msgid "Export as HTML"
-#~ msgstr "Exporta com a HTML"
-
-#~ msgid "Export as PDF"
-#~ msgstr "Exporta com a PDF"
-
-#~ msgid "Copy Raw HTML to Clipboard"
-#~ msgstr "Copia el codi HTML al porta-retalls"
-
-#~ msgid "Sidebar"
-#~ msgstr "Barra lateral"
-
-#~ msgid "Open Search and Replace"
-#~ msgstr "Cerca i reemplaça"
-
-#~ msgid "Search and Replace ..."
-#~ msgstr "Cerca i reemplaça..."
-
-#~ msgid "Replace all"
-#~ msgstr "Reemplaça-ho tot"
-
-#~ msgid "striked out text"
-#~ msgstr "text ratllat"
-
-#~ msgid "extension \"{}\" is not a valid ZIP file"
-#~ msgstr "el connector «{}» no és un fitxer ZIP vàlid"
-
-#~ msgid "extension \"{}\" has no valid XML dictionary registry"
-#~ msgstr "el connector «{}» no conté un registre de diccionaris XML vàlid"
-
-#~ msgid ""
-#~ "unable to move extension, file with same name exists within move_path"
-#~ msgstr ""
-#~ "no s’ha pogut moure el connector; ja existeix un fitxer amb el mateix nom "
-#~ "a move_path"
-
-#~ msgid "unable to move extension, move_path is not a directory"
-#~ msgstr "no s’ha pogut moure el connector; move_path no és un directori"
-
-#~ msgid "Unknown"
-#~ msgstr "Desconegut"
-
-#~ msgid "Copyright (C) 2018, Wolf Vollprecht"
-#~ msgstr "Copyright (C) 2018, Wolf Vollprecht"
-
-#~ msgid "Uberwriter website"
-#~ msgstr "Lloc web del Uberwriter"
-
-#~ msgid "Donations:"
-#~ msgstr "Donatius:"
-
-#~ msgid "Liberapay"
-#~ msgstr "Liberapay"
-
-#~ msgid "Help to translate:"
-#~ msgstr "Ajudeu a traduir-ne:"
-
-#~ msgid "Poeditor"
-#~ msgstr "Poeditor"
-
-#~ msgid "PDF"
-#~ msgstr "PDF"
-
-#~ msgid "HTML"
-#~ msgstr "HTML"
-
-#~ msgid "ODT"
-#~ msgstr "ODT"
-
-#~ msgid "Advanced"
-#~ msgstr "Exportació avançada"
-
-#~ msgid "_Export"
-#~ msgstr "_Exporta"
-
-#~ msgid "Copy HTML"
-#~ msgstr "Copia l’HTML"
-
-#~ msgid "Autospellcheck"
-#~ msgstr "Correcció ortogràfica automàtica"
-
-#~ msgid "page 1"
-#~ msgstr "pàgina 1"
-
-#~ msgid "Search and replace"
-#~ msgstr "Cerca i reemplaça"
-
-#~ msgid "Exit Fullscreen"
-#~ msgstr "Sortir de pantalla completa"
