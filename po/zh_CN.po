@@ -1,166 +1,199 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: UberWriter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-17 19:08+0100\n"
-"Language: zh-CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-
-#: apostrophe/application.py:176
-msgid "Show debug messages (-vv debugs apostrophe also)"
-msgstr ""
-
-#: apostrophe/application.py:178
-msgid "Use experimental features"
-msgstr ""
-
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
-msgstr ""
-
-#: apostrophe/export_dialog.py:199
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr ""
-
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
-msgstr ""
-
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don't have TexLive installed.\n"
-msgstr ""
-
-#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
-msgid "Export"
-msgstr "导出"
-
-#: apostrophe/export_dialog.py:225
-#, python-format
-msgid "Export to %s"
-msgstr ""
-
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
-msgid "Cancel"
-msgstr "取消"
-
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
-msgstr ""
-
-#: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr ""
-
-#: apostrophe/export_dialog.py:431
-msgid "Please, install TexLive from your distribuiton repositories"
-msgstr ""
-
-#: apostrophe/headerbars.py:82
-msgid "Light mode isn't available while using a dark global theme"
-msgstr ""
-
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr ""
-
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
-msgid "Half-Width"
-msgstr ""
-
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
-msgid "Half-Height"
-msgstr ""
-
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
-msgid "Windowed"
-msgstr ""
-
-#: apostrophe/inline_preview.py:191
-msgid "Formula looks incorrect:"
-msgstr ""
+"Project-Id-Version: Apostrophe\n"
+"Language: zh-CN\n"
 
 #: apostrophe/inline_preview.py:226
 msgid "No matching footnote found"
 msgstr "未发现匹配的脚注"
 
-#: apostrophe/inline_preview.py:246
-msgid "noun"
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+msgid "Preview"
+msgstr "预览"
+
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "聚焦模式"
+
+#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
+msgid "Export"
+msgstr "导出"
+
+#: data/ui/Export.ui:45
+msgid "Smart"
+msgstr "智能"
+
+#: data/ui/Export.ui:50
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr "Pandoc 可以自动转换\"--\"为长划线"
+
+#: data/ui/Export.ui:62
+msgid "Table of Contents"
+msgstr "目录"
+
+#: data/ui/Export.ui:78
+msgid "Standalone"
+msgstr "独立模式"
+
+#: data/ui/Export.ui:83
+msgid "Use a header and footer to include things like stylesheets and meta information"
+msgstr "用页眉和页脚来显示样式表和元信息"
+
+#: data/ui/Export.ui:96
+msgid "Number Sections"
+msgstr "带序号的节标题"
+
+#: data/ui/Export.ui:112
+msgid "Strict Markdown"
+msgstr "严格的Markdown语法"
+
+#: data/ui/Export.ui:117
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr "使用严格的markdown语法代替\"pandoc“ markdown的语法"
+
+#: data/ui/Export.ui:134
+msgid "Show one bullet point after another in a slideshow"
 msgstr ""
 
-#: apostrophe/inline_preview.py:248
-msgid "verb"
-msgstr ""
+#: data/ui/Export.ui:152
+msgid "<b>General Options</b>"
+msgstr "<b>常规选项</b>"
 
-#: apostrophe/inline_preview.py:250
-msgid "adjective"
-msgstr ""
+#: data/ui/Export.ui:211 data/ui/Export.ui:225
+msgid "Choose a color theme for syntax highlighting"
+msgstr "选择语法高亮的颜色主题"
 
-#: apostrophe/inline_preview.py:252
-msgid "adverb"
-msgstr ""
+#: data/ui/Export.ui:213
+msgid "Highlight style  "
+msgstr "高亮样式  "
+
+#: data/ui/Export.ui:375
+msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
+msgstr "制作无外部依赖(包括全部图像和样式表)的 HTML 文件"
+
+#: data/ui/Export.ui:411 data/ui/Export.ui:425
+msgid "Choose a CSS File that you want to use"
+msgstr "选择一个您要使用的 CSS 文件"
+
+#: data/ui/Export.ui:413
+msgid "CSS File"
+msgstr "CSS 文件"
+
+#: data/ui/Export.ui:450
+msgid "<b>HTML Options</b>"
+msgstr "<b>HTML 选项</b>"
+
+#: data/ui/Export.ui:546
+msgid "Commandline Reference"
+msgstr "命令行参考"
 
 #: apostrophe/main_window.py:284
 msgid "Save your File"
 msgstr "保存文件"
 
-#: apostrophe/main_window.py:384
-msgid "Markdown Files"
-msgstr ""
-
-#: apostrophe/main_window.py:388
-msgid "Plain Text Files"
-msgstr ""
-
-#: apostrophe/main_window.py:391
-msgid "Open a .md file"
-msgstr ""
-
-#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
-msgid "New File"
-msgstr ""
-
-#: apostrophe/main_window.py:422
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr ""
-
-#: apostrophe/main_window.py:426
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr ""
-
-#: apostrophe/main_window.py:428
-msgid "Close without saving"
-msgstr ""
+#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
+msgid "Cancel"
+msgstr "取消"
 
 #: apostrophe/main_window.py:430
 msgid "Save now"
 msgstr "立即保存"
 
-#: apostrophe/main_window.py:510
-msgid ""
-"The file you tried to open doesn't "
-"exist.                                            \n"
-"A new file will be created in its place when you save the current one."
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
 msgstr ""
 
-#: apostrophe/main_window.py:520
-#, python-format
-msgid "Error Reading File: %r"
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
 msgstr ""
 
-#: apostrophe/main_window.py:525
-#, python-format
-msgid ""
-"Error reading file:                                         \n"
-"%r"
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:31
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "立即保存"
+
+#: data/ui/Shortcuts.ui:38
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "立即保存"
+
+#: data/ui/Shortcuts.ui:65
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "聚焦模式"
+
+#: data/ui/Shortcuts.ui:86
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "全屏"
+
+#: data/ui/Shortcuts.ui:79
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "预览"
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:126
+#, fuzzy
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "列表项目"
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:154
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "标题"
+
+#: data/ui/Shortcuts.ui:161
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr ""
+
+#: data/ui/Window.ui:206
+msgid "Next Match"
+msgstr ""
+
+#: data/ui/Window.ui:192
+msgid "Previous Match"
+msgstr ""
+
+#: data/ui/Window.ui:239
+msgid "Case Sensitive"
+msgstr ""
+
+#: data/ui/Window.ui:266 data/ui/Window.ui:344
+msgid "Replace"
 msgstr ""
 
 #: apostrophe/plugins/bibtex/bibtex_item.glade:18
@@ -169,59 +202,65 @@ msgstr ""
 msgid "label"
 msgstr ""
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
-msgid "Preview"
-msgstr "预览"
-
-#: apostrophe/stats_handler.py:67
-msgid "{:n} Characters"
+#: apostrophe/application.py:178
+msgid "Use experimental features"
 msgstr ""
 
-#: apostrophe/stats_handler.py:69
-msgid "{:n} Words"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
+msgid "Open file base path"
 msgstr ""
 
-#: apostrophe/stats_handler.py:71
-msgid "{:n} Sentences"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
+msgid "Open file paths of the current session"
 msgstr ""
 
-#: apostrophe/stats_handler.py:73
-msgid "{:n} Paragraphs"
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
 msgstr ""
 
-#: apostrophe/stats_handler.py:75
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr ""
-
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
-msgid "web page"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:97
-msgid "Header"
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:23
 #, fuzzy
 msgid "Use dark mode"
 msgstr "深色模式"
+
+#: apostrophe/export_dialog.py:184
+msgid "Untitled document.md"
+msgstr ""
+
+#: apostrophe/export_dialog.py:428
+msgid "Please, install the TexLive extension from Gnome Software or running\n"
+""
+msgstr ""
+
+#: apostrophe/export_dialog.py:431
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr ""
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr ""
+
+#: data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr ""
+
+#: data/ui/Headerbar.ui:199
+#, fuzzy
+msgid "Open Recent"
+msgstr "打开最近的文件"
+
+#: data/ui/Headerbar.ui:225
+#, fuzzy
+msgid "Save"
+msgstr "立即保存"
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:24
 msgid "Enable or disable the dark mode."
@@ -251,22 +290,6 @@ msgstr ""
 msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr ""
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
-msgid "Open file base path"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr ""
-
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:65
 msgid "Default statistic"
 msgstr ""
@@ -291,63 +314,13 @@ msgstr ""
 msgid "How to display the preview."
 msgstr ""
 
-#: data/ui/Export.ui:45
-msgid "Smart"
-msgstr "智能"
-
-#: data/ui/Export.ui:50
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr "Pandoc 可以自动转换\"--\"为长划线"
-
-#: data/ui/Export.ui:62
-msgid "Table of Contents"
-msgstr "目录"
-
-#: data/ui/Export.ui:78
-msgid "Standalone"
-msgstr "独立模式"
-
-#: data/ui/Export.ui:83
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr "用页眉和页脚来显示样式表和元信息"
-
-#: data/ui/Export.ui:96
-msgid "Number Sections"
-msgstr "带序号的节标题"
-
-#: data/ui/Export.ui:112
-msgid "Strict Markdown"
-msgstr "严格的Markdown语法"
-
-#: data/ui/Export.ui:117
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "使用严格的markdown语法代替\"pandoc“ markdown的语法"
-
 #: data/ui/Export.ui:129
 msgid "Slideshow Incremental Bullets"
 msgstr ""
 
-#: data/ui/Export.ui:134
-msgid "Show one bullet point after another in a slideshow"
-msgstr ""
-
-#: data/ui/Export.ui:152
-msgid "<b>General Options</b>"
-msgstr "<b>常规选项</b>"
-
 #: data/ui/Export.ui:189
 msgid "Highlight Syntax"
 msgstr ""
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:225
-msgid "Choose a color theme for syntax highlighting"
-msgstr "选择语法高亮的颜色主题"
-
-#: data/ui/Export.ui:213
-msgid "Highlight style  "
-msgstr "高亮样式  "
 
 #: data/ui/Export.ui:262
 msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
@@ -369,12 +342,6 @@ msgstr ""
 msgid "Self-contained"
 msgstr ""
 
-#: data/ui/Export.ui:375
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
-msgstr "制作无外部依赖(包括全部图像和样式表)的 HTML 文件"
-
 #: data/ui/Export.ui:387
 msgid "HTML5"
 msgstr ""
@@ -383,134 +350,10 @@ msgstr ""
 msgid "Use HTML5 syntax"
 msgstr ""
 
-#: data/ui/Export.ui:411 data/ui/Export.ui:425
-msgid "Choose a CSS File that you want to use"
-msgstr "选择一个您要使用的 CSS 文件"
-
-#: data/ui/Export.ui:413
-msgid "CSS File"
-msgstr "CSS 文件"
-
-#: data/ui/Export.ui:450
-msgid "<b>HTML Options</b>"
-msgstr "<b>HTML 选项</b>"
-
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
+#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
 msgstr ""
-
-#: data/ui/Export.ui:501
-msgid "A4"
-msgstr ""
-
-#: data/ui/Export.ui:502
-msgid "US Letter"
-msgstr ""
-
-#: data/ui/Export.ui:546
-msgid "Commandline Reference"
-msgstr "命令行参考"
-
-#: data/ui/ExportPopover.ui:19 data/ui/Headerbar.ui:242
-msgid "Save as..."
-msgstr ""
-
-#: data/ui/ExportPopover.ui:90
-msgid "Advanced..."
-msgstr ""
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync views"
-msgstr ""
-
-#: data/ui/Headerbar.ui:171
-msgid "New"
-msgstr ""
-
-#: data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr ""
-
-#: data/ui/Headerbar.ui:199
-#, fuzzy
-msgid "Open Recent"
-msgstr "打开最近的文件"
-
-#: data/ui/Headerbar.ui:225
-#, fuzzy
-msgid "Save"
-msgstr "立即保存"
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr ""
-
-#: data/ui/Headerbar.ui:375
-msgid "Find"
-msgstr ""
-
-#: data/ui/Menu.ui:100
-msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr "聚焦模式"
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr ""
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr ""
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr ""
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr ""
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr ""
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:13
-msgctxt "shortcut window"
-msgid "General"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:17
-msgctxt "shortcut window"
-msgid "New"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:24
-msgctxt "shortcut window"
-msgid "Open"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:31
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Save"
-msgstr "立即保存"
-
-#: data/ui/Shortcuts.ui:38
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Save as"
-msgstr "立即保存"
 
 #: data/ui/Shortcuts.ui:45
 msgctxt "shortcut window"
@@ -527,37 +370,9 @@ msgctxt "shortcut window"
 msgid "Modes"
 msgstr ""
 
-#: data/ui/Shortcuts.ui:65
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Focus mode"
-msgstr "聚焦模式"
-
 #: data/ui/Shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:79
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Preview"
-msgstr "预览"
-
-#: data/ui/Shortcuts.ui:86
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Fullscreen"
-msgstr "全屏"
-
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
-msgctxt "shortcut window"
-msgid "Find"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:115
@@ -565,41 +380,9 @@ msgctxt "shortcut window"
 msgid "Markdown"
 msgstr ""
 
-#: data/ui/Shortcuts.ui:119
-msgctxt "shortcut window"
-msgid "Separator"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:126
-#, fuzzy
-msgctxt "shortcut window"
-msgid "List item"
-msgstr "列表项目"
-
-#: data/ui/Shortcuts.ui:133
-msgctxt "shortcut window"
-msgid "Italic"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:140
-msgctxt "shortcut window"
-msgid "Bold"
-msgstr ""
-
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:154
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Header"
-msgstr "标题"
-
-#: data/ui/Shortcuts.ui:161
-msgctxt "shortcut window"
-msgid "Select all"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:170
@@ -655,20 +438,8 @@ msgstr ""
 msgid "Show Statistics"
 msgstr ""
 
-#: data/ui/Window.ui:192
-msgid "Previous Match"
-msgstr ""
-
-#: data/ui/Window.ui:206
-msgid "Next Match"
-msgstr ""
-
 #: data/ui/Window.ui:235
 msgid "aA"
-msgstr ""
-
-#: data/ui/Window.ui:239
-msgid "Case Sensitive"
 msgstr ""
 
 #: data/ui/Window.ui:249
@@ -679,307 +450,235 @@ msgstr ""
 msgid "Regular Expression"
 msgstr ""
 
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
-msgid "Replace"
+#: apostrophe/main_window.py:384
+msgid "Markdown Files"
+msgstr ""
+
+#: apostrophe/main_window.py:388
+msgid "Plain Text Files"
+msgstr ""
+
+#: apostrophe/main_window.py:391
+msgid "Open a .md file"
+msgstr ""
+
+#: apostrophe/main_window.py:428
+msgid "Close without saving"
+msgstr ""
+
+#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
+msgid "New File"
+msgstr ""
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr ""
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr ""
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr ""
+
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr ""
+
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr ""
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr ""
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr ""
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr ""
+
+#: apostrophe/application.py:176
+msgid "Show debug messages (-vv debugs apostrophe also)"
+msgstr ""
+
+#: apostrophe/export_dialog.py:199
+msgid "An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+
+#: apostrophe/export_dialog.py:216
+msgid "Oh, no!"
+msgstr ""
+
+#: apostrophe/export_dialog.py:219
+msgid "Seems that you don't have TexLive installed.\n"
+""
+msgstr ""
+
+#: apostrophe/export_dialog.py:225
+msgid "Export to %s"
+msgstr ""
+
+#: apostrophe/export_dialog.py:285
+msgid "A folder must be selected before proceeding"
+msgstr ""
+
+#: apostrophe/headerbars.py:82
+msgid "Light mode isn't available while using a dark global theme"
+msgstr ""
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr ""
+
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr ""
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr ""
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr ""
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr ""
+
+#: apostrophe/main_window.py:422
+msgid "Save changes to document “%s” before closing?"
+msgstr ""
+
+#: apostrophe/main_window.py:426
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr ""
+
+#: apostrophe/main_window.py:510
+msgid "The file you tried to open doesn't exist.                                            \n"
+"A new file will be created in its place when you save the current one."
+msgstr ""
+
+#: apostrophe/main_window.py:520
+msgid "Error Reading File: %r"
+msgstr ""
+
+#: apostrophe/main_window.py:525
+msgid "Error reading file:                                         \n"
+"%r"
+msgstr ""
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr ""
+
+#: data/ui/Export.ui:484 data/ui/Export.ui:520
+msgid "Paper size"
+msgstr ""
+
+#: data/ui/Export.ui:501
+msgid "A4"
+msgstr ""
+
+#: data/ui/Export.ui:502
+msgid "US Letter"
+msgstr ""
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as..."
+msgstr ""
+
+#: data/ui/Headerbar.ui:375
+msgid "Find"
+msgstr ""
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr ""
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr ""
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr ""
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
 msgstr ""
 
 #: data/ui/Window.ui:358
 msgid "Replace All"
 msgstr ""
 
-#~ msgid "(no suggestions)"
-#~ msgstr "(无建议)"
+#: data/ui/ExportPopover.ui:19
+msgid "Save As..."
+msgstr ""
 
-#~ msgid "Add \"{}\" to Dictionary"
-#~ msgstr "添加“{}”到字典"
+#: data/ui/ExportPopover.ui:101
+msgid "Advanced Export..."
+msgstr ""
 
-#~ msgid "Ignore All"
-#~ msgstr "全部忽略"
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
+msgstr ""
 
-#~ msgid "Languages"
-#~ msgstr "语言"
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr ""
 
-#~ msgid "Suggestions"
-#~ msgstr "建议"
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr ""
 
-#~ msgid "UberWriter"
-#~ msgstr "UberWriter"
-
-#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
-#~ msgstr "UberWriter，一款简单、免打扰的 Markdown 编辑器"
-
-#~ msgid "Website is not available"
-#~ msgstr "网站不可访问"
-
-#~ msgid "Website is available"
-#~ msgstr "网站可访问"
-
-#~ msgid "Open Link in Webbrowser"
-#~ msgstr "在网络浏览器中打开链接"
-
-#~ msgid "_File"
-#~ msgstr "文件(_F)"
-
-#~ msgid "Open Recent File"
-#~ msgstr "打开最近的文件"
-
-#~ msgid "Export as ODT"
-#~ msgstr "导出为 ODT"
-
-#~ msgid "Advanced Export..."
-#~ msgstr "高级导出..."
-
-#~ msgid "Copy raw HTML to clipboard"
-#~ msgstr "复制原始 HTML 到剪贴板"
-
-#~ msgid "_Edit"
-#~ msgstr "编辑(_E)"
-
-#~ msgid "_View"
-#~ msgstr "查看(_V)"
-
-#~ msgid "Light text on a dark background"
-#~ msgstr "浅色文本-黑色背景"
-
-#~ msgid "Dark Mode"
-#~ msgstr "深色模式"
-
-#~ msgid "Switch to preview mode"
-#~ msgstr "切换到预览模式"
-
-#~ msgid "Auto _Spellcheck"
-#~ msgstr "自动拼写检查(_S)"
-
-#~ msgid "F_ormat"
-#~ msgstr "格式(_O)"
-
-#~ msgid "Unordered List Item"
-#~ msgstr "无序列表项"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "水平标尺"
-
-#~ msgid "Heading"
-#~ msgstr "标题"
-
-#~ msgid "_Help"
-#~ msgstr "帮助(_H)"
-
-#~ msgid "Contents"
-#~ msgstr "内容"
-
-#~ msgid "Short Markdown Tutorial"
-#~ msgstr "简洁 Markdown 教程"
-
-#~ msgid "Open Pandoc Online Markdown Help ..."
-#~ msgstr "打开 Pandoc 在线 Markdown 帮助..."
-
-#~ msgid "Get Help Online..."
-#~ msgstr "获取在线帮助..."
-
-#~ msgid "Translate This Application..."
-#~ msgstr "翻译该应用..."
-
-#~ msgid "Go into focus mode"
-#~ msgstr "进入聚焦模式"
-
-#~ msgid "Fullscreen"
-#~ msgstr "全屏"
-
-#~ msgid "Go into fullscreen mode"
-#~ msgstr "进入全屏模式"
-
-#~ msgid "Show HTML preview"
-#~ msgstr "显示 HTML 预览"
-
-#~ msgid "Words:"
-#~ msgstr "单词数："
-
-#~ msgid "Characters:"
-#~ msgstr "字数："
-
-#~ msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-#~ msgstr "显示调试信息(-vv 亦调试 uberwriter_lib)"
-
-#~ msgid "emphasized text"
-#~ msgstr "强调文本"
-
-#~ msgid "strong text"
-#~ msgstr "文本加粗"
-
-#~ msgid "List item"
-#~ msgstr "列表项目"
-
-#~ msgid "Normalize"
-#~ msgstr "标准化"
-
-#~ msgid ""
-#~ "Removes things like double spaces or spaces at the beginning of a "
-#~ "paragraph"
-#~ msgstr "移除段首空格"
-
-#~ msgid "Highlight syntax"
-#~ msgstr "语法高亮"
-
-#~ msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
-#~ msgstr "<b>语法高亮</b> (HTML, LaTeX)"
-
-#~ msgid "Self Contained"
-#~ msgstr "自助式"
-
-#~ msgid "HTML 5"
-#~ msgstr "HTML 5"
-
-#~ msgid "Use HTML 5 syntax"
-#~ msgstr "使用 HTML 5 语法"
-
-#~ msgid "<b>Bibliography File</b>"
-#~ msgstr "<b>参考书目文件</b>"
-
-#~ msgid ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it \n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-#~ msgstr ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it \n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-
-#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-#~ msgstr "版权所有 (C) 2012，Wolf Vollprecht <w.vollprecht@gmail.com>"
-
-#~ msgid "You can not export to PDF."
-#~ msgstr "您无法导出为 PDF。"
-
-#~ msgid ""
-#~ "Please install <a href=\"apt:texlive\">texlive</a> from the software "
-#~ "center."
-#~ msgstr "请从软件中心安装 <a href=\"apt:texlive\">texlive</a>。"
-
-#~ msgid "MarkDown or Plain Text"
-#~ msgstr "MarkDown 或纯文本"
-
-#~ msgid "Open a .md-File"
-#~ msgstr "打开一个 .md 文件"
-
-#~ msgid "You have not saved your changes."
-#~ msgstr "您还没有保存您的更改。"
-
-#~ msgid "Close without Saving"
-#~ msgstr "关闭但不保存"
-
-#~ msgid "Unsaved changes"
-#~ msgstr "未保存的更改"
-
-#~ msgid "You can not enable the Spell Checker."
-#~ msgstr "您无法启用拼写检查。"
-
-#~ msgid ""
-#~ "Please install 'hunspell' or 'aspell' dictionarys for your language from "
-#~ "the software center."
-#~ msgstr "请从软件中心安装您所使用语言的 'hunspell' 或 'aspell' 字典。"
-
-#, fuzzy
-#~ msgid "Dark mode"
-#~ msgstr "深色模式"
-
-#, fuzzy
-#~ msgctxt "shortcut window"
-#~ msgid "Editor"
-#~ msgstr "编辑(_E)"
-
-#, fuzzy
-#~ msgid "Open Replace"
-#~ msgstr "打开最近的文件"
-
-#, fuzzy
-#~ msgid "Open examples"
-#~ msgstr "打开一个 .md 文件"
-
-#, fuzzy
-#~ msgid "_Quick markdown tutorial"
-#~ msgstr "简洁 Markdown 教程"
-
-#, fuzzy
-#~ msgid "_Save"
-#~ msgstr "立即保存"
-
-#, fuzzy
-#~ msgid "Save _As"
-#~ msgstr "立即保存"
-
-#, fuzzy
-#~ msgid "Export as HTML"
-#~ msgstr "导出为 ODT"
-
-#, fuzzy
-#~ msgid "Export as PDF"
-#~ msgstr "导出为 ODT"
-
-#, fuzzy
-#~ msgid "Copy Raw HTML to Clipboard"
-#~ msgstr "复制原始 HTML 到剪贴板"
-
-#, fuzzy
-#~ msgid "striked out text"
-#~ msgstr "文本加粗"
-
-#, fuzzy
-#~ msgid "Copyright (C) 2018, Wolf Vollprecht"
-#~ msgstr "版权所有 (C) 2012，Wolf Vollprecht <w.vollprecht@gmail.com>"
-
-#, fuzzy
-#~ msgid "Uberwriter website"
-#~ msgstr "UberWriter"
-
-#, fuzzy
-#~ msgid "Poeditor"
-#~ msgstr "编辑(_E)"
-
-#, fuzzy
-#~ msgid "HTML"
-#~ msgstr "HTML 5"
-
-#, fuzzy
-#~ msgid "Advanced"
-#~ msgstr "高级导出..."
-
-#, fuzzy
-#~ msgid "_Export"
-#~ msgstr "导出"
-
-#, fuzzy
-#~ msgid "Autospellcheck"
-#~ msgstr "自动拼写检查(_S)"
-
-#, fuzzy
-#~ msgid "Search and replace"
-#~ msgstr "打开最近的文件"
-
-#, fuzzy
-#~ msgid "Exit Fullscreen"
-#~ msgstr "全屏"
