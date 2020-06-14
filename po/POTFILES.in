@@ -47,6 +47,6 @@ data/ui/Window.ui
 
 # Resources
 
-data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in
+data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.translate
 data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in
 data/org.gnome.gitlab.somas.Apostrophe.gschema.xml
