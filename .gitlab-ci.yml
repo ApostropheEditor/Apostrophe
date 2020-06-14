@@ -6,7 +6,7 @@ flatpak:
         MANIFEST_PATH: "build-aux/flatpak/org.gnome.gitlab.somas.Apostrophe.json"
         MESON_ARGS: "-Dprofile=Devel"
         FLATPAK_MODULE: "apostrophe"
-        APP_ID: "org.gnome.gitlab.somas.Apostrophe.json"
+        APP_ID: "org.gnome.gitlab.somas.Apostrophe"
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         BUNDLE: "apostrophe-dev.flatpak"
     extends: .flatpak
