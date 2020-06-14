@@ -1,167 +1,195 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: UberWriter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-17 19:08+0100\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-
-#: apostrophe/application.py:176
-msgid "Show debug messages (-vv debugs apostrophe also)"
-msgstr ""
-
-#: apostrophe/application.py:178
-msgid "Use experimental features"
-msgstr "Utiliser les fonctions expérimentales"
-
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
-msgstr "Sans titre.md"
-
-#: apostrophe/export_dialog.py:199
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr ""
-
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
-msgstr ""
-
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don't have TexLive installed.\n"
-msgstr ""
-
-#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
-msgid "Export"
-msgstr "Exporter"
-
-#: apostrophe/export_dialog.py:225
-#, python-format
-msgid "Export to %s"
-msgstr ""
-
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
-msgid "Cancel"
-msgstr "Annuler"
-
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
-msgstr ""
-
-#: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr "Veuillez installer l'extension TexLive depuis la logithèque de Gnome\n"
-
-#: apostrophe/export_dialog.py:431
-msgid "Please, install TexLive from your distribuiton repositories"
-msgstr "Veuillez installer l'extension TexLive depuis les dépôts"
-
-#: apostrophe/headerbars.py:82
-msgid "Light mode isn't available while using a dark global theme"
-msgstr ""
-
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr "Aperçu seul"
-
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
-msgid "Half-Width"
-msgstr "Divisé dans la largeur"
-
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
-msgid "Half-Height"
-msgstr "Divisé dans la hauteur"
-
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
-msgid "Windowed"
-msgstr "Fenêtré"
-
-#: apostrophe/inline_preview.py:191
-msgid "Formula looks incorrect:"
-msgstr ""
+"Project-Id-Version: Apostrophe\n"
+"Language: fr\n"
 
 #: apostrophe/inline_preview.py:226
 msgid "No matching footnote found"
 msgstr "Aucune note de bas de page correspondante"
 
-#: apostrophe/inline_preview.py:246
-msgid "noun"
-msgstr ""
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+msgid "Preview"
+msgstr "Aperçu"
 
-#: apostrophe/inline_preview.py:248
-msgid "verb"
-msgstr ""
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "Mode focus"
 
-#: apostrophe/inline_preview.py:250
-msgid "adjective"
-msgstr ""
+#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
+msgid "Export"
+msgstr "Exporter"
 
-#: apostrophe/inline_preview.py:252
-msgid "adverb"
-msgstr ""
+#: data/ui/Export.ui:45
+msgid "Smart"
+msgstr "Intelligente"
+
+#: data/ui/Export.ui:50
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr "Pandoc peut automatiquement remplacer \"--\" par un tiret long et plus"
+
+#: data/ui/Export.ui:62
+msgid "Table of Contents"
+msgstr "Table des matières"
+
+#: data/ui/Export.ui:78
+msgid "Standalone"
+msgstr "Autonome"
+
+#: data/ui/Export.ui:83
+msgid "Use a header and footer to include things like stylesheets and meta information"
+msgstr "Utiliser une en-tête et un pied de page pour incorporer les feuilles de styles et les meta informations"
+
+#: data/ui/Export.ui:96
+msgid "Number Sections"
+msgstr "Numéroter les sections"
+
+#: data/ui/Export.ui:112
+msgid "Strict Markdown"
+msgstr "Markdown strict"
+
+#: data/ui/Export.ui:117
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr "Utiliser le Markdown \"strict\" à la place du Markdown \"pandoc\""
+
+#: data/ui/Export.ui:134
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Montrer une puce après l'autre dans un diaporama"
+
+#: data/ui/Export.ui:152
+msgid "<b>General Options</b>"
+msgstr "<b>Options générales</b>"
+
+#: data/ui/Export.ui:211 data/ui/Export.ui:225
+msgid "Choose a color theme for syntax highlighting"
+msgstr "Choisissez un jeu de couleur pour la coloration syntaxique"
+
+#: data/ui/Export.ui:213
+msgid "Highlight style  "
+msgstr "Style de coloration  "
+
+#: data/ui/Export.ui:375
+msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
+msgstr "Génère un HTML sans dépendances externes (toutes les images et styles sont inclus)"
+
+#: data/ui/Export.ui:411 data/ui/Export.ui:425
+msgid "Choose a CSS File that you want to use"
+msgstr "Choisir un fichier CSS"
+
+#: data/ui/Export.ui:413
+msgid "CSS File"
+msgstr "Fichier CSS"
+
+#: data/ui/Export.ui:450
+msgid "<b>HTML Options</b>"
+msgstr "<b>Options HTML</b>"
+
+#: data/ui/Export.ui:546
+msgid "Commandline Reference"
+msgstr "Référence de Ligne de Commande"
 
 #: apostrophe/main_window.py:284
 msgid "Save your File"
 msgstr "Sauvegarder le document"
 
-#: apostrophe/main_window.py:384
-msgid "Markdown Files"
-msgstr "Fichiers Markdown"
-
-#: apostrophe/main_window.py:388
-msgid "Plain Text Files"
-msgstr "Fichiers de texte brut"
-
-#: apostrophe/main_window.py:391
-msgid "Open a .md file"
-msgstr "Ouvrir un fichier .md"
-
-#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
-msgid "New File"
-msgstr "Nouveau fichier"
-
-#: apostrophe/main_window.py:422
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr ""
-
-#: apostrophe/main_window.py:426
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr ""
-
-#: apostrophe/main_window.py:428
-msgid "Close without saving"
-msgstr "Fermer sans enregistrer"
+#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
+msgid "Cancel"
+msgstr "Annuler"
 
 #: apostrophe/main_window.py:430
 msgid "Save now"
 msgstr "Enregistrer maintenant"
 
-#: apostrophe/main_window.py:510
-msgid ""
-"The file you tried to open doesn't "
-"exist.                                            \n"
-"A new file will be created in its place when you save the current one."
-msgstr ""
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Général"
 
-#: apostrophe/main_window.py:520
-#, python-format
-msgid "Error Reading File: %r"
-msgstr ""
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr "Nouveau"
 
-#: apostrophe/main_window.py:525
-#, python-format
-msgid ""
-"Error reading file:                                         \n"
-"%r"
-msgstr ""
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Ouvrir"
+
+#: data/ui/Shortcuts.ui:31
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Enregistrer"
+
+#: data/ui/Shortcuts.ui:38
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "Enregistrer comme"
+
+#: data/ui/Shortcuts.ui:65
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "Mode focus"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Plein écran"
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Aperçu"
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr "Séparateur"
+
+#: data/ui/Shortcuts.ui:126
+#, fuzzy
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "Liste ordonnée"
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Italique"
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Gras"
+
+#: data/ui/Shortcuts.ui:154
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Entête"
+
+#: data/ui/Shortcuts.ui:161
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Tout sélectionner"
+
+#: data/ui/Window.ui:206
+msgid "Next Match"
+msgstr "Suivant"
+
+#: data/ui/Window.ui:192
+msgid "Previous Match"
+msgstr "Précédent"
+
+#: data/ui/Window.ui:239
+msgid "Case Sensitive"
+msgstr "Sensible à la casse"
+
+#: data/ui/Window.ui:266 data/ui/Window.ui:344
+msgid "Replace"
+msgstr "Remplacer"
 
 #: apostrophe/plugins/bibtex/bibtex_item.glade:18
 #: apostrophe/plugins/bibtex/bibtex_item.glade:32
@@ -169,58 +197,66 @@ msgstr ""
 msgid "label"
 msgstr "tag"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
-msgid "Preview"
-msgstr "Aperçu"
+#: apostrophe/application.py:178
+msgid "Use experimental features"
+msgstr "Utiliser les fonctions expérimentales"
 
-#: apostrophe/stats_handler.py:67
-msgid "{:n} Characters"
-msgstr "{:n} Caractères"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
+msgid "Open file base path"
+msgstr "Ouvrir le chemin d'accès au fichier"
 
-#: apostrophe/stats_handler.py:69
-msgid "{:n} Words"
-msgstr "{:n} Mots"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
+msgid "Open file paths of the current session"
+msgstr "Ouvrir les chemins d'accès aux fichiers de la session en cours"
 
-#: apostrophe/stats_handler.py:71
-msgid "{:n} Sentences"
-msgstr "{:n} Phrases"
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "Préférences"
 
-#: apostrophe/stats_handler.py:73
-msgid "{:n} Paragraphs"
-msgstr "{:n} Paragraphes"
-
-#: apostrophe/stats_handler.py:75
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "{:d}:{:02d}:{:02d} Temps de lecture"
-
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
-msgid "web page"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr "texte italique"
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr "texte gras"
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr "texte barré"
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr "Item"
-
-#: apostrophe/text_view_format_inserter.py:97
-msgid "Header"
-msgstr "Entête"
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
+msgstr "Ouvrir le tutoriel"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:23
 msgid "Use dark mode"
 msgstr "Utiliser le mode sombre"
+
+#: apostrophe/export_dialog.py:184
+msgid "Untitled document.md"
+msgstr "Sans titre.md"
+
+#: apostrophe/export_dialog.py:428
+msgid "Please, install the TexLive extension from Gnome Software or running\n"
+""
+msgstr "Veuillez installer l'extension TexLive depuis la logithèque de Gnome"
+
+#: apostrophe/export_dialog.py:431
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr "Veuillez installer l'extension TexLive depuis les dépôts"
+
+#: data/ui/Headerbar.ui:171
+#, fuzzy
+msgid "New"
+msgstr "Nouveau"
+
+#: data/ui/Headerbar.ui:182
+#, fuzzy
+msgid "Open"
+msgstr "Ouvrir"
+
+#: data/ui/Headerbar.ui:199
+#, fuzzy
+msgid "Open Recent"
+msgstr "Ouvrir un document récent"
+
+#: data/ui/Headerbar.ui:225
+#, fuzzy
+msgid "Save"
+msgstr "Enregistrer"
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "Menu"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:24
 msgid "Enable or disable the dark mode."
@@ -251,22 +287,6 @@ msgstr "Format d'entrée"
 msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr "Format d'entrée lors de l'aperçu et de l'export avec Pandoc."
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
-msgid "Open file base path"
-msgstr "Ouvrir le chemin d'accès au fichier"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr "Ouvrir les chemins d'accès aux fichiers de la session en cours"
-
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:65
 msgid "Default statistic"
 msgstr "Statistique par défaut"
@@ -291,65 +311,13 @@ msgstr "Mode de prévisualisation"
 msgid "How to display the preview."
 msgstr "Comment afficher la prévisualisation"
 
-#: data/ui/Export.ui:45
-msgid "Smart"
-msgstr "Intelligente"
-
-#: data/ui/Export.ui:50
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr "Pandoc peut automatiquement remplacer \"--\" par un tiret long et plus"
-
-#: data/ui/Export.ui:62
-msgid "Table of Contents"
-msgstr "Table des matières"
-
-#: data/ui/Export.ui:78
-msgid "Standalone"
-msgstr "Autonome"
-
-#: data/ui/Export.ui:83
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr ""
-"Utiliser une en-tête et un pied de page pour incorporer les feuilles de "
-"styles et les meta informations"
-
-#: data/ui/Export.ui:96
-msgid "Number Sections"
-msgstr "Numéroter les sections"
-
-#: data/ui/Export.ui:112
-msgid "Strict Markdown"
-msgstr "Markdown strict"
-
-#: data/ui/Export.ui:117
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "Utiliser le Markdown \"strict\" à la place du Markdown \"pandoc\""
-
 #: data/ui/Export.ui:129
 msgid "Slideshow Incremental Bullets"
 msgstr "Puce incrémentielles de diaporama"
 
-#: data/ui/Export.ui:134
-msgid "Show one bullet point after another in a slideshow"
-msgstr "Montrer une puce après l'autre dans un diaporama"
-
-#: data/ui/Export.ui:152
-msgid "<b>General Options</b>"
-msgstr "<b>Options générales</b>"
-
 #: data/ui/Export.ui:189
 msgid "Highlight Syntax"
 msgstr "Colorer la syntaxe"
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:225
-msgid "Choose a color theme for syntax highlighting"
-msgstr "Choisissez un jeu de couleur pour la coloration syntaxique"
-
-#: data/ui/Export.ui:213
-msgid "Highlight style  "
-msgstr "Style de coloration  "
 
 #: data/ui/Export.ui:262
 msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
@@ -371,14 +339,6 @@ msgstr " <b>Bibliographie </b> "
 msgid "Self-contained"
 msgstr "Fichier unique"
 
-#: data/ui/Export.ui:375
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
-msgstr ""
-"Génère un HTML sans dépendances externes (toutes les images et styles sont "
-"inclus)"
-
 #: data/ui/Export.ui:387
 msgid "HTML5"
 msgstr "HTML5"
@@ -387,134 +347,10 @@ msgstr "HTML5"
 msgid "Use HTML5 syntax"
 msgstr "Utiliser la syntaxe HTML5"
 
-#: data/ui/Export.ui:411 data/ui/Export.ui:425
-msgid "Choose a CSS File that you want to use"
-msgstr "Choisir un fichier CSS"
-
-#: data/ui/Export.ui:413
-msgid "CSS File"
-msgstr "Fichier CSS"
-
-#: data/ui/Export.ui:450
-msgid "<b>HTML Options</b>"
-msgstr "<b>Options HTML</b>"
-
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
-msgstr ""
-
-#: data/ui/Export.ui:501
-msgid "A4"
-msgstr ""
-
-#: data/ui/Export.ui:502
-msgid "US Letter"
-msgstr ""
-
-#: data/ui/Export.ui:546
-msgid "Commandline Reference"
-msgstr "Référence de Ligne de Commande"
-
-#: data/ui/ExportPopover.ui:19 data/ui/Headerbar.ui:242
-msgid "Save as..."
-msgstr ""
-
-#: data/ui/ExportPopover.ui:90
-msgid "Advanced..."
-msgstr ""
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync views"
-msgstr ""
-
-#: data/ui/Headerbar.ui:171
-#, fuzzy
-msgid "New"
-msgstr "Nouveau"
-
-#: data/ui/Headerbar.ui:182
-#, fuzzy
-msgid "Open"
-msgstr "Ouvrir"
-
-#: data/ui/Headerbar.ui:199
-#, fuzzy
-msgid "Open Recent"
-msgstr "Ouvrir un document récent"
-
-#: data/ui/Headerbar.ui:225
-#, fuzzy
-msgid "Save"
-msgstr "Enregistrer"
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr "Menu"
-
-#: data/ui/Headerbar.ui:375
-msgid "Find"
-msgstr ""
-
-#: data/ui/Menu.ui:100
-msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr "Mode focus"
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr ""
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr "Préférences"
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr "Ouvrir le tutoriel"
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr ""
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr ""
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:13
-msgctxt "shortcut window"
-msgid "General"
-msgstr "Général"
-
-#: data/ui/Shortcuts.ui:17
-msgctxt "shortcut window"
-msgid "New"
-msgstr "Nouveau"
-
-#: data/ui/Shortcuts.ui:24
-msgctxt "shortcut window"
-msgid "Open"
-msgstr "Ouvrir"
-
-#: data/ui/Shortcuts.ui:31
-msgctxt "shortcut window"
-msgid "Save"
-msgstr "Enregistrer"
-
-#: data/ui/Shortcuts.ui:38
-msgctxt "shortcut window"
-msgid "Save as"
-msgstr "Enregistrer comme"
+#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
+msgstr "Aperçu seul"
 
 #: data/ui/Shortcuts.ui:45
 msgctxt "shortcut window"
@@ -531,77 +367,20 @@ msgctxt "shortcut window"
 msgid "Modes"
 msgstr "Modes"
 
-#: data/ui/Shortcuts.ui:65
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Focus mode"
-msgstr "Mode focus"
-
 #: data/ui/Shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Hemingway mode"
 msgstr "Mode Hemingway"
-
-#: data/ui/Shortcuts.ui:79
-msgctxt "shortcut window"
-msgid "Preview"
-msgstr "Aperçu"
-
-#: data/ui/Shortcuts.ui:86
-msgctxt "shortcut window"
-msgid "Fullscreen"
-msgstr "Plein écran"
-
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
-msgctxt "shortcut window"
-msgid "Find"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
-msgstr ""
 
 #: data/ui/Shortcuts.ui:115
 msgctxt "shortcut window"
 msgid "Markdown"
 msgstr "Markdown"
 
-#: data/ui/Shortcuts.ui:119
-msgctxt "shortcut window"
-msgid "Separator"
-msgstr "Séparateur"
-
-#: data/ui/Shortcuts.ui:126
-#, fuzzy
-msgctxt "shortcut window"
-msgid "List item"
-msgstr "Liste ordonnée"
-
-#: data/ui/Shortcuts.ui:133
-msgctxt "shortcut window"
-msgid "Italic"
-msgstr "Italique"
-
-#: data/ui/Shortcuts.ui:140
-msgctxt "shortcut window"
-msgid "Bold"
-msgstr "Gras"
-
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Barré"
-
-#: data/ui/Shortcuts.ui:154
-msgctxt "shortcut window"
-msgid "Header"
-msgstr "Entête"
-
-#: data/ui/Shortcuts.ui:161
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr "Tout sélectionner"
 
 #: data/ui/Shortcuts.ui:170
 msgctxt "shortcut window"
@@ -656,21 +435,9 @@ msgstr "0 Mots"
 msgid "Show Statistics"
 msgstr "Voir les statistiques"
 
-#: data/ui/Window.ui:192
-msgid "Previous Match"
-msgstr "Précédent"
-
-#: data/ui/Window.ui:206
-msgid "Next Match"
-msgstr "Suivant"
-
 #: data/ui/Window.ui:235
 msgid "aA"
 msgstr "aA"
-
-#: data/ui/Window.ui:239
-msgid "Case Sensitive"
-msgstr "Sensible à la casse"
 
 #: data/ui/Window.ui:249
 msgid "(.*)"
@@ -680,617 +447,235 @@ msgstr "(.*)"
 msgid "Regular Expression"
 msgstr "Expression Régulière"
 
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
-msgid "Replace"
-msgstr "Remplacer"
+#: apostrophe/main_window.py:384
+msgid "Markdown Files"
+msgstr "Fichiers Markdown"
+
+#: apostrophe/main_window.py:388
+msgid "Plain Text Files"
+msgstr "Fichiers de texte brut"
+
+#: apostrophe/main_window.py:391
+msgid "Open a .md file"
+msgstr "Ouvrir un fichier .md"
+
+#: apostrophe/main_window.py:428
+msgid "Close without saving"
+msgstr "Fermer sans enregistrer"
+
+#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
+msgid "New File"
+msgstr "Nouveau fichier"
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr "Divisé dans la largeur"
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr "Divisé dans la hauteur"
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr "Fenêtré"
+
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr "{:n} Caractères"
+
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr "{:n} Mots"
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr "{:n} Phrases"
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr "{:n} Paragraphes"
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} Temps de lecture"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "texte italique"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "texte gras"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "texte barré"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Item"
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr "Entête"
+
+#: apostrophe/application.py:176
+msgid "Show debug messages (-vv debugs apostrophe also)"
+msgstr ""
+
+#: apostrophe/export_dialog.py:199
+msgid "An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+
+#: apostrophe/export_dialog.py:216
+msgid "Oh, no!"
+msgstr ""
+
+#: apostrophe/export_dialog.py:219
+msgid "Seems that you don't have TexLive installed.\n"
+""
+msgstr ""
+
+#: apostrophe/export_dialog.py:225
+msgid "Export to %s"
+msgstr ""
+
+#: apostrophe/export_dialog.py:285
+msgid "A folder must be selected before proceeding"
+msgstr ""
+
+#: apostrophe/headerbars.py:82
+msgid "Light mode isn't available while using a dark global theme"
+msgstr ""
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr ""
+
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr ""
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr ""
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr ""
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr ""
+
+#: apostrophe/main_window.py:422
+msgid "Save changes to document “%s” before closing?"
+msgstr ""
+
+#: apostrophe/main_window.py:426
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr ""
+
+#: apostrophe/main_window.py:510
+msgid "The file you tried to open doesn't exist.                                            \n"
+"A new file will be created in its place when you save the current one."
+msgstr ""
+
+#: apostrophe/main_window.py:520
+msgid "Error Reading File: %r"
+msgstr ""
+
+#: apostrophe/main_window.py:525
+msgid "Error reading file:                                         \n"
+"%r"
+msgstr ""
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr ""
+
+#: data/ui/Export.ui:484 data/ui/Export.ui:520
+msgid "Paper size"
+msgstr ""
+
+#: data/ui/Export.ui:501
+msgid "A4"
+msgstr ""
+
+#: data/ui/Export.ui:502
+msgid "US Letter"
+msgstr ""
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as..."
+msgstr ""
+
+#: data/ui/Headerbar.ui:375
+msgid "Find"
+msgstr ""
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr ""
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr ""
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr ""
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr ""
 
 #: data/ui/Window.ui:358
 msgid "Replace All"
 msgstr ""
 
-#~ msgid "(no suggestions)"
-#~ msgstr "(aucune suggestion)"
+#: data/ui/ExportPopover.ui:19
+msgid "Save As..."
+msgstr ""
 
-#~ msgid "Add \"{}\" to Dictionary"
-#~ msgstr "Ajouter \"{}\" au dictionnaire"
+#: data/ui/ExportPopover.ui:101
+msgid "Advanced Export..."
+msgstr ""
 
-#~ msgid "Ignore All"
-#~ msgstr "Tout ignorer"
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
+msgstr ""
 
-#~ msgid "Languages"
-#~ msgstr "Langues"
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr ""
 
-#~ msgid "Suggestions"
-#~ msgstr "Suggestions"
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr ""
 
-#~ msgid "UberWriter"
-#~ msgstr "UberWriter"
-
-#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
-#~ msgstr "UberWriter, un éditeur Markdown simple et sans distractions"
-
-#~ msgid "Website is not available"
-#~ msgstr "Site web indisponible"
-
-#~ msgid "Website is available"
-#~ msgstr "Site web disponible"
-
-#~ msgid "Open Link in Webbrowser"
-#~ msgstr "Ouvrir le lien dans le navigateur"
-
-#~ msgid "_File"
-#~ msgstr "_Fichier"
-
-#~ msgid "Open Recent File"
-#~ msgstr "Ouvrir un document récent"
-
-#~ msgid "Export as ODT"
-#~ msgstr "Exporter en ODT"
-
-#~ msgid "Advanced Export..."
-#~ msgstr "Export avancé…"
-
-#~ msgid "Copy raw HTML to clipboard"
-#~ msgstr "Copier le HTML brut dans le presse-papiers"
-
-#~ msgid "_Edit"
-#~ msgstr "_Édition"
-
-#~ msgid "_View"
-#~ msgstr "_Affichage"
-
-#~ msgid "Light text on a dark background"
-#~ msgstr "Texte clair sur fond sombre"
-
-#~ msgid "Dark Mode"
-#~ msgstr "Mode sombre"
-
-#~ msgid "Switch to preview mode"
-#~ msgstr "Basculer vers l'aperçu"
-
-#~ msgid "Auto _Spellcheck"
-#~ msgstr "Auto _Correction"
-
-#~ msgid "F_ormat"
-#~ msgstr "F_ormat"
-
-#~ msgid "Unordered List Item"
-#~ msgstr "Liste non ordonnée"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "Ligne horizontale"
-
-#~ msgid "Heading"
-#~ msgstr "Entête"
-
-#~ msgid "_Help"
-#~ msgstr "_Aide"
-
-#~ msgid "Contents"
-#~ msgstr "Table des matières"
-
-#~ msgid "Short Markdown Tutorial"
-#~ msgstr "Tutoriel Markdown rapide"
-
-#~ msgid "Open Pandoc Online Markdown Help ..."
-#~ msgstr "Ouvrir l'aide en ligne de Markdown pour Pandoc…"
-
-#~ msgid "Get Help Online..."
-#~ msgstr "Obtenir de l'aide en ligne…"
-
-#~ msgid "Translate This Application..."
-#~ msgstr "Traduire cette application..."
-
-#~ msgid "Go into focus mode"
-#~ msgstr "Basculer vers le mode focus"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Plein écran"
-
-#~ msgid "Go into fullscreen mode"
-#~ msgstr "Basculer vers le mode plein écran"
-
-#~ msgid "Show HTML preview"
-#~ msgstr "Montrer l'aperçu HTML"
-
-#~ msgid "Words:"
-#~ msgstr "Mots :"
-
-#~ msgid "Characters:"
-#~ msgstr "Caractères :"
-
-#~ msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-#~ msgstr "Montrer les messages de débogage"
-
-#~ msgid "emphasized text"
-#~ msgstr "surligner le texte"
-
-#~ msgid "strong text"
-#~ msgstr "texte en gras"
-
-#~ msgid "List item"
-#~ msgstr "Liste ordonnée"
-
-#~ msgid "Normalize"
-#~ msgstr "Normaliser"
-
-#~ msgid ""
-#~ "Removes things like double spaces or spaces at the beginning of a "
-#~ "paragraph"
-#~ msgstr ""
-#~ "Supprime par exemple les doubles espaces ou les espaces en début de "
-#~ "paragraphe"
-
-#~ msgid "Slideshow incremental bullets"
-#~ msgstr "Puces incrémentielles de diaporama"
-
-#~ msgid "Highlight syntax"
-#~ msgstr "Coloration syntaxique"
-
-#~ msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
-#~ msgstr "<b>Coloration syntaxique</b> (HTML, LaTeX)"
-
-#~ msgid "Self Contained"
-#~ msgstr "Autonome"
-
-#~ msgid "HTML 5"
-#~ msgstr "HTML 5"
-
-#~ msgid "Use HTML 5 syntax"
-#~ msgstr "Utiliser la syntaxe HTML 5"
-
-#~ msgid "<b>Bibliography File</b>"
-#~ msgstr "Fichier de bibliographie"
-
-#~ msgid ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it \n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-#~ msgstr ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it\n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published\n"
-#~ "# by the Free Software Foundation.\n"
-#~ "#\n"
-#~ "# This program is distributed in the hope that it will be useful, but\n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of\n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR\n"
-#~ "# PURPOSE. See the GNU General Public License for more details.\n"
-#~ "#\n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along\n"
-#~ "# with this program. If not, see <http://www.gnu.org/licenses/>.\n"
-
-#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-#~ msgstr "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-
-#~ msgid "You can not export to PDF."
-#~ msgstr "Impossible d'exporter en PDF"
-
-#~ msgid ""
-#~ "Please install <a href=\"apt:texlive\">texlive</a> from the software "
-#~ "center."
-#~ msgstr ""
-#~ "Veuillez installer <a href=\"apt:texlive\">texlive</a> depuis la "
-#~ "logithèque."
-
-#~ msgid "MarkDown or Plain Text"
-#~ msgstr "Markdown ou texte brut"
-
-#~ msgid "Open a .md-File"
-#~ msgstr "Ouvrir un fichier .md"
-
-#~ msgid "You have not saved your changes."
-#~ msgstr "Vous n'avez pas sauvegardé vos modifications."
-
-#~ msgid "Close without Saving"
-#~ msgstr "Fermer sans sauvegarder"
-
-#~ msgid "Unsaved changes"
-#~ msgstr "Modifications non enregistrées"
-
-#~ msgid "You can not enable the Spell Checker."
-#~ msgstr "Vous ne pouvez pas activer le correcteur orthographique."
-
-#~ msgid ""
-#~ "Please install 'hunspell' or 'aspell' dictionarys for your language from "
-#~ "the software center."
-#~ msgstr ""
-#~ "Veuillez installer les dictionnaires 'hunspell' ou 'aspell' pour votre "
-#~ "langue depuis la logithèque."
-
-#~ msgid "Dark mode"
-#~ msgstr "Mode sombre"
-
-#~ msgid ""
-#~ "If enabled, the window will be dark themed If disabled, the window will "
-#~ "be light themed asked to install them manually."
-#~ msgstr ""
-#~ "S'il est activé, la fenêtre s'affichera avec le thème sombre. Si non, la "
-#~ "fenêtre s'affichera avec le thème clair telle qu'elle est lors de "
-#~ "l'installation initiale."
-
-#~ msgid "New window"
-#~ msgstr "Nouvelle fenêtre"
-
-#~ msgid "_Shortcuts"
-#~ msgstr "_Mots clés"
-
-#~ msgid "Pandoc _Help"
-#~ msgstr "Aide _Pandoc"
-
-#~ msgid "_About"
-#~ msgstr "_À propos"
-
-#~ msgid "_Quit"
-#~ msgstr "_Quitter"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Quit"
-#~ msgstr "Quitter"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Search"
-#~ msgstr "Rechercher"
-
-#, fuzzy
-#~ msgctxt "shortcut window"
-#~ msgid "Editor"
-#~ msgstr "Éditeur"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Cut"
-#~ msgstr "Couper"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Copy"
-#~ msgstr "Copier"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Paste"
-#~ msgstr "Coller"
-
-#, fuzzy
-#~ msgid "Open Replace"
-#~ msgstr "Ouvrir remplacer"
-
-#~ msgid "Activate Regex"
-#~ msgstr "Activer les expressions régulières"
-
-#~ msgid "_New"
-#~ msgstr "_Nouveau"
-
-#~ msgid "_Open"
-#~ msgstr "_Ouvrir"
-
-#~ msgid "Open examples"
-#~ msgstr "Ouvrir les exemples"
-
-#, fuzzy
-#~ msgid "_Quick markdown tutorial"
-#~ msgstr "_Tutoriel Markdown rapide"
-
-#, fuzzy
-#~ msgid "_Save"
-#~ msgstr "_Enregistrer"
-
-#, fuzzy
-#~ msgid "Save _As"
-#~ msgstr "Enregistrer _Sous"
-
-#, fuzzy
-#~ msgid "Export as HTML"
-#~ msgstr "Exporter en HTML"
-
-#, fuzzy
-#~ msgid "Export as PDF"
-#~ msgstr "Exporter en PDF"
-
-#, fuzzy
-#~ msgid "Copy Raw HTML to Clipboard"
-#~ msgstr "Copier le HTML brut dans le presse-papiers"
-
-#~ msgid "Sidebar"
-#~ msgstr "Barre de navigation"
-
-#~ msgid "Open Search and Replace"
-#~ msgstr "Ouvrir Rechercher et remplacer"
-
-#~ msgid "Search and Replace ..."
-#~ msgstr "Rechercher et remplacer..."
-
-#~ msgid "Replace all"
-#~ msgstr "Tout remplacer"
-
-#, fuzzy
-#~ msgid "striked out text"
-#~ msgstr "texte barré"
-
-#~ msgid "extension \"{}\" is not a valid ZIP file"
-#~ msgstr "l'extension \"{}\" n'est pas un fichier ZIP valide"
-
-#~ msgid "extension \"{}\" has no valid XML dictionary registry"
-#~ msgstr "l'extension \"{}\" n'est pas un dictionnaire XML valide"
-
-#~ msgid ""
-#~ "unable to move extension, file with same name exists within move_path"
-#~ msgstr ""
-#~ "impossible de modifier l'extension, un fichier portant le même nom existe "
-#~ "dans la destination"
-
-#~ msgid "unable to move extension, move_path is not a directory"
-#~ msgstr ""
-#~ "impossible de modifier l'extension, la destination n'est pas un dossier"
-
-#~ msgid "Unknown"
-#~ msgstr "Inconnu"
-
-#~ msgid "Help to _translate"
-#~ msgstr "Aider à la _traduction"
-
-#~ msgid "Donate to the project"
-#~ msgstr "Donner au projet"
-
-#~ msgid "Search and Replace"
-#~ msgstr "Rechercher et remplacer"
-
-#, fuzzy
-#~ msgid "Copyright (C) 2018, Wolf Vollprecht"
-#~ msgstr "Copyright (C) 2018, Wolf Vollprecht"
-
-#, fuzzy
-#~ msgid "Uberwriter website"
-#~ msgstr "Site de UberWriter"
-
-#~ msgid "Donations:"
-#~ msgstr "Donations :"
-
-#~ msgid "Liberapay"
-#~ msgstr "Liberapay"
-
-#~ msgid "Help to translate:"
-#~ msgstr "Aider à la traduction"
-
-#~ msgid "Poeditor"
-#~ msgstr "Poeditor"
-
-#~ msgid "PDF"
-#~ msgstr "PDF"
-
-#~ msgid "HTML"
-#~ msgstr "HTML"
-
-#~ msgid "ODT"
-#~ msgstr "ODT"
-
-#~ msgid "Advanced"
-#~ msgstr "Export avancé"
-
-#~ msgid "_Export"
-#~ msgstr "_Exporter"
-
-#~ msgid "Copy HTML"
-#~ msgstr "Copier le HTML"
-
-#, fuzzy
-#~ msgid "Autospellcheck"
-#~ msgstr "Autocorrection"
-
-#~ msgid "page 1"
-#~ msgstr "page 1"
-
-#~ msgid "Search and replace"
-#~ msgstr "Rechercher et remplacer"
-
-#, fuzzy
-#~ msgid "Exit Fullscreen"
-#~ msgstr "Sortir du Plein écran"
-
-#~ msgid "An elegant, free distraction GTK+ markdown editor"
-#~ msgstr "Un éditeur de markdown GTK+ élégant et sans distractions"
-
-#~ msgid ""
-#~ "Uberwriter is a GTK+ based distraction free Markdown editor, mainly "
-#~ "developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as "
-#~ "backend for markdown parsing and offers a very clean and sleek user "
-#~ "interface."
-#~ msgstr ""
-#~ "UberWriter est un éditeur Markdown sans distractions écrit en GTK+, "
-#~ "développé principalement par Wolf Vollprecht et Manuel Genovés. Il "
-#~ "utilise pandoc comme backend pour l'analyse du markdown et offre une "
-#~ "interface très propre et élégante."
-
-#~ msgid "You can install the recommended TexLive extension with the command:"
-#~ msgstr ""
-#~ "Vous pouvez installer l'extension TexLive recommendée avec la commande :"
-
-#~ msgid "flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive"
-#~ msgstr "flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive"
-
-#~ msgid "or from Gnome-Software"
-#~ msgstr "ou depuis Gnome Logiciels"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid "Added italian language"
-#~ msgstr "Italien ajouté"
-
-#~ msgid ""
-#~ "Initial themes support: now uberwriter adapts his colors to the current "
-#~ "GTK theme"
-#~ msgstr ""
-#~ "Support initial des thèmes : UberWriter adapte maintenant ses couleurs au "
-#~ "thème GTK"
-
-#~ msgid "Disabled scroll gradient, can be enabled in the preferences dialog"
-#~ msgstr ""
-#~ "Le fondu de défilement est désactivé, mais peut être réactivé dans les "
-#~ "préférences"
-
-#~ msgid "Allow to disable headerbar autohidding in Dconf"
-#~ msgstr "Autoriser de désactiver la barre d'en-tête dans Dconf"
-
-#~ msgid ""
-#~ "Now a single click is enough to open files in the recent files popover"
-#~ msgstr ""
-#~ "Un simple clic est maintenant suffisant pour ouvrir des fichiers dans la "
-#~ "bulle contextuelle des fichiers récents"
-
-#~ msgid "Spellchecking status is now saved between sessions"
-#~ msgstr ""
-#~ "L'état de correction orthographique est maintenant sauvegardée entre les "
-#~ "sessions"
-
-#~ msgid "Minor UI fixes"
-#~ msgstr "Corrections d'IU mineurs"
-
-#~ msgid "Added -d flag to enable webdev tools"
-#~ msgstr "Flag -d ajouté pour activer les outils de développement web"
-
-#~ msgid "Updated css styles."
-#~ msgstr "Styles CSS mis à jour"
-
-#~ msgid ""
-#~ "This release features a new logo, polishes the Appmenu, fixes usability "
-#~ "bugs and flatpak related bugs."
-#~ msgstr ""
-#~ "Cette nouvelle version propose un nouveau logo, un menu retravaillé, des "
-#~ "corrections de bugs d'utilisabilité et d'autres dû à flatpak"
-
-#~ msgid ""
-#~ "This release provides a fix to a bug that caused Uberwriter to not mark "
-#~ "properly **bold**, *cursive*, and ***bold and cursive*** words."
-#~ msgstr ""
-#~ "Cette version corrige un bug qui causait UberWriter à ne pas marquer "
-#~ "correctement les mots en **gras**, *italique* et ***gras et italique***."
-
-#~ msgid "This release solves two minor bugs:"
-#~ msgstr "Cette mise jour résout deux bogues mineurs :"
-
-#~ msgid ""
-#~ "One on focus mode which caused the lines to be highlighted on edit rather "
-#~ "than on click"
-#~ msgstr ""
-#~ "Le mode focus causait le surlignage des lignes à l'édition à la place de "
-#~ "quand on clique"
-
-#~ msgid "Non symbolic icons on the searchbar"
-#~ msgstr "Icônes non symboliques dans la barre de recherche"
-
-#~ msgid "This release features a ton of UX/UI improvements, like:"
-#~ msgstr "Cette version ajoute plein d'améliorations UI/UX, comme :"
-
-#~ msgid "Drop AppMenu support"
-#~ msgstr "Abandon du support de AppMenu"
-
-#~ msgid ""
-#~ "HeaderBar and menus redesign, with a new unified menu and quick access "
-#~ "buttons on the headerbar"
-#~ msgstr ""
-#~ "Redesign des menus et de l'en-tête, avec un nouveau menu unifier et des "
-#~ "boutons d'accès rapide sur l'en-tête"
-
-#~ msgid ""
-#~ "Now the fullscreen view shows a headerbar when the cursor approaches the "
-#~ "top of the screen"
-#~ msgstr ""
-#~ "La vue pleine écran affiche maintenant une en-tête quand le curseur "
-#~ "s'approche du haut de l'écran"
-
-#~ msgid ""
-#~ "A new unified export dialog, with updated options, and quick access to "
-#~ "pdf, odt and html export"
-#~ msgstr ""
-#~ "Un nouveau menu d'export unifié, avec des options mises à jour et un "
-#~ "accès rapide aux exports pdf, odt et html"
-
-#~ msgid "Bugfixes."
-#~ msgstr "Corrections de bugs."
-
-#~ msgid "Now the menu is a Popover instead a regular menu."
-#~ msgstr ""
-#~ "Le menu est maintenant une bulle contextuelle plutôt qu'un menu normal."
-
-#~ msgid "The headerbar matches the theme selected for the application."
-#~ msgstr "L'en-tête correspond au thème utilisé pour l'application."
-
-#~ msgid "Updated translations."
-#~ msgstr "Traductions mises à jour."
-
-#~ msgid "Small bug fixes, updated links."
-#~ msgstr "Petits correctifs de bugs, liens mis à jour."
-
-#~ msgid "Fix a bug with the preview mode."
-#~ msgstr "Correction d'un bug dans l'aperçu"
-
-#~ msgid "Don't use env variable to check if in flatpak."
-#~ msgstr "Ne pas utiliser la variable env pour vérifier si dans un flatpak"
-
-#~ msgid "First re-release"
-#~ msgstr "Première re-release"
-
-#~ msgid "Wolf V., Manuel G."
-#~ msgstr " Wolf V., Manuel G. "
-
-#~ msgid "de.wolfvollprecht.UberWriter"
-#~ msgstr " de.wolfvollprecht.UberWriter "
-
-#~ msgid "Set dark mode automatically"
-#~ msgstr "Basculer sur le mode sombre automatiquement"
-
-#~ msgid ""
-#~ "Whether dark mode depends on the system theme, or is set to what the user "
-#~ "specifies."
-#~ msgstr ""
-#~ "Si le mode nuit dépend du thème du système, ou si il est défini par "
-#~ "l'utilisateur."
-
-#~ msgid "Force dark mode"
-#~ msgstr "Forcer le mode sombre"
-
-#~ msgid "Draw scroll gradient"
-#~ msgstr "Afficher le fondu de défilement"
-
-#~ msgid ""
-#~ "Show a gradient overlay over the text at the top anf bottom of the "
-#~ "window. It can cause performance problems to some users."
-#~ msgstr ""
-#~ "Afficher un fondu par dessus le texte en haut et en bas de la fenêtre. "
-#~ "Peut causer des problèmes de performance pour certains utilisateurs."
-
-#, fuzzy
-#~ msgid "Allow Uberwriter to poll cursor motion"
-#~ msgstr "Autoriser Uberwriter à interroger le mouvement du curseur"
-
-#~ msgid "Hide the header and status bars if the cursor is not moving."
-#~ msgstr "Cacher l'entête et la barre d'état si le curseur ne bouge pas."
-
-#~ msgid "Hemingway Mode"
-#~ msgstr "Mode Hemingway"
-
-#~ msgid "_Keyboard Shortcuts"
-#~ msgstr "_Raccourcis clavier"
-
-#~ msgid "_About UberWriter"
-#~ msgstr "_À propos d'Uberwriter"
-
-#~ msgid "Switch Preview Mode"
-#~ msgstr "Basculer sur la prévisualisation"
-
-#~ msgid "Show debug messages (-vv debugs uberwriter also)"
-#~ msgstr "Afficher les messages de débogage (-vv débogue aussi UberWriter)"
