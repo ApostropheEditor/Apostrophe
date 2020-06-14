@@ -1,166 +1,192 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: UberWriter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-17 19:08+0100\n"
-"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
+"Project-Id-Version: Apostrophe\n"
+"Language: vi\n"
 
-#: apostrophe/application.py:176
-msgid "Show debug messages (-vv debugs apostrophe also)"
+#: apostrophe/inline_preview.py:226
+msgid "No matching footnote found"
 msgstr ""
 
-#: apostrophe/application.py:178
-msgid "Use experimental features"
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+msgid "Preview"
 msgstr ""
 
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
-msgstr ""
-
-#: apostrophe/export_dialog.py:199
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr ""
-
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
-msgstr ""
-
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don't have TexLive installed.\n"
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
 msgstr ""
 
 #: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
 msgid "Export"
 msgstr ""
 
-#: apostrophe/export_dialog.py:225
-#, python-format
-msgid "Export to %s"
+#: data/ui/Export.ui:45
+msgid "Smart"
 msgstr ""
 
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
-msgid "Cancel"
+#: data/ui/Export.ui:50
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
 msgstr ""
 
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
+#: data/ui/Export.ui:62
+msgid "Table of Contents"
 msgstr ""
 
-#: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
+#: data/ui/Export.ui:78
+msgid "Standalone"
 msgstr ""
 
-#: apostrophe/export_dialog.py:431
-msgid "Please, install TexLive from your distribuiton repositories"
+#: data/ui/Export.ui:83
+msgid "Use a header and footer to include things like stylesheets and meta information"
 msgstr ""
 
-#: apostrophe/headerbars.py:82
-msgid "Light mode isn't available while using a dark global theme"
+#: data/ui/Export.ui:96
+msgid "Number Sections"
 msgstr ""
 
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
+#: data/ui/Export.ui:112
+msgid "Strict Markdown"
 msgstr ""
 
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
-msgid "Half-Width"
+#: data/ui/Export.ui:117
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
 msgstr ""
 
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
-msgid "Half-Height"
+#: data/ui/Export.ui:134
+msgid "Show one bullet point after another in a slideshow"
 msgstr ""
 
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
-msgid "Windowed"
+#: data/ui/Export.ui:152
+msgid "<b>General Options</b>"
 msgstr ""
 
-#: apostrophe/inline_preview.py:191
-msgid "Formula looks incorrect:"
+#: data/ui/Export.ui:211 data/ui/Export.ui:225
+msgid "Choose a color theme for syntax highlighting"
 msgstr ""
 
-#: apostrophe/inline_preview.py:226
-msgid "No matching footnote found"
+#: data/ui/Export.ui:213
+msgid "Highlight style  "
 msgstr ""
 
-#: apostrophe/inline_preview.py:246
-msgid "noun"
+#: data/ui/Export.ui:375
+msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
 msgstr ""
 
-#: apostrophe/inline_preview.py:248
-msgid "verb"
+#: data/ui/Export.ui:411 data/ui/Export.ui:425
+msgid "Choose a CSS File that you want to use"
 msgstr ""
 
-#: apostrophe/inline_preview.py:250
-msgid "adjective"
+#: data/ui/Export.ui:413
+msgid "CSS File"
 msgstr ""
 
-#: apostrophe/inline_preview.py:252
-msgid "adverb"
+#: data/ui/Export.ui:450
+msgid "<b>HTML Options</b>"
+msgstr ""
+
+#: data/ui/Export.ui:546
+msgid "Commandline Reference"
 msgstr ""
 
 #: apostrophe/main_window.py:284
 msgid "Save your File"
 msgstr ""
 
-#: apostrophe/main_window.py:384
-msgid "Markdown Files"
-msgstr ""
-
-#: apostrophe/main_window.py:388
-msgid "Plain Text Files"
-msgstr ""
-
-#: apostrophe/main_window.py:391
-msgid "Open a .md file"
-msgstr ""
-
-#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
-msgid "New File"
-msgstr ""
-
-#: apostrophe/main_window.py:422
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr ""
-
-#: apostrophe/main_window.py:426
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr ""
-
-#: apostrophe/main_window.py:428
-msgid "Close without saving"
+#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
+msgid "Cancel"
 msgstr ""
 
 #: apostrophe/main_window.py:430
 msgid "Save now"
 msgstr ""
 
-#: apostrophe/main_window.py:510
-msgid ""
-"The file you tried to open doesn't "
-"exist.                                            \n"
-"A new file will be created in its place when you save the current one."
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
 msgstr ""
 
-#: apostrophe/main_window.py:520
-#, python-format
-msgid "Error Reading File: %r"
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
 msgstr ""
 
-#: apostrophe/main_window.py:525
-#, python-format
-msgid ""
-"Error reading file:                                         \n"
-"%r"
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:31
+msgctxt "shortcut window"
+msgid "Save"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:38
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:65
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:126
+msgctxt "shortcut window"
+msgid "List item"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:154
+msgctxt "shortcut window"
+msgid "Header"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:161
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr ""
+
+#: data/ui/Window.ui:206
+msgid "Next Match"
+msgstr ""
+
+#: data/ui/Window.ui:192
+msgid "Previous Match"
+msgstr ""
+
+#: data/ui/Window.ui:239
+msgid "Case Sensitive"
+msgstr ""
+
+#: data/ui/Window.ui:266 data/ui/Window.ui:344
+msgid "Replace"
 msgstr ""
 
 #: apostrophe/plugins/bibtex/bibtex_item.glade:18
@@ -169,57 +195,61 @@ msgstr ""
 msgid "label"
 msgstr ""
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
-msgid "Preview"
+#: apostrophe/application.py:178
+msgid "Use experimental features"
 msgstr ""
 
-#: apostrophe/stats_handler.py:67
-msgid "{:n} Characters"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
+msgid "Open file base path"
 msgstr ""
 
-#: apostrophe/stats_handler.py:69
-msgid "{:n} Words"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
+msgid "Open file paths of the current session"
 msgstr ""
 
-#: apostrophe/stats_handler.py:71
-msgid "{:n} Sentences"
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
 msgstr ""
 
-#: apostrophe/stats_handler.py:73
-msgid "{:n} Paragraphs"
-msgstr ""
-
-#: apostrophe/stats_handler.py:75
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr ""
-
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
-msgid "web page"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:97
-msgid "Header"
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:23
 msgid "Use dark mode"
+msgstr ""
+
+#: apostrophe/export_dialog.py:184
+msgid "Untitled document.md"
+msgstr ""
+
+#: apostrophe/export_dialog.py:428
+msgid "Please, install the TexLive extension from Gnome Software or running\n"
+""
+msgstr ""
+
+#: apostrophe/export_dialog.py:431
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr ""
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr ""
+
+#: data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr ""
+
+#: data/ui/Headerbar.ui:199
+msgid "Open Recent"
+msgstr ""
+
+#: data/ui/Headerbar.ui:225
+msgid "Save"
+msgstr ""
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
 msgstr ""
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:24
@@ -250,22 +280,6 @@ msgstr ""
 msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr ""
 
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
-msgid "Open file base path"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr ""
-
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:65
 msgid "Default statistic"
 msgstr ""
@@ -290,62 +304,12 @@ msgstr ""
 msgid "How to display the preview."
 msgstr ""
 
-#: data/ui/Export.ui:45
-msgid "Smart"
-msgstr ""
-
-#: data/ui/Export.ui:50
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr ""
-
-#: data/ui/Export.ui:62
-msgid "Table of Contents"
-msgstr ""
-
-#: data/ui/Export.ui:78
-msgid "Standalone"
-msgstr ""
-
-#: data/ui/Export.ui:83
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr ""
-
-#: data/ui/Export.ui:96
-msgid "Number Sections"
-msgstr ""
-
-#: data/ui/Export.ui:112
-msgid "Strict Markdown"
-msgstr ""
-
-#: data/ui/Export.ui:117
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr ""
-
 #: data/ui/Export.ui:129
 msgid "Slideshow Incremental Bullets"
 msgstr ""
 
-#: data/ui/Export.ui:134
-msgid "Show one bullet point after another in a slideshow"
-msgstr ""
-
-#: data/ui/Export.ui:152
-msgid "<b>General Options</b>"
-msgstr ""
-
 #: data/ui/Export.ui:189
 msgid "Highlight Syntax"
-msgstr ""
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:225
-msgid "Choose a color theme for syntax highlighting"
-msgstr ""
-
-#: data/ui/Export.ui:213
-msgid "Highlight style  "
 msgstr ""
 
 #: data/ui/Export.ui:262
@@ -368,12 +332,6 @@ msgstr ""
 msgid "Self-contained"
 msgstr ""
 
-#: data/ui/Export.ui:375
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
-msgstr ""
-
 #: data/ui/Export.ui:387
 msgid "HTML5"
 msgstr ""
@@ -382,129 +340,9 @@ msgstr ""
 msgid "Use HTML5 syntax"
 msgstr ""
 
-#: data/ui/Export.ui:411 data/ui/Export.ui:425
-msgid "Choose a CSS File that you want to use"
-msgstr ""
-
-#: data/ui/Export.ui:413
-msgid "CSS File"
-msgstr ""
-
-#: data/ui/Export.ui:450
-msgid "<b>HTML Options</b>"
-msgstr ""
-
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
-msgstr ""
-
-#: data/ui/Export.ui:501
-msgid "A4"
-msgstr ""
-
-#: data/ui/Export.ui:502
-msgid "US Letter"
-msgstr ""
-
-#: data/ui/Export.ui:546
-msgid "Commandline Reference"
-msgstr ""
-
-#: data/ui/ExportPopover.ui:19 data/ui/Headerbar.ui:242
-msgid "Save as..."
-msgstr ""
-
-#: data/ui/ExportPopover.ui:90
-msgid "Advanced..."
-msgstr ""
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync views"
-msgstr ""
-
-#: data/ui/Headerbar.ui:171
-msgid "New"
-msgstr ""
-
-#: data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr ""
-
-#: data/ui/Headerbar.ui:199
-msgid "Open Recent"
-msgstr ""
-
-#: data/ui/Headerbar.ui:225
-msgid "Save"
-msgstr ""
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr ""
-
-#: data/ui/Headerbar.ui:375
-msgid "Find"
-msgstr ""
-
-#: data/ui/Menu.ui:100
-msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr ""
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr ""
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr ""
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr ""
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr ""
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr ""
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:13
-msgctxt "shortcut window"
-msgid "General"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:17
-msgctxt "shortcut window"
-msgid "New"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:24
-msgctxt "shortcut window"
-msgid "Open"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:31
-msgctxt "shortcut window"
-msgid "Save"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:38
-msgctxt "shortcut window"
-msgid "Save as"
+#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:45
@@ -522,34 +360,9 @@ msgctxt "shortcut window"
 msgid "Modes"
 msgstr ""
 
-#: data/ui/Shortcuts.ui:65
-msgctxt "shortcut window"
-msgid "Focus mode"
-msgstr ""
-
 #: data/ui/Shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:79
-msgctxt "shortcut window"
-msgid "Preview"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:86
-msgctxt "shortcut window"
-msgid "Fullscreen"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
-msgctxt "shortcut window"
-msgid "Find"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:115
@@ -557,39 +370,9 @@ msgctxt "shortcut window"
 msgid "Markdown"
 msgstr ""
 
-#: data/ui/Shortcuts.ui:119
-msgctxt "shortcut window"
-msgid "Separator"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:126
-msgctxt "shortcut window"
-msgid "List item"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:133
-msgctxt "shortcut window"
-msgid "Italic"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:140
-msgctxt "shortcut window"
-msgid "Bold"
-msgstr ""
-
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:154
-msgctxt "shortcut window"
-msgid "Header"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:161
-msgctxt "shortcut window"
-msgid "Select all"
 msgstr ""
 
 #: data/ui/Shortcuts.ui:170
@@ -645,20 +428,8 @@ msgstr ""
 msgid "Show Statistics"
 msgstr ""
 
-#: data/ui/Window.ui:192
-msgid "Previous Match"
-msgstr ""
-
-#: data/ui/Window.ui:206
-msgid "Next Match"
-msgstr ""
-
 #: data/ui/Window.ui:235
 msgid "aA"
-msgstr ""
-
-#: data/ui/Window.ui:239
-msgid "Case Sensitive"
 msgstr ""
 
 #: data/ui/Window.ui:249
@@ -669,25 +440,235 @@ msgstr ""
 msgid "Regular Expression"
 msgstr ""
 
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
-msgid "Replace"
+#: apostrophe/main_window.py:384
+msgid "Markdown Files"
+msgstr ""
+
+#: apostrophe/main_window.py:388
+msgid "Plain Text Files"
+msgstr ""
+
+#: apostrophe/main_window.py:391
+msgid "Open a .md file"
+msgstr ""
+
+#: apostrophe/main_window.py:428
+msgid "Close without saving"
+msgstr ""
+
+#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
+msgid "New File"
+msgstr ""
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr ""
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr ""
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr ""
+
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr ""
+
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr ""
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr ""
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr ""
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr ""
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr ""
+
+#: apostrophe/application.py:176
+msgid "Show debug messages (-vv debugs apostrophe also)"
+msgstr ""
+
+#: apostrophe/export_dialog.py:199
+msgid "An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+
+#: apostrophe/export_dialog.py:216
+msgid "Oh, no!"
+msgstr ""
+
+#: apostrophe/export_dialog.py:219
+msgid "Seems that you don't have TexLive installed.\n"
+""
+msgstr ""
+
+#: apostrophe/export_dialog.py:225
+msgid "Export to %s"
+msgstr ""
+
+#: apostrophe/export_dialog.py:285
+msgid "A folder must be selected before proceeding"
+msgstr ""
+
+#: apostrophe/headerbars.py:82
+msgid "Light mode isn't available while using a dark global theme"
+msgstr ""
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr ""
+
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr ""
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr ""
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr ""
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr ""
+
+#: apostrophe/main_window.py:422
+msgid "Save changes to document “%s” before closing?"
+msgstr ""
+
+#: apostrophe/main_window.py:426
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr ""
+
+#: apostrophe/main_window.py:510
+msgid "The file you tried to open doesn't exist.                                            \n"
+"A new file will be created in its place when you save the current one."
+msgstr ""
+
+#: apostrophe/main_window.py:520
+msgid "Error Reading File: %r"
+msgstr ""
+
+#: apostrophe/main_window.py:525
+msgid "Error reading file:                                         \n"
+"%r"
+msgstr ""
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr ""
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr ""
+
+#: data/ui/Export.ui:484 data/ui/Export.ui:520
+msgid "Paper size"
+msgstr ""
+
+#: data/ui/Export.ui:501
+msgid "A4"
+msgstr ""
+
+#: data/ui/Export.ui:502
+msgid "US Letter"
+msgstr ""
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as..."
+msgstr ""
+
+#: data/ui/Headerbar.ui:375
+msgid "Find"
+msgstr ""
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr ""
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr ""
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr ""
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
 msgstr ""
 
 #: data/ui/Window.ui:358
 msgid "Replace All"
 msgstr ""
 
-#~ msgid "Add \"{}\" to Dictionary"
-#~ msgstr "Thêm \"{}\" vào từ điển"
+#: data/ui/ExportPopover.ui:19
+msgid "Save As..."
+msgstr ""
 
-#~ msgid "Ignore All"
-#~ msgstr "Lờ tất cả"
+#: data/ui/ExportPopover.ui:101
+msgid "Advanced Export..."
+msgstr ""
 
-#~ msgid "Languages"
-#~ msgstr "Các ngôn ngữ"
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
+msgstr ""
 
-#~ msgid "Suggestions"
-#~ msgstr "Gợi ý"
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr ""
 
-#~ msgid "Open Link in Webbrowser"
-#~ msgstr "Mở Link trong trình duyệt"
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr ""
+
