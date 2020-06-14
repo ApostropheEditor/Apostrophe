@@ -1,170 +1,193 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: UberWriter\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-17 19:08+0100\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-
-#: apostrophe/application.py:176
-msgid "Show debug messages (-vv debugs apostrophe also)"
-msgstr ""
-
-#: apostrophe/application.py:178
-msgid "Use experimental features"
-msgstr "Deneysel özellikleri kullan"
-
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
-msgstr "Adsız belge.md"
-
-#: apostrophe/export_dialog.py:199
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr ""
-
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
-msgstr ""
-
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don't have TexLive installed.\n"
-msgstr ""
-
-#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
-msgid "Export"
-msgstr "Dışa Aktar"
-
-#: apostrophe/export_dialog.py:225
-#, python-format
-msgid "Export to %s"
-msgstr ""
-
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
-msgid "Cancel"
-msgstr "İptal et"
-
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
-msgstr ""
-
-#: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
-msgstr ""
-"Lütfen TexLive uzantısını GNOME Yazılımlar’dan veya şunu çalıştırarak "
-"yükleyin\n"
-"\n"
-
-#: apostrophe/export_dialog.py:431
-msgid "Please, install TexLive from your distribuiton repositories"
-msgstr "Lütfen TexLive’ı dağıtım depolarınızdan yükleyin."
-
-#: apostrophe/headerbars.py:82
-msgid "Light mode isn't available while using a dark global theme"
-msgstr ""
-
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr "Tam Genişlik"
-
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
-msgid "Half-Width"
-msgstr "Yarı Genişlik"
-
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
-msgid "Half-Height"
-msgstr "Yarı Yükseklik"
-
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
-msgid "Windowed"
-msgstr "Pencereli"
-
-#: apostrophe/inline_preview.py:191
-msgid "Formula looks incorrect:"
-msgstr ""
+"Project-Id-Version: Apostrophe\n"
+"Language: tr\n"
 
 #: apostrophe/inline_preview.py:226
 msgid "No matching footnote found"
 msgstr "Eşleşen dipnot bulunamadı"
 
-#: apostrophe/inline_preview.py:246
-msgid "noun"
-msgstr ""
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+msgid "Preview"
+msgstr "Ön İzleme"
 
-#: apostrophe/inline_preview.py:248
-msgid "verb"
-msgstr ""
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "Odak Kipi"
 
-#: apostrophe/inline_preview.py:250
-msgid "adjective"
-msgstr ""
+#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
+msgid "Export"
+msgstr "Dışa Aktar"
 
-#: apostrophe/inline_preview.py:252
-msgid "adverb"
-msgstr ""
+#: data/ui/Export.ui:45
+msgid "Smart"
+msgstr "Akıllı"
+
+#: data/ui/Export.ui:50
+msgid "Pandoc can automatically make \"--\" to a long dash and more"
+msgstr "Pandoc, “--”yi uzun çizgiye çevirme ve daha fazlasını yapabilir"
+
+#: data/ui/Export.ui:62
+msgid "Table of Contents"
+msgstr "İçindekiler Tablosu"
+
+#: data/ui/Export.ui:78
+msgid "Standalone"
+msgstr "Bağımsız"
+
+#: data/ui/Export.ui:83
+msgid "Use a header and footer to include things like stylesheets and meta information"
+msgstr "Biçem sayfası ve meta bilgileri gibi şeyleri dahil etmek için header ve footer kullanır"
+
+#: data/ui/Export.ui:96
+msgid "Number Sections"
+msgstr "Kısımları Numaralandır"
+
+#: data/ui/Export.ui:112
+msgid "Strict Markdown"
+msgstr "Katı Markdown"
+
+#: data/ui/Export.ui:117
+msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+msgstr "“Pandoc” markdown’u yerine “katı” markdown kullan"
+
+#: data/ui/Export.ui:134
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Sunumda maddeleri tek tek göster"
+
+#: data/ui/Export.ui:152
+msgid "<b>General Options</b>"
+msgstr "<b>Genel Seçenekler</b>"
+
+#: data/ui/Export.ui:211 data/ui/Export.ui:225
+msgid "Choose a color theme for syntax highlighting"
+msgstr "Söz dizimi vurgulama için bir renk teması seç"
+
+#: data/ui/Export.ui:213
+msgid "Highlight style  "
+msgstr "Vurgulama biçemi  "
+
+#: data/ui/Export.ui:375
+msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
+msgstr "Haricî bağımlılığı olmayan bir HTML üretir (tüm görseller ve biçem sayfaları dahildir)"
+
+#: data/ui/Export.ui:411 data/ui/Export.ui:425
+msgid "Choose a CSS File that you want to use"
+msgstr "Kullanmak istediğiniz bir CSS dosyası seçin"
+
+#: data/ui/Export.ui:413
+msgid "CSS File"
+msgstr "CSS Dosyası"
+
+#: data/ui/Export.ui:450
+msgid "<b>HTML Options</b>"
+msgstr "<b>HTML Seçenekleri</b>"
+
+#: data/ui/Export.ui:546
+msgid "Commandline Reference"
+msgstr "Komut Satırı Başvuru Kaynağı"
 
 #: apostrophe/main_window.py:284
 msgid "Save your File"
 msgstr "Dosyanı Kaydet"
 
-#: apostrophe/main_window.py:384
-msgid "Markdown Files"
-msgstr "Markdown Dosyaları"
-
-#: apostrophe/main_window.py:388
-msgid "Plain Text Files"
-msgstr "Düz Metin Dosyaları"
-
-#: apostrophe/main_window.py:391
-msgid "Open a .md file"
-msgstr "Bir .md dosyasını aç"
-
-#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
-msgid "New File"
-msgstr "Yeni Dosya"
-
-#: apostrophe/main_window.py:422
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr ""
-
-#: apostrophe/main_window.py:426
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr ""
-
-#: apostrophe/main_window.py:428
-msgid "Close without saving"
-msgstr "Kaydetmeden kapat"
+#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
+msgid "Cancel"
+msgstr "İptal et"
 
 #: apostrophe/main_window.py:430
 msgid "Save now"
 msgstr "Şimdi kaydet"
 
-#: apostrophe/main_window.py:510
-msgid ""
-"The file you tried to open doesn't "
-"exist.                                            \n"
-"A new file will be created in its place when you save the current one."
-msgstr ""
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Genel"
 
-#: apostrophe/main_window.py:520
-#, python-format
-msgid "Error Reading File: %r"
-msgstr ""
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr "Yeni"
 
-#: apostrophe/main_window.py:525
-#, python-format
-msgid ""
-"Error reading file:                                         \n"
-"%r"
-msgstr ""
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Aç"
+
+#: data/ui/Shortcuts.ui:31
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Kaydet"
+
+#: data/ui/Shortcuts.ui:38
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "Farklı kaydet"
+
+#: data/ui/Shortcuts.ui:65
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "Odak kipi"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Tam ekran"
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Ön izleme"
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr "Ayırıcı"
+
+#: data/ui/Shortcuts.ui:126
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "Liste ögesi"
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Eğik"
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Kalın"
+
+#: data/ui/Shortcuts.ui:154
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Başlık"
+
+#: data/ui/Shortcuts.ui:161
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Tümünü seç"
+
+#: data/ui/Window.ui:206
+msgid "Next Match"
+msgstr "Sonraki Eşleşme"
+
+#: data/ui/Window.ui:192
+msgid "Previous Match"
+msgstr "Önceki Eşleşme"
+
+#: data/ui/Window.ui:239
+msgid "Case Sensitive"
+msgstr "Büyük/Küçük Harf Duyarlı"
+
+#: data/ui/Window.ui:266 data/ui/Window.ui:344
+msgid "Replace"
+msgstr "Değiştir"
 
 #: apostrophe/plugins/bibtex/bibtex_item.glade:18
 #: apostrophe/plugins/bibtex/bibtex_item.glade:32
@@ -172,58 +195,64 @@ msgstr ""
 msgid "label"
 msgstr "etiket"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
-msgid "Preview"
-msgstr "Ön İzleme"
+#: apostrophe/application.py:178
+msgid "Use experimental features"
+msgstr "Deneysel özellikleri kullan"
 
-#: apostrophe/stats_handler.py:67
-msgid "{:n} Characters"
-msgstr "{:n} Karakter"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
+msgid "Open file base path"
+msgstr "Dosya kök yolunu aç"
 
-#: apostrophe/stats_handler.py:69
-msgid "{:n} Words"
-msgstr "{:n} Kelime"
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
+msgid "Open file paths of the current session"
+msgstr "Mevcut oturumun dosya yollarını aç"
 
-#: apostrophe/stats_handler.py:71
-msgid "{:n} Sentences"
-msgstr "{:n} Cümle"
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "Tercihler"
 
-#: apostrophe/stats_handler.py:73
-msgid "{:n} Paragraphs"
-msgstr "{:n} Paragraf"
-
-#: apostrophe/stats_handler.py:75
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "{:d}:{:02d}:{:02d} Okuma Zamanı"
-
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
-msgid "web page"
-msgstr ""
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr "eğik metin"
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr "kalın metin"
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr "üstü çizili metin"
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr "Öge"
-
-#: apostrophe/text_view_format_inserter.py:97
-msgid "Header"
-msgstr "Başlık"
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
+msgstr "Öğreticiyi Aç"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:23
 msgid "Use dark mode"
 msgstr "Karanlık kipi kullan"
+
+#: apostrophe/export_dialog.py:184
+msgid "Untitled document.md"
+msgstr "Adsız belge.md"
+
+#: apostrophe/export_dialog.py:428
+msgid "Please, install the TexLive extension from Gnome Software or running\n"
+""
+msgstr "Lütfen TexLive uzantısını GNOME Yazılımlar’dan veya şunu çalıştırarak yükleyin\n"
+"\n"
+""
+
+#: apostrophe/export_dialog.py:431
+msgid "Please, install TexLive from your distribuiton repositories"
+msgstr "Lütfen TexLive’ı dağıtım depolarınızdan yükleyin."
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr "Yeni"
+
+#: data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr "Aç"
+
+#: data/ui/Headerbar.ui:199
+msgid "Open Recent"
+msgstr "Son Kullanılan Aç"
+
+#: data/ui/Headerbar.ui:225
+msgid "Save"
+msgstr "Kaydet"
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "Menü"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:24
 msgid "Enable or disable the dark mode."
@@ -251,24 +280,7 @@ msgstr "Girdi biçimi"
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:45
 msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr ""
-"Pandoc’la ön izlerken ve dışa aktarılacakken kullanılacak girdi biçimi."
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr ""
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
-msgid "Open file base path"
-msgstr "Dosya kök yolunu aç"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr "Mevcut oturumun dosya yollarını aç"
+msgstr "Pandoc’la ön izlerken ve dışa aktarılacakken kullanılacak girdi biçimi."
 
 #: data/de.wolfvollprecht.UberWriter.gschema.xml:65
 msgid "Default statistic"
@@ -294,65 +306,13 @@ msgstr "Ön izleme kipi"
 msgid "How to display the preview."
 msgstr "Ön izlemenin nasıl gösterileceği."
 
-#: data/ui/Export.ui:45
-msgid "Smart"
-msgstr "Akıllı"
-
-#: data/ui/Export.ui:50
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr "Pandoc, “--”yi uzun çizgiye çevirme ve daha fazlasını yapabilir"
-
-#: data/ui/Export.ui:62
-msgid "Table of Contents"
-msgstr "İçindekiler Tablosu"
-
-#: data/ui/Export.ui:78
-msgid "Standalone"
-msgstr "Bağımsız"
-
-#: data/ui/Export.ui:83
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr ""
-"Biçem sayfası ve meta bilgileri gibi şeyleri dahil etmek için header ve "
-"footer kullanır"
-
-#: data/ui/Export.ui:96
-msgid "Number Sections"
-msgstr "Kısımları Numaralandır"
-
-#: data/ui/Export.ui:112
-msgid "Strict Markdown"
-msgstr "Katı Markdown"
-
-#: data/ui/Export.ui:117
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "“Pandoc” markdown’u yerine “katı” markdown kullan"
-
 #: data/ui/Export.ui:129
 msgid "Slideshow Incremental Bullets"
 msgstr "Sunum Artımlı Maddeler"
 
-#: data/ui/Export.ui:134
-msgid "Show one bullet point after another in a slideshow"
-msgstr "Sunumda maddeleri tek tek göster"
-
-#: data/ui/Export.ui:152
-msgid "<b>General Options</b>"
-msgstr "<b>Genel Seçenekler</b>"
-
 #: data/ui/Export.ui:189
 msgid "Highlight Syntax"
 msgstr "Söz Dizimini Vurgula"
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:225
-msgid "Choose a color theme for syntax highlighting"
-msgstr "Söz dizimi vurgulama için bir renk teması seç"
-
-#: data/ui/Export.ui:213
-msgid "Highlight style  "
-msgstr "Vurgulama biçemi  "
 
 #: data/ui/Export.ui:262
 msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
@@ -374,14 +334,6 @@ msgstr "<b>Kaynakça </b>"
 msgid "Self-contained"
 msgstr "Bağımsız"
 
-#: data/ui/Export.ui:375
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
-msgstr ""
-"Haricî bağımlılığı olmayan bir HTML üretir (tüm görseller ve biçem sayfaları "
-"dahildir)"
-
 #: data/ui/Export.ui:387
 msgid "HTML5"
 msgstr "HTML5"
@@ -390,130 +342,10 @@ msgstr "HTML5"
 msgid "Use HTML5 syntax"
 msgstr "HTML5 söz dizimini kullan"
 
-#: data/ui/Export.ui:411 data/ui/Export.ui:425
-msgid "Choose a CSS File that you want to use"
-msgstr "Kullanmak istediğiniz bir CSS dosyası seçin"
-
-#: data/ui/Export.ui:413
-msgid "CSS File"
-msgstr "CSS Dosyası"
-
-#: data/ui/Export.ui:450
-msgid "<b>HTML Options</b>"
-msgstr "<b>HTML Seçenekleri</b>"
-
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
-msgstr ""
-
-#: data/ui/Export.ui:501
-msgid "A4"
-msgstr ""
-
-#: data/ui/Export.ui:502
-msgid "US Letter"
-msgstr ""
-
-#: data/ui/Export.ui:546
-msgid "Commandline Reference"
-msgstr "Komut Satırı Başvuru Kaynağı"
-
-#: data/ui/ExportPopover.ui:19 data/ui/Headerbar.ui:242
-msgid "Save as..."
-msgstr ""
-
-#: data/ui/ExportPopover.ui:90
-msgid "Advanced..."
-msgstr ""
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync views"
-msgstr ""
-
-#: data/ui/Headerbar.ui:171
-msgid "New"
-msgstr "Yeni"
-
-#: data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr "Aç"
-
-#: data/ui/Headerbar.ui:199
-msgid "Open Recent"
-msgstr "Son Kullanılan Aç"
-
-#: data/ui/Headerbar.ui:225
-msgid "Save"
-msgstr "Kaydet"
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr "Menü"
-
-#: data/ui/Headerbar.ui:375
-msgid "Find"
-msgstr ""
-
-#: data/ui/Menu.ui:100
-msgid "Hemingway mode"
-msgstr ""
-
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr "Odak Kipi"
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr ""
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr "Tercihler"
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr "Öğreticiyi Aç"
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr ""
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr ""
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:13
-msgctxt "shortcut window"
-msgid "General"
-msgstr "Genel"
-
-#: data/ui/Shortcuts.ui:17
-msgctxt "shortcut window"
-msgid "New"
-msgstr "Yeni"
-
-#: data/ui/Shortcuts.ui:24
-msgctxt "shortcut window"
-msgid "Open"
-msgstr "Aç"
-
-#: data/ui/Shortcuts.ui:31
-msgctxt "shortcut window"
-msgid "Save"
-msgstr "Kaydet"
-
-#: data/ui/Shortcuts.ui:38
-msgctxt "shortcut window"
-msgid "Save as"
-msgstr "Farklı kaydet"
+#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
+msgstr "Tam Genişlik"
 
 #: data/ui/Shortcuts.ui:45
 msgctxt "shortcut window"
@@ -530,75 +362,20 @@ msgctxt "shortcut window"
 msgid "Modes"
 msgstr "Kipler"
 
-#: data/ui/Shortcuts.ui:65
-msgctxt "shortcut window"
-msgid "Focus mode"
-msgstr "Odak kipi"
-
 #: data/ui/Shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Hemingway mode"
 msgstr "Hemingway kipi"
-
-#: data/ui/Shortcuts.ui:79
-msgctxt "shortcut window"
-msgid "Preview"
-msgstr "Ön izleme"
-
-#: data/ui/Shortcuts.ui:86
-msgctxt "shortcut window"
-msgid "Fullscreen"
-msgstr "Tam ekran"
-
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
-msgctxt "shortcut window"
-msgid "Find"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
-msgstr ""
 
 #: data/ui/Shortcuts.ui:115
 msgctxt "shortcut window"
 msgid "Markdown"
 msgstr "Markdown"
 
-#: data/ui/Shortcuts.ui:119
-msgctxt "shortcut window"
-msgid "Separator"
-msgstr "Ayırıcı"
-
-#: data/ui/Shortcuts.ui:126
-msgctxt "shortcut window"
-msgid "List item"
-msgstr "Liste ögesi"
-
-#: data/ui/Shortcuts.ui:133
-msgctxt "shortcut window"
-msgid "Italic"
-msgstr "Eğik"
-
-#: data/ui/Shortcuts.ui:140
-msgctxt "shortcut window"
-msgid "Bold"
-msgstr "Kalın"
-
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Üstünü çiz"
-
-#: data/ui/Shortcuts.ui:154
-msgctxt "shortcut window"
-msgid "Header"
-msgstr "Başlık"
-
-#: data/ui/Shortcuts.ui:161
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr "Tümünü seç"
 
 #: data/ui/Shortcuts.ui:170
 msgctxt "shortcut window"
@@ -653,21 +430,9 @@ msgstr "0 kelime"
 msgid "Show Statistics"
 msgstr "İstatistikleri Göster"
 
-#: data/ui/Window.ui:192
-msgid "Previous Match"
-msgstr "Önceki Eşleşme"
-
-#: data/ui/Window.ui:206
-msgid "Next Match"
-msgstr "Sonraki Eşleşme"
-
 #: data/ui/Window.ui:235
 msgid "aA"
 msgstr "aA"
-
-#: data/ui/Window.ui:239
-msgid "Case Sensitive"
-msgstr "Büyük/Küçük Harf Duyarlı"
 
 #: data/ui/Window.ui:249
 msgid "(.*)"
@@ -677,594 +442,239 @@ msgstr "(.*)"
 msgid "Regular Expression"
 msgstr "Düzenli İfadeler"
 
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
-msgid "Replace"
-msgstr "Değiştir"
+#: apostrophe/main_window.py:384
+msgid "Markdown Files"
+msgstr "Markdown Dosyaları"
+
+#: apostrophe/main_window.py:388
+msgid "Plain Text Files"
+msgstr "Düz Metin Dosyaları"
+
+#: apostrophe/main_window.py:391
+msgid "Open a .md file"
+msgstr "Bir .md dosyasını aç"
+
+#: apostrophe/main_window.py:428
+msgid "Close without saving"
+msgstr "Kaydetmeden kapat"
+
+#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
+msgid "New File"
+msgstr "Yeni Dosya"
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr "Yarı Genişlik"
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr "Yarı Yükseklik"
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr "Pencereli"
+
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr "{:n} Karakter"
+
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr "{:n} Kelime"
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr "{:n} Cümle"
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr "{:n} Paragraf"
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} Okuma Zamanı"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "eğik metin"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "kalın metin"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "üstü çizili metin"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Öge"
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr "Başlık"
+
+#: apostrophe/application.py:176
+msgid "Show debug messages (-vv debugs apostrophe also)"
+msgstr "Hata ayıklama iletilerini göster (-vv de apostrophe'de hata ayıklamayı açar)"
+
+#: apostrophe/export_dialog.py:199
+msgid "An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr "Dışarı aktarmaya çalışılırken hata oluştu:\n"
+"\n"
+"{err_msg}"
+
+#: apostrophe/export_dialog.py:216
+msgid "Oh, no!"
+msgstr "Olamaz!"
+
+#: apostrophe/export_dialog.py:219
+msgid "Seems that you don't have TexLive installed.\n"
+""
+msgstr "TexLive yüklü değil gibi görünüyor."
+
+#: apostrophe/export_dialog.py:225
+msgid "Export to %s"
+msgstr "Dışa aktar: %s"
+
+#: apostrophe/export_dialog.py:285
+msgid "A folder must be selected before proceeding"
+msgstr "İlerlemeden önce bir klasör seçilmeli"
+
+#: apostrophe/headerbars.py:82
+msgid "Light mode isn't available while using a dark global theme"
+msgstr "Koyu global tema kullanılırken açık mod kullanılamaz"
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr "Formül hatalı görünüyor:"
+
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr "isim"
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr "fiil"
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr "sıfat"
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr "zarf"
+
+#: apostrophe/main_window.py:422
+msgid "Save changes to document “%s” before closing?"
+msgstr "Kapatmadan \"%s\" dokümanına yapılan değişiklikler kaydedilsin mi?"
+
+#: apostrophe/main_window.py:426
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Kaydetmezseniz, bütün değişiklikleriniz temelli kaybolur."
+
+#: apostrophe/main_window.py:510
+msgid "The file you tried to open doesn't exist.                                            \n"
+"A new file will be created in its place when you save the current one."
+msgstr "Açmaya çalıştığınız dosya mevcut değil.\n"
+"Şu anki dosyayı kaydettiğinizde yerine yeni bir dosya oluşturulacaktır."
+
+#: apostrophe/main_window.py:520
+msgid "Error Reading File: %r"
+msgstr "Dosya Okuma Hatası: %r"
+
+#: apostrophe/main_window.py:525
+msgid "Error reading file:                                         \n"
+"%r"
+msgstr "Dosya okunurken hata oluştu:\n"
+"%r"
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr "web sayfası"
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr "Başlık Çubuğunu Otomatik Gizle"
+
+#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr "Yazarken başlık ve statü çubuklarını gizle."
+
+#: data/ui/Export.ui:484 data/ui/Export.ui:520
+msgid "Paper size"
+msgstr "Kağıt boyutu"
+
+#: data/ui/Export.ui:501
+msgid "A4"
+msgstr "A4"
+
+#: data/ui/Export.ui:502
+msgid "US Letter"
+msgstr "US Letter"
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as..."
+msgstr "Farklı kaydet..."
+
+#: data/ui/Headerbar.ui:375
+msgid "Find"
+msgstr "Bul"
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr "Bul ve değiştir"
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr "Klavye Kısayolları"
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr "Apostrophe Hakkında"
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr "Yazarken başlık ve statü çubuklarını otomatik sakla"
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr "Başlangıç çubuğunu otomatik sakla"
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr "Bul"
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr "Bul ve değiştir"
 
 #: data/ui/Window.ui:358
 msgid "Replace All"
-msgstr ""
+msgstr "Hepsini değiştir"
 
-#~ msgid "(no suggestions)"
-#~ msgstr "(öneri yok)"
+#: data/ui/ExportPopover.ui:19
+msgid "Save As..."
+msgstr "Farklı Kaydet..."
 
-#~ msgid "Add \"{}\" to Dictionary"
-#~ msgstr "\"{}\"i Sözlüğe Ekle"
+#: data/ui/ExportPopover.ui:101
+msgid "Advanced Export..."
+msgstr "Gelişmiş Kaydet..."
 
-#~ msgid "Ignore All"
-#~ msgstr "Tümünü Yoksay"
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
+msgstr "HTML kopyala"
 
-#~ msgid "Languages"
-#~ msgstr "Diller"
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr "Görüntüleri Eşitle"
 
-#~ msgid "Suggestions"
-#~ msgstr "Öneriler"
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr "Hemingway Modu"
 
-#~ msgid "UberWriter"
-#~ msgstr "UberWriter"
-
-#~ msgid "UberWriter, a simple and distraction free Markdown Editor"
-#~ msgstr ""
-#~ "UberWriter, basit ve dikkat dağıtmayan bir özgür Markdown düzenleyicisi"
-
-#~ msgid "Website is not available"
-#~ msgstr "Web sitesi kullanılamıyor"
-
-#~ msgid "Website is available"
-#~ msgstr "Web sitesi kullanılabilir"
-
-#~ msgid "Open Link in Webbrowser"
-#~ msgstr "Bağlantıyı Tarayıcıda Aç"
-
-#~ msgid "_File"
-#~ msgstr "_Dosya"
-
-#~ msgid "Open Recent File"
-#~ msgstr "Son Dosyalardan Aç"
-
-#~ msgid "Export as ODT"
-#~ msgstr "ODT Olarak Dışarı Aktar"
-
-#~ msgid "Advanced Export..."
-#~ msgstr "Gelişmiş Dışarı Aktarma…"
-
-#~ msgid "Copy raw HTML to clipboard"
-#~ msgstr "Ham HTML’yi panoya kopyala"
-
-#~ msgid "_Edit"
-#~ msgstr "_Düzenle"
-
-#~ msgid "_View"
-#~ msgstr "_Görüntüle"
-
-#~ msgid "Light text on a dark background"
-#~ msgstr "Koyu arka planda açık metin"
-
-#~ msgid "Dark Mode"
-#~ msgstr "Karanlık Kip"
-
-#~ msgid "Switch to preview mode"
-#~ msgstr "Ön izleme kipine geç"
-
-#~ msgid "Auto _Spellcheck"
-#~ msgstr "Kendiliğinden _Yazım Denetimi"
-
-#~ msgid "F_ormat"
-#~ msgstr "_Biçim"
-
-#~ msgid "Unordered List Item"
-#~ msgstr "Sırasız Liste Ögesi"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "Yatay Çizgi"
-
-#~ msgid "Heading"
-#~ msgstr "Başlık"
-
-#~ msgid "_Help"
-#~ msgstr "_Yardım"
-
-#~ msgid "Contents"
-#~ msgstr "İçerik"
-
-#~ msgid "Short Markdown Tutorial"
-#~ msgstr "Kısa Markdown Öğreticisi"
-
-#~ msgid "Open Pandoc Online Markdown Help ..."
-#~ msgstr "Pandoc Çevrim İçi Markdown Yardımını Aç …"
-
-#~ msgid "Get Help Online..."
-#~ msgstr "Çevrim İçi Yardım Al…"
-
-#~ msgid "Translate This Application..."
-#~ msgstr "Bu Uygulamayı Çevir…"
-
-#~ msgid "Go into focus mode"
-#~ msgstr "Odak kipine gir"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Tam Ekran"
-
-#~ msgid "Go into fullscreen mode"
-#~ msgstr "Tam ekran kipine gir"
-
-#~ msgid "Show HTML preview"
-#~ msgstr "HTML ön izlemesini göster"
-
-#~ msgid "Words:"
-#~ msgstr "Kelime:"
-
-#~ msgid "Characters:"
-#~ msgstr "Karakter:"
-
-#~ msgid "Show debug messages (-vv debugs uberwriter_lib also)"
-#~ msgstr ""
-#~ "Hata ayıklama iletilerini göster (-vv uberwriter_lib’i de hata ayıklar)"
-
-#~ msgid "emphasized text"
-#~ msgstr "vurgulu metin"
-
-#~ msgid "strong text"
-#~ msgstr "güçlü metin"
-
-#~ msgid "List item"
-#~ msgstr "Liste ögesi"
-
-#~ msgid "Normalize"
-#~ msgstr "Normalleştir"
-
-#~ msgid ""
-#~ "Removes things like double spaces or spaces at the beginning of a "
-#~ "paragraph"
-#~ msgstr ""
-#~ "Çift boşluklar veya paragraf başındaki boşluklar gibi şeyleri kaldırır"
-
-#~ msgid "Slideshow incremental bullets"
-#~ msgstr "Sunum artımlı maddeler"
-
-#~ msgid "Highlight syntax"
-#~ msgstr "Söz dizimini vurgula"
-
-#~ msgid "<b>Syntax highlighting</b> (HTML, LaTeX)"
-#~ msgstr "<b>Söz dizimi vurgulama</b> (HTML, LaTeX)"
-
-#~ msgid "Self Contained"
-#~ msgstr "Bağımsız"
-
-#~ msgid "HTML 5"
-#~ msgstr "HTML 5"
-
-#~ msgid "Use HTML 5 syntax"
-#~ msgstr "HTML 5 söz dizimi kullan"
-
-#~ msgid "<b>Bibliography File</b>"
-#~ msgstr "<b>Kaynakça Dosyası</b>"
-
-#~ msgid ""
-#~ "# Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it \n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
-#~ msgstr ""
-#~ "# Telif hakkı (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>\n"
-#~ "# This program is free software: you can redistribute it and/or modify "
-#~ "it \n"
-#~ "# under the terms of the GNU General Public License version 3, as "
-#~ "published \n"
-#~ "# by the Free Software Foundation.\n"
-#~ "# \n"
-#~ "# This program is distributed in the hope that it will be useful, but \n"
-#~ "# WITHOUT ANY WARRANTY; without even the implied warranties of \n"
-#~ "# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR \n"
-#~ "# PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "# \n"
-#~ "# You should have received a copy of the GNU General Public License "
-#~ "along \n"
-#~ "# with this program.  If not, see <http://www.gnu.org/licenses/>."
-
-#~ msgid "Copyright (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-#~ msgstr "Telif hakkı (C) 2012, Wolf Vollprecht <w.vollprecht@gmail.com>"
-
-#~ msgid "You can not export to PDF."
-#~ msgstr "PDF’e dışa aktaramazsınız."
-
-#~ msgid ""
-#~ "Please install <a href=\"apt:texlive\">texlive</a> from the software "
-#~ "center."
-#~ msgstr ""
-#~ "Lütfen yazılım merkezinden <a href=\"apt:texlive\">texlive</a> yükleyin."
-
-#~ msgid "MarkDown or Plain Text"
-#~ msgstr "MarkDown veya Düz Metin"
-
-#~ msgid "Open a .md-File"
-#~ msgstr "Bir .md Dosyası Aç"
-
-#~ msgid "You have not saved your changes."
-#~ msgstr "Değişikliklerinizi kaydetmediniz."
-
-#~ msgid "Close without Saving"
-#~ msgstr "Kaydetmeden Kapat"
-
-#~ msgid "Unsaved changes"
-#~ msgstr "Kaydedilmeyen değişiklikler"
-
-#~ msgid "You can not enable the Spell Checker."
-#~ msgstr "Yazım Denetimini etkinleştiremezsiniz."
-
-#~ msgid ""
-#~ "Please install 'hunspell' or 'aspell' dictionarys for your language from "
-#~ "the software center."
-#~ msgstr ""
-#~ "Lütfen yazılım merkezinden diliniz için ‘hunspell’ veya ‘aspell’ "
-#~ "sözlüklerini yükleyin."
-
-#~ msgid "Dark mode"
-#~ msgstr "Karanlık kip"
-
-#~ msgid "New window"
-#~ msgstr "Yeni pencere"
-
-#~ msgid "_Shortcuts"
-#~ msgstr "_Kısayollar"
-
-#~ msgid "Pandoc _Help"
-#~ msgstr "Pandoc _Yardımı"
-
-#~ msgid "_About"
-#~ msgstr "_Hakkında"
-
-#~ msgid "_Quit"
-#~ msgstr "_Çık"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Quit"
-#~ msgstr "Çık"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Search"
-#~ msgstr "Arama"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Editor"
-#~ msgstr "Düzenleyici"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Cut"
-#~ msgstr "Kes"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Copy"
-#~ msgstr "Kopyala"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Paste"
-#~ msgstr "Yapıştır"
-
-#~ msgid "Open Replace"
-#~ msgstr "Değiştiri Aç"
-
-#~ msgid "Activate Regex"
-#~ msgstr "Düzenli İfadeleri Etkinleştir"
-
-#~ msgid "_New"
-#~ msgstr "_Yeni"
-
-#~ msgid "_Open"
-#~ msgstr "_Aç"
-
-#~ msgid "Open examples"
-#~ msgstr "Örnekleri Aç"
-
-#~ msgid "_Quick markdown tutorial"
-#~ msgstr "_Çabuk markdown öğretici"
-
-#~ msgid "_Save"
-#~ msgstr "_Kaydet"
-
-#~ msgid "Save _As"
-#~ msgstr "_Farklı Kaydet"
-
-#~ msgid "Export as HTML"
-#~ msgstr "HTML Olarak Dışa Aktar"
-
-#~ msgid "Export as PDF"
-#~ msgstr "PDF Olarak Dışa Aktar"
-
-#~ msgid "Copy Raw HTML to Clipboard"
-#~ msgstr "Ham HTML’yi Panoya Kopyala"
-
-#~ msgid "Sidebar"
-#~ msgstr "Kenar Çubuğu"
-
-#~ msgid "Open Search and Replace"
-#~ msgstr "Ara ve Değiştir’i Aç"
-
-#~ msgid "Search and Replace ..."
-#~ msgstr "Ara ve Değiştir…"
-
-#~ msgid "Replace all"
-#~ msgstr "Tümünü değiştir"
-
-#~ msgid "striked out text"
-#~ msgstr "üstü çizili metin"
-
-#~ msgid "extension \"{}\" is not a valid ZIP file"
-#~ msgstr "“{}” uzantısı geçerli bir ZIP dosyası değil"
-
-#~ msgid "extension \"{}\" has no valid XML dictionary registry"
-#~ msgstr "“{}” uzantısı geçerli XML sözlüğü kaydına sahip değil"
-
-#~ msgid ""
-#~ "unable to move extension, file with same name exists within move_path"
-#~ msgstr "uzantı taşınamadı, taşıma_yolu’nda aynı isimde dosya var"
-
-#~ msgid "unable to move extension, move_path is not a directory"
-#~ msgstr "uzantı taşınamadı, taşıma_yolu bir dizin değil"
-
-#~ msgid "Unknown"
-#~ msgstr "Bilinmeyen"
-
-#~ msgid "Help to _translate"
-#~ msgstr "_Çeviriye Yardım Et"
-
-#~ msgid "Donate to the project"
-#~ msgstr "Projeye bağışla"
-
-#~ msgid "Search and Replace"
-#~ msgstr "Ara ve Değiştir"
-
-#~ msgid "Copyright (C) 2018, Wolf Vollprecht"
-#~ msgstr "Telif hakkı (C) 2018, Wolf Vollprecht"
-
-#, fuzzy
-#~ msgid "Uberwriter website"
-#~ msgstr "UberWriter"
-
-#~ msgid "Donations:"
-#~ msgstr "Bağışlar:"
-
-#~ msgid "Liberapay"
-#~ msgstr "Liberapay"
-
-#~ msgid "Help to translate:"
-#~ msgstr "Çeviriye yardım et:"
-
-#~ msgid "Poeditor"
-#~ msgstr "Poeditor"
-
-#~ msgid "PDF"
-#~ msgstr "PDF"
-
-#~ msgid "HTML"
-#~ msgstr "HTML"
-
-#~ msgid "ODT"
-#~ msgstr "ODT"
-
-#~ msgid "Advanced"
-#~ msgstr "Gelişmiş"
-
-#~ msgid "_Export"
-#~ msgstr "_Dışa aktar"
-
-#~ msgid "Copy HTML"
-#~ msgstr "HTML’yi kopyala"
-
-#~ msgid "Autospellcheck"
-#~ msgstr "Kendiliğinden yazım denetimi"
-
-#~ msgid "page 1"
-#~ msgstr "sayfa 1"
-
-#~ msgid "Search and replace"
-#~ msgstr "Ara ve değiştir"
-
-#~ msgid "Exit Fullscreen"
-#~ msgstr "Tam Ekrandan Çık"
-
-#~ msgid "An elegant, free distraction GTK+ markdown editor"
-#~ msgstr "Zarif, dikkat dağıtmayan GTK markdown düzenleyici"
-
-#~ msgid ""
-#~ "Uberwriter is a GTK+ based distraction free Markdown editor, mainly "
-#~ "developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as "
-#~ "backend for markdown parsing and offers a very clean and sleek user "
-#~ "interface."
-#~ msgstr ""
-#~ "UberWriter, GTK temelli dikkat dağıtmayan özgür bir Markdown "
-#~ "düzenleyicisidir ve ağırlıkla Wolf Vollprecht ve Manuel Genovés "
-#~ "tarafından geliştirilmektedir. Markdown çözümleme için arka uç olarak "
-#~ "pandoc kullanır ve çok temiz ve şık bir kullanıcı arayüzü sunar."
-
-#~ msgid "You can install the recommended TexLive extension with the command:"
-#~ msgstr "Önerilen TexLive uzantısını şu komutla yükleyebilirsin:"
-
-#~ msgid "flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive"
-#~ msgstr "flatpak install flathub de.wolfvollprecht.UberWriter.Plugin.TexLive"
-
-#~ msgid "or from Gnome-Software"
-#~ msgstr "veya GNOME Yazılımlar’dan"
-
-#~ msgid "..."
-#~ msgstr "…"
-
-#~ msgid "Added italian language"
-#~ msgstr "İtalyanca eklendi"
-
-#~ msgid ""
-#~ "Initial themes support: now uberwriter adapts his colors to the current "
-#~ "GTK theme"
-#~ msgstr ""
-#~ "Tema desteği başlangıcı: artık uberwriter, renklerini geçerli GTK "
-#~ "temasına uydurur"
-
-#~ msgid "Disabled scroll gradient, can be enabled in the preferences dialog"
-#~ msgstr ""
-#~ "Kaydırma gradyanı devre dışı bırakıldı, tercihler penceresinden "
-#~ "etkinleştirilebilir"
-
-#~ msgid "Allow to disable headerbar autohidding in Dconf"
-#~ msgstr ""
-#~ "Dconf’ta başlık çubuğu kendiliğinden saklamasını devre dışı bırakmaya "
-#~ "izin ver"
-
-#~ msgid ""
-#~ "Now a single click is enough to open files in the recent files popover"
-#~ msgstr ""
-#~ "Artık son dosyalar açılır menüsünde dosyaları açmak için tek bir tıklama "
-#~ "yeterlidir"
-
-#~ msgid "Spellchecking status is now saved between sessions"
-#~ msgstr "Artık yazım denetimi durumu oturumlar arasında kaydedilir"
-
-#~ msgid "Minor UI fixes"
-#~ msgstr "Küçük arayüz düzeltmeleri"
-
-#~ msgid "Added -d flag to enable webdev tools"
-#~ msgstr "Web geliştirici araçlarını açmak için -d bayrağı eklendi"
-
-#~ msgid "Updated css styles."
-#~ msgstr "Güncellenmiş CSS biçemleri."
-
-#~ msgid ""
-#~ "This release features a new logo, polishes the Appmenu, fixes usability "
-#~ "bugs and flatpak related bugs."
-#~ msgstr ""
-#~ "Bu yayım yeni bir logo içerir, uygulama menüsü iyileştirir ve "
-#~ "kullanılabilirlik hatalarıyla Flatpak’le ilişkili hataları düzeltir."
-
-#~ msgid ""
-#~ "This release provides a fix to a bug that caused Uberwriter to not mark "
-#~ "properly **bold**, *cursive*, and ***bold and cursive*** words."
-#~ msgstr ""
-#~ "Bu yayım UberWriter’ın **kalın**, *eğik* ve ***kalın ve eğik*** "
-#~ "kelimeleri doğru şekilde işaretlemesini engelleyen bir hatayı düzeltir."
-
-#~ msgid "This release solves two minor bugs:"
-#~ msgstr "Bu yayım iki küçük sorunu çözer:"
-
-#~ msgid ""
-#~ "One on focus mode which caused the lines to be highlighted on edit rather "
-#~ "than on click"
-#~ msgstr ""
-#~ "Odak kipinde, satırların tıklamada değil de düzenlemede vurgulanmasına "
-#~ "neden olan bir hata"
-
-#~ msgid "Non symbolic icons on the searchbar"
-#~ msgstr "Arama çubuğunda sembolik olmayan ikonlar"
-
-#~ msgid "This release features a ton of UX/UI improvements, like:"
-#~ msgstr ""
-#~ "Bu yayım birçok kullanıcı deneyimi/kullanıcı arayüzü iyileştirmesi "
-#~ "içerir, örneğin:"
-
-#~ msgid "Drop AppMenu support"
-#~ msgstr "Uygulama menüsü desteğini kaldır"
-
-#~ msgid ""
-#~ "HeaderBar and menus redesign, with a new unified menu and quick access "
-#~ "buttons on the headerbar"
-#~ msgstr ""
-#~ "Yeni birleştirilmiş bir menü ve başlık çubuğunda hızlı erişim "
-#~ "düğmeleriyle başlık çubuğu ve menüler yeniden tasarımı"
-
-#~ msgid ""
-#~ "Now the fullscreen view shows a headerbar when the cursor approaches the "
-#~ "top of the screen"
-#~ msgstr ""
-#~ "Artık tam ekran görünümü, işaretçi ekranın tepesine yaklaştığında bir "
-#~ "başlık çubuğu gösterir"
-
-#~ msgid ""
-#~ "A new unified export dialog, with updated options, and quick access to "
-#~ "pdf, odt and html export"
-#~ msgstr ""
-#~ "Güncellenmiş seçenekler ve PDF, ODT ve HTML dışa aktarmaya çabuk erişimle "
-#~ "yeni birleştirilmiş bir dışa aktarma penceresi"
-
-#~ msgid "Bugfixes."
-#~ msgstr "Hata düzeltmeleri."
-
-#~ msgid "Now the menu is a Popover instead a regular menu."
-#~ msgstr "Artık menü sıradan bir menü yerine bir açılır menü"
-
-#~ msgid "The headerbar matches the theme selected for the application."
-#~ msgstr "Başlık çubuğu, uygulama için seçilen temayla eşleşir."
-
-#~ msgid "Updated translations."
-#~ msgstr "Güncellenmiş çeviriler"
-
-#~ msgid "Small bug fixes, updated links."
-#~ msgstr "Küçük hata düzeltmeleri, güncellenmiş bağlantılar."
-
-#~ msgid "Fix a bug with the preview mode."
-#~ msgstr "Ön izleme kipindeki bir hatayı düzelt."
-
-#~ msgid "Don't use env variable to check if in flatpak."
-#~ msgstr ""
-#~ "Flatpak’te olup olmadığını denetlemek için ortam değişkenini kullanma."
-
-#~ msgid "First re-release"
-#~ msgstr "İlk yeniden yayım"
-
-#~ msgid "Wolf V., Manuel G."
-#~ msgstr "Wolf V., Manuel G."
-
-#~ msgid "de.wolfvollprecht.UberWriter"
-#~ msgstr "de.wolfvollprecht.UberWriter"
-
-#~ msgid "Set dark mode automatically"
-#~ msgstr "Karanlık kipi kendiliğinden ayarla"
-
-#~ msgid ""
-#~ "Whether dark mode depends on the system theme, or is set to what the user "
-#~ "specifies."
-#~ msgstr ""
-#~ "Karanlık kipin sistem temasına mı bağlı olacağı yoksa kullanıcı "
-#~ "tarafından belirtilene mi ayarlanacağı."
-
-#~ msgid "Force dark mode"
-#~ msgstr "Karanlık kipi zorla"
-
-#~ msgid "Draw scroll gradient"
-#~ msgstr "Kaydırma gradyanı çiz"
-
-#~ msgid ""
-#~ "Show a gradient overlay over the text at the top anf bottom of the "
-#~ "window. It can cause performance problems to some users."
-#~ msgstr ""
-#~ "Pencerenin üst ve altında metnin üzerinde bir gradyan katmanı göster. "
-#~ "Bazı kullanıcılar için başarım sorunlarına neden olabilir."
-
-#~ msgid "Allow Uberwriter to poll cursor motion"
-#~ msgstr "Uberwriter’ın işaretçi konumunu sorgulamasına izin ver"
-
-#~ msgid "Hide the header and status bars if the cursor is not moving."
-#~ msgstr "İşaretçi hareket etmiyorsa başlık ve durum çubuklarını gizle."
-
-#~ msgid "Hemingway Mode"
-#~ msgstr "Hemingway Kipi"
-
-#~ msgid "_Keyboard Shortcuts"
-#~ msgstr "_Klavye Kısayolları"
-
-#~ msgid "_About UberWriter"
-#~ msgstr "_UberWriter Hakkında"
-
-#~ msgid "Switch Preview Mode"
-#~ msgstr "Ön İzleme Kipini Aç/Kapa"
-
-#~ msgid "Show debug messages (-vv debugs uberwriter also)"
-#~ msgstr "Hata ayıklama iletilerini göster (-vv uberwriter’ı da hata ayıklar)"
