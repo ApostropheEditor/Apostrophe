@@ -22,8 +22,6 @@ gi.require_version('Gtk', '3.0')
 from apostrophe import main_window
 from apostrophe import application
 from apostrophe.helpers import set_up_logging
-from apostrophe.config import get_version
-
 
 def main():
     'constructor for your class instances'

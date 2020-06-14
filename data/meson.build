@@ -29,14 +29,26 @@ endif
 appdata_conf = configuration_data()
 appdata_conf.set('app-id', application_id)
 appdata_conf.set('gettext-package', gettext_package)
-appdata_file = i18n.merge_file(
-  'appdata',
-  input: configure_file(
-    input: 'org.gnome.gitlab.somas.Apostrophe.appdata.xml.in.in',
+
+metainfo_configured = configure_file(
+    input: 'org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in',
     output: '@BASENAME@',
     configuration: appdata_conf
-  ),
-  output: '@0@.appdata.xml'.format(application_id),
+)
+
+# merge NEWS into metainfo file
+# TODO: uncomment when https://github.com/hughsie/appstream-glib/issues/369 is solved
+# ascli_exe = find_program('appstreamcli')
+# metainfo_with_relinfo = custom_target('gen-metainfo-rel',
+#     input : ['../NEWS', metainfo_configured],
+#     output : ['org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in'],
+#     command : [ascli_exe, 'news-to-metainfo', '--limit=2', '@INPUT0@', '@INPUT1@', '@OUTPUT@']
+# )
+
+appdata_file = i18n.merge_file(
+  'appdata',
+  input: metainfo_configured,
+  output: '@0@.metainfo.xml'.format(application_id),
   po_dir: podir,
   install: true,
   install_dir: get_option('datadir') / 'metainfo'

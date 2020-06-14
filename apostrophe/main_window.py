@@ -29,6 +29,8 @@ from apostrophe.stats_handler import StatsHandler
 from apostrophe.styled_window import StyledWindow
 from apostrophe.text_view import TextView
 
+from apostrophe.config import PROFILE
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 
@@ -68,6 +70,10 @@ class MainWindow(StyledWindow):
         super().__init__(application=Gio.Application.get_default(), title="Apostrophe")
 
         self.get_style_context().add_class('apostrophe-window')
+
+        if PROFILE != '':
+            style_context = self.get_style_context()
+            style_context.add_class("devel")
 
         # Set UI
         builder = Gtk.Builder()

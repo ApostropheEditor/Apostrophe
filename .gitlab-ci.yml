@@ -1,0 +1,12 @@
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+
+flatpak:
+    image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:3.36'
+    variables:
+        MANIFEST_PATH: "build-aux/flatpak/org.gnome.gitlab.somas.Apostrophe.json"
+        MESON_ARGS: "-Dprofile=Devel"
+        FLATPAK_MODULE: "apostrophe"
+        APP_ID: "org.gnome.gitlab.somas.Apostrophe"
+        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+        BUNDLE: "apostrophe-dev.flatpak"
+    extends: .flatpak

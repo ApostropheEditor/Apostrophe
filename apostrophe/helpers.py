@@ -31,10 +31,9 @@ from apostrophe.settings import Settings
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk  # pylint: disable=E0611
 
-from apostrophe.config import get_data_file
 from apostrophe.builder import Builder
 
-
+__apostrophe_data_directory__ = '../data/'
 
 
 @contextmanager
@@ -42,6 +41,41 @@ def user_action(text_buffer):
     text_buffer.begin_user_action()
     yield text_buffer
     text_buffer.end_user_action()
+
+def get_data_file(*path_segments):
+    """Get the full path to a data file.
+
+    Returns the path to a file underneath the data directory (as defined by
+    `get_data_path`). Equivalent to os.path.join(get_data_path(),
+    *path_segments).
+    """
+    return os.path.join(get_data_path(), *path_segments)
+
+
+def get_data_path():
+    """Retrieve apostrophe data path
+
+    This path is by default <apostrophe_path>/../data/ in trunk
+    and /opt/apostrophe/data in an installed version but this path
+    is specified at installation time.
+    """
+
+    # Get pathname absolute or relative.
+    if os.path.isfile("/.flatpak-info"):
+        return '/app/share/apostrophe/'
+
+    path = os.path.join(
+        os.path.dirname(__file__), __apostrophe_data_directory__)
+
+    # We try first if the data exists in the local folder and then
+    # in the system installation path
+    abs_data_path = os.path.abspath(path)
+    if not os.path.exists(abs_data_path):
+        abs_data_path = '/usr/share/apostrophe/'
+    elif not os.path.exists(abs_data_path):
+        raise ProjectPathNotFound
+
+    return abs_data_path
 
 
 def path_to_file(path):

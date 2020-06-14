@@ -1,6 +1,6 @@
 project(
   'apostrophe',
-  version: '2.2.0.2',
+  version: '2.2.0.3',
   meson_version: '>= 0.50.0'
 )
 
@@ -57,6 +57,8 @@ conf.set('PYTHON_DIR', pythondir)
 conf.set('VERSION', meson.project_version())
 conf.set('PYTHON', python3.path())
 
+conf.set('PROFILE', profile)
+
 
 subdir('data')
 #subdir('help')
@@ -65,6 +67,13 @@ subdir('po')
 install_subdir(
   'apostrophe',
   install_dir: pythondir
+)
+
+configure_file(
+  input: 'config.py.in',
+  output: 'config.py',
+  configuration: conf,
+  install_dir: join_paths(pythondir, 'apostrophe')
 )
 
 message('Preparing init file')
