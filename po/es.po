@@ -1,34 +1,267 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: Apostrophe\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-14 22:17+0200\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Apostrophe\n"
-"Language: es\n"
+
+#: apostrophe/application.py:182
+msgid "Show debug messages (-vv debugs apostrophe also)"
+msgstr "Mostrar mensajes de depuración (-vv depuración de apostrophe también)"
+
+#: apostrophe/application.py:184
+msgid "Use experimental features"
+msgstr "Usar características experimentales"
+
+#: apostrophe/export_dialog.py:184
+msgid "Untitled document.md"
+msgstr "Documento sin título.md"
+
+#: apostrophe/export_dialog.py:199
+#, python-brace-format
+msgid ""
+"An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+"A ocurrido un error intentando exportar:\n"
+"\n"
+"{err_msg}"
+
+#: apostrophe/export_dialog.py:216
+msgid "Oh, no!"
+msgstr "¡Oh, no!"
+
+#: apostrophe/export_dialog.py:219
+#, fuzzy
+msgid "Seems that you don’t have TexLive installed.\n"
+msgstr "Parece que TexLive no está instalado.\n"
+
+#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
+msgid "Export"
+msgstr "Exportar"
+
+#: apostrophe/export_dialog.py:225
+#, python-format
+msgid "Export to %s"
+msgstr "Exportar a %s"
+
+#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:439
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: apostrophe/export_dialog.py:285
+msgid "A folder must be selected before proceeding"
+msgstr "Se debe seleccionar una carpeta antes de proceder"
+
+#: apostrophe/export_dialog.py:428
+#, fuzzy
+msgid "Please install the TexLive extension from GNOME Software or run\n"
+msgstr "Instala la extensión de TexLive desde Software de GNOME o ejecutando\n"
+
+#: apostrophe/export_dialog.py:431
+#, fuzzy
+msgid "Please install TexLive from your distribution’s repositories"
+msgstr "Instala TexLive desde los repositorios de la distribución"
+
+#: apostrophe/headerbars.py:82
+#, fuzzy
+msgid "Light mode isn’t available while using a dark global theme"
+msgstr "Light mode isn't available while using a dark global theme"
+
+#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
+msgstr "Anchura completa"
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr "Anchura partida"
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr "Altura partida"
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr "Ventana"
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr "La fórmula parece incorrecta:"
 
 #: apostrophe/inline_preview.py:226
 msgid "No matching footnote found"
 msgstr "No se encontró la nota al pie correspondiente"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr "nombre"
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr "verbo"
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr "adjetivo"
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr "adverbio"
+
+#: apostrophe/main_window.py:294
+msgid "Save your File"
+msgstr "Guardar el archivo"
+
+#: apostrophe/main_window.py:394
+msgid "Markdown Files"
+msgstr "Archivo Markdown"
+
+#: apostrophe/main_window.py:398
+msgid "Plain Text Files"
+msgstr "Archivo de texto plano"
+
+#: apostrophe/main_window.py:401
+msgid "Open a .md file"
+msgstr "Abrir un archivo .md"
+
+#: apostrophe/main_window.py:425 apostrophe/main_window.py:471
+msgid "New File"
+msgstr "Nuevo archivo"
+
+#: apostrophe/main_window.py:432
+#, python-format
+msgid "Save changes to document “%s” before closing?"
+msgstr "¿Guardar cambios al documento “%s” antes de cerrar?"
+
+#: apostrophe/main_window.py:436
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Si no se guarda todos los cambios se perderán permanentemente."
+
+#: apostrophe/main_window.py:438
+msgid "Close without saving"
+msgstr "Cerrar sin guardar"
+
+#: apostrophe/main_window.py:440
+msgid "Save now"
+msgstr "Guardar ahora"
+
+#: apostrophe/main_window.py:523
+#, fuzzy
+msgid ""
+"The file you tried to open doesn’t "
+"exist.                                            \n"
+"A new file will be created in its place when you save the current one."
+msgstr ""
+"El archivo que se trata de abrir no "
+"existe.                                            \n"
+"Se creará un nuevo archivo en su lugar cuando se guarde el actual."
+
+#: apostrophe/main_window.py:533
+#, python-format
+msgid "Error Reading File: %r"
+msgstr "Error leyendo el archivo: %r"
+
+#: apostrophe/main_window.py:538
+#, python-format
+msgid ""
+"Error reading file:                                         \n"
+"%r"
+msgstr ""
+"Error leyendo el archivo:                                         \n"
+"%r"
+
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:306
 msgid "Preview"
 msgstr "Previsualización"
 
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr "Modo de concentración"
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr "{:n} Carácteres"
 
-#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
-msgid "Export"
-msgstr "Exportar"
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr "{:n} Palabras"
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr "{:n} Frases"
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr "{:n} Párrafos"
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} Tiempo de lectura"
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr "sitio web"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "cursiva"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "negrita"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "texto tachado"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Elemento"
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr "Cabecera"
+
+#: data/ui/About.ui.in:12
+msgid "Copyright (C) 2020, Wolf Vollprecht"
+msgstr ""
+
+#: data/ui/About.ui.in:14
+msgid "Apostrophe website"
+msgstr ""
+
+#. Put your name in here, like this:
+#. Manuel Genovés <manuel.genoves@gmail.com>
+#: data/ui/About.ui.in:20
+msgid "translator-credits"
+msgstr ""
+
+#: data/ui/About.ui.in:65
+msgid "Donations:"
+msgstr ""
+
+#: data/ui/About.ui.in:74
+msgid "Paypal"
+msgstr ""
+
+#: data/ui/About.ui.in:105
+msgid "Help to translate:"
+msgstr ""
+
+#: data/ui/About.ui.in:114
+msgid "Poeditor"
+msgstr ""
 
 #: data/ui/Export.ui:45
 msgid "Smart"
 msgstr "Inteligente"
 
 #: data/ui/Export.ui:50
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
+#, fuzzy
+msgid "Pandoc can automatically make “--” to a long dash and more"
 msgstr "Pandoc puede convertir automáticamente «--» a una raya y más"
 
 #: data/ui/Export.ui:62
@@ -40,8 +273,12 @@ msgid "Standalone"
 msgstr "Independiente"
 
 #: data/ui/Export.ui:83
-msgid "Use a header and footer to include things like stylesheets and meta information"
-msgstr "Usar el encabezado y el pie para incluir cosas como hojas de estilo o metainformación"
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+"Usar el encabezado y el pie para incluir cosas como hojas de estilo o "
+"metainformación"
 
 #: data/ui/Export.ui:96
 msgid "Number Sections"
@@ -52,8 +289,13 @@ msgid "Strict Markdown"
 msgstr "Markdown estricto"
 
 #: data/ui/Export.ui:117
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
+#, fuzzy
+msgid "Use “strict” markdown instead of “pandoc” markdown"
 msgstr "Utiliza markdown «estricto» en lugar de markdown «pandoc»"
+
+#: data/ui/Export.ui:129
+msgid "Slideshow Incremental Bullets"
+msgstr "Viñetas incrementales en la presentación"
 
 #: data/ui/Export.ui:134
 msgid "Show one bullet point after another in a slideshow"
@@ -63,6 +305,10 @@ msgstr "Mostrar una viñeta tras otra en una presentación"
 msgid "<b>General Options</b>"
 msgstr "<b>Opciones generales</b>"
 
+#: data/ui/Export.ui:189
+msgid "Highlight Syntax"
+msgstr "Resaltar sintaxis"
+
 #: data/ui/Export.ui:211 data/ui/Export.ui:225
 msgid "Choose a color theme for syntax highlighting"
 msgstr "Elegir un tema de color para el resaltado de sintaxis"
@@ -71,9 +317,41 @@ msgstr "Elegir un tema de color para el resaltado de sintaxis"
 msgid "Highlight style  "
 msgstr "Estilo de resaltado  "
 
+#: data/ui/Export.ui:262
+msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
+msgstr "<b>Resaltar sintaxis</b> (HTML, LaTeX)"
+
+#: data/ui/Export.ui:294 data/ui/Export.ui:307
+msgid "Choose a bibliography file"
+msgstr "Seleccionar un archivo de bibliografía"
+
+#: data/ui/Export.ui:295
+msgid "File"
+msgstr "Archivo"
+
+#: data/ui/Export.ui:325
+msgid "<b>Bibliography </b>"
+msgstr " <b>Bibliografía </b> "
+
+#: data/ui/Export.ui:370
+msgid "Self-contained"
+msgstr "Autocontenido"
+
 #: data/ui/Export.ui:375
-msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
-msgstr "Produce HTML sin dependencias externas (todas las imágenes y hojas de estilo están incluidas)"
+msgid ""
+"Produces a HTML that has no external dependencies (all images and "
+"stylesheets are included)"
+msgstr ""
+"Produce HTML sin dependencias externas (todas las imágenes y hojas de estilo "
+"están incluidas)"
+
+#: data/ui/Export.ui:387
+msgid "HTML5"
+msgstr "HTML5"
+
+#: data/ui/Export.ui:392
+msgid "Use HTML5 syntax"
+msgstr "Usa sintaxis HTML5"
 
 #: data/ui/Export.ui:411 data/ui/Export.ui:425
 msgid "Choose a CSS File that you want to use"
@@ -87,21 +365,114 @@ msgstr "Archivo CSS"
 msgid "<b>HTML Options</b>"
 msgstr "<b>Opciones de HTML</b>"
 
+#: data/ui/Export.ui:484 data/ui/Export.ui:520
+msgid "Paper size"
+msgstr "Tamaño del papel"
+
+#: data/ui/Export.ui:501
+msgid "A4"
+msgstr "A4"
+
+#: data/ui/Export.ui:502
+msgid "US Letter"
+msgstr "Carta US"
+
 #: data/ui/Export.ui:546
 msgid "Commandline Reference"
 msgstr "Referencia de consola"
 
-#: apostrophe/main_window.py:284
-msgid "Save your File"
-msgstr "Guardar el archivo"
+#: data/ui/ExportPopover.ui:19
+#, fuzzy
+msgid "Save As…"
+msgstr "Guardar como"
 
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
-msgid "Cancel"
-msgstr "Cancelar"
+#: data/ui/ExportPopover.ui:101
+#, fuzzy
+msgid "Advanced Export…"
+msgstr "Exportación avanzada..."
 
-#: apostrophe/main_window.py:430
-msgid "Save now"
-msgstr "Guardar ahora"
+#: data/ui/ExportPopover.ui:126
+msgid "Copy HTML"
+msgstr "Copiar HTML"
+
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr "Sincronizar vistas"
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr "Nuevo"
+
+#: data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr "Abrir"
+
+#: data/ui/Headerbar.ui:199
+msgid "Open Recent"
+msgstr "Abrir recientes"
+
+#: data/ui/Headerbar.ui:225
+msgid "Save"
+msgstr "Guardar"
+
+#: data/ui/Headerbar.ui:242
+#, fuzzy
+msgid "Save as…"
+msgstr "Guardar como"
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "Menú"
+
+#: data/ui/Headerbar.ui:378
+msgid "Find"
+msgstr "Buscar"
+
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr "Modo Hemingway"
+
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "Modo de concentración"
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr "Buscar y reemplazar"
+
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
+msgstr "Abrir tutorial"
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr "Atajos de teclado"
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr "Acerca de Apostrophe"
+
+#: data/ui/Preferences.ui:49
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+msgid "Check spelling while typing"
+msgstr "Revisar ortografía mientras se escribe"
+
+#: data/ui/Preferences.ui:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+msgid "Input format"
+msgstr "Formato de entrada"
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr "Esconder las barras de título y estatus cuando se escribe."
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr "Esconder automáticamente la barra de título"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -128,20 +499,55 @@ msgctxt "shortcut window"
 msgid "Save as"
 msgstr "Guardar como"
 
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Cerrar documento"
+
+#: data/ui/Shortcuts.ui:52
+msgctxt "shortcut window"
+msgid "Quit application"
+msgstr "Salir de la aplicación"
+
+#: data/ui/Shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Modes"
+msgstr "Modos"
+
 #: data/ui/Shortcuts.ui:65
 msgctxt "shortcut window"
 msgid "Focus mode"
 msgstr "Modo de concentración"
+
+#: data/ui/Shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Hemingway mode"
+msgstr "Modo Hemingway"
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Previsualización"
 
 #: data/ui/Shortcuts.ui:86
 msgctxt "shortcut window"
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: data/ui/Shortcuts.ui:79
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
 msgctxt "shortcut window"
-msgid "Preview"
-msgstr "Previsualización"
+msgid "Find"
+msgstr "Buscar"
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr "Buscar y reemplazar"
+
+#: data/ui/Shortcuts.ui:115
+msgctxt "shortcut window"
+msgid "Markdown"
+msgstr "Markdown"
 
 #: data/ui/Shortcuts.ui:119
 msgctxt "shortcut window"
@@ -163,6 +569,11 @@ msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Negita"
 
+#: data/ui/Shortcuts.ui:147
+msgctxt "shortcut window"
+msgid "Strikeout"
+msgstr "Tachar"
+
 #: data/ui/Shortcuts.ui:154
 msgctxt "shortcut window"
 msgid "Header"
@@ -172,209 +583,6 @@ msgstr "Cabecera"
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Seleccionar todo"
-
-#: data/ui/Window.ui:206
-msgid "Next Match"
-msgstr "Coincidencia siguiente"
-
-#: data/ui/Window.ui:192
-msgid "Previous Match"
-msgstr "Coincidencia anterior"
-
-#: data/ui/Window.ui:239
-msgid "Case Sensitive"
-msgstr "Distinguir mayúsculas y minúsculas"
-
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
-msgid "Replace"
-msgstr "Reemplazar"
-
-#: apostrophe/plugins/bibtex/bibtex_item.glade:18
-#: apostrophe/plugins/bibtex/bibtex_item.glade:32
-#: apostrophe/plugins/bibtex/bibtex_item.glade:45
-msgid "label"
-msgstr "etiqueta"
-
-#: apostrophe/application.py:178
-msgid "Use experimental features"
-msgstr "Usar características experimentales"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:58
-msgid "Open file base path"
-msgstr "Abrir ruta de base de archivo"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr "Abrir rutas de archivos de la sesión actual"
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr "Abrir tutorial"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:23
-msgid "Use dark mode"
-msgstr "Modo oscuro"
-
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
-msgstr "Documento sin título.md"
-
-#: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
-""
-msgstr "Instala la extensión de TexLive desde Software de GNOME o ejecutando\n"
-""
-
-#: apostrophe/export_dialog.py:431
-msgid "Please, install TexLive from your distribuiton repositories"
-msgstr "Instala TexLive desde los repositorios de la distribución"
-
-#: data/ui/Headerbar.ui:171
-msgid "New"
-msgstr "Nuevo"
-
-#: data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr "Abrir"
-
-#: data/ui/Headerbar.ui:199
-msgid "Open Recent"
-msgstr "Abrir recientes"
-
-#: data/ui/Headerbar.ui:225
-msgid "Save"
-msgstr "Guardar"
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr "Menú"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:24
-msgid "Enable or disable the dark mode."
-msgstr "Activar o desactivar el modo oscuro."
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:30 data/ui/Preferences.ui:49
-msgid "Check spelling while typing"
-msgstr "Revisar ortografía mientras se escribe"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:31
-msgid "Enable or disable spellchecking."
-msgstr "Activar o desactivar la corrección ortográfica."
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:37
-msgid "Synchronize editor/preview scrolling"
-msgstr "Sincronizar el scroll del editor/vista previa"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:38
-msgid "Keep the editor and preview scroll positions in sync."
-msgstr "Mantener sincronizada la posición de scroll entre el editor y la previsualización."
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:44 data/ui/Preferences.ui:73
-msgid "Input format"
-msgstr "Formato de entrada"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:45
-msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr "Formato de entrada a usar para previsualizar y exportar usando Pandoc."
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:65
-msgid "Default statistic"
-msgstr "Estadística por defecto"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:66
-msgid "Which statistic is shown on the main window."
-msgstr "Estadística que se mostrará en la ventana principal."
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:72
-msgid "Characters per line"
-msgstr "Caracteres por línea"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:73
-msgid "Maximum number of characters per line within the editor."
-msgstr "Máximo número de caracteres por línea en el editor."
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:79
-msgid "Preview mode"
-msgstr "Modo de previsualización"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:80
-msgid "How to display the preview."
-msgstr "Como mostrar la vista previa"
-
-#: data/ui/Export.ui:129
-msgid "Slideshow Incremental Bullets"
-msgstr "Viñetas incrementales en la presentación"
-
-#: data/ui/Export.ui:189
-msgid "Highlight Syntax"
-msgstr "Resaltar sintaxis"
-
-#: data/ui/Export.ui:262
-msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
-msgstr "<b>Resaltar sintaxis</b> (HTML, LaTeX)"
-
-#: data/ui/Export.ui:294 data/ui/Export.ui:307
-msgid "Choose a bibliography file"
-msgstr "Seleccionar un archivo de bibliografía"
-
-#: data/ui/Export.ui:295
-msgid "File"
-msgstr "Archivo"
-
-#: data/ui/Export.ui:325
-msgid "<b>Bibliography </b>"
-msgstr " <b>Bibliografía </b> "
-
-#: data/ui/Export.ui:370
-msgid "Self-contained"
-msgstr "Autocontenido"
-
-#: data/ui/Export.ui:387
-msgid "HTML5"
-msgstr "HTML5"
-
-#: data/ui/Export.ui:392
-msgid "Use HTML5 syntax"
-msgstr "Usa sintaxis HTML5"
-
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr "Anchura completa"
-
-#: data/ui/Shortcuts.ui:45
-msgctxt "shortcut window"
-msgid "Close document"
-msgstr "Cerrar documento"
-
-#: data/ui/Shortcuts.ui:52
-msgctxt "shortcut window"
-msgid "Quit application"
-msgstr "Salir de la aplicación"
-
-#: data/ui/Shortcuts.ui:61
-msgctxt "shortcut window"
-msgid "Modes"
-msgstr "Modos"
-
-#: data/ui/Shortcuts.ui:72
-msgctxt "shortcut window"
-msgid "Hemingway mode"
-msgstr "Modo Hemingway"
-
-#: data/ui/Shortcuts.ui:115
-msgctxt "shortcut window"
-msgid "Markdown"
-msgstr "Markdown"
-
-#: data/ui/Shortcuts.ui:147
-msgctxt "shortcut window"
-msgid "Strikeout"
-msgstr "Tachar"
 
 #: data/ui/Shortcuts.ui:170
 msgctxt "shortcut window"
@@ -421,17 +629,25 @@ msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Seleccionar todo"
 
-#: data/ui/Window.ui:102
-msgid "0 Words"
-msgstr "0 Palabras"
-
 #: data/ui/Window.ui:106
 msgid "Show Statistics"
 msgstr "Mostrar estadísticas"
 
+#: data/ui/Window.ui:192
+msgid "Previous Match"
+msgstr "Coincidencia anterior"
+
+#: data/ui/Window.ui:206
+msgid "Next Match"
+msgstr "Coincidencia siguiente"
+
 #: data/ui/Window.ui:235
 msgid "aA"
 msgstr "aA"
+
+#: data/ui/Window.ui:239
+msgid "Case Sensitive"
+msgstr "Distinguir mayúsculas y minúsculas"
 
 #: data/ui/Window.ui:249
 msgid "(.*)"
@@ -441,240 +657,132 @@ msgstr "(.*)"
 msgid "Regular Expression"
 msgstr "Expresión Regular"
 
-#: apostrophe/main_window.py:384
-msgid "Markdown Files"
-msgstr "Archivo Markdown"
-
-#: apostrophe/main_window.py:388
-msgid "Plain Text Files"
-msgstr "Archivo de texto plano"
-
-#: apostrophe/main_window.py:391
-msgid "Open a .md file"
-msgstr "Abrir un archivo .md"
-
-#: apostrophe/main_window.py:428
-msgid "Close without saving"
-msgstr "Cerrar sin guardar"
-
-#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
-msgid "New File"
-msgstr "Nuevo archivo"
-
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
-msgid "Half-Width"
-msgstr "Anchura partida"
-
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
-msgid "Half-Height"
-msgstr "Altura partida"
-
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
-msgid "Windowed"
-msgstr "Ventana"
-
-#: apostrophe/stats_handler.py:67
-msgid "{:n} Characters"
-msgstr "{:n} Carácteres"
-
-#: apostrophe/stats_handler.py:69
-msgid "{:n} Words"
-msgstr "{:n} Palabras"
-
-#: apostrophe/stats_handler.py:71
-msgid "{:n} Sentences"
-msgstr "{:n} Frases"
-
-#: apostrophe/stats_handler.py:73
-msgid "{:n} Paragraphs"
-msgstr "{:n} Párrafos"
-
-#: apostrophe/stats_handler.py:75
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "{:d}:{:02d}:{:02d} Tiempo de lectura"
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr "cursiva"
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr "negrita"
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr "texto tachado"
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr "Elemento"
-
-#: apostrophe/text_view_format_inserter.py:97
-msgid "Header"
-msgstr "Cabecera"
-
-#: apostrophe/application.py:176
-msgid "Show debug messages (-vv debugs apostrophe also)"
-msgstr "Mostrar mensajes de depuración (-vv depuración de apostrophe también)"
-
-#: apostrophe/export_dialog.py:199
-msgid "An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr "A ocurrido un error intentando exportar:\n"
-"\n"
-"{err_msg}"
-
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
-msgstr "¡Oh, no!"
-
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don't have TexLive installed.\n"
-""
-msgstr "Parece que TexLive no está instalado.\n"
-""
-
-#: apostrophe/export_dialog.py:225
-msgid "Export to %s"
-msgstr "Exportar a %s"
-
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
-msgstr "Se debe seleccionar una carpeta antes de proceder"
-
-#: apostrophe/headerbars.py:82
-msgid "Light mode isn't available while using a dark global theme"
-msgstr "Light mode isn't available while using a dark global theme"
-
-#: apostrophe/inline_preview.py:191
-msgid "Formula looks incorrect:"
-msgstr "La fórmula parece incorrecta:"
-
-#: apostrophe/inline_preview.py:246
-msgid "noun"
-msgstr "nombre"
-
-#: apostrophe/inline_preview.py:248
-msgid "verb"
-msgstr "verbo"
-
-#: apostrophe/inline_preview.py:250
-msgid "adjective"
-msgstr "adjetivo"
-
-#: apostrophe/inline_preview.py:252
-msgid "adverb"
-msgstr "adverbio"
-
-#: apostrophe/main_window.py:422
-msgid "Save changes to document “%s” before closing?"
-msgstr "¿Guardar cambios al documento “%s” antes de cerrar?"
-
-#: apostrophe/main_window.py:426
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "Si no se guarda todos los cambios se perderán permanentemente."
-
-#: apostrophe/main_window.py:510
-msgid "The file you tried to open doesn't exist.                                            \n"
-"A new file will be created in its place when you save the current one."
-msgstr "El archivo que se trata de abrir no existe.                                            \n"
-"Se creará un nuevo archivo en su lugar cuando se guarde el actual."
-
-#: apostrophe/main_window.py:520
-msgid "Error Reading File: %r"
-msgstr "Error leyendo el archivo: %r"
-
-#: apostrophe/main_window.py:525
-msgid "Error reading file:                                         \n"
-"%r"
-msgstr "Error leyendo el archivo:                                         \n"
-"%r"
-
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
-msgid "web page"
-msgstr "sitio web"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr "Esconder automáticamente la barra de título"
-
-#: data/de.wolfvollprecht.UberWriter.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr "Esconder las barras de título y estatus cuando se escribe."
-
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
-msgstr "Tamaño del papel"
-
-#: data/ui/Export.ui:501
-msgid "A4"
-msgstr "A4"
-
-#: data/ui/Export.ui:502
-msgid "US Letter"
-msgstr "Carta US"
-
-#: data/ui/Headerbar.ui:242
-msgid "Save as..."
-msgstr "Guardar como..."
-
-#: data/ui/Headerbar.ui:375
-msgid "Find"
-msgstr "Buscar"
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr "Buscar y reemplazar"
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr "Atajos de teclado"
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr "Acerca de Apostrophe"
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr "Esconder las barras de título y estatus cuando se escribe."
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr "Esconder automáticamente la barra de título"
-
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
-msgctxt "shortcut window"
-msgid "Find"
-msgstr "Buscar"
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
-msgstr "Buscar y reemplazar"
+#: data/ui/Window.ui:266 data/ui/Window.ui:344
+msgid "Replace"
+msgstr "Reemplazar"
 
 #: data/ui/Window.ui:358
 msgid "Replace All"
 msgstr "Reemplazar todo"
 
-#: data/ui/ExportPopover.ui:19
-msgid "Save As..."
-msgstr "Guardar como..."
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
+#, fuzzy
+msgid "Apostrophe"
+msgstr "Acerca de Apostrophe"
 
-#: data/ui/ExportPopover.ui:101
-msgid "Advanced Export..."
-msgstr "Exportación avanzada..."
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
+msgid "An elegant, distraction-free markdown editor"
+msgstr ""
 
-#: data/ui/ExportPopover.ui:126
-msgid "Copy HTML"
-msgstr "Copiar HTML"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
+msgid ""
+"Apostrophe is a GTK based distraction free Markdown editor, originally "
+"created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc "
+"as backend for markdown parsing and offers a very clean and sleek user "
+"interface."
+msgstr ""
 
-#: data/ui/Headerbar.ui:130
-msgid "Sync Views"
-msgstr "Sincronizar vistas"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
+msgid "You can install the recommended TexLive extension with the command:"
+msgstr ""
 
-#: data/ui/Menu.ui:100
-msgid "Hemingway Mode"
-msgstr "Modo Hemingway"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
+msgid ""
+"flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+msgstr ""
 
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
+msgid "or from Gnome-Software"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:35
+msgid "Wolf V., Manuel G."
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
+msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
+msgid "Apostrophe, a simple and distraction free Markdown Editor"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
+msgid "Use dark mode"
+msgstr "Modo oscuro"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
+msgid "Enable or disable the dark mode."
+msgstr "Activar o desactivar el modo oscuro."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
+msgid "Enable or disable spellchecking."
+msgstr "Activar o desactivar la corrección ortográfica."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+msgid "Synchronize editor/preview scrolling"
+msgstr "Sincronizar el scroll del editor/vista previa"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr ""
+"Mantener sincronizada la posición de scroll entre el editor y la "
+"previsualización."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr "Formato de entrada a usar para previsualizar y exportar usando Pandoc."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr "Esconder automáticamente la barra de título"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr "Esconder las barras de título y estatus cuando se escribe."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+msgid "Open file base path"
+msgstr "Abrir ruta de base de archivo"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
+msgid "Open file paths of the current session"
+msgstr "Abrir rutas de archivos de la sesión actual"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+msgid "Default statistic"
+msgstr "Estadística por defecto"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
+msgid "Which statistic is shown on the main window."
+msgstr "Estadística que se mostrará en la ventana principal."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+msgid "Characters per line"
+msgstr "Caracteres por línea"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
+msgid "Maximum number of characters per line within the editor."
+msgstr "Máximo número de caracteres por línea en el editor."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+msgid "Preview mode"
+msgstr "Modo de previsualización"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
+msgid "How to display the preview."
+msgstr "Como mostrar la vista previa"
+
+#~ msgid "label"
+#~ msgstr "etiqueta"
+
+#~ msgid "0 Words"
+#~ msgstr "0 Palabras"
+
+#~ msgid "Save as..."
+#~ msgstr "Guardar como..."
+
+#~ msgid "Save As..."
+#~ msgstr "Guardar como..."
