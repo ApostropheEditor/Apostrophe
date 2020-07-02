@@ -10,10 +10,6 @@
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 
-import os
-import argparse
-from gettext import gettext as _
-
 import gi
 
 from apostrophe.main_window import MainWindow
@@ -32,8 +28,12 @@ class Application(Gtk.Application):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, application_id="org.gnome.gitlab.somas.Apostrophe",
-                         flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
+                         flags=Gio.ApplicationFlags.HANDLES_OPEN,
                          **kwargs)
+
+        self.add_main_option("verbose", b"v", GLib.OptionFlags.NONE,
+                             GLib.OptionArg.NONE, "Verbose output", None)
+
         self.window = None
         self.settings = Settings.new()
 
@@ -164,33 +164,18 @@ class Application(Gtk.Application):
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="Apostrophe")
             self.window = MainWindow(self)
-            if self.args:
-                #TODO: Implement proper path handling once and for all
-                if self.args[0].startswith("/"):
-                    prefix = ""
-                else:
-                    prefix = os.getcwd() + '/'
-                self.window.load_file(prefix + self.args[0])
-
         self.window.present()
 
-    def do_command_line(self, _command_line):
-        """Support for command line options"""
-        parser = argparse.ArgumentParser()
-        parser.add_argument(
-            "-v", "--verbose", action="count", dest="verbose",
-            help=_("Show debug messages (-vv debugs apostrophe also)"))
-        parser.add_argument(
-            "-e", "--experimental-features", help=_("Use experimental features"),
-            action='store_true')
-        (self.options, self.args) = parser.parse_known_args()
+    def do_handle_local_options(self, options):
+        if options.contains("verbose"):
+            set_up_logging(1)
+        return -1
 
-        set_up_logging(self.options)
-
+    def do_open(self, files, _n_files, _hint):
         self.activate()
-        return 0
+        self.window.load_file(files[0].get_path())
 
-    def _set_dark_mode (self):
+    def _set_dark_mode(self):
         dark = self.settings.get_value("dark-mode")
         settings = Gtk.Settings.get_default()
 
@@ -290,7 +275,3 @@ class Application(Gtk.Application):
     def on_preview_mode(self, action, value):
         action.set_state(value)
         self.settings.set_string("preview-mode", value.get_string())
-
-# ~ if __name__ == "__main__":
-    # ~ app = Application()
-    # ~ app.run(sys.argv)
