@@ -290,12 +290,12 @@ class MainWindow(StyledWindow):
         filefilter.add_mime_type('text/x-markdown')
         filefilter.add_mime_type('text/plain')
         filefilter.set_name('Markdown (.md)')
-        filechooser = Gtk.FileChooserDialog(
+        filechooser = Gtk.FileChooserNative.new(
             _("Save your File"),
             self,
             Gtk.FileChooserAction.SAVE,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Save", Gtk.ResponseType.OK)
+            "_Save",
+            "_Cancel"
         )
 
         filechooser.set_do_overwrite_confirmation(True)
@@ -330,12 +330,12 @@ class MainWindow(StyledWindow):
         """provide to the user a filechooser and save the document
            where he wants. Call set_headbar_title after that
         """
-        filechooser = Gtk.FileChooserDialog(
+        filechooser = Gtk.FileChooserNative.new(
             "Save your File",
             self,
             Gtk.FileChooserAction.SAVE,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Save", Gtk.ResponseType.OK)
+            "_Save",
+            "_Cancel"
         )
         filechooser.set_do_overwrite_confirmation(True)
         if self.filename:
@@ -397,12 +397,12 @@ class MainWindow(StyledWindow):
         plaintext_filter.add_mime_type('text/plain')
         plaintext_filter.set_name(_('Plain Text Files'))
 
-        filechooser = Gtk.FileChooserDialog(
+        filechooser = Gtk.FileChooserNative.new(
             _("Open a .md file"),
             self,
             Gtk.FileChooserAction.OPEN,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Open", Gtk.ResponseType.OK)
+            "_Open",
+            "_Cancel"
         )
         filechooser.add_filter(markdown_filter)
         filechooser.add_filter(plaintext_filter)
