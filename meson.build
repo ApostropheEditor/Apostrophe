@@ -21,9 +21,9 @@ endif
 application_id = 'org.gnome.gitlab.somas.Apostrophe@0@'.format(profile)
 
 
-python = import('python3')
-python3 = python.find_python()
-if not python3.found()
+python = import('python')
+py_installation = python.find_installation('python3')
+if not py_installation.found()
     error('No valid python3 binary found')
 else
     message('Found python3 binary')
@@ -43,7 +43,7 @@ find_program('update-desktop-database', required: false)
 
 gettext_package = meson.project_name()
 localedir = get_option('prefix') / get_option('localedir')
-pythondir = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
+pythondir = py_installation.get_path('purelib')
 datadir = get_option('prefix') / get_option('datadir')
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 pkgdatadir = datadir / meson.project_name()
@@ -55,7 +55,7 @@ conf.set('DATA_DIR', datadir)
 conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
 conf.set('PYTHON_DIR', pythondir)
 conf.set('VERSION', meson.project_version())
-conf.set('PYTHON', python3.path())
+#conf.set('PYTHON', python.path())
 
 conf.set('PROFILE', profile)
 
@@ -85,4 +85,5 @@ configure_file(
 )
 
 meson.add_install_script('build-aux/meson_post_install.py')
+meson.add_install_script('build-aux/meson_post_config.py')
 
