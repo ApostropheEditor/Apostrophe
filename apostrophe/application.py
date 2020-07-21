@@ -26,8 +26,8 @@ from apostrophe.helpers import get_media_path
 
 class Application(Gtk.Application):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="org.gnome.gitlab.somas.Apostrophe",
+    def __init__(self, application_id, *args, **kwargs):
+        super().__init__(*args, application_id=application_id,
                          flags=Gio.ApplicationFlags.HANDLES_OPEN,
                          **kwargs)
 
@@ -36,6 +36,7 @@ class Application(Gtk.Application):
 
         self.window = None
         self.settings = Settings.new()
+        self._application_id = application_id
 
     def do_startup(self, *args, **kwargs):
 
@@ -164,6 +165,9 @@ class Application(Gtk.Application):
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="Apostrophe")
             self.window = MainWindow(self)
+
+        if self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel':
+            self.window.get_style_context().add_class('devel')
         self.window.present()
 
     def do_handle_local_options(self, options):
@@ -173,7 +177,7 @@ class Application(Gtk.Application):
 
     def do_open(self, files, _n_files, _hint):
         self.activate()
-        self.window.load_file(files[0].get_path())
+        self.window.load_file(files[0])
 
     def _set_dark_mode(self):
         dark = self.settings.get_value("dark-mode")

@@ -92,7 +92,7 @@ resources = gnome.compile_resources(
   meson.project_name() + '.gresource.xml',
   gresource_bundle: true,
   install:true,
-  install_dir: join_paths(datadir, meson.project_name()),
+  install_dir: datadir,
   dependencies: ui_dependencies
 )
 message('datadir')
@@ -101,17 +101,17 @@ subdir('icons')
 
 install_subdir(
 	'lua',
-	install_dir: pkgdatadir
+	install_dir: datadir
 )
 install_subdir(
 	'media',
-	install_dir: pkgdatadir
+	install_dir: datadir
 )
 install_subdir(
 	'ui',
-	install_dir: pkgdatadir
+	install_dir: datadir
 )
 install_subdir(
 	'reference_files',
-	install_dir: pkgdatadir
+	install_dir: datadir
 )

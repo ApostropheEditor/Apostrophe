@@ -4,7 +4,21 @@ project(
   meson_version: '>= 0.50.0'
 )
 
+# Importing modules
+
+gnome  = import('gnome')
+i18n   = import('i18n')
+python = import('python')
+
+py_installation = python.find_installation('python3')
+if not py_installation.found()
+    error('No valid python3 binary found')
+endif
+
+# Handling of devel versions
+
 if get_option('profile') == 'development'
+  message('devel version')
   profile = '.Devel'
   name_suffix = ' (Development)'
   vcs_tag = run_command('git', 'rev-parse', '--short', 'HEAD').stdout().strip()
@@ -20,17 +34,7 @@ else
 endif
 application_id = 'org.gnome.gitlab.somas.Apostrophe@0@'.format(profile)
 
-
-python = import('python')
-py_installation = python.find_installation('python3')
-if not py_installation.found()
-    error('No valid python3 binary found')
-else
-    message('Found python3 binary')
-endif
-gnome  = import('gnome')
-i18n   = import('i18n')
-
+# Dependencies
 
 dependency('glib-2.0')
 dependency('gobject-2.0')
@@ -44,20 +48,9 @@ find_program('update-desktop-database', required: false)
 gettext_package = meson.project_name()
 localedir = get_option('prefix') / get_option('localedir')
 pythondir = py_installation.get_path('purelib')
-datadir = get_option('prefix') / get_option('datadir')
-bindir = join_paths(get_option('prefix'), get_option('bindir'))
-pkgdatadir = datadir / meson.project_name()
+datadir = get_option('prefix') / get_option('datadir') / meson.project_name()
+#bindir = join_paths(get_option('prefix'), get_option('bindir'))
 podir = meson.source_root() / 'po'
-
-conf = configuration_data()
-conf.set('PACKAGE_URL', 'https://somas.pages.gitlab.gnome.org/apostrophe/')
-conf.set('DATA_DIR', datadir)
-conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
-conf.set('PYTHON_DIR', pythondir)
-conf.set('VERSION', meson.project_version())
-#conf.set('PYTHON', python.path())
-
-conf.set('PROFILE', profile)
 
 
 subdir('data')
@@ -66,22 +59,46 @@ subdir('po')
 
 install_subdir(
   'apostrophe',
-  install_dir: pythondir
+  install_dir: py_installation.get_install_dir()
 )
 
-configure_file(
-  input: 'config.py.in',
-  output: 'config.py',
-  configuration: conf,
-  install_dir: join_paths(pythondir, 'apostrophe')
-)
+# System installation
 
-message('Preparing init file')
+conf = configuration_data()
+conf.set('PACKAGE_URL', 'https://somas.pages.gitlab.gnome.org/apostrophe/')
+conf.set('DATA_DIR', datadir)
+conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
+conf.set('PYTHON_DIR', pythondir)
+conf.set('VERSION', meson.project_version())
+conf.set('LOCAL_BUILD', 'False')
+
+conf.set('PROFILE', profile)
+conf.set('APP_ID', application_id)
+
 configure_file(
   input: 'apostrophe.in',
   output: 'apostrophe',
   configuration: conf,
-  install_dir: bindir
+  install_dir: get_option('bindir')
+)
+
+# Local installation
+
+local_config = configuration_data()
+local_config.set('DATA_DIR', join_paths(meson.build_root(), 'data'))
+local_config.set('PACKAGE_URL', 'https://somas.pages.gitlab.gnome.org/apostrophe/')
+local_config.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
+local_config.set('PYTHON_DIR', meson.source_root())
+local_config.set('PROFILE', profile)
+local_config.set('APP_ID', application_id)
+
+local_config.set('SCHEMAS_DIR', join_paths(meson.build_root(), 'data'))
+local_config.set('LOCAL_BUILD', 'True')
+
+configure_file(
+  input: 'apostrophe.in',
+  output: 'local-apostrophe',
+  configuration: local_config
 )
 
 meson.add_install_script('build-aux/meson_post_install.py')

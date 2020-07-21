@@ -25,30 +25,21 @@ import pkg_resources
 import gettext
 import locale
 
+_LOCAL = @LOCAL_BUILD@
+
+if _LOCAL:
+    # In the local use case, use apostrophe module from the sourcetree
+    sys.path.insert(1, '@PYTHON_DIR@')
+
+    # In the local use case the installed schemas go in <builddir>/data
+    os.environ["XDG_DATA_DIRS"] = '@SCHEMAS_DIR@:' + os.environ.get("XDG_DATA_DIRS", "")
+
 from gi.repository import Gio
 
-# Add project root directory (enable symlink and trunk execution)
-PROJECT_ROOT_DIRECTORY = os.path.abspath(
-    os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
-
-# Set the path if needed. This allows apostrophe to run without installing it :)
-python_path = []
-
-if (os.path.exists(os.path.join(PROJECT_ROOT_DIRECTORY, 'apostrophe'))
-    and PROJECT_ROOT_DIRECTORY not in sys.path):
-    python_path.insert(0, PROJECT_ROOT_DIRECTORY)
-    sys.path.insert(0, PROJECT_ROOT_DIRECTORY)
-if python_path:
-    os.putenv('PYTHONPATH', "%s:%s" % (os.getenv('PYTHONPATH', ''), ':'.join(python_path))) # for subprocesses
-    
 import apostrophe
 
-
 localedir = '@LOCALE_DIR@'
-pkgdatadir = '@DATA_DIR@'
-
-
-#locale_dir = os.path.abspath(os.path.join(os.path.dirname(apostrophe.__file__),'../po/'))
+datadir = '@DATA_DIR@'
 
 # L10n
 locale.textdomain('apostrophe')
@@ -56,8 +47,23 @@ locale.bindtextdomain('apostrophe', localedir)
 gettext.textdomain('apostrophe')
 gettext.bindtextdomain('apostrophe', localedir)
 
-resource = Gio.resource_load(os.path.join(pkgdatadir, 'apostrophe/apostrophe.gresource'))
-Gio.Resource._register(resource)
+
+def run_application():
+    from apostrophe.application import Application
+
+    app = Application('@APP_ID@')
+    return app.run(sys.argv)
 
 
-apostrophe.main()
+def main():
+    resource = Gio.resource_load(
+        os.path.join(datadir, 'apostrophe.gresource'))
+    Gio.Resource._register(resource)
+
+    return run_application()
+
+
+if __name__ == '__main__':
+    if _LOCAL:
+        print('Running from source tree, using local files.')
+    sys.exit(main())

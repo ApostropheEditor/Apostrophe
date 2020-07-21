@@ -23,35 +23,42 @@ Unofficial builds are also available for some platforms:
 If you want to help to localize the project, just join us at [Poeditor](https://poeditor.com/join/project/gxVzFyXb2x)
 Any help is appreciated!
 
-## Building with GNOME Builder
+## Build the project
 
-The easiest methos, just follow [this guide](https://wiki.gnome.org/Newcomers/BuildProject), you'll be up and running in one minute.
+### Building with GNOME Builder
 
-## Building from Git
+The easiest method, just follow [this guide](https://wiki.gnome.org/Newcomers/BuildProject), you'll be up and running in one minute.
+
+### Building from Git
 
 ```bash
 $ git clone https://gitlab.gnome.org/somas/apostrophe/
 $ cd apostrophe
-$ meson builddir --prefix=/usr
-# sudo ninja -C builddir install
+$ meson builddir --prefix=/usr -Dprofile=development
+$ sudo ninja -C builddir install
+```
+
+Then you can run the installed package:
+
+```bash
+$ apostrophe
+```
+
+Or a local version which runs from the source tree
+```bash
+$ ./builddir/local-apostrophe
 ```
 
 To use apostrophe, please make sure you have some dependencies installed:
 
 - `meson` and `ninja-build` are required to build and install Apostrophe
-- Pandoc, the program used to convert Markdown to basically anything else (the package name should be pandoc in most distributions)
-- GTK3 and GLib development packages need to be installed: libgtk3-dev libglib2.0-dev`
+- Pandoc, the program used to convert Markdown to basically anything else (the package name should be `pandoc` in most distributions)
+- GTK3 and GLib development packages, along with GObject-introspection
 - webkit2gtk is also needed for the preview panel
-- GSpell and GObject-introspection libraries for spell checking: `gobject-introspection libgirepository1.0-dev gir1.2-gspell1 gettext`
+- GSpell and gettext for l18n and spell checking
 - Please find these packages on your distribution/pip: `python3 python3-regex python3-setuptools python3-levenshtein python3-enchant python3-gi python3-cairo python3-pypandoc`
 - Optional dependencies are `texlive` and `texlie-latex-extra` for the pdftex module; `libjs-mathjax` for formula preview.
 
-Depending where you install it you may need to install the schemas before:
-
-```bash
-# sudo cp data/org.gnome.gitlab.somas.Apostrophe.gschema.xml /usr/share/glib-2.0/schemas/org.gnome.gitlab.somas.Apostrophe.gschema.xml
-# sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-```
 
 ### Building a flatpak package
 
