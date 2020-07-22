@@ -210,8 +210,14 @@ class Application(Gtk.Application):
     def on_open(self, _action, _value):
         self.window.open_document()
 
-    def on_open_recent(self, file):
-        self.window.load_file(file.get_current_uri())
+    def on_open_recent(self, recents_widget):
+        recent_uri = recents_widget.get_current_uri()
+        self.window.load_file(Gio.File.new_for_uri(recent_uri))
+
+    def on_open_tutorial(self, _action, _value):
+        tutorial = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/apostrophe_markdown.md")
+        self.window.load_file(tutorial)
 
     def on_save(self, _action, _value):
         self.window.save_document()
@@ -256,9 +262,6 @@ class Application(Gtk.Application):
             "/org/gnome/gitlab/somas/Apostrophe/ui/Shortcuts.ui")
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
-
-    def on_open_tutorial(self, _action, _value):
-        self.window.open_apostrophe_markdown()
 
     def on_about(self, _action, _param):
         builder = Gtk.Builder()

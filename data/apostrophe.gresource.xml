@@ -16,5 +16,6 @@
     <file compressed="true" preprocess="xml-stripblanks">ui/Headerbar.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/PreviewLayoutSwitcherItem.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">About.ui</file>
+    <file compressed="true">media/apostrophe_markdown.md</file>
   </gresource>
 </gresources>

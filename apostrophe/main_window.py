@@ -29,8 +29,6 @@ from apostrophe.stats_handler import StatsHandler
 from apostrophe.styled_window import StyledWindow
 from apostrophe.text_view import TextView
 
-from apostrophe.config import PROFILE
-
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 
@@ -70,10 +68,6 @@ class MainWindow(StyledWindow):
         super().__init__(application=Gio.Application.get_default(), title="Apostrophe")
 
         self.get_style_context().add_class('apostrophe-window')
-
-        if PROFILE != '':
-            style_context = self.get_style_context()
-            style_context.add_class("devel")
 
         # Set UI
         builder = Gtk.Builder()
@@ -407,9 +401,8 @@ class MainWindow(StyledWindow):
         filechooser.add_filter(markdown_filter)
         filechooser.add_filter(plaintext_filter)
         response = filechooser.run()
-        if response == Gtk.ResponseType.OK:
-            filename = filechooser.get_filename()
-            self.load_file(filename)
+        if response == Gtk.ResponseType.ACCEPT:
+            self.load_file(filechooser.get_file())
             filechooser.destroy()
 
         elif response == Gtk.ResponseType.CANCEL:
@@ -497,60 +490,33 @@ class MainWindow(StyledWindow):
     def reload_preview(self, reshow=False):
         self.preview_handler.reload(reshow=reshow)
 
-    def load_file(self, filename=None):
+    def load_file(self, file=None):
         """Open File from command line or open / open recent etc."""
-        LOGGER.info("trying to open " + filename)
+        LOGGER.info("trying to open " + (file.get_path() or ""))
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
 
-        if filename:
-            if filename.startswith('file://'):
-                filename = filename[7:]
-            filename = urllib.parse.unquote_plus(filename)
-            self.text_view.clear()
-            try:
-                if os.path.exists(filename):
-                    with io.open(filename, encoding="utf-8", mode='r') as current_file:
-                        text = current_file.read()
-                    self.text_view.set_text(text)
-                    start_iter = self.text_view.get_buffer().get_start_iter()
-                    GLib.idle_add(lambda: self.text_view.get_buffer().place_cursor(start_iter))
-                else:
-                    dialog = Gtk.MessageDialog(self,
-                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                       Gtk.MessageType.WARNING,
-                                       Gtk.ButtonsType.CLOSE,
-                                       _("The file you tried to open doesn’t exist.\
-                                            \nA new file will be created in its place when you save the current one.")
-                                       )
-                    dialog.run()
-                    dialog.destroy()
+        file.load_contents_async(None, self._load_contents_cb, None)
 
-                self.set_headerbar_title(os.path.basename(filename) + self.title_end, filename)
-                self.set_filename(filename)
+    def _load_contents_cb(self, gfile, result, user_data=None):
+        try:
+            success, contents, etag = gfile.load_contents_finish(result)
+        except GLib.GError as error:
+            helpers.show_error(self, str(error.message))
+            LOGGER.warning(str(error.message))
+            return
 
-            except Exception as e:
-                LOGGER.warning(_("Error Reading File: %r") % e)
-                dialog = Gtk.MessageDialog(self,
-                                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                    Gtk.MessageType.WARNING,
-                                    Gtk.ButtonsType.CLOSE,
-                                    _("Error reading file:\
-                                         \n%r" %e)
-                                    )
-                dialog.run()
-                dialog.destroy()
+        try:
+            decoded = contents.decode("UTF-8")
+            # for the moment we'll asume UTF-8 encoding
+            self.text_view.set_text(decoded)
+            start_iter = self.text_view.get_buffer().get_start_iter()
+            GLib.idle_add(lambda: self.text_view.get_buffer().place_cursor(start_iter))
+            self.set_headerbar_title(gfile.get_basename() + self.title_end, gfile.get_path())
+            self.set_filename(gfile.get_path())
             self.did_change = False
-        else:
-            LOGGER.warning("No File arg")
-
-    def open_apostrophe_markdown(self, _widget=None, _data=None):
-        """open a markdown mini tutorial
-        """
-        if self.check_change() == Gtk.ResponseType.CANCEL:
-            return
-
-        self.load_file(helpers.get_media_file('apostrophe_markdown.md'))
+        except UnicodeDecodeError:
+            print("Error: Unknown character encoding. Expecting UTF-8")
 
     def open_search(self, replace=False):
         """toggle the search box
@@ -564,15 +530,6 @@ class MainWindow(StyledWindow):
         text = bytes(self.text_view.get_text(), "utf-8")
 
         self.export = Export(self.filename, export_format, text)
-
-    def open_recent(self, _widget, data=None):
-        """open the given recent document
-        """
-
-        if data:
-            if self.check_change() == Gtk.ResponseType.CANCEL:
-                return
-            self.load_file(data)
 
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus

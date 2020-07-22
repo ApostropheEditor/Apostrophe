@@ -22,6 +22,8 @@ import os
 import shutil
 from contextlib import contextmanager
 
+from gettext import gettext as _
+
 import gi
 import pypandoc
 from gi.overrides.Pango import Pango
@@ -152,6 +154,17 @@ def set_up_logging(level):
         logger.setLevel(logging.DEBUG)
         logger.debug('logging enabled')
 
+def show_error(parent, message):
+    dialog = Gtk.MessageDialog(parent,
+                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                        Gtk.MessageType.WARNING,
+                        Gtk.ButtonsType.CLOSE,
+                        message
+                        )
+                        
+    dialog.set_title(_("Error"))
+    dialog.run()
+    dialog.destroy()
 
 def get_help_uri(page=None):
     # help_uri from source tree - default language
