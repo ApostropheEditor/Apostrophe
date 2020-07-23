@@ -14,14 +14,12 @@ import gi
 
 from apostrophe.main_window import MainWindow
 
-gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
-from gi.repository import GLib, Gio, Gtk, GdkPixbuf
+gi.require_version('Gtk', '3.0')
+from gi.repository import GLib, Gio, Gtk
 
-from apostrophe import main_window
 from apostrophe.settings import Settings
 from apostrophe.helpers import set_up_logging
 from apostrophe.preferences_dialog import PreferencesDialog
-from apostrophe.helpers import get_media_path
 
 
 class Application(Gtk.Application):
@@ -43,7 +41,7 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
 
         self.settings.connect("changed", self.on_settings_changed)
-        self._set_dark_mode ()
+        self._set_dark_mode()
 
         # Header bar
 
@@ -128,7 +126,8 @@ class Application(Gtk.Application):
 
         stat_default = self.settings.get_string("stat-default")
         action = Gio.SimpleAction.new_stateful(
-            "stat_default", GLib.VariantType.new("s"), GLib.Variant.new_string(stat_default))
+                 "stat_default", GLib.VariantType.new("s"),
+                 GLib.Variant.new_string(stat_default))
         action.connect("activate", self.on_stat_default)
         self.add_action(action)
 
@@ -136,7 +135,9 @@ class Application(Gtk.Application):
 
         preview_mode = self.settings.get_string("preview-mode")
         action = Gio.SimpleAction.new_stateful(
-            "preview_mode", GLib.VariantType.new("s"), GLib.Variant.new_string(preview_mode))
+                 "preview_mode",
+                 GLib.VariantType.new("s"),
+                 GLib.Variant.new_string(preview_mode))
         action.connect("activate", self.on_preview_mode)
         self.add_action(action)
 
@@ -192,7 +193,7 @@ class Application(Gtk.Application):
 
     def on_settings_changed(self, settings, key):
         if key == "dark-mode":
-            self._set_dark_mode ()
+            self._set_dark_mode()
         elif key == "spellcheck":
             self.window.toggle_spellcheck(settings.get_value(key))
         elif key == "input-format":
@@ -216,7 +217,8 @@ class Application(Gtk.Application):
 
     def on_open_tutorial(self, _action, _value):
         tutorial = Gio.File.new_for_uri(
-            "resource:///org/gnome/gitlab/somas/Apostrophe/media/apostrophe_markdown.md")
+            "resource:///org/gnome/gitlab/somas/"
+            "Apostrophe/media/apostrophe_markdown.md")
         self.window.load_file(tutorial)
 
     def on_save(self, _action, _value):
@@ -265,7 +267,8 @@ class Application(Gtk.Application):
 
     def on_about(self, _action, _param):
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/gitlab/somas/Apostrophe/About.ui")
+        builder.add_from_resource(
+            "/org/gnome/gitlab/somas/Apostrophe/About.ui")
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
 

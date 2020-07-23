@@ -15,40 +15,27 @@
 # END LICENSE
 
 import io
-import locale
 import logging
 import os
-import urllib
 from gettext import gettext as _
 
 import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 
 from apostrophe.export_dialog import Export
 from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
 from apostrophe.styled_window import StyledWindow
 from apostrophe.text_view import TextView
-
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, GObject, GLib, Gio
-
-import cairo
-
-from apostrophe import helpers
-
-from apostrophe.sidebar import Sidebar
 from apostrophe.search_and_replace import SearchAndReplace
 from apostrophe.settings import Settings
+from apostrophe import helpers
+# from apostrophe.sidebar import Sidebar
 
 from . import headerbars
 
-# Some Globals
-# TODO move them somewhere for better
-# accesibility from other files
-
 LOGGER = logging.getLogger('apostrophe')
-
-CONFIG_PATH = os.path.expanduser("~/.config/apostrophe/")
 
 
 class MainWindow(StyledWindow):
@@ -65,7 +52,8 @@ class MainWindow(StyledWindow):
     def __init__(self, app):
         """Set up the main window"""
 
-        super().__init__(application=Gio.Application.get_default(), title="Apostrophe")
+        super().__init__(application=Gio.Application.get_default(),
+                         title="Apostrophe")
 
         self.get_style_context().add_class('apostrophe-window')
 
@@ -89,8 +77,8 @@ class MainWindow(StyledWindow):
             "size_allocate", self.header_size_allocate)
         self.set_titlebar(self.headerbar.hb_revealer)
 
-        # remove .titlebar class from hb_revealer 
-        # to don't mess things up on Elementary OS 
+        # remove .titlebar class from hb_revealer
+        # to don't mess things up on Elementary OS
         self.headerbar.hb_revealer.get_style_context().remove_class("titlebar")
 
         self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
@@ -103,8 +91,8 @@ class MainWindow(StyledWindow):
 
         self.headerbar.dark_button.bind_property(
             "active", self.fs_headerbar.dark_button, "active",
-            GObject.BindingFlags.BIDIRECTIONAL
-            | GObject.BindingFlags.SYNC_CREATE)
+            GObject.BindingFlags.BIDIRECTIONAL |
+            GObject.BindingFlags.SYNC_CREATE)
 
         # The dummy headerbar is a cosmetic hack to be able to
         # crossfade the hb on top of the window
@@ -119,7 +107,7 @@ class MainWindow(StyledWindow):
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
-        self.scrolled_window = builder.get_object('editor_scrolledwindow')
+        scrolled_window = builder.get_object('editor_scrolledwindow')
 
         # Setup text editor
         self.text_view = TextView(self.settings.get_int("characters-per-line"))
@@ -127,7 +115,7 @@ class MainWindow(StyledWindow):
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
-        self.scrolled_window.add(self.text_view)
+        scrolled_window.add(self.text_view)
         self.text_view.grab_focus()
 
         # Setup stats counter
@@ -138,7 +126,8 @@ class MainWindow(StyledWindow):
         # Setup preview
         content = builder.get_object('content')
         editor = builder.get_object('editor')
-        self.preview_handler = PreviewHandler(self, content, editor, self.text_view)
+        self.preview_handler = PreviewHandler(self, content,
+                                              editor, self.text_view)
 
         # Setup header/stats bar
         self.headerbar_visible = True
@@ -149,21 +138,19 @@ class MainWindow(StyledWindow):
         self.set_filename()
 
         # Setting up spellcheck
-        self.auto_correct = None
         self.toggle_spellcheck(self.settings.get_value("spellcheck"))
         self.did_change = False
 
         ###
         #   Sidebar initialization test
         ###
-        self.paned_window = builder.get_object("main_paned")
-        self.sidebar_box = builder.get_object("sidebar_box")
-        self.sidebar = Sidebar(self)
-        self.sidebar_box.hide()
+        # self.paned_window = builder.get_object("main_paned")
+        # self.sidebar_box = builder.get_object("sidebar_box")
+        # self.sidebar = Sidebar(self)
+        # self.sidebar_box.hide()
 
         ###
         #   Search and replace initialization
-        #   Same interface as Sidebar ;)
         ###
         self.searchreplace = SearchAndReplace(self, self.text_view, builder)
 
@@ -173,7 +160,8 @@ class MainWindow(StyledWindow):
         self.headerbar_eventbox.connect('enter_notify_event',
                                         self.reveal_headerbar_bottombar)
 
-        self.stats_revealer.connect('enter_notify_event', self.reveal_bottombar)
+        self.stats_revealer.connect('enter_notify_event',
+                                    self.reveal_bottombar)
 
     def header_size_allocate(self, widget, allocation):
         """ When the main hb starts to shrink its size, add that size
@@ -230,7 +218,8 @@ class MainWindow(StyledWindow):
         """toggle focusmode
         """
 
-        self.text_view.set_focus_mode(state.get_boolean(), self.headerbar.hb.get_allocated_height())
+        self.text_view.set_focus_mode(state.get_boolean(),
+                                      self.headerbar.hb.get_allocated_height())
         self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
@@ -244,7 +233,7 @@ class MainWindow(StyledWindow):
         """Toggle the preview mode
 
         Arguments:
-            state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
+            state {gtk bool} -- Desired state of the preview mode
         """
 
         if state.get_boolean():
@@ -300,10 +289,6 @@ class MainWindow(StyledWindow):
 
             if filename[-3:] != ".md":
                 filename = filename + ".md"
-                try:
-                    self.recent_manager.add_item("file:/ " + filename)
-                except:
-                    pass
 
             file_to_save = io.open(filename, encoding="utf-8", mode='w')
             file_to_save.write(self.text_view.get_text())
@@ -340,11 +325,6 @@ class MainWindow(StyledWindow):
             filename = filechooser.get_filename()
             if filename[-3:] != ".md":
                 filename = filename + ".md"
-                try:
-                    self.recent_manager.remove_item("file:/" + filename)
-                    self.recent_manager.add_item("file:/ " + filename)
-                except:
-                    pass
 
             file_to_save = io.open(filename, encoding="utf-8", mode='w')
             file_to_save.write(self.text_view.get_text())
@@ -353,11 +333,6 @@ class MainWindow(StyledWindow):
             self.set_filename(filename)
             self.set_headerbar_title(
                 os.path.basename(filename) + self.title_end, filename)
-
-            try:
-                self.recent_manager.add_item(filename)
-            except:
-                pass
 
             filechooser.destroy()
             self.did_change = False
@@ -419,16 +394,20 @@ class MainWindow(StyledWindow):
 
         if self.did_change and self.text_view.get_text():
             dialog = Gtk.MessageDialog(self,
-                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.DialogFlags.MODAL |
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.WARNING,
                                        Gtk.ButtonsType.NONE,
-                                       _("Save changes to document “%s” before closing?") %
+                                       _("Save changes to document " +
+                                         "“%s” before closing?") %
                                        title
                                        )
-            
+
             dialog.props.secondary_text = _("If you don’t save, " +
-                                            "all your changes will be permanently lost.")
-            close_button = dialog.add_button(_("Close without saving"), Gtk.ResponseType.NO)
+                                            "all your changes will be " +
+                                            "permanently lost.")
+            close_button = dialog.add_button(_("Close without saving"),
+                                             Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
 
@@ -476,7 +455,7 @@ class MainWindow(StyledWindow):
     def menu_toggle_sidebar(self, _widget=None):
         """WIP
         """
-        self.sidebar.toggle_sidebar()
+        # self.sidebar.toggle_sidebar()
 
     def toggle_spellcheck(self, state):
         """Enable/disable the autospellchecking
@@ -492,7 +471,7 @@ class MainWindow(StyledWindow):
 
     def load_file(self, file=None):
         """Open File from command line or open / open recent etc."""
-        LOGGER.info("trying to open " + (file.get_path() or ""))
+        LOGGER.info("trying to open %s", file.get_path())
         if self.check_change() == Gtk.ResponseType.CANCEL:
             return
 
@@ -500,7 +479,7 @@ class MainWindow(StyledWindow):
 
     def _load_contents_cb(self, gfile, result, user_data=None):
         try:
-            success, contents, etag = gfile.load_contents_finish(result)
+            _success, contents, _etag = gfile.load_contents_finish(result)
         except GLib.GError as error:
             helpers.show_error(self, str(error.message))
             LOGGER.warning(str(error.message))
@@ -512,7 +491,8 @@ class MainWindow(StyledWindow):
             self.text_view.set_text(decoded)
             start_iter = self.text_view.get_buffer().get_start_iter()
             GLib.idle_add(lambda: self.text_view.get_buffer().place_cursor(start_iter))
-            self.set_headerbar_title(gfile.get_basename() + self.title_end, gfile.get_path())
+            self.set_headerbar_title(gfile.get_basename()
+                                     + self.title_end, gfile.get_path())
             self.set_filename(gfile.get_path())
             self.did_change = False
         except UnicodeDecodeError:
@@ -529,7 +509,7 @@ class MainWindow(StyledWindow):
         """
         text = bytes(self.text_view.get_text(), "utf-8")
 
-        self.export = Export(self.filename, export_format, text)
+        Export(self.filename, export_format, text)
 
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
@@ -595,14 +575,14 @@ class MainWindow(StyledWindow):
         self.headerbar.hb.set_title(title)
         self.dm_headerbar.hb.set_title(title)
         self.fs_headerbar.hb.set_title(title)
-        
+
         self.headerbar.hb.set_subtitle(subtitle)
         self.dm_headerbar.hb.set_subtitle(subtitle)
         self.fs_headerbar.hb.set_subtitle(subtitle)
 
         self.headerbar.hb.set_tooltip_text(subtitle)
         self.fs_headerbar.hb.set_tooltip_text(subtitle)
-        
+
         self.set_title(title)
 
     def set_filename(self, filename=None):
