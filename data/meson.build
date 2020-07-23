@@ -32,7 +32,7 @@ appdata_conf.set('gettext-package', gettext_package)
 
 metainfo_configured = configure_file(
     input: 'org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in',
-    output: '@BASENAME@',
+    output: 'configured' + '@BASENAME@',
     configuration: appdata_conf
 )
 
