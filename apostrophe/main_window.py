@@ -32,6 +32,7 @@ from apostrophe.styled_window import StyledWindow
 from apostrophe.text_view import TextView
 from apostrophe.search_and_replace import SearchAndReplace
 from apostrophe.settings import Settings
+from apostrophe.tweener import Tweener
 from apostrophe import helpers
 # from apostrophe.sidebar import Sidebar
 
@@ -112,6 +113,19 @@ class MainWindow(StyledWindow):
         self.text_view.show()
         scrolled_window.add(self.text_view)
         self.text_view.grab_focus()
+
+        # Setup save progressbar an its animator
+
+        self.progressbar = builder.get_object("save_progressbar")
+        self.progressbar_initiate_tw = Tweener(self.progressbar,
+                                               self.progressbar.set_fraction,
+                                               0, 0.125, 40)
+        self.progressbar_finalize_tw = Tweener(self.progressbar,
+                                               self.progressbar.set_fraction,
+                                               0.125, 1, 400)
+        self.progressbar_opacity_tw = Tweener(self.progressbar,
+                                              self.progressbar.set_opacity,
+                                              1, 0, 300, 200)
 
         # Setup stats counter
         self.stats_revealer = builder.get_object('editor_stats_revealer')
@@ -252,11 +266,6 @@ class MainWindow(StyledWindow):
         if self.current.gfile:
             LOGGER.info("saving")
 
-            # lets make a copy of the gfile just in case we lose it behind
-            # our feet
-
-            save_file = self.current.gfile.dup()
-
             try:
                 try:
                     encoded_text = GLib.Bytes.new(
@@ -270,7 +279,9 @@ class MainWindow(StyledWindow):
                 helpers.show_error(self, str(error.message))
                 LOGGER.warning(str(error.message))
             else:
-                save_file.replace_contents_bytes_async(
+                self.progressbar.set_opacity(1)
+                self.progressbar_initiate_tw.start()
+                self.current.gfile.replace_contents_bytes_async(
                     encoded_text,
                     etag=None,
                     make_backup=try_backup,
@@ -322,7 +333,12 @@ class MainWindow(StyledWindow):
                          "standard::display-name")
             if filename[-3:] != ".md":
                 filename += ".md"
-            file = file.set_display_name(filename)
+            try:
+                file = file.set_display_name(filename)
+            except GLib.GError as error:
+                if not error.matches(Gio.io_error_quark(),
+                                     Gio.IOErrorEnum.EXISTS):
+                    raise error
 
             self.current.gfile = file
 
@@ -344,11 +360,18 @@ class MainWindow(StyledWindow):
             else:
                 helpers.show_error(self, str(error.message))
                 LOGGER.warning(str(error.message))
+                self.progressbar_opacity_tw.start()
             return
 
         if success:
+            self.progressbar_initiate_tw.stop()
+            self.progressbar_finalize_tw.start()
+            self.progressbar_opacity_tw.start()
+
             self.update_headerbar_title()
             self.did_change = False
+        else:
+            self.progressbar_opacity_tw.start()
 
         return success
 
@@ -404,7 +427,8 @@ class MainWindow(StyledWindow):
             return
         self.current.gfile = file
 
-        self.current.gfile.load_contents_async(None, self._load_contents_cb, None)
+        self.current.gfile.load_contents_async(None,
+                                               self._load_contents_cb, None)
 
     def _load_contents_cb(self, gfile, result, user_data=None):
         try:
@@ -513,7 +537,6 @@ class MainWindow(StyledWindow):
 
     def reload_preview(self, reshow=False):
         self.preview_handler.reload(reshow=reshow)
-
 
     def open_search(self, replace=False):
         """toggle the search box

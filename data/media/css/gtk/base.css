@@ -40,6 +40,11 @@
   border-top-left-radius: 8px;
 }
 
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) progressbar {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
 #titlebar-revealer {
   padding: 0;
 }

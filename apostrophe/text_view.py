@@ -54,7 +54,10 @@ class TextView(Gtk.TextView):
         self.set_pixels_inside_wrap(8)
         self.get_style_context().add_class('apostrophe-editor')
 
-        self.set_margin_left(8)
+        # TODO: remove this (AND the left margin from the scrolled_window)
+        #       when Handy.Window is implemented
+
+        # self.set_margin_left(8)
         self.set_margin_right(8)
 
         # Text sizing
@@ -129,7 +132,7 @@ class TextView(Gtk.TextView):
 
     def set_text(self, text):
         """Set text and clear undo history"""
-        
+
         text_buffer = self.get_buffer()
         with user_action(text_buffer):
             text_buffer.set_text(text)
