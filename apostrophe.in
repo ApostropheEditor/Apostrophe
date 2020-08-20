@@ -39,7 +39,7 @@ from gi.repository import Gio
 import apostrophe
 
 localedir = '@LOCALE_DIR@'
-datadir = '@DATA_DIR@'
+pkgdatadir = '@PKGDATA_DIR@'
 
 # L10n
 locale.textdomain('apostrophe')
@@ -57,7 +57,7 @@ def run_application():
 
 def main():
     resource = Gio.resource_load(
-        os.path.join(datadir, 'apostrophe.gresource'))
+        os.path.join(pkgdatadir, 'apostrophe.gresource'))
     Gio.Resource._register(resource)
 
     return run_application()

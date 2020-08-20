@@ -20,3 +20,8 @@ class StyledWindow(Gtk.ApplicationWindow):
         Gtk.StyleContext.add_provider_for_screen(
             self.get_screen(), style_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+        # Set icons
+        Gtk.IconTheme.get_default().add_resource_path(
+            "/org/gnome/gitlab/somas/Apostrophe/icons"
+        )

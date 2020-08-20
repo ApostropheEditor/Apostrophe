@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/gnome/gitlab/somas/Apostrophe/">
-    <file compressed="true" alias="icons/scalable/status/preview-layout-full-width-symbolic.svg">media/icons/preview-layout-full-width-symbolic.svg</file>
-    <file compressed="true" alias="icons/scalable/status/preview-layout-half-width-symbolic.svg">media/icons/preview-layout-half-width-symbolic.svg</file>
-    <file compressed="true" alias="icons/scalable/status/preview-layout-windowed-symbolic.svg">media/icons/preview-layout-windowed-symbolic.svg</file>
-    <file compressed="true" alias="icons/scalable/status/preview-layout-half-height-symbolic.svg">media/icons/preview-layout-half-height-symbolic.svg</file>
+    <file compressed="true" alias="icons/preview-layout-full-width-symbolic.svg">media/icons/preview-layout-full-width-symbolic.svg</file>
+    <file compressed="true" alias="icons/preview-layout-half-width-symbolic.svg">media/icons/preview-layout-half-width-symbolic.svg</file>
+    <file compressed="true" alias="icons/preview-layout-windowed-symbolic.svg">media/icons/preview-layout-windowed-symbolic.svg</file>
+    <file compressed="true" alias="icons/preview-layout-half-height-symbolic.svg">media/icons/preview-layout-half-height-symbolic.svg</file>
     <file compressed="true">media/css/gtk/base.css</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/ExportPopover.ui</file>

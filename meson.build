@@ -49,7 +49,8 @@ find_program('update-desktop-database', required: false)
 gettext_package = meson.project_name()
 localedir = get_option('prefix') / get_option('localedir')
 pythondir = py_installation.get_path('purelib')
-datadir = get_option('prefix') / get_option('datadir') / meson.project_name()
+datadir = get_option('prefix') / get_option('datadir')
+pkgdatadir = datadir / meson.project_name()
 #bindir = join_paths(get_option('prefix'), get_option('bindir'))
 podir = meson.source_root() / 'po'
 
@@ -68,7 +69,8 @@ install_subdir(
 conf = configuration_data()
 conf.set('PACKAGE_URL', 'https://somas.pages.gitlab.gnome.org/apostrophe/')
 conf.set('DATA_DIR', datadir)
-conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
+conf.set('PKGDATA_DIR', pkgdatadir)
+conf.set('LOCALE_DIR', join_paths(datadir, 'locale'))
 conf.set('PYTHON_DIR', pythondir)
 conf.set('VERSION', meson.project_version())
 conf.set('LOCAL_BUILD', 'False')
@@ -83,12 +85,20 @@ configure_file(
   install_dir: get_option('bindir')
 )
 
+configure_file(
+  input: 'config.py.in',
+  output: 'config.py',
+  configuration: conf,
+  install_dir: py_installation.get_install_dir() / 'apostrophe'
+)
+
 # Local installation
 
 local_config = configuration_data()
 local_config.set('DATA_DIR', join_paths(meson.build_root(), 'data'))
+local_config.set('PKGDATA_DIR', join_paths(meson.build_root(), 'data'))
 local_config.set('PACKAGE_URL', 'https://somas.pages.gitlab.gnome.org/apostrophe/')
-local_config.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
+local_config.set('LOCALE_DIR', join_paths(datadir, 'locale'))
 local_config.set('PYTHON_DIR', meson.source_root())
 local_config.set('PROFILE', profile)
 local_config.set('APP_ID', application_id)

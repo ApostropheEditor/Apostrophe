@@ -172,7 +172,9 @@ class Application(Gtk.Application):
         self.window.present()
 
     def do_handle_local_options(self, options):
-        if options.contains("verbose"):
+        if (options.contains("verbose") or
+            self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel'):
+
             set_up_logging(1)
         return -1
 
