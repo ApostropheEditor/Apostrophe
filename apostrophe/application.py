@@ -15,7 +15,8 @@ import gi
 from apostrophe.main_window import MainWindow
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, Gio, Gtk
+gi.require_version('Handy', '1')
+from gi.repository import GLib, Gio, Gtk, Handy
 
 from apostrophe.settings import Settings
 from apostrophe.helpers import set_up_logging
@@ -31,6 +32,8 @@ class Application(Gtk.Application):
 
         self.add_main_option("verbose", b"v", GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Verbose output", None)
+
+        Handy.init()
 
         self.window = None
         self.settings = Settings.new()
@@ -92,6 +95,10 @@ class Application(Gtk.Application):
 
         action = Gio.SimpleAction.new("export", GLib.VariantType("s"))
         action.connect("activate", self.on_export)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("advanced_export", None)
+        action.connect("activate", self.on_advanced_export)
         self.add_action(action)
 
         action = Gio.SimpleAction.new("copy_html", None)
@@ -252,7 +259,10 @@ class Application(Gtk.Application):
         self.window.save_document_as()
 
     def on_export(self, _action, value):
-        self.window.open_advanced_export(value.get_string())
+        self.window.open_export(value.get_string())
+
+    def on_advanced_export(self, _action, value):
+        self.window.open_advanced_export()
 
     def on_copy_html(self, _action, _value):
         self.window.copy_html_to_clipboard()

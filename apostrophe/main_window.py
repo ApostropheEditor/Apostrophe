@@ -25,7 +25,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 
-from apostrophe.export_dialog import Export
+from apostrophe.export_dialog import ExportDialog, AdvancedExportDialog
 from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
 from apostrophe.styled_window import StyledWindow
@@ -311,7 +311,12 @@ class MainWindow(StyledWindow):
         filechooser.set_do_overwrite_confirmation(True)
         filechooser.set_local_only(False)
         filechooser.add_filter(filefilter)
-        filechooser.set_filename(self.current.title)
+
+        title = self.current.title
+        if not title.endswith(".md"):
+            title += ".md"
+        filechooser.set_current_name(title)
+
         response = filechooser.run()
 
         if response == Gtk.ResponseType.ACCEPT:
@@ -325,20 +330,6 @@ class MainWindow(StyledWindow):
                     helpers.show_error(self, str(error.message))
                     LOGGER.warning(str(error.message))
                     return
-
-            filename = file.query_info(
-                         "standard",
-                         Gio.FileQueryInfoFlags.NONE,
-                         None).get_attribute_as_string(
-                         "standard::display-name")
-            if filename[-3:] != ".md":
-                filename += ".md"
-            try:
-                file = file.set_display_name(filename)
-            except GLib.GError as error:
-                if not error.matches(Gio.io_error_quark(),
-                                     Gio.IOErrorEnum.EXISTS):
-                    raise error
 
             self.current.gfile = file
 
@@ -364,6 +355,9 @@ class MainWindow(StyledWindow):
             return
 
         if success:
+            recents_manager = Gtk.RecentManager.get_default()
+            recents_manager.add_item(self.current.gfile.get_uri())
+
             self.progressbar_initiate_tw.stop()
             self.progressbar_finalize_tw.start()
             self.progressbar_opacity_tw.start()
@@ -444,7 +438,6 @@ class MainWindow(StyledWindow):
                 decoded = contents.decode(self.current.encoding)
             except UnicodeDecodeError:
                 self.current.encoding = chardet.detect(contents)['encoding']
-                print(self.current.encoding)
                 decoded = contents.decode(self.current.encoding)
         except UnicodeDecodeError as error:
             helpers.show_error(self, str(error.message))
@@ -543,12 +536,23 @@ class MainWindow(StyledWindow):
         """
         self.searchreplace.toggle_search(replace=replace)
 
-    def open_advanced_export(self, export_format):
-        """open the export and advanced export dialog
+    def open_export(self, export_format):
+        """open the export dialog
         """
         text = bytes(self.text_view.get_text(), "utf-8")
 
-        Export(self.filename, export_format, text)
+        export_dialog = ExportDialog(self.current, export_format, text)
+        export_dialog.dialog.set_transient_for(self)
+        export_dialog.export()
+
+    def open_advanced_export(self):
+        """open the advanced export dialog
+        """
+        text = bytes(self.text_view.get_text(), "utf-8")
+
+        export_dialog = AdvancedExportDialog(self.current, text)
+        export_dialog.set_transient_for(self)
+        export_dialog.show()
 
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
@@ -652,6 +656,7 @@ class File():
         self.encoding = encoding
         self.path = ""
         self.title = ""
+        self.name = ""
 
     @property
     def gfile(self):
@@ -676,6 +681,9 @@ class File():
         else:
             self.title = _("New File")
             base_path = "/"
+        self.name = self.title
+        if self.name.endswith(".md"):
+            self.name = self.name[:-3]
         # TODO: remove path in favor of gfile
         self._settings.set_string("open-file-path", base_path)
         self._gfile = file

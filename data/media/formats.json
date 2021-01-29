@@ -1,0 +1,87 @@
+[
+    {
+      "name": "PDF",
+      "ext": "pdf",
+      "to": "pdf"
+    },
+    {
+      "name": "LibreOffice Text Document",
+      "ext": "odt",
+      "to": "odt"
+    },
+    {
+      "name": "Microsoft Word (docx)",
+      "ext": "docx",
+      "to": "docx"
+    },
+    {
+      "name": "EPUB v3",
+      "ext": "epub",
+      "to": "epub"
+    },
+    {
+      "name": "HTML5 Slideshow (reveal.js)",
+      "ext": "html",
+      "to": "revealjs"
+    },
+    {
+      "name": "LaTeX Beamer Slideshow (pdf)",
+      "ext": "pdf",
+      "to": "beamer"
+    },
+    {
+      "name": "LaTeX Beamer Slideshow (tex)",
+      "ext": "tex",
+      "to": "beamer"
+    },
+    {
+      "name": "HTML5 Slideshow (DZSlides)",
+      "ext": "html",
+      "to": "dzslides"
+    },
+    {
+      "name": "LaTeX (tex)",
+      "ext": "tex",
+      "to": "latex"
+    },
+    {
+      "name": "HTML",
+      "ext": "html",
+      "to": "html5"
+    },
+    {
+      "name": "MediaWiki Markup",
+      "ext": "txt",
+      "to": "mediawiki"
+    },
+    {
+      "name": "ConTeXt",
+      "ext": "tex",
+      "to": "context"
+    },
+    {
+      "name": "Textile",
+      "ext": "txt",
+      "to": "textile"
+    },
+    {
+      "name": "reStructuredText",
+      "ext": "txt",
+      "to": "rst"
+    },
+    {
+      "name": "Texinfo",
+      "ext": "texi",
+      "to": "texinfo"
+    },
+    {
+      "name": "Rich Text Format",
+      "ext": "rtf",
+      "to": "rtf"
+    },
+    {
+      "name": "Groff Man",
+      "ext": "man",
+      "to": "man"
+    }
+  ]
