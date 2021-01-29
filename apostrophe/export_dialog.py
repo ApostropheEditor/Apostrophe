@@ -49,7 +49,7 @@ class Format(GObject.Object):
 
     @property
     def is_html(self):
-        return self.to == "html"
+        return self.to == "html5"
 
     @property
     def has_syntax(self):
@@ -75,7 +75,8 @@ class ExportDialog:
             "extension": "pdf",
             "to": "pdf",
             "mimetype": "application/pdf",
-            "args": ["--variable=papersize:a4"]
+            "args": ["--pdf-engine=xelatex",
+                     "--variable=papersize:a4"]
         },
         "html":
         {
@@ -353,7 +354,8 @@ class AdvancedExportDialog(Handy.Window):
     def retrieve_args(self):
         args = []
 
-        # TODO: ojo cuidao
+        if self.formats_list.get_selected_row().item.ext == "pdf":
+            args.append("--pdf-engine=xelatex")
 
         if self.sw_standalone.get_active():
             args.append("--standalone")
