@@ -99,7 +99,7 @@ class UndoableDelete:
             self.text += next_action.text
             self.end += (next_action.end - next_action.start)
         else:
-            self.text = "%s%s" % (next_action.text, next_action.text)
+            self.text = "%s%s" % (next_action.text, self.text)
             self.start = next_action.start
         return True
 
