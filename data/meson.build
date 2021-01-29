@@ -32,7 +32,7 @@ appdata_conf.set('gettext-package', gettext_package)
 
 metainfo_configured = configure_file(
     input: 'org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in',
-    output: '@BASENAME@',
+    output: 'configured' + '@BASENAME@',
     configuration: appdata_conf
 )
 
@@ -92,7 +92,7 @@ resources = gnome.compile_resources(
   meson.project_name() + '.gresource.xml',
   gresource_bundle: true,
   install:true,
-  install_dir: join_paths(datadir, meson.project_name()),
+  install_dir: pkgdatadir,
   dependencies: ui_dependencies
 )
 message('datadir')

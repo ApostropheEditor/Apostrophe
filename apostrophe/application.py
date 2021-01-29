@@ -10,39 +10,41 @@
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 
-import os
-import argparse
-from gettext import gettext as _
-
 import gi
 
 from apostrophe.main_window import MainWindow
 
-gi.require_version('Gtk', '3.0') # pylint: disable=wrong-import-position
-from gi.repository import GLib, Gio, Gtk, GdkPixbuf
+gi.require_version('Gtk', '3.0')
+gi.require_version('Handy', '1')
+from gi.repository import GLib, Gio, Gtk, Handy
 
-from apostrophe import main_window
 from apostrophe.settings import Settings
 from apostrophe.helpers import set_up_logging
 from apostrophe.preferences_dialog import PreferencesDialog
-from apostrophe.helpers import get_media_path
 
 
 class Application(Gtk.Application):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="org.gnome.gitlab.somas.Apostrophe",
-                         flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
+    def __init__(self, application_id, *args, **kwargs):
+        super().__init__(*args, application_id=application_id,
+                         flags=Gio.ApplicationFlags.HANDLES_OPEN,
                          **kwargs)
+
+        self.add_main_option("verbose", b"v", GLib.OptionFlags.NONE,
+                             GLib.OptionArg.NONE, "Verbose output", None)
+
+        Handy.init()
+
         self.window = None
         self.settings = Settings.new()
+        self._application_id = application_id
 
     def do_startup(self, *args, **kwargs):
 
         Gtk.Application.do_startup(self)
 
         self.settings.connect("changed", self.on_settings_changed)
-        self._set_dark_mode ()
+        self._set_dark_mode()
 
         # Header bar
 
@@ -95,6 +97,10 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_export)
         self.add_action(action)
 
+        action = Gio.SimpleAction.new("advanced_export", None)
+        action.connect("activate", self.on_advanced_export)
+        self.add_action(action)
+
         action = Gio.SimpleAction.new("copy_html", None)
         action.connect("activate", self.on_copy_html)
         self.add_action(action)
@@ -127,7 +133,8 @@ class Application(Gtk.Application):
 
         stat_default = self.settings.get_string("stat-default")
         action = Gio.SimpleAction.new_stateful(
-            "stat_default", GLib.VariantType.new("s"), GLib.Variant.new_string(stat_default))
+                 "stat_default", GLib.VariantType.new("s"),
+                 GLib.Variant.new_string(stat_default))
         action.connect("activate", self.on_stat_default)
         self.add_action(action)
 
@@ -135,7 +142,9 @@ class Application(Gtk.Application):
 
         preview_mode = self.settings.get_string("preview-mode")
         action = Gio.SimpleAction.new_stateful(
-            "preview_mode", GLib.VariantType.new("s"), GLib.Variant.new_string(preview_mode))
+                 "preview_mode",
+                 GLib.VariantType.new("s"),
+                 GLib.Variant.new_string(preview_mode))
         action.connect("activate", self.on_preview_mode)
         self.add_action(action)
 
@@ -164,33 +173,23 @@ class Application(Gtk.Application):
             # when the last one is closed the application shuts down
             # self.window = Window(application=self, title="Apostrophe")
             self.window = MainWindow(self)
-            if self.args:
-                #TODO: Implement proper path handling once and for all
-                if self.args[0].startswith("/"):
-                    prefix = ""
-                else:
-                    prefix = os.getcwd() + '/'
-                self.window.load_file(prefix + self.args[0])
 
+        if self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel':
+            self.window.get_style_context().add_class('devel')
         self.window.present()
 
-    def do_command_line(self, _command_line):
-        """Support for command line options"""
-        parser = argparse.ArgumentParser()
-        parser.add_argument(
-            "-v", "--verbose", action="count", dest="verbose",
-            help=_("Show debug messages (-vv debugs apostrophe also)"))
-        parser.add_argument(
-            "-e", "--experimental-features", help=_("Use experimental features"),
-            action='store_true')
-        (self.options, self.args) = parser.parse_known_args()
+    def do_handle_local_options(self, options):
+        if (options.contains("verbose") or
+            self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel'):
 
-        set_up_logging(self.options)
+            set_up_logging(1)
+        return -1
 
+    def do_open(self, files, _n_files, _hint):
         self.activate()
-        return 0
+        self.window.load_file(files[0])
 
-    def _set_dark_mode (self):
+    def _set_dark_mode(self):
         dark = self.settings.get_value("dark-mode")
         settings = Gtk.Settings.get_default()
 
@@ -203,7 +202,7 @@ class Application(Gtk.Application):
 
     def on_settings_changed(self, settings, key):
         if key == "dark-mode":
-            self._set_dark_mode ()
+            self._set_dark_mode()
         elif key == "spellcheck":
             self.window.toggle_spellcheck(settings.get_value(key))
         elif key == "input-format":
@@ -221,8 +220,15 @@ class Application(Gtk.Application):
     def on_open(self, _action, _value):
         self.window.open_document()
 
-    def on_open_recent(self, file):
-        self.window.load_file(file.get_current_uri())
+    def on_open_recent(self, recents_widget):
+        recent_uri = recents_widget.get_current_uri()
+        self.window.load_file(Gio.File.new_for_uri(recent_uri))
+
+    def on_open_tutorial(self, _action, _value):
+        tutorial = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/"
+            "Apostrophe/media/apostrophe_markdown.md")
+        self.window.load_file(tutorial)
 
     def on_save(self, _action, _value):
         self.window.save_document()
@@ -253,7 +259,10 @@ class Application(Gtk.Application):
         self.window.save_document_as()
 
     def on_export(self, _action, value):
-        self.window.open_advanced_export(value.get_string())
+        self.window.open_export(value.get_string())
+
+    def on_advanced_export(self, _action, value):
+        self.window.open_advanced_export()
 
     def on_copy_html(self, _action, _value):
         self.window.copy_html_to_clipboard()
@@ -268,12 +277,10 @@ class Application(Gtk.Application):
         builder.get_object("shortcuts").set_transient_for(self.window)
         builder.get_object("shortcuts").show()
 
-    def on_open_tutorial(self, _action, _value):
-        self.window.open_apostrophe_markdown()
-
     def on_about(self, _action, _param):
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/gitlab/somas/Apostrophe/About.ui")
+        builder.add_from_resource(
+            "/org/gnome/gitlab/somas/Apostrophe/About.ui")
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.window)
 
@@ -290,7 +297,3 @@ class Application(Gtk.Application):
     def on_preview_mode(self, action, value):
         action.set_state(value)
         self.settings.set_string("preview-mode", value.get_string())
-
-# ~ if __name__ == "__main__":
-    # ~ app = Application()
-    # ~ app.run(sys.argv)

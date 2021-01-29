@@ -22,60 +22,29 @@ import os
 import shutil
 from contextlib import contextmanager
 
+from typing import List
+
+from gettext import gettext as _
+
 import gi
 import pypandoc
 from gi.overrides.Pango import Pango
 
 from apostrophe.settings import Settings
+import sys
+from apostrophe import config
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk  # pylint: disable=E0611
-
-from apostrophe.builder import Builder
+gi.require_version('Handy', '1')
+from gi.repository import Gtk, Gio, Handy  # pylint: disable=E0611
 
 __apostrophe_data_directory__ = '../data/'
-
 
 @contextmanager
 def user_action(text_buffer):
     text_buffer.begin_user_action()
     yield text_buffer
     text_buffer.end_user_action()
-
-def get_data_file(*path_segments):
-    """Get the full path to a data file.
-
-    Returns the path to a file underneath the data directory (as defined by
-    `get_data_path`). Equivalent to os.path.join(get_data_path(),
-    *path_segments).
-    """
-    return os.path.join(get_data_path(), *path_segments)
-
-
-def get_data_path():
-    """Retrieve apostrophe data path
-
-    This path is by default <apostrophe_path>/../data/ in trunk
-    and /opt/apostrophe/data in an installed version but this path
-    is specified at installation time.
-    """
-
-    # Get pathname absolute or relative.
-    if os.path.isfile("/.flatpak-info"):
-        return '/app/share/apostrophe/'
-
-    path = os.path.join(
-        os.path.dirname(__file__), __apostrophe_data_directory__)
-
-    # We try first if the data exists in the local folder and then
-    # in the system installation path
-    abs_data_path = os.path.abspath(path)
-    if not os.path.exists(abs_data_path):
-        abs_data_path = '/usr/share/apostrophe/'
-    elif not os.path.exists(abs_data_path):
-        raise ProjectPathNotFound
-
-    return abs_data_path
 
 
 def path_to_file(path):
@@ -84,48 +53,14 @@ def path_to_file(path):
     return "file://" + path
 
 
-def get_media_file(media_file_path):
-    """Return the full path of a given filename under the media dir
-       (starts with file:///)
-    """
-
-    return path_to_file(get_media_path(media_file_path))
-
-
-def get_media_path(media_file_name):
-    """Return the full path of a given filename under the media dir
+def get_media_path(path):
+    """Return the full path of a given path under the media dir
        (doesn't start with file:///)
     """
-
-    media_path = get_data_file('media', '%s' % (media_file_name,))
+    media_path = "{}{}".format(config.PKGDATA_DIR, path)
     if not os.path.exists(media_path):
         media_path = None
     return media_path
-
-
-def get_css_path(css_file_name):
-    """Return the full path of a given filename under the css dir
-       (doesn't start with file:///)
-    """
-    return get_media_path("css/{}".format(css_file_name))
-
-
-def get_script_path(script_file_name):
-    """Return the full path of a given filename under the script dir
-    """
-    script_path = get_data_file('lua', '%s' % (script_file_name,))
-    if not os.path.exists(script_path):
-        script_path = None
-    return script_path
-
-
-def get_reference_files_path(reference_file_name):
-    """Return the full path of a given filename under the reference_files dir
-    """
-    refs_path = get_data_file('reference_files', '%s' % (reference_file_name,))
-    if not os.path.exists(refs_path):
-        refs_path = ""
-    return refs_path
 
 
 class NullHandler(logging.Handler):
@@ -133,7 +68,7 @@ class NullHandler(logging.Handler):
         pass
 
 
-def set_up_logging(opts):
+def set_up_logging(level):
     # add a handler to prevent basicConfig
     root = logging.getLogger()
     null_handler = NullHandler()
@@ -148,11 +83,22 @@ def set_up_logging(opts):
     logger.addHandler(logger_sh)
 
     # Set the logging level to show debug messages.
-    if opts.verbose:
+    if level == 1:
         logger.setLevel(logging.DEBUG)
         logger.debug('logging enabled')
-    if opts.verbose and opts.verbose > 1:
-        logger.setLevel(logging.DEBUG)
+
+
+def show_error(parent, message):
+    dialog = Gtk.MessageDialog(parent,
+                        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                        Gtk.MessageType.ERROR,
+                        Gtk.ButtonsType.CLOSE,
+                        message
+                        )
+
+    dialog.set_title(_("Error"))
+    dialog.run()
+    dialog.destroy()
 
 
 def get_help_uri(page=None):
@@ -171,30 +117,12 @@ def get_help_uri(page=None):
     return help_uri
 
 
-def show_uri(parent, link):
-    screen = parent.get_screen()
-    Gtk.show_uri(screen, link, Gtk.get_current_event_time())
-
-
-def alias(alternative_function_name):
-    '''see http://www.drdobbs.com/web-development/184406073#l9'''
-
-    def decorator(function):
-        '''attach alternative_function_name(s) to function'''
-        if not hasattr(function, 'aliases'):
-            function.aliases = []
-        function.aliases.append(alternative_function_name)
-        return function
-
-    return decorator
-
-
 def exist_executable(command):
     """return if a command can be executed in the SO
 
     Arguments:
         command {str} -- a command
-    
+
     Returns:
         {bool} -- if the given command exists in the system
     """
@@ -232,6 +160,26 @@ def get_descendant(widget, child_name, level, doPrint=False):
                 if found: return found
 
 
+def liststore_from_list(str_list: List[str]):
+    """return a Gtk.ListStore object of Handy.TypeValues
+       constructed after a list of strings
+
+        Arguments:
+            str_list {List[str]} -- a list of strings
+
+        Returns:
+            {Gtk.ListStore} -- a ListStore of Handy.ValueObjects
+    """
+
+    list_store = Gio.ListStore.new(Handy.ValueObject)
+
+    for element in str_list:
+        obj = Handy.ValueObject.new(element)
+        list_store.append(obj)
+
+    return list_store
+
+
 def get_char_width(widget):
     return Pango.units_to_double(
         widget.get_pango_context().get_metrics().get_approximate_char_width())
@@ -239,5 +187,5 @@ def get_char_width(widget):
 
 def pandoc_convert(text, to="html5", args=[], outputfile=None):
     fr = Settings.new().get_value('input-format').get_string() or "markdown"
-    args.extend(["--quiet"])
+    #args.extend(["--quiet"])
     return pypandoc.convert_text(text, to, fr, extra_args=args, outputfile=outputfile)

@@ -96,8 +96,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.export</property>
-            <property name="action_target">"advanced"</property>
+            <property name="action_name">app.advanced_export</property>
             <property name="text" translatable="yes">Advanced Export…</property>
           </object>
           <packing>

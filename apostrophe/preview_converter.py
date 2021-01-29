@@ -43,8 +43,8 @@ class PreviewConverter:
             args = ['--standalone',
                     '--mathjax',
                     '--css=' + Theme.get_current().web_css_path,
-                    '--lua-filter=' + helpers.get_script_path('relative_to_absolute.lua'),
-                    '--lua-filter=' + helpers.get_script_path('task-list.lua')]
+                    '--lua-filter=' + helpers.get_media_path('/lua/relative_to_absolute.lua'),
+                    '--lua-filter=' + helpers.get_media_path('/lua/task-list.lua')]
             text = helpers.pandoc_convert(text, to="html5", args=args)
 
             GLib.idle_add(callback, text, *user_data)

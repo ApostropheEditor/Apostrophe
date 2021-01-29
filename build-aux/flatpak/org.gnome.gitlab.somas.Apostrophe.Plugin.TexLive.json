@@ -2,7 +2,7 @@
     "id": "org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive",
     "runtime": "org.gnome.gitlab.somas.Apostrophe",
     "branch": "stable",
-    "sdk": "org.gnome.Sdk//3.34",
+    "sdk": "org.gnome.Sdk//3.36",
     "build-extension": true,
     "separate-locales": false,
     "appstream-compose": false,

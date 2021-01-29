@@ -1,109 +1,142 @@
 {
-    "app-id": "org.gnome.gitlab.somas.Apostrophe",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "3.36",
-    "sdk": "org.gnome.Sdk",
-    "command": "apostrophe",
-    "finish-args": [
+    "app-id" : "org.gnome.gitlab.somas.Apostrophe",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.38",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "apostrophe",
+    "finish-args" : [
         "--socket=x11",
         "--socket=wayland",
         "--share=ipc",
         "--share=network",
-        "--filesystem=host",
-        "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2019/bin/x86_64-linux/",
+        "--filesystem=home:ro",
+        "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2018/bin/x86_64-linux/",
         "--metadata=X-DConf=migrate-path=/org/gnome/gitlab/somas/Apostrophe/"
     ],
-    "add-extensions": {
-        "org.gnome.gitlab.somas.Apostrophe.Plugin": {
-          "directory": "extensions",
-          "version": "stable",
-          "subdirectories": true,
-          "no-autodownload": true,
-          "autodelete": true
+    "add-extensions" : {
+        "org.gnome.gitlab.somas.Apostrophe.Plugin" : {
+            "directory" : "extensions",
+            "version" : "stable",
+            "subdirectories" : true,
+            "no-autodownload" : true,
+            "autodelete" : true
+        }
+    },
+    "modules" : [
+        {
+            "name" : "libhandy",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "--buildtype=release"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libhandy",
+                    "tag" : "0.85.0"
+                }
+            ]
+        },
+        {
+            "name" : "gspell",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/gspell/1.8/gspell-1.8.3.tar.xz",
+                    "sha256" : "5ae514dd0216be069176accf6d0049d6a01cfa6a50df4bc06be85f7080b62de8"
+                }
+            ]
+        },
+        {
+            "name" : "pandoc",
+            "only-arches" : [
+                "x86_64"
+            ],
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "cp bin/pandoc /app/bin/pandoc"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-linux-amd64.tar.gz",
+                    "sha256" : "848fd7e6ccfe8a8d5a9ff81ea9b6a3024e8d0e8da6365d304584d93b87da8996"
+                }
+            ]
+        },
+        {
+            "name" : "pipdeps",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} regex pypandoc chardet"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/75/28/521c6dc7fef23a68368efefdcd682f5b3d1d58c2b90b06dc1d0b805b51ae/wheel-0.34.2.tar.gz",
+                    "sha256" : "8788e9155fe14f54164c1b9eb0a319d98ef02c160725587ad60f14ddc57b6f96"
+                },
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/8e/76/66066b7bc71817238924c7e4b448abdb17eb0c92d645769c223f9ace478f/pip-20.0.2.tar.gz",
+                    "sha256" : "7db0c8ea4c7ea51c8049640e8e6e7fde949de672bfa4949920675563a5a6967f"
+                },
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/71/81/00184643e5a10a456b4118fc12c96780823adb8ed974eb2289f29703b29b/pypandoc-1.4.tar.gz",
+                    "sha256" : "e914e6d5f84a76764887e4d909b09d63308725f0cbb5293872c2c92f07c11a5b"
+                },
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/e8/76/8ac7f467617b9cfbafcef3c76df6f22b15de654a62bea719792b00a83195/regex-2020.2.20.tar.gz",
+                    "sha256" : "9e9624440d754733eddbcd4614378c18713d2d9d0dc647cf9c72f64e39671be5"
+                },
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/14/4b/6f7a3f2bb1e2fa4d3007126578cae0b9910ff46c4957bef5bd4b92733011/pyenchant-3.0.1.tar.gz",
+                    "sha256" : "1bd26a644abf80196a9de3f2d820ebafb7e7f78385e392ce77cb1552f164d559"
+                },
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/ee/2d/9cdc2b527e127b4c9db64b86647d567985940ac3698eeabc7ffaccb4ea61/chardet-4.0.0.tar.gz",
+                    "sha256" : "0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"
+                }
+            ]
+        },
+        {
+            "name" : "fonts",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "mkdir -p /app/share/fonts/",
+                "cp ttf/* /app/share/fonts/"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/mozilla/Fira",
+                    "tag" : "4.202"
+                }
+            ]
+        },
+        {
+            "name" : "apostrophe",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dprofile=development"
+            ],
+            "sources" : [
+                {
+                    "type" : "dir",
+                    "path" : "../../"
+                }
+            ],
+            "post-install" : [
+                "install -d /app/extensions"
+            ]
+        }
+    ],
+    "build-options" : {
+        "env" : {
+        }
     }
-    },
-    "modules": [{
-      "name":"gspell",
-      "sources":[{
-          "type":"archive",
-          "url":"https://download.gnome.org/sources/gspell/1.8/gspell-1.8.3.tar.xz",
-          "sha256":"5ae514dd0216be069176accf6d0049d6a01cfa6a50df4bc06be85f7080b62de8"
-      }]
-    },
-    {
-      "name": "pandoc",
-      "only-arches": [
-        "x86_64"
-      ],
-      "buildsystem": "simple",
-      "build-commands": [
-        "cp bin/pandoc /app/bin/pandoc",
-        "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
-      ],
-      "sources": [{
-          "type": "archive",
-          "url": "https://github.com/jgm/pandoc/releases/download/2.9.2/pandoc-2.9.2-linux-amd64.tar.gz",
-          "sha256": "039f155b6166c1e268479bcb06af2dba99eb7795cbff7b3c13b4875388195d08"
-      }]
-    },
-    {
-	"name": "pipdeps",
-     	"buildsystem": "simple",
-      	"build-commands": [
-			"pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} regex pypandoc"
-		],
-      	"sources": [{
-			"type": "file",
-          		"url": "https://files.pythonhosted.org/packages/75/28/521c6dc7fef23a68368efefdcd682f5b3d1d58c2b90b06dc1d0b805b51ae/wheel-0.34.2.tar.gz",
-          		"sha256": "8788e9155fe14f54164c1b9eb0a319d98ef02c160725587ad60f14ddc57b6f96"
-        },
-        {
-			"type": "file",
-			"url": "https://files.pythonhosted.org/packages/8e/76/66066b7bc71817238924c7e4b448abdb17eb0c92d645769c223f9ace478f/pip-20.0.2.tar.gz",
-			"sha256": "7db0c8ea4c7ea51c8049640e8e6e7fde949de672bfa4949920675563a5a6967f"
-	},
-        {
-			"type": "file",
-			"url": "https://files.pythonhosted.org/packages/71/81/00184643e5a10a456b4118fc12c96780823adb8ed974eb2289f29703b29b/pypandoc-1.4.tar.gz",
-			"sha256": "e914e6d5f84a76764887e4d909b09d63308725f0cbb5293872c2c92f07c11a5b"
-        },
-        {
-			"type": "file",
-			"url": "https://files.pythonhosted.org/packages/e8/76/8ac7f467617b9cfbafcef3c76df6f22b15de654a62bea719792b00a83195/regex-2020.2.20.tar.gz",
-			"sha256": "9e9624440d754733eddbcd4614378c18713d2d9d0dc647cf9c72f64e39671be5"
-        },
-        {
-			  "type": "file",
-			  "url": "https://files.pythonhosted.org/packages/14/4b/6f7a3f2bb1e2fa4d3007126578cae0b9910ff46c4957bef5bd4b92733011/pyenchant-3.0.1.tar.gz",
-			  "sha256": "1bd26a644abf80196a9de3f2d820ebafb7e7f78385e392ce77cb1552f164d559"
-        }]
-    },
-    {
-	"name": "fonts",
-        "buildsystem": "simple",
-        "build-commands": [
-          "mkdir -p /app/share/fonts/",
-          "cp ttf/* /app/share/fonts/"
-        ],
-        "sources": [{
-            "type": "git",
-            "url": "https://github.com/mozilla/Fira",
-            "tag": "4.202"
-        }]
-    },
-    {
-        "name": "apostrophe",
-        "buildsystem": "meson",
-        "config-opts" : [
-          "-Dprofile=development"
-        ],
-        "sources": [{
-            "type" : "dir",
-            "path" : "../../"
-        }],
-        "post-install": [
-          "install -d /app/extensions"
-        ]
-      }
-    ]
 }

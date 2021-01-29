@@ -13,21 +13,6 @@
 # You should have received a copy of the GNU General Public License along 
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
-import sys
 
-import gi
-
-gi.require_version('Gtk', '3.0')
-
-from apostrophe import main_window
-from apostrophe import application
-from apostrophe.helpers import set_up_logging
-
-def main():
-    'constructor for your class instances'
-    # (options, args) = parse_options()
-
-    # Run the application.
-    app = application.Application()
-
-    app.run(sys.argv)
+import pkgutil
+__path__ = pkgutil.extend_path(__path__, __name__)

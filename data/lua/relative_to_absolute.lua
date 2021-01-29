@@ -7,7 +7,7 @@ function string.starts(String, Starts)
 end
 
 function fix_path (path)
-  if string.starts(path, {"/", "www.", "http", "file://"}) then
+  if string.starts(path, {"/", "www.", "http", "file://", "#"}) then
     return path
   else
     return (pandoc.system.get_working_directory() or '') .. "/" .. path

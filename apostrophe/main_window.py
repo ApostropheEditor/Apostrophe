@@ -14,66 +14,42 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
-import io
-import locale
 import logging
 import os
-import urllib
 from gettext import gettext as _
 
-import gi
+from dataclasses import dataclass
+import chardet
 
-from apostrophe.export_dialog import Export
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk, GObject, GLib, Gio
+
+from apostrophe.export_dialog import ExportDialog, AdvancedExportDialog
 from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
 from apostrophe.styled_window import StyledWindow
 from apostrophe.text_view import TextView
-
-from apostrophe.config import PROFILE
-
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, GObject, GLib, Gio
-
-import cairo
-
-from apostrophe import helpers
-
-from apostrophe.sidebar import Sidebar
 from apostrophe.search_and_replace import SearchAndReplace
 from apostrophe.settings import Settings
+from apostrophe.tweener import Tweener
+from apostrophe import helpers
+# from apostrophe.sidebar import Sidebar
 
 from . import headerbars
 
-# Some Globals
-# TODO move them somewhere for better
-# accesibility from other files
-
 LOGGER = logging.getLogger('apostrophe')
-
-CONFIG_PATH = os.path.expanduser("~/.config/apostrophe/")
 
 
 class MainWindow(StyledWindow):
-    __gsignals__ = {
-        'save-file': (GObject.SIGNAL_ACTION, None, ()),
-        'open-file': (GObject.SIGNAL_ACTION, None, ()),
-        'save-file-as': (GObject.SIGNAL_ACTION, None, ()),
-        'new-file': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-bibtex': (GObject.SIGNAL_ACTION, None, ()),
-        'toggle-preview': (GObject.SIGNAL_ACTION, None, ()),
-        'close-window': (GObject.SIGNAL_ACTION, None, ())
-    }
 
     def __init__(self, app):
         """Set up the main window"""
 
-        super().__init__(application=Gio.Application.get_default(), title="Apostrophe")
+        super().__init__(application=Gio.Application.get_default(),
+                         title="Apostrophe")
 
         self.get_style_context().add_class('apostrophe-window')
-
-        if PROFILE != '':
-            style_context = self.get_style_context()
-            style_context.add_class("devel")
 
         # Set UI
         builder = Gtk.Builder()
@@ -88,6 +64,11 @@ class MainWindow(StyledWindow):
         # Preferences
         self.settings = Settings.new()
 
+        # Create new, empty file
+        # TODO: load last opened file?
+
+        self.current = File()
+
         # Headerbars
         self.last_height = 0
         self.headerbar = headerbars.MainHeaderbar(app)
@@ -95,8 +76,8 @@ class MainWindow(StyledWindow):
             "size_allocate", self.header_size_allocate)
         self.set_titlebar(self.headerbar.hb_revealer)
 
-        # remove .titlebar class from hb_revealer 
-        # to don't mess things up on Elementary OS 
+        # remove .titlebar class from hb_revealer
+        # to don't mess things up on Elementary OS
         self.headerbar.hb_revealer.get_style_context().remove_class("titlebar")
 
         self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
@@ -109,8 +90,8 @@ class MainWindow(StyledWindow):
 
         self.headerbar.dark_button.bind_property(
             "active", self.fs_headerbar.dark_button, "active",
-            GObject.BindingFlags.BIDIRECTIONAL
-            | GObject.BindingFlags.SYNC_CREATE)
+            GObject.BindingFlags.BIDIRECTIONAL |
+            GObject.BindingFlags.SYNC_CREATE)
 
         # The dummy headerbar is a cosmetic hack to be able to
         # crossfade the hb on top of the window
@@ -119,13 +100,10 @@ class MainWindow(StyledWindow):
         root.reorder_overlay(self.dm_headerbar.hb_revealer, 0)
         root.set_overlay_pass_through(self.dm_headerbar.hb_revealer, True)
 
-        self.title_end = "  –  Apostrophe"
-        self.set_headerbar_title("New File" + self.title_end)
-
         self.accel_group = Gtk.AccelGroup()
         self.add_accel_group(self.accel_group)
 
-        self.scrolled_window = builder.get_object('editor_scrolledwindow')
+        scrolled_window = builder.get_object('editor_scrolledwindow')
 
         # Setup text editor
         self.text_view = TextView(self.settings.get_int("characters-per-line"))
@@ -133,8 +111,21 @@ class MainWindow(StyledWindow):
         self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
         self.text_view.show()
-        self.scrolled_window.add(self.text_view)
+        scrolled_window.add(self.text_view)
         self.text_view.grab_focus()
+
+        # Setup save progressbar an its animator
+
+        self.progressbar = builder.get_object("save_progressbar")
+        self.progressbar_initiate_tw = Tweener(self.progressbar,
+                                               self.progressbar.set_fraction,
+                                               0, 0.125, 40)
+        self.progressbar_finalize_tw = Tweener(self.progressbar,
+                                               self.progressbar.set_fraction,
+                                               0.125, 1, 400)
+        self.progressbar_opacity_tw = Tweener(self.progressbar,
+                                              self.progressbar.set_opacity,
+                                              1, 0, 300, 200)
 
         # Setup stats counter
         self.stats_revealer = builder.get_object('editor_stats_revealer')
@@ -144,32 +135,28 @@ class MainWindow(StyledWindow):
         # Setup preview
         content = builder.get_object('content')
         editor = builder.get_object('editor')
-        self.preview_handler = PreviewHandler(self, content, editor, self.text_view)
+        self.preview_handler = PreviewHandler(self, content,
+                                              editor, self.text_view)
 
         # Setup header/stats bar
         self.headerbar_visible = True
         self.bottombar_visible = True
         self.buffer_modified_for_status_bar = False
 
-        # Init file name with None
-        self.set_filename()
-
         # Setting up spellcheck
-        self.auto_correct = None
         self.toggle_spellcheck(self.settings.get_value("spellcheck"))
         self.did_change = False
 
         ###
         #   Sidebar initialization test
         ###
-        self.paned_window = builder.get_object("main_paned")
-        self.sidebar_box = builder.get_object("sidebar_box")
-        self.sidebar = Sidebar(self)
-        self.sidebar_box.hide()
+        # self.paned_window = builder.get_object("main_paned")
+        # self.sidebar_box = builder.get_object("sidebar_box")
+        # self.sidebar = Sidebar(self)
+        # self.sidebar_box.hide()
 
         ###
         #   Search and replace initialization
-        #   Same interface as Sidebar ;)
         ###
         self.searchreplace = SearchAndReplace(self, self.text_view, builder)
 
@@ -179,7 +166,10 @@ class MainWindow(StyledWindow):
         self.headerbar_eventbox.connect('enter_notify_event',
                                         self.reveal_headerbar_bottombar)
 
-        self.stats_revealer.connect('enter_notify_event', self.reveal_bottombar)
+        self.stats_revealer.connect('enter_notify_event',
+                                    self.reveal_bottombar)
+
+        self.new_document()
 
     def header_size_allocate(self, widget, allocation):
         """ When the main hb starts to shrink its size, add that size
@@ -206,9 +196,8 @@ class MainWindow(StyledWindow):
 
         if self.did_change is False:
             self.did_change = True
-            title = self.get_title()
-            self.set_headerbar_title("* " + title)
 
+        self.update_headerbar_title(True, True)
         self.buffer_modified_for_status_bar = True
         if self.settings.get_value("autohide-headerbar"):
             self.hide_headerbar_bottombar()
@@ -236,7 +225,8 @@ class MainWindow(StyledWindow):
         """toggle focusmode
         """
 
-        self.text_view.set_focus_mode(state.get_boolean(), self.headerbar.hb.get_allocated_height())
+        self.text_view.set_focus_mode(state.get_boolean(),
+                                      self.headerbar.hb.get_allocated_height())
         self.text_view.grab_focus()
 
     def set_hemingway_mode(self, state):
@@ -250,7 +240,7 @@ class MainWindow(StyledWindow):
         """Toggle the preview mode
 
         Arguments:
-            state {gtk bool} -- Desired state of the preview mode (enabled/disabled)
+            state {gtk bool} -- Desired state of the preview mode
         """
 
         if state.get_boolean():
@@ -268,109 +258,110 @@ class MainWindow(StyledWindow):
 
         return True
 
-    # TODO: refactorizable
-    def save_document(self, _widget=None, _data=None):
-        """provide to the user a filechooser and save the document
-           where he wants. Call set_headbar_title after that
+    def save_document(self):
+        """Try to save buffer in the current gfile.
+           If the file doesn't exist calls save_document_as
         """
 
-        if self.filename:
+        if self.current.gfile:
             LOGGER.info("saving")
-            filename = self.filename
-            file_to_save = io.open(filename, encoding="utf-8", mode='w')
-            file_to_save.write(self.text_view.get_text())
-            file_to_save.close()
-            if self.did_change:
-                self.did_change = False
-                title = self.get_title()
-                self.set_headerbar_title(title[2:])
-            return Gtk.ResponseType.OK
 
+            try:
+                try:
+                    encoded_text = GLib.Bytes.new(
+                                   self.text_view.get_text()
+                                   .encode(self.current.encoding))
+                except UnicodeEncodeError:
+                    encoded_text = self.text_view.get_text()\
+                                    .encode("UTF-8")
+                    self.current.encoding = "UTF-8"
+            except UnicodeEncodeError as error:
+                helpers.show_error(self, str(error.message))
+                LOGGER.warning(str(error.message))
+            else:
+                self.progressbar.set_opacity(1)
+                self.progressbar_initiate_tw.start()
+                self.current.gfile.replace_contents_bytes_async(
+                    encoded_text,
+                    etag=None,
+                    make_backup=False,
+                    flags=Gio.FileCreateFlags.NONE,
+                    cancellable=None,
+                    callback=self._replace_contents_cb,
+                    user_data=None)
+
+        else:
+            self.save_document_as()
+
+    def save_document_as(self, _widget=None, _data=None):
+        """provide to the user a filechooser and save the document
+           where they want. Call set_headbar_title after that
+        """
         filefilter = Gtk.FileFilter.new()
         filefilter.add_mime_type('text/x-markdown')
         filefilter.add_mime_type('text/plain')
         filefilter.set_name('Markdown (.md)')
-        filechooser = Gtk.FileChooserDialog(
+        filechooser = Gtk.FileChooserNative.new(
             _("Save your File"),
             self,
             Gtk.FileChooserAction.SAVE,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Save", Gtk.ResponseType.OK)
+            _("Save"),
+            _("Cancel")
         )
-
         filechooser.set_do_overwrite_confirmation(True)
+        filechooser.set_local_only(False)
         filechooser.add_filter(filefilter)
+
+        title = self.current.title
+        if not title.endswith(".md"):
+            title += ".md"
+        filechooser.set_current_name(title)
+
         response = filechooser.run()
-        if response == Gtk.ResponseType.OK:
-            filename = filechooser.get_filename()
 
-            if filename[-3:] != ".md":
-                filename = filename + ".md"
+        if response == Gtk.ResponseType.ACCEPT:
+
+            file = filechooser.get_file()
+
+            if not file.query_exists():
                 try:
-                    self.recent_manager.add_item("file:/ " + filename)
-                except:
-                    pass
+                    file.create(Gio.FileCreateFlags.NONE)
+                except GLib.GError as error:
+                    helpers.show_error(self, str(error.message))
+                    LOGGER.warning(str(error.message))
+                    return
 
-            file_to_save = io.open(filename, encoding="utf-8", mode='w')
-            file_to_save.write(self.text_view.get_text())
-            file_to_save.close()
+            self.current.gfile = file
 
-            self.set_filename(filename)
-            self.set_headerbar_title(
-                os.path.basename(filename) + self.title_end, filename)
-
-            self.did_change = False
+            self.update_headerbar_title(False, True)
             filechooser.destroy()
-            return response
+            self.save_document()
 
-        filechooser.destroy()
-        return Gtk.ResponseType.CANCEL
+        return response
 
-    def save_document_as(self, _widget=None, _data=None):
-        """provide to the user a filechooser and save the document
-           where he wants. Call set_headbar_title after that
-        """
-        filechooser = Gtk.FileChooserDialog(
-            "Save your File",
-            self,
-            Gtk.FileChooserAction.SAVE,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Save", Gtk.ResponseType.OK)
-        )
-        filechooser.set_do_overwrite_confirmation(True)
-        if self.filename:
-            filechooser.set_filename(self.filename)
-        response = filechooser.run()
-        if response == Gtk.ResponseType.OK:
+    def _replace_contents_cb(self, gfile, result, _user_data=None):
+        try:
+            success, _etag = gfile.replace_contents_finish(result)
+        except GLib.GError as error:
+            helpers.show_error(self, str(error.message))
+            LOGGER.warning(str(error.message))
+            self.progressbar_opacity_tw.start()
+            return
 
-            filename = filechooser.get_filename()
-            if filename[-3:] != ".md":
-                filename = filename + ".md"
-                try:
-                    self.recent_manager.remove_item("file:/" + filename)
-                    self.recent_manager.add_item("file:/ " + filename)
-                except:
-                    pass
+        if success:
+            recents_manager = Gtk.RecentManager.get_default()
+            recents_manager.add_item(self.current.gfile.get_uri())
 
-            file_to_save = io.open(filename, encoding="utf-8", mode='w')
-            file_to_save.write(self.text_view.get_text())
-            file_to_save.close()
+            self.progressbar_initiate_tw.stop()
+            self.progressbar_finalize_tw.start()
+            self.progressbar_opacity_tw.start()
 
-            self.set_filename(filename)
-            self.set_headerbar_title(
-                os.path.basename(filename) + self.title_end, filename)
-
-            try:
-                self.recent_manager.add_item(filename)
-            except:
-                pass
-
-            filechooser.destroy()
+            self.update_headerbar_title()
             self.did_change = False
-
         else:
-            filechooser.destroy()
-            return Gtk.ResponseType.CANCEL
+            self.progressbar_opacity_tw.start()
+
+        return success
 
     def copy_html_to_clipboard(self, _widget=None, _date=None):
         """Copies only html without headers etc. to Clipboard
@@ -397,45 +388,83 @@ class MainWindow(StyledWindow):
         plaintext_filter.add_mime_type('text/plain')
         plaintext_filter.set_name(_('Plain Text Files'))
 
-        filechooser = Gtk.FileChooserDialog(
+        filechooser = Gtk.FileChooserNative.new(
             _("Open a .md file"),
             self,
             Gtk.FileChooserAction.OPEN,
-            ("_Cancel", Gtk.ResponseType.CANCEL,
-             "_Open", Gtk.ResponseType.OK)
+            _("Open"),
+            _("Cancel")
         )
+
+        filechooser.set_local_only(False)
         filechooser.add_filter(markdown_filter)
         filechooser.add_filter(plaintext_filter)
         response = filechooser.run()
-        if response == Gtk.ResponseType.OK:
-            filename = filechooser.get_filename()
-            self.load_file(filename)
+        if response == Gtk.ResponseType.ACCEPT:
+            self.load_file(filechooser.get_file())
             filechooser.destroy()
 
         elif response == Gtk.ResponseType.CANCEL:
             filechooser.destroy()
 
+    def load_file(self, file=None):
+        """Open File from command line or open / open recent etc."""
+        LOGGER.info("trying to open %s", file.get_path())
+
+        if self.check_change() == Gtk.ResponseType.CANCEL:
+            return
+        self.current.gfile = file
+
+        self.current.gfile.load_contents_async(None,
+                                               self._load_contents_cb, None)
+
+    def _load_contents_cb(self, gfile, result, user_data=None):
+        try:
+            _success, contents, _etag = gfile.load_contents_finish(result)
+        except GLib.GError as error:
+            helpers.show_error(self, str(error.message))
+            LOGGER.warning(str(error.message))
+            return
+
+        try:
+            try:
+                self.current.encoding = 'UTF-8'
+                decoded = contents.decode(self.current.encoding)
+            except UnicodeDecodeError:
+                self.current.encoding = chardet.detect(contents)['encoding']
+                decoded = contents.decode(self.current.encoding)
+        except UnicodeDecodeError as error:
+            helpers.show_error(self, str(error.message))
+            LOGGER.warning(str(error.message))
+            return
+        else:
+            self.text_view.set_text(decoded)
+            start_iter = self.text_view.get_buffer().get_start_iter()
+            GLib.idle_add(lambda: self.text_view.get_buffer().place_cursor(start_iter))
+
+            self.update_headerbar_title()
+            self.did_change = False
+
     def check_change(self):
         """Show dialog to prevent loss of unsaved changes
         """
 
-        if self.filename:
-            title = os.path.basename(self.filename)
-        else:
-            title = _("New File")
-
         if self.did_change and self.text_view.get_text():
             dialog = Gtk.MessageDialog(self,
-                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                       Gtk.DialogFlags.MODAL |
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        Gtk.MessageType.WARNING,
                                        Gtk.ButtonsType.NONE,
-                                       _("Save changes to document “%s” before closing?") %
-                                       title
+                                       _("Save changes to document " +
+                                         "“%s” before closing?") %
+                                       self.current.title
                                        )
-            
+
             dialog.props.secondary_text = _("If you don’t save, " +
-                                            "all your changes will be permanently lost.")
-            close_button = dialog.add_button(_("Close without saving"), Gtk.ResponseType.NO)
+                                            "all your changes will be " +
+                                            "permanently lost.")
+            close_button = dialog.add_button(_("Close without saving"),
+                                             Gtk.ResponseType.NO)
             dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
 
@@ -467,8 +496,8 @@ class MainWindow(StyledWindow):
         self.text_view.clear()
 
         self.did_change = False
-        self.set_filename()
-        self.set_headerbar_title(_("New File") + self.title_end)
+        self.current.gfile = None
+        self.update_headerbar_title(False, False)
 
     def update_default_stat(self):
         self.stats_handler.update_default_stat()
@@ -483,7 +512,7 @@ class MainWindow(StyledWindow):
     def menu_toggle_sidebar(self, _widget=None):
         """WIP
         """
-        self.sidebar.toggle_sidebar()
+        # self.sidebar.toggle_sidebar()
 
     def toggle_spellcheck(self, state):
         """Enable/disable the autospellchecking
@@ -491,88 +520,33 @@ class MainWindow(StyledWindow):
         Arguments:
             status {gtk bool} -- Desired status of the spellchecking
         """
-
         self.text_view.set_spellcheck(state.get_boolean())
 
     def reload_preview(self, reshow=False):
         self.preview_handler.reload(reshow=reshow)
 
-    def load_file(self, filename=None):
-        """Open File from command line or open / open recent etc."""
-        LOGGER.info("trying to open " + filename)
-        if self.check_change() == Gtk.ResponseType.CANCEL:
-            return
-
-        if filename:
-            if filename.startswith('file://'):
-                filename = filename[7:]
-            filename = urllib.parse.unquote_plus(filename)
-            self.text_view.clear()
-            try:
-                if os.path.exists(filename):
-                    with io.open(filename, encoding="utf-8", mode='r') as current_file:
-                        text = current_file.read()
-                    self.text_view.set_text(text)
-                    start_iter = self.text_view.get_buffer().get_start_iter()
-                    GLib.idle_add(lambda: self.text_view.get_buffer().place_cursor(start_iter))
-                else:
-                    dialog = Gtk.MessageDialog(self,
-                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                       Gtk.MessageType.WARNING,
-                                       Gtk.ButtonsType.CLOSE,
-                                       _("The file you tried to open doesn’t exist.\
-                                            \nA new file will be created in its place when you save the current one.")
-                                       )
-                    dialog.run()
-                    dialog.destroy()
-
-                self.set_headerbar_title(os.path.basename(filename) + self.title_end, filename)
-                self.set_filename(filename)
-
-            except Exception as e:
-                LOGGER.warning(_("Error Reading File: %r") % e)
-                dialog = Gtk.MessageDialog(self,
-                                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                    Gtk.MessageType.WARNING,
-                                    Gtk.ButtonsType.CLOSE,
-                                    _("Error reading file:\
-                                         \n%r" %e)
-                                    )
-                dialog.run()
-                dialog.destroy()
-            self.did_change = False
-        else:
-            LOGGER.warning("No File arg")
-
-    def open_apostrophe_markdown(self, _widget=None, _data=None):
-        """open a markdown mini tutorial
-        """
-        if self.check_change() == Gtk.ResponseType.CANCEL:
-            return
-
-        self.load_file(helpers.get_media_file('apostrophe_markdown.md'))
-
     def open_search(self, replace=False):
         """toggle the search box
         """
-
         self.searchreplace.toggle_search(replace=replace)
 
-    def open_advanced_export(self, export_format):
-        """open the export and advanced export dialog
+    def open_export(self, export_format):
+        """open the export dialog
         """
         text = bytes(self.text_view.get_text(), "utf-8")
 
-        self.export = Export(self.filename, export_format, text)
+        export_dialog = ExportDialog(self.current, export_format, text)
+        export_dialog.dialog.set_transient_for(self)
+        export_dialog.export()
 
-    def open_recent(self, _widget, data=None):
-        """open the given recent document
+    def open_advanced_export(self):
+        """open the advanced export dialog
         """
+        text = bytes(self.text_view.get_text(), "utf-8")
 
-        if data:
-            if self.check_change() == Gtk.ResponseType.CANCEL:
-                return
-            self.load_file(data)
+        export_dialog = AdvancedExportDialog(self.current, text)
+        export_dialog.set_transient_for(self)
+        export_dialog.show()
 
     def focus_out(self, _widget, _data=None):
         """events called when the window losses focus
@@ -632,30 +606,78 @@ class MainWindow(StyledWindow):
             return True
         return False
 
-    def set_headerbar_title(self, title, subtitle=""):
-        """set the desired headerbar title
+    def update_headerbar_title(self,
+                               is_unsaved: bool = False,
+                               has_subtitle: bool = True):
+        """update headerbar title and subtitle
         """
+
+        if is_unsaved:
+            prefix = "* "
+        else:
+            prefix = ""
+
+        suffix = " - Apostrophe"
+
+        title = prefix + self.current.title + suffix
+
+        if has_subtitle:
+            subtitle = self.current.path
+        else:
+            subtitle = ""
+
         self.headerbar.hb.set_title(title)
         self.dm_headerbar.hb.set_title(title)
         self.fs_headerbar.hb.set_title(title)
-        
+
         self.headerbar.hb.set_subtitle(subtitle)
         self.dm_headerbar.hb.set_subtitle(subtitle)
         self.fs_headerbar.hb.set_subtitle(subtitle)
 
         self.headerbar.hb.set_tooltip_text(subtitle)
         self.fs_headerbar.hb.set_tooltip_text(subtitle)
-        
+
         self.set_title(title)
 
-    def set_filename(self, filename=None):
-        """set filename
-        """
-        if filename:
-            self.filename = filename
-            base_path = os.path.dirname(self.filename)
-            os.chdir(base_path)
+
+@dataclass
+class File():
+    """Class for keeping track of files, their attributes, and their methods"""
+
+    def __init__(self, gfile=None, encoding="UTF-8"):
+        self._settings = Settings.new()
+        self.gfile = gfile
+        self.encoding = encoding
+        self.path = ""
+        self.title = ""
+        self.name = ""
+
+    @property
+    def gfile(self):
+        return self._gfile
+
+    @gfile.setter
+    def gfile(self, file):
+        if file:
+            if file.is_native():
+                self.path = file.get_parent().get_path()
+                base_path = file.get_parent().get_path()
+                os.chdir(base_path)
+            else:
+                self.path = file.get_parent().get_uri()
+                base_path = "/"
+
+            file_info = file.query_info("standard",
+                                        Gio.FileQueryInfoFlags.NONE,
+                                        None)
+            self.title = file_info.get_attribute_as_string(
+                         "standard::display-name")
         else:
-            self.filename = None
+            self.title = _("New File")
             base_path = "/"
-        self.settings.set_string("open-file-path", base_path)
+        self.name = self.title
+        if self.name.endswith(".md"):
+            self.name = self.name[:-3]
+        # TODO: remove path in favor of gfile
+        self._settings.set_string("open-file-path", base_path)
+        self._gfile = file

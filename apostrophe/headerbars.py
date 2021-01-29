@@ -44,6 +44,8 @@ class BaseHeaderbar:
             "/org/gnome/gitlab/somas/Apostrophe/ui/Headerbar.ui")
         self.builder.add_from_resource(
             "/org/gnome/gitlab/somas/Apostrophe/ui/ExportPopover.ui")
+        self.builder.add_from_resource(
+            "/org/gnome/gitlab/somas/Apostrophe/ui/Menu.ui")
 
         self.hb = self.builder.get_object(
             "Headerbar")
@@ -58,17 +60,26 @@ class BaseHeaderbar:
         self.__populate_layout_switcher_menu()
         self.update_preview_layout_icon()
 
-        self.sync_scroll_switch = self.builder.get_object("sync_scroll_switch")
-        self.sync_scroll_switch.set_active(self.settings.get_value("sync-scroll"))
+        self.sync_scroll_switch = self.builder.get_object(
+                                  "sync_scroll_switch")
+        self.sync_scroll_switch.set_active(self.settings.get_value(
+                                           "sync-scroll"))
         self.sync_scroll_switch.connect("state-set", self.__on_sync_scroll)
 
         self.menu_button = self.builder.get_object("menu_button")
         self.recents_button = self.builder.get_object("recents_button")
         self.export_button = self.builder.get_object("export_button")
-        export_popover = self.builder.get_object("export_menu")        
-        self.preview_switch_button = self.builder.get_object("preview_switch_button")
+        export_popover = self.builder.get_object("export_menu")
+        self.preview_switch_button = self.builder.get_object(
+                                     "preview_switch_button")
 
         self.export_button.set_popover(export_popover)
+
+        model = self.builder.get_object("Menu")
+        self.menu_button.set_popover(model)
+
+        self.light_button = self.builder.get_object("light_mode_button")
+        self.dark_button = self.builder.get_object("dark_mode_button")
 
         add_menus(self, app)
 
@@ -81,7 +92,8 @@ class BaseHeaderbar:
             self.light_button.set_tooltip_text(_(
                 "Light mode isn’t available while using a dark global theme"))
 
-        self.dark_button.set_active(self.settings.get_boolean("dark-mode") or global_dark)
+        self.dark_button.set_active(self.settings.get_boolean("dark-mode")
+                                    or global_dark)
 
         self.light_button.connect("toggled", self.__on_dark_mode)
 
@@ -99,19 +111,22 @@ class BaseHeaderbar:
 
     def __populate_layout_switcher_menu(self):
         self.preview_menu = self.builder.get_object("preview_switch_options")
-        modes = self.settings.props.settings_schema.get_key("preview-mode").get_range()[1]
+        modes = self.settings.props.settings_schema.get_key(
+                "preview-mode").get_range()[1]
 
         for i, mode in enumerate(modes):
             item_builder = Gtk.Builder()
             item_builder.add_from_resource(
-                "/org/gnome/gitlab/somas/Apostrophe/ui/PreviewLayoutSwitcherItem.ui")
+                "/org/gnome/gitlab/somas/Apostrophe/"
+                "ui/PreviewLayoutSwitcherItem.ui")
             menu_item = item_builder.get_object("switcherItem")
 
             menu_item.label = item_builder.get_object("label")
             menu_item.label.set_text(self.__get_text_for_preview_mode(i))
 
             menu_item.icon = item_builder.get_object("icon")
-            menu_item.icon.set_from_icon_name(self.__get_icon_for_preview_mode(i), 16)
+            menu_item.icon.set_from_icon_name(
+                self.__get_icon_for_preview_mode(i), 16)
 
             menu_item.set_action_name("app.preview_mode")
             menu_item.set_action_target_value(GLib.Variant.new_string(mode))
@@ -150,6 +165,7 @@ class BaseHeaderbar:
     def __on_dark_mode(self, _):
         self.settings.set_boolean("dark-mode", self.dark_button.get_active())
 
+
 class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
     """Sets up the main application headerbar
     """
@@ -187,7 +203,8 @@ class FullscreenHeaderbar(BaseHeaderbar):
         self.menu_button.get_popover().connect('closed', self.hide_fs_hb)
         self.recents_button.get_popover().connect('closed', self.hide_fs_hb)
         self.export_button.get_popover().connect('closed', self.hide_fs_hb)
-        self.preview_switch_button.get_popover().connect('closed', self.hide_fs_hb)
+        self.preview_switch_button.get_popover().connect('closed',
+                                                         self.hide_fs_hb)
 
     def show_fs_hb(self, _widget=None, _data=None):
         """show headerbar of the fullscreen mode
@@ -276,17 +293,6 @@ class PreviewHeaderbar:
 def add_menus(headerbar, app):
     """ Add menu models to hb buttons
     """
-
-    # Add menu model to the menu button
-
-    builder_window_menu = Gtk.Builder()
-    builder_window_menu.add_from_resource(
-        "/org/gnome/gitlab/somas/Apostrophe/ui/Menu.ui")
-    model = builder_window_menu.get_object("Menu")
-    headerbar.light_button = builder_window_menu.get_object("light_mode_button")
-    headerbar.dark_button = builder_window_menu.get_object("dark_mode_button")
-
-    headerbar.menu_button.set_popover(model)
 
     # Add recents menu to the open recents button
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+<template class="TexliveWarning" parent="GtkStack">
+    <property name="visible">true</property>
+    <property name="homogeneous">false</property>
+    <child>
+        <object class="GtkBox">
+            <property name="visible">true</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="spacing">16</property>
+            <property name="margin">12</property>
+            <property name="orientation">vertical</property>
+            <child>
+                <object class="GtkLabel">
+                    <style>
+                        <class name="title-2"/>
+                    </style>
+                    <property name="label">TexLive Required</property>
+                    <property name="use-markup">true</property>
+                    <property name="justify">center</property>
+                    <property name="margin-bottom">16</property>
+                    <property name="visible">true</property>
+                </object>
+            </child>
+            <child>
+                <object class="GtkLabel">
+                    <property name="label">Apostrophe needs the TeXLive extension
+in order to export PDF or LaTeX files.
+
+Install it from Apostrophe's page in Software
+or by running the following command in a terminal:</property>
+                    <property name="use-markup">true</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">true</property>
+                    <property name="visible">true</property>
+                </object>
+            </child>
+            <child>
+                <object class="GtkEntry" id="command">
+                    <property name="text">flatpak install org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive</property>
+                    <property name="has-focus">false</property>
+                    <property name="editable">false</property>
+                    <property name="max-width-chars">48</property>
+                    <property name="visible">true</property>
+                </object>
+            </child>
+            <child>
+                <object class="GtkButton">
+                <property name="halign">center</property>
+                <property name="label">Copy to clipboard</property>
+                    <property name="visible">true</property>
+                    <signal name="clicked" handler="copy" swapped="no"/>
+                </object>
+            </child>
+        </object>
+        <packing>
+            <property name="name">flatpak</property>
+        </packing>
+    </child>
+    <child>
+        <object class="GtkBox">
+            <property name="visible">true</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="spacing">16</property>
+            <property name="margin">12</property>
+            <property name="orientation">vertical</property>
+            <child>
+                <object class="GtkLabel">
+                    <style>
+                        <class name="title-2"/>
+                    </style>
+                    <property name="label">TexLive Required</property>
+                    <property name="use-markup">true</property>
+                    <property name="justify">center</property>
+                    <property name="margin-bottom">16</property>
+                    <property name="visible">true</property>
+                </object>
+            </child>
+            <child>
+                <object class="GtkLabel">
+                    <property name="label">Apostrophe needs TeXLive
+in order to export PDF or LaTeX files.
+
+Install it from your distribution repositories</property>
+                    <property name="use-markup">true</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">true</property>
+                    <property name="visible">true</property>
+                </object>
+            </child>
+        </object>
+        <packing>
+            <property name="name">distro</property>
+        </packing>
+    </child>
+</template>
+</interface>
