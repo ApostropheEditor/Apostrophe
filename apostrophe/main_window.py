@@ -258,7 +258,7 @@ class MainWindow(StyledWindow):
 
         return True
 
-    def save_document(self, try_backup: bool = True):
+    def save_document(self):
         """Try to save buffer in the current gfile.
            If the file doesn't exist calls save_document_as
         """
@@ -284,7 +284,7 @@ class MainWindow(StyledWindow):
                 self.current.gfile.replace_contents_bytes_async(
                     encoded_text,
                     etag=None,
-                    make_backup=try_backup,
+                    make_backup=False,
                     flags=Gio.FileCreateFlags.NONE,
                     cancellable=None,
                     callback=self._replace_contents_cb,
@@ -343,15 +343,9 @@ class MainWindow(StyledWindow):
         try:
             success, _etag = gfile.replace_contents_finish(result)
         except GLib.GError as error:
-            if error.matches(Gio.io_error_quark(),
-                             Gio.IOErrorEnum.CANT_CREATE_BACKUP):
-                # some GVFS (i.e, google drive) don't allow backups
-                # try again without attempting to make one
-                self.save_document(try_backup=False)
-            else:
-                helpers.show_error(self, str(error.message))
-                LOGGER.warning(str(error.message))
-                self.progressbar_opacity_tw.start()
+            helpers.show_error(self, str(error.message))
+            LOGGER.warning(str(error.message))
+            self.progressbar_opacity_tw.start()
             return
 
         if success:
