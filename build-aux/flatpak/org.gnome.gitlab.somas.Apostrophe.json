@@ -1,7 +1,7 @@
 {
     "app-id" : "org.gnome.gitlab.somas.Apostrophe",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.36",
+    "runtime-version" : "3.38",
     "sdk" : "org.gnome.Sdk",
     "command" : "apostrophe",
     "finish-args" : [
@@ -9,8 +9,8 @@
         "--socket=wayland",
         "--share=ipc",
         "--share=network",
-        "--filesystem=host",
-        "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2019/bin/x86_64-linux/",
+        "--filesystem=home:ro",
+        "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2018/bin/x86_64-linux/",
         "--metadata=X-DConf=migrate-path=/org/gnome/gitlab/somas/Apostrophe/"
     ],
     "add-extensions" : {
@@ -54,14 +54,13 @@
             ],
             "buildsystem" : "simple",
             "build-commands" : [
-                "cp bin/pandoc /app/bin/pandoc",
-                "cp bin/pandoc-citeproc /app/bin/pandoc-citeproc"
+                "cp bin/pandoc /app/bin/pandoc"
             ],
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/jgm/pandoc/releases/download/2.9.2/pandoc-2.9.2-linux-amd64.tar.gz",
-                    "sha256" : "039f155b6166c1e268479bcb06af2dba99eb7795cbff7b3c13b4875388195d08"
+                    "url" : "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-linux-amd64.tar.gz",
+                    "sha256" : "848fd7e6ccfe8a8d5a9ff81ea9b6a3024e8d0e8da6365d304584d93b87da8996"
                 }
             ]
         },
@@ -99,8 +98,8 @@
                 },
                 {
                     "type" : "file",
-                    "url" : "https://files.pythonhosted.org/packages/fc/bb/a5768c230f9ddb03acc9ef3f0d4a3cf93462473795d18e9535498c8f929d/chardet-3.0.4.tar.gz",
-                    "sha256" : "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"
+                    "url" : "https://files.pythonhosted.org/packages/ee/2d/9cdc2b527e127b4c9db64b86647d567985940ac3698eeabc7ffaccb4ea61/chardet-4.0.0.tar.gz",
+                    "sha256" : "0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"
                 }
             ]
         },

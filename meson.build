@@ -11,8 +11,13 @@ i18n   = import('i18n')
 python = import('python')
 
 py_installation = python.find_installation('python3')
+python_version = py_installation.language_version()
+python_version_req = '>=3.8'
 if not py_installation.found()
     error('No valid python3 binary found')
+endif
+if not python_version.version_compare(python_version_req)
+  error('Requires Python @0@, @1@ found.'.format(python_version_req, python_version))
 endif
 
 # Handling of devel versions
