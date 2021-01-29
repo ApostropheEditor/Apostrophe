@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 
 from apostrophe.settings import Settings
-from apostrophe.helpers import get_css_path
+from apostrophe.helpers import get_media_path
 
 
 class Theme:
@@ -54,13 +54,13 @@ class Theme:
 
 defaultThemes = [
     # https://gitlab.gnome.org/GNOME/gtk/tree/master/gtk/theme/Adwaita
-    Theme('Adwaita', get_css_path('web/adwaita.css'), False, 'Adwaita-dark'),
-    Theme('Adwaita-dark', get_css_path('web/adwaita.css'), True, 'Adwaita'),
+    Theme('Adwaita', get_media_path('/media/css/web/adwaita.css'), False, 'Adwaita-dark'),
+    Theme('Adwaita-dark', get_media_path('/media/css/web/adwaita.css'), True, 'Adwaita'),
     # https://github.com/NicoHood/arc-theme/tree/master/common/gtk-3.0/3.20/sass
-    Theme('Arc', get_css_path('web/arc.css'), False, 'Arc-Dark'),
-    Theme('Arc-Darker', get_css_path('web/arc.css'), False, 'Arc-Dark'),
-    Theme('Arc-Dark', get_css_path('web/arc.css'), True, 'Arc'),
+    Theme('Arc', get_media_path('/media/css/web/arc.css'), False, 'Arc-Dark'),
+    Theme('Arc-Darker', get_media_path('/media/css/web/arc.css'), False, 'Arc-Dark'),
+    Theme('Arc-Dark', get_media_path('/media/css/web/arc.css'), True, 'Arc'),
     # https://gitlab.gnome.org/GNOME/gtk/tree/master/gtk/theme/HighContrast
-    Theme('HighContrast', get_css_path('web/highcontrast.css'), False, 'HighContrastInverse'),
-    Theme('HighContrastInverse', get_css_path('web/highcontrast_inverse.css'), True, 'HighContrast')
+    Theme('HighContrast', get_media_path('/media/css/web/highcontrast.css'), False, 'HighContrastInverse'),
+    Theme('HighContrastInverse', get_media_path('/media/css/web/highcontrast_inverse.css'), True, 'HighContrast')
 ]
