@@ -21,6 +21,7 @@ from gi.repository import GLib, Gio, Gtk, Handy
 from apostrophe.settings import Settings
 from apostrophe.helpers import set_up_logging
 from apostrophe.preferences_dialog import PreferencesDialog
+from apostrophe.inhibitor import Inhibitor
 
 
 class Application(Gtk.Application):
@@ -37,6 +38,7 @@ class Application(Gtk.Application):
 
         self.window = None
         self.settings = Settings.new()
+        self.inhibitor = None
         self._application_id = application_id
 
     def do_startup(self, *args, **kwargs):
@@ -165,6 +167,9 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.save", ["<Ctl>s"])
         self.set_accels_for_action("app.save_as", ["<Ctl><shift>s"])
         self.set_accels_for_action("app.quit", ["<Ctl>w", "<Ctl>q"])
+
+        # Inhibitor
+        self.inhibitor = Inhibitor()
 
     def do_activate(self, *args, **kwargs):
         # We only allow a single window and raise any existing ones

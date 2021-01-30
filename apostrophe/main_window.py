@@ -33,6 +33,7 @@ from apostrophe.text_view import TextView
 from apostrophe.search_and_replace import SearchAndReplace
 from apostrophe.settings import Settings
 from apostrophe.tweener import Tweener
+from apostrophe.helpers import App
 from apostrophe import helpers
 # from apostrophe.sidebar import Sidebar
 
@@ -614,8 +615,10 @@ class MainWindow(StyledWindow):
 
         if is_unsaved:
             prefix = "* "
+            App().inhibitor.inhibit(Gtk.ApplicationInhibitFlags.LOGOUT)
         else:
             prefix = ""
+            App().inhibitor.uninhibit()
 
         suffix = " - Apostrophe"
 

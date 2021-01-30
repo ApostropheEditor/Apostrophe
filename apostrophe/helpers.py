@@ -40,6 +40,8 @@ from gi.repository import Gtk, Gio, Handy  # pylint: disable=E0611
 
 __apostrophe_data_directory__ = '../data/'
 
+App = Gio.Application.get_default
+
 @contextmanager
 def user_action(text_buffer):
     text_buffer.begin_user_action()
