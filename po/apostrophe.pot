@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-14 22:17+0200\n"
+"POT-Creation-Date: 2021-01-30 19:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: apostrophe/application.py:182
-msgid "Show debug messages (-vv debugs apostrophe also)"
+#: apostrophe/export_dialog.py:120 apostrophe/export_dialog.py:313
+#: apostrophe/export_dialog.py:319 data/ui/Export.ui:62
+msgid "Export"
 msgstr ""
 
-#: apostrophe/application.py:184
-msgid "Use experimental features"
+#: apostrophe/export_dialog.py:123 apostrophe/export_dialog.py:322
+#, python-format
+msgid "Export to %s"
 msgstr ""
 
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
+#: apostrophe/export_dialog.py:125 apostrophe/export_dialog.py:317
+#: apostrophe/export_dialog.py:324 apostrophe/main_window.py:310
+#: apostrophe/main_window.py:397 apostrophe/main_window.py:469
+#: data/ui/Export.ui:47
+msgid "Cancel"
 msgstr ""
 
-#: apostrophe/export_dialog.py:199
+#: apostrophe/export_dialog.py:150 apostrophe/export_dialog.py:348
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -37,58 +42,37 @@ msgid ""
 "{err_msg}"
 msgstr ""
 
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
+#: apostrophe/export_dialog.py:226
+msgid "Export to {}"
 msgstr ""
 
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don’t have TexLive installed.\n"
+#: apostrophe/export_dialog.py:316
+msgid "Select folder"
 msgstr ""
 
-#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
-msgid "Export"
-msgstr ""
-
-#: apostrophe/export_dialog.py:225
-#, python-format
-msgid "Export to %s"
-msgstr ""
-
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:439
-msgid "Cancel"
-msgstr ""
-
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
-msgstr ""
-
-#: apostrophe/export_dialog.py:428
-msgid "Please install the TexLive extension from GNOME Software or run\n"
-msgstr ""
-
-#: apostrophe/export_dialog.py:431
-msgid "Please install TexLive from your distribution’s repositories"
-msgstr ""
-
-#: apostrophe/headerbars.py:82
+#: apostrophe/headerbars.py:93
 msgid "Light mode isn’t available while using a dark global theme"
 msgstr ""
 
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:128
 #: data/ui/PreviewLayoutSwitcherItem.ui:36
 msgid "Full-Width"
 msgstr ""
 
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:130
 msgid "Half-Width"
 msgstr ""
 
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:132
 msgid "Half-Height"
 msgstr ""
 
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+#: apostrophe/headerbars.py:145 apostrophe/preview_renderer.py:134
 msgid "Windowed"
+msgstr ""
+
+#: apostrophe/helpers.py:101
+msgid "Error"
 msgstr ""
 
 #: apostrophe/inline_preview.py:191
@@ -115,63 +99,52 @@ msgstr ""
 msgid "adverb"
 msgstr ""
 
-#: apostrophe/main_window.py:294
+#: apostrophe/main_window.py:306
 msgid "Save your File"
 msgstr ""
 
-#: apostrophe/main_window.py:394
+#: apostrophe/main_window.py:309 data/ui/Headerbar.ui:225
+msgid "Save"
+msgstr ""
+
+#: apostrophe/main_window.py:386
 msgid "Markdown Files"
 msgstr ""
 
-#: apostrophe/main_window.py:398
+#: apostrophe/main_window.py:390
 msgid "Plain Text Files"
 msgstr ""
 
-#: apostrophe/main_window.py:401
+#: apostrophe/main_window.py:393
 msgid "Open a .md file"
 msgstr ""
 
-#: apostrophe/main_window.py:425 apostrophe/main_window.py:471
-msgid "New File"
+#: apostrophe/main_window.py:396 data/ui/Headerbar.ui:182
+msgid "Open"
 msgstr ""
 
-#: apostrophe/main_window.py:432
+#: apostrophe/main_window.py:459
 #, python-format
 msgid "Save changes to document “%s” before closing?"
 msgstr ""
 
-#: apostrophe/main_window.py:436
+#: apostrophe/main_window.py:464
 msgid "If you don’t save, all your changes will be permanently lost."
 msgstr ""
 
-#: apostrophe/main_window.py:438
+#: apostrophe/main_window.py:467
 msgid "Close without saving"
 msgstr ""
 
-#: apostrophe/main_window.py:440
+#: apostrophe/main_window.py:470
 msgid "Save now"
 msgstr ""
 
-#: apostrophe/main_window.py:523
-msgid ""
-"The file you tried to open doesn’t "
-"exist.                                            \n"
-"A new file will be created in its place when you save the current one."
+#: apostrophe/main_window.py:679
+msgid "New File"
 msgstr ""
 
-#: apostrophe/main_window.py:533
-#, python-format
-msgid "Error Reading File: %r"
-msgstr ""
-
-#: apostrophe/main_window.py:538
-#, python-format
-msgid ""
-"Error reading file:                                         \n"
-"%r"
-msgstr ""
-
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:306
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
 msgid "Preview"
 msgstr ""
 
@@ -250,135 +223,85 @@ msgstr ""
 msgid "Poeditor"
 msgstr ""
 
-#: data/ui/Export.ui:45
-msgid "Smart"
-msgstr ""
-
-#: data/ui/Export.ui:50
-msgid "Pandoc can automatically make “--” to a long dash and more"
-msgstr ""
-
-#: data/ui/Export.ui:62
-msgid "Table of Contents"
-msgstr ""
-
-#: data/ui/Export.ui:78
+#: data/ui/Export.ui:154
 msgid "Standalone"
 msgstr ""
 
-#: data/ui/Export.ui:83
+#: data/ui/Export.ui:156
 msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
 
-#: data/ui/Export.ui:96
+#: data/ui/Export.ui:171
+msgid "Table of Contents"
+msgstr ""
+
+#: data/ui/Export.ui:187
 msgid "Number Sections"
 msgstr ""
 
-#: data/ui/Export.ui:112
-msgid "Strict Markdown"
+#: data/ui/Export.ui:211 data/ui/Export.ui:217
+msgid "Page Size"
 msgstr ""
 
-#: data/ui/Export.ui:117
-msgid "Use “strict” markdown instead of “pandoc” markdown"
+#: data/ui/Export.ui:236
+msgid "HTML Options"
 msgstr ""
 
-#: data/ui/Export.ui:129
-msgid "Slideshow Incremental Bullets"
-msgstr ""
-
-#: data/ui/Export.ui:134
-msgid "Show one bullet point after another in a slideshow"
-msgstr ""
-
-#: data/ui/Export.ui:152
-msgid "<b>General Options</b>"
-msgstr ""
-
-#: data/ui/Export.ui:189
-msgid "Highlight Syntax"
-msgstr ""
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:225
-msgid "Choose a color theme for syntax highlighting"
-msgstr ""
-
-#: data/ui/Export.ui:213
-msgid "Highlight style  "
-msgstr ""
-
-#: data/ui/Export.ui:262
-msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
-msgstr ""
-
-#: data/ui/Export.ui:294 data/ui/Export.ui:307
-msgid "Choose a bibliography file"
-msgstr ""
-
-#: data/ui/Export.ui:295
-msgid "File"
-msgstr ""
-
-#: data/ui/Export.ui:325
-msgid "<b>Bibliography </b>"
-msgstr ""
-
-#: data/ui/Export.ui:370
+#: data/ui/Export.ui:242
 msgid "Self-contained"
 msgstr ""
 
-#: data/ui/Export.ui:375
-msgid ""
-"Produces a HTML that has no external dependencies (all images and "
-"stylesheets are included)"
+#: data/ui/Export.ui:244
+msgid "Produces an HTML file with no external dependencies"
 msgstr ""
 
-#: data/ui/Export.ui:387
-msgid "HTML5"
-msgstr ""
-
-#: data/ui/Export.ui:392
-msgid "Use HTML5 syntax"
-msgstr ""
-
-#: data/ui/Export.ui:411 data/ui/Export.ui:425
-msgid "Choose a CSS File that you want to use"
-msgstr ""
-
-#: data/ui/Export.ui:413
+#: data/ui/Export.ui:260
 msgid "CSS File"
 msgstr ""
 
-#: data/ui/Export.ui:450
-msgid "<b>HTML Options</b>"
+#: data/ui/Export.ui:265
+msgid "Select CSS file"
 msgstr ""
 
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
+#: data/ui/Export.ui:286
+msgid "Syntax Highlighting"
 msgstr ""
 
-#: data/ui/Export.ui:501
-msgid "A4"
+#: data/ui/Export.ui:301
+msgid "Highlight style"
 msgstr ""
 
-#: data/ui/Export.ui:502
-msgid "US Letter"
+#: data/ui/Export.ui:322
+msgid "Presentation"
 msgstr ""
 
-#: data/ui/Export.ui:546
-msgid "Commandline Reference"
+#: data/ui/Export.ui:328
+msgid "Incremental bullets"
+msgstr ""
+
+#: data/ui/Export.ui:330
+msgid "Show one bullet point after another in a slideshow"
+msgstr ""
+
+#: data/ui/Export.ui:357
+msgid "page0"
+msgstr ""
+
+#: data/ui/Export.ui:365
+msgid "page1"
 msgstr ""
 
 #: data/ui/ExportPopover.ui:19
 msgid "Save As…"
 msgstr ""
 
-#: data/ui/ExportPopover.ui:101
+#: data/ui/ExportPopover.ui:100
 msgid "Advanced Export…"
 msgstr ""
 
-#: data/ui/ExportPopover.ui:126
+#: data/ui/ExportPopover.ui:125
 msgid "Copy HTML"
 msgstr ""
 
@@ -390,16 +313,8 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr ""
-
 #: data/ui/Headerbar.ui:199
 msgid "Open Recent"
-msgstr ""
-
-#: data/ui/Headerbar.ui:225
-msgid "Save"
 msgstr ""
 
 #: data/ui/Headerbar.ui:242
@@ -619,35 +534,35 @@ msgstr ""
 msgid "Show Statistics"
 msgstr ""
 
-#: data/ui/Window.ui:192
+#: data/ui/Window.ui:205
 msgid "Previous Match"
 msgstr ""
 
-#: data/ui/Window.ui:206
+#: data/ui/Window.ui:219
 msgid "Next Match"
 msgstr ""
 
-#: data/ui/Window.ui:235
+#: data/ui/Window.ui:248
 msgid "aA"
 msgstr ""
 
-#: data/ui/Window.ui:239
+#: data/ui/Window.ui:252
 msgid "Case Sensitive"
 msgstr ""
 
-#: data/ui/Window.ui:249
+#: data/ui/Window.ui:262
 msgid "(.*)"
 msgstr ""
 
-#: data/ui/Window.ui:253
+#: data/ui/Window.ui:266
 msgid "Regular Expression"
 msgstr ""
 
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
+#: data/ui/Window.ui:279 data/ui/Window.ui:357
 msgid "Replace"
 msgstr ""
 
-#: data/ui/Window.ui:358
+#: data/ui/Window.ui:371
 msgid "Replace All"
 msgstr ""
 
