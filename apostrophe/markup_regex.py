@@ -21,7 +21,7 @@ IMAGE = re.compile(
 HORIZONTAL_RULE = re.compile(
     r"(?:^|\n{2,})(?P<symbols> {0,3}[*\-_]{3,} *)(?:\n{2,}|$)")
 LIST = re.compile(
-    r"(?:^|\n)(?P<content>(?P<indent>(?:\t| {4})*)[\-*+](?:\t| {4})*(?P<text>.+(?:\n+ \2.+)*))")
+    r"(?:^|\n)(?P<content>(?P<indent>(?:\t| {4})*)[\-*+] (?:\t| {4})*(?P<text>.+(?:\n+ \2.+)*))")
 ORDERED_LIST = re.compile(
     r"(?:^|\n)(?P<content>(?P<indent>(?:\t| {4})*)(?P<prefix>(?:\d|[a-z])+[.)])(?:\t| {4}| )(?P<text>.+(?:\n+ {2}\2.+)*))")
 BLOCK_QUOTE = re.compile(
