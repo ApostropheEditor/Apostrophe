@@ -34,7 +34,7 @@ class DictAccessor:
     reEndResponse = re.compile(br"^[2-5][0-58][0-9] .*\r\n$", re.DOTALL + re.MULTILINE)
     reDefinition = re.compile(br"^151(.*?)^\.", re.DOTALL + re.MULTILINE)
 
-    def __init__(self, host="pan.alephnull.com", port=2628, timeout=60):
+    def __init__(self, host="dict.dict.org", port=2628, timeout=60):
         self.telnet = telnetlib.Telnet(host, port)
         self.timeout = timeout
         self.login_response = self.telnet.expect([self.reEndResponse], self.timeout)[2]
@@ -296,12 +296,13 @@ class InlinePreview:
                     if prev_view:
                         prev_view.destroy()
                     view = get_view_fn(match)
-                    view.show_all()
-                    self.popover.add(view)
-                    rect = self.text_view.get_iter_location(
-                        self.text_buffer.get_iter_at_mark(self.cursor_mark))
-                    rect.x, rect.y = self.text_view.buffer_to_window_coords(
-                        Gtk.TextWindowType.TEXT, rect.x, rect.y)
-                    self.popover.set_pointing_to(rect)
-                    GLib.idle_add(self.popover.popup)  # TODO: It doesn't popup without idle_add.
+                    if view:
+                        view.show_all()
+                        self.popover.add(view)
+                        rect = self.text_view.get_iter_location(
+                            self.text_buffer.get_iter_at_mark(self.cursor_mark))
+                        rect.x, rect.y = self.text_view.buffer_to_window_coords(
+                            Gtk.TextWindowType.TEXT, rect.x, rect.y)
+                        self.popover.set_pointing_to(rect)
+                        GLib.idle_add(self.popover.popup)  # TODO: It doesn't popup without idle_add.
                     return
