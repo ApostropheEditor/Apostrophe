@@ -12,12 +12,12 @@
     <p>flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive</p>
     <p>or from Gnome-Software</p>
   </description>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
   <url type="homepage">https://somas.pages.gitlab.gnome.org/apostrophe/</url>
   <url type="bugtracker">https://gitlab.gnome.org/somas/apostrophe/-/issues</url>
   <url type="help">https://gitlab.gnome.org/somas/apostrophe/</url>
   <url type="donation">https://www.paypal.me/manuelgenoves</url>
   <url type="translate">https://poeditor.com/join/project/gxVzFyXb2x</url>
-  <launchable type="desktop-id">@app-id@.desktop</launchable>
   <translation type="gettext">@gettext-package@</translation>
   <screenshots>
     <screenshot type="default">
@@ -37,6 +37,26 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release type="stable" version="2.3" date="2021-03-01T00:00:00Z">
+      <description>
+        <p>This release adds the following features:</p>
+        <ul>
+          <li>New export dialog</li>
+          <li>Improved Reveal.js slideshow exports</li>
+          <li>Better input/output handling</li>
+          <li>Inhibit logout if the document is not saved</li>
+          <li>Migrate to xelatex</li>
+          <li>Better internal path handling</li>
+          <li>New animated progressbar on saving</li>
+          <li>Strict sandboxing support</li>
+        </ul>
+        <p>This release fixes the following bugs:</p>
+        <ul>
+          <li>Undo/redo improvements</li>
+          <li>Fixes for bad markdown parsing of unordered lists</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="2.2.0.3" date="2020-05-04T00:00:00Z">
       <description>
         <p>This release fixes the following bugs:</p>
@@ -55,26 +75,6 @@
         <ul>
           <li>Fixes for the Elementary OS platform</li>
           <li>Fixed some links and metadata</li>
-        </ul>
-      </description>
-    </release>
-    <release type="stable" version="2.2.0.1" date="2020-04-18T00:00:00Z">
-      <description>
-        <p>This release adds the following features:</p>
-        <ul>
-          <li>New headerbar design</li>
-          <li>New preview modes, with the option to sync them to the edit view</li>
-          <li>New preview mode selector</li>
-          <li>New theme selector</li>
-          <li>Rework the autohiding mechanism; now the headerbar fades away when typing, only to reappear when the cursor moves to the top portion of the window</li>
-          <li>Now the content of the texview goes visually bellow the headerbar</li>
-          <li>Overall better styling</li>
-          <li>Added Hemingway mode, which disables the backspace key</li>
-          <li>Added Github Flavoured Markdow, MultiMarkdown, Pandoc's Markdown and Commonmark support, being CommonMark the default from now on</li>
-          <li>New stats counter, with the option to show count of characters/words/sentences/paragrafs/reading time</li>
-          <li>Better handling of DnD events</li>
-          <li>Export to A4 by default</li>
-          <li>Technical improvements   * Port of the buildsystem to Meson. Now you can hit the "build" button on Builder and everything works as expected  * Port to gspell  * Partial port to gresources  * Overall refactorization of the codebase  * General bugfixes and improvements</li>
         </ul>
       </description>
     </release>

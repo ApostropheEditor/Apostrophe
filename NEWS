@@ -1,3 +1,21 @@
+Version 2.3
+~~~~~~~~~~~~~~~
+Released: 2021-03-01
+
+Features:
+- New export dialog
+- Improved Reveal.js slideshow exports
+- Better input/output handling
+- Inhibit logout if the document is not saved
+- Migrate to xelatex
+- Better internal path handling
+- New animated progressbar on saving
+- Strict sandboxing support
+
+Bugfixes:
+- Undo/redo improvements
+- Fixes for bad markdown parsing of unordered lists
+
 Version 2.2.0.3
 ~~~~~~~~~~~~~~~
 Released: 2020-05-04
