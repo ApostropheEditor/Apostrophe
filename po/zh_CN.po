@@ -1,23 +1,56 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Apostrophe\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-30 19:17+0100\n"
-"Language: zh-CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
+"Project-Id-Version: Apostrophe\n"
+"Language: zh-CN\n"
+
+#: apostrophe/inline_preview.py:226
+msgid "No matching footnote found"
+msgstr "未发现匹配的脚注"
+
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
+msgid "Preview"
+msgstr "预览"
+
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "聚焦模式"
 
 #: apostrophe/export_dialog.py:120 apostrophe/export_dialog.py:313
 #: apostrophe/export_dialog.py:319 data/ui/Export.ui:62
 msgid "Export"
 msgstr "导出"
 
-#: apostrophe/export_dialog.py:123 apostrophe/export_dialog.py:322
-#, python-format
-msgid "Export to %s"
-msgstr "导出为%s"
+#: data/ui/Export.ui:171
+msgid "Table of Contents"
+msgstr "目录"
+
+#: data/ui/Export.ui:154
+msgid "Standalone"
+msgstr "独立模式"
+
+#: data/ui/Export.ui:156
+msgid "Use a header and footer to include things like stylesheets and meta information"
+msgstr "用页眉和页脚来显示样式表和元信息"
+
+#: data/ui/Export.ui:187
+msgid "Number Sections"
+msgstr "带序号的节标题"
+
+#: data/ui/Export.ui:330
+msgid "Show one bullet point after another in a slideshow"
+msgstr "在导出的演示文稿中依次显示每个项目符号"
+
+#: data/ui/Export.ui:260
+msgid "CSS File"
+msgstr "CSS 文件"
+
+#: apostrophe/main_window.py:306
+msgid "Save your File"
+msgstr "保存文件"
 
 #: apostrophe/export_dialog.py:125 apostrophe/export_dialog.py:317
 #: apostrophe/export_dialog.py:324 apostrophe/main_window.py:310
@@ -26,365 +59,9 @@ msgstr "导出为%s"
 msgid "Cancel"
 msgstr "取消"
 
-#: apostrophe/export_dialog.py:150 apostrophe/export_dialog.py:348
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr ""
-"导出时遇到了错误：\n"
-"\n"
-"{err_msg}"
-
-#: apostrophe/export_dialog.py:226
-#, fuzzy
-msgid "Export to {}"
-msgstr "导出为%s"
-
-#: apostrophe/export_dialog.py:316
-#, fuzzy
-msgid "Select folder"
-msgstr "全选"
-
-#: apostrophe/headerbars.py:93
-#, fuzzy
-msgid "Light mode isn’t available while using a dark global theme"
-msgstr "系统深色模式时浅色模式不可用"
-
-#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:128
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr "只显示预览"
-
-#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:130
-msgid "Half-Width"
-msgstr "横向显示"
-
-#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:132
-msgid "Half-Height"
-msgstr "纵向显示"
-
-#: apostrophe/headerbars.py:145 apostrophe/preview_renderer.py:134
-msgid "Windowed"
-msgstr "分窗口显示"
-
-#: apostrophe/helpers.py:101
-msgid "Error"
-msgstr ""
-
-#: apostrophe/inline_preview.py:191
-msgid "Formula looks incorrect:"
-msgstr "公式错误"
-
-#: apostrophe/inline_preview.py:226
-msgid "No matching footnote found"
-msgstr "未发现匹配的脚注"
-
-#: apostrophe/inline_preview.py:246
-msgid "noun"
-msgstr "名词"
-
-#: apostrophe/inline_preview.py:248
-msgid "verb"
-msgstr "动词"
-
-#: apostrophe/inline_preview.py:250
-msgid "adjective"
-msgstr "形容词"
-
-#: apostrophe/inline_preview.py:252
-msgid "adverb"
-msgstr "副词"
-
-#: apostrophe/main_window.py:306
-msgid "Save your File"
-msgstr "保存文件"
-
-#: apostrophe/main_window.py:309 data/ui/Headerbar.ui:225
-#, fuzzy
-msgid "Save"
-msgstr "保存"
-
-#: apostrophe/main_window.py:386
-msgid "Markdown Files"
-msgstr "Markdown文件"
-
-#: apostrophe/main_window.py:390
-msgid "Plain Text Files"
-msgstr "纯文本"
-
-#: apostrophe/main_window.py:393
-msgid "Open a .md file"
-msgstr "打开.md文件"
-
-#: apostrophe/main_window.py:396 data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr "打开"
-
-#: apostrophe/main_window.py:459
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr "是否在关闭之前将文件保存到\"%s\"？"
-
-#: apostrophe/main_window.py:464
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "否则所有的更改都将无法找回。"
-
-#: apostrophe/main_window.py:467
-msgid "Close without saving"
-msgstr "直接退出"
-
 #: apostrophe/main_window.py:470
 msgid "Save now"
 msgstr "立即保存"
-
-#: apostrophe/main_window.py:679
-msgid "New File"
-msgstr "新建"
-
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
-msgid "Preview"
-msgstr "预览"
-
-#: apostrophe/stats_handler.py:67
-msgid "{:n} Characters"
-msgstr "{:n}字符"
-
-#: apostrophe/stats_handler.py:69
-msgid "{:n} Words"
-msgstr "{:n}词语"
-
-#: apostrophe/stats_handler.py:71
-msgid "{:n} Sentences"
-msgstr "{:n}句子"
-
-#: apostrophe/stats_handler.py:73
-msgid "{:n} Paragraphs"
-msgstr "{:n}段落"
-
-#: apostrophe/stats_handler.py:75
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "{:d}:{:02d}:{:02d}阅读时间"
-
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
-msgid "web page"
-msgstr "网页"
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr "斜体"
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr "粗体"
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr "划掉"
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr "项目"
-
-#: apostrophe/text_view_format_inserter.py:97
-msgid "Header"
-msgstr "查找/替代"
-
-#: data/ui/About.ui.in:12
-msgid "Copyright (C) 2020, Wolf Vollprecht"
-msgstr ""
-
-#: data/ui/About.ui.in:14
-msgid "Apostrophe website"
-msgstr ""
-
-#. Put your name in here, like this:
-#. Manuel Genovés <manuel.genoves@gmail.com>
-#: data/ui/About.ui.in:20
-msgid "translator-credits"
-msgstr ""
-
-#: data/ui/About.ui.in:65
-msgid "Donations:"
-msgstr ""
-
-#: data/ui/About.ui.in:74
-msgid "Paypal"
-msgstr ""
-
-#: data/ui/About.ui.in:105
-msgid "Help to translate:"
-msgstr ""
-
-#: data/ui/About.ui.in:114
-msgid "Poeditor"
-msgstr ""
-
-#: data/ui/Export.ui:154
-msgid "Standalone"
-msgstr "独立模式"
-
-#: data/ui/Export.ui:156
-msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr "用页眉和页脚来显示样式表和元信息"
-
-#: data/ui/Export.ui:171
-msgid "Table of Contents"
-msgstr "目录"
-
-#: data/ui/Export.ui:187
-msgid "Number Sections"
-msgstr "带序号的节标题"
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:217
-msgid "Page Size"
-msgstr ""
-
-#: data/ui/Export.ui:236
-#, fuzzy
-msgid "HTML Options"
-msgstr "<b>HTML 选项</b>"
-
-#: data/ui/Export.ui:242
-msgid "Self-contained"
-msgstr "无外部依赖"
-
-#: data/ui/Export.ui:244
-#, fuzzy
-msgid "Produces an HTML file with no external dependencies"
-msgstr "制作无外部依赖(包括全部图像和样式表)的 HTML 文件"
-
-#: data/ui/Export.ui:260
-msgid "CSS File"
-msgstr "CSS 文件"
-
-#: data/ui/Export.ui:265
-#, fuzzy
-msgid "Select CSS file"
-msgstr "全选"
-
-#: data/ui/Export.ui:286
-#, fuzzy
-msgid "Syntax Highlighting"
-msgstr "<b>语法高亮</b> (HTML, LaTeX)"
-
-#: data/ui/Export.ui:301
-#, fuzzy
-msgid "Highlight style"
-msgstr "高亮样式  "
-
-#: data/ui/Export.ui:322
-msgid "Presentation"
-msgstr ""
-
-#: data/ui/Export.ui:328
-#, fuzzy
-msgid "Incremental bullets"
-msgstr "演示文稿项目符号逐个显示"
-
-#: data/ui/Export.ui:330
-msgid "Show one bullet point after another in a slideshow"
-msgstr "在导出的演示文稿中依次显示每个项目符号"
-
-#: data/ui/Export.ui:357
-#, fuzzy
-msgid "page0"
-msgstr "网页"
-
-#: data/ui/Export.ui:365
-#, fuzzy
-msgid "page1"
-msgstr "网页"
-
-#: data/ui/ExportPopover.ui:19
-#, fuzzy
-msgid "Save As…"
-msgstr "另存为"
-
-#: data/ui/ExportPopover.ui:100
-#, fuzzy
-msgid "Advanced Export…"
-msgstr "高级导出..."
-
-#: data/ui/ExportPopover.ui:125
-msgid "Copy HTML"
-msgstr "复制HTML"
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync Views"
-msgstr "预览同步"
-
-#: data/ui/Headerbar.ui:171
-msgid "New"
-msgstr "新建"
-
-#: data/ui/Headerbar.ui:199
-#, fuzzy
-msgid "Open Recent"
-msgstr "打开最近的文件"
-
-#: data/ui/Headerbar.ui:242
-#, fuzzy
-msgid "Save as…"
-msgstr "另存为"
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr "选项"
-
-#: data/ui/Headerbar.ui:378
-msgid "Find"
-msgstr "查找"
-
-#: data/ui/Menu.ui:100
-msgid "Hemingway Mode"
-msgstr "海明威模式"
-
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr "聚焦模式"
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr "查找/替代"
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr "设置"
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr "打开教程"
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr "键盘快捷键"
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr "关于Apostrophe"
-
-#: data/ui/Preferences.ui:49
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
-msgid "Check spelling while typing"
-msgstr "输入时检查拼写"
-
-#: data/ui/Preferences.ui:73
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
-msgid "Input format"
-msgstr "输入格式"
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr "在输入时自动隐藏状态栏"
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr "自动隐藏状态栏"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -413,37 +90,11 @@ msgctxt "shortcut window"
 msgid "Save as"
 msgstr "另存为"
 
-#: data/ui/Shortcuts.ui:45
-msgctxt "shortcut window"
-msgid "Close document"
-msgstr "关闭文件"
-
-#: data/ui/Shortcuts.ui:52
-msgctxt "shortcut window"
-msgid "Quit application"
-msgstr "退出程序"
-
-#: data/ui/Shortcuts.ui:61
-msgctxt "shortcut window"
-msgid "Modes"
-msgstr "模式"
-
 #: data/ui/Shortcuts.ui:65
 #, fuzzy
 msgctxt "shortcut window"
 msgid "Focus mode"
 msgstr "聚焦模式"
-
-#: data/ui/Shortcuts.ui:72
-msgctxt "shortcut window"
-msgid "Hemingway mode"
-msgstr "海明威模式"
-
-#: data/ui/Shortcuts.ui:79
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Preview"
-msgstr "预览"
 
 #: data/ui/Shortcuts.ui:86
 #, fuzzy
@@ -451,20 +102,11 @@ msgctxt "shortcut window"
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+#: data/ui/Shortcuts.ui:79
+#, fuzzy
 msgctxt "shortcut window"
-msgid "Find"
-msgstr "查找"
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
-msgstr "查找/替代"
-
-#: data/ui/Shortcuts.ui:115
-msgctxt "shortcut window"
-msgid "Markdown"
-msgstr "Markdown"
+msgid "Preview"
+msgstr "预览"
 
 #: data/ui/Shortcuts.ui:119
 msgctxt "shortcut window"
@@ -487,11 +129,6 @@ msgctxt "shortcut window"
 msgid "Bold"
 msgstr "粗体"
 
-#: data/ui/Shortcuts.ui:147
-msgctxt "shortcut window"
-msgid "Strikeout"
-msgstr "划掉"
-
 #: data/ui/Shortcuts.ui:154
 #, fuzzy
 msgctxt "shortcut window"
@@ -502,6 +139,158 @@ msgstr "标题"
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "全选"
+
+#: data/ui/Window.ui:219
+msgid "Next Match"
+msgstr "下一个"
+
+#: data/ui/Window.ui:205
+msgid "Previous Match"
+msgstr "上一个"
+
+#: data/ui/Window.ui:252
+msgid "Case Sensitive"
+msgstr "区分大小写"
+
+#: data/ui/Window.ui:279 data/ui/Window.ui:357
+msgid "Replace"
+msgstr "替代"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+msgid "Open file base path"
+msgstr "打开文件所在位置"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
+msgid "Open file paths of the current session"
+msgstr "打开当前所在位置"
+
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "设置"
+
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
+msgstr "打开教程"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
+#, fuzzy
+msgid "Use dark mode"
+msgstr "深色模式"
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr "新建"
+
+#: apostrophe/main_window.py:396 data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr "打开"
+
+#: data/ui/Headerbar.ui:199
+#, fuzzy
+msgid "Open Recent"
+msgstr "打开最近的文件"
+
+#: apostrophe/main_window.py:309 data/ui/Headerbar.ui:225
+#, fuzzy
+msgid "Save"
+msgstr "保存"
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "选项"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
+msgid "Enable or disable the dark mode."
+msgstr "切换深色模式"
+
+#: data/ui/Preferences.ui:49
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+msgid "Check spelling while typing"
+msgstr "输入时检查拼写"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
+msgid "Enable or disable spellchecking."
+msgstr "切换拼写检查"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+msgid "Synchronize editor/preview scrolling"
+msgstr "编辑/预览同步滚动"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr "编辑和预览的位置会保持一致"
+
+#: data/ui/Preferences.ui:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+msgid "Input format"
+msgstr "输入格式"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr "使用Pandoc预览和导出时使用的输入格式"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+msgid "Default statistic"
+msgstr "默认数据"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
+msgid "Which statistic is shown on the main window."
+msgstr "主窗口显示的数据"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+msgid "Characters per line"
+msgstr "每行的字符数"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
+msgid "Maximum number of characters per line within the editor."
+msgstr "编辑器每行最多显示的字符数"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+msgid "Preview mode"
+msgstr "预览模式"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
+msgid "How to display the preview."
+msgstr "如何显示预览"
+
+#: data/ui/Export.ui:242
+msgid "Self-contained"
+msgstr "无外部依赖"
+
+#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:128
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
+msgstr "只显示预览"
+
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "关闭文件"
+
+#: data/ui/Shortcuts.ui:52
+msgctxt "shortcut window"
+msgid "Quit application"
+msgstr "退出程序"
+
+#: data/ui/Shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Modes"
+msgstr "模式"
+
+#: data/ui/Shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Hemingway mode"
+msgstr "海明威模式"
+
+#: data/ui/Shortcuts.ui:115
+msgctxt "shortcut window"
+msgid "Markdown"
+msgstr "Markdown"
+
+#: data/ui/Shortcuts.ui:147
+msgctxt "shortcut window"
+msgid "Strikeout"
+msgstr "划掉"
 
 #: data/ui/Shortcuts.ui:170
 msgctxt "shortcut window"
@@ -552,21 +341,9 @@ msgstr "全选"
 msgid "Show Statistics"
 msgstr "显示数据"
 
-#: data/ui/Window.ui:205
-msgid "Previous Match"
-msgstr "上一个"
-
-#: data/ui/Window.ui:219
-msgid "Next Match"
-msgstr "下一个"
-
 #: data/ui/Window.ui:248
 msgid "aA"
 msgstr ""
-
-#: data/ui/Window.ui:252
-msgid "Case Sensitive"
-msgstr "区分大小写"
 
 #: data/ui/Window.ui:262
 msgid "(.*)"
@@ -576,30 +353,290 @@ msgstr ""
 msgid "Regular Expression"
 msgstr "正则表示"
 
-#: data/ui/Window.ui:279 data/ui/Window.ui:357
-msgid "Replace"
-msgstr "替代"
+#: apostrophe/main_window.py:386
+msgid "Markdown Files"
+msgstr "Markdown文件"
+
+#: apostrophe/main_window.py:390
+msgid "Plain Text Files"
+msgstr "纯文本"
+
+#: apostrophe/main_window.py:393
+msgid "Open a .md file"
+msgstr "打开.md文件"
+
+#: apostrophe/main_window.py:467
+msgid "Close without saving"
+msgstr "直接退出"
+
+#: apostrophe/main_window.py:679
+msgid "New File"
+msgstr "新建"
+
+#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:130
+msgid "Half-Width"
+msgstr "横向显示"
+
+#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:132
+msgid "Half-Height"
+msgstr "纵向显示"
+
+#: apostrophe/headerbars.py:145 apostrophe/preview_renderer.py:134
+msgid "Windowed"
+msgstr "分窗口显示"
+
+#: apostrophe/stats_handler.py:67
+msgid "{:n} Characters"
+msgstr "{:n}字符"
+
+#: apostrophe/stats_handler.py:69
+msgid "{:n} Words"
+msgstr "{:n}词语"
+
+#: apostrophe/stats_handler.py:71
+msgid "{:n} Sentences"
+msgstr "{:n}句子"
+
+#: apostrophe/stats_handler.py:73
+msgid "{:n} Paragraphs"
+msgstr "{:n}段落"
+
+#: apostrophe/stats_handler.py:75
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d}阅读时间"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "斜体"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "粗体"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "划掉"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "项目"
+
+#: apostrophe/text_view_format_inserter.py:97
+msgid "Header"
+msgstr "查找/替代"
+
+#: apostrophe/export_dialog.py:150 apostrophe/export_dialog.py:348
+msgid "An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr "导出时遇到了错误：\n"
+"\n"
+"{err_msg}"
+
+#: apostrophe/export_dialog.py:123 apostrophe/export_dialog.py:322
+msgid "Export to %s"
+msgstr "导出为%s"
+
+#: apostrophe/inline_preview.py:191
+msgid "Formula looks incorrect:"
+msgstr "公式错误"
+
+#: apostrophe/inline_preview.py:246
+msgid "noun"
+msgstr "名词"
+
+#: apostrophe/inline_preview.py:248
+msgid "verb"
+msgstr "动词"
+
+#: apostrophe/inline_preview.py:250
+msgid "adjective"
+msgstr "形容词"
+
+#: apostrophe/inline_preview.py:252
+msgid "adverb"
+msgstr "副词"
+
+#: apostrophe/main_window.py:459
+msgid "Save changes to document “%s” before closing?"
+msgstr "是否在关闭之前将文件保存到\"%s\"？"
+
+#: apostrophe/main_window.py:464
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "否则所有的更改都将无法找回。"
+
+#: apostrophe/text_view_drag_drop_handler.py:72
+#: apostrophe/text_view_drag_drop_handler.py:74
+msgid "web page"
+msgstr "网页"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr "自动隐藏状态栏"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr "输入时隐藏状态栏"
+
+#: data/ui/Headerbar.ui:378
+msgid "Find"
+msgstr "查找"
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr "查找/替代"
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr "键盘快捷键"
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr "关于Apostrophe"
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr "在输入时自动隐藏状态栏"
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr "自动隐藏状态栏"
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr "查找"
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr "查找/替代"
 
 #: data/ui/Window.ui:371
 msgid "Replace All"
 msgstr "全部替代"
 
+#: data/ui/ExportPopover.ui:125
+msgid "Copy HTML"
+msgstr "复制HTML"
+
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr "预览同步"
+
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr "海明威模式"
+
+#: apostrophe/export_dialog.py:226
+msgid "Export to {}"
+msgstr ""
+
+#: apostrophe/export_dialog.py:316
+msgid "Select folder"
+msgstr ""
+
+#: apostrophe/headerbars.py:93
+msgid "Light mode isn’t available while using a dark global theme"
+msgstr ""
+
+#: apostrophe/helpers.py:101
+msgid "Error"
+msgstr ""
+
+#: data/ui/About.ui.in:12
+msgid "Copyright (C) 2020, Wolf Vollprecht"
+msgstr ""
+
+#: data/ui/About.ui.in:14
+msgid "Apostrophe website"
+msgstr ""
+
+#. Put your name in here, like this:
+#. Manuel Genovés <manuel.genoves@gmail.com>
+#: data/ui/About.ui.in:20
+msgid "translator-credits"
+msgstr ""
+
+#: data/ui/About.ui.in:65
+msgid "Donations:"
+msgstr ""
+
+#: data/ui/About.ui.in:74
+msgid "Paypal"
+msgstr ""
+
+#: data/ui/About.ui.in:105
+msgid "Help to translate:"
+msgstr ""
+
+#: data/ui/About.ui.in:114
+msgid "Poeditor"
+msgstr ""
+
+#: data/ui/Export.ui:211 data/ui/Export.ui:217
+msgid "Page Size"
+msgstr ""
+
+#: data/ui/Export.ui:236
+msgid "HTML Options"
+msgstr ""
+
+#: data/ui/Export.ui:244
+msgid "Produces an HTML file with no external dependencies"
+msgstr ""
+
+#: data/ui/Export.ui:265
+msgid "Select CSS file"
+msgstr ""
+
+#: data/ui/Export.ui:286
+msgid "Syntax Highlighting"
+msgstr ""
+
+#: data/ui/Export.ui:301
+msgid "Highlight style"
+msgstr ""
+
+#: data/ui/Export.ui:322
+msgid "Presentation"
+msgstr ""
+
+#: data/ui/Export.ui:328
+msgid "Incremental bullets"
+msgstr ""
+
+#: data/ui/Export.ui:357
+msgid "page0"
+msgstr ""
+
+#: data/ui/Export.ui:365
+msgid "page1"
+msgstr ""
+
+#: data/ui/ExportPopover.ui:19
+msgid "Save As…"
+msgstr ""
+
+#: data/ui/ExportPopover.ui:100
+msgid "Advanced Export…"
+msgstr ""
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as…"
+msgstr ""
+
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
-#, fuzzy
 msgid "Apostrophe"
-msgstr "关于Apostrophe"
+msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
 msgid "An elegant, distraction-free markdown editor"
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
-msgid ""
-"Apostrophe is a GTK based distraction free Markdown editor, originally "
-"created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc "
-"as backend for markdown parsing and offers a very clean and sleek user "
-"interface."
+msgid "Apostrophe is a GTK based distraction free Markdown editor, originally created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface."
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
@@ -607,8 +644,7 @@ msgid "You can install the recommended TexLive extension with the command:"
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
-msgid ""
-"flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+msgid "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
@@ -628,169 +664,3 @@ msgstr ""
 msgid "Apostrophe, a simple and distraction free Markdown Editor"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
-#, fuzzy
-msgid "Use dark mode"
-msgstr "深色模式"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
-msgid "Enable or disable the dark mode."
-msgstr "切换深色模式"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
-msgid "Enable or disable spellchecking."
-msgstr "切换拼写检查"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
-msgid "Synchronize editor/preview scrolling"
-msgstr "编辑/预览同步滚动"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
-msgid "Keep the editor and preview scroll positions in sync."
-msgstr "编辑和预览的位置会保持一致"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
-msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr "使用Pandoc预览和导出时使用的输入格式"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr "自动隐藏状态栏"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr "输入时隐藏状态栏"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
-msgid "Open file base path"
-msgstr "打开文件所在位置"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr "打开当前所在位置"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
-msgid "Default statistic"
-msgstr "默认数据"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
-msgid "Which statistic is shown on the main window."
-msgstr "主窗口显示的数据"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
-msgid "Characters per line"
-msgstr "每行的字符数"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
-msgid "Maximum number of characters per line within the editor."
-msgstr "编辑器每行最多显示的字符数"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
-msgid "Preview mode"
-msgstr "预览模式"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
-msgid "How to display the preview."
-msgstr "如何显示预览"
-
-#~ msgid "Smart"
-#~ msgstr "智能"
-
-#~ msgid "Pandoc can automatically make \"--\" to a long dash and more"
-#~ msgstr "Pandoc 可以自动转换\"--\"为长划线"
-
-#~ msgid "Strict Markdown"
-#~ msgstr "严格的Markdown语法"
-
-#~ msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-#~ msgstr "使用严格的markdown语法代替\"pandoc“ markdown的语法"
-
-#~ msgid "<b>General Options</b>"
-#~ msgstr "<b>常规选项</b>"
-
-#~ msgid "Choose a color theme for syntax highlighting"
-#~ msgstr "选择语法高亮的颜色主题"
-
-#~ msgid "Choose a CSS File that you want to use"
-#~ msgstr "选择一个您要使用的 CSS 文件"
-
-#~ msgid "Commandline Reference"
-#~ msgstr "命令行参考"
-
-#~ msgid "label"
-#~ msgstr "标签"
-
-#~ msgid "Use experimental features"
-#~ msgstr "尝试新功能"
-
-#~ msgid "Untitled document.md"
-#~ msgstr "未命名.md"
-
-#~ msgid ""
-#~ "Please, install the TexLive extension from Gnome Software or running\n"
-#~ msgstr ""
-#~ "请从Gnome Software安装TexLive\n"
-#~ "\n"
-
-#~ msgid "Please, install TexLive from your distribuiton repositories"
-#~ msgstr "请从Linux发行版的软件管理系统安装TexLive"
-
-#~ msgid "Highlight Syntax"
-#~ msgstr "语法高亮"
-
-#~ msgid "Choose a bibliography file"
-#~ msgstr "选择参考文献管理文件"
-
-#~ msgid "File"
-#~ msgstr "文件"
-
-#~ msgid "<b>Bibliography </b>"
-#~ msgstr "<b>参考文献管理</b>"
-
-#~ msgid "HTML5"
-#~ msgstr "HTML"
-
-#~ msgid "Use HTML5 syntax"
-#~ msgstr "使用HTML5语法"
-
-#~ msgid "0 Words"
-#~ msgstr "0 词语"
-
-#~ msgid "Show debug messages (-vv debugs apostrophe also)"
-#~ msgstr "显示调试信息"
-
-#~ msgid "Seems that you don't have TexLive installed.\n"
-#~ msgstr ""
-#~ "TexLive应该没有被正确安装\n"
-#~ "\n"
-
-#~ msgid "A folder must be selected before proceeding"
-#~ msgstr "请先选择一个文件夹"
-
-#~ msgid ""
-#~ "The file you tried to open doesn't "
-#~ "exist.                                            \n"
-#~ "A new file will be created in its place when you save the current one."
-#~ msgstr "找不到试图打开的文件。当前编辑的文件将会被保存到此位置。"
-
-#~ msgid "Error Reading File: %r"
-#~ msgstr "无法打开文件：%r"
-
-#~ msgid ""
-#~ "Error reading file:                                         \n"
-#~ "%r"
-#~ msgstr ""
-#~ "无法打开文件：\n"
-#~ "%r"
-
-#~ msgid "Paper size"
-#~ msgstr "纸张尺寸"
-
-#~ msgid "US Letter"
-#~ msgstr "美国信纸"
-
-#~ msgid "Save as..."
-#~ msgstr "另存为..."
-
-#~ msgid "Save As..."
-#~ msgstr "另存为..."
