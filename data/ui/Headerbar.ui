@@ -297,7 +297,6 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="spacing">2</property>
             <child>
               <object class="GtkToggleButton" id="preview_switch_toggle">
                 <property name="visible">True</property>
@@ -324,6 +323,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="margin-left">2</property>
                     <property name="popover">preview_switcher</property>
                     <child>
                       <object class="GtkBox">
