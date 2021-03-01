@@ -167,7 +167,7 @@ msgstr "Открыть руководство"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
 msgid "Use dark mode"
-msgstr "Использовать темный режим\n"
+msgstr "Использовать темный режим"
 ""
 
 #: data/ui/Headerbar.ui:171
@@ -192,14 +192,14 @@ msgstr "Меню"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
 msgid "Enable or disable the dark mode."
-msgstr "Включить или выключить темный режим.\n"
-"\n"
+msgstr "Включить или выключить темный режим."
+""
 ""
 
 #: data/ui/Preferences.ui:49
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
 msgid "Check spelling while typing"
-msgstr "Проверять орфографию во время письма\n"
+msgstr "Проверять орфографию во время письма"
 ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
@@ -217,7 +217,7 @@ msgstr ""
 #: data/ui/Preferences.ui:73
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
 msgid "Input format"
-msgstr "Ввести формат\n"
+msgstr "Ввести формат"
 ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
@@ -234,7 +234,7 @@ msgstr "Какая статистика показывается на главн
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
 msgid "Characters per line"
-msgstr "Символы на линии\n"
+msgstr "Символы на линии"
 ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
@@ -367,7 +367,7 @@ msgstr "Закрыть без сохранения"
 
 #: apostrophe/main_window.py:679
 msgid "New File"
-msgstr "Новый файл\n"
+msgstr "Новый файл"
 ""
 
 #: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:130
@@ -376,7 +376,7 @@ msgstr ""
 
 #: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:132
 msgid "Half-Height"
-msgstr "\n"
+msgstr ""
 ""
 
 #: apostrophe/headerbars.py:145 apostrophe/preview_renderer.py:134
@@ -480,7 +480,7 @@ msgstr "Найти"
 
 #: data/ui/Menu.ui:139
 msgid "Find and Replace"
-msgstr "Найти и заменить\n"
+msgstr "Найти и заменить"
 ""
 
 #: data/ui/Menu.ui:203

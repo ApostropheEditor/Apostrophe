@@ -333,7 +333,7 @@ msgstr "Exibir estatísticas"
 
 #: data/ui/Window.ui:248
 msgid "aA"
-msgstr "aA\n"
+msgstr "aA"
 ""
 
 #: data/ui/Window.ui:262
@@ -382,7 +382,7 @@ msgstr "{:n} Caracteres"
 
 #: apostrophe/stats_handler.py:69
 msgid "{:n} Words"
-msgstr "{:n} Palavras\n"
+msgstr "{:n} Palavras"
 ""
 
 #: apostrophe/stats_handler.py:71
@@ -391,7 +391,7 @@ msgstr "{:n} Sentenças"
 
 #: apostrophe/stats_handler.py:73
 msgid "{:n} Paragraphs"
-msgstr "{:n} Parágrafos\n"
+msgstr "{:n} Parágrafos"
 ""
 
 #: apostrophe/stats_handler.py:75
@@ -452,7 +452,7 @@ msgstr "advérbio"
 
 #: apostrophe/main_window.py:459
 msgid "Save changes to document “%s” before closing?"
-msgstr "Salvar as mudanças do documento “%s” antes de fechar?\n"
+msgstr "Salvar as mudanças do documento “%s” antes de fechar?"
 ""
 
 #: apostrophe/main_window.py:464
