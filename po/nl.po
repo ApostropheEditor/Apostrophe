@@ -11,7 +11,7 @@ msgstr ""
 msgid "No matching footnote found"
 msgstr "Geen overeenkomende voetnoot gevonden"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:303
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
 msgid "Preview"
 msgstr "Voorvertoning"
 
@@ -19,87 +19,47 @@ msgstr "Voorvertoning"
 msgid "Focus Mode"
 msgstr "Focusmodus"
 
-#: apostrophe/export_dialog.py:222 data/ui/Export.ui:616
+#: apostrophe/export_dialog.py:120 apostrophe/export_dialog.py:313
+#: apostrophe/export_dialog.py:319 data/ui/Export.ui:62
 msgid "Export"
 msgstr "Exporteren"
 
-#: data/ui/Export.ui:45
-msgid "Smart"
-msgstr "Slim"
-
-#: data/ui/Export.ui:50
-msgid "Pandoc can automatically make \"--\" to a long dash and more"
-msgstr "Pandoc kan automatisch '--' omzetten naar een lange streep, en meer"
-
-#: data/ui/Export.ui:62
+#: data/ui/Export.ui:171
 msgid "Table of Contents"
 msgstr "Inhoudsopgave"
 
-#: data/ui/Export.ui:78
+#: data/ui/Export.ui:154
 msgid "Standalone"
 msgstr "Vrij"
 
-#: data/ui/Export.ui:83
+#: data/ui/Export.ui:156
 msgid "Use a header and footer to include things like stylesheets and meta information"
 msgstr "Gebruik een kop en voetnoten om meta-informatie en stijlbladen op te nemen"
 
-#: data/ui/Export.ui:96
+#: data/ui/Export.ui:187
 msgid "Number Sections"
 msgstr "Secties nummeren"
 
-#: data/ui/Export.ui:112
-msgid "Strict Markdown"
-msgstr "Strikte Markdown"
-
-#: data/ui/Export.ui:117
-msgid "Use \"strict\" markdown instead of \"pandoc\" markdown"
-msgstr "Gebruik 'strikte' markdown in plaats van die van 'pandoc'"
-
-#: data/ui/Export.ui:134
+#: data/ui/Export.ui:330
 msgid "Show one bullet point after another in a slideshow"
 msgstr "Toont de ene na de andere opsomming in diavoorstellingen"
 
-#: data/ui/Export.ui:152
-msgid "<b>General Options</b>"
-msgstr "<b>Algemene opties</b>"
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:225
-msgid "Choose a color theme for syntax highlighting"
-msgstr "Kies een kleurenschema voor de syntaxmarkering"
-
-#: data/ui/Export.ui:213
-msgid "Highlight style  "
-msgstr "Markeerstijl  "
-
-#: data/ui/Export.ui:375
-msgid "Produces a HTML that has no external dependencies (all images and stylesheets are included)"
-msgstr "Genereert html zonder externe afhankelijkheden (alle afbeeldingen en stijlbladen worden bijgevoegd)"
-
-#: data/ui/Export.ui:411 data/ui/Export.ui:425
-msgid "Choose a CSS File that you want to use"
-msgstr "Kies het te gebruiken css-bestand"
-
-#: data/ui/Export.ui:413
+#: data/ui/Export.ui:260
 msgid "CSS File"
 msgstr "CSS-bestand"
 
-#: data/ui/Export.ui:450
-msgid "<b>HTML Options</b>"
-msgstr "<b>HTML-opties</b>"
-
-#: data/ui/Export.ui:546
-msgid "Commandline Reference"
-msgstr "Opdrachtregelopties"
-
-#: apostrophe/main_window.py:284
+#: apostrophe/main_window.py:306
 msgid "Save your File"
 msgstr "Bestand opslaan"
 
-#: apostrophe/export_dialog.py:227 apostrophe/main_window.py:429
+#: apostrophe/export_dialog.py:125 apostrophe/export_dialog.py:317
+#: apostrophe/export_dialog.py:324 apostrophe/main_window.py:310
+#: apostrophe/main_window.py:397 apostrophe/main_window.py:469
+#: data/ui/Export.ui:47
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: apostrophe/main_window.py:430
+#: apostrophe/main_window.py:470
 msgid "Save now"
 msgstr "Nu opslaan"
 
@@ -173,31 +133,21 @@ msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Alles selecteren"
 
-#: data/ui/Window.ui:206
+#: data/ui/Window.ui:219
 msgid "Next Match"
 msgstr "Volgende overeenkomst"
 
-#: data/ui/Window.ui:192
+#: data/ui/Window.ui:205
 msgid "Previous Match"
 msgstr "Vorige overeenkomst"
 
-#: data/ui/Window.ui:239
+#: data/ui/Window.ui:252
 msgid "Case Sensitive"
 msgstr "Hoofdlettergevoelig"
 
-#: data/ui/Window.ui:266 data/ui/Window.ui:344
+#: data/ui/Window.ui:279 data/ui/Window.ui:357
 msgid "Replace"
 msgstr "Vervangen"
-
-#: apostrophe/plugins/bibtex/bibtex_item.glade:18
-#: apostrophe/plugins/bibtex/bibtex_item.glade:32
-#: apostrophe/plugins/bibtex/bibtex_item.glade:45
-msgid "label"
-msgstr "label"
-
-#: apostrophe/application.py:178
-msgid "Use experimental features"
-msgstr "Experimentele functies gebruiken"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
 msgid "Open file base path"
@@ -219,25 +169,11 @@ msgstr "Rondleiding tonen"
 msgid "Use dark mode"
 msgstr "Donker thema gebruiken"
 
-#: apostrophe/export_dialog.py:184
-msgid "Untitled document.md"
-msgstr "Naamloos document.md"
-
-#: apostrophe/export_dialog.py:428
-msgid "Please, install the TexLive extension from Gnome Software or running\n"
-""
-msgstr "Installeer de TexLive-uitbreiding middels GNOME Software of\n"
-""
-
-#: apostrophe/export_dialog.py:431
-msgid "Please, install TexLive from your distribuiton repositories"
-msgstr "Installeer TexLive uit de pakketbronnen van je distributie"
-
 #: data/ui/Headerbar.ui:171
 msgid "New"
 msgstr "Nieuw"
 
-#: data/ui/Headerbar.ui:182
+#: apostrophe/main_window.py:396 data/ui/Headerbar.ui:182
 msgid "Open"
 msgstr "Openen"
 
@@ -245,7 +181,7 @@ msgstr "Openen"
 msgid "Open Recent"
 msgstr "Recent bestand openen"
 
-#: data/ui/Headerbar.ui:225
+#: apostrophe/main_window.py:309 data/ui/Headerbar.ui:225
 msgid "Save"
 msgstr "Opslaan"
 
@@ -257,8 +193,8 @@ msgstr "Menu"
 msgid "Enable or disable the dark mode."
 msgstr "Schakel het donkere thema in of uit."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
 #: data/ui/Preferences.ui:49
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
 msgid "Check spelling while typing"
 msgstr "Spelling controleren tijdens typen"
 
@@ -274,8 +210,8 @@ msgstr "Scrollen synchroon houden tussen bewerker en voorvertoning"
 msgid "Keep the editor and preview scroll positions in sync."
 msgstr "Houdt de scrollposities in de bewerker en voorvertoning gesynchroniseerd."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
 #: data/ui/Preferences.ui:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
 msgid "Input format"
 msgstr "Invoerformaat"
 
@@ -307,43 +243,11 @@ msgstr "Voorvertoningsmodus"
 msgid "How to display the preview."
 msgstr "Hoe de voorvertoning wordt getoond."
 
-#: data/ui/Export.ui:129
-msgid "Slideshow Incremental Bullets"
-msgstr "Inspringende opsommingen in diavoorstelling"
-
-#: data/ui/Export.ui:189
-msgid "Highlight Syntax"
-msgstr "Syntax markeren"
-
-#: data/ui/Export.ui:262
-msgid "<b>Syntax Highlighting</b> (HTML, LaTeX)"
-msgstr "<b>Syntaxmarkering</b> (HTML, LaTeX)"
-
-#: data/ui/Export.ui:294 data/ui/Export.ui:307
-msgid "Choose a bibliography file"
-msgstr "Kies een bibliografiebestand"
-
-#: data/ui/Export.ui:295
-msgid "File"
-msgstr "Bestand"
-
-#: data/ui/Export.ui:325
-msgid "<b>Bibliography </b>"
-msgstr "<b>Bibliografie</b>"
-
-#: data/ui/Export.ui:370
+#: data/ui/Export.ui:242
 msgid "Self-contained"
 msgstr "Allesomvattend"
 
-#: data/ui/Export.ui:387
-msgid "HTML5"
-msgstr "HTML5"
-
-#: data/ui/Export.ui:392
-msgid "Use HTML5 syntax"
-msgstr "HTML5-syntax gebruiken"
-
-#: apostrophe/headerbars.py:124 apostrophe/preview_renderer.py:128
+#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:128
 #: data/ui/PreviewLayoutSwitcherItem.ui:36
 msgid "Full-Width"
 msgstr "Volledige breedte"
@@ -423,55 +327,51 @@ msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Alle tekst selecteren"
 
-#: data/ui/Window.ui:102
-msgid "0 Words"
-msgstr "0 woorden"
-
 #: data/ui/Window.ui:106
 msgid "Show Statistics"
 msgstr "Statistieken tonen"
 
-#: data/ui/Window.ui:235
+#: data/ui/Window.ui:248
 msgid "aA"
 msgstr "aA"
 
-#: data/ui/Window.ui:249
+#: data/ui/Window.ui:262
 msgid "(.*)"
 msgstr "(.*)"
 
-#: data/ui/Window.ui:253
+#: data/ui/Window.ui:266
 msgid "Regular Expression"
 msgstr "Reguliere uitdrukking"
 
-#: apostrophe/main_window.py:384
+#: apostrophe/main_window.py:386
 msgid "Markdown Files"
 msgstr "Markdownbestanden"
 
-#: apostrophe/main_window.py:388
+#: apostrophe/main_window.py:390
 msgid "Plain Text Files"
 msgstr "Plattetekstbestanden"
 
-#: apostrophe/main_window.py:391
+#: apostrophe/main_window.py:393
 msgid "Open a .md file"
 msgstr ".md-bestand openen"
 
-#: apostrophe/main_window.py:428
+#: apostrophe/main_window.py:467
 msgid "Close without saving"
 msgstr "Sluiten zonder opslaan"
 
-#: apostrophe/main_window.py:415 apostrophe/main_window.py:461
+#: apostrophe/main_window.py:679
 msgid "New File"
 msgstr "Nieuw bestand"
 
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:130
+#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:130
 msgid "Half-Width"
 msgstr "Halve breedte"
 
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:132
+#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:132
 msgid "Half-Height"
 msgstr "Halve hoogte"
 
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:134
+#: apostrophe/headerbars.py:145 apostrophe/preview_renderer.py:134
 msgid "Windowed"
 msgstr "Venster"
 
@@ -515,11 +415,7 @@ msgstr "Item"
 msgid "Header"
 msgstr "Kop"
 
-#: apostrophe/application.py:176
-msgid "Show debug messages (-vv debugs apostrophe also)"
-msgstr "Foutopsporingsberichten tonen (-vv voert tevens apostrophe-foutopsporing uit)"
-
-#: apostrophe/export_dialog.py:199
+#: apostrophe/export_dialog.py:150 apostrophe/export_dialog.py:348
 msgid "An error happened while trying to export:\n"
 "\n"
 "{err_msg}"
@@ -527,27 +423,9 @@ msgstr "Er is een fout opgetreden tijdens het exporteren:\n"
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:216
-msgid "Oh, no!"
-msgstr "O, nee!"
-
-#: apostrophe/export_dialog.py:219
-msgid "Seems that you don't have TexLive installed.\n"
-""
-msgstr "Het lijkt er op dat TexLive niet geïnstalleerd is.\n"
-""
-
-#: apostrophe/export_dialog.py:225
+#: apostrophe/export_dialog.py:123 apostrophe/export_dialog.py:322
 msgid "Export to %s"
 msgstr "Exporteren naar %s"
-
-#: apostrophe/export_dialog.py:285
-msgid "A folder must be selected before proceeding"
-msgstr "Kies een map om door te gaan"
-
-#: apostrophe/headerbars.py:82
-msgid "Light mode isn't available while using a dark global theme"
-msgstr "Het lichte thema is niet beschikbaar als je het donkere systeemthema gebruikt"
 
 #: apostrophe/inline_preview.py:191
 msgid "Formula looks incorrect:"
@@ -569,28 +447,13 @@ msgstr "bijvoeglijk naamwoord"
 msgid "adverb"
 msgstr "bijwoord"
 
-#: apostrophe/main_window.py:422
+#: apostrophe/main_window.py:459
 msgid "Save changes to document “%s” before closing?"
 msgstr "Wil je de aanpassingen aan '%s' opslaan alvorens af te sluiten?"
 
-#: apostrophe/main_window.py:426
+#: apostrophe/main_window.py:464
 msgid "If you don’t save, all your changes will be permanently lost."
 msgstr "Als je dat niet doet, gaan alle aanpassingen definitief verloren."
-
-#: apostrophe/main_window.py:510
-msgid "The file you tried to open doesn't exist.                                            \n"
-"A new file will be created in its place when you save the current one."
-msgstr "Het bestand dat je probeert te openen bestaat niet. Er wordt een nieuw bestand met dezelfde naam aangemaakt zodra je het huidige opslaat."
-
-#: apostrophe/main_window.py:520
-msgid "Error Reading File: %r"
-msgstr "Kan bestand niet uitlezen: %r"
-
-#: apostrophe/main_window.py:525
-msgid "Error reading file:                                         \n"
-"%r"
-msgstr "Kan bestand niet uitlezen:                                         \n"
-"%r"
 
 #: apostrophe/text_view_drag_drop_handler.py:72
 #: apostrophe/text_view_drag_drop_handler.py:74
@@ -605,23 +468,7 @@ msgstr "Kopbalk automatisch verbergen"
 msgid "Hide the header and status bars when typing."
 msgstr "Verbergt de kop- en statusbalken tijdens het typen."
 
-#: data/ui/Export.ui:484 data/ui/Export.ui:520
-msgid "Paper size"
-msgstr "Papierafmetingen"
-
-#: data/ui/Export.ui:501
-msgid "A4"
-msgstr "A4"
-
-#: data/ui/Export.ui:502
-msgid "US Letter"
-msgstr "Amerikaanse brief"
-
-#: data/ui/Headerbar.ui:242
-msgid "Save as..."
-msgstr "Opslaan als..."
-
-#: data/ui/Headerbar.ui:375
+#: data/ui/Headerbar.ui:378
 msgid "Find"
 msgstr "Zoeken"
 
@@ -655,19 +502,11 @@ msgctxt "shortcut window"
 msgid "Find and replace"
 msgstr "Zoeken en vervangen"
 
-#: data/ui/Window.ui:358
+#: data/ui/Window.ui:371
 msgid "Replace All"
 msgstr "Alles vervangen"
 
-#: data/ui/ExportPopover.ui:19
-msgid "Save As..."
-msgstr "Opslaan als..."
-
-#: data/ui/ExportPopover.ui:101
-msgid "Advanced Export..."
-msgstr "Geavanceerd exporteren..."
-
-#: data/ui/ExportPopover.ui:126
+#: data/ui/ExportPopover.ui:125
 msgid "Copy HTML"
 msgstr "HTML kopiëren"
 
@@ -678,4 +517,140 @@ msgstr "Weergaven synchroniseren"
 #: data/ui/Menu.ui:100
 msgid "Hemingway Mode"
 msgstr "Hemingway-modus"
+
+#: apostrophe/export_dialog.py:226
+msgid "Export to {}"
+msgstr "Exporteren naar {}"
+
+#: apostrophe/export_dialog.py:316
+msgid "Select folder"
+msgstr "Map kiezen"
+
+#: apostrophe/headerbars.py:93
+msgid "Light mode isn’t available while using a dark global theme"
+msgstr "Het lichte thema is niet beschikbaar omdat het donkere systeemthema is ingesteld"
+
+#: apostrophe/helpers.py:101
+msgid "Error"
+msgstr "Foutmelding"
+
+#: data/ui/About.ui.in:12
+msgid "Copyright (C) 2020, Wolf Vollprecht"
+msgstr "Copyright (C) 2020, Wolf Vollprecht"
+
+#: data/ui/About.ui.in:14
+msgid "Apostrophe website"
+msgstr "Apostrophe-website"
+
+#. Put your name in here, like this:
+#. Manuel Genovés <manuel.genoves@gmail.com>
+#: data/ui/About.ui.in:20
+msgid "translator-credits"
+msgstr "Heimen Stoffels"
+
+#: data/ui/About.ui.in:65
+msgid "Donations:"
+msgstr "Donaties:"
+
+#: data/ui/About.ui.in:74
+msgid "Paypal"
+msgstr "PayPal"
+
+#: data/ui/About.ui.in:105
+msgid "Help to translate:"
+msgstr "Helpen met vertalen:"
+
+#: data/ui/About.ui.in:114
+msgid "Poeditor"
+msgstr "Poeditor"
+
+#: data/ui/Export.ui:211 data/ui/Export.ui:217
+msgid "Page Size"
+msgstr "Paginagrootte"
+
+#: data/ui/Export.ui:236
+msgid "HTML Options"
+msgstr "HTML-opties"
+
+#: data/ui/Export.ui:244
+msgid "Produces an HTML file with no external dependencies"
+msgstr "Stelt een html-bestand zonder externe afhankelijkheden samen"
+
+#: data/ui/Export.ui:265
+msgid "Select CSS file"
+msgstr "CSS-bestand kiezen"
+
+#: data/ui/Export.ui:286
+msgid "Syntax Highlighting"
+msgstr "Syntaxmarkering"
+
+#: data/ui/Export.ui:301
+msgid "Highlight style"
+msgstr "Markeerstijl"
+
+#: data/ui/Export.ui:322
+msgid "Presentation"
+msgstr "Presentatie"
+
+#: data/ui/Export.ui:328
+msgid "Incremental bullets"
+msgstr "Oplopende opsommingstekens"
+
+#: data/ui/Export.ui:357
+msgid "page0"
+msgstr "pagina0"
+
+#: data/ui/Export.ui:365
+msgid "page1"
+msgstr "pagina1"
+
+#: data/ui/ExportPopover.ui:19
+msgid "Save As…"
+msgstr "Opslaan als…"
+
+#: data/ui/ExportPopover.ui:100
+msgid "Advanced Export…"
+msgstr "Geavanceerd exporteren…"
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as…"
+msgstr "Opslaan als…"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
+msgid "Apostrophe"
+msgstr "Apostrophe"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
+msgid "An elegant, distraction-free markdown editor"
+msgstr "Een elegante markdownbewerker zonder enige vorm van afleiding"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
+msgid "Apostrophe is a GTK based distraction free Markdown editor, originally created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface."
+msgstr "Apostrophe is een markdownbewerker zonder enige vorm van afleiding, geschreven in GTK door Wolf Vollprecht en onderhouden door Manuel Genovés. Apostrophe gebruikt pandoc als backend voor het verwerken van markdown en biedt een elegante vormgeving die eenvoudig is in het gebruik."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
+msgid "You can install the recommended TexLive extension with the command:"
+msgstr "Installeer de aanbevolen TexLive-uitbreiding met de opdracht:"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
+msgid "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+msgstr "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
+msgid "or from Gnome-Software"
+msgstr "of via GNOME Software"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:35
+msgid "Wolf V., Manuel G."
+msgstr "Wolf V., Manuel G."
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
+msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
+msgstr "uberwriter;UberWriter;apostrophe;markdown;bewerker;"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
+msgid "Apostrophe, a simple and distraction free Markdown Editor"
+msgstr "Apostrophe, een elegante markdownbewerker zonder enige vorm van afleiding"
 
