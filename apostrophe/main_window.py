@@ -270,11 +270,11 @@ class MainWindow(StyledWindow):
             try:
                 try:
                     encoded_text = GLib.Bytes.new(
-                                   self.text_view.get_text()
-                                   .encode(self.current.encoding))
+                        self.text_view.get_text()
+                        .encode(self.current.encoding))
                 except UnicodeEncodeError:
                     encoded_text = self.text_view.get_text()\
-                                    .encode("UTF-8")
+                        .encode("UTF-8")
                     self.current.encoding = "UTF-8"
             except UnicodeEncodeError as error:
                 helpers.show_error(self, str(error.message))
@@ -441,7 +441,8 @@ class MainWindow(StyledWindow):
         else:
             self.text_view.set_text(decoded)
             start_iter = self.text_view.get_buffer().get_start_iter()
-            GLib.idle_add(lambda: self.text_view.get_buffer().place_cursor(start_iter))
+            GLib.idle_add(
+                lambda: self.text_view.get_buffer().place_cursor(start_iter))
 
             self.update_headerbar_title()
             self.did_change = False
@@ -674,7 +675,7 @@ class File():
                                         Gio.FileQueryInfoFlags.NONE,
                                         None)
             self.title = file_info.get_attribute_as_string(
-                         "standard::display-name")
+                "standard::display-name")
         else:
             self.title = _("New File")
             base_path = "/"

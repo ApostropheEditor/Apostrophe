@@ -1,10 +1,10 @@
 import re
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 
 import logging
 logger = logging.getLogger('apostrophe')
+
 
 class FixTable():
 
@@ -107,9 +107,9 @@ class FixTable():
         """
             Gets the row number where the table begins and ends.
             are_in_callback argument must be a function
-            indicating whether a particular line belongs or not
-            to the table to be measured (or create).
-            Returns two values ​​as a tuple
+                    indicating whether a particular line belongs or not
+                        to the table to be measured (or create).
+                        Returns two values ​​as a tuple
         """
         top = 0
 
@@ -117,7 +117,8 @@ class FixTable():
         start_iter = buf.get_start_iter()
         end_iter = buf.get_end_iter()
 
-        text = self.TextBuffer.get_text(start_iter, end_iter, False).split('\n')
+        text = self.TextBuffer.get_text(
+            start_iter, end_iter, False).split('\n')
         logger.debug(text)
         length = len(text)
         bottom = length - 1
@@ -141,11 +142,11 @@ class FixTable():
     @staticmethod
     def remove_spaces(string):
         """Remove unnecessary spaces"""
-        return re.sub("\s\s+", " ", string)
+        return re.sub("\\s\\s+", " ", string)
 
     @staticmethod
     def create_separators_removing_spaces(string):
-        return re.sub("\s\s+", "|", string)
+        return re.sub("\\s\\s+", "|", string)
 
     @staticmethod
     def extract_cells_as_list(string):
@@ -166,7 +167,8 @@ class FixTable():
         "Genera una lista de palabras para crear una lista."
 
         lines = text[top:bottom + 1]
-        return [FixTable.create_separators_removing_spaces(line).split('|') for line in lines]
+        return [FixTable.create_separators_removing_spaces(
+            line).split('|') for line in lines]
 
     def fix_table(self):
         """
@@ -182,7 +184,6 @@ class FixTable():
         end_line = cursor_iter.copy()
         end_line.forward_to_line_end()
 
-
         line_text = self.TextBuffer.get_text(cursor_iter, end_line, False)
         if FixTable.are_in_a_table(line_text):
 
@@ -196,14 +197,16 @@ class FixTable():
             start_iter = buf.get_start_iter()
             end_iter = buf.get_end_iter()
 
-            text = self.TextBuffer.get_text(start_iter, end_iter, False).split('\n')
+            text = self.TextBuffer.get_text(
+                start_iter, end_iter, False).split('\n')
 
             table_as_list = FixTable.extract_table(text, r1, r2)
             logger.debug(table_as_list)
-            # genera una nueva tabla tipo restructured text y la dibuja en el buffer.
+            # genera una nueva tabla tipo restructured text y la dibuja en el
+            # buffer.
             table_content = FixTable.create_table(table_as_list)
             logger.debug(table_content)
-            # Insert table back into Buffer ... 
+            # Insert table back into Buffer ...
             self.TextBuffer.insert(start_iter, table_content, -1)
         else:
             logger.debug("Not in a table")

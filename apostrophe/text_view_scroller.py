@@ -37,7 +37,8 @@ class TextViewScroller:
         target_pos = self.get_target_pos_for_mark(mark, center)
         if target_pos:
             source_pos = self.scrolled_window.get_vadjustment().props.value
-            self.smooth_scroller = SmoothScroller(self.scrolled_window, source_pos, target_pos)
+            self.smooth_scroller = SmoothScroller(
+                self.scrolled_window, source_pos, target_pos)
             self.smooth_scroller.start()
 
     def get_target_pos_for_mark(self, mark, center):
@@ -79,7 +80,8 @@ class SmoothScroller:
 
     def start(self):
         self.is_started = True
-        self.tick_callback_id = self.scrolled_window.add_tick_callback(self.on_tick)
+        self.tick_callback_id = self.scrolled_window.add_tick_callback(
+            self.on_tick)
 
     def end(self):
         self.scrolled_window.remove_tick_callback(self.tick_callback_id)
@@ -99,7 +101,8 @@ class SmoothScroller:
             self.setup(now)
 
         if now < self.end_time:
-            time = float(now - self.start_time) / float(self.end_time - self.start_time)
+            time = float(now - self.start_time) / \
+                float(self.end_time - self.start_time)
         else:
             time = 1
             self.end()

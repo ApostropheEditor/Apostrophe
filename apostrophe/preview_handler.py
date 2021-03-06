@@ -65,6 +65,8 @@ class PreviewHandler:
             if not self.web_view:
                 self.web_view = PreviewWebView()
                 self.web_view.get_settings().set_allow_universal_access_from_file_urls(True)
+                #TODO: enable devtools on Devel profile
+                # self.web_view.get_settings().set_enable_developer_extras(True)
 
                 # Show preview once the load is finished
                 self.web_view.connect("load-changed", self.on_load_changed)
@@ -138,12 +140,12 @@ class PreviewHandler:
                 self.__show(step=Step.RENDER)
 
     def on_text_view_scrolled(self, _text_view, scale):
-        if self.shown and not math.isclose(scale, self.web_view.get_scroll_scale(), rel_tol=1e-4):
+        if self.shown and not math.isclose(scale, self.web_view.get_scroll_scale(), rel_tol=1e-2):
             self.web_view.set_scroll_scale(scale)
 
     def on_web_view_scrolled(self, _web_view, scale):
         if self.shown and self.text_view.get_mapped() and \
-                not math.isclose(scale, self.text_view.get_scroll_scale(), rel_tol=1e-4):
+                not math.isclose(scale, self.text_view.get_scroll_scale(), rel_tol=1e-2):
             self.text_view.set_scroll_scale(scale)
 
     @staticmethod

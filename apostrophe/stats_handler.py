@@ -7,7 +7,8 @@ from apostrophe.stats_counter import StatsCounter
 
 
 class StatsHandler:
-    """Shows a default statistic on the stats button, and allows the user to toggle which one."""
+    """Shows a default statistic on the stats button,
+    and allows the user to toggle which one."""
 
     # Must match the order/index defined in gschema.xml
     CHARACTERS = 0
@@ -44,10 +45,12 @@ class StatsHandler:
         self.stats_button.set_state_flags(Gtk.StateFlags.CHECKED, False)
 
         menu = Gio.Menu()
-        stats = self.settings.props.settings_schema.get_key("stat-default").get_range()[1]
+        stats = self.settings.props.settings_schema.get_key(
+            "stat-default").get_range()[1]
         for i, stat in enumerate(stats):
             menu_item = Gio.MenuItem.new(self.get_text_for_stat(i), None)
-            menu_item.set_action_and_target_value("app.stat_default", GLib.Variant.new_string(stat))
+            menu_item.set_action_and_target_value(
+                "app.stat_default", GLib.Variant.new_string(stat))
             menu.append_item(menu_item)
         self.popover = Gtk.Popover.new_from_model(self.stats_button, menu)
         self.popover.connect('closed', self.on_popover_closed)
@@ -60,7 +63,11 @@ class StatsHandler:
         self.text_view.grab_focus()
 
     def on_text_changed(self, buf):
-        self.stats_counter.count(buf.get_text(buf.get_start_iter(), buf.get_end_iter(), False))
+        self.stats_counter.count(
+            buf.get_text(
+                buf.get_start_iter(),
+                buf.get_end_iter(),
+                False))
 
     def get_text_for_stat(self, stat):
         if stat == self.CHARACTERS:

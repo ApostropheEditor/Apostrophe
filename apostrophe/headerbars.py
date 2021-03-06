@@ -61,7 +61,7 @@ class BaseHeaderbar:
         self.update_preview_layout_icon()
 
         self.sync_scroll_switch = self.builder.get_object(
-                                  "sync_scroll_switch")
+            "sync_scroll_switch")
         self.sync_scroll_switch.set_active(self.settings.get_value(
                                            "sync-scroll"))
         self.sync_scroll_switch.connect("state-set", self.__on_sync_scroll)
@@ -71,7 +71,7 @@ class BaseHeaderbar:
         self.export_button = self.builder.get_object("export_button")
         export_popover = self.builder.get_object("export_menu")
         self.preview_switch_button = self.builder.get_object(
-                                     "preview_switch_button")
+            "preview_switch_button")
 
         self.export_button.set_popover(export_popover)
 
@@ -84,10 +84,8 @@ class BaseHeaderbar:
         add_menus(self, app)
 
         settings = Gtk.Settings.get_default()
-        # TODO: use walrust operator whenever Python3.8 lands on SDK
-        # if global_dark:= settings.props.gtk_theme_name.endswith("-dark"):
-        global_dark = settings.props.gtk_theme_name.endswith("-dark")
-        if global_dark:
+
+        if global_dark := settings.props.gtk_theme_name.endswith("-dark"):
             self.light_button.set_sensitive(False)
             self.light_button.set_tooltip_text(_(
                 "Light mode isn’t available while using a dark global theme"))
@@ -112,7 +110,7 @@ class BaseHeaderbar:
     def __populate_layout_switcher_menu(self):
         self.preview_menu = self.builder.get_object("preview_switch_options")
         modes = self.settings.props.settings_schema.get_key(
-                "preview-mode").get_range()[1]
+            "preview-mode").get_range()[1]
 
         for i, mode in enumerate(modes):
             item_builder = Gtk.Builder()

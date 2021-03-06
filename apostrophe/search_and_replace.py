@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-### BEGIN LICENSE
+# BEGIN LICENSE
 # Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
@@ -12,7 +12,7 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
-### END LICENSE
+# END LICENSE
 
 import logging
 import re
@@ -70,7 +70,8 @@ class SearchAndReplace:
         self.prevbutton.connect('clicked', self.scrolltoprev)
         self.regexbutton.connect('toggled', self.search)
         self.casesensitivebutton.connect('toggled', self.search)
-        self.highlight = self.textbuffer.create_tag('search_highlight', background="yellow")
+        self.highlight = self.textbuffer.create_tag('search_highlight',
+                                                    background="yellow")
 
         self.textview.connect("focus-in-event", self.focused_texteditor)
 
@@ -98,7 +99,8 @@ class SearchAndReplace:
         toggle search box
         """
         search_hidden = self.textview.get_mapped() and (
-                self.box.get_reveal_child() is False or self.searchbar.get_search_mode() is False)
+            self.box.get_reveal_child() is False or
+            self.searchbar.get_search_mode() is False)
         replace_hidden = not self.open_replace_button.get_active()
         if search_hidden or (replace and replace_hidden):
             self.searchbar.set_search_mode(True)

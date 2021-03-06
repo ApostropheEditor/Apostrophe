@@ -1,9 +1,7 @@
 import gi
 
-from apostrophe import helpers
-
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GLib, Gio
+from gi.repository import Gtk, Gio
 
 
 class StyledWindow(Gtk.ApplicationWindow):

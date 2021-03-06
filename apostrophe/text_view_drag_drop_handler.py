@@ -24,9 +24,12 @@ class DragDropHandler:
             self.target_list.add_text_targets(TARGET_TEXT)
 
         text_view.drag_dest_set_target_list(self.target_list)
-        text_view.connect_after('drag-data-received', self.on_drag_data_received)
+        text_view.connect_after(
+            'drag-data-received',
+            self.on_drag_data_received)
 
-    def on_drag_data_received(self, text_view, drag_context, _x, _y, data, info, time):
+    def on_drag_data_received(
+            self, text_view, drag_context, _x, _y, data, info, time):
         """Handle drag and drop events"""
 
         text_buffer = text_view.get_buffer()
@@ -47,7 +50,7 @@ class DragDropHandler:
                     # for handling local URIs we need to substract the basepath
                     # except when it is "/" (document not saved)
                     if uri.startswith(basepath) and basepath != "/":
-                        uri = uri[len(basepath)+1:]
+                        uri = uri[len(basepath) + 1:]
 
                     text = "![{}]({})".format(name, uri)
                     limit_left = 2
