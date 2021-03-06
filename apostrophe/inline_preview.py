@@ -31,13 +31,15 @@ from apostrophe.settings import Settings
 
 
 class DictAccessor:
-    reEndResponse = re.compile(br"^[2-5][0-58][0-9] .*\r\n$", re.DOTALL + re.MULTILINE)
+    reEndResponse = re.compile(br"^[2-5][0-58][0-9] .*\r\n$", re.DOTALL +
+                               re.MULTILINE)
     reDefinition = re.compile(br"^151(.*?)^\.", re.DOTALL + re.MULTILINE)
 
     def __init__(self, host="dict.dict.org", port=2628, timeout=60):
         self.telnet = telnetlib.Telnet(host, port)
         self.timeout = timeout
-        self.login_response = self.telnet.expect([self.reEndResponse], self.timeout)[2]
+        self.login_response = self.telnet.expect([self.reEndResponse],
+                                                 self.timeout)[2]
 
     def run_command(self, cmd):
         self.telnet.write(cmd.encode("utf-8") + b"\r\n")
@@ -53,7 +55,9 @@ class DictAccessor:
         else:
             s = strategy
         w = word.replace("\"", r"\\\"")
-        tsplit = self.run_command("MATCH {} {} \"{}\"".format(d, s, w)).splitlines()
+        tsplit = self.run_command(
+            "MATCH {} {} \"{}\"".format(
+                d, s, w)).splitlines()
         mlist = list()
         if tsplit[-1].startswith(b"250 ok") and tsplit[0].startswith(b"1"):
             mlines = tsplit[1:-2]
@@ -70,7 +74,9 @@ class DictAccessor:
         else:
             d = database
         w = word.replace("\"", r"\\\"")
-        dsplit = self.run_command("DEFINE {} \"{}\"".format(d, w)).splitlines(True)
+        dsplit = self.run_command(
+            "DEFINE {} \"{}\"".format(
+                d, w)).splitlines(True)
 
         dlist = list()
         if dsplit[-1].startswith(b"250 ok") and dsplit[0].startswith(b"1"):
@@ -155,10 +161,12 @@ class InlinePreview:
         self.settings = Settings.new()
 
         self.text_view = text_view
-        self.text_view.connect("button-press-event", self.on_button_press_event)
+        self.text_view.connect("button-press-event",
+                               self.on_button_press_event)
         self.text_buffer = text_view.get_buffer()
         self.cursor_mark = self.text_buffer.create_mark(
-            "click", self.text_buffer.get_iter_at_mark(self.text_buffer.get_insert()))
+            "click",
+            self.text_buffer.get_iter_at_mark(self.text_buffer.get_insert()))
 
         self.latex_converter = latex_to_PNG.LatexToPNG()
         self.characters_per_line = self.settings.get_int("characters-per-line")
@@ -178,9 +186,11 @@ class InlinePreview:
 
     def on_button_press_event(self, _text_view, event):
         if event.button == 1 and event.state & Gdk.ModifierType.CONTROL_MASK:
-            x, y = self.text_view.window_to_buffer_coords(2, int(event.x), int(event.y))
+            x, y = self.text_view.window_to_buffer_coords(2, int(event.x),
+                                                          int(event.y))
             self.text_buffer.move_mark(
-                self.cursor_mark, self.text_view.get_iter_at_location(x, y).iter)
+                self.cursor_mark,
+                self.text_view.get_iter_at_location(x, y).iter)
             self.open_popover(self.text_view)
 
     def get_view_for_math(self, match):
@@ -200,11 +210,13 @@ class InlinePreview:
         if path.startswith(("file://")):
             path = path[7:]
         if not path.startswith(("/", "file://")):
-            path = os.path.join(self.settings.get_string("open-file-path"), path)
+            path = os.path.join(
+                self.settings.get_string("open-file-path"), path)
         path = unquote(path)
 
         return Gtk.Image.new_from_pixbuf(
-            GdkPixbuf.Pixbuf.new_from_file_at_size(path, self.WIDTH, self.HEIGHT))
+            GdkPixbuf.Pixbuf.new_from_file_at_size(path, self.WIDTH,
+                                                   self.HEIGHT))
 
     def get_view_for_link(self, match):
         url = match.group("url")
@@ -217,7 +229,9 @@ class InlinePreview:
 
     def get_view_for_footnote(self, match):
         footnote_id = match.group("id")
-        fn_matches = re.finditer(markup_regex.FOOTNOTE, self.text_buffer.props.text)
+        fn_matches = re.finditer(
+            markup_regex.FOOTNOTE,
+            self.text_buffer.props.text)
         for fn_match in fn_matches:
             if fn_match.group("id") == footnote_id:
                 if fn_match:
@@ -268,7 +282,9 @@ class InlinePreview:
                     num_label.set_valign(Gtk.Align.START)
                     grid.attach(num_label, 0, i, 1, 1)
 
-                    def_label = Gtk.Label(label=" ".join(definition["description"]))
+                    def_label = Gtk.Label(
+                        label=" ".join(
+                            definition["description"]))
                     def_label.get_style_context().add_class("description")
                     def_label.set_halign(Gtk.Align.START)
                     def_label.set_max_width_chars(self.characters_per_line)
@@ -304,5 +320,5 @@ class InlinePreview:
                         rect.x, rect.y = self.text_view.buffer_to_window_coords(
                             Gtk.TextWindowType.TEXT, rect.x, rect.y)
                         self.popover.set_pointing_to(rect)
-                        GLib.idle_add(self.popover.popup)  # TODO: It doesn't popup without idle_add.
+                        GLib.idle_add(self.popover.popup)
                     return

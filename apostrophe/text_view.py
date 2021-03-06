@@ -2,7 +2,8 @@ import gi
 
 from apostrophe.helpers import user_action
 from apostrophe.inline_preview import InlinePreview
-from apostrophe.text_view_drag_drop_handler import DragDropHandler, TARGET_URI, TARGET_TEXT
+from apostrophe.text_view_drag_drop_handler import DragDropHandler,\
+                                                   TARGET_URI, TARGET_TEXT
 from apostrophe.text_view_format_inserter import FormatInserter
 from apostrophe.text_view_markup_handler import MarkupHandler
 from apostrophe.text_view_scroller import TextViewScroller
@@ -27,7 +28,7 @@ class TextView(Gtk.TextView):
     - Preview popover (via TextBufferMarkupHandler)
     - Drag and drop (via TextViewDragDropHandler)
     - Scrolling (via TextViewScroller)
-    - The various modes supported by Apostrophe (eg. Focus Mode, Hemingway Mode)
+    - The various modes supported by Apostrophe (e. Focus Mode, Hemingway Mode)
     """
 
     __gsignals__ = {
@@ -42,7 +43,8 @@ class TextView(Gtk.TextView):
         'scroll-scale-changed': (GObject.SIGNAL_RUN_LAST, None, (float,)),
     }
 
-    font_sizes = [18, 17, 16, 15, 14]  # Must match CSS selectors in gtk/base.css
+    # Must match CSS selectors in gtk/base.css
+    font_sizes = [18, 17, 16, 15, 14]
 
     def __init__(self, line_chars):
         super().__init__()
@@ -78,10 +80,14 @@ class TextView(Gtk.TextView):
 
         # Undo / redo
         self.undo_redo = UndoRedoHandler()
-        self.get_buffer().connect('begin-user-action', self.undo_redo.on_begin_user_action)
-        self.get_buffer().connect('end-user-action', self.undo_redo.on_end_user_action)
-        self.get_buffer().connect('insert-text', self.undo_redo.on_insert_text)
-        self.get_buffer().connect('delete-range', self.undo_redo.on_delete_range)
+        self.get_buffer().connect('begin-user-action',
+                                  self.undo_redo.on_begin_user_action)
+        self.get_buffer().connect('end-user-action',
+                                  self.undo_redo.on_end_user_action)
+        self.get_buffer().connect('insert-text',
+                                  self.undo_redo.on_insert_text)
+        self.get_buffer().connect('delete-range',
+                                  self.undo_redo.on_delete_range)
         self.connect('undo', self.undo_redo.undo)
         self.connect('redo', self.undo_redo.redo)
 
@@ -118,9 +124,11 @@ class TextView(Gtk.TextView):
         self.hemingway_mode = False
         self.connect('key-press-event', self._on_key_press_event)
 
-        # While resizing the TextView, there is unwanted scroll upwards if a top margin is present.
-        # When a size allocation is detected, this variable will hold the scroll to re-set until the
-        # UI is idle again.
+        # While resizing the TextView, there is unwanted scroll upwards
+        # if a top margin is present.
+        # When a size allocation is detected, this variable will hold
+        # the scroll to re-set until the UI is idle again.
+
         # TODO: Find a better way to handle unwanted scroll.
         self.frozen_scroll_scale = None
 
@@ -170,8 +178,10 @@ class TextView(Gtk.TextView):
         if parent:
             parent.set_size_request(self.get_min_width(), 500)
             self.scroller = TextViewScroller(self, parent)
-            parent.get_vadjustment().connect("changed", self.on_vadjustment_changed)
-            parent.get_vadjustment().connect("value-changed", self.on_vadjustment_changed)
+            parent.get_vadjustment().connect("changed",
+                                             self.on_vadjustment_changed)
+            parent.get_vadjustment().connect("value-changed",
+                                             self.on_vadjustment_changed)
         else:
             self.scroller = None
 
@@ -213,7 +223,8 @@ class TextView(Gtk.TextView):
 
     def set_spellcheck(self, spellcheck):
         self.spellcheck = spellcheck
-        self.gspell_view.set_inline_spell_checking(self.spellcheck and not self.focus_mode)
+        self.gspell_view.set_inline_spell_checking(
+            self.spellcheck and not self.focus_mode)
 
     def update_horizontal_margin(self):
         width = self.get_allocation().width
@@ -229,7 +240,8 @@ class TextView(Gtk.TextView):
                 break
 
         # Apply margin with the remaining space to allow for markup
-        line_width = (self.line_chars + 1) * int(self.get_char_width(self.font_size)) - 1
+        line_width = (self.line_chars + 1) *\
+            int(self.get_char_width(self.font_size)) - 1
         horizontal_margin = (width - line_width) / 2
         self.props.left_margin = horizontal_margin
         self.props.right_margin = horizontal_margin
@@ -238,8 +250,8 @@ class TextView(Gtk.TextView):
         if self.focus_mode:
             height = self.get_allocation().height + top_margin + hb_size
             # The height/6 may seem strange. It's a workaround for a GTK bug
-            # If a top-margin is larger than a certain amount of the TextView height,
-            # jumps may occur when pressing enter.
+            # If a top-margin is larger than a certain amount of
+            # the TextView height, jumps may occur when pressing enter.
             self.set_top_margin(height / 2 + top_margin - height/6)
             self.set_bottom_margin(height / 2)
         else:
@@ -267,7 +279,8 @@ class TextView(Gtk.TextView):
             return
         if mark is None:
             mark = self.get_buffer().get_insert()
-        GLib.idle_add(self.scroller.smooth_scroll_to_mark, mark, self.focus_mode)
+        GLib.idle_add(self.scroller.smooth_scroll_to_mark,
+                      mark, self.focus_mode)
 
     def get_min_width(self, font_size=None):
         """Returns the minimum width of this text view."""
@@ -286,7 +299,8 @@ class TextView(Gtk.TextView):
 
     @staticmethod
     def get_char_width(font_size):
-        """Returns the font width for a given size. Note: specific to Fira Mono!"""
+        """Returns the font width for a given size.
+        Note: specific to Fira Mono!"""
 
         return font_size * 1 / 1.6
 

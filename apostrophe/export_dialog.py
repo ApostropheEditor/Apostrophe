@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-### BEGIN LICENSE
+# BEGIN LICENSE
 # Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 #               2021, Manuel Genovés <manuel.genoves@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
@@ -13,10 +13,12 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
-### END LICENSE
+# END LICENSE
+
 """Manages all the export operations and dialogs
 """
 
+# pylint: disable=no-member
 
 import logging
 import os
@@ -28,12 +30,13 @@ import json
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
-from gi.repository import Gtk, Gdk, GLib, Gio, GObject, Handy
+from gi.repository import Gtk, Gdk, Gio, GObject, Handy
 
 from apostrophe import helpers
 from apostrophe.theme import Theme
 
 LOGGER = logging.getLogger('apostrophe')
+
 
 class Format(GObject.Object):
 
@@ -65,7 +68,7 @@ class Format(GObject.Object):
 
 
 class ExportDialog:
-    
+
     __gtype_name__ = "ExportDialog"
 
     formats = {
@@ -87,8 +90,10 @@ class ExportDialog:
             "args": ["--self-contained",
                      "--css=%s" % Theme.get_current().web_css_path,
                      "--mathjax",
-                     "--lua-filter=%s" % helpers.get_media_path('/lua/relative_to_absolute.lua'),
-                     "--lua-filter=%s" % helpers.get_media_path('/lua/task-list.lua')]
+                     "--lua-filter=%s"
+                     % helpers.get_media_path('/lua/relative_to_absolute.lua'),
+                     "--lua-filter=%s"
+                     % helpers.get_media_path('/lua/task-list.lua')]
         },
         "odt":
         {
@@ -100,18 +105,21 @@ class ExportDialog:
         }
     }
 
-    def __init__(self, file, format, text):
-        self.format = format
+    def __init__(self, file, _format, text):
+        self.format = _format
         self.text = text
 
-        self._show_texlive_warning = (format == "pdf" and 
+        self._show_texlive_warning = (self.format == "pdf" and
                                       not helpers.exist_executable("pdftex"))
 
         if (self._show_texlive_warning):
-            self.dialog = Gtk.MessageDialog(None,
-                                       Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                       Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.CLOSE)
+            self.dialog = Gtk.MessageDialog(
+                None,
+                Gtk.DialogFlags.MODAL |
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.CLOSE
+            )
 
             self.dialog.get_message_area().add(TexliveWarning())
 
@@ -121,17 +129,17 @@ class ExportDialog:
                           None,
                           Gtk.FileChooserAction.SAVE,
                           _("Export to %s") %
-                          self.formats[format]["name"],
+                          self.formats[self.format]["name"],
                           _("Cancel"))
 
             dialog_filter = Gtk.FileFilter.new()
-            dialog_filter.set_name(self.formats[format]["name"])
-            dialog_filter.add_mime_type(self.formats[format]["mimetype"])
+            dialog_filter.set_name(self.formats[self.format]["name"])
+            dialog_filter.add_mime_type(self.formats[self.format]["mimetype"])
             self.dialog.add_filter(dialog_filter)
             self.dialog.set_do_overwrite_confirmation(True)
 
-            self.dialog.set_current_name(file.name + '.' +
-                                         self.formats[format]["extension"])
+            self.dialog.set_current_name(
+                file.name + '.' + self.formats[self.format]["extension"])
 
     def export(self):
         response = self.dialog.run()
@@ -147,8 +155,10 @@ class ExportDialog:
                 except (NotADirectoryError, RuntimeError) as e:
                     helpers.show_error(
                         None,
-                        _("An error happened while trying to export:\n\n{err_msg}")
-                        .format(err_msg=str(e).encode().decode("unicode-escape")))
+                        _("An error happened while trying to export:\n\n"
+                          "{err_msg}")
+                        .format(err_msg=str(e).encode()
+                                .decode("unicode-escape")))
 
         self.dialog.destroy()
 
@@ -165,7 +175,6 @@ class AdvancedExportDialog(Handy.Window):
     leaflet = Gtk.Template.Child()
     options_page = Gtk.Template.Child()
     formats_page = Gtk.Template.Child()
-    go_previous_revealer = Gtk.Template.Child()
 
     # #### --option properties-- #####
     sw_standalone = Gtk.Template.Child()
@@ -175,7 +184,6 @@ class AdvancedExportDialog(Handy.Window):
     cmb_page_size = Gtk.Template.Child()
 
     sw_self_contained = Gtk.Template.Child()
-    btn_css_chooser = Gtk.Template.Child()
 
     sw_syntax_highlighting = Gtk.Template.Child()
     cmb_syntax_highlighting = Gtk.Template.Child()
@@ -203,7 +211,7 @@ class AdvancedExportDialog(Handy.Window):
         if not self.formats:
             with open(helpers.get_media_path("/media/formats.json")) as f:
                 _formats_list = json.load(f)
-            for i, format in enumerate(_formats_list):
+            for _i, format in enumerate(_formats_list):
                 self.formats.append(Format(format["name"],
                                            format["ext"],
                                            format["to"]))
@@ -251,7 +259,8 @@ class AdvancedExportDialog(Handy.Window):
     @GObject.Property(type=bool, default=False)
     def show_go_back_button(self):
         folded = self.leaflet.props.folded
-        on_options_page = (self.leaflet.get_visible_child() == self.options_page)
+        on_options_page = (self.leaflet.get_visible_child() ==
+                           self.options_page)
 
         return folded and on_options_page
 
@@ -264,14 +273,14 @@ class AdvancedExportDialog(Handy.Window):
     def exports_multiple_files(self):
         return self.formats_list.get_selected_row().item.to == "revealjs"
 
-    def row_constructor(self, item, user_data):
+    def row_constructor(self, item, _user_data):
         row = Handy.ActionRow.new()
         row.item = item
         row.set_title(item.name)
 
         return row
 
-    def get_hdy_name(self, item, user_data, user_data_free):
+    def get_hdy_name(self, item, _user_data, _user_data_free):
         return item.dup_string()
 
     def get_hdy_comborow_name(self, hdy_cmbrow):
@@ -282,15 +291,15 @@ class AdvancedExportDialog(Handy.Window):
         return item.dup_string()
 
     @Gtk.Template.Callback()
-    def reveal_go_back(self, widget, *args):
+    def reveal_go_back(self, _widget, *args):
         self.notify("show_go_back_button")
 
     @Gtk.Template.Callback()
-    def go_back(self, widget):
+    def go_back(self, _widget):
         self.leaflet.set_visible_child(self.formats_page)
 
     @Gtk.Template.Callback()
-    def on_format_selected(self, widget, row):
+    def on_format_selected(self, _widget, _row):
         self.leaflet.set_visible_child(self.options_page)
 
         self.notify("show_page_size_options")
@@ -302,7 +311,7 @@ class AdvancedExportDialog(Handy.Window):
         self.notify("title")
 
     @Gtk.Template.Callback()
-    def on_destroy(self, widget):
+    def on_destroy(self, _widget):
         self.destroy()
 
     @Gtk.Template.Callback()
@@ -310,19 +319,19 @@ class AdvancedExportDialog(Handy.Window):
         self.retrieve_args()
 
         if self.exports_multiple_files:
-            export_dialog = Gtk.FileChooserNative.new(_("Export"),
-                                                      None,
-                                                      Gtk.FileChooserAction.SELECT_FOLDER,
-                                                      _("Select folder"),
-                                                      _("Cancel"))
+            export_dialog = Gtk.FileChooserNative.new(
+                _("Export"), None, Gtk.FileChooserAction.SELECT_FOLDER,
+                _("Select folder"), _("Cancel"))
         else:
-            export_dialog = Gtk.FileChooserNative.new(_("Export"),
-                                                      None,
-                                                      Gtk.FileChooserAction.SAVE,
-                                                      _("Export to %s") %
-                                                        self.formats_list.get_selected_row().item.name,
-                                                      _("Cancel"))
-            export_dialog.set_current_name(self.file.name + '.' + self.formats_list.get_selected_row().item.ext)
+            export_dialog = Gtk.FileChooserNative.new(
+                _("Export"), None,  Gtk.FileChooserAction.SAVE,
+                _("Export to %s") %
+                self.formats_list.get_selected_row().item.name, _("Cancel"))
+
+            export_dialog.set_current_name(
+                self.file.name + '.' +
+                self.formats_list.get_selected_row().item.ext)
+
         export_dialog.set_transient_for(self)
         export_dialog.set_do_overwrite_confirmation(True)
 
@@ -332,7 +341,8 @@ class AdvancedExportDialog(Handy.Window):
             with ZipFile(helpers.get_media_path("/media/reveal.js.zip"),
                          "r") as zipObj:
                 zipObj.extractall(folder.get_path())
-            export_file = folder.get_child(self.file.name + '.' + self.formats_list.get_selected_row().item.ext)
+            export_file = folder.get_child(self.file.name + '.' +
+                              self.formats_list.get_selected_row().item.ext)
         else:
             export_file = export_dialog.get_file()
 
@@ -359,34 +369,45 @@ class AdvancedExportDialog(Handy.Window):
 
         if self.sw_standalone.get_active():
             args.append("--standalone")
-        if self.sw_toc.get_active(): args.append("--toc")
-        if self.sw_numbers.get_active(): args.append("--number-sections")
+        if self.sw_toc.get_active():
+            args.append("--toc")
+        if self.sw_numbers.get_active():
+            args.append("--number-sections")
 
-        if self.show_page_size_options and self.cmb_page_size.get_selected_index() == 0:
-            if (fmt := self.formats_list.get_selected_row().item.to) in {"pdf", "latex", "context"}:
+        if (self.show_page_size_options and
+           self.cmb_page_size.get_selected_index() == 0):
+            if ((fmt := self.formats_list.get_selected_row().item.to) in
+               {"pdf", "latex", "context"}):
                 args.append("--variable=papersize:a4")
             elif fmt in ("odt", "docx"):
-                args.append("--reference-doc=" + helpers.get_media_path("/reference_files/reference-a4." + fmt))
+                args.append("--reference-doc=" + helpers.get_media_path(
+                    "/reference_files/reference-a4." + fmt))
 
         if self.show_html_options:
             args.append("--css=%s" % Theme.get_current().web_css_path)
             args.append("--mathjax")
-            args.append("--lua-filter=%s" % helpers.get_media_path('/lua/relative_to_absolute.lua'))
-            args.append("--lua-filter=%s" % helpers.get_media_path('/lua/task-list.lua'))
-            if self.sw_self_contained.get_active(): args.append("--self-contained")
+            args.append("--lua-filter=%s" % helpers.get_media_path(
+                '/lua/relative_to_absolute.lua'))
+            args.append("--lua-filter=%s" % helpers.get_media_path(
+                '/lua/task-list.lua'))
+            if self.sw_self_contained.get_active():
+                args.append("--self-contained")
 
         if self.show_syntax_options:
             if self.sw_syntax_highlighting.get_enable_expansion():
-                selected_style = self.get_hdy_comborow_name(self.cmb_syntax_highlighting)
+                selected_style = self.get_hdy_comborow_name(
+                    self.cmb_syntax_highlighting)
                 args.append("--highlight-style={}".format(selected_style))
 
         if self.show_presentation_options:
-            if self.sw_incremental_bullets.get_active(): args.append("--incremental")
+            if self.sw_incremental_bullets.get_active():
+                args.append("--incremental")
 
         if self.formats_list.get_selected_row().item.to == "revealjs":
             args.extend(["-V", "revealjs-url=reveal.js"])
 
         return args
+
 
 @Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/TexliveWarning.ui')
 class TexliveWarning(Gtk.Stack):
@@ -400,12 +421,12 @@ class TexliveWarning(Gtk.Stack):
         self.set_visible_child_name(child_name)
 
     @Gtk.Template.Callback()
-    def copy(self, widget):
+    def copy(self, _widget):
         cb = Gtk.Clipboard.get_default(Gdk.Display.get_default())
         cb.set_text(self.command.get_text(), -1)
 
 
-def export(text, file, format, args):
+def export(text, file, _format, args):
     """Export the given text using the specified format.
     For advanced export, this includes special flags for the enabled options.
 
@@ -413,7 +434,7 @@ def export(text, file, format, args):
         text {str} -- Text to export (default: {""})
     """
 
-    to = format
+    to = _format
 
     helpers.pandoc_convert(
         text, to=to, args=args, outputfile=file.get_path())

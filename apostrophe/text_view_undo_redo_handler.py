@@ -10,7 +10,9 @@ class UndoableInsert:
         self.offset = text_iter.get_offset()
         self.text = text
         self.length = length
-        self.mergeable = not bool(self.length > 1 or self.text in ("\r", "\n", " "))
+        self.mergeable = not bool(
+            self.length > 1 or self.text in (
+                "\r", "\n", " "))
 
     def undo(self, text_buffer):
         offset = self.offset
@@ -22,7 +24,8 @@ class UndoableInsert:
     def redo(self, text_buffer):
         start = text_buffer.get_iter_at_offset(self.offset)
         text_buffer.insert(start, self.text)
-        new_cursor_pos = text_buffer.get_iter_at_offset(self.offset + self.length)
+        new_cursor_pos = text_buffer.get_iter_at_offset(
+            self.offset + self.length)
         text_buffer.place_cursor(new_cursor_pos)
 
     def merge(self, next_action):
@@ -58,7 +61,12 @@ class UndoableDelete:
         # Find out if backspace or delete were used to not mess up redo
         insert_iter = text_buffer.get_iter_at_mark(text_buffer.get_insert())
         self.delete_key_used = bool(insert_iter.get_offset() <= self.start)
-        self.mergeable = not bool(self.end - self.start > 1 or self.text in ("\r", "\n", " "))
+        self.mergeable = not bool(
+            self.end -
+            self.start > 1 or self.text in (
+                "\r",
+                "\n",
+                " "))
 
     def undo(self, text_buffer):
         start = text_buffer.get_iter_at_offset(self.start)
@@ -136,7 +144,8 @@ class UndoRedoHandler:
     def undo(self, text_view, _data=None):
         """Undo insertions or deletions. Undone actions are moved to redo stack.
 
-        This method can be registered to a custom undo signal, or used independently."""
+        This method can be registered to a custom undo signal,
+        or used independently."""
 
         if not self.undo_stack:
             return
@@ -149,7 +158,8 @@ class UndoRedoHandler:
     def redo(self, text_view, _data=None):
         """Redo insertions or deletions. Redone actions are moved to undo stack
 
-        This method can be registered to a custom redo signal, or used independently."""
+        This method can be registered to a custom redo signal,
+        or used independently."""
 
         if not self.redo_stack:
             return
@@ -164,17 +174,21 @@ class UndoRedoHandler:
         self.redo_stack = []
 
     def on_begin_user_action(self, _text_buffer):
-        """Start of a user action. Refer to TextBuffer's "begin-user-action" signal.
+        """Start of a user action.
+        Refer to TextBuffer's "begin-user-action" signal.
 
-        This method must be registered to TextBuffer's "begin-user-action" signal, or called
+        This method must be registered to TextBuffer's
+        "begin-user-action" signal, or called
         manually followed by on_end_user_action."""
 
         self.current_undo_group = UndoableGroup()
 
     def on_end_user_action(self, _text_buffer):
-        """End of a user action. Refer to TextBuffer's "end-user-action" signal.
+        """End of a user action.
+        Refer to TextBuffer's "end-user-action" signal.
 
-        This method must be registered to TextBuffer's "end-user-action" signal, or called
+        This method must be registered to TextBuffer's
+        "end-user-action" signal, or called
         manually preceded by on_start_user_action."""
 
         if self.current_undo_group:
@@ -182,20 +196,28 @@ class UndoRedoHandler:
         self.current_undo_group = None
 
     def on_insert_text(self, _text_buffer, text_iter, text, _length):
-        """Records a text insert. Refer to TextBuffer's "insert-text" signal.
+        """Records a text insert.
+        Refer to TextBuffer's "insert-text" signal.
 
-        This method must be registered to TextBuffer's "insert-text" signal, or called manually
+        This method must be registered to TextBuffer's
+         "insert-text" signal, or called manually
         in between on_begin_user_action and on_end_user_action."""
 
         self.__record_undoable(UndoableInsert(text_iter, text, len(text)))
 
     def on_delete_range(self, text_buffer, start_iter, end_iter):
-        """Records a range deletion. Refer to TextBuffer's "delete-range" signal.
+        """Records a range deletion.
+        Refer to TextBuffer's "delete-range" signal.
 
-        This method must be registered to TextBuffer's "delete-range" signal, or called manually
+        This method must be registered to TextBuffer's
+         "delete-range" signal, or called manually
         in between on_begin_user_action and on_end_user_action."""
 
-        self.__record_undoable(UndoableDelete(text_buffer, start_iter, end_iter))
+        self.__record_undoable(
+            UndoableDelete(
+                text_buffer,
+                start_iter,
+                end_iter))
 
     def __record_undoable(self, undoable):
         """Records a change, merging it to a previous one if possible."""

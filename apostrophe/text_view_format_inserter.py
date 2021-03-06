@@ -64,7 +64,8 @@ class FormatInserter:
                         if cursor_iter.starts_line():
                             text_buffer.insert_at_cursor(line[:2] + helptext)
                         else:
-                            text_buffer.insert_at_cursor("\n" + line[:2] + helptext)
+                            text_buffer.insert_at_cursor(
+                                "\n" + line[:2] + helptext)
                         break
                     else:
                         if not lines[-1] and not lines[-2]:
@@ -102,7 +103,8 @@ class FormatInserter:
 
     @staticmethod
     def __wrap(text_view, wrap, helptext=""):
-        """Inserts wrap format to the selected text (helper text when nothing selected)"""
+        """Inserts wrap format to the selected text
+        (helper text when nothing selected)"""
         text_buffer = text_view.get_buffer()
         with user_action(text_buffer):
             if text_buffer.get_has_selection():
@@ -151,7 +153,8 @@ class FormatInserter:
 
     @staticmethod
     def __select_text(text_view, offset, length):
-        """Selects text starting at the current cursor minus offset, length characters."""
+        """Selects text starting at the current cursor
+        minus offset, length characters."""
 
         text_buffer = text_view.get_buffer()
         cursor_mark = text_buffer.get_insert()

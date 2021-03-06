@@ -1,11 +1,15 @@
 @font-face {
   font-family: fira-sans;
-  src: url("../../fonts/fira-sans-v9-vietnamese_latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
+  src: url("/app/share/fonts/FiraSans-Regular.ttf") format("ttf"),
+       local("FiraSans-Regular"),
+       url("https://fonts.gstatic.com/s/firasans/v10/va9E4kDNxMZdWfMOD5Vvl4jL.woff2") format("woff2");
 }
 
 @font-face {
   font-family: fira-mono;
-  src: url("../../fonts/fira-mono-v7-latin_cyrillic-ext_cyrillic_greek-ext_latin-ext_greek-regular.woff2") format("woff2");
+  src: url("/app/share/fonts/FiraMono-Regular.ttf") format("ttf"),
+       local("FiraMono-Regular"),
+       url("https://fonts.gstatic.com/s/firamono/v9/N0bX2SlFPv1weGeLZDtgJv7S.woff2") format("woff2");
 }
 
 @font-face {

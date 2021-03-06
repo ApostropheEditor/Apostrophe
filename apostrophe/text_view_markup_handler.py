@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-### BEGIN LICENSE
+# BEGIN LICENSE
 # Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
@@ -12,21 +12,22 @@
 #
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
-### END LICENSE
+# END LICENSE
 
+from gi.repository import Pango
+from gi.repository import Gtk, GLib
 import re
 from multiprocessing import Pipe, Process
 
 import gi
 
 from apostrophe import helpers, markup_regex
-from apostrophe.markup_regex import STRIKETHROUGH, BOLD_ITALIC, BOLD, ITALIC_ASTERISK, ITALIC_UNDERSCORE, IMAGE, LINK,\
-    LINK_ALT, HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER, TABLE, MATH, \
-    CODE
+from apostrophe.markup_regex import STRIKETHROUGH, BOLD_ITALIC,\
+    BOLD, ITALIC_ASTERISK, ITALIC_UNDERSCORE, IMAGE, LINK, LINK_ALT,\
+    HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER,\
+    TABLE, MATH, CODE
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GLib
-from gi.repository import Pango
 
 
 class MarkupHandler:
@@ -107,7 +108,8 @@ class MarkupHandler:
             self.TAG_NAME_GRAY_TEXT: lambda args: self.tag_gray_text,
             self.TAG_NAME_CODE_TEXT: lambda args: self.tag_code_text,
             self.TAG_NAME_CODE_BLOCK: lambda args: self.tag_code_block,
-            self.TAG_NAME_MARGIN_INDENT: lambda args: self.get_margin_indent_tag(*args)
+            self.TAG_NAME_MARGIN_INDENT: lambda args: self.get_margin_indent_tag(
+                *args)
         }
 
         # Focus mode.
@@ -117,7 +119,8 @@ class MarkupHandler:
                                                     style=Pango.Style.NORMAL)
 
         # Margin and indents.
-        # A baseline margin is set to allow negative offsets for formatting headers, lists, etc.
+        # A baseline margin is set to allow negative offsets for formatting
+        # headers, lists, etc.
         self.tags_margins_indents = {}
         self.baseline_margin = 0
         self.char_width = 0
@@ -132,7 +135,10 @@ class MarkupHandler:
         self.parent_conn, child_conn = Pipe()
         Process(target=self.parse, args=(child_conn,), daemon=True).start()
         GLib.io_add_watch(
-            self.parent_conn.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN, self.on_parsed)
+            self.parent_conn.fileno(),
+            GLib.PRIORITY_DEFAULT,
+            GLib.IO_IN,
+            self.on_parsed)
 
     def on_style_updated(self, *_):
         style_context = self.text_view.get_style_context()
@@ -140,20 +146,25 @@ class MarkupHandler:
         if not found:
             (_, color) = style_context.lookup_color('background_color')
         self.tag_code_text.set_property("background", color.to_string())
-        self.tag_code_block.set_property("paragraph-background", color.to_string())
+        self.tag_code_block.set_property(
+            "paragraph-background", color.to_string())
 
     def apply(self):
-        """Applies markup, parsing it in a worker process if the text has changed.
+        """Applies markup, parsing it in a worker process
+        if the text has changed.
 
-        In case parsing is already running, it will re-apply once it finishes. This ensure that
-        the pipe doesn't fill (and block) if multiple requests are made in quick succession."""
+        In case parsing is already running, it will re-apply once it finishes.
+        This ensure that the pipe doesn't fill (and block) if multiple requests
+        are made in quick succession."""
 
         if not self.parsing:
             self.parsing = True
             self.apply_pending = False
 
             text = self.text_buffer.get_slice(
-                self.text_buffer.get_start_iter(), self.text_buffer.get_end_iter(), False)
+                self.text_buffer.get_start_iter(),
+                self.text_buffer.get_end_iter(),
+                False)
             if text != self.marked_up_text:
                 self.parent_conn.send(text)
             else:
@@ -174,7 +185,8 @@ class MarkupHandler:
                     child_conn.close()
                     return
 
-            # List of tuples in the form (tag_name, tag_args, tag_start, tag_end).
+            # List of tuples in the form (tag_name, tag_args, tag_start,
+            # tag_end).
             result = []
 
             # Find:
@@ -210,20 +222,26 @@ class MarkupHandler:
             for regexp, tag_name in regexps:
                 matches = re.finditer(regexp, text)
                 for match in matches:
-                    result.append((tag_name, (), match.start(), match.start("text")))
-                    result.append((tag_name, (), match.end("text"), match.end()))
+                    result.append(
+                        (tag_name, (), match.start(), match.start("text")))
+                    result.append(
+                        (tag_name, (), match.end("text"), match.end()))
 
             # Find "<url>" links (gray out).
             matches = re.finditer(LINK_ALT, text)
             for match in matches:
                 result.append((
-                    self.TAG_NAME_GRAY_TEXT, (), match.start("text"), match.end("text")))
+                    self.TAG_NAME_GRAY_TEXT,
+                    (), match.start("text"),
+                    match.end("text")))
 
             # Find "---" horizontal rule (center).
             matches = re.finditer(HORIZONTAL_RULE, text)
             for match in matches:
                 result.append((
-                    self.TAG_NAME_CENTER, (), match.start("symbols"), match.end("symbols")))
+                    self.TAG_NAME_CENTER,
+                    (), match.start("symbols"),
+                    match.end("symbols")))
 
             # Find "* list" (offset).
             matches = re.finditer(LIST, text)
@@ -243,7 +261,8 @@ class MarkupHandler:
             # Find "1. ordered list" (offset).
             matches = re.finditer(ORDERED_LIST, text)
             for match in matches:
-                # Ordered lists use numbers/letters+dot/parens+space (eg. "123. ").
+                # Ordered lists use numbers/letters+dot/parens+space
+                # (eg. "123. ").
                 length = len(match.group("prefix")) + 1
                 nest = len(match.group("indent").replace("    ", "\t"))
                 margin = -length - 2 * nest
@@ -258,32 +277,38 @@ class MarkupHandler:
             # Find "> blockquote" (offset).
             matches = re.finditer(BLOCK_QUOTE, text)
             for match in matches:
-                result.append((self.TAG_NAME_MARGIN_INDENT, (2, -2), match.start(), match.end()))
+                result.append((self.TAG_NAME_MARGIN_INDENT,
+                               (2, -2), match.start(), match.end()))
 
             # Find "# Header" (offset+bold).
             matches = re.finditer(HEADER, text)
             for match in matches:
                 margin = -len(match.group("level")) - 1
                 result.append((
-                    self.TAG_NAME_MARGIN_INDENT, (margin, 0), match.start(), match.end()))
-                result.append((self.TAG_NAME_BOLD, (), match.start(), match.end()))
+                    self.TAG_NAME_MARGIN_INDENT, (margin, 0),
+                    match.start(), match.end()))
+                result.append(
+                    (self.TAG_NAME_BOLD, (), match.start(), match.end()))
 
             # Find "=======" header underline (bold).
             matches = re.finditer(HEADER_UNDER, text)
             for match in matches:
-                result.append((self.TAG_NAME_BOLD, (), match.start(), match.end()))
+                result.append(
+                    (self.TAG_NAME_BOLD, (), match.start(), match.end()))
 
             # Find "```" code block tag (offset + colorize paragraph).
             matches = re.finditer(markup_regex.CODE_BLOCK, text)
             for match in matches:
                 result.append((
-                    self.TAG_NAME_CODE_BLOCK, (), match.start("block"), match.end("block")))
+                    self.TAG_NAME_CODE_BLOCK, (),
+                    match.start("block"), match.end("block")))
 
             # Send parsed data back.
             child_conn.send((text, result))
 
     def on_parsed(self, _source, _condition):
-        """Reads the parsing result from the pipe and triggers any pending apply."""
+        """Reads the parsing result from the pipe
+        and triggers any pending apply."""
 
         self.parsing = False
         if self.apply_pending:
@@ -297,7 +322,8 @@ class MarkupHandler:
             return False
 
     def do_apply(self, original_text, result=[]):
-        """Applies the result of parsing if the current text matches the original text."""
+        """Applies the result of parsing if the current text
+        matches the original text."""
 
         buffer = self.text_buffer
         start = buffer.get_start_iter()
@@ -337,9 +363,11 @@ class MarkupHandler:
             buffer.apply_tag(self.tag_unfocused_text, end_sentence, end)
 
     # Margin and indent are cumulative. They differ in two ways:
-    # * Margin is always in the beginning, which means it effectively only affects the first line
+    # * Margin is always in the beginning,
+    # which means it effectively only affects the first line
     # of multi-line text. Indent is applied to every line.
-    # * Margin level can be negative, as a baseline margin exists from which it can be subtracted.
+    # * Margin level can be negative, as a baseline margin exists
+    # from which it can be subtracted.
     # Indent is always positive, or 0.
     def get_margin_indent_tag(self, margin_level, indent_level):
         level = (margin_level, indent_level)
@@ -353,7 +381,8 @@ class MarkupHandler:
         else:
             return self.tags_margins_indents[level]
 
-    def get_margin_indent(self, margin_level, indent_level, baseline_margin=None, char_width=None):
+    def get_margin_indent(self, margin_level, indent_level,
+                          baseline_margin=None, char_width=None):
         if baseline_margin is None:
             baseline_margin = self.text_view.props.left_margin
         if char_width is None:
@@ -379,7 +408,8 @@ class MarkupHandler:
 
         # Adjust margins and indents
         for level, tag in self.tags_margins_indents.items():
-            margin, indent = self.get_margin_indent(*level, baseline_margin, char_width)
+            margin, indent = self.get_margin_indent(
+                *level, baseline_margin, char_width)
             tag.set_properties(left_margin=margin, indent=indent)
 
     def stop(self, *_):

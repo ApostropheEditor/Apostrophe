@@ -1,6 +1,6 @@
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gio, GLib
+from gi.repository import Gtk, GLib
 
 from apostrophe import headerbars
 from apostrophe.settings import Settings
@@ -38,7 +38,8 @@ class PreviewRenderer:
         # Windowed preview: create a window and show the preview in it.
         if self.mode == self.WINDOWED:
             # Create transient window of the main window.
-            self.window = StyledWindow(application=self.main_window.get_application())
+            self.window = StyledWindow(
+                application=self.main_window.get_application())
             self.window.connect("delete-event", self.on_window_closed)
 
             # Create a custom header bar and move the mode button there.
@@ -66,13 +67,15 @@ class PreviewRenderer:
             if self.mode == self.FULL_WIDTH:
                 self.content.remove(self.editor)
 
-            # Half-width preview: set horizontal orientation and add the preview.
-            # Ask for a minimum width that respects the editor's minimum requirements.
+            # Half-width preview: set horizontal orientation & add the preview.
+            # Ask for a minimum width that respects the editor's minimum
+            # requirements.
             elif self.mode == self.HALF_WIDTH:
                 self.content.set_orientation(Gtk.Orientation.HORIZONTAL)
-                self.content.set_size_request(self.text_view.get_min_width() * 2, -1)
+                self.content.set_size_request(
+                    self.text_view.get_min_width() * 2, -1)
 
-            # Half-height preview: set vertical orientation and add the preview.
+            # Half-height preview: set vertical orientation & add the preview.
             # Ask for a minimum height that provides a comfortable experience.
             elif self.mode == self.HALF_HEIGHT:
                 self.content.set_orientation(Gtk.Orientation.VERTICAL)
@@ -101,7 +104,8 @@ class PreviewRenderer:
             if self.mode == self.FULL_WIDTH:
                 self.content.add(self.editor)
 
-            # Half-width/height previews: remove preview and reset size requirements.
+            # Half-width/height previews: remove preview and reset size
+            # requirements.
             elif self.mode == self.HALF_WIDTH or self.mode == self.HALF_HEIGHT:
                 self.content.set_size_request(-1, -1)
 
@@ -109,7 +113,8 @@ class PreviewRenderer:
                 raise ValueError("Unknown preview mode {}".format(self.mode))
 
     def update_mode(self, web_view=None):
-        """Update preview mode, adjusting the mode button and the preview itself."""
+        """Update preview mode, adjusting the mode button
+        and the preview itself."""
 
         mode = self.settings.get_enum("preview-mode")
         if web_view and mode != self.mode:

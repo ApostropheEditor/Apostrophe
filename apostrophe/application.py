@@ -12,12 +12,12 @@
 
 import gi
 
-from apostrophe.main_window import MainWindow
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 from gi.repository import GLib, Gio, Gtk, Handy
 
+from apostrophe.main_window import MainWindow
 from apostrophe.settings import Settings
 from apostrophe.helpers import set_up_logging
 from apostrophe.preferences_dialog import PreferencesDialog
@@ -176,7 +176,6 @@ class Application(Gtk.Application):
         if not self.window:
             # Windows are associated with the application
             # when the last one is closed the application shuts down
-            # self.window = Window(application=self, title="Apostrophe")
             self.window = MainWindow(self)
 
         if self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel':
@@ -184,8 +183,8 @@ class Application(Gtk.Application):
         self.window.present()
 
     def do_handle_local_options(self, options):
-        if (options.contains("verbose") or
-            self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel'):
+        if options.contains("verbose") or self._application_id \
+                == 'org.gnome.gitlab.somas.Apostrophe.Devel':
 
             set_up_logging(1)
         return -1
@@ -266,7 +265,7 @@ class Application(Gtk.Application):
     def on_export(self, _action, value):
         self.window.open_export(value.get_string())
 
-    def on_advanced_export(self, _action, value):
+    def on_advanced_export(self, _action, _value):
         self.window.open_advanced_export()
 
     def on_copy_html(self, _action, _value):

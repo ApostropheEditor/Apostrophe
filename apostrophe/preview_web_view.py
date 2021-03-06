@@ -10,8 +10,9 @@ class PreviewWebView(WebKit2.WebView):
     """A WebView that provides read/write access to scroll.
 
     It does so using JavaScript, by continuously monitoring it while loaded.
-    The alternative is using a WebExtension and C-bindings (see reference), but that is more
-    complicated implementation-wise, as well as build-wise until we start building with Meson.
+    The alternative is using a WebExtension and C-bindings (see reference),
+    but that is more complicated implementation-wise,
+    as well as build-wise until we start building with Meson.
 
     Reference: https://github.com/aperezdc/webkit2gtk-python-webextension-example
     """
@@ -26,7 +27,7 @@ if (typeof hasMathJax === "undefined") {{
     if (hasMathJax) {{
         MathJax.Hub.Config({{ messageStyle: "none" }});
     }}
-}} 
+}}
 
 // Figure out if scrollable and rendered.
 e = document.documentElement;
@@ -115,7 +116,8 @@ if (canScroll && isRendered) {{
     def sync_scroll_scale(self, scroll_scale, write):
         self.state_waiting = True
         self.run_javascript(
-            self.SYNC_SCROLL_SCALE_JS.format(scroll_scale, "true" if write else "false"),
+            self.SYNC_SCROLL_SCALE_JS.format(
+                scroll_scale, "true" if write else "false"),
             None, self.finish_sync_scroll_scale)
 
     def finish_sync_scroll_scale(self, _web_view, result):
@@ -130,7 +132,8 @@ if (canScroll && isRendered) {{
             self.timeout_id = None
 
         # Set scroll scale if specified, and the state is not dirty
-        if not self.state_discard_read and scroll_scale not in (None, self.scroll_scale):
+        if not self.state_discard_read and scroll_scale not in (
+                None, self.scroll_scale):
             self.scroll_scale = scroll_scale
             if self.scroll_scale != -1:
                 self.emit("scroll-scale-changed", self.scroll_scale)
