@@ -94,6 +94,7 @@
                         <property name="can_focus">False</property>
                         <property name="events">GDK_ENTER_NOTIFY_MASK | GDK_STRUCTURE_MASK</property>
                         <property name="valign">end</property>
+                        <property name="halign">end</property>
                         <property name="transition_type">crossfade</property>
                         <property name="transition_duration">750</property>
                         <property name="reveal_child">True</property>
