@@ -167,8 +167,7 @@ class TextView(Gtk.TextView):
 
     def on_text_changed(self, *_):
         self.markup.apply()
-        if self.focus_mode:
-            self.smooth_scroll_to()
+        self.smooth_scroll_to()
 
     def on_paste_done(self, *_):
         self.smooth_scroll_to()

@@ -140,12 +140,14 @@ class PreviewHandler:
                 self.__show(step=Step.RENDER)
 
     def on_text_view_scrolled(self, _text_view, scale):
-        if self.shown and not math.isclose(scale, self.web_view.get_scroll_scale(), rel_tol=1e-2):
+        if self.shown and not math.isclose(scale,
+                                           self.web_view.get_scroll_scale(),
+                                           rel_tol=1e-4):
             self.web_view.set_scroll_scale(scale)
 
     def on_web_view_scrolled(self, _web_view, scale):
-        if self.shown and self.text_view.get_mapped() and \
-                not math.isclose(scale, self.text_view.get_scroll_scale(), rel_tol=1e-2):
+        if self.shown and self.text_view.get_mapped() and not math.isclose(
+                scale, self.text_view.get_scroll_scale(), rel_tol=1e-1):
             self.text_view.set_scroll_scale(scale)
 
     @staticmethod
