@@ -659,15 +659,14 @@ class MainWindow(StyledWindow):
         """
 
         if is_unsaved:
-            prefix = "* "
+            prefix = "• "
+            # TODO: this doesn't really belong here
             App().inhibitor.inhibit(Gtk.ApplicationInhibitFlags.LOGOUT)
         else:
             prefix = ""
             App().inhibitor.uninhibit()
 
-        suffix = " - Apostrophe"
-
-        title = prefix + self.current.title + suffix
+        title = prefix + self.current.title
 
         if has_subtitle:
             subtitle = self.current.path
