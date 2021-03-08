@@ -259,45 +259,91 @@ class MainWindow(StyledWindow):
 
         return True
 
-    def save_document(self):
+    def save_document(self, sync: bool = False) -> bool:
         """Try to save buffer in the current gfile.
-           If the file doesn't exist calls save_document_as
+        If the file doesn't exist calls save_document_as
+
+        Args:
+            sync (bool, optional): Wheter the save operation should be done
+            synchronously. Defaults to False.
+
+        Returns:
+            bool: True if the document was saved correctly
         """
 
         if self.current.gfile:
             LOGGER.info("saving")
 
+            # We try to encode the file with the given encoding
+            # if that doesn't work, we try with UTF-8
+            # if that fails as well, we return False
             try:
                 try:
-                    encoded_text = GLib.Bytes.new(
-                        self.text_view.get_text()
-                        .encode(self.current.encoding))
+                    encoded_text = self.text_view.get_text()\
+                        .encode(self.current.encoding)
                 except UnicodeEncodeError:
                     encoded_text = self.text_view.get_text()\
                         .encode("UTF-8")
                     self.current.encoding = "UTF-8"
             except UnicodeEncodeError as error:
-                helpers.show_error(self, str(error.message))
-                LOGGER.warning(str(error.message))
+                helpers.show_error(self, str(error.reason))
+                LOGGER.warning(str(error.reason))
+                return False
             else:
                 self.progressbar.set_opacity(1)
                 self.progressbar_initiate_tw.start()
-                self.current.gfile.replace_contents_bytes_async(
-                    encoded_text,
-                    etag=None,
-                    make_backup=False,
-                    flags=Gio.FileCreateFlags.NONE,
-                    cancellable=None,
-                    callback=self._replace_contents_cb,
-                    user_data=None)
 
+                # we allow synchronously saving operations
+                # for result-dependant code
+                if sync:
+                    try:
+                        res = self.current.gfile.replace_contents(
+                            encoded_text,
+                            etag=None,
+                            make_backup=False,
+                            flags=Gio.FileCreateFlags.NONE,
+                            cancellable=None)
+                    except GLib.GError as error:
+                        helpers.show_error(self, str(error.message))
+                        LOGGER.warning(str(error.message))
+                        self.progressbar_opacity_tw.start()
+                        self.did_change = True
+                        return False
+
+                    if res:
+                        self.progressbar_initiate_tw.stop()
+                        self.progressbar_finalize_tw.start()
+                        self.progressbar_opacity_tw.start()
+
+                        self.update_headerbar_title()
+                        self.did_change = False
+                        return True
+
+                    else:
+                        self.progressbar_opacity_tw.start()
+                        self.did_change = True
+                        return False
+
+                else:
+                    self.current.gfile.replace_contents_bytes_async(
+                        GLib.Bytes.new(encoded_text),
+                        etag=None,
+                        make_backup=False,
+                        flags=Gio.FileCreateFlags.NONE,
+                        cancellable=None,
+                        callback=self._replace_contents_cb,
+                        user_data=None)
+                    return True
+        # if there's no GFile we ask for one:
         else:
-            self.save_document_as()
+            return self.save_document_as(sync=sync)
 
-    def save_document_as(self, _widget=None, _data=None):
+    def save_document_as(self, _widget=None, _data=None,
+                         sync: bool = False) -> bool:
         """provide to the user a filechooser and save the document
            where they want. Call set_headbar_title after that
         """
+
         filefilter = Gtk.FileFilter.new()
         filefilter.add_mime_type('text/x-markdown')
         filefilter.add_mime_type('text/plain')
@@ -312,6 +358,8 @@ class MainWindow(StyledWindow):
         filechooser.set_do_overwrite_confirmation(True)
         filechooser.set_local_only(False)
         filechooser.add_filter(filefilter)
+        filechooser.set_modal(True)
+        filechooser.set_transient_for(self)
 
         title = self.current.title
         if not title.endswith(".md"):
@@ -330,15 +378,15 @@ class MainWindow(StyledWindow):
                 except GLib.GError as error:
                     helpers.show_error(self, str(error.message))
                     LOGGER.warning(str(error.message))
-                    return
+                    return False
 
             self.current.gfile = file
 
             self.update_headerbar_title(False, True)
             filechooser.destroy()
-            self.save_document()
-
-        return response
+            return self.save_document()
+        else:
+            return False
 
     def _replace_contents_cb(self, gfile, result, _user_data=None):
         try:
@@ -347,7 +395,8 @@ class MainWindow(StyledWindow):
             helpers.show_error(self, str(error.message))
             LOGGER.warning(str(error.message))
             self.progressbar_opacity_tw.start()
-            return
+            self.did_change = True
+            return False
 
         if success:
             recents_manager = Gtk.RecentManager.get_default()
@@ -360,6 +409,7 @@ class MainWindow(StyledWindow):
             self.update_headerbar_title()
             self.did_change = False
         else:
+            self.did_change = True
             self.progressbar_opacity_tw.start()
 
         return success
@@ -447,7 +497,7 @@ class MainWindow(StyledWindow):
             self.update_headerbar_title()
             self.did_change = False
 
-    def check_change(self):
+    def check_change(self) -> Gtk.ResponseType:
         """Show dialog to prevent loss of unsaved changes
         """
 
@@ -471,23 +521,17 @@ class MainWindow(StyledWindow):
             dialog.add_button(_("Save now"), Gtk.ResponseType.YES)
 
             close_button.get_style_context().add_class("destructive-action")
-            # dialog.set_default_size(200, 60)
             dialog.set_default_response(Gtk.ResponseType.YES)
             response = dialog.run()
 
+            dialog.destroy()
+
             if response == Gtk.ResponseType.YES:
-                if self.save_document() == Gtk.ResponseType.CANCEL:
-                    dialog.destroy()
+                # If the saving fails, retry
+                if self.save_document(sync=True) is False:
                     return self.check_change()
 
-                dialog.destroy()
-                return response
-            if response == Gtk.ResponseType.NO:
-                dialog.destroy()
-                return response
-
-            dialog.destroy()
-            return Gtk.ResponseType.CANCEL
+            return response
 
     def new_document(self, _widget=None):
         """create new document
