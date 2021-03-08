@@ -356,9 +356,11 @@ class MarkupHandler:
         if self.text_view.focus_mode:
             cursor_iter = buffer.get_iter_at_mark(buffer.get_insert())
             start_sentence = cursor_iter.copy()
-            start_sentence.backward_sentence_start()
+            if not start_sentence.starts_sentence():
+                start_sentence.backward_sentence_start()
             end_sentence = cursor_iter.copy()
-            end_sentence.forward_sentence_end()
+            if not end_sentence.ends_sentence():
+                end_sentence.forward_sentence_end()
             buffer.apply_tag(self.tag_unfocused_text, start, start_sentence)
             buffer.apply_tag(self.tag_unfocused_text, end_sentence, end)
 
