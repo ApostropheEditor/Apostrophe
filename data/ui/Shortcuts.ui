@@ -148,20 +148,6 @@
                 <property name="accelerator">&lt;Shift&gt;&lt;Primary&gt;D</property>
               </object>
             </child>
-            <child>
-              <object class="GtkShortcutsShortcut" id="s2-5">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes" context="shortcut window">Header</property>
-                <property name="accelerator">&lt;Primary&gt;h</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut" id="s2-9">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes" context="shortcut window">Select all</property>
-                <property name="accelerator">&lt;Primary&gt;a</property>
-              </object>
-            </child>
           </object>
         </child>
         <child>
