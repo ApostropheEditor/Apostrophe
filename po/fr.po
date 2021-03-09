@@ -7,11 +7,11 @@ msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Language: fr\n"
 
-#: apostrophe/inline_preview.py:226
+#: apostrophe/inline_preview.py:240
 msgid "No matching footnote found"
 msgstr "Aucune note de bas de page correspondante"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
+#: apostrophe/preview_renderer.py:48 data/ui/Headerbar.ui:305
 msgid "Preview"
 msgstr "Aperçu"
 
@@ -19,8 +19,8 @@ msgstr "Aperçu"
 msgid "Focus Mode"
 msgstr "Mode focus"
 
-#: apostrophe/export_dialog.py:120 apostrophe/export_dialog.py:313
-#: apostrophe/export_dialog.py:319 data/ui/Export.ui:62
+#: apostrophe/export_dialog.py:128 apostrophe/export_dialog.py:323
+#: apostrophe/export_dialog.py:327 data/ui/Export.ui:62
 msgid "Export"
 msgstr "Exporter"
 
@@ -48,18 +48,18 @@ msgstr "Afficher une puce après l'autre dans un diaporama"
 msgid "CSS File"
 msgstr "Fichier CSS"
 
-#: apostrophe/main_window.py:306
+#: apostrophe/main_window.py:352
 msgid "Save your File"
 msgstr "Enregistrer le document"
 
-#: apostrophe/export_dialog.py:125 apostrophe/export_dialog.py:317
-#: apostrophe/export_dialog.py:324 apostrophe/main_window.py:310
-#: apostrophe/main_window.py:397 apostrophe/main_window.py:469
+#: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
+#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:356
+#: apostrophe/main_window.py:447 apostrophe/main_window.py:520
 #: data/ui/Export.ui:47
 msgid "Cancel"
 msgstr "Annuler"
 
-#: apostrophe/main_window.py:470
+#: apostrophe/main_window.py:521
 msgid "Save now"
 msgstr "Enregistrer maintenant"
 
@@ -123,29 +123,19 @@ msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Gras"
 
-#: data/ui/Shortcuts.ui:154
-msgctxt "shortcut window"
-msgid "Header"
-msgstr "Entête"
-
-#: data/ui/Shortcuts.ui:161
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr "Tout sélectionner"
-
-#: data/ui/Window.ui:219
+#: data/ui/Window.ui:220
 msgid "Next Match"
 msgstr "Suivant"
 
-#: data/ui/Window.ui:205
+#: data/ui/Window.ui:206
 msgid "Previous Match"
 msgstr "Précédent"
 
-#: data/ui/Window.ui:252
+#: data/ui/Window.ui:253
 msgid "Case Sensitive"
 msgstr "Sensible à la casse"
 
-#: data/ui/Window.ui:279 data/ui/Window.ui:357
+#: data/ui/Window.ui:280 data/ui/Window.ui:358
 msgid "Replace"
 msgstr "Remplacer"
 
@@ -173,7 +163,7 @@ msgstr "Utiliser le mode sombre"
 msgid "New"
 msgstr "Nouveau"
 
-#: apostrophe/main_window.py:396 data/ui/Headerbar.ui:182
+#: apostrophe/main_window.py:446 data/ui/Headerbar.ui:182
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -181,7 +171,7 @@ msgstr "Ouvrir"
 msgid "Open Recent"
 msgstr "Ouvrir un fichier récent"
 
-#: apostrophe/main_window.py:309 data/ui/Headerbar.ui:225
+#: apostrophe/main_window.py:355 data/ui/Headerbar.ui:225
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -247,7 +237,7 @@ msgstr "Comment afficher la prévisualisation"
 msgid "Self-contained"
 msgstr "Fichier unique"
 
-#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:128
+#: apostrophe/headerbars.py:137 apostrophe/preview_renderer.py:133
 #: data/ui/PreviewLayoutSwitcherItem.ui:36
 msgid "Full-Width"
 msgstr "Aperçu seul"
@@ -282,116 +272,116 @@ msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Barré"
 
-#: data/ui/Shortcuts.ui:170
+#: data/ui/Shortcuts.ui:156
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "Copier et coller"
 
-#: data/ui/Shortcuts.ui:174
+#: data/ui/Shortcuts.ui:160
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Copier le texte sélectionné dans le presse-papier"
 
-#: data/ui/Shortcuts.ui:181
+#: data/ui/Shortcuts.ui:167
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Couper le texte sélectionné dans le presse-papier"
 
-#: data/ui/Shortcuts.ui:188
+#: data/ui/Shortcuts.ui:174
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "Coller sur le texte sélectionné depuis le presse-papier"
 
-#: data/ui/Shortcuts.ui:197
+#: data/ui/Shortcuts.ui:183
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "Annuler et rétablir"
 
-#: data/ui/Shortcuts.ui:201
+#: data/ui/Shortcuts.ui:187
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Annuler l'action précédente"
 
-#: data/ui/Shortcuts.ui:208
+#: data/ui/Shortcuts.ui:194
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Rétablir l'action précédente"
 
-#: data/ui/Shortcuts.ui:217
+#: data/ui/Shortcuts.ui:203
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "Sélection"
 
-#: data/ui/Shortcuts.ui:221
+#: data/ui/Shortcuts.ui:207
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Sélectionner tout le texte"
 
-#: data/ui/Window.ui:106
+#: data/ui/Window.ui:107
 msgid "Show Statistics"
 msgstr "Voir les statistiques"
 
-#: data/ui/Window.ui:248
+#: data/ui/Window.ui:249
 msgid "aA"
 msgstr "aA"
 
-#: data/ui/Window.ui:262
+#: data/ui/Window.ui:263
 msgid "(.*)"
 msgstr "(.*)"
 
-#: data/ui/Window.ui:266
+#: data/ui/Window.ui:267
 msgid "Regular Expression"
 msgstr "Expression Régulière"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:436
 msgid "Markdown Files"
 msgstr "Fichiers Markdown"
 
-#: apostrophe/main_window.py:390
+#: apostrophe/main_window.py:440
 msgid "Plain Text Files"
 msgstr "Fichiers de texte brut"
 
-#: apostrophe/main_window.py:393
+#: apostrophe/main_window.py:443
 msgid "Open a .md file"
 msgstr "Ouvrir un fichier .md"
 
-#: apostrophe/main_window.py:467
+#: apostrophe/main_window.py:518
 msgid "Close without saving"
 msgstr "Fermer sans enregistrer"
 
-#: apostrophe/main_window.py:679
+#: apostrophe/main_window.py:723
 msgid "New File"
 msgstr "Nouveau fichier"
 
-#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:130
+#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:135
 msgid "Half-Width"
 msgstr "Divisé dans la largeur"
 
-#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:132
+#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:137
 msgid "Half-Height"
 msgstr "Divisé dans la hauteur"
 
-#: apostrophe/headerbars.py:145 apostrophe/preview_renderer.py:134
+#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:139
 msgid "Windowed"
 msgstr "Fenêtré"
 
-#: apostrophe/stats_handler.py:67
+#: apostrophe/stats_handler.py:74
 msgid "{:n} Characters"
 msgstr "{:n} caractères"
 
-#: apostrophe/stats_handler.py:69
+#: apostrophe/stats_handler.py:76
 msgid "{:n} Words"
 msgstr "{:n} mots"
 
-#: apostrophe/stats_handler.py:71
+#: apostrophe/stats_handler.py:78
 msgid "{:n} Sentences"
 msgstr "{:n} phrases"
 
-#: apostrophe/stats_handler.py:73
+#: apostrophe/stats_handler.py:80
 msgid "{:n} Paragraphs"
 msgstr "{:n} paragraphes"
 
-#: apostrophe/stats_handler.py:75
+#: apostrophe/stats_handler.py:82
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} temps de lecture"
 
@@ -411,11 +401,11 @@ msgstr "texte barré"
 msgid "Item"
 msgstr "Item"
 
-#: apostrophe/text_view_format_inserter.py:97
+#: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
 msgstr "Entête"
 
-#: apostrophe/export_dialog.py:150 apostrophe/export_dialog.py:348
+#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
 msgid "An error happened while trying to export:\n"
 "\n"
 "{err_msg}"
@@ -423,40 +413,40 @@ msgstr "Une erreur s'est produite lors d'une tentative d'exportation :\n"
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:123 apostrophe/export_dialog.py:322
+#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
 msgid "Export to %s"
 msgstr "Exporter vers %s"
 
-#: apostrophe/inline_preview.py:191
+#: apostrophe/inline_preview.py:201
 msgid "Formula looks incorrect:"
 msgstr "La formule semble incorrecte :"
 
-#: apostrophe/inline_preview.py:246
+#: apostrophe/inline_preview.py:260
 msgid "noun"
 msgstr "nom"
 
-#: apostrophe/inline_preview.py:248
+#: apostrophe/inline_preview.py:262
 msgid "verb"
 msgstr "verbe"
 
-#: apostrophe/inline_preview.py:250
+#: apostrophe/inline_preview.py:264
 msgid "adjective"
 msgstr "adjectif"
 
-#: apostrophe/inline_preview.py:252
+#: apostrophe/inline_preview.py:266
 msgid "adverb"
 msgstr "adverbe"
 
-#: apostrophe/main_window.py:459
+#: apostrophe/main_window.py:510
 msgid "Save changes to document “%s” before closing?"
 msgstr "Enregistrer les modifications apportées au document « %s » avant la fermeture ?"
 
-#: apostrophe/main_window.py:464
+#: apostrophe/main_window.py:515
 msgid "If you don’t save, all your changes will be permanently lost."
 msgstr "Si vous n'enregistrez pas, tous vos changements seront définitivement perdus."
 
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
+#: apostrophe/text_view_drag_drop_handler.py:75
+#: apostrophe/text_view_drag_drop_handler.py:77
 msgid "web page"
 msgstr "page web"
 
@@ -502,7 +492,7 @@ msgctxt "shortcut window"
 msgid "Find and replace"
 msgstr "Rechercher et remplacer"
 
-#: data/ui/Window.ui:371
+#: data/ui/Window.ui:372
 msgid "Replace All"
 msgstr "Tout remplacer"
 
@@ -518,19 +508,19 @@ msgstr "Synchroniser les vues"
 msgid "Hemingway Mode"
 msgstr "Mode Hemingway"
 
-#: apostrophe/export_dialog.py:226
+#: apostrophe/export_dialog.py:234
 msgid "Export to {}"
 msgstr "Exporter vers {}"
 
-#: apostrophe/export_dialog.py:316
+#: apostrophe/export_dialog.py:324
 msgid "Select folder"
 msgstr "Sélectionnez un dossier"
 
-#: apostrophe/headerbars.py:93
+#: apostrophe/headerbars.py:91
 msgid "Light mode isn’t available while using a dark global theme"
 msgstr "Le mode clair n'est pas disponible avec un thème sombre global"
 
-#: apostrophe/helpers.py:101
+#: apostrophe/helpers.py:90
 msgid "Error"
 msgstr "Erreur"
 
@@ -653,4 +643,8 @@ msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;"
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, a simple and distraction free Markdown Editor"
 msgstr "Apostrophe, un éditeur Markdown simple et sans distraction"
+
+#: apostrophe/inhibitor.py:35
+msgid "Unsaved documents"
+msgstr ""
 
