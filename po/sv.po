@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Language: sv\n"
 
-#: apostrophe/inline_preview.py:226
+#: apostrophe/inline_preview.py:240
 msgid "No matching footnote found"
-msgstr "Kunde inte hitta någon matchande fotnot"
+msgstr "Ingen matchande fotnot hittades"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
+#: apostrophe/preview_renderer.py:48 data/ui/Headerbar.ui:305
 msgid "Preview"
-msgstr "Förhandsgranskning"
+msgstr "Förhandsgranska"
 
 #: data/ui/Menu.ui:114
 msgid "Focus Mode"
 msgstr "Fokusläge"
 
-#: apostrophe/export_dialog.py:120 apostrophe/export_dialog.py:313
-#: apostrophe/export_dialog.py:319 data/ui/Export.ui:62
+#: apostrophe/export_dialog.py:128 apostrophe/export_dialog.py:323
+#: apostrophe/export_dialog.py:327 data/ui/Export.ui:62
 msgid "Export"
 msgstr "Exportera"
 
@@ -34,7 +34,7 @@ msgstr "Fristående"
 
 #: data/ui/Export.ui:156
 msgid "Use a header and footer to include things like stylesheets and meta information"
-msgstr "Använd sidhuvud och sidfot för att inkludera till exempel stilmallar och metainformation"
+msgstr "Använd sidhuvud och sidfot för att inkludera saker som stilmallar och metainformation"
 
 #: data/ui/Export.ui:187
 msgid "Number Sections"
@@ -42,36 +42,36 @@ msgstr "Numrera sektioner"
 
 #: data/ui/Export.ui:330
 msgid "Show one bullet point after another in a slideshow"
-msgstr "Visa en punkt efter en annan i en presentation"
+msgstr "Visa en punkt efter en annan i ett bildspel"
 
 #: data/ui/Export.ui:260
 msgid "CSS File"
 msgstr "CSS-fil"
 
-#: apostrophe/main_window.py:306
+#: apostrophe/main_window.py:352
 msgid "Save your File"
 msgstr "Spara din fil"
 
-#: apostrophe/export_dialog.py:125 apostrophe/export_dialog.py:317
-#: apostrophe/export_dialog.py:324 apostrophe/main_window.py:310
-#: apostrophe/main_window.py:397 apostrophe/main_window.py:469
+#: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
+#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:356
+#: apostrophe/main_window.py:447 apostrophe/main_window.py:520
 #: data/ui/Export.ui:47
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: apostrophe/main_window.py:470
+#: apostrophe/main_window.py:521
 msgid "Save now"
 msgstr "Spara nu"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
 msgid "General"
-msgstr "Standard"
+msgstr "Allmänt"
 
 #: data/ui/Shortcuts.ui:17
 msgctxt "shortcut window"
 msgid "New"
-msgstr "Ny"
+msgstr "Nytt"
 
 #: data/ui/Shortcuts.ui:24
 msgctxt "shortcut window"
@@ -101,7 +101,7 @@ msgstr "Helskärm"
 #: data/ui/Shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Preview"
-msgstr "Förhandsgranskning"
+msgstr "Förhandsgranska"
 
 #: data/ui/Shortcuts.ui:119
 msgctxt "shortcut window"
@@ -111,7 +111,7 @@ msgstr "Avdelare"
 #: data/ui/Shortcuts.ui:126
 msgctxt "shortcut window"
 msgid "List item"
-msgstr "Listelement"
+msgstr "Listobjekt"
 
 #: data/ui/Shortcuts.ui:133
 msgctxt "shortcut window"
@@ -123,39 +123,29 @@ msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Fet"
 
-#: data/ui/Shortcuts.ui:154
-msgctxt "shortcut window"
-msgid "Header"
-msgstr "Rubrik"
-
-#: data/ui/Shortcuts.ui:161
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr "Välj alla"
-
-#: data/ui/Window.ui:219
+#: data/ui/Window.ui:220
 msgid "Next Match"
-msgstr "Nästa matchning"
+msgstr "Nästa träff"
 
-#: data/ui/Window.ui:205
+#: data/ui/Window.ui:206
 msgid "Previous Match"
-msgstr "Föregående matchning"
+msgstr "Föregående träff"
 
-#: data/ui/Window.ui:252
+#: data/ui/Window.ui:253
 msgid "Case Sensitive"
-msgstr ""
+msgstr "Skiftlägeskänsligt"
 
-#: data/ui/Window.ui:279 data/ui/Window.ui:357
+#: data/ui/Window.ui:280 data/ui/Window.ui:358
 msgid "Replace"
 msgstr "Ersätt"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
 msgid "Open file base path"
-msgstr ""
+msgstr "Öppna filsökväg"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
 msgid "Open file paths of the current session"
-msgstr ""
+msgstr "Öppna filsökvägar för aktuell session"
 
 #: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
 msgid "Preferences"
@@ -163,7 +153,7 @@ msgstr "Inställningar"
 
 #: data/ui/Menu.ui:189
 msgid "Open Tutorial"
-msgstr ""
+msgstr "Öppna handledning"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
 msgid "Use dark mode"
@@ -171,17 +161,17 @@ msgstr "Använd mörkt läge"
 
 #: data/ui/Headerbar.ui:171
 msgid "New"
-msgstr "Ny"
+msgstr "Nytt"
 
-#: apostrophe/main_window.py:396 data/ui/Headerbar.ui:182
+#: apostrophe/main_window.py:446 data/ui/Headerbar.ui:182
 msgid "Open"
 msgstr "Öppna"
 
 #: data/ui/Headerbar.ui:199
 msgid "Open Recent"
-msgstr "Öppna senaste"
+msgstr "Öppna tidigare"
 
-#: apostrophe/main_window.py:309 data/ui/Headerbar.ui:225
+#: apostrophe/main_window.py:355 data/ui/Headerbar.ui:225
 msgid "Save"
 msgstr "Spara"
 
@@ -191,288 +181,290 @@ msgstr "Meny"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
 msgid "Enable or disable the dark mode."
-msgstr ""
+msgstr "Aktivera eller avaktivera mörkt läge."
 
 #: data/ui/Preferences.ui:49
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
 msgid "Check spelling while typing"
-msgstr ""
+msgstr "Kontrollera stavning medan jag skriver"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
 msgid "Enable or disable spellchecking."
-msgstr ""
+msgstr "Aktivera eller avaktivera stavningskontroll."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
 msgid "Synchronize editor/preview scrolling"
-msgstr ""
+msgstr "Synkronisera skrollning i redigerare/förhandsgranskning"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
 msgid "Keep the editor and preview scroll positions in sync."
-msgstr ""
+msgstr "Håll skrollning i förhandsgranskare och redigerare synkroniserad."
 
 #: data/ui/Preferences.ui:73
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
 msgid "Input format"
-msgstr ""
+msgstr "Indataformat"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
 msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr ""
+msgstr "Indataformat att använda vid förhandsgranskning och export med Pandoc."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
 msgid "Default statistic"
-msgstr ""
+msgstr "Standardstatistik"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
 msgid "Which statistic is shown on the main window."
-msgstr ""
+msgstr "Vilken statistik som visas på huvudfönstret."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
 msgid "Characters per line"
-msgstr ""
+msgstr "Tecken per rad"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
 msgid "Maximum number of characters per line within the editor."
-msgstr ""
+msgstr "Max antal tecken per rad i redigeraren."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
 msgid "Preview mode"
-msgstr ""
+msgstr "Förhandsgranskningsläge"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
 msgid "How to display the preview."
-msgstr ""
+msgstr "Hur förhandsgranskning visas."
 
 #: data/ui/Export.ui:242
 msgid "Self-contained"
-msgstr ""
+msgstr "Fristående"
 
-#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:128
+#: apostrophe/headerbars.py:137 apostrophe/preview_renderer.py:133
 #: data/ui/PreviewLayoutSwitcherItem.ui:36
 msgid "Full-Width"
-msgstr ""
+msgstr "Full bredd"
 
 #: data/ui/Shortcuts.ui:45
 msgctxt "shortcut window"
 msgid "Close document"
-msgstr ""
+msgstr "Stäng dokumentet"
 
 #: data/ui/Shortcuts.ui:52
 msgctxt "shortcut window"
 msgid "Quit application"
-msgstr ""
+msgstr "Avsluta programmet"
 
 #: data/ui/Shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Modes"
-msgstr ""
+msgstr "Lägen"
 
 #: data/ui/Shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Hemingway mode"
-msgstr ""
+msgstr "Hemingway-läge"
 
 #: data/ui/Shortcuts.ui:115
 msgctxt "shortcut window"
 msgid "Markdown"
-msgstr ""
+msgstr "Markdown"
 
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
-msgstr ""
+msgstr "Överstruken"
 
-#: data/ui/Shortcuts.ui:170
+#: data/ui/Shortcuts.ui:156
 msgctxt "shortcut window"
 msgid "Copy and paste"
-msgstr ""
+msgstr "Kopiera och klistra in"
+
+#: data/ui/Shortcuts.ui:160
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "Kopiera markerad text till urklipp"
+
+#: data/ui/Shortcuts.ui:167
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "Klipp ut markerad text till urklipp"
 
 #: data/ui/Shortcuts.ui:174
 msgctxt "shortcut window"
-msgid "Copy selected text to clipboard"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:181
-msgctxt "shortcut window"
-msgid "Cut selected text to clipboard"
-msgstr ""
-
-#: data/ui/Shortcuts.ui:188
-msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
-msgstr ""
+msgstr "Klistra in text från urklipp"
 
-#: data/ui/Shortcuts.ui:197
+#: data/ui/Shortcuts.ui:183
 msgctxt "shortcut window"
 msgid "Undo and redo"
-msgstr ""
+msgstr "Ångra och upprepa"
 
-#: data/ui/Shortcuts.ui:201
+#: data/ui/Shortcuts.ui:187
 msgctxt "shortcut window"
 msgid "Undo previous command"
-msgstr ""
+msgstr "Ångra föregående kommando"
 
-#: data/ui/Shortcuts.ui:208
+#: data/ui/Shortcuts.ui:194
 msgctxt "shortcut window"
 msgid "Redo previous command"
-msgstr ""
+msgstr "Upprepa föregående kommando"
 
-#: data/ui/Shortcuts.ui:217
+#: data/ui/Shortcuts.ui:203
 msgctxt "shortcut window"
 msgid "Selection"
-msgstr ""
+msgstr "Markerat"
 
-#: data/ui/Shortcuts.ui:221
+#: data/ui/Shortcuts.ui:207
 msgctxt "shortcut window"
 msgid "Select all text"
-msgstr ""
+msgstr "Markera all text"
 
-#: data/ui/Window.ui:106
+#: data/ui/Window.ui:107
 msgid "Show Statistics"
-msgstr ""
+msgstr "Visa statistik"
 
-#: data/ui/Window.ui:248
+#: data/ui/Window.ui:249
 msgid "aA"
-msgstr ""
+msgstr "aA"
 
-#: data/ui/Window.ui:262
+#: data/ui/Window.ui:263
 msgid "(.*)"
-msgstr ""
+msgstr "(.*)"
 
-#: data/ui/Window.ui:266
+#: data/ui/Window.ui:267
 msgid "Regular Expression"
-msgstr ""
+msgstr "Regular Expression"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:436
 msgid "Markdown Files"
-msgstr ""
+msgstr "Markdown-filer"
 
-#: apostrophe/main_window.py:390
+#: apostrophe/main_window.py:440
 msgid "Plain Text Files"
-msgstr ""
+msgstr "Oformaterade text-filer"
 
-#: apostrophe/main_window.py:393
+#: apostrophe/main_window.py:443
 msgid "Open a .md file"
-msgstr ""
+msgstr "Öppna en .md-fil"
 
-#: apostrophe/main_window.py:467
+#: apostrophe/main_window.py:518
 msgid "Close without saving"
-msgstr ""
+msgstr "Stäng utan att spara"
 
-#: apostrophe/main_window.py:679
+#: apostrophe/main_window.py:723
 msgid "New File"
-msgstr ""
+msgstr "Ny fil"
 
-#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:130
+#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:135
 msgid "Half-Width"
-msgstr ""
+msgstr "Halv bredd"
 
-#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:132
+#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:137
 msgid "Half-Height"
-msgstr ""
+msgstr "Halv höjd"
 
-#: apostrophe/headerbars.py:145 apostrophe/preview_renderer.py:134
+#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:139
 msgid "Windowed"
-msgstr ""
+msgstr "Fönsterläge"
 
-#: apostrophe/stats_handler.py:67
+#: apostrophe/stats_handler.py:74
 msgid "{:n} Characters"
-msgstr ""
+msgstr "{:n} tecken"
 
-#: apostrophe/stats_handler.py:69
+#: apostrophe/stats_handler.py:76
 msgid "{:n} Words"
-msgstr ""
+msgstr "{:n} ord"
 
-#: apostrophe/stats_handler.py:71
+#: apostrophe/stats_handler.py:78
 msgid "{:n} Sentences"
-msgstr ""
+msgstr "{:n} meningar"
 
-#: apostrophe/stats_handler.py:73
+#: apostrophe/stats_handler.py:80
 msgid "{:n} Paragraphs"
-msgstr ""
+msgstr "{:n} stycken"
 
-#: apostrophe/stats_handler.py:75
+#: apostrophe/stats_handler.py:82
 msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr ""
+msgstr "{:d}:{:02d}:{:02d} Lästid"
 
 #: apostrophe/text_view_format_inserter.py:14
 msgid "italic text"
-msgstr ""
+msgstr "kursiv text"
 
 #: apostrophe/text_view_format_inserter.py:19
 msgid "bold text"
-msgstr ""
+msgstr "fet text"
 
 #: apostrophe/text_view_format_inserter.py:24
 msgid "strikethrough text"
-msgstr ""
+msgstr "genomstruken text"
 
 #: apostrophe/text_view_format_inserter.py:50
 msgid "Item"
-msgstr ""
+msgstr "Objekt"
 
-#: apostrophe/text_view_format_inserter.py:97
+#: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
-msgstr ""
+msgstr "Rubrik"
 
-#: apostrophe/export_dialog.py:150 apostrophe/export_dialog.py:348
+#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
 msgid "An error happened while trying to export:\n"
 "\n"
 "{err_msg}"
-msgstr ""
+msgstr "Ett fel inträffade vid exportförsök:\n"
+"\n"
+"{err_msg}"
 
-#: apostrophe/export_dialog.py:123 apostrophe/export_dialog.py:322
+#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
 msgid "Export to %s"
-msgstr ""
+msgstr "Exportera till %s"
 
-#: apostrophe/inline_preview.py:191
+#: apostrophe/inline_preview.py:201
 msgid "Formula looks incorrect:"
-msgstr ""
+msgstr "Formeln ser felaktig ut:"
 
-#: apostrophe/inline_preview.py:246
+#: apostrophe/inline_preview.py:260
 msgid "noun"
-msgstr ""
+msgstr "substantiv"
 
-#: apostrophe/inline_preview.py:248
+#: apostrophe/inline_preview.py:262
 msgid "verb"
-msgstr ""
+msgstr "verb"
 
-#: apostrophe/inline_preview.py:250
+#: apostrophe/inline_preview.py:264
 msgid "adjective"
 msgstr "adjektiv"
 
-#: apostrophe/inline_preview.py:252
+#: apostrophe/inline_preview.py:266
 msgid "adverb"
-msgstr ""
+msgstr "adverb"
 
-#: apostrophe/main_window.py:459
+#: apostrophe/main_window.py:510
 msgid "Save changes to document “%s” before closing?"
-msgstr ""
+msgstr "Vill du spara ändringar i dokumentet \"%s\" före stängning?"
 
-#: apostrophe/main_window.py:464
+#: apostrophe/main_window.py:515
 msgid "If you don’t save, all your changes will be permanently lost."
-msgstr ""
+msgstr "Om du inte sparar kommer dina ändringar förloras permanent."
 
-#: apostrophe/text_view_drag_drop_handler.py:72
-#: apostrophe/text_view_drag_drop_handler.py:74
+#: apostrophe/text_view_drag_drop_handler.py:75
+#: apostrophe/text_view_drag_drop_handler.py:77
 msgid "web page"
-msgstr "websida"
+msgstr "webbplats"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
 msgid "Autohide Headerbar"
-msgstr ""
+msgstr "Dölj rubrikfältet automatiskt"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
 msgid "Hide the header and status bars when typing."
-msgstr ""
+msgstr "Dölj rubrik- och statusfält vid skrivning."
 
 #: data/ui/Headerbar.ui:378
 msgid "Find"
-msgstr "Hitta"
+msgstr "Sök"
 
 #: data/ui/Menu.ui:139
 msgid "Find and Replace"
-msgstr "Hitta och ersätt"
+msgstr "Sök och ersätt"
 
 #: data/ui/Menu.ui:203
 msgid "Keyboard Shortcuts"
@@ -484,171 +476,175 @@ msgstr "Om Apostrophe"
 
 #: data/ui/Preferences.ui:110
 msgid "Autohide header and statusbars while typing"
-msgstr ""
+msgstr "Dölj rubrik- och statusfält automatiskt vid skrivning"
 
 #: data/ui/Preferences.ui:112
 msgid "Autohide headerbar"
-msgstr ""
+msgstr "Dölj rubrikfältet automatiskt"
 
 #: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
 msgctxt "shortcut window"
 msgid "Find"
-msgstr "Hitta"
+msgstr "Sök"
 
 #: data/ui/Shortcuts.ui:106
 msgctxt "shortcut window"
 msgid "Find and replace"
-msgstr "Hitta och ersätt"
+msgstr "Sök och ersätt"
 
-#: data/ui/Window.ui:371
+#: data/ui/Window.ui:372
 msgid "Replace All"
 msgstr "Ersätt alla"
 
 #: data/ui/ExportPopover.ui:125
 msgid "Copy HTML"
-msgstr "kopiera HTML"
+msgstr "Kopiera HTML"
 
 #: data/ui/Headerbar.ui:130
 msgid "Sync Views"
-msgstr ""
+msgstr "Synkronisera vyer"
 
 #: data/ui/Menu.ui:100
 msgid "Hemingway Mode"
-msgstr ""
+msgstr "Hemingway-läge"
 
-#: apostrophe/export_dialog.py:226
+#: apostrophe/export_dialog.py:234
 msgid "Export to {}"
-msgstr ""
+msgstr "Exportera till {}"
 
-#: apostrophe/export_dialog.py:316
+#: apostrophe/export_dialog.py:324
 msgid "Select folder"
-msgstr ""
+msgstr "Välj mapp"
 
-#: apostrophe/headerbars.py:93
+#: apostrophe/headerbars.py:91
 msgid "Light mode isn’t available while using a dark global theme"
-msgstr ""
+msgstr "Ljust läge är inte tillgängligt när mörkt systemtema används"
 
-#: apostrophe/helpers.py:101
+#: apostrophe/helpers.py:90
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: data/ui/About.ui.in:12
 msgid "Copyright (C) 2020, Wolf Vollprecht"
-msgstr ""
+msgstr "Copyright (C) 2020, Wolf Vollprecht"
 
 #: data/ui/About.ui.in:14
 msgid "Apostrophe website"
-msgstr ""
+msgstr "Apostrophes webbplats"
 
 #. Put your name in here, like this:
 #. Manuel Genovés <manuel.genoves@gmail.com>
 #: data/ui/About.ui.in:20
 msgid "translator-credits"
-msgstr ""
+msgstr "Åke Engelbrektson <eson@svenskasprakfiler.se>"
 
 #: data/ui/About.ui.in:65
 msgid "Donations:"
-msgstr ""
+msgstr "Donationer:"
 
 #: data/ui/About.ui.in:74
 msgid "Paypal"
-msgstr ""
+msgstr "Paypal"
 
 #: data/ui/About.ui.in:105
 msgid "Help to translate:"
-msgstr ""
+msgstr "Hjälp till att översätta:"
 
 #: data/ui/About.ui.in:114
 msgid "Poeditor"
-msgstr ""
+msgstr "Poeditor"
 
 #: data/ui/Export.ui:211 data/ui/Export.ui:217
 msgid "Page Size"
-msgstr ""
+msgstr "Sidstorlek"
 
 #: data/ui/Export.ui:236
 msgid "HTML Options"
-msgstr ""
+msgstr "HTML-alternativ"
 
 #: data/ui/Export.ui:244
 msgid "Produces an HTML file with no external dependencies"
-msgstr ""
+msgstr "Producerar en HTML-fil utan externa beroenden"
 
 #: data/ui/Export.ui:265
 msgid "Select CSS file"
-msgstr ""
+msgstr "Välj CSS-fil"
 
 #: data/ui/Export.ui:286
 msgid "Syntax Highlighting"
-msgstr ""
+msgstr "Syntaxmarkering"
 
 #: data/ui/Export.ui:301
 msgid "Highlight style"
-msgstr ""
+msgstr "Markeringsstil"
 
 #: data/ui/Export.ui:322
 msgid "Presentation"
-msgstr ""
+msgstr "Presentation"
 
 #: data/ui/Export.ui:328
 msgid "Incremental bullets"
-msgstr ""
+msgstr "Stegvisa punkter"
 
 #: data/ui/Export.ui:357
 msgid "page0"
-msgstr ""
+msgstr "sida0"
 
 #: data/ui/Export.ui:365
 msgid "page1"
-msgstr ""
+msgstr "sida1"
 
 #: data/ui/ExportPopover.ui:19
 msgid "Save As…"
-msgstr ""
+msgstr "Spara som…"
 
 #: data/ui/ExportPopover.ui:100
 msgid "Advanced Export…"
-msgstr ""
+msgstr "Avancerad export…"
 
 #: data/ui/Headerbar.ui:242
 msgid "Save as…"
-msgstr ""
+msgstr "Spara som…"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 msgid "Apostrophe"
-msgstr ""
+msgstr "Apostrophe"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
 msgid "An elegant, distraction-free markdown editor"
-msgstr ""
+msgstr "En elegant, distraktionsfri markdown-redigerare"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
 msgid "Apostrophe is a GTK based distraction free Markdown editor, originally created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface."
-msgstr ""
+msgstr "Apostrophe är en GTK-baserad distraktionsfri Markdown-redigerare, ursprungligen skapad av Wolf Vollprecht och underhållen av Manuel Genovés. Den använder pandoc som bakgrundsprogram för markdown-tolkning och erbjuder ett mycket rent och elegant användargränssnitt."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
 msgid "You can install the recommended TexLive extension with the command:"
-msgstr ""
+msgstr "Du kan installera det rekommenderade TexLive-insticket med kommandot:"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
 msgid "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
-msgstr ""
+msgstr "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
 msgid "or from Gnome-Software"
-msgstr ""
+msgstr "eller från Gnome-Software"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:35
 msgid "Wolf V., Manuel G."
-msgstr ""
+msgstr "Wolf V., Manuel G."
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
-msgstr ""
+msgstr "uberwriter;UberWriter;apostrophe;markdown;redigerare;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, a simple and distraction free Markdown Editor"
+msgstr "Apostrophe, en enkel och distraktionsfri markdown-redigerare"
+
+#: apostrophe/inhibitor.py:35
+msgid "Unsaved documents"
 msgstr ""
 
