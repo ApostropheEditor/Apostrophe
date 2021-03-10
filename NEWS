@@ -3,8 +3,8 @@ Version 2.4
 Released: 2021-03-01
 
 Bugfixes:
-- Fixed a bug were the cursor could go over the bottom of the window
-- Fixed a bug were in certain circumstances the bottom line couldn't be clicked
+- Fixed a bug where the cursor could go over the bottom of the window
+- Fixed a bug where in certain circumstances the bottom line couldn't be clicked
 - Improved behaviour when dealing with unsaved files.
 - Improved start/end sentence detection in Focus Mode
 - Small improvements in the headerbar title

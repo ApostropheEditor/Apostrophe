@@ -41,8 +41,8 @@
       <description>
         <p>This release fixes the following bugs:</p>
         <ul>
-          <li>Fixed a bug were the cursor could go over the bottom of the window</li>
-          <li>Fixed a bug were in certain circumstances the bottom line couldn't be clicked</li>
+          <li>Fixed a bug where the cursor could go over the bottom of the window</li>
+          <li>Fixed a bug where in certain circumstances the bottom line couldn't be clicked</li>
           <li>Improved behaviour when dealing with unsaved files.</li>
           <li>Improved start/end sentence detection in Focus Mode</li>
           <li>Small improvements in the headerbar title</li>
