@@ -37,7 +37,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release type="stable" version="2.4" date="2021-03-01T00:00:00Z">
+    <release type="stable" version="2.4" date="2021-03-10T00:00:00Z">
       <description>
         <p>This release fixes the following bugs:</p>
         <ul>
