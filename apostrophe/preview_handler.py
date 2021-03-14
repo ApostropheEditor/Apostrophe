@@ -74,6 +74,8 @@ class PreviewHandler:
                 # All links will be opened in default browser, but local files are opened in apps.
                 self.web_view.connect("decide-policy", self.on_click_link)
 
+                self.web_view.connect("context-menu", self.on_right_click)
+
             if self.web_view.is_loading():
                 self.web_view_pending_html = html
             else:
@@ -156,3 +158,13 @@ class PreviewHandler:
             webbrowser.open(web_view.get_uri())
             decision.ignore()
             return True
+
+    @staticmethod
+    def on_right_click(web_view, context_menu, _event, _hit_test):
+        # disable some context menu option
+        for item in context_menu.get_items():
+            if item.get_stock_action() in [WebKit2.ContextMenuAction.RELOAD,
+                                           WebKit2.ContextMenuAction.GO_BACK,
+                                           WebKit2.ContextMenuAction.GO_FORWARD,
+                                           WebKit2.ContextMenuAction.STOP]:
+                context_menu.remove(item)
