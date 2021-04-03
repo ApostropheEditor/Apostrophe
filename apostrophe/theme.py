@@ -31,7 +31,7 @@ class Theme:
     @classmethod
     def get_current_changed(cls):
         theme_name = Gtk.Settings.get_default().get_property('gtk-theme-name')
-        dark_mode = cls.settings.get_boolean('dark-mode')
+        dark_mode = cls.settings.get_value('color-scheme') == "dark"
         current_theme = cls.get_for_name(theme_name)
         if dark_mode != current_theme.is_dark and current_theme.inverse_name:
             current_theme = cls.get_for_name(current_theme.inverse_name, current_theme.name)

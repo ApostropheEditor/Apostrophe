@@ -46,7 +46,7 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
 
         self.settings.connect("changed", self.on_settings_changed)
-        self._set_dark_mode()
+        self._set_color_scheme()
 
         # Header bar
 
@@ -71,6 +71,13 @@ class Application(Gtk.Application):
         self.add_action(action)
 
         # App Menu
+        color_scheme = self.settings.get_string("color-scheme")
+        action = Gio.SimpleAction.new_stateful(
+                 "color_scheme", GLib.VariantType.new("s"),
+                 GLib.Variant.new_string(color_scheme))
+        action.connect("activate", self._set_color_scheme)
+        self.add_action(action)
+
         action = Gio.SimpleAction.new_stateful(
             "focus_mode", None, GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_focus_mode)
@@ -193,20 +200,22 @@ class Application(Gtk.Application):
         self.activate()
         self.window.load_file(files[0])
 
-    def _set_dark_mode(self):
-        dark = self.settings.get_value("dark-mode")
+    def _set_color_scheme(self):
+
+        color_scheme = self.settings.get_value("color-scheme")
         settings = Gtk.Settings.get_default()
+        prefer_dark_theme = (color_scheme.get_string() == 'dark')
 
-        settings.props.gtk_application_prefer_dark_theme = dark
+        settings.props.gtk_application_prefer_dark_theme = prefer_dark_theme
 
-        if settings.props.gtk_theme_name == "HighContrast" and dark:
+        if settings.props.gtk_theme_name == "HighContrast" and prefer_dark_theme:
             settings.props.gtk_theme_name = "HighContrastInverse"
-        elif settings.props.gtk_theme_name == "HighContrastInverse" and not dark:
+        elif settings.props.gtk_theme_name == "HighContrastInverse" and not prefer_dark_theme:
             settings.props.gtk_theme_name = "HighContrast"
 
     def on_settings_changed(self, settings, key):
-        if key == "dark-mode":
-            self._set_dark_mode()
+        if key == "color-scheme":
+            self._set_color_scheme()
         elif key == "spellcheck":
             self.window.toggle_spellcheck(settings.get_value(key))
         elif key == "input-format":

@@ -24,6 +24,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib
 from apostrophe.helpers import get_descendant
 from apostrophe.settings import Settings
+from apostrophe.theme_switcher import ThemeSwitcher
 
 
 class BaseHeaderbar:
@@ -82,18 +83,6 @@ class BaseHeaderbar:
         self.dark_button = self.builder.get_object("dark_mode_button")
 
         add_menus(self, app)
-
-        settings = Gtk.Settings.get_default()
-
-        if global_dark := settings.props.gtk_theme_name.endswith("-dark"):
-            self.light_button.set_sensitive(False)
-            self.light_button.set_tooltip_text(_(
-                "Light mode isn’t available while using a dark global theme"))
-
-        self.dark_button.set_active(self.settings.get_boolean("dark-mode")
-                                    or global_dark)
-
-        self.light_button.connect("toggled", self.__on_dark_mode)
 
         self.select_preview_layout_row()
 
@@ -159,9 +148,6 @@ class BaseHeaderbar:
     def __on_sync_scroll(self, _, state):
         self.settings.set_boolean("sync-scroll", state)
         return False
-
-    def __on_dark_mode(self, _):
-        self.settings.set_boolean("dark-mode", self.dark_button.get_active())
 
 
 class MainHeaderbar(BaseHeaderbar):  # pylint: disable=too-few-public-methods
