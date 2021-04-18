@@ -7,3 +7,10 @@ option(
         ],
         value: 'default'
 )
+
+option(
+        'sassc',
+        type: 'feature',
+        value: 'auto',
+        description: 'Rebuild styles using sassc'
+)
