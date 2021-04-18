@@ -29,6 +29,29 @@
           </object>
         </child>
         <child>
+          <object class="GtkRadioButton" id="sepia_mode_button">
+            <property name="visible">1</property>
+            <property name="can-focus">1</property>
+            <property name="halign">center</property>
+            <property name="draw-indicator">0</property>
+            <signal name="notify::active" handler="_on_color_scheme_changed"/>
+            <property name="group">light_mode_button</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">1</property>
+                <property name="icon-name">emblem-ok-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="color-button"/>
+              <class name="color-sepia"/>
+            </style>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkRadioButton" id="dark_mode_button">
             <property name="visible">1</property>
             <property name="can-focus">1</property>
@@ -48,7 +71,7 @@
             </style>
           </object>
           <packing>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>

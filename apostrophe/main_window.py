@@ -28,7 +28,6 @@ from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 from apostrophe.export_dialog import ExportDialog, AdvancedExportDialog
 from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
-from apostrophe.styled_window import StyledWindow
 from apostrophe.text_view import TextView
 from apostrophe.search_and_replace import SearchAndReplace
 from apostrophe.settings import Settings
@@ -42,7 +41,7 @@ from . import headerbars
 LOGGER = logging.getLogger('apostrophe')
 
 
-class MainWindow(StyledWindow):
+class MainWindow(Gtk.ApplicationWindow):
 
     def __init__(self, app):
         """Set up the main window"""

@@ -15,7 +15,7 @@ import gi
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
-from gi.repository import GLib, Gio, Gtk, Handy
+from gi.repository import GLib, Gio, Gtk, Gdk, Handy
 
 from apostrophe.main_window import MainWindow
 from apostrophe.settings import Settings
@@ -34,6 +34,21 @@ class Application(Gtk.Application):
         self.add_main_option("verbose", b"v", GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Verbose output", None)
 
+        # Set theme css
+
+        css_provider_file = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css")
+        self.style_provider = Gtk.CssProvider()
+        self.style_provider.load_from_file(css_provider_file)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), self.style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_USER)
+
+        # Set icons
+        Gtk.IconTheme.get_default().add_resource_path(
+            "/org/gnome/gitlab/somas/Apostrophe/icons"
+        )
+
         Handy.init()
 
         self.window = None
@@ -46,7 +61,6 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
 
         self.settings.connect("changed", self.on_settings_changed)
-        self._set_color_scheme()
 
         # Header bar
 
@@ -187,6 +201,8 @@ class Application(Gtk.Application):
 
         if self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel':
             self.window.get_style_context().add_class('devel')
+
+        self._set_color_scheme()
         self.window.present()
 
     def do_handle_local_options(self, options):
@@ -202,11 +218,25 @@ class Application(Gtk.Application):
 
     def _set_color_scheme(self):
 
-        color_scheme = self.settings.get_value("color-scheme")
-        settings = Gtk.Settings.get_default()
-        prefer_dark_theme = (color_scheme.get_string() == 'dark')
+        color_scheme = self.settings.get_string("color-scheme")
 
+        settings = Gtk.Settings.get_default()
+        prefer_dark_theme = (color_scheme == 'dark')
         settings.props.gtk_application_prefer_dark_theme = prefer_dark_theme
+
+        if not self.window:
+            return
+
+        if color_scheme == 'dark':
+            css_provider_file = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-dark.css")
+        if color_scheme == 'light':
+            css_provider_file = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css")
+        if color_scheme == 'sepia':    
+            css_provider_file = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia.css")
+        self.style_provider.load_from_file(css_provider_file)
 
         if settings.props.gtk_theme_name == "HighContrast" and prefer_dark_theme:
             settings.props.gtk_theme_name = "HighContrastInverse"

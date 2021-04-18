@@ -4,7 +4,6 @@ from gi.repository import Gtk, GLib
 
 from apostrophe import headerbars
 from apostrophe.settings import Settings
-from apostrophe.styled_window import StyledWindow
 
 
 class PreviewRenderer:
@@ -38,7 +37,7 @@ class PreviewRenderer:
         # Windowed preview: create a window and show the preview in it.
         if self.mode == self.WINDOWED:
             # Create transient window of the main window.
-            self.window = StyledWindow(
+            self.window = Gtk.ApplicationWindow(
                 application=self.main_window.get_application())
             self.window.connect("delete-event", self.on_window_closed)
 

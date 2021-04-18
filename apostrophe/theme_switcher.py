@@ -28,6 +28,7 @@ class ThemeSwitcher(Gtk.Box):
     color_scheme = "light"
 
     light_mode_button = Gtk.Template.Child()
+    sepia_mode_button = Gtk.Template.Child()
     dark_mode_button = Gtk.Template.Child()
 
     settings = Settings.new()
@@ -44,6 +45,8 @@ class ThemeSwitcher(Gtk.Box):
 
         if color_scheme == "light":
             self.light_mode_button.set_active(True)
+        if color_scheme == "sepia":
+            self.sepia_mode_button.set_active(True)
         if color_scheme == "dark":
             self.dark_mode_button.set_active(True)
 
@@ -63,5 +66,7 @@ class ThemeSwitcher(Gtk.Box):
     def _on_color_scheme_changed(self, widget, paramspec):
         if self.light_mode_button.get_active():
             self.selected_color_scheme = "light"
+        if self.sepia_mode_button.get_active():
+            self.selected_color_scheme = "sepia"
         if self.dark_mode_button.get_active():
             self.selected_color_scheme = "dark"
