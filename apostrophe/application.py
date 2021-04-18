@@ -34,8 +34,13 @@ class Application(Gtk.Application):
         self.add_main_option("verbose", b"v", GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Verbose output", None)
 
-        # Set theme css
+        # Hardcode Adwaita to prevent issues with third party themes
+        gtk_settings = Gtk.Settings.get_default()
+        self._set_theme(gtk_settings)
+        gtk_settings.connect("notify::gtk-theme-name", self._set_theme)
+        gtk_settings.connect("notify::gtk-icon-theme-name", self._set_theme)
 
+        # Set css theme
         css_provider_file = Gio.File.new_for_uri(
             "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css")
         self.style_provider = Gtk.CssProvider()
@@ -216,6 +221,22 @@ class Application(Gtk.Application):
         self.activate()
         self.window.load_file(files[0])
 
+    def _set_theme(self, settings, *_pspec):
+        # Third party themes cause issues with Apostrophe custom stylesheets
+        # If the user has a third party theme selected, we just change it to
+        # Adwaita to prevent those issues
+ 
+        theme_name = settings.get_property("gtk-theme-name")
+        icon_theme_name = settings.get_property("gtk-icon-theme-name")
+
+        if (theme_name not in ["Adwaita",
+                               "HighContrast",
+                               "HighContrastInverse"]):
+            settings.set_property("gtk-theme-name", "Adwaita")
+
+        if icon_theme_name != "Adwaita":
+            settings.set_property("gtk-icon-theme-name", "Adwaita")
+
     def _set_color_scheme(self):
 
         color_scheme = self.settings.get_string("color-scheme")
@@ -233,7 +254,7 @@ class Application(Gtk.Application):
         if color_scheme == 'light':
             css_provider_file = Gio.File.new_for_uri(
             "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css")
-        if color_scheme == 'sepia':    
+        if color_scheme == 'sepia':
             css_provider_file = Gio.File.new_for_uri(
             "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia.css")
         self.style_provider.load_from_file(css_provider_file)
