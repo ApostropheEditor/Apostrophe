@@ -49,6 +49,16 @@ class Application(Gtk.Application):
             Gdk.Screen.get_default(), self.style_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
+        # Set editor keybindings
+        # SCSS is not fit for this, so we do it in an external css file
+        css_bindings_file = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/bindings.css")
+        self.bindings_provider = Gtk.CssProvider()
+        self.bindings_provider.load_from_file(css_bindings_file)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), self.bindings_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_USER)
+
         # Set icons
         Gtk.IconTheme.get_default().add_resource_path(
             "/org/gnome/gitlab/somas/Apostrophe/icons"

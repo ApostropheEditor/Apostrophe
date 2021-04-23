@@ -1,0 +1,16 @@
+@binding-set editor-bindings {
+    bind "<ctl>i" { "insert-italic" () };
+    bind "<ctl>b" { "insert-bold" () };
+    bind "<ctl>r" { "insert-hrule" () };
+    bind "<ctl>u" { "insert-listitem" () };
+    bind "<ctl>z" { "undo" () };
+    bind "<ctl>y" { "redo" () };
+    bind "<ctl><shift>d" { "insert-strikethrough" () };
+    bind "<ctl><shift>z" { "redo" () };
+}
+
+.apostrophe-editor {
+    -gtk-key-bindings: editor-bindings;
+}
+  
+  
