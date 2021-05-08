@@ -1,7 +1,7 @@
 {
     "app-id" : "org.gnome.gitlab.somas.Apostrophe",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.38",
+    "runtime-version" : "40",
     "sdk" : "org.gnome.Sdk",
     "command" : "apostrophe",
     "finish-args" : [
@@ -24,16 +24,34 @@
     },
     "modules" : [
         {
-            "name" : "libhandy",
-            "buildsystem" : "meson",
-            "config-opts" : [
-                "--buildtype=release"
-            ],
-            "sources" : [
+            "name": "libsass",
+            "cleanup": ["*"],
+            "sources": [
                 {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/libhandy",
-                    "tag" : "1.0.3"
+                    "type": "archive",
+                    "url": "https://github.com/sass/libsass/archive/3.6.4.tar.gz",
+                    "sha256": "f9484d9a6df60576e791566eab2f757a97fd414fce01dd41fc0a693ea5db2889"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "autogen.sh",
+                    "commands": ["autoreconf -si"]
+                }
+            ]
+        },
+        {
+            "name": "sassc",
+            "cleanup": ["*"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/sass/sassc/archive/3.6.1.tar.gz",
+                    "sha256": "8cee391c49a102b4464f86fc40c4ceac3a2ada52a89c4c933d8348e3e4542a60"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "autogen.sh",
+                    "commands": ["autoreconf -si"]
                 }
             ]
         },
