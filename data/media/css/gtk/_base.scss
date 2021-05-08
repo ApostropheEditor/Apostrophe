@@ -1,18 +1,12 @@
 @import 'drawing';
 
-@define-color code_bg_color #{"mix(@theme_base_color, @theme_fg_color, 0.05)"};
+@define-color code_bg_color mix(#{$base_color}, #{$fg_color}, 0.15);
 
 /* Main window and text colors */
 
+// TODO: remove when porting to libhandy
 .apostrophe-window {
   background: $base_color;
-  color: $fg_color;
-  caret-color: $fg_color;
-
-  treeview {
-    padding: 4px;
-  }
-  
 }
 
 .apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) {
@@ -42,6 +36,12 @@
   font-family: 'Fira Mono', monospace;
   font-size: 16px;
 
+  text{
+    background: $base_color;
+    color: $fg_color; //->text-color?
+    caret-color: $fg_color;
+  }
+
   &.size14  {
   font-size: 14px;
   }
@@ -63,9 +63,13 @@
   }
 }
 
+.recents-popover treeview{
+  padding: 4px;
+}
+
 .inline-button {
-  color: gtkalpha($fg_color, 0.6);
-  background-color: gtkalpha($base_color, 0.9);
+  color: transparentize($fg_color, 0.4);
+  background-color: transparentize($base_color, 0.1);
   text-shadow: inherit;
   box-shadow: initial;
   background-clip: initial;
@@ -96,25 +100,25 @@
   background: $bg_color;
   border: 4px solid $bg_color;
 
-  & .header {
+  .header {
     font-size: 14px;
     padding-top: 16px;
     padding-bottom: 4px;
     font-weight: bold;
   }
 
-  & .header.first {
+  .header.first {
     padding-top: 0px;
   }
 
-  & .number {
+  .number {
     padding-left: 16px;
     padding-right: 4px;
   }
 }
 
 .quick-preview-popup {
-	background-color: $bg_color;
+  background-color: $bg_color;
   padding: 8px 12px 8px 12px;
 
 
@@ -165,7 +169,7 @@
 
 .color-dark {
   background: #2d2d2d;
-  box-shadow: inset 0 0 0 1px gtkalpha(black, .35);
+  box-shadow: inset 0 0 0 1px transparentize(black, .65);
 
   &:checked {
     color: #eeeeec;
@@ -175,7 +179,7 @@
 
 .color-sepia {
   background: #F0E8DD;
-  box-shadow: inset 0 0 0 1px gtkalpha(black, .35);
+  box-shadow: inset 0 0 0 1px transparentize(black, .65);
 
   &:checked {
     color: #3b3228;

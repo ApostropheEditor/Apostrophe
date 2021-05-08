@@ -18,7 +18,7 @@ if sassc.found()
        '_definitions.scss',
        '_drawing.scss',
        '_recoloring.scss',
-       'base.scss',
+       '_base.scss',
        'Adwaita.scss',
       ]),
     ),
@@ -32,7 +32,7 @@ if sassc.found()
        '_definitions.scss',
        '_drawing.scss',
        '_recoloring.scss',
-       'base.scss',
+       '_base.scss',
        'Adwaita-dark.scss'
       ]),
     ),
@@ -46,7 +46,7 @@ if sassc.found()
        '_definitions.scss',
        '_drawing.scss',
        '_recoloring.scss',
-       'base.scss',
+       '_base.scss',
        'Adwaita.scss'
       ]),
     ),
