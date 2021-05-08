@@ -33,7 +33,7 @@ gi.require_version('Handy', '1')
 from gi.repository import Gtk, Gdk, Gio, GObject, Handy
 
 from apostrophe import helpers
-from apostrophe.theme import Theme
+from apostrophe.theme_switcher import Theme
 
 LOGGER = logging.getLogger('apostrophe')
 
@@ -88,7 +88,7 @@ class ExportDialog:
             "to": "html5",
             "mimetype": "text/html",
             "args": ["--self-contained",
-                     "--css=%s" % Theme.get_current().web_css_path,
+                     "--css=%s" % Theme.get_current().web_css,
                      "--mathjax",
                      "--lua-filter=%s"
                      % helpers.get_media_path('/lua/relative_to_absolute.lua'),
@@ -384,7 +384,7 @@ class AdvancedExportDialog(Handy.Window):
                     "/reference_files/reference-a4." + fmt))
 
         if self.show_html_options:
-            args.append("--css=%s" % Theme.get_current().web_css_path)
+            args.append("--css=%s" % Theme.get_current().web_css)
             args.append("--mathjax")
             args.append("--lua-filter=%s" % helpers.get_media_path(
                 '/lua/relative_to_absolute.lua'))

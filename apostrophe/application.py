@@ -22,6 +22,7 @@ from apostrophe.settings import Settings
 from apostrophe.helpers import set_up_logging
 from apostrophe.preferences_dialog import PreferencesDialog
 from apostrophe.inhibitor import Inhibitor
+from apostrophe.theme_switcher import Theme
 
 
 class Application(Gtk.Application):
@@ -249,25 +250,16 @@ class Application(Gtk.Application):
 
     def _set_color_scheme(self):
 
-        color_scheme = self.settings.get_string("color-scheme")
+        theme = Theme.get_current()
 
         settings = Gtk.Settings.get_default()
-        prefer_dark_theme = (color_scheme == 'dark')
+        prefer_dark_theme = (theme.name == 'dark')
         settings.props.gtk_application_prefer_dark_theme = prefer_dark_theme
 
         if not self.window:
             return
 
-        if color_scheme == 'dark':
-            css_provider_file = Gio.File.new_for_uri(
-            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-dark.css")
-        if color_scheme == 'light':
-            css_provider_file = Gio.File.new_for_uri(
-            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css")
-        if color_scheme == 'sepia':
-            css_provider_file = Gio.File.new_for_uri(
-            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia.css")
-        self.style_provider.load_from_file(css_provider_file)
+        self.style_provider.load_from_file(theme.gtk_css)
 
         if settings.props.gtk_theme_name == "HighContrast" and prefer_dark_theme:
             settings.props.gtk_theme_name = "HighContrastInverse"

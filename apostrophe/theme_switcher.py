@@ -19,6 +19,41 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GObject, Gio
 
 from .settings import Settings
+from apostrophe.helpers import get_media_path
+
+class Theme:
+    '''Abstracts getters for the current theme related
+    resources'''
+
+    settings = Settings.new()
+
+    def __init__(self, name, gtk_css, web_css):
+        self.name = name
+        self.gtk_css = gtk_css
+        self.web_css = web_css
+
+    @classmethod
+    def get_for_name(cls, name, default=None):
+        current_theme = default or defaultThemes[0]
+        for theme in defaultThemes:
+            if name == theme.name:
+                current_theme = theme
+        return current_theme
+
+    @classmethod
+    def get_current(cls):
+        color_scheme = cls.settings.get_string("color-scheme")
+        return cls.get_for_name(color_scheme)
+
+defaultThemes = [
+    Theme('light', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css"),
+          get_media_path('/media/css/web/adwaita.css')),
+    Theme('dark', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-dark.css"),
+          get_media_path('/media/css/web/adwaita.css')),
+    Theme('sepia', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia.css"),
+          get_media_path('/media/css/web/adwaita-sepia.css')),
+]
+
 
 
 @Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/ThemeSwitcher.ui')

@@ -4,7 +4,7 @@ from threading import Thread
 from gi.repository import GLib
 
 from apostrophe import helpers
-from apostrophe.theme import Theme
+from apostrophe.theme_switcher import Theme, ThemeSwitcher
 
 
 class PreviewConverter:
@@ -42,7 +42,7 @@ class PreviewConverter:
 
             args = ['--standalone',
                     '--mathjax',
-                    '--css=' + Theme.get_current().web_css_path,
+                    '--css=' + Theme.get_current().web_css,
                     '--lua-filter=' +
                     helpers.get_media_path('/lua/relative_to_absolute.lua'),
                     '--lua-filter=' +
