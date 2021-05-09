@@ -18,11 +18,16 @@
   </enum>
 
   <schema path="/org/gnome/gitlab/somas/Apostrophe/" id="org.gnome.gitlab.somas.Apostrophe">
-    <key name='dark-mode' type='b'>
-      <default>false</default>
-      <summary>Use dark mode</summary>
+    <key name='color-scheme' type='s'>
+      <choices>
+        <choice value="light"/>
+        <choice value="dark"/>
+        <choice value="sepia"/>
+      </choices>
+      <default>"light"</default>
+      <summary>Color scheme</summary>
       <description>
-        Enable or disable the dark mode.
+        Use the color scheme in the application's UI and in the text area.
       </description>
     </key>
     <key name='spellcheck' type='b'>

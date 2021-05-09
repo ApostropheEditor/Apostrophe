@@ -1,0 +1,188 @@
+@import 'drawing';
+
+@define-color code_bg_color mix(#{$base_color}, #{$fg_color}, 0.15);
+
+/* Main window and text colors */
+
+// TODO: remove when porting to libhandy
+.apostrophe-window {
+  background: $base_color;
+}
+
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(ltr) scrollbar {
+  border-top-right-radius: 8px;
+}
+
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(rtl) scrollbar {
+  border-top-left-radius: 8px;
+}
+
+.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) progressbar {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+#titlebar-revealer {
+  padding: 0;
+}
+
+.apostrophe-editor {
+  text-decoration-color: $error_color;
+  font-family: 'Fira Mono', monospace;
+  font-size: 16px;
+
+  text{
+    background: $base_color;
+    color: $fg_color; //->text-color?
+    caret-color: $fg_color;
+  }
+
+  &.size14  {
+  font-size: 14px;
+  }
+
+  &.size15  {
+  font-size: 15px;
+  }
+
+  &.size16  {
+  font-size: 16px;
+  }
+
+  &.size17  {
+  font-size: 17px;
+  }
+
+  &.size18 {
+  font-size: 18px;
+  }
+}
+
+.recents-popover treeview{
+  padding: 4px;
+}
+
+.inline-button {
+  color: transparentize($fg_color, 0.4);
+  background-color: transparentize($base_color, 0.1);
+  text-shadow: inherit;
+  box-shadow: initial;
+  background-clip: initial;
+  background-origin: initial;
+  background-size: initial;
+  background-position: initial;
+  background-repeat: initial;
+  background-image: initial;
+  border-image-source: initial;
+  border-image-repeat: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-style: none;
+  padding: 0px 16px;
+  transition: 100ms ease-in;
+}
+
+.inline-button:hover,
+.inline-button:checked {
+  color: $fg_color;
+  background-color: mix($base_color, $bg_color, 0.5);
+}
+
+
+.lexikon {
+  font-family: serif;
+  font-size: 12px;
+  background: $bg_color;
+  border: 4px solid $bg_color;
+
+  .header {
+    font-size: 14px;
+    padding-top: 16px;
+    padding-bottom: 4px;
+    font-weight: bold;
+  }
+
+  .header.first {
+    padding-top: 0px;
+  }
+
+  .number {
+    padding-left: 16px;
+    padding-right: 4px;
+  }
+}
+
+.quick-preview-popup {
+  background-color: $bg_color;
+  padding: 8px 12px 8px 12px;
+
+
+  grid {
+    background-color: $bg_color;
+    color: $fg_color;
+    border-color: $bg_color;
+  }
+
+  label {
+    color: $fg_color;
+  }
+}
+
+.plain-listview {
+  background-color: $bg_color;
+}
+
+/* theme selector */
+
+.color-button {
+  padding: 12px;
+  border-radius: 999px;
+  -gtk-outline-radius: 999px;
+  outline-offset: 1px;
+  border: none;
+  -gtk-icon-shadow: none;
+  min-width: 0px;
+  min-height: 0px;
+  color: transparent;
+  transition: all 200ms ease-out;
+
+  &:disabled {
+    background: #929292;
+    box-shadow: inset 0 0 0 1px #2e3436;
+  }
+}
+
+.color-light {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px #2e3436;
+
+  &:checked {
+    color: #2e3436;
+    box-shadow: inset 0 0 0 2px $selected_bg_color;
+  }
+}
+
+.color-dark {
+  background: #2d2d2d;
+  box-shadow: inset 0 0 0 1px transparentize(black, .65);
+
+  &:checked {
+    color: #eeeeec;
+    box-shadow: inset 0 0 0 2px $selected_bg_color;
+  }
+}
+
+.color-sepia {
+  background: #F0E8DD;
+  box-shadow: inset 0 0 0 1px transparentize(black, .65);
+
+  &:checked {
+    color: #3b3228;
+    box-shadow: inset 0 0 0 2px $selected_bg_color;
+  }
+}

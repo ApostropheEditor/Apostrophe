@@ -1,0 +1,18 @@
+@import url("base.css");
+
+:root {
+  --text-color: #5e3d25;
+  --background-color: #f2ebe0;
+  --alt-background-color: #eadfd2;
+  --link-color: #00897b;
+  --blockquote-text-color: #5e3d25;
+  --blockquote-border-color: #dacfc2;
+  --header-border-color: #927966;
+  --hr-background-color: #927966;
+  --table-tr-border-color: #dacfc2;
+  --table-td-border-color: #dacfc2;
+  --kbd-text-color: #5e3d25;
+  --kbd-background-color: #dacfc2;
+  --kbd-border-color: #eadfd2;
+  --kbd-shadow-color: #d8c4a7;
+}
