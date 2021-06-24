@@ -1,0 +1,127 @@
+$base_color: lighten($window_color, 5%);
+$bg_color: lighten($window_color, 5%);
+$fg_color: hsl(hue($base_color), saturation($base_color), lightness($fg_color));
+$selected_bg_color: hsl(hue($base_color), saturation($base_color), lightness($selected_bg_color));
+$selected_borders_color: if($variant== 'light', darken($selected_bg_color, 15%), darken($selected_bg_color, 30%));
+$borders_color: if($variant == 'light', darken($bg_color, 18%), darken($bg_color, 10%));
+$alt_borders_color: if($variant == 'light', darken($bg_color, 24%), darken($bg_color, 18%));
+$borders_edge: if($variant == 'light', transparentize(white, 0.2), transparentize($fg_color, 0.93));
+$top_hilight: $borders_edge;
+$dark_fill: mix($borders_color, $bg_color, 50%);
+
+$insensitive_fg_color: mix($fg_color, $bg_color, 50%);
+$insensitive_bg_color: mix($bg_color, $base_color, 60%);
+$insensitive_borders_color: $borders_color;
+
+$backdrop_bg_color: $bg_color;
+$backdrop_fg_color: mix($fg_color, $backdrop_bg_color, 50%);
+$backdrop_borders_color: mix($borders_color, $bg_color, 80%);
+$backdrop_dark_fill: mix($backdrop_borders_color, $backdrop_bg_color, 35%);
+$backdrop_insensitive_color: if($variant == 'light', darken($backdrop_bg_color, 15%), lighten($backdrop_bg_color, 15%));
+
+@if $high_contrast {
+  $fg_color: if($variant == 'light', darken($fg_color, 3%), lighten($fg_color, 2%));
+  $bg_color: if($variant == 'light', lighten($bg_color, 3%), darken($bg_color, 2%));
+  $selected_bg_color: darken($selected_bg_color,10%);
+  $selected_borders_color: darken($selected_borders_color, 10%);
+  $borders_color: if($variant == 'light', darken($borders_color, 30%), lighten($borders_color, 30%));
+  $alt_borders_color: if($variant == 'light', darken($alt_borders_color, 33%), lighten($alt_borders_color, 28%));
+  
+  //insensitive state derived colors
+  $insensitive_fg_color: mix($fg_color, $bg_color, 50%);
+  $insensitive_bg_color: mix($bg_color, $base_color, 60%);
+  $insensitive_borders_color: mix($borders_color, $bg_color, 80%);
+}
+
+$tab_bg: darken($bg_color, if($variant == 'dark', 6%, 12%));
+$tab_bg_backdrop: darken($backdrop_bg_color, 6%);
+
+@import 'drawing';
+
+.apostrophe-window {
+  background: lighten($window_color, 5%);
+  color: $fg_color;
+  caret-color: $fg_color;
+
+  headerbar {
+    @include headerbar_fill(darken($bg_color, 10%));
+
+    border-color: $alt_borders_color;
+    color: $fg_color;
+
+    &:backdrop {
+      background-image: image($bg_color);
+      border-color: $backdrop_borders_color;
+      box-shadow: inset 0 1px $top_hilight;
+      color: $backdrop_fg_color;
+    }
+  }
+
+  actionbar {
+    background: $bg_color;
+
+    > revealer > box {
+      border-color: $borders_color;
+    }
+
+    &:backdrop {
+      background: $backdrop_bg_color;
+
+      > revealer > box {
+        border-color: $backdrop_borders_color;
+      }
+    }
+  }
+
+  searchbar > revealer > box{
+    border-color: $borders_color;
+    $_bg: mix($bg_color, $borders_color, 70%);
+    background-color: $_bg;
+  }
+
+  headerbar, actionbar, searchbar {
+    button {
+      @include button(normal);
+
+      &.flat, &.titlebutton { @include button(undecorated); }
+
+      &.titlebutton { @include _button_text_shadow($fg_color); }
+
+      &:hover { @include button(hover); }
+
+      &:active, &:checked { @include button(active); }
+
+      &:disabled { @include button(insensitive); }
+
+      &:backdrop {
+        @include button(backdrop);
+
+        &:active { @include button(backdrop-active); }
+
+        &:disabled { @include button(backdrop-insensitive); }
+      }
+
+      &:checked {
+        background: if($variant == 'light', image(darken($bg_color, 17%)), image(darken($bg_color, 9%)));
+        border-color: darken($borders_color, 3%);
+        border-top-color: darken($borders_color, 8%);
+        &:backdrop {
+          @include button(backdrop-active);
+        }
+      }
+
+      &.flat:backdrop, &.titlebutton:backdrop { @include button(undecorated); }
+    }
+  }
+
+  popover {
+    background: $bg_color;
+  }
+
+
+  text,
+  textview{
+    background: transparent;
+    color: #5e3d25;
+  }
+}

@@ -15,13 +15,14 @@ import gi
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
-from gi.repository import GLib, Gio, Gtk, Handy
+from gi.repository import GLib, Gio, Gtk, Gdk, Handy
 
 from apostrophe.main_window import MainWindow
 from apostrophe.settings import Settings
 from apostrophe.helpers import set_up_logging
 from apostrophe.preferences_dialog import PreferencesDialog
 from apostrophe.inhibitor import Inhibitor
+from apostrophe.theme_switcher import Theme
 
 
 class Application(Gtk.Application):
@@ -33,6 +34,36 @@ class Application(Gtk.Application):
 
         self.add_main_option("verbose", b"v", GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Verbose output", None)
+
+        # Hardcode Adwaita to prevent issues with third party themes
+        gtk_settings = Gtk.Settings.get_default()
+        self._set_theme(gtk_settings)
+        gtk_settings.connect("notify::gtk-theme-name", self._set_theme)
+        gtk_settings.connect("notify::gtk-icon-theme-name", self._set_theme)
+
+        # Set css theme
+        css_provider_file = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css")
+        self.style_provider = Gtk.CssProvider()
+        self.style_provider.load_from_file(css_provider_file)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), self.style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_USER)
+
+        # Set editor keybindings
+        # SCSS is not fit for this, so we do it in an external css file
+        css_bindings_file = Gio.File.new_for_uri(
+            "resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/bindings.css")
+        self.bindings_provider = Gtk.CssProvider()
+        self.bindings_provider.load_from_file(css_bindings_file)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), self.bindings_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_USER)
+
+        # Set icons
+        Gtk.IconTheme.get_default().add_resource_path(
+            "/org/gnome/gitlab/somas/Apostrophe/icons"
+        )
 
         Handy.init()
 
@@ -46,7 +77,6 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
 
         self.settings.connect("changed", self.on_settings_changed)
-        self._set_dark_mode()
 
         # Header bar
 
@@ -71,6 +101,13 @@ class Application(Gtk.Application):
         self.add_action(action)
 
         # App Menu
+        color_scheme = self.settings.get_string("color-scheme")
+        action = Gio.SimpleAction.new_stateful(
+                 "color_scheme", GLib.VariantType.new("s"),
+                 GLib.Variant.new_string(color_scheme))
+        action.connect("activate", self._set_color_scheme)
+        self.add_action(action)
+
         action = Gio.SimpleAction.new_stateful(
             "focus_mode", None, GLib.Variant.new_boolean(False))
         action.connect("change-state", self.on_focus_mode)
@@ -180,6 +217,8 @@ class Application(Gtk.Application):
 
         if self._application_id == 'org.gnome.gitlab.somas.Apostrophe.Devel':
             self.window.get_style_context().add_class('devel')
+
+        self._set_color_scheme()
         self.window.present()
 
     def do_handle_local_options(self, options):
@@ -193,20 +232,43 @@ class Application(Gtk.Application):
         self.activate()
         self.window.load_file(files[0])
 
-    def _set_dark_mode(self):
-        dark = self.settings.get_value("dark-mode")
+    def _set_theme(self, settings, *_pspec):
+        # Third party themes cause issues with Apostrophe custom stylesheets
+        # If the user has a third party theme selected, we just change it to
+        # Adwaita to prevent those issues
+ 
+        theme_name = settings.get_property("gtk-theme-name")
+        icon_theme_name = settings.get_property("gtk-icon-theme-name")
+
+        if (theme_name not in ["Adwaita",
+                               "HighContrast",
+                               "HighContrastInverse"]):
+            settings.set_property("gtk-theme-name", "Adwaita")
+
+        if icon_theme_name != "Adwaita":
+            settings.set_property("gtk-icon-theme-name", "Adwaita")
+
+    def _set_color_scheme(self):
+
+        theme = Theme.get_current()
+
         settings = Gtk.Settings.get_default()
+        prefer_dark_theme = (theme.name == 'dark')
+        settings.props.gtk_application_prefer_dark_theme = prefer_dark_theme
 
-        settings.props.gtk_application_prefer_dark_theme = dark
+        if not self.window:
+            return
 
-        if settings.props.gtk_theme_name == "HighContrast" and dark:
+        self.style_provider.load_from_file(theme.gtk_css)
+
+        if settings.props.gtk_theme_name == "HighContrast" and prefer_dark_theme:
             settings.props.gtk_theme_name = "HighContrastInverse"
-        elif settings.props.gtk_theme_name == "HighContrastInverse" and not dark:
+        elif settings.props.gtk_theme_name == "HighContrastInverse" and not prefer_dark_theme:
             settings.props.gtk_theme_name = "HighContrast"
 
     def on_settings_changed(self, settings, key):
-        if key == "dark-mode":
-            self._set_dark_mode()
+        if key == "color-scheme":
+            self._set_color_scheme()
         elif key == "spellcheck":
             self.window.toggle_spellcheck(settings.get_value(key))
         elif key == "input-format":

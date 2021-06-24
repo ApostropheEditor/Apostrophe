@@ -5,7 +5,10 @@
     <file compressed="true" alias="icons/preview-layout-half-width-symbolic.svg">media/icons/preview-layout-half-width-symbolic.svg</file>
     <file compressed="true" alias="icons/preview-layout-windowed-symbolic.svg">media/icons/preview-layout-windowed-symbolic.svg</file>
     <file compressed="true" alias="icons/preview-layout-half-height-symbolic.svg">media/icons/preview-layout-half-height-symbolic.svg</file>
-    <file compressed="true">media/css/gtk/base.css</file>
+    <file compressed="true">media/css/gtk/Adwaita.css</file>
+    <file compressed="true">media/css/gtk/Adwaita-dark.css</file>
+    <file compressed="true">media/css/gtk/Adwaita-sepia.css</file>
+    <file compressed="true">media/css/gtk/bindings.css</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/ExportPopover.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Menu.ui</file>
@@ -16,6 +19,7 @@
     <file compressed="true" preprocess="xml-stripblanks">ui/Headerbar.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/PreviewLayoutSwitcherItem.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/TexliveWarning.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/ThemeSwitcher.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">About.ui</file>
     <file compressed="true">media/apostrophe_markdown.md</file>
   </gresource>

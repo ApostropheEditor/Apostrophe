@@ -28,7 +28,6 @@ from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 from apostrophe.export_dialog import ExportDialog, AdvancedExportDialog
 from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
-from apostrophe.styled_window import StyledWindow
 from apostrophe.text_view import TextView
 from apostrophe.search_and_replace import SearchAndReplace
 from apostrophe.settings import Settings
@@ -42,7 +41,7 @@ from . import headerbars
 LOGGER = logging.getLogger('apostrophe')
 
 
-class MainWindow(StyledWindow):
+class MainWindow(Gtk.ApplicationWindow):
 
     def __init__(self, app):
         """Set up the main window"""
@@ -82,17 +81,6 @@ class MainWindow(StyledWindow):
         self.headerbar.hb_revealer.get_style_context().remove_class("titlebar")
 
         self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
-
-        # Bind properties between normal and fs headerbar
-        self.headerbar.light_button.bind_property(
-            "active", self.fs_headerbar.light_button, "active",
-            GObject.BindingFlags.BIDIRECTIONAL
-            | GObject.BindingFlags.SYNC_CREATE)
-
-        self.headerbar.dark_button.bind_property(
-            "active", self.fs_headerbar.dark_button, "active",
-            GObject.BindingFlags.BIDIRECTIONAL |
-            GObject.BindingFlags.SYNC_CREATE)
 
         # The dummy headerbar is a cosmetic hack to be able to
         # crossfade the hb on top of the window

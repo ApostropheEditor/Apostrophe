@@ -87,14 +87,6 @@ foreach ui_file: ui_preconfigured_files
   )
 endforeach
 
-resources = gnome.compile_resources(
-  meson.project_name(),
-  meson.project_name() + '.gresource.xml',
-  gresource_bundle: true,
-  install:true,
-  install_dir: pkgdatadir,
-  dependencies: ui_dependencies
-)
 message('datadir')
 message(datadir)
 subdir('icons')
@@ -103,10 +95,14 @@ install_subdir(
 	'lua',
 	install_dir: pkgdatadir
 )
+
+subdir('media/css/gtk')
 install_subdir(
 	'media',
+  # exclude_directories: 'css/gtk'
 	install_dir: pkgdatadir
 )
+
 install_subdir(
 	'ui',
 	install_dir: pkgdatadir
@@ -114,4 +110,13 @@ install_subdir(
 install_subdir(
 	'reference_files',
 	install_dir: pkgdatadir
+)
+
+resources = gnome.compile_resources(
+  meson.project_name(),
+  meson.project_name() + '.gresource.xml',
+  gresource_bundle: true,
+  install:true,
+  install_dir: pkgdatadir,
+  dependencies: [ui_dependencies, style_deps]
 )
