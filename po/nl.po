@@ -646,5 +646,5 @@ msgstr "Apostrophe, een elegante markdownbewerker zonder enige vorm van afleidin
 
 #: apostrophe/inhibitor.py:35
 msgid "Unsaved documents"
-msgstr ""
+msgstr "Niet-opgeslagen documenten"
 
