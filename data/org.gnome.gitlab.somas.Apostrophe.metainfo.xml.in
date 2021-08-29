@@ -7,13 +7,19 @@
   <project_license>GPL-3.0+</project_license>
   <developer_name>Wolf V., Manuel G.</developer_name>
   <description>
-    <p>Apostrophe is a GTK based distraction free Markdown editor, originally created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface.</p>
-    <p>You can install the recommended TexLive extension with the command:</p>
-    <p>flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive</p>
-    <p>or from Gnome-Software</p>
+    <p>Focus on your writing with a clean, distraction-free markdown editor.</p>
+    <p>Features:</p>
+    <ul>
+      <li>An UI tailored to comfortable writing</li>
+      <li>A distraction-free mode</li>
+      <li>Dark, light and sepia themes</li>
+      <li>Everything you expect from a text editor, such as spellchecking or document statistics</li>
+      <li>Live preview of what you write</li>
+      <li>Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML slideshows</li>
+    </ul>
   </description>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
-  <url type="homepage">https://somas.pages.gitlab.gnome.org/apostrophe/</url>
+  <url type="homepage">https://world.pages.gitlab.gnome.org/apostrophe/</url>
   <url type="bugtracker">https://gitlab.gnome.org/somas/apostrophe/-/issues</url>
   <url type="help">https://gitlab.gnome.org/somas/apostrophe/</url>
   <url type="donation">https://www.paypal.me/manuelgenoves</url>
@@ -37,6 +43,16 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release type="stable" version="2.5" date="2021-08-28T00:00:00Z">
+      <description>
+        <p>This release adds the following features:</p>
+        <ul>
+          <li>Added Sepia Mode</li>
+          <li>Improved exported HTML on small screens</li>
+          <li>Updated metadata and runtime version</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="2.4" date="2021-03-10T00:00:00Z">
       <description>
         <p>This release fixes the following bugs:</p>
@@ -67,18 +83,6 @@
         <ul>
           <li>Undo/redo improvements</li>
           <li>Fixes for bad markdown parsing of unordered lists</li>
-        </ul>
-      </description>
-    </release>
-    <release type="stable" version="2.2.0.3" date="2020-05-04T00:00:00Z">
-      <description>
-        <p>This release fixes the following bugs:</p>
-        <ul>
-          <li>Better wording for some areas</li>
-          <li>Fixed some issues where Apostrophe couldn't open files from CLI/context menu</li>
-          <li>Now Apostrophe checks if there is unsaved work before exiting via CTRL + Q/W</li>
-          <li>Better parsing of weblinks and links to files</li>
-          <li>Fixed a bug where the bottom portion of the screen was insensitive to mouse input</li>
         </ul>
       </description>
     </release>
