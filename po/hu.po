@@ -1,67 +1,378 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: Apostrophe\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-29 04:08+0200\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Apostrophe\n"
-"Language: hu\n"
-
-#: apostrophe/inline_preview.py:240
-msgid "No matching footnote found"
-msgstr "Nincs találó lábjegyzet"
-
-#: apostrophe/preview_renderer.py:48 data/ui/Headerbar.ui:305
-msgid "Preview"
-msgstr "Előnézet"
-
-#: data/ui/Menu.ui:114
-msgid "Focus Mode"
-msgstr "Fókusz mód"
 
 #: apostrophe/export_dialog.py:128 apostrophe/export_dialog.py:323
 #: apostrophe/export_dialog.py:327 data/ui/Export.ui:62
 msgid "Export"
 msgstr "Exportálás"
 
-#: data/ui/Export.ui:171
-msgid "Table of Contents"
-msgstr "Tartalomjegyzék"
+#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
+#, python-format
+msgid "Export to %s"
+msgstr "Ecportálás: %s"
+
+#: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
+#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:344
+#: apostrophe/main_window.py:435 apostrophe/main_window.py:508
+#: data/ui/Export.ui:47
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
+#, python-brace-format
+msgid ""
+"An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+"Hiba történt exportálás közben\n"
+"\n"
+"{err_msg}"
+
+#: apostrophe/export_dialog.py:234
+msgid "Export to {}"
+msgstr "Exportálás {}"
+
+#: apostrophe/export_dialog.py:324
+msgid "Select folder"
+msgstr "Mappa kiválasztása"
+
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:132
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
+msgstr "Teljes szélességű"
+
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:134
+msgid "Half-Width"
+msgstr "Fél-szélességű"
+
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:136
+msgid "Half-Height"
+msgstr "Fél-hosszú"
+
+#: apostrophe/headerbars.py:132 apostrophe/preview_renderer.py:138
+msgid "Windowed"
+msgstr "Ablak mód"
+
+#: apostrophe/helpers.py:90
+msgid "Error"
+msgstr "Hiba"
+
+#: apostrophe/inhibitor.py:35
+msgid "Unsaved documents"
+msgstr "Mentetlen dokumentumok"
+
+#: apostrophe/inline_preview.py:201
+msgid "Formula looks incorrect:"
+msgstr "A képlet hibásnak tűnik"
+
+#: apostrophe/inline_preview.py:240
+msgid "No matching footnote found"
+msgstr "Nincs találó lábjegyzet"
+
+#: apostrophe/inline_preview.py:260
+msgid "noun"
+msgstr "főnév"
+
+#: apostrophe/inline_preview.py:262
+msgid "verb"
+msgstr "ige"
+
+#: apostrophe/inline_preview.py:264
+msgid "adjective"
+msgstr "melléknév"
+
+#: apostrophe/inline_preview.py:266
+msgid "adverb"
+msgstr "határozószó"
+
+#: apostrophe/main_window.py:340
+msgid "Save your File"
+msgstr "Állomány mentése"
+
+#: apostrophe/main_window.py:343 data/ui/Headerbar.ui:225
+#, fuzzy
+msgid "Save"
+msgstr "Mentés"
+
+#: apostrophe/main_window.py:424
+msgid "Markdown Files"
+msgstr "Markdown fájlok"
+
+#: apostrophe/main_window.py:428
+msgid "Plain Text Files"
+msgstr "Egyszerű szöveges fájlok"
+
+#: apostrophe/main_window.py:431
+msgid "Open a .md file"
+msgstr "-md fájl megnyitása"
+
+#: apostrophe/main_window.py:434 data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr "Megnyitás"
+
+#: apostrophe/main_window.py:498
+#, python-format
+msgid "Save changes to document “%s” before closing?"
+msgstr "Menti a módosításokat a(z) “%s” dokumentumba kilépés előtt?"
+
+#: apostrophe/main_window.py:503
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Amennyiben nem menti, minden változtatás végleges el fog veszni!"
+
+#: apostrophe/main_window.py:506
+msgid "Close without saving"
+msgstr "Bezárás mentés nélkül"
+
+#: apostrophe/main_window.py:509
+msgid "Save now"
+msgstr "Mentés most"
+
+#: apostrophe/main_window.py:711
+msgid "New File"
+msgstr "Új fájl"
+
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
+msgid "Preview"
+msgstr "Előnézet"
+
+#: apostrophe/stats_handler.py:74
+msgid "{:n} Characters"
+msgstr "{:n} karakter(ek)"
+
+#: apostrophe/stats_handler.py:76
+msgid "{:n} Words"
+msgstr "{:n} szó/szavak"
+
+#: apostrophe/stats_handler.py:78
+msgid "{:n} Sentences"
+msgstr "{:n} mondat(ok)"
+
+#: apostrophe/stats_handler.py:80
+msgid "{:n} Paragraphs"
+msgstr "{:n} bekezdés(ek)"
+
+#: apostrophe/stats_handler.py:82
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} Olvasási idő"
+
+#: apostrophe/text_view_drag_drop_handler.py:75
+#: apostrophe/text_view_drag_drop_handler.py:77
+msgid "web page"
+msgstr "web oldal"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "dőlt szöveg"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "félkövér szöveg"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "áthúzott szöveg"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Elem"
+
+#: apostrophe/text_view_format_inserter.py:98
+msgid "Header"
+msgstr "Fejléc"
+
+#: data/ui/About.ui.in:12
+msgid "Copyright (C) 2020, Wolf Vollprecht"
+msgstr "Minden jog fenntartva (C) 2020, Wolf Vollprecht"
+
+#: data/ui/About.ui.in:14
+msgid "Apostrophe website"
+msgstr "Apostrophe weboldala"
+
+#. Put your name in here, like this:
+#. Manuel Genovés <manuel.genoves@gmail.com>
+#: data/ui/About.ui.in:20
+msgid "translator-credits"
+msgstr "fordítói elismerések"
+
+#: data/ui/About.ui.in:65
+msgid "Donations:"
+msgstr "Adományok:"
+
+#: data/ui/About.ui.in:74
+msgid "Paypal"
+msgstr "Paypal"
+
+#: data/ui/About.ui.in:105
+msgid "Help to translate:"
+msgstr "Segítsen a fordításban:"
+
+#: data/ui/About.ui.in:114
+msgid "Poeditor"
+msgstr "Poeditor"
 
 #: data/ui/Export.ui:154
 msgid "Standalone"
 msgstr "Egyedülálló"
 
 #: data/ui/Export.ui:156
-msgid "Use a header and footer to include things like stylesheets and meta information"
-msgstr "Használjon fejlécet és láblécet az olyan dolgok, mint a stíluslapok és a meta információk beillesztésére."
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+"Használjon fejlécet és láblécet az olyan dolgok, mint a stíluslapok és a "
+"meta információk beillesztésére."
+
+#: data/ui/Export.ui:171
+msgid "Table of Contents"
+msgstr "Tartalomjegyzék"
 
 #: data/ui/Export.ui:187
 msgid "Number Sections"
 msgstr "Alcímek számozása"
 
-#: data/ui/Export.ui:330
-msgid "Show one bullet point after another in a slideshow"
-msgstr "Diavetítéskor a pontok egymás után jelennek meg"
+#: data/ui/Export.ui:211 data/ui/Export.ui:217
+msgid "Page Size"
+msgstr "Lap méret"
+
+#: data/ui/Export.ui:236
+msgid "HTML Options"
+msgstr "HTML beállítása(i)"
+
+#: data/ui/Export.ui:242
+msgid "Self-contained"
+msgstr "Önálló"
+
+#: data/ui/Export.ui:244
+msgid "Produces an HTML file with no external dependencies"
+msgstr "HTML fájl előállítása külső függőségek nélkül"
 
 #: data/ui/Export.ui:260
 msgid "CSS File"
 msgstr "CSS File"
 
-#: apostrophe/main_window.py:352
-msgid "Save your File"
-msgstr "Állomány mentése"
+#: data/ui/Export.ui:265
+msgid "Select CSS file"
+msgstr "CSS fájl kiválasztása"
 
-#: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
-#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:356
-#: apostrophe/main_window.py:447 apostrophe/main_window.py:520
-#: data/ui/Export.ui:47
-msgid "Cancel"
-msgstr "Mégsem"
+#: data/ui/Export.ui:286
+msgid "Syntax Highlighting"
+msgstr "Szintaxis-kiemelés"
 
-#: apostrophe/main_window.py:521
-msgid "Save now"
-msgstr "Mentés most"
+#: data/ui/Export.ui:301
+msgid "Highlight style"
+msgstr "Kiemelés stílusa"
+
+#: data/ui/Export.ui:322
+msgid "Presentation"
+msgstr "Prenzentáció"
+
+#: data/ui/Export.ui:328
+msgid "Incremental bullets"
+msgstr "Növekvő listaelemek"
+
+#: data/ui/Export.ui:330
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Diavetítéskor a pontok egymás után jelennek meg"
+
+#: data/ui/Export.ui:357
+msgid "page0"
+msgstr "0. oldal"
+
+#: data/ui/Export.ui:365
+msgid "page1"
+msgstr "1. oldal"
+
+#: data/ui/ExportPopover.ui:19
+msgid "Save As…"
+msgstr "Mentés mint..."
+
+#: data/ui/ExportPopover.ui:100
+msgid "Advanced Export…"
+msgstr "Haladó export"
+
+#: data/ui/ExportPopover.ui:125
+msgid "Copy HTML"
+msgstr "HTML másolása"
+
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr "Nézetek szinkronizálása"
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr "Új"
+
+#: data/ui/Headerbar.ui:199
+#, fuzzy
+msgid "Open Recent"
+msgstr "Elozmények megnyitása"
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as…"
+msgstr "Mentés mint..."
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "Menü"
+
+#: data/ui/Headerbar.ui:378
+msgid "Find"
+msgstr "Keres"
+
+#: data/ui/Menu.ui:43
+msgid "Hemingway Mode"
+msgstr "Hemingway Mód"
+
+#: data/ui/Menu.ui:57
+msgid "Focus Mode"
+msgstr "Fókusz mód"
+
+#: data/ui/Menu.ui:82
+msgid "Find and Replace"
+msgstr "Keres és Cserél"
+
+#: data/ui/Menu.ui:107 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: data/ui/Menu.ui:132
+msgid "Open Tutorial"
+msgstr "Tutorial megnyitása"
+
+#: data/ui/Menu.ui:146
+msgid "Keyboard Shortcuts"
+msgstr "Gyorsbillenytűk"
+
+#: data/ui/Menu.ui:160
+msgid "About Apostrophe"
+msgstr "Az Apostropheról"
+
+#: data/ui/Preferences.ui:49
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:35
+msgid "Check spelling while typing"
+msgstr "Helyesírás ellenőrzése gépelés közben"
+
+#: data/ui/Preferences.ui:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:49
+msgid "Input format"
+msgstr "Beviteli formátum"
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr "Fejléc és státusz sor automatikus elrejtése gépelés közben"
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr "Fejléc automatikus eltűntetése"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -90,10 +401,36 @@ msgctxt "shortcut window"
 msgid "Save as"
 msgstr "Mentés most"
 
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Dokumentum bezárása"
+
+#: data/ui/Shortcuts.ui:52
+msgctxt "shortcut window"
+msgid "Quit application"
+msgstr "Kilépés az alkalmazásból"
+
+#: data/ui/Shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Modes"
+msgstr "Módok"
+
 #: data/ui/Shortcuts.ui:65
 msgctxt "shortcut window"
 msgid "Focus mode"
 msgstr "Fókusz mód"
+
+#: data/ui/Shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Hemingway mode"
+msgstr "Hemingway mód"
+
+#: data/ui/Shortcuts.ui:79
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Előnézet"
 
 #: data/ui/Shortcuts.ui:86
 #, fuzzy
@@ -101,11 +438,20 @@ msgctxt "shortcut window"
 msgid "Fullscreen"
 msgstr "Teljes képernyő"
 
-#: data/ui/Shortcuts.ui:79
-#, fuzzy
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
 msgctxt "shortcut window"
-msgid "Preview"
-msgstr "Előnézet"
+msgid "Find"
+msgstr "Keres"
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr "Keres és cserel"
+
+#: data/ui/Shortcuts.ui:115
+msgctxt "shortcut window"
+msgid "Markdown"
+msgstr "Markdown"
 
 #: data/ui/Shortcuts.ui:119
 msgctxt "shortcut window"
@@ -127,153 +473,6 @@ msgstr "Dőlt"
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Félkövér"
-
-#: data/ui/Window.ui:220
-msgid "Next Match"
-msgstr "Következő találat"
-
-#: data/ui/Window.ui:206
-msgid "Previous Match"
-msgstr "Előző találat"
-
-#: data/ui/Window.ui:253
-msgid "Case Sensitive"
-msgstr "Kis-Nagybetű érzékeny"
-
-#: data/ui/Window.ui:280 data/ui/Window.ui:358
-msgid "Replace"
-msgstr "Helyettesít"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
-msgid "Open file base path"
-msgstr "Fájl alap elérési útjának megnyitása "
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
-msgid "Open file paths of the current session"
-msgstr "A jelenlegi munkamenet fájl-útvonal(ainak) megnyitása"
-
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
-msgid "Preferences"
-msgstr "Beállítások"
-
-#: data/ui/Menu.ui:189
-msgid "Open Tutorial"
-msgstr "Tutorial megnyitása"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
-#, fuzzy
-msgid "Use dark mode"
-msgstr "Elsötétített nézet"
-
-#: data/ui/Headerbar.ui:171
-msgid "New"
-msgstr "Új"
-
-#: apostrophe/main_window.py:446 data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr "Megnyitás"
-
-#: data/ui/Headerbar.ui:199
-#, fuzzy
-msgid "Open Recent"
-msgstr "Elozmények megnyitása"
-
-#: apostrophe/main_window.py:355 data/ui/Headerbar.ui:225
-#, fuzzy
-msgid "Save"
-msgstr "Mentés"
-
-#: data/ui/Headerbar.ui:283
-msgid "Menu"
-msgstr "Menü"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
-msgid "Enable or disable the dark mode."
-msgstr "Sötét mód be-/kikapcsolása"
-
-#: data/ui/Preferences.ui:49
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
-msgid "Check spelling while typing"
-msgstr "Helyesírás ellenőrzése gépelés közben"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
-msgid "Enable or disable spellchecking."
-msgstr "Helyesírás ellenőrzés be-/kikapcsolása"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
-msgid "Synchronize editor/preview scrolling"
-msgstr "Szerkesztő/Előnézet görgetésének szinkronizálása"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
-msgid "Keep the editor and preview scroll positions in sync."
-msgstr "Szerkesztő és előnézet görgetési pozíciójának szinkronban tartása"
-
-#: data/ui/Preferences.ui:73
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
-msgid "Input format"
-msgstr "Beviteli formátum"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
-msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr "Beviteli formátum használata előnézet és export esetén Pandoc használata során"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
-msgid "Default statistic"
-msgstr "Alapértelmezett statisztikák"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
-msgid "Which statistic is shown on the main window."
-msgstr "Mely statisztikák kerüljenek megmutatásra a fő ablakban."
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
-msgid "Characters per line"
-msgstr "Karakter(ek) soronként"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
-msgid "Maximum number of characters per line within the editor."
-msgstr "Maximum karakterszám soronként a szerkesztőben."
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
-msgid "Preview mode"
-msgstr "Előnézet mód"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
-msgid "How to display the preview."
-msgstr "Hogyan mutassa az előnézetet"
-
-#: data/ui/Export.ui:242
-msgid "Self-contained"
-msgstr "Önálló"
-
-#: apostrophe/headerbars.py:137 apostrophe/preview_renderer.py:133
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr "Teljes szélességű"
-
-#: data/ui/Shortcuts.ui:45
-msgctxt "shortcut window"
-msgid "Close document"
-msgstr "Dokumentum bezárása"
-
-#: data/ui/Shortcuts.ui:52
-msgctxt "shortcut window"
-msgid "Quit application"
-msgstr "Kilépés az alkalmazásból"
-
-#: data/ui/Shortcuts.ui:61
-msgctxt "shortcut window"
-msgid "Modes"
-msgstr "Módok"
-
-#: data/ui/Shortcuts.ui:72
-msgctxt "shortcut window"
-msgid "Hemingway mode"
-msgstr "Hemingway mód"
-
-#: data/ui/Shortcuts.ui:115
-msgctxt "shortcut window"
-msgid "Markdown"
-msgstr "Markdown"
 
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
@@ -329,9 +528,21 @@ msgstr "Minden szöveg kijelölése"
 msgid "Show Statistics"
 msgstr "Statisztikák mutatása"
 
+#: data/ui/Window.ui:206
+msgid "Previous Match"
+msgstr "Előző találat"
+
+#: data/ui/Window.ui:220
+msgid "Next Match"
+msgstr "Következő találat"
+
 #: data/ui/Window.ui:249
 msgid "aA"
 msgstr "aA"
+
+#: data/ui/Window.ui:253
+msgid "Case Sensitive"
+msgstr "Kis-Nagybetű érzékeny"
 
 #: data/ui/Window.ui:263
 msgid "(.*)"
@@ -341,278 +552,13 @@ msgstr "(.*)"
 msgid "Regular Expression"
 msgstr "Reguláris kifejezés"
 
-#: apostrophe/main_window.py:436
-msgid "Markdown Files"
-msgstr "Markdown fájlok"
-
-#: apostrophe/main_window.py:440
-msgid "Plain Text Files"
-msgstr "Egyszerű szöveges fájlok"
-
-#: apostrophe/main_window.py:443
-msgid "Open a .md file"
-msgstr "-md fájl megnyitása"
-
-#: apostrophe/main_window.py:518
-msgid "Close without saving"
-msgstr "Bezárás mentés nélkül"
-
-#: apostrophe/main_window.py:723
-msgid "New File"
-msgstr "Új fájl"
-
-#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:135
-msgid "Half-Width"
-msgstr "Fél-szélességű"
-
-#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:137
-msgid "Half-Height"
-msgstr "Fél-hosszú"
-
-#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:139
-msgid "Windowed"
-msgstr "Ablak mód"
-
-#: apostrophe/stats_handler.py:74
-msgid "{:n} Characters"
-msgstr "{:n} karakter(ek)"
-
-#: apostrophe/stats_handler.py:76
-msgid "{:n} Words"
-msgstr "{:n} szó/szavak"
-
-#: apostrophe/stats_handler.py:78
-msgid "{:n} Sentences"
-msgstr "{:n} mondat(ok)"
-
-#: apostrophe/stats_handler.py:80
-msgid "{:n} Paragraphs"
-msgstr "{:n} bekezdés(ek)"
-
-#: apostrophe/stats_handler.py:82
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "{:d}:{:02d}:{:02d} Olvasási idő"
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr "dőlt szöveg"
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr "félkövér szöveg"
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr "áthúzott szöveg"
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr "Elem"
-
-#: apostrophe/text_view_format_inserter.py:98
-msgid "Header"
-msgstr "Fejléc"
-
-#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
-msgid "An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
-msgstr "Hiba történt exportálás közben\n"
-"\n"
-"{err_msg}"
-
-#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
-msgid "Export to %s"
-msgstr "Ecportálás: %s"
-
-#: apostrophe/inline_preview.py:201
-msgid "Formula looks incorrect:"
-msgstr "A képlet hibásnak tűnik"
-
-#: apostrophe/inline_preview.py:260
-msgid "noun"
-msgstr "főnév"
-
-#: apostrophe/inline_preview.py:262
-msgid "verb"
-msgstr "ige"
-
-#: apostrophe/inline_preview.py:264
-msgid "adjective"
-msgstr "melléknév"
-
-#: apostrophe/inline_preview.py:266
-msgid "adverb"
-msgstr "határozószó"
-
-#: apostrophe/main_window.py:510
-msgid "Save changes to document “%s” before closing?"
-msgstr "Menti a módosításokat a(z) “%s” dokumentumba kilépés előtt?"
-
-#: apostrophe/main_window.py:515
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "Amennyiben nem menti, minden változtatás végleges el fog veszni!"
-
-#: apostrophe/text_view_drag_drop_handler.py:75
-#: apostrophe/text_view_drag_drop_handler.py:77
-msgid "web page"
-msgstr "web oldal"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
-msgid "Autohide Headerbar"
-msgstr "Fejléc automatikus eltűntetése"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
-msgid "Hide the header and status bars when typing."
-msgstr "Fejléc és státusz sor elrejtése gépelés közben"
-
-#: data/ui/Headerbar.ui:378
-msgid "Find"
-msgstr "Keres"
-
-#: data/ui/Menu.ui:139
-msgid "Find and Replace"
-msgstr "Keres és Cserél"
-
-#: data/ui/Menu.ui:203
-msgid "Keyboard Shortcuts"
-msgstr "Gyorsbillenytűk"
-
-#: data/ui/Menu.ui:217
-msgid "About Apostrophe"
-msgstr "Az Apostropheról"
-
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr "Fejléc és státusz sor automatikus elrejtése gépelés közben"
-
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr "Fejléc automatikus eltűntetése"
-
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
-msgctxt "shortcut window"
-msgid "Find"
-msgstr "Keres"
-
-#: data/ui/Shortcuts.ui:106
-msgctxt "shortcut window"
-msgid "Find and replace"
-msgstr "Keres és cserel"
+#: data/ui/Window.ui:280 data/ui/Window.ui:358
+msgid "Replace"
+msgstr "Helyettesít"
 
 #: data/ui/Window.ui:372
 msgid "Replace All"
 msgstr "Mindet cserél"
-
-#: data/ui/ExportPopover.ui:125
-msgid "Copy HTML"
-msgstr "HTML másolása"
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync Views"
-msgstr "Nézetek szinkronizálása"
-
-#: data/ui/Menu.ui:100
-msgid "Hemingway Mode"
-msgstr "Hemingway Mód"
-
-#: apostrophe/export_dialog.py:234
-msgid "Export to {}"
-msgstr "Exportálás {}"
-
-#: apostrophe/export_dialog.py:324
-msgid "Select folder"
-msgstr "Mappa kiválasztása"
-
-#: apostrophe/headerbars.py:91
-msgid "Light mode isn’t available while using a dark global theme"
-msgstr "A világos mód nem elérhető, ha globális sötét témát használ"
-
-#: apostrophe/helpers.py:90
-msgid "Error"
-msgstr "Hiba"
-
-#: data/ui/About.ui.in:12
-msgid "Copyright (C) 2020, Wolf Vollprecht"
-msgstr "Minden jog fenntartva (C) 2020, Wolf Vollprecht"
-
-#: data/ui/About.ui.in:14
-msgid "Apostrophe website"
-msgstr "Apostrophe weboldala"
-
-#. Put your name in here, like this:
-#. Manuel Genovés <manuel.genoves@gmail.com>
-#: data/ui/About.ui.in:20
-msgid "translator-credits"
-msgstr "fordítói elismerések"
-
-#: data/ui/About.ui.in:65
-msgid "Donations:"
-msgstr "Adományok:"
-
-#: data/ui/About.ui.in:74
-msgid "Paypal"
-msgstr "Paypal"
-
-#: data/ui/About.ui.in:105
-msgid "Help to translate:"
-msgstr "Segítsen a fordításban:"
-
-#: data/ui/About.ui.in:114
-msgid "Poeditor"
-msgstr "Poeditor"
-
-#: data/ui/Export.ui:211 data/ui/Export.ui:217
-msgid "Page Size"
-msgstr "Lap méret"
-
-#: data/ui/Export.ui:236
-msgid "HTML Options"
-msgstr "HTML beállítása(i)"
-
-#: data/ui/Export.ui:244
-msgid "Produces an HTML file with no external dependencies"
-msgstr "HTML fájl előállítása külső függőségek nélkül"
-
-#: data/ui/Export.ui:265
-msgid "Select CSS file"
-msgstr "CSS fájl kiválasztása"
-
-#: data/ui/Export.ui:286
-msgid "Syntax Highlighting"
-msgstr "Szintaxis-kiemelés"
-
-#: data/ui/Export.ui:301
-msgid "Highlight style"
-msgstr "Kiemelés stílusa"
-
-#: data/ui/Export.ui:322
-msgid "Presentation"
-msgstr "Prenzentáció"
-
-#: data/ui/Export.ui:328
-msgid "Incremental bullets"
-msgstr "Növekvő listaelemek"
-
-#: data/ui/Export.ui:357
-msgid "page0"
-msgstr "0. oldal"
-
-#: data/ui/Export.ui:365
-msgid "page1"
-msgstr "1. oldal"
-
-#: data/ui/ExportPopover.ui:19
-msgid "Save As…"
-msgstr "Mentés mint..."
-
-#: data/ui/ExportPopover.ui:100
-msgid "Advanced Export…"
-msgstr "Haladó export"
-
-#: data/ui/Headerbar.ui:242
-msgid "Save as…"
-msgstr "Mentés mint..."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
@@ -624,22 +570,44 @@ msgid "An elegant, distraction-free markdown editor"
 msgstr "Egy elegáns, zavartalan markdown szerkesztő"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
-msgid "Apostrophe is a GTK based distraction free Markdown editor, originally created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc as backend for markdown parsing and offers a very clean and sleek user interface."
-msgstr "Az Apostrophe egy GTK-alapú, figyelemelterelés nélküli Markdown-szerkesztő, amelyet eredetileg Wolf Vollprecht készített, és Manuel Genovés tartja karban. Pandoc-ot használ backendként a markdown-elemzéshez, és nagyon tiszta és elegáns felhasználói felületet kínál."
+#, fuzzy
+msgid "Focus on your writing with a clean, distraction-free markdown editor."
+msgstr "Egy elegáns, zavartalan markdown szerkesztő"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
-msgid "You can install the recommended TexLive extension with the command:"
-msgstr "A javasolt TexLive bővítmény a következő paranccsal telepíthető:"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
-msgid "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
-msgstr "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+msgid "Features:"
+msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
-msgid "or from Gnome-Software"
-msgstr "vagy a \"Gnome-szoftverek\"-ből"
+msgid "An UI tailored to comfortable writing"
+msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:35
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
+#, fuzzy
+msgid "A distraction-free mode"
+msgstr "Egy elegáns, zavartalan markdown szerkesztő"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
+msgid "Dark, light and sepia themes"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+msgid ""
+"Everything you expect from a text editor, such as spellchecking or document "
+"statistics"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
+msgid "Live preview of what you write"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
+msgid ""
+"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
+"slideshows"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
 msgid "Wolf V., Manuel G."
 msgstr "Wolf V., Manuel G."
 
@@ -649,10 +617,107 @@ msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
 msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
-msgid "Apostrophe, a simple and distraction free Markdown Editor"
-msgstr "Apostrophe, egy egyszerű és zavartalan ingyenes Markdownezerkesztő"
+#, fuzzy
+msgid "Apostrophe, an elegant, distraction-free markdown editor"
+msgstr "Egy elegáns, zavartalan markdown szerkesztő"
 
-#: apostrophe/inhibitor.py:35
-msgid "Unsaved documents"
-msgstr "Mentetlen dokumentumok"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
+msgid "Color scheme"
+msgstr ""
 
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
+msgid "Use the color scheme in the application's UI and in the text area."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
+msgid "Enable or disable spellchecking."
+msgstr "Helyesírás ellenőrzés be-/kikapcsolása"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:42
+msgid "Synchronize editor/preview scrolling"
+msgstr "Szerkesztő/Előnézet görgetésének szinkronizálása"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr "Szerkesztő és előnézet görgetési pozíciójának szinkronban tartása"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr ""
+"Beviteli formátum használata előnézet és export esetén Pandoc használata "
+"során"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:56
+msgid "Autohide Headerbar"
+msgstr "Fejléc automatikus eltűntetése"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
+msgid "Hide the header and status bars when typing."
+msgstr "Fejléc és státusz sor elrejtése gépelés közben"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
+msgid "Open file base path"
+msgstr "Fájl alap elérési útjának megnyitása "
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
+msgid "Open file paths of the current session"
+msgstr "A jelenlegi munkamenet fájl-útvonal(ainak) megnyitása"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:70
+msgid "Default statistic"
+msgstr "Alapértelmezett statisztikák"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
+msgid "Which statistic is shown on the main window."
+msgstr "Mely statisztikák kerüljenek megmutatásra a fő ablakban."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:77
+msgid "Characters per line"
+msgstr "Karakter(ek) soronként"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
+msgid "Maximum number of characters per line within the editor."
+msgstr "Maximum karakterszám soronként a szerkesztőben."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:84
+msgid "Preview mode"
+msgstr "Előnézet mód"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
+msgid "How to display the preview."
+msgstr "Hogyan mutassa az előnézetet"
+
+#~ msgid ""
+#~ "Apostrophe is a GTK based distraction free Markdown editor, originally "
+#~ "created by Wolf Vollprecht and maintained by Manuel Genovés. It uses "
+#~ "pandoc as backend for markdown parsing and offers a very clean and sleek "
+#~ "user interface."
+#~ msgstr ""
+#~ "Az Apostrophe egy GTK-alapú, figyelemelterelés nélküli Markdown-"
+#~ "szerkesztő, amelyet eredetileg Wolf Vollprecht készített, és Manuel "
+#~ "Genovés tartja karban. Pandoc-ot használ backendként a markdown-"
+#~ "elemzéshez, és nagyon tiszta és elegáns felhasználói felületet kínál."
+
+#~ msgid "You can install the recommended TexLive extension with the command:"
+#~ msgstr "A javasolt TexLive bővítmény a következő paranccsal telepíthető:"
+
+#~ msgid ""
+#~ "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+#~ msgstr ""
+#~ "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+
+#~ msgid "or from Gnome-Software"
+#~ msgstr "vagy a \"Gnome-szoftverek\"-ből"
+
+#~ msgid "Apostrophe, a simple and distraction free Markdown Editor"
+#~ msgstr "Apostrophe, egy egyszerű és zavartalan ingyenes Markdownezerkesztő"
+
+#, fuzzy
+#~ msgid "Use dark mode"
+#~ msgstr "Elsötétített nézet"
+
+#~ msgid "Enable or disable the dark mode."
+#~ msgstr "Sötét mód be-/kikapcsolása"
+
+#~ msgid "Light mode isn’t available while using a dark global theme"
+#~ msgstr "A világos mód nem elérhető, ha globális sötét témát használ"

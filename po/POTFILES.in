@@ -19,14 +19,13 @@ apostrophe/search_and_replace.py
 apostrophe/settings.py
 apostrophe/stats_counter.py
 apostrophe/stats_handler.py
-apostrophe/styled_window.py
 apostrophe/text_view.py
 apostrophe/text_view_drag_drop_handler.py
 apostrophe/text_view_format_inserter.py
 apostrophe/text_view_markup_handler.py
 apostrophe/text_view_scroller.py
 apostrophe/text_view_undo_redo_handler.py
-apostrophe/theme.py
+apostrophe/theme_switcher.py
 apostrophe/tweener.py
 
 # UI
