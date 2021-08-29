@@ -18,19 +18,19 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/main/screenshots/main.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main-dark.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/main/screenshots/main-dark.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/formula.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/main/screenshots/formula.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/preview.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/main/screenshots/preview.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/focus.png</image>
+      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/main/screenshots/focus.png</image>
     </screenshot>
   </screenshots>
   
