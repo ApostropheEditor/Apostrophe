@@ -1,0 +1,672 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Apostrophe\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-10 00:35+0100\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+
+#: apostrophe/export_dialog.py:128 apostrophe/export_dialog.py:323
+#: apostrophe/export_dialog.py:327 data/ui/Export.ui:62
+msgid "Export"
+msgstr "Eksporti"
+
+#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
+#, python-format
+msgid "Export to %s"
+msgstr "Exporti al %s"
+
+#: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
+#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:356
+#: apostrophe/main_window.py:447 apostrophe/main_window.py:520
+#: data/ui/Export.ui:47
+msgid "Cancel"
+msgstr "Nuligi"
+
+#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
+#, python-brace-format
+msgid ""
+"An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+"Eraron okazis dum eksportado:\n"
+"\n"
+"{err_msg}"
+
+#: apostrophe/export_dialog.py:234
+msgid "Export to {}"
+msgstr "Eksporti al {}"
+
+#: apostrophe/export_dialog.py:324
+msgid "Select folder"
+msgstr "Elekti dosierujon"
+
+#: apostrophe/headerbars.py:91
+msgid "Light mode isn’t available while using a dark global theme"
+msgstr "Helan reĝimon malelekteblas samtempe al ĝenerala malhela aspekto"
+
+#: apostrophe/headerbars.py:137 apostrophe/preview_renderer.py:133
+#: data/ui/PreviewLayoutSwitcherItem.ui:36
+msgid "Full-Width"
+msgstr "Plenlarĝa"
+
+#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:135
+msgid "Half-Width"
+msgstr "Duonlarĝa"
+
+#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:137
+msgid "Half-Height"
+msgstr "Duonalta"
+
+#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:139
+msgid "Windowed"
+msgstr "Enfenestra"
+
+#: apostrophe/helpers.py:90
+msgid "Error"
+msgstr "Eraro"
+
+#: apostrophe/inhibitor.py:35
+msgid "Unsaved documents"
+msgstr "Nekonservitaj dosieroj"
+
+#: apostrophe/inline_preview.py:201
+msgid "Formula looks incorrect:"
+msgstr "La formulo ŝajnas malĝusta:"
+
+#: apostrophe/inline_preview.py:240
+msgid "No matching footnote found"
+msgstr "Neniu simila piednoto trovita"
+
+#: apostrophe/inline_preview.py:260
+msgid "noun"
+msgstr "o-vorto"
+
+#: apostrophe/inline_preview.py:262
+msgid "verb"
+msgstr "i-vorto"
+
+#: apostrophe/inline_preview.py:264
+msgid "adjective"
+msgstr "a-vorto"
+
+#: apostrophe/inline_preview.py:266
+msgid "adverb"
+msgstr "e-vorto"
+
+#: apostrophe/main_window.py:352
+msgid "Save your File"
+msgstr "Konservu vian dosieron"
+
+#: apostrophe/main_window.py:355 data/ui/Headerbar.ui:225
+msgid "Save"
+msgstr "Konservi"
+
+#: apostrophe/main_window.py:436
+msgid "Markdown Files"
+msgstr "Mardown dosieroj"
+
+#: apostrophe/main_window.py:440
+msgid "Plain Text Files"
+msgstr "Plattekstaj dosieroj"
+
+#: apostrophe/main_window.py:443
+msgid "Open a .md file"
+msgstr "Malfermi \".md\" dosieron"
+
+#: apostrophe/main_window.py:446 data/ui/Headerbar.ui:182
+msgid "Open"
+msgstr "Malfermi"
+
+#: apostrophe/main_window.py:510
+#, python-format
+msgid "Save changes to document “%s” before closing?"
+msgstr "Konservi aliiĝojn al dosiero \"%s\" antaŭ fermi?"
+
+#: apostrophe/main_window.py:515
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Se vi ne konservas, ĉiu aliiĝo perdiĝos."
+
+#: apostrophe/main_window.py:518
+msgid "Close without saving"
+msgstr "Fermi sen konservi"
+
+#: apostrophe/main_window.py:521
+msgid "Save now"
+msgstr "Konservi tuj"
+
+#: apostrophe/main_window.py:723
+msgid "New File"
+msgstr "Nova dosiero"
+
+#: apostrophe/preview_renderer.py:48 data/ui/Headerbar.ui:305
+msgid "Preview"
+msgstr "Antaŭmontro"
+
+#: apostrophe/stats_handler.py:74
+msgid "{:n} Characters"
+msgstr "{:n} signoj"
+
+#: apostrophe/stats_handler.py:76
+msgid "{:n} Words"
+msgstr "{:n} vortoj"
+
+#: apostrophe/stats_handler.py:78
+msgid "{:n} Sentences"
+msgstr "{:n} frazoj"
+
+#: apostrophe/stats_handler.py:80
+msgid "{:n} Paragraphs"
+msgstr "{:n} paragrafoj"
+
+#: apostrophe/stats_handler.py:82
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} de legado daŭro"
+
+#: apostrophe/text_view_drag_drop_handler.py:75
+#: apostrophe/text_view_drag_drop_handler.py:77
+msgid "web page"
+msgstr "retpaĝo"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "kursiva teksto"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "grasa teksto"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "trastreka teksto"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Ero"
+
+#: apostrophe/text_view_format_inserter.py:98
+msgid "Header"
+msgstr "Kapo"
+
+#: data/ui/About.ui.in:12
+msgid "Copyright (C) 2020, Wolf Vollprecht"
+msgstr "Aŭtorrajto (C) 2020, Wolf Vollprecht"
+
+#: data/ui/About.ui.in:14
+msgid "Apostrophe website"
+msgstr "Retejo de Apostrophe"
+
+#. Put your name in here, like this:
+#. Manuel Genovés <manuel.genoves@gmail.com>
+#: data/ui/About.ui.in:20
+msgid "translator-credits"
+msgstr "Sébastien Zurfluh"
+
+#: data/ui/About.ui.in:65
+msgid "Donations:"
+msgstr "Donacoj:"
+
+#: data/ui/About.ui.in:74
+msgid "Paypal"
+msgstr "Paypal"
+
+#: data/ui/About.ui.in:105
+msgid "Help to translate:"
+msgstr "Helpu kun traduko:"
+
+#: data/ui/About.ui.in:114
+msgid "Poeditor"
+msgstr "Poeditor"
+
+#: data/ui/Export.ui:154
+msgid "Standalone"
+msgstr "Memstara"
+
+#: data/ui/Export.ui:156
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+"Uzi kapon kaj piednoton por enhavigi aĵojn kiel stilfolioj kaj metadatumoj"
+
+#: data/ui/Export.ui:171
+msgid "Table of Contents"
+msgstr "Enhavotabelo"
+
+#: data/ui/Export.ui:187
+msgid "Number Sections"
+msgstr "Numera sekcio"
+
+#: data/ui/Export.ui:211 data/ui/Export.ui:217
+msgid "Page Size"
+msgstr "Dimensio de la paĝo"
+
+#: data/ui/Export.ui:236
+msgid "HTML Options"
+msgstr "HTML agordoj"
+
+#: data/ui/Export.ui:242
+msgid "Self-contained"
+msgstr "Sendependa"
+
+#: data/ui/Export.ui:244
+msgid "Produces an HTML file with no external dependencies"
+msgstr "Havigi HTML-dosieron sen ekstera dependo"
+
+#: data/ui/Export.ui:260
+msgid "CSS File"
+msgstr "CSS-dosiero"
+
+#: data/ui/Export.ui:265
+msgid "Select CSS file"
+msgstr "Elekti CSS-dosiero"
+
+#: data/ui/Export.ui:286
+msgid "Syntax Highlighting"
+msgstr "Emfazigo de sintakso"
+
+#: data/ui/Export.ui:301
+msgid "Highlight style"
+msgstr "Emfazigi stilon"
+
+#: data/ui/Export.ui:322
+msgid "Presentation"
+msgstr "Prezento"
+
+#: data/ui/Export.ui:328
+msgid "Incremental bullets"
+msgstr "Alkrementaj buloj"
+
+#: data/ui/Export.ui:330
+msgid "Show one bullet point after another in a slideshow"
+msgstr "Montri bulosignon post alia dum bildoprezento"
+
+#: data/ui/Export.ui:357
+msgid "page0"
+msgstr "paĝo0"
+
+#: data/ui/Export.ui:365
+msgid "page1"
+msgstr "paĝo0"
+
+#: data/ui/ExportPopover.ui:19
+msgid "Save As…"
+msgstr "Konservi kiel…"
+
+#: data/ui/ExportPopover.ui:100
+msgid "Advanced Export…"
+msgstr "Alĝustigite eksporti…"
+
+#: data/ui/ExportPopover.ui:125
+msgid "Copy HTML"
+msgstr "Kopii na HTML"
+
+#: data/ui/Headerbar.ui:130
+msgid "Sync Views"
+msgstr "Sinkronigi vidojn"
+
+#: data/ui/Headerbar.ui:171
+msgid "New"
+msgstr "Nova"
+
+#: data/ui/Headerbar.ui:199
+msgid "Open Recent"
+msgstr "Malfermi lasttempa"
+
+#: data/ui/Headerbar.ui:242
+msgid "Save as…"
+msgstr "Konservi kiel…"
+
+#: data/ui/Headerbar.ui:283
+msgid "Menu"
+msgstr "Agordoj"
+
+#: data/ui/Headerbar.ui:378
+msgid "Find"
+msgstr "Serĉi"
+
+#: data/ui/Menu.ui:100
+msgid "Hemingway Mode"
+msgstr "Hemingway reĝimo"
+
+#: data/ui/Menu.ui:114
+msgid "Focus Mode"
+msgstr "Fokusreĝimo"
+
+#: data/ui/Menu.ui:139
+msgid "Find and Replace"
+msgstr "Serĉi kaj anstataŭigi"
+
+#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+msgid "Preferences"
+msgstr "Agordoj"
+
+#: data/ui/Menu.ui:189
+msgid "Open Tutorial"
+msgstr "Malfermi instruilon"
+
+#: data/ui/Menu.ui:203
+msgid "Keyboard Shortcuts"
+msgstr "Klavarkombinoj"
+
+#: data/ui/Menu.ui:217
+msgid "About Apostrophe"
+msgstr "Pri Apostrophe"
+
+#: data/ui/Preferences.ui:49
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+msgid "Check spelling while typing"
+msgstr "Kontroli literumadon dum tajpado"
+
+#: data/ui/Preferences.ui:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+msgid "Input format"
+msgstr "Eniga datumformo"
+
+#: data/ui/Preferences.ui:110
+msgid "Autohide header and statusbars while typing"
+msgstr "Aŭtomate malmontri fenestran kaj statan breton dum tajpado"
+
+#: data/ui/Preferences.ui:112
+msgid "Autohide headerbar"
+msgstr "Aŭtomate malmontri fenestran breton"
+
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Ĝenerala"
+
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr "Nova"
+
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Malfermi"
+
+#: data/ui/Shortcuts.ui:31
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Konservi"
+
+#: data/ui/Shortcuts.ui:38
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "Konservi kiel"
+
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Fermi dosieron"
+
+#: data/ui/Shortcuts.ui:52
+msgctxt "shortcut window"
+msgid "Quit application"
+msgstr "Fermi aplikaĵon"
+
+#: data/ui/Shortcuts.ui:61
+msgctxt "shortcut window"
+msgid "Modes"
+msgstr "Reĝimoj"
+
+#: data/ui/Shortcuts.ui:65
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "Fokusa reĝimo"
+
+#: data/ui/Shortcuts.ui:72
+msgctxt "shortcut window"
+msgid "Hemingway mode"
+msgstr "Hemingway reĝimo"
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "Antaŭmontro"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Plenekrana"
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr "Serĉi"
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr "Serĉi kaj anstataŭigi"
+
+#: data/ui/Shortcuts.ui:115
+msgctxt "shortcut window"
+msgid "Markdown"
+msgstr "Markdown"
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr "Apartigilo"
+
+#: data/ui/Shortcuts.ui:126
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "Listero"
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Kursiva"
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Grasa"
+
+#: data/ui/Shortcuts.ui:147
+msgctxt "shortcut window"
+msgid "Strikeout"
+msgstr "Trastreka"
+
+#: data/ui/Shortcuts.ui:156
+msgctxt "shortcut window"
+msgid "Copy and paste"
+msgstr "Kopii kaj alglui"
+
+#: data/ui/Shortcuts.ui:160
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "Kopii"
+
+#: data/ui/Shortcuts.ui:167
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "Eltondi elektan tekston al tondujo"
+
+#: data/ui/Shortcuts.ui:174
+msgctxt "shortcut window"
+msgid "Paste selected text from clipboard"
+msgstr "Alglui elektan tekston el tondujo"
+
+#: data/ui/Shortcuts.ui:183
+msgctxt "shortcut window"
+msgid "Undo and redo"
+msgstr "Malfari kaj refari"
+
+#: data/ui/Shortcuts.ui:187
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "Malfari antaŭan komandon"
+
+#: data/ui/Shortcuts.ui:194
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "Refari antaŭan komandon"
+
+#: data/ui/Shortcuts.ui:203
+msgctxt "shortcut window"
+msgid "Selection"
+msgstr "Elekto"
+
+#: data/ui/Shortcuts.ui:207
+msgctxt "shortcut window"
+msgid "Select all text"
+msgstr "Elekti la tutan tekston"
+
+#: data/ui/Window.ui:107
+msgid "Show Statistics"
+msgstr "Montri statistikojn"
+
+#: data/ui/Window.ui:206
+msgid "Previous Match"
+msgstr "Antaŭa kongruo"
+
+#: data/ui/Window.ui:220
+msgid "Next Match"
+msgstr "Malantaŭa kongruo"
+
+#: data/ui/Window.ui:249
+msgid "aA"
+msgstr "aA"
+
+#: data/ui/Window.ui:253
+msgid "Case Sensitive"
+msgstr "Usklecodistinga"
+
+#: data/ui/Window.ui:263
+msgid "(.*)"
+msgstr "(.*)"
+
+#: data/ui/Window.ui:267
+msgid "Regular Expression"
+msgstr "Regula esprimo"
+
+#: data/ui/Window.ui:280 data/ui/Window.ui:358
+msgid "Replace"
+msgstr "Anstataŭigi"
+
+#: data/ui/Window.ui:372
+msgid "Replace All"
+msgstr "Anstataŭigi ĉion"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
+msgid "Apostrophe"
+msgstr "Apostrophe"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
+msgid "An elegant, distraction-free markdown editor"
+msgstr "Eleganta, sendistra markdown redakilo"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
+msgid ""
+"Apostrophe is a GTK based distraction free Markdown editor, originally "
+"created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc "
+"as backend for markdown parsing and offers a very clean and sleek user "
+"interface."
+msgstr ""
+"Apostrophe estas sendistra markdown editor, kreita surbase de GTK ekigita "
+"de Wolf Vollprecht kaj  daŭrigita de Manuel Genovés. Ĝi uzas pandoc kiel "
+"interna servilo por markdown analizo kaj provizas senkonfuzan elegantan "
+"grafikan fasadon."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
+msgid "You can install the recommended TexLive extension with the command:"
+msgstr "Vi povas instali la rekomanditan TexLive etendaĵon kun la komando:"
+
+# This should not be translated at all.
+# Bonvolu ne traduki ĉi-tiun. Estas sistema komando.
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
+msgid ""
+"flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+msgstr ""
+"flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
+msgid "or from Gnome-Software"
+msgstr "aŭ el Gnome-Software"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:35
+msgid "Wolf V., Manuel G."
+msgstr "Wolf V., Manuel G."
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
+msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
+msgstr "uberwriter;UberWriter;apostrophe;markdown;redaktilo;"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
+msgid "Apostrophe, a simple and distraction free Markdown Editor"
+msgstr "Apostrophe: simpla, sendistra kaj senkosta markdown redakilo"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
+msgid "Use dark mode"
+msgstr "Uzi malhelan reĝimon"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
+msgid "Enable or disable the dark mode."
+msgstr "Ebligi aŭ malebligi malhelan reĝimon."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
+msgid "Enable or disable spellchecking."
+msgstr "Ebligi aŭ malebligi literumadan kontrolilon."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+msgid "Synchronize editor/preview scrolling"
+msgstr "Sinkronigi redaktilon/antaŭmontron rulumadon"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr ""
+"Gardi sinkronigita la rulumadon de la redaktilo kaj de la antaŭmontro."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr "Eniga formato uzita por antaŭmontri kaj eksporti pere de Pandoc."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+msgid "Autohide Headerbar"
+msgstr "Aŭtomate malmontri titolan breton"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
+msgid "Hide the header and status bars when typing."
+msgstr "Malmontri titolan kaj statan breton dum tajpado."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+msgid "Open file base path"
+msgstr "Malfermi dosierindikon"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
+msgid "Open file paths of the current session"
+msgstr "Malfermi dosierindikojn de la nuna seanco"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+msgid "Default statistic"
+msgstr "Implicita statistiko"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
+msgid "Which statistic is shown on the main window."
+msgstr "Kia statistiko montriĝas sur la ĉefa fenestro."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+msgid "Characters per line"
+msgstr "Signoj per linio"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
+msgid "Maximum number of characters per line within the editor."
+msgstr "Maksimuma nombro de signoj per linio ene de la redaktilo."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+msgid "Preview mode"
+msgstr "Antaŭmontroreĝimo"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
+msgid "How to display the preview."
+msgstr "Kiel vidigi la antaŭmontron."
