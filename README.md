@@ -20,8 +20,7 @@ Also several unofficial builds are available:
 
 ## Translation
 
-If you want to help translating the project, please join us at [Poeditor](https://poeditor.com/join/project/gxVzFyXb2x).
-Any help is appreciated!
+We're transitioning to Damned Lies. Hold on in the meantime
 
 ## Building
 
