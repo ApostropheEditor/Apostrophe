@@ -5,6 +5,7 @@ Keywords=uberwriter;UberWriter;apostrophe;markdown;editor;
 Comment=Apostrophe, an elegant, distraction-free markdown editor
 Categories=GNOME;GTK;Office;
 Exec=apostrophe %U
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
 Terminal=false
 Type=Application

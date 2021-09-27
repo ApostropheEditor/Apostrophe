@@ -1,5 +1,18 @@
-# source
-
+# List of source files containing translatable strings.
+data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in
+data/org.gnome.gitlab.somas.Apostrophe.gschema.xml
+data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in
+data/ui/About.ui.in
+data/ui/ExportPopover.ui
+data/ui/Export.ui
+data/ui/Headerbar.ui
+data/ui/Menu.ui
+data/ui/Preferences.ui
+data/ui/PreviewLayoutSwitcherItem.ui
+data/ui/Recents.ui
+data/ui/Shortcuts.ui
+data/ui/TexliveWarning.ui
+data/ui/Window.ui
 apostrophe/application.py
 apostrophe/export_dialog.py
 apostrophe/fix_table.py
@@ -19,31 +32,11 @@ apostrophe/search_and_replace.py
 apostrophe/settings.py
 apostrophe/stats_counter.py
 apostrophe/stats_handler.py
-apostrophe/text_view.py
 apostrophe/text_view_drag_drop_handler.py
 apostrophe/text_view_format_inserter.py
 apostrophe/text_view_markup_handler.py
+apostrophe/text_view.py
 apostrophe/text_view_scroller.py
 apostrophe/text_view_undo_redo_handler.py
 apostrophe/theme_switcher.py
 apostrophe/tweener.py
-
-# UI
-
-data/ui/About.ui.in
-data/ui/Export.ui
-data/ui/ExportPopover.ui
-data/ui/Headerbar.ui
-data/ui/Menu.ui
-data/ui/Preferences.ui
-data/ui/PreviewLayoutSwitcherItem.ui
-data/ui/Recents.ui
-data/ui/Shortcuts.ui
-data/ui/TexliveWarning.ui
-data/ui/Window.ui
-
-# Resources
-
-data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in
-data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in
-data/org.gnome.gitlab.somas.Apostrophe.gschema.xml
