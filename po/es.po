@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2021-10-31 12:17+0000\n"
-"PO-Revision-Date: 2021-11-26 16:58+0100\n"
+"POT-Creation-Date: 2021-11-26 15:59+0000\n"
+"PO-Revision-Date: 2021-11-29 07:21+0100\n"
 "Last-Translator: Miguel Ángel Nieto <correo@miguelangelnieto.net>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -28,7 +28,7 @@ msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, an elegant, distraction-free markdown editor"
-msgstr "Apostrophe, un editor de marcado elegante y libre de distracciones"
+msgstr "Apostrophe, un editor de Markdown elegante y libre de distracciones"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
 msgid "Color scheme"
@@ -110,12 +110,12 @@ msgstr "Como mostrar la vista previa"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
 msgid "An elegant, distraction-free markdown editor"
-msgstr "Un editor de marcado elegante y libre de distracciones"
+msgstr "Un editor de Markdown elegante y libre de distracciones"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
 msgid "Focus on your writing with a clean, distraction-free markdown editor."
 msgstr ""
-"Enfóquese en su escritura con un editor de marcado claro y libre de "
+"Enfóquese en su escritura con un editor de Markdown claro y libre de "
 "distracciones."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
@@ -434,7 +434,7 @@ msgstr "Buscar y reemplazar"
 #: data/ui/Shortcuts.ui:115
 msgctxt "shortcut window"
 msgid "Markdown"
-msgstr "Marcado"
+msgstr "Markdown"
 
 #: data/ui/Shortcuts.ui:119
 msgctxt "shortcut window"
@@ -616,7 +616,7 @@ msgstr "Guardar el archivo"
 
 #: apostrophe/main_window.py:424
 msgid "Markdown Files"
-msgstr "Archivo de marcado"
+msgstr "Archivo de Markdown"
 
 #: apostrophe/main_window.py:428
 msgid "Plain Text Files"
