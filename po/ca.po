@@ -125,7 +125,7 @@ msgstr "Desa els canvis"
 
 #: apostrophe/main_window.py:503
 msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "Si no deses tots els canvis es perdran de manera permanent"
+msgstr "Si no deses tots els canvis es perdran de manera permanent."
 
 #: apostrophe/main_window.py:506
 msgid "Close without saving"
@@ -227,7 +227,7 @@ msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
-"Utilitza la capçalera i el peu per incloure coses com fulls d'estil o "
+"Utilitza la capçalera i el peu per aincloure coses com fulls d'estil o "
 "metainformació"
 
 #: data/ui/Export.ui:171
@@ -644,7 +644,7 @@ msgstr "Amaga la capçalera automàticament"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
 msgid "Hide the header and status bars when typing."
-msgstr "Amaga la capçalera i barra d'estat mentre escrius"
+msgstr "Amaga la capçalera i barra d'estat mentre escrius."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
 msgid "Open file base path"
@@ -676,5 +676,5 @@ msgstr "Previsualització"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
 msgid "How to display the preview."
-msgstr "Com mostrar la previsualització"
+msgstr "Com mostrar la previsualització."
 
