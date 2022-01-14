@@ -1,192 +1,161 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 04:08+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
+"POT-Creation-Date: 2021-09-28 14:53+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alexey Rubtsov <rushills@gmail.com>\n"
+"Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: apostrophe/export_dialog.py:128 apostrophe/export_dialog.py:323
-#: apostrophe/export_dialog.py:327 data/ui/Export.ui:62
-msgid "Export"
-msgstr "Экспортировать"
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
+msgid "Apostrophe"
+msgstr "Апостроф"
 
-#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
-#, python-format
-msgid "Export to %s"
-msgstr "Экспортировать в %s"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
+msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
+msgstr "uberwriter;UberWriter;Апостроф;Маркдаун;редактор;"
 
-#: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
-#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:344
-#: apostrophe/main_window.py:435 apostrophe/main_window.py:508
-#: data/ui/Export.ui:47
-msgid "Cancel"
-msgstr "Отменить"
-
-#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
+msgid "Apostrophe, an elegant, distraction-free markdown editor"
 msgstr ""
-"Ошибка произошла при попытке экспортировать:\n"
-"\n"
-"{err_msg}"
+"Апостроф - элегантный, не отвлекающий внимание редактор файлов Markdown"
 
-#: apostrophe/export_dialog.py:234
-msgid "Export to {}"
-msgstr "Экспорт в {}"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
+msgid "Color scheme"
+msgstr "Цветовая схема"
 
-#: apostrophe/export_dialog.py:324
-msgid "Select folder"
-msgstr "Выберите каталог"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
+msgid "Use the color scheme in the application's UI and in the text area."
+msgstr ""
+"Используйте цветовую схему в пользовательском интерфейсе приложения и в "
+"текстовой области."
 
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:132
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr "Вся ширина"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:35
+#: data/ui/Preferences.ui:49
+msgid "Check spelling while typing"
+msgstr "Проверка орфографии во время набора"
 
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:134
-msgid "Half-Width"
-msgstr "Половина ширины"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
+msgid "Enable or disable spellchecking."
+msgstr "Включить или выключить проверку орфографии."
 
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:136
-msgid "Half-Height"
-msgstr "Половина высоты"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:42
+msgid "Synchronize editor/preview scrolling"
+msgstr "Синхронизация прокрутки редактора/предварительного просмотра"
 
-#: apostrophe/headerbars.py:132 apostrophe/preview_renderer.py:138
-msgid "Windowed"
-msgstr "Оконный"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr ""
+"Держите редактор и предварительный просмотр позиций прокрутки в "
+"синхронизированном режиме."
 
-#: apostrophe/helpers.py:90
-msgid "Error"
-msgstr "Ошибка"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:49
+#: data/ui/Preferences.ui:73
+msgid "Input format"
+msgstr "Ввести формат"
 
-#: apostrophe/inhibitor.py:35
-msgid "Unsaved documents"
-msgstr "несохраненные документы"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr ""
+"Входной формат для использования при предварительном просмотре и экспорте с "
+"помощью Пандок."
 
-#: apostrophe/inline_preview.py:201
-msgid "Formula looks incorrect:"
-msgstr "Формула выглядит неправильно:"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:56
+msgid "Autohide Headerbar"
+msgstr "Автоскрытие заголовка"
 
-#: apostrophe/inline_preview.py:240
-msgid "No matching footnote found"
-msgstr "Не найдено совпадающей сноски"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
+msgid "Hide the header and status bars when typing."
+msgstr "Спрячьте заголовок и строки состояния при наборе текста."
 
-#: apostrophe/inline_preview.py:260
-msgid "noun"
-msgstr "существительное"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
+msgid "Open file base path"
+msgstr "Открыть файл"
 
-#: apostrophe/inline_preview.py:262
-msgid "verb"
-msgstr "глагол"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
+msgid "Open file paths of the current session"
+msgstr "Открыть файл из"
 
-#: apostrophe/inline_preview.py:264
-msgid "adjective"
-msgstr "прилагательное"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:70
+msgid "Default statistic"
+msgstr "Статистика по умолчанию"
 
-#: apostrophe/inline_preview.py:266
-msgid "adverb"
-msgstr "наречие"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
+msgid "Which statistic is shown on the main window."
+msgstr "Какая статистика показывается на главном окне."
 
-#: apostrophe/main_window.py:340
-msgid "Save your File"
-msgstr "Сохранить ваш Файл"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:77
+msgid "Characters per line"
+msgstr "Текст в каждой строке"
 
-#: apostrophe/main_window.py:343 data/ui/Headerbar.ui:225
-msgid "Save"
-msgstr "Сохранить"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
+msgid "Maximum number of characters per line within the editor."
+msgstr "Максимальное количество символов на линии с редактором."
 
-#: apostrophe/main_window.py:424
-msgid "Markdown Files"
-msgstr "Файлы Маркдаун"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:84
+msgid "Preview mode"
+msgstr "Режим предпросмотра"
 
-#: apostrophe/main_window.py:428
-msgid "Plain Text Files"
-msgstr "Файлы чистого текста"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
+msgid "How to display the preview."
+msgstr "Как показывать предпросмотр."
 
-#: apostrophe/main_window.py:431
-msgid "Open a .md file"
-msgstr "Открыть .md файл"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
+msgid "An elegant, distraction-free markdown editor"
+msgstr "Элегантный, не отвлекающий внимание редактор файлов Markdown"
 
-#: apostrophe/main_window.py:434 data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr "Открыть"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
+msgid "Focus on your writing with a clean, distraction-free markdown editor."
+msgstr ""
+"Сосредоточьтесь на написании текста с помощью минималистичного, не "
+"отвлекающего редактора файлов Markdown."
 
-#: apostrophe/main_window.py:498
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr "Сохранять изменения в документе “%s” перед закрытием?"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
+msgid "Features:"
+msgstr "Возможности:"
 
-#: apostrophe/main_window.py:503
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "Если вы не сохраните, все ваши изменения будут навсегда потеряны."
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
+msgid "An UI tailored to comfortable writing"
+msgstr "Пользовательский интерфейс, адаптированный для комфортного письма"
 
-#: apostrophe/main_window.py:506
-msgid "Close without saving"
-msgstr "Закрыть без сохранения"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
+msgid "A distraction-free mode"
+msgstr "Режим, не отвлекающий от работы"
 
-#: apostrophe/main_window.py:509
-msgid "Save now"
-msgstr "Сохранить сейчас"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
+msgid "Dark, light and sepia themes"
+msgstr "Темная, светлая и сепия темы"
 
-#: apostrophe/main_window.py:711
-msgid "New File"
-msgstr "Новый файл"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+msgid ""
+"Everything you expect from a text editor, such as spellchecking or document "
+"statistics"
+msgstr ""
+"Все, что вы ожидаете от текстового редактора, например, проверка орфографии "
+"или статистика документов"
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
-msgid "Preview"
-msgstr "Предпросмотр"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
+msgid "Live preview of what you write"
+msgstr "Предварительный просмотр написанного в режиме реального времени"
 
-#: apostrophe/stats_handler.py:74
-msgid "{:n} Characters"
-msgstr "{:n} Персонажи"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
+msgid ""
+"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
+"slideshows"
+msgstr ""
+"Экспорт во всевозможные форматы: PDF, Word/Libreoffice, LaTeX или даже слайд-"
+"шоу HTML"
 
-#: apostrophe/stats_handler.py:76
-msgid "{:n} Words"
-msgstr "{:n} Слова"
-
-#: apostrophe/stats_handler.py:78
-msgid "{:n} Sentences"
-msgstr "{:n} Приговоры"
-
-#: apostrophe/stats_handler.py:80
-msgid "{:n} Paragraphs"
-msgstr "{:n} Параграфы"
-
-#: apostrophe/stats_handler.py:82
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "{:d}:{:02d}:{:02d} Время чтения"
-
-#: apostrophe/text_view_drag_drop_handler.py:75
-#: apostrophe/text_view_drag_drop_handler.py:77
-msgid "web page"
-msgstr "веб-страница"
-
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr "курсив"
-
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr "жирный текст"
-
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr "зачёркнутый текст"
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr "Пункт"
-
-#: apostrophe/text_view_format_inserter.py:98
-msgid "Header"
-msgstr "Заголовок"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
+msgid "Wolf V., Manuel G."
+msgstr "Вульф В., Мануэль Г."
 
 #: data/ui/About.ui.in:12
 msgid "Copyright (C) 2020, Wolf Vollprecht"
@@ -200,7 +169,9 @@ msgstr "Апостроф сайт"
 #. Manuel Genovés <manuel.genoves@gmail.com>
 #: data/ui/About.ui.in:20
 msgid "translator-credits"
-msgstr "Евгений Буря"
+msgstr ""
+"Евгений Буря\n"
+"Alexey Rubtsov <rushills@gmail.com>, 2022"
 
 #: data/ui/About.ui.in:65
 msgid "Donations:"
@@ -217,6 +188,30 @@ msgstr "Помощь в переводе:"
 #: data/ui/About.ui.in:114
 msgid "Poeditor"
 msgstr "Poeditor"
+
+#: data/ui/ExportPopover.ui:19
+msgid "Save As…"
+msgstr "Сохранить как…"
+
+#: data/ui/ExportPopover.ui:100
+msgid "Advanced Export…"
+msgstr "Расширенный экспорт…"
+
+#: data/ui/ExportPopover.ui:125
+msgid "Copy HTML"
+msgstr "Скопировать HTML"
+
+#: data/ui/Export.ui:47 apostrophe/export_dialog.py:133
+#: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
+#: apostrophe/main_window.py:344 apostrophe/main_window.py:435
+#: apostrophe/main_window.py:508
+msgid "Cancel"
+msgstr "Отменить"
+
+#: data/ui/Export.ui:62 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:323 apostrophe/export_dialog.py:327
+msgid "Export"
+msgstr "Экспортировать"
 
 #: data/ui/Export.ui:154
 msgid "Standalone"
@@ -289,18 +284,6 @@ msgstr "стр0"
 msgid "page1"
 msgstr "стр1"
 
-#: data/ui/ExportPopover.ui:19
-msgid "Save As…"
-msgstr "Сохранить как…"
-
-#: data/ui/ExportPopover.ui:100
-msgid "Advanced Export…"
-msgstr "Расширенный экспорт…"
-
-#: data/ui/ExportPopover.ui:125
-msgid "Copy HTML"
-msgstr "Скопировать HTML"
-
 #: data/ui/Headerbar.ui:130
 msgid "Sync Views"
 msgstr "Синхронизировать просмотры"
@@ -309,9 +292,17 @@ msgstr "Синхронизировать просмотры"
 msgid "New"
 msgstr "Новый"
 
+#: data/ui/Headerbar.ui:182 apostrophe/main_window.py:434
+msgid "Open"
+msgstr "Открыть"
+
 #: data/ui/Headerbar.ui:199
 msgid "Open Recent"
 msgstr "Открыть недавние"
+
+#: data/ui/Headerbar.ui:225 apostrophe/main_window.py:343
+msgid "Save"
+msgstr "Сохранить"
 
 #: data/ui/Headerbar.ui:242
 msgid "Save as…"
@@ -320,6 +311,10 @@ msgstr "Сохранить как…"
 #: data/ui/Headerbar.ui:283
 msgid "Menu"
 msgstr "Меню"
+
+#: data/ui/Headerbar.ui:305 apostrophe/preview_renderer.py:47
+msgid "Preview"
+msgstr "Предпросмотр"
 
 #: data/ui/Headerbar.ui:378
 msgid "Find"
@@ -353,16 +348,6 @@ msgstr "Клавиатурные сокращения"
 msgid "About Apostrophe"
 msgstr "О Apostrophe"
 
-#: data/ui/Preferences.ui:49
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:35
-msgid "Check spelling while typing"
-msgstr "Проверка орфографии во время набора"
-
-#: data/ui/Preferences.ui:73
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:49
-msgid "Input format"
-msgstr "Ввести формат"
-
 #: data/ui/Preferences.ui:110
 msgid "Autohide header and statusbars while typing"
 msgstr "Скрыть заголовок и строку состояния при наборе текста"
@@ -370,6 +355,11 @@ msgstr "Скрыть заголовок и строку состояния пр�
 #: data/ui/Preferences.ui:112
 msgid "Autohide headerbar"
 msgstr "Автоматический заголовок скрытия"
+
+#: data/ui/PreviewLayoutSwitcherItem.ui:36 apostrophe/headerbars.py:126
+#: apostrophe/preview_renderer.py:132
+msgid "Full-Width"
+msgstr "Вся ширина"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -552,134 +542,155 @@ msgstr "Заменить"
 msgid "Replace All"
 msgstr "Заменить все"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
-#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
-msgid "Apostrophe"
-msgstr "Апостроф"
+#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
+#, python-format
+msgid "Export to %s"
+msgstr "Экспортировать в %s"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
-msgid "An elegant, distraction-free markdown editor"
-msgstr "элегантный, не отвлекающий внимание редактор пометки"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
-#, fuzzy
-msgid "Focus on your writing with a clean, distraction-free markdown editor."
-msgstr "элегантный, не отвлекающий внимание редактор пометки"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
-msgid "Features:"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
-msgid "An UI tailored to comfortable writing"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
-#, fuzzy
-msgid "A distraction-free mode"
-msgstr "элегантный, не отвлекающий внимание редактор пометки"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
-msgid "Dark, light and sepia themes"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
+#, python-brace-format
 msgid ""
-"Everything you expect from a text editor, such as spellchecking or document "
-"statistics"
+"An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
 msgstr ""
+"Ошибка произошла при попытке экспортировать:\n"
+"\n"
+"{err_msg}"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
-msgid "Live preview of what you write"
-msgstr ""
+#: apostrophe/export_dialog.py:234
+msgid "Export to {}"
+msgstr "Экспорт в {}"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
-msgid ""
-"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
-"slideshows"
-msgstr ""
+#: apostrophe/export_dialog.py:324
+msgid "Select folder"
+msgstr "Выберите каталог"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
-msgid "Wolf V., Manuel G."
-msgstr "Вульф В., Мануэль Г."
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:134
+msgid "Half-Width"
+msgstr "Половина ширины"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
-msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
-msgstr "uberwriter;UberWriter;Апостроф;Маркдаун;редактор;"
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:136
+msgid "Half-Height"
+msgstr "Половина высоты"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
-#, fuzzy
-msgid "Apostrophe, an elegant, distraction-free markdown editor"
-msgstr "элегантный, не отвлекающий внимание редактор пометки"
+#: apostrophe/headerbars.py:132 apostrophe/preview_renderer.py:138
+msgid "Windowed"
+msgstr "Оконный"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
-msgid "Color scheme"
-msgstr ""
+#: apostrophe/helpers.py:90
+msgid "Error"
+msgstr "Ошибка"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
-msgid "Use the color scheme in the application's UI and in the text area."
-msgstr ""
+#: apostrophe/inhibitor.py:35
+msgid "Unsaved documents"
+msgstr "несохраненные документы"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
-msgid "Enable or disable spellchecking."
-msgstr "Включить или выключить проверку орфографии."
+#: apostrophe/inline_preview.py:201
+msgid "Formula looks incorrect:"
+msgstr "Формула выглядит неправильно:"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:42
-msgid "Synchronize editor/preview scrolling"
-msgstr "Синхронизация прокрутки редактора/предварительного просмотра"
+#: apostrophe/inline_preview.py:240
+msgid "No matching footnote found"
+msgstr "Не найдено совпадающей сноски"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
-msgid "Keep the editor and preview scroll positions in sync."
-msgstr ""
-"Держите редактор и предварительный просмотр позиций прокрутки в "
-"синхронизированном режиме."
+#: apostrophe/inline_preview.py:260
+msgid "noun"
+msgstr "существительное"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
-msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr ""
-"Входной формат для использования при предварительном просмотре и экспорте с "
-"помощью Пандок."
+#: apostrophe/inline_preview.py:262
+msgid "verb"
+msgstr "глагол"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:56
-msgid "Autohide Headerbar"
-msgstr "Автоскрытие заголовка"
+#: apostrophe/inline_preview.py:264
+msgid "adjective"
+msgstr "прилагательное"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
-msgid "Hide the header and status bars when typing."
-msgstr "Спрячьте заголовок и строки состояния при наборе текста."
+#: apostrophe/inline_preview.py:266
+msgid "adverb"
+msgstr "наречие"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
-msgid "Open file base path"
-msgstr "Открыть файл"
+#: apostrophe/main_window.py:340
+msgid "Save your File"
+msgstr "Сохранить ваш Файл"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
-msgid "Open file paths of the current session"
-msgstr "Открыть файл из"
+#: apostrophe/main_window.py:424
+msgid "Markdown Files"
+msgstr "Файлы Маркдаун"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:70
-msgid "Default statistic"
-msgstr "Статистика по умолчанию"
+#: apostrophe/main_window.py:428
+msgid "Plain Text Files"
+msgstr "Файлы чистого текста"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
-msgid "Which statistic is shown on the main window."
-msgstr "Какая статистика показывается на главном окне."
+#: apostrophe/main_window.py:431
+msgid "Open a .md file"
+msgstr "Открыть .md файл"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:77
-msgid "Characters per line"
-msgstr "Текст в каждой строке"
+#: apostrophe/main_window.py:498
+#, python-format
+msgid "Save changes to document “%s” before closing?"
+msgstr "Сохранять изменения в документе “%s” перед закрытием?"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
-msgid "Maximum number of characters per line within the editor."
-msgstr "Максимальное количество символов на линии с редактором."
+#: apostrophe/main_window.py:503
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Если вы не сохраните, все ваши изменения будут навсегда потеряны."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:84
-msgid "Preview mode"
-msgstr "Режим предпросмотра"
+#: apostrophe/main_window.py:506
+msgid "Close without saving"
+msgstr "Закрыть без сохранения"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
-msgid "How to display the preview."
-msgstr "Как показывать предпросмотр."
+#: apostrophe/main_window.py:509
+msgid "Save now"
+msgstr "Сохранить сейчас"
+
+#: apostrophe/main_window.py:711
+msgid "New File"
+msgstr "Новый файл"
+
+#: apostrophe/stats_handler.py:74
+msgid "{:n} Characters"
+msgstr "{:n} Персонажи"
+
+#: apostrophe/stats_handler.py:76
+msgid "{:n} Words"
+msgstr "{:n} Слова"
+
+#: apostrophe/stats_handler.py:78
+msgid "{:n} Sentences"
+msgstr "{:n} Приговоры"
+
+#: apostrophe/stats_handler.py:80
+msgid "{:n} Paragraphs"
+msgstr "{:n} Параграфы"
+
+#: apostrophe/stats_handler.py:82
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} Время чтения"
+
+#: apostrophe/text_view_drag_drop_handler.py:75
+#: apostrophe/text_view_drag_drop_handler.py:77
+msgid "web page"
+msgstr "веб-страница"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "курсив"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "жирный текст"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "зачёркнутый текст"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Пункт"
+
+#: apostrophe/text_view_format_inserter.py:98
+msgid "Header"
+msgstr "Заголовок"
 
 #~ msgid ""
 #~ "Apostrophe is a GTK based distraction free Markdown editor, originally "
