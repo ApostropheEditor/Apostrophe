@@ -14,26 +14,26 @@
   </description>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
   <url type="homepage">https://somas.pages.gitlab.gnome.org/apostrophe/</url>
-  <url type="bugtracker">https://gitlab.gnome.org/somas/apostrophe/-/issues</url>
-  <url type="help">https://gitlab.gnome.org/somas/apostrophe/</url>
+  <url type="bugtracker">https://gitlab.gnome.org/World/apostrophe/-/issues</url>
+  <url type="help">https://gitlab.gnome.org/World/apostrophe/</url>
   <url type="donation">https://www.paypal.me/manuelgenoves</url>
-  <url type="translate">https://poeditor.com/join/project/gxVzFyXb2x</url>
+  <url type="translate">https://l10n.gnome.org/module/apostrophe/</url>
   <translation type="gettext">@gettext-package@</translation>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/main.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main-dark.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/main-dark.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/formula.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/formula.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/preview.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/preview.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/focus.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/focus.png</image>
     </screenshot>
   </screenshots>
   <releases>

@@ -9,7 +9,7 @@
     <property name="type_hint">dialog</property>
     <property name="program_name">Apostrophe</property>
     <property name="version">@version@</property>
-    <property name="copyright" translatable="yes">Copyright (C) 2020, Wolf Vollprecht</property>
+    <property name="copyright" translatable="yes">Copyright (C) 2022, Manuel G., Wolf V.</property>
     <property name="website">@package_url@</property>
     <property name="website_label" translatable="yes">Apostrophe website</property>
     <property name="authors">Wolf Vollprecht &lt;w.vollprecht@gmail.com&gt;
@@ -111,13 +111,13 @@ Vova Kolobok </property>
                 </child>
                 <child>
                   <object class="GtkLinkButton" id="translations_link">
-                    <property name="label" translatable="yes">Poeditor</property>
+                    <property name="label" translatable="yes">Damned Lies</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="relief">none</property>
-                    <property name="uri">https://poeditor.com/join/project/gxVzFyXb2x</property>
+                    <property name="uri">https://l10n.gnome.org/module/apostrophe/</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

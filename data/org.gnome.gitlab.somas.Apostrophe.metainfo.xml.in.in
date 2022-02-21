@@ -12,19 +12,19 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/main.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/main-dark.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/main-dark.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/formula.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/formula.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/preview.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/preview.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/somas/apostrophe/-/raw/master/screenshots/focus.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/focus.png</image>
     </screenshot>
   </screenshots>
   
@@ -33,10 +33,10 @@
   <url type="homepage">https://somas.pages.gitlab.gnome.org/apostrophe/</url>
   <content_rating type="oars-1.1"/>
   <developer_name>Wolf V., Manuel G.</developer_name>
-  <url type="bugtracker">https://gitlab.gnome.org/somas/apostrophe/-/issues</url>
+  <url type="bugtracker">https://gitlab.gnome.org/World/apostrophe/-/issues</url>
   <url type="donation">https://www.paypal.me/manuelgenoves</url>
-  <url type="help">https://gitlab.gnome.org/somas/apostrophe/</url>
-  <url type="translate">https://poeditor.com/join/project/gxVzFyXb2x</url>
+  <url type="help">https://gitlab.gnome.org/World/apostrophe/</url>
+  <url type="translate">https://l10n.gnome.org/module/apostrophe/</url>
   <update_contact>manuel.genoves_at_gmail.com</update_contact>
   <translation type="gettext">@gettext-package@</translation>
 </component>
