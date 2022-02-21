@@ -1,6 +1,5 @@
-# -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# BEGIN LICENSE
-# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2022, Manuel Genovés <manuel.genoves@gmail.com>
+#               2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -21,14 +20,23 @@ import webbrowser
 import gi
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, Handy, Gio, GObject
 import logging
 logger = logging.getLogger('apostrophe')
 
+from apostrophe.settings import Settings
 
-class PreferencesDialog:
+class InputFormat(GObject.Object):
+    def __init__(self, name, format, help, **kwargs):
+        super().__init__(**kwargs)
+        self.name: str = name
+        self.format: str = format
+        self.help: str = help
 
-    __gtype_name__ = "PreferencesDialog"
+@Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/Preferences.ui')
+class ApostrophePreferencesDialog(Handy.PreferencesWindow):
+
+    __gtype_name__ = "ApostrophePreferencesDialog"
 
     formats = [
         {
@@ -58,64 +66,51 @@ class PreferencesDialog:
         }
     ]
 
-    def __init__(self, settings):
-        self.settings = settings
-        self.builder = Gtk.Builder()
-        self.builder.add_from_resource(
-            "/org/gnome/gitlab/somas/Apostrophe/ui/Preferences.ui")
+    autohide_headerbar_switch = Gtk.Template.Child()
+    spellcheck_switch = Gtk.Template.Child()
+    input_format_comborow = Gtk.Template.Child()
+    bigger_text_switch = Gtk.Template.Child()
 
-        self.autohide_headerbar_switch = self.builder.get_object(
-            "autohide_headerbar_switch")
-        self.autohide_headerbar_switch.set_active(
-            self.settings.get_value("autohide-headerbar"))
-        self.autohide_headerbar_switch.connect(
-            "state-set", self.on_autohide_headerbar)
+    settings = Settings.new()
 
-        self.spellcheck_switch = self.builder.get_object("spellcheck_switch")
-        self.spellcheck_switch.set_active(
-            self.settings.get_value("spellcheck"))
-        self.spellcheck_switch.connect("state-set", self.on_spellcheck)
+    def __init__(self):
+        super().__init__()
+        input_formats = Gio.ListStore.new(InputFormat)
 
-        input_format_store = Gtk.ListStore(int, str)
-        input_format = self.settings.get_string("input-format")
-        input_format_active = 0
-        for i, fmt in enumerate(self.formats):
-            input_format_store.append([i, fmt["name"]])
-            if fmt["format"] == input_format:
-                input_format_active = i
-        self.input_format_combobox = self.builder.get_object(
-            "input_format_combobox")
-        self.input_format_combobox.set_model(input_format_store)
-        input_format_renderer = Gtk.CellRendererText()
-        self.input_format_combobox.pack_start(input_format_renderer, True)
-        self.input_format_combobox.add_attribute(
-            input_format_renderer, "text", 1)
-        self.input_format_combobox.set_active(input_format_active)
-        self.input_format_combobox.connect("changed", self.on_input_format)
+        for i, format in enumerate(self.formats):
+            input_formats.append(InputFormat(format["name"],
+                                             format["format"],
+                                             format["help"]))
+            if (format["format"] == self.settings.get_string("input-format")):
+                current_format = i
 
-        self.input_format_help_button = self.builder.get_object(
-            "input_format_help_button")
-        self.input_format_help_button.connect(
-            'clicked', self.on_input_format_help)
+        self.input_format_comborow.bind_name_model(input_formats,
+                                                   lambda item, *args: item.name, None, None)
 
-    def show(self, window):
-        preferences_window = self.builder.get_object("PreferencesWindow")
-        preferences_window.set_application(window.get_application())
-        preferences_window.set_transient_for(window)
-        preferences_window.show()
+        if current_format:
+            self.input_format_comborow.set_selected_index(current_format)
 
-    def on_autohide_headerbar(self, _, state):
-        self.settings.set_boolean("autohide-headerbar", state)
-        return False
+        self.settings.bind("autohide-headerbar",
+                           self.autohide_headerbar_switch,
+                           "active",
+                           Gio.SettingsBindFlags.DEFAULT)
 
-    def on_spellcheck(self, _, state):
-        self.settings.set_boolean("spellcheck", state)
-        return False
+        self.settings.bind("spellcheck",
+                           self.spellcheck_switch,
+                           "active",
+                           Gio.SettingsBindFlags.DEFAULT)
 
-    def on_input_format(self, combobox):
-        fmt = self.formats[combobox.get_active()]
+        self.settings.bind("bigger-text",
+                           self.bigger_text_switch,
+                           "active",
+                           Gio.SettingsBindFlags.DEFAULT)
+
+    @Gtk.Template.Callback()
+    def on_input_format(self, _widget, _index):
+        fmt = self.formats[self.input_format_comborow.get_selected_index()]
         self.settings.set_string("input-format", fmt["format"])
 
+    @Gtk.Template.Callback()
     def on_input_format_help(self, _):
-        fmt = self.formats[self.input_format_combobox.get_active()]
+        fmt = self.formats[self.input_format_comborow.get_selected_index()]
         webbrowser.open(fmt["help"])

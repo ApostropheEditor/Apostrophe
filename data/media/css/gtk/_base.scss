@@ -4,29 +4,6 @@
 
 /* Main window and text colors */
 
-// TODO: remove when porting to libhandy
-.apostrophe-window {
-  background: $base_color;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(ltr) scrollbar {
-  border-top-right-radius: 8px;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(rtl) scrollbar {
-  border-top-left-radius: 8px;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) progressbar {
-  margin-left: 4px;
-  margin-right: 4px;
-}
-
 #titlebar-revealer {
   padding: 0;
 }
@@ -34,7 +11,7 @@
 .apostrophe-editor {
   text-decoration-color: $error_color;
   font-family: 'Fira Mono', monospace;
-  font-size: 16px;
+  font-size: 1.091em;
 
   text{
     background: $base_color;
@@ -42,29 +19,37 @@
     caret-color: $fg_color;
   }
 
-  &.size14  {
-  font-size: 14px;
-  }
+    &.size14  {
+    font-size: 0.955em;
+    }
+  
+    &.size15  {
+    font-size: 1.023em;
+    }
+  
+    &.size16  {
+    font-size: 1.091em;
+    }
+  
+    &.size17  {
+    font-size: 1.159em;
+    }
+  
+    &.size18 {
+    font-size: 1.227em;
+    }
+  
+    &.size20  {
+    font-size: 1.364em;
+    }
+  
+    &.size22  {
+    font-size: 1.5em;
+    }
 
-  &.size15  {
-  font-size: 15px;
-  }
-
-  &.size16  {
-  font-size: 16px;
-  }
-
-  &.size17  {
-  font-size: 17px;
-  }
-
-  &.size18 {
-  font-size: 18px;
-  }
-}
-
-.recents-popover treeview{
-  padding: 4px;
+    &.size24  {
+    font-size: 1.636em;
+    }
 }
 
 .inline-button {
@@ -133,10 +118,6 @@
   }
 }
 
-.plain-listview {
-  background-color: $bg_color;
-}
-
 /* theme selector */
 
 .color-button {
@@ -184,5 +165,53 @@
   &:checked {
     color: #3b3228;
     box-shadow: inset 0 0 0 2px $selected_bg_color;
+  }
+}
+
+.preview_button_left:checked{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right-style: none;
+}
+
+.preview_button_right{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+/* Recents */
+.open-popover {
+  contents {
+    padding: 0;
+  }
+
+  list {
+  background:none;
+    margin-bottom: 3px;
+  }
+
+  list label.placeholder {
+    min-height: 57px;
+  }
+
+  list row {
+    border-radius: 9px;
+    margin: 3px 6px;
+  }
+
+  list row:first-child {
+    margin-top: 6px;
+  }
+
+  list row button {
+    padding: 3px;
+    margin: 0;
+    min-height: 24px;
+    min-width: 24px;
+  }
+
+  list row:hover,
+  list row:focus {
+    background: transparentize($fg_color, .85);
   }
 }

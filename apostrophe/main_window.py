@@ -1,6 +1,5 @@
-# -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# BEGIN LICENSE
-# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2022, Manuel Genovés <manuel.genoves@gmail.com>
+#               2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -23,25 +22,52 @@ import chardet
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, GObject, GLib, Gio
+from gi.repository import Gtk, Gdk, GObject, GLib, Gio, Handy
 
 from apostrophe.export_dialog import ExportDialog, AdvancedExportDialog
 from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
-from apostrophe.text_view import TextView
-from apostrophe.search_and_replace import SearchAndReplace
+from apostrophe.text_view import ApostropheTextView
+from apostrophe.search_and_replace import ApostropheSearchBar
 from apostrophe.settings import Settings
 from apostrophe.tweener import Tweener
 from apostrophe.helpers import App
 from apostrophe import helpers
-# from apostrophe.sidebar import Sidebar
 
-from . import headerbars
+from .headerbars import BaseHeaderbar
 
 LOGGER = logging.getLogger('apostrophe')
 
 
-class MainWindow(Gtk.ApplicationWindow):
+@Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/Window.ui')
+class MainWindow(Handy.ApplicationWindow):
+
+    __gtype_name__ = "ApostropheWindow"
+
+
+    editor_scrolledwindow = Gtk.Template.Child()
+    save_progressbar = Gtk.Template.Child()
+    headerbar = Gtk.Template.Child()
+    headerbar_eventbox = Gtk.Template.Child()
+    searchbar = Gtk.Template.Child()
+    stats_revealer = Gtk.Template.Child()
+    stats_button = Gtk.Template.Child()
+    flap = Gtk.Template.Child()
+    # TODO ??
+    preview_stack = Gtk.Template.Child()
+    text_view = Gtk.Template.Child()
+    editor = Gtk.Template.Child()
+
+    title = GObject.Property(type=str, default='Apostrophe')
+    subtitle = GObject.Property(type=str)
+    is_fullscreen = GObject.Property(type=bool, default=False)
+    headerbar_visible = GObject.Property(type=bool, default=True)
+    bottombar_visible = GObject.Property(type=bool, default=True)
+
+    preview = GObject.Property(type=bool, default=False)
+    preview_layout = GObject.Property(type=int, default=1)
+
+    did_change = GObject.Property(type=bool, default=False)
 
     def __init__(self, app):
         """Set up the main window"""
@@ -49,17 +75,7 @@ class MainWindow(Gtk.ApplicationWindow):
         super().__init__(application=Gio.Application.get_default(),
                          title="Apostrophe")
 
-        self.get_style_context().add_class('apostrophe-window')
-
-        # Set UI
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/gitlab/somas/Apostrophe/ui/Window.ui")
-        root = builder.get_object("AppOverlay")
-        self.connect("delete-event", self.on_delete_called)
-        self.add(root)
-
-        self.set_default_size(1000, 600)
+        #TODO: size
 
         # Preferences
         self.settings = Settings.new()
@@ -69,114 +85,116 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.current = File()
 
-        # Headerbars
-        self.last_height = 0
-        self.headerbar = headerbars.MainHeaderbar(app)
-        self.headerbar.hb_revealer.connect(
-            "size_allocate", self.header_size_allocate)
-        self.set_titlebar(self.headerbar.hb_revealer)
-
-        # remove .titlebar class from hb_revealer
-        # to don't mess things up on Elementary OS
-        self.headerbar.hb_revealer.get_style_context().remove_class("titlebar")
-
-        self.fs_headerbar = headerbars.FullscreenHeaderbar(builder, app)
-
-        # The dummy headerbar is a cosmetic hack to be able to
-        # crossfade the hb on top of the window
-        self.dm_headerbar = headerbars.DummyHeaderbar(app)
-        root.add_overlay(self.dm_headerbar.hb_revealer)
-        root.reorder_overlay(self.dm_headerbar.hb_revealer, 0)
-        root.set_overlay_pass_through(self.dm_headerbar.hb_revealer, True)
-
-        self.accel_group = Gtk.AccelGroup()
-        self.add_accel_group(self.accel_group)
-
-        scrolled_window = builder.get_object('editor_scrolledwindow')
-
         # Setup text editor
-        self.text_view = TextView(self.settings.get_int("characters-per-line"))
-        self.text_view.set_top_margin(80)
-        self.text_view.connect('focus-out-event', self.focus_out)
         self.text_view.get_buffer().connect('changed', self.on_text_changed)
-        self.text_view.show()
-        scrolled_window.add(self.text_view)
         self.text_view.grab_focus()
 
         # Setup save progressbar an its animator
-
-        self.progressbar = builder.get_object("save_progressbar")
-        self.progressbar_initiate_tw = Tweener(self.progressbar,
-                                               self.progressbar.set_fraction,
+        self.progressbar_initiate_tw = Tweener(self.save_progressbar,
+                                               self.save_progressbar.set_fraction,
                                                0, 0.125, 40)
-        self.progressbar_finalize_tw = Tweener(self.progressbar,
-                                               self.progressbar.set_fraction,
+        self.progressbar_finalize_tw = Tweener(self.save_progressbar,
+                                               self.save_progressbar.set_fraction,
                                                0.125, 1, 400)
-        self.progressbar_opacity_tw = Tweener(self.progressbar,
-                                              self.progressbar.set_opacity,
-                                              1, 0, 300, 200)
+        self.progressbar_opacity_tw = Tweener(self.save_progressbar,
+                                              self.save_progressbar.set_opacity,
+                                              1, 0, 300, 200,
+                                              callback = self.save_progressbar.set_visible,
+                                              callback_arg = False)
 
         # Setup stats counter
-        self.stats_revealer = builder.get_object('editor_stats_revealer')
-        self.stats_button = builder.get_object('editor_stats_button')
         self.stats_handler = StatsHandler(self.stats_button, self.text_view)
 
         # Setup preview
-        content = builder.get_object('content')
-        editor = builder.get_object('editor')
-        self.preview_handler = PreviewHandler(self, content,
-                                              editor, self.text_view)
-
-        # Setup header/stats bar
-        self.headerbar_visible = True
-        self.bottombar_visible = True
-        self.buffer_modified_for_status_bar = False
+        self.preview_handler = PreviewHandler(self, self.text_view, self.flap)
 
         # Setting up spellcheck
-        self.toggle_spellcheck(self.settings.get_value("spellcheck"))
-        self.did_change = False
+        self.settings.bind("spellcheck", self.text_view,
+                           "spellcheck", Gio.SettingsBindFlags.GET)
 
-        ###
-        #   Sidebar initialization test
-        ###
-        # self.paned_window = builder.get_object("main_paned")
-        # self.sidebar_box = builder.get_object("sidebar_box")
-        # self.sidebar = Sidebar(self)
-        # self.sidebar_box.hide()
+        # Setting up text size
+        self.settings.bind("bigger-text", self.text_view,
+                           "bigger_text", Gio.SettingsBindFlags.GET)
 
-        ###
-        #   Search and replace initialization
-        ###
-        self.searchreplace = SearchAndReplace(self, self.text_view, builder)
+        self.settings.bind("characters-per-line", self.text_view,
+                           "line_chars", Gio.SettingsBindFlags.GET)
 
-        # EventBoxes
+        # Search and replace initialization
+        self.searchbar.attach(self.text_view)
 
-        self.headerbar_eventbox = builder.get_object("HeaderbarEventbox")
-        self.headerbar_eventbox.connect('enter_notify_event',
-                                        self.reveal_headerbar_bottombar)
+        # Actions
+        action = Gio.PropertyAction.new("find", self.searchbar, "search-mode-enabled")
+        self.add_action(action)
 
-        self.stats_revealer.connect('enter_notify_event',
-                                    self.reveal_bottombar)
+        action = Gio.PropertyAction.new("find_replace", self.searchbar, "replace-mode-enabled")
+        self.add_action(action)
+
+        action = Gio.PropertyAction.new("focus_mode", self.text_view, "focus-mode")
+        self.add_action(action)
+
+        action = Gio.PropertyAction.new("hemingway_mode", self.text_view, "hemingway-mode")
+        self.add_action(action)
+
+        action = Gio.PropertyAction.new("fullscreen", self, "is-fullscreen")
+        self.add_action(action)
+
+        action = Gio.PropertyAction.new("preview", self, "preview")
+        self.add_action(action)
+        self.connect("notify::preview", self.toggle_preview)
+
+
+        action = Gio.SimpleAction.new("new", None)
+        action.connect("activate", self.new_document)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("open", None)
+        action.connect("activate", self.open_document)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("open_file", GLib.VariantType("s"))
+        action.connect("activate", self.open_from_gvariant)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("save", None)
+        action.connect("activate", self.save_document)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("save_as", None)
+        action.connect("activate", self.save_document_as)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("export", GLib.VariantType("s"))
+        action.connect("activate", self.open_export)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("advanced_export", None)
+        action.connect("activate", self.open_advanced_export)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("copy_html", None)
+        action.connect("activate", self.copy_html_to_clipboard)
+        self.add_action(action)
+
+        # not really necessary but we'll keep a preview_layout property on the window
+        # and bind it both to the switcher and the renderer
+        self.bind_property("preview_layout", self.headerbar.preview_layout_switcher, 
+                           "preview_layout", GObject.BindingFlags.BIDIRECTIONAL|GObject.BindingFlags.SYNC_CREATE)
+
+        #self.bind_property("preview", self.headerbar.preview_layout_switcher.preview_switcher_toggle, 
+        #                   "active", GObject.BindingFlags.BIDIRECTIONAL|GObject.BindingFlags.SYNC_CREATE)
+
+        self.bind_property("preview_layout", self.preview_handler.preview_renderer, 
+                           "preview_layout", GObject.BindingFlags.SYNC_CREATE)
+
 
         self.new_document()
 
-    def header_size_allocate(self, widget, allocation):
-        """ When the main hb starts to shrink its size, add that size
-            to the textview margin, so it stays in place
-        """
-
-        # prevent 1px jumps
-        if not widget.get_child_revealed():
-            allocation.height = 0
-
-        height = self.headerbar.hb.get_allocated_height() - allocation.height
-        if height == self.last_height:
-            return
-
-        self.last_height = height
-
-        self.text_view.update_vertical_margin(height)
-        self.text_view.queue_draw()
+    # TODO: change to closures on GTK4
+    # "Bind" scrolled window's scrollbar margin to headerbar visibility
+    @Gtk.Template.Callback()
+    def headerbar_revealed_cb(self, widget, *args):
+        scrollbar = self.editor_scrolledwindow.get_vscrollbar()
+        scrollbar.set_margin_top(46 if widget.get_reveal_child() else 0)
 
     def on_text_changed(self, *_args):
         """called when the text changes, sets the self.did_change to true and
@@ -185,69 +203,36 @@ class MainWindow(Gtk.ApplicationWindow):
 
         if self.did_change is False:
             self.did_change = True
-
         self.update_headerbar_title(True, True)
-        self.buffer_modified_for_status_bar = True
         if self.settings.get_value("autohide-headerbar"):
             self.hide_headerbar_bottombar()
 
-    def set_fullscreen(self, state):
+    @Gtk.Template.Callback()
+    def _on_fullscreen(self, *args, **kwargs):
         """Puts the application in fullscreen mode and show/hides
         the poller for motion in the top border
-
-        Arguments:
-            state {almost bool} -- The desired fullscreen state of the window
         """
-
-        if state.get_boolean():
+        if self.is_fullscreen == True:
             self.fullscreen()
-            self.fs_headerbar.events.show()
-            self.fs_headerbar.hide_fs_hb()
-            self.headerbar_eventbox.hide()
+            self.hide_headerbar_bottombar()
         else:
             self.unfullscreen()
-            self.fs_headerbar.events.hide()
-            self.headerbar_eventbox.show()
+            self.reveal_headerbar_bottombar()
+
         self.text_view.grab_focus()
 
-    def set_focus_mode(self, state):
-        """toggle focusmode
-        """
-
-        self.text_view.set_focus_mode(state.get_boolean(),
-                                      self.headerbar.hb.get_allocated_height())
-        self.text_view.grab_focus()
-
-    def set_hemingway_mode(self, state):
-        """toggle hemingwaymode
-        """
-
-        self.text_view.set_hemingway_mode(state.get_boolean())
-        self.text_view.grab_focus()
-
-    def toggle_preview(self, state):
+    def toggle_preview(self, *args, **kwargs):
         """Toggle the preview mode
-
-        Arguments:
-            state {gtk bool} -- Desired state of the preview mode
         """
 
-        if state.get_boolean():
+        if self.preview:
             self.text_view.grab_focus()
             self.preview_handler.show()
-            self.headerbar.preview_toggle_revealer.set_reveal_child(True)
-            self.fs_headerbar.preview_toggle_revealer.set_reveal_child(True)
-            self.dm_headerbar.preview_toggle_revealer.set_reveal_child(True)
         else:
             self.preview_handler.hide()
             self.text_view.grab_focus()
-            self.headerbar.preview_toggle_revealer.set_reveal_child(False)
-            self.fs_headerbar.preview_toggle_revealer.set_reveal_child(False)
-            self.dm_headerbar.preview_toggle_revealer.set_reveal_child(False)
 
-        return True
-
-    def save_document(self, sync: bool = False) -> bool:
+    def save_document(self, _action=None, _value=None, sync: bool = False) -> bool:
         """Try to save buffer in the current gfile.
         If the file doesn't exist calls save_document_as
 
@@ -278,7 +263,8 @@ class MainWindow(Gtk.ApplicationWindow):
                 LOGGER.warning(str(error.reason))
                 return False
             else:
-                self.progressbar.set_opacity(1)
+                self.save_progressbar.set_opacity(1)
+                self.save_progressbar.set_visible(True)
                 self.progressbar_initiate_tw.start()
 
                 # we allow synchronously saving operations
@@ -370,6 +356,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
             self.current.gfile = file
 
+            recents_manager = Gtk.RecentManager.get_default()
+            recents_manager.add_item(self.current.gfile.get_uri())
+
             self.update_headerbar_title(False, True)
             filechooser.destroy()
             return self.save_document()
@@ -387,9 +376,6 @@ class MainWindow(Gtk.ApplicationWindow):
             return False
 
         if success:
-            recents_manager = Gtk.RecentManager.get_default()
-            recents_manager.add_item(self.current.gfile.get_uri())
-
             self.progressbar_initiate_tw.stop()
             self.progressbar_finalize_tw.start()
             self.progressbar_opacity_tw.start()
@@ -411,7 +397,7 @@ class MainWindow(Gtk.ApplicationWindow):
         clipboard.set_text(output, -1)
         clipboard.store()
 
-    def open_document(self, _widget=None):
+    def open_document(self, _action, _value):
         """open the desired file
         """
 
@@ -445,6 +431,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
         elif response == Gtk.ResponseType.CANCEL:
             filechooser.destroy()
+
+    def open_from_gvariant(self, _action, gvariant):
+        self.load_file(Gio.File.new_for_uri(gvariant.get_string()))
 
     def load_file(self, file=None):
         """Open File from command line or open / open recent etc."""
@@ -482,7 +471,14 @@ class MainWindow(Gtk.ApplicationWindow):
             GLib.idle_add(
                 lambda: self.text_view.get_buffer().place_cursor(start_iter))
 
+            ## add file to recents manager once it's fully loaded,
+            # unless it is an internal resource
+            if not self.current.gfile.get_uri().startswith("resource:"):
+                recents_manager = Gtk.RecentManager.get_default()
+                recents_manager.add_item(self.current.gfile.get_uri())
+
             self.update_headerbar_title()
+
             self.did_change = False
 
     def check_change(self) -> Gtk.ResponseType:
@@ -521,7 +517,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
             return response
 
-    def new_document(self, _widget=None):
+    def new_document(self, *args, **kwargs):
         """create new document
         """
 
@@ -536,44 +532,21 @@ class MainWindow(Gtk.ApplicationWindow):
     def update_default_stat(self):
         self.stats_handler.update_default_stat()
 
-    def update_preview_mode(self):
-        self.preview_handler.update_preview_mode()
-        self.headerbar.update_preview_layout_icon()
-        self.headerbar.select_preview_layout_row()
-        self.fs_headerbar.update_preview_layout_icon()
-        self.fs_headerbar.select_preview_layout_row()
-
-    def menu_toggle_sidebar(self, _widget=None):
-        """WIP
-        """
-        # self.sidebar.toggle_sidebar()
-
-    def toggle_spellcheck(self, state):
-        """Enable/disable the autospellchecking
-
-        Arguments:
-            status {gtk bool} -- Desired status of the spellchecking
-        """
-        self.text_view.set_spellcheck(state.get_boolean())
-
     def reload_preview(self, reshow=False):
         self.preview_handler.reload(reshow=reshow)
 
-    def open_search(self, replace=False):
-        """toggle the search box
-        """
-        self.searchreplace.toggle_search(replace=replace)
-
-    def open_export(self, export_format):
+    def open_export(self, _action, value):
         """open the export dialog
         """
         text = bytes(self.text_view.get_text(), "utf-8")
+
+        export_format = value.get_string()
 
         export_dialog = ExportDialog(self.current, export_format, text)
         export_dialog.dialog.set_transient_for(self)
         export_dialog.export()
 
-    def open_advanced_export(self):
+    def open_advanced_export(self, *args, **kwargs):
         """open the advanced export dialog
         """
         text = bytes(self.text_view.get_text(), "utf-8")
@@ -582,27 +555,19 @@ class MainWindow(Gtk.ApplicationWindow):
         export_dialog.set_transient_for(self)
         export_dialog.show()
 
-    def focus_out(self, _widget, _data=None):
-        """events called when the window losses focus
-        """
-        self.reveal_headerbar_bottombar()
-
+    @Gtk.Template.Callback()
     def reveal_headerbar_bottombar(self, _widget=None, _data=None):
-
-        def __reveal_hb():
-            self.headerbar_eventbox.hide()
-            self.headerbar.hb_revealer.set_reveal_child(True)
-            self.get_style_context().remove_class("focus")
-            return False
 
         self.reveal_bottombar()
 
         if not self.headerbar_visible:
-            self.dm_headerbar.hide_dm_hb()
-            GLib.timeout_add(400, __reveal_hb)
-
+            self.headerbar_eventbox.hide()
+            self.headerbar.set_visible(True)
+            self.headerbar.set_reveal_child(True)
+            self.get_style_context().remove_class("focus")
             self.headerbar_visible = True
 
+    @Gtk.Template.Callback()
     def reveal_bottombar(self, _widget=None, _data=None):
 
         if not self.bottombar_visible:
@@ -612,13 +577,13 @@ class MainWindow(Gtk.ApplicationWindow):
 
             self.bottombar_visible = True
 
-        self.buffer_modified_for_status_bar = True
-
     def hide_headerbar_bottombar(self):
 
+        if self.searchbar.get_search_mode():
+            return
+
         if self.headerbar_visible:
-            self.headerbar.hb_revealer.set_reveal_child(False)
-            self.dm_headerbar.show_dm_hb()
+            self.headerbar.set_reveal_child(False)
             self.get_style_context().add_class("focus")
 
             self.headerbar_visible = False
@@ -630,8 +595,8 @@ class MainWindow(Gtk.ApplicationWindow):
             self.bottombar_visible = False
 
         self.headerbar_eventbox.show()
-        self.buffer_modified_for_status_bar = False
 
+    @Gtk.Template.Callback()
     def on_delete_called(self, _widget, _data=None):
         """Called when the TexteditorWindow is closed.
         """
@@ -640,6 +605,7 @@ class MainWindow(Gtk.ApplicationWindow):
             return True
         return False
 
+    # TODO: this has to go
     def update_headerbar_title(self,
                                is_unsaved: bool = False,
                                has_subtitle: bool = True):
@@ -661,18 +627,9 @@ class MainWindow(Gtk.ApplicationWindow):
         else:
             subtitle = ""
 
-        self.headerbar.hb.set_title(title)
-        self.dm_headerbar.hb.set_title(title)
-        self.fs_headerbar.hb.set_title(title)
-
-        self.headerbar.hb.set_subtitle(subtitle)
-        self.dm_headerbar.hb.set_subtitle(subtitle)
-        self.fs_headerbar.hb.set_subtitle(subtitle)
-
-        self.headerbar.hb.set_tooltip_text(subtitle)
-        self.fs_headerbar.hb.set_tooltip_text(subtitle)
-
-        self.set_title(title)
+        self.title = title
+        self.subtitle = subtitle
+        self.headerbar.set_tooltip_text(subtitle)
 
 
 @dataclass

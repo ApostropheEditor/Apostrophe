@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24" />
+  <object class="GtkImage" id="edit-find-replace">
+    <property name="visible">1</property>
+    <property name="icon-name">edit-find-replace-symbolic</property>
+  </object>
+  <object class="GtkImage" id="go-up">
+    <property name="visible">1</property>
+    <property name="icon-name">go-up-symbolic</property>
+  </object>
+  <object class="GtkImage" id="go_down">
+    <property name="visible">1</property>
+    <property name="icon-name">go-down-symbolic</property>
+  </object>
+  <object class="GtkImage" id="spell-check">
+    <property name="visible">1</property>
+    <property name="stock">gtk-spell-check</property>
+  </object>
+  <template class="ApostropheSearchBar" parent="GtkSearchBar">
+    <signal name="notify::search-mode-enabled" handler="search_enabled" swapped="no"/>
+    <signal name="notify::replace-mode-enabled" handler="replace_enabled" swapped="no"/>
+    <signal name="size-allocate" handler="update_textview_margin" swapped="no"/>
+    <child>
+      <object class="GtkBox" id="searchpanel_box">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox" id="search_box">
+            <property name="visible">True</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkBox" id="searchbox_box">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkSearchEntry" id="search_entry">
+                    <property name="visible">True</property>
+                    <property name="primary-icon-name">edit-find-symbolic</property>
+                    <property name="primary-icon-activatable">0</property>
+                    <property name="primary-icon-sensitive">0</property>
+                    <signal name="search-changed" handler="search" swapped="no"/>
+                    <signal name="stop-search" handler="hide" swapped="no"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="previous_result">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Previous Match</property>
+                    <property name="image">go-up</property>
+                    <signal name="clicked" handler="scrolltoprev" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="next_result">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Next Match</property>
+                    <property name="image">go_down</property>
+                    <signal name="clicked" handler="scrolltonext" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <style>
+                  <class name="linked" />
+                </style>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="searchtools_box">
+                <property name="visible">True</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkToggleButton" id="case_sensitive">
+                    <property name="label" translatable="yes">aA</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Case Sensitive</property>
+                    <signal name="clicked" handler="search" swapped="no"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton" id="regex">
+                    <property name="label" translatable="yes">(.*)</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Regular Expression</property>
+                    <signal name="clicked" handler="search" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToggleButton" id="replace">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Replace</property>
+                    <property name="active" bind-source="ApostropheSearchBar" bind-property="replace_mode_enabled" bind-flags="bidirectional"/>
+                    <property name="image">edit-find-replace</property>
+                  </object>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <style>
+                  <class name="linked" />
+                </style>
+              </object>
+              <packing>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRevealer" id="replace_placeholder">
+            <property name="visible">True</property>
+            <property name="reveal-child" bind-source="ApostropheSearchBar" bind-property="replace_mode_enabled"/>
+            <child>
+              <object class="GtkBox" id="replace_box">
+                <property name="visible">True</property>
+                <property name="margin-top">6</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkBox" id="replacebox_box">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkEntry" id="replace_entry">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="primary-icon-name">edit-find-replace-symbolic</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                      </packing>
+                    </child>
+                    <style>
+                      <class name="linked" />
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="replacetools_box">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkButton" id="replace_one">
+                        <property name="label" translatable="yes">Replace</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="image">spell-check</property>
+                        <signal name="clicked" handler="replace_clicked" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="replace_all">
+                        <property name="label" translatable="yes">Replace All</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="replace_all" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <style>
+                      <class name="linked" />
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
