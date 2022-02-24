@@ -31,7 +31,7 @@ HEADER = re.compile(
 HEADER_UNDER = re.compile(
     r"(?:^\n*|\n\n)(?P<text>[^\s].+)\n {0,3}[=\-]+(?: +?\n|$)")
 CODE_BLOCK = re.compile(
-    r"(?:^|\n) {0,3}(?P<block>([`~]{3})(?P<text>.+?) {0,3}\2)(?:\s+?\n|$)", re.S)
+    r"^ {0,3}(?P<block>([`~]{3})(?P<text>.+?)(?<! ) {0,3}\2)(?:\s+?$|$)", re.S|re.M)
 TABLE = re.compile(
     r"^[\-+]{5,}\n(?P<text>.+?)\n[\-+]{5,}\n", re.S)
 MATH = re.compile(
