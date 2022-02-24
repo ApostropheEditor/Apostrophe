@@ -415,7 +415,9 @@ class MainWindow(Gtk.ApplicationWindow):
         """open the desired file
         """
 
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return
 
         markdown_filter = Gtk.FileFilter.new()
@@ -450,7 +452,9 @@ class MainWindow(Gtk.ApplicationWindow):
         """Open File from command line or open / open recent etc."""
         LOGGER.info("trying to open %s", file.get_path())
 
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return
         self.current.gfile = file
 
@@ -525,7 +529,9 @@ class MainWindow(Gtk.ApplicationWindow):
         """create new document
         """
 
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return
         self.text_view.clear()
 
@@ -636,7 +642,9 @@ class MainWindow(Gtk.ApplicationWindow):
         """Called when the TexteditorWindow is closed.
         """
         LOGGER.info('delete called')
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return True
         return False
 
