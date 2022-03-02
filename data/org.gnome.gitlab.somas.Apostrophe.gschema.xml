@@ -20,11 +20,12 @@
   <schema path="/org/gnome/gitlab/somas/Apostrophe/" id="org.gnome.gitlab.somas.Apostrophe">
     <key name='color-scheme' type='s'>
       <choices>
+        <choice value="auto"/>
         <choice value="light"/>
         <choice value="dark"/>
         <choice value="sepia"/>
       </choices>
-      <default>"light"</default>
+      <default>"auto"</default>
       <summary>Color scheme</summary>
       <description>
         Use the color scheme in the application's UI and in the text area.

@@ -25,6 +25,22 @@
     },
     "modules" : [
         {
+            "name": "libhandy",
+            "buildsystem": "meson",
+            "builddir": true,
+            "config-opts": [
+                "-Dexamples=false",
+                "-Dtests=false"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git",
+                    "branch": "main"
+                }
+            ]
+        },
+        {
             "name" : "libsass",
             "cleanup" : [
                 "*"

@@ -196,7 +196,7 @@
         <property name="margin_bottom">12</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="ThemeSwitcher">
+          <object class="ThemeSwitcher" id="themeswitcher">
             <property name="visible">True</property>
           </object>
           <packing>

@@ -52,6 +52,11 @@ class Application(Gtk.Application):
             Gdk.Screen.get_default(), self.style_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
+        # Style manager
+        style_manager = Handy.StyleManager.get_default()
+        style_manager.connect("notify::dark", self._set_color_scheme)
+        style_manager.connect("notify::high-contrast", self._set_color_scheme)
+        
         # Set editor keybindings
         # SCSS is not fit for this, so we do it in an external css file
         css_bindings_file = Gio.File.new_for_uri(
@@ -182,27 +187,35 @@ class Application(Gtk.Application):
                                "HighContrastInverse"]):
             settings.set_property("gtk-theme-name", "Adwaita")
 
-        if icon_theme_name != "Adwaita":
-            settings.set_property("gtk-icon-theme-name", "Adwaita")
 
-    def _set_color_scheme(self):
-
+    def _set_color_scheme(self, *args, **kwargs):
         # TODO: GTK4 - remove this
         theme = Theme.get_current()
 
-        settings = Gtk.Settings.get_default()
-        prefer_dark_theme = (theme.name == 'dark')
-        settings.props.gtk_application_prefer_dark_theme = prefer_dark_theme
+        style_manager = Handy.StyleManager.get_default()
+        dark = style_manager.get_dark()
+        sepia = theme.name == "sepia"
+        hc = style_manager.get_high_contrast()
 
         if not self.windows:
             return
 
-        self.style_provider.load_from_file(theme.gtk_css)
+        if sepia:
+            if hc:
+                self.style_provider.load_from_file(theme.gtk_css_hc)
+            else:
+                self.style_provider.load_from_file(theme.gtk_css)
+        elif dark:
+            if hc:
+                self.style_provider.load_from_file(Theme.get_for_name("dark").gtk_css_hc)
+            else:
+                self.style_provider.load_from_file(Theme.get_for_name("dark").gtk_css)
+        else:
+            if hc:
+                self.style_provider.load_from_file(Theme.get_for_name("light").gtk_css_hc)
+            else:
+                self.style_provider.load_from_file(Theme.get_for_name("light").gtk_css)
 
-        if settings.props.gtk_theme_name == "HighContrast" and prefer_dark_theme:
-            settings.props.gtk_theme_name = "HighContrastInverse"
-        elif settings.props.gtk_theme_name == "HighContrastInverse" and not prefer_dark_theme:
-            settings.props.gtk_theme_name = "HighContrast"
 
     def on_settings_changed(self, settings, key):
         # TODO: change this ffs

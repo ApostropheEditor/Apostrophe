@@ -16,7 +16,7 @@
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GObject, Gio
+from gi.repository import Gtk, GObject, Gio, Handy
 
 from .settings import Settings
 from apostrophe.helpers import get_media_path
@@ -27,10 +27,11 @@ class Theme:
 
     settings = Settings.new()
 
-    def __init__(self, name, gtk_css, web_css):
+    def __init__(self, name, gtk_css, gtk_css_hc, web_css):
         self.name = name
-        self.gtk_css = gtk_css
-        self.web_css = web_css
+        self.gtk_css    = gtk_css
+        self.gtk_css_hc = gtk_css_hc
+        self.web_css    = web_css
 
     @classmethod
     def get_for_name(cls, name, default=None):
@@ -47,10 +48,13 @@ class Theme:
 
 defaultThemes = [
     Theme('light', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css"),
+          Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-hc.css"),
           get_media_path('/media/css/web/adwaita.css')),
     Theme('dark', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-dark.css"),
+          Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-dark-hc.css"),
           get_media_path('/media/css/web/adwaita.css')),
     Theme('sepia', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia.css"),
+          Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia-hc.css"),
           get_media_path('/media/css/web/adwaita-sepia.css')),
 ]
 
@@ -62,11 +66,14 @@ class ThemeSwitcher(Gtk.Box):
 
     color_scheme = "light"
 
-    light_mode_button = Gtk.Template.Child()
-    sepia_mode_button = Gtk.Template.Child()
-    dark_mode_button = Gtk.Template.Child()
+    system_selector = Gtk.Template.Child()
+    light_selector = Gtk.Template.Child()
+    sepia_selector = Gtk.Template.Child()
+    dark_selector = Gtk.Template.Child()
 
     settings = Settings.new()
+
+    show_system = GObject.property(type=bool, default=True)
 
     @GObject.Property(type=str)
     def selected_color_scheme(self):
@@ -78,15 +85,23 @@ class ThemeSwitcher(Gtk.Box):
     def selected_color_scheme(self, color_scheme):
         self.color_scheme = color_scheme
 
+        if color_scheme == "auto":
+            self.system_selector.set_active(True)
+            self.style_manager.set_color_scheme(Handy.ColorScheme.PREFER_LIGHT)
         if color_scheme == "light":
-            self.light_mode_button.set_active(True)
+            self.light_selector.set_active(True)
+            self.style_manager.set_color_scheme(Handy.ColorScheme.FORCE_LIGHT)
         if color_scheme == "sepia":
-            self.sepia_mode_button.set_active(True)
+            self.sepia_selector.set_active(True)
+            self.style_manager.set_color_scheme(Handy.ColorScheme.FORCE_LIGHT)
         if color_scheme == "dark":
-            self.dark_mode_button.set_active(True)
+            self.dark_selector.set_active(True)
+            self.style_manager.set_color_scheme(Handy.ColorScheme.FORCE_DARK)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        self.style_manager = Handy.StyleManager.get_default()
 
         color_scheme = self.settings.get_string("color-scheme")
         self.color_scheme = color_scheme
@@ -97,11 +112,17 @@ class ThemeSwitcher(Gtk.Box):
             "selected_color_scheme",
             Gio.SettingsBindFlags.DEFAULT)
 
+        self.style_manager.bind_property("system-supports-color-schemes",
+                                         self, "show_system",
+                                         GObject.BindingFlags.SYNC_CREATE)
+
     @Gtk.Template.Callback()
     def _on_color_scheme_changed(self, widget, paramspec):
-        if self.light_mode_button.get_active():
+        if self.system_selector.get_active():
+            self.selected_color_scheme = "auto"
+        if self.light_selector.get_active():
             self.selected_color_scheme = "light"
-        if self.sepia_mode_button.get_active():
+        if self.sepia_selector.get_active():
             self.selected_color_scheme = "sepia"
-        if self.dark_mode_button.get_active():
+        if self.dark_selector.get_active():
             self.selected_color_scheme = "dark"

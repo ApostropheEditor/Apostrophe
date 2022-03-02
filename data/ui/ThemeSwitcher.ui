@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="ThemeSwitcher" parent="GtkBox">
+    <style>
+      <class name="themeswitcher"/>
+    </style>
     <child>
       <object class="GtkBox">
         <property name="visible">1</property>
@@ -8,72 +11,124 @@
         <property name="margin-left">12</property>
         <property name="margin-right">12</property>
         <property name="margin-bottom">6</property>
-        <property name="spacing">24</property>
+        <property name="spacing">8</property>
         <child>
-          <object class="GtkRadioButton" id="light_mode_button">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
+          <object class="GtkOverlay">
+            <property name="visible" bind-source="ThemeSwitcher" bind-property="show-system" bind-flags="sync-create"/>
             <property name="halign">center</property>
-            <property name="draw-indicator">0</property>
-            <signal name="notify::active" handler="_on_color_scheme_changed"/>
             <child>
-              <object class="GtkImage">
-                <property name="visible">1</property>
-                <property name="icon-name">emblem-ok-symbolic</property>
+              <object class="GtkRadioButton" id="system_selector">
+                <property name="visible">True</property>
+                <property name="tooltip-text" translatable="yes">Use System Colors</property>
+                <signal name="notify::active" handler="_on_color_scheme_changed"/>
+                <style>
+                  <class name="system"/>
+                </style>
               </object>
             </child>
-            <style>
-              <class name="color-button"/>
-              <class name="color-light"/>
-            </style>
+            <child type="overlay">
+              <object class="GtkImage">
+                <property name="visible" bind-source="system_selector" bind-property="active" bind-flags="sync-create"/>
+                <property name="icon-name">checkmark-symbolic</property>
+                <property name="pixel-size">13</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="check"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
         <child>
-          <object class="GtkRadioButton" id="sepia_mode_button">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
+          <object class="GtkOverlay">
+            <property name="visible">True</property>
             <property name="halign">center</property>
-            <property name="draw-indicator">0</property>
-            <signal name="notify::active" handler="_on_color_scheme_changed"/>
-            <property name="group">light_mode_button</property>
             <child>
-              <object class="GtkImage">
-                <property name="visible">1</property>
-                <property name="icon-name">emblem-ok-symbolic</property>
+              <object class="GtkRadioButton" id="light_selector">
+                <property name="visible">True</property>
+                <property name="group">system_selector</property>
+                <property name="tooltip-text" translatable="yes">Use Light Colors</property>
+                <signal name="notify::active" handler="_on_color_scheme_changed"/>
+                <style>
+                  <class name="light"/>
+                </style>
               </object>
             </child>
-            <style>
-              <class name="color-button"/>
-              <class name="color-sepia"/>
-            </style>
+            <child type="overlay">
+              <object class="GtkImage">
+                <property name="visible" bind-source="light_selector" bind-property="active" bind-flags="sync-create"/>
+                <property name="icon-name">checkmark-symbolic</property>
+                <property name="pixel-size">13</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="check"/>
+                </style>
+              </object>
+            </child>
           </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkRadioButton" id="dark_mode_button">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
+          <object class="GtkOverlay">
+            <property name="visible">True</property>
             <property name="halign">center</property>
-            <property name="draw-indicator">0</property>
-            <signal name="notify::active" handler="_on_color_scheme_changed"/>
-            <property name="group">light_mode_button</property>
             <child>
-              <object class="GtkImage">
-                <property name="visible">1</property>
-                <property name="icon-name">emblem-ok-symbolic</property>
+              <object class="GtkRadioButton" id="sepia_selector">
+                <property name="visible">True</property>
+                <property name="group">system_selector</property>
+                <property name="tooltip-text" translatable="yes">Use Sepia Colors</property>
+                <signal name="notify::active" handler="_on_color_scheme_changed"/>
+                <style>
+                  <class name="sepia"/>
+                </style>
               </object>
             </child>
-            <style>
-              <class name="color-button"/>
-              <class name="color-dark"/>
-            </style>
+            <child type="overlay">
+              <object class="GtkImage">
+                <property name="visible" bind-source="sepia_selector" bind-property="active" bind-flags="sync-create"/>
+                <property name="icon-name">checkmark-symbolic</property>
+                <property name="pixel-size">13</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="check"/>
+                </style>
+              </object>
+            </child>
           </object>
-          <packing>
-            <property name="position">2</property>
-          </packing>
         </child>
+        <child>
+          <object class="GtkOverlay">
+            <property name="visible">True</property>
+            <property name="halign">center</property>
+            <child>
+              <object class="GtkRadioButton" id="dark_selector">
+                <property name="visible">True</property>
+                <property name="group">system_selector</property>
+                <property name="tooltip-text" translatable="yes">Use Dark Colors</property>
+                <property name="halign">center</property>
+                <signal name="notify::active" handler="_on_color_scheme_changed"/>
+                <style>
+                  <class name="dark"/>
+                </style>
+              </object>
+            </child>
+            <child type="overlay">
+              <object class="GtkImage">
+                <property name="visible" bind-source="dark_selector" bind-property="active" bind-flags="sync-create"/>
+                <property name="icon-name">checkmark-symbolic</property>
+                <property name="pixel-size">13</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="check"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+
       </object>
     </child>
   </template>

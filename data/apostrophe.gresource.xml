@@ -5,9 +5,13 @@
     <file compressed="true" alias="icons/preview-layout-half-width-symbolic.svg">media/icons/preview-layout-half-width-symbolic.svg</file>
     <file compressed="true" alias="icons/preview-layout-windowed-symbolic.svg">media/icons/preview-layout-windowed-symbolic.svg</file>
     <file compressed="true" alias="icons/preview-layout-half-height-symbolic.svg">media/icons/preview-layout-half-height-symbolic.svg</file>
+    <file compressed="true" alias="icons/checkmark-symbolic.svg">media/icons/checkmark-symbolic.svg</file>
     <file compressed="true">media/css/gtk/Adwaita.css</file>
+    <file compressed="true">media/css/gtk/Adwaita-hc.css</file>
     <file compressed="true">media/css/gtk/Adwaita-dark.css</file>
+    <file compressed="true">media/css/gtk/Adwaita-dark-hc.css</file>
     <file compressed="true">media/css/gtk/Adwaita-sepia.css</file>
+    <file compressed="true">media/css/gtk/Adwaita-sepia-hc.css</file>
     <file compressed="true">media/css/gtk/bindings.css</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Headerbar.ui</file>
