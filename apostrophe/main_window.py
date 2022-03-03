@@ -177,15 +177,16 @@ class MainWindow(Handy.ApplicationWindow):
 
         # not really necessary but we'll keep a preview_layout property on the window
         # and bind it both to the switcher and the renderer
+        self.preview_layout = self.settings.get_enum("preview-mode")
         self.bind_property("preview_layout", self.headerbar.preview_layout_switcher, 
                            "preview_layout", GObject.BindingFlags.BIDIRECTIONAL|GObject.BindingFlags.SYNC_CREATE)
-
-        #self.bind_property("preview", self.headerbar.preview_layout_switcher.preview_switcher_toggle, 
-        #                   "active", GObject.BindingFlags.BIDIRECTIONAL|GObject.BindingFlags.SYNC_CREATE)
 
         self.bind_property("preview_layout", self.preview_handler.preview_renderer, 
                            "preview_layout", GObject.BindingFlags.SYNC_CREATE)
 
+        self.preview = self.settings.get_boolean("preview-active")
+
+        self.text_view.hemingway_mode = self.settings.get_boolean("hemingway-mode")
 
         self.new_document()
 
@@ -596,15 +597,6 @@ class MainWindow(Handy.ApplicationWindow):
 
         self.headerbar_eventbox.show()
 
-    @Gtk.Template.Callback()
-    def on_delete_called(self, _widget, _data=None):
-        """Called when the TexteditorWindow is closed.
-        """
-        LOGGER.info('delete called')
-        if self.check_change() == Gtk.ResponseType.CANCEL:
-            return True
-        return False
-
     # TODO: this has to go
     def update_headerbar_title(self,
                                is_unsaved: bool = False,
@@ -631,6 +623,23 @@ class MainWindow(Handy.ApplicationWindow):
         self.subtitle = subtitle
         self.headerbar.set_tooltip_text(subtitle)
 
+    def save_state(self):
+        self.settings.set_enum("preview-mode", self.preview_layout)
+        self.settings.set_boolean("preview-active", self.preview)
+        self.settings.set_boolean("hemingway-mode", self.text_view.hemingway_mode)
+
+    @Gtk.Template.Callback()
+    def on_delete_called(self, _widget, _data=None):
+        """Called when the ApostropheWindow is closed.
+        """
+        LOGGER.info('delete called')
+        if self.check_change() == Gtk.ResponseType.CANCEL:
+            return True
+
+        # save state if we're the last window
+        if len(self.get_application().get_windows()) == 1:
+            self.save_state()
+        return False
 
 @dataclass
 class File():

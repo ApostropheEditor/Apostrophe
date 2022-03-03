@@ -266,7 +266,7 @@ class Application(Gtk.Application):
             window.present()
             if window.on_delete_called(self):
                 quit = False
-        if quit:       
+        if quit:
             self.quit()
 
     def on_stat_default(self, action, value):
