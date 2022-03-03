@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-10 00:35+0100\n"
+"POT-Creation-Date: 2021-08-29 04:08+0200\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,19 +12,19 @@ msgstr ""
 #: apostrophe/export_dialog.py:128 apostrophe/export_dialog.py:323
 #: apostrophe/export_dialog.py:327 data/ui/Export.ui:62
 msgid "Export"
-msgstr ""
+msgstr "Exportovat"
 
 #: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
 #, python-format
 msgid "Export to %s"
-msgstr ""
+msgstr "Export do %s"
 
 #: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
-#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:356
-#: apostrophe/main_window.py:447 apostrophe/main_window.py:520
+#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:344
+#: apostrophe/main_window.py:435 apostrophe/main_window.py:508
 #: data/ui/Export.ui:47
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
 #, python-brace-format
@@ -33,281 +33,282 @@ msgid ""
 "\n"
 "{err_msg}"
 msgstr ""
+"Došlo k chybě při pokusu exportovat:\n"
+"\n"
+"{err_msg}"
 
 #: apostrophe/export_dialog.py:234
 msgid "Export to {}"
-msgstr ""
+msgstr "Exportovat do {}"
 
 #: apostrophe/export_dialog.py:324
 msgid "Select folder"
-msgstr ""
+msgstr "Vybrat složku"
 
-#: apostrophe/headerbars.py:91
-msgid "Light mode isn’t available while using a dark global theme"
-msgstr ""
-
-#: apostrophe/headerbars.py:137 apostrophe/preview_renderer.py:133
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:132
 #: data/ui/PreviewLayoutSwitcherItem.ui:36
 msgid "Full-Width"
-msgstr ""
+msgstr "Plná šířka"
 
-#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:135
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:134
 msgid "Half-Width"
-msgstr ""
+msgstr "Poloviční šířka"
 
-#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:137
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:136
 msgid "Half-Height"
-msgstr ""
+msgstr "Poloviční výška"
 
-#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:139
+#: apostrophe/headerbars.py:132 apostrophe/preview_renderer.py:138
 msgid "Windowed"
-msgstr ""
+msgstr "Samostatné okno"
 
 #: apostrophe/helpers.py:90
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: apostrophe/inhibitor.py:35
 msgid "Unsaved documents"
-msgstr ""
+msgstr "Neuložené dokumenty"
 
 #: apostrophe/inline_preview.py:201
 msgid "Formula looks incorrect:"
-msgstr ""
+msgstr "Vzorec vypadá nesprávně:"
 
 #: apostrophe/inline_preview.py:240
 msgid "No matching footnote found"
-msgstr ""
+msgstr "Nebyla nalezena žádná odpovídající poznámka pod čarou"
 
 #: apostrophe/inline_preview.py:260
 msgid "noun"
-msgstr ""
+msgstr "podstatné jméno"
 
 #: apostrophe/inline_preview.py:262
 msgid "verb"
-msgstr ""
+msgstr "sloveso"
 
 #: apostrophe/inline_preview.py:264
 msgid "adjective"
-msgstr ""
+msgstr "přídavné jméno"
 
 #: apostrophe/inline_preview.py:266
 msgid "adverb"
-msgstr ""
+msgstr "příslovce"
 
-#: apostrophe/main_window.py:352
+#: apostrophe/main_window.py:340
 msgid "Save your File"
-msgstr ""
+msgstr "Uložit váš soubor"
 
-#: apostrophe/main_window.py:355 data/ui/Headerbar.ui:225
+#: apostrophe/main_window.py:343 data/ui/Headerbar.ui:225
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
-#: apostrophe/main_window.py:436
+#: apostrophe/main_window.py:424
 msgid "Markdown Files"
-msgstr ""
+msgstr "Soubory Markdown"
 
-#: apostrophe/main_window.py:440
+#: apostrophe/main_window.py:428
 msgid "Plain Text Files"
-msgstr ""
+msgstr "Soubory prostého textu"
 
-#: apostrophe/main_window.py:443
+#: apostrophe/main_window.py:431
 msgid "Open a .md file"
-msgstr ""
+msgstr "Otevřít soubor .md"
 
-#: apostrophe/main_window.py:446 data/ui/Headerbar.ui:182
+#: apostrophe/main_window.py:434 data/ui/Headerbar.ui:182
 msgid "Open"
-msgstr ""
+msgstr "Otevřít"
 
-#: apostrophe/main_window.py:510
+#: apostrophe/main_window.py:498
 #, python-format
 msgid "Save changes to document “%s” before closing?"
-msgstr ""
+msgstr "Uložit před zavřením změny do dokumentu “%s”?"
 
-#: apostrophe/main_window.py:515
+#: apostrophe/main_window.py:503
 msgid "If you don’t save, all your changes will be permanently lost."
-msgstr ""
+msgstr "Bez uložení budou všechny vaše změny nenávratně ztraceny."
 
-#: apostrophe/main_window.py:518
+#: apostrophe/main_window.py:506
 msgid "Close without saving"
-msgstr ""
+msgstr "Zavřít bez uložení"
 
-#: apostrophe/main_window.py:521
+#: apostrophe/main_window.py:509
 msgid "Save now"
-msgstr ""
+msgstr "Uložit nyní"
 
-#: apostrophe/main_window.py:723
+#: apostrophe/main_window.py:711
 msgid "New File"
-msgstr ""
+msgstr "Nový soubor"
 
-#: apostrophe/preview_renderer.py:48 data/ui/Headerbar.ui:305
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
 msgid "Preview"
 msgstr "Náhled"
 
 #: apostrophe/stats_handler.py:74
 msgid "{:n} Characters"
-msgstr ""
+msgstr "{:n} znaků"
 
 #: apostrophe/stats_handler.py:76
 msgid "{:n} Words"
-msgstr ""
+msgstr "{:n} slov"
 
 #: apostrophe/stats_handler.py:78
 msgid "{:n} Sentences"
-msgstr ""
+msgstr "{:n} vět"
 
 #: apostrophe/stats_handler.py:80
 msgid "{:n} Paragraphs"
-msgstr ""
+msgstr "{:n} odstavců"
 
 #: apostrophe/stats_handler.py:82
 msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr ""
+msgstr "{:d}:{:02d}:{:02d} doba čtení"
 
 #: apostrophe/text_view_drag_drop_handler.py:75
 #: apostrophe/text_view_drag_drop_handler.py:77
 msgid "web page"
-msgstr ""
+msgstr "webová stránka"
 
 #: apostrophe/text_view_format_inserter.py:14
 msgid "italic text"
-msgstr ""
+msgstr "text psaný kurzívou"
 
 #: apostrophe/text_view_format_inserter.py:19
 msgid "bold text"
-msgstr ""
+msgstr "tučný text"
 
 #: apostrophe/text_view_format_inserter.py:24
 msgid "strikethrough text"
-msgstr ""
+msgstr "přeškrtnutý text"
 
 #: apostrophe/text_view_format_inserter.py:50
 msgid "Item"
-msgstr ""
+msgstr "Položka"
 
 #: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
-msgstr ""
+msgstr "Nadpis"
 
 #: data/ui/About.ui.in:12
 msgid "Copyright (C) 2020, Wolf Vollprecht"
-msgstr ""
+msgstr "Copyright (C) 2020, Wolf Vollprecht"
 
 #: data/ui/About.ui.in:14
 msgid "Apostrophe website"
-msgstr ""
+msgstr "Webové stránky Apostrophe"
 
 #. Put your name in here, like this:
 #. Manuel Genovés <manuel.genoves@gmail.com>
 #: data/ui/About.ui.in:20
 msgid "translator-credits"
-msgstr ""
+msgstr "Zásluhy překladatelů"
 
 #: data/ui/About.ui.in:65
 msgid "Donations:"
-msgstr ""
+msgstr "Dary:"
 
 #: data/ui/About.ui.in:74
 msgid "Paypal"
-msgstr ""
+msgstr "Paypal"
 
 #: data/ui/About.ui.in:105
 msgid "Help to translate:"
-msgstr ""
+msgstr "Pomozte s překladem:"
 
 #: data/ui/About.ui.in:114
 msgid "Poeditor"
-msgstr ""
+msgstr "Poeditor"
 
 #: data/ui/Export.ui:154
 msgid "Standalone"
-msgstr ""
+msgstr "Samostatný"
 
 #: data/ui/Export.ui:156
 msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
+"Pomocí záhlaví a zápatí můžete zahrnout například soubory stylů a "
+"metainformace."
 
 #: data/ui/Export.ui:171
 msgid "Table of Contents"
-msgstr ""
+msgstr "Obsah"
 
 #: data/ui/Export.ui:187
 msgid "Number Sections"
-msgstr ""
+msgstr "Číslování oddílů"
 
 #: data/ui/Export.ui:211 data/ui/Export.ui:217
 msgid "Page Size"
-msgstr ""
+msgstr "Velikost stránky"
 
 #: data/ui/Export.ui:236
 msgid "HTML Options"
-msgstr ""
+msgstr "Možnosti HTML"
 
 #: data/ui/Export.ui:242
 msgid "Self-contained"
-msgstr ""
+msgstr "Samostatný"
 
 #: data/ui/Export.ui:244
 msgid "Produces an HTML file with no external dependencies"
-msgstr ""
+msgstr "Vytvoří soubor HTML bez externích závislostí"
 
 #: data/ui/Export.ui:260
 msgid "CSS File"
-msgstr ""
+msgstr "CSS soubor"
 
 #: data/ui/Export.ui:265
 msgid "Select CSS file"
-msgstr ""
+msgstr "Vybrat CSS soubor"
 
 #: data/ui/Export.ui:286
 msgid "Syntax Highlighting"
-msgstr ""
+msgstr "Zvýrazňování syntaxe"
 
 #: data/ui/Export.ui:301
 msgid "Highlight style"
-msgstr ""
+msgstr "Styl zvýraznění"
 
 #: data/ui/Export.ui:322
 msgid "Presentation"
-msgstr ""
+msgstr "Prezentace"
 
 #: data/ui/Export.ui:328
 msgid "Incremental bullets"
-msgstr ""
+msgstr "Vnořené odrážky"
 
 #: data/ui/Export.ui:330
 msgid "Show one bullet point after another in a slideshow"
-msgstr ""
+msgstr "Zobrazovat odrážky jednu za druhou jako v prezentaci."
 
 #: data/ui/Export.ui:357
 msgid "page0"
-msgstr ""
+msgstr "strana0"
 
 #: data/ui/Export.ui:365
 msgid "page1"
-msgstr ""
+msgstr "strana1"
 
 #: data/ui/ExportPopover.ui:19
 msgid "Save As…"
-msgstr ""
+msgstr "Uložit jako…"
 
 #: data/ui/ExportPopover.ui:100
 msgid "Advanced Export…"
-msgstr ""
+msgstr "Rozšířený export…"
 
 #: data/ui/ExportPopover.ui:125
 msgid "Copy HTML"
-msgstr ""
+msgstr "Kopírovat HTML"
 
 #: data/ui/Headerbar.ui:130
 msgid "Sync Views"
-msgstr ""
+msgstr "Synchronizovat zobrazení"
 
 #: data/ui/Headerbar.ui:171
 msgid "New"
-msgstr ""
+msgstr "Nový"
 
 #: data/ui/Headerbar.ui:199
 #, fuzzy
@@ -316,111 +317,111 @@ msgstr "Otevřít poslední soubor"
 
 #: data/ui/Headerbar.ui:242
 msgid "Save as…"
-msgstr ""
+msgstr "Uložit jako..."
 
 #: data/ui/Headerbar.ui:283
 msgid "Menu"
-msgstr ""
+msgstr "Nabídka"
 
 #: data/ui/Headerbar.ui:378
 msgid "Find"
-msgstr ""
+msgstr "Hledat"
 
-#: data/ui/Menu.ui:100
+#: data/ui/Menu.ui:43
 msgid "Hemingway Mode"
-msgstr ""
+msgstr "Hemingwayův režim"
 
-#: data/ui/Menu.ui:114
+#: data/ui/Menu.ui:57
 msgid "Focus Mode"
-msgstr ""
+msgstr "Režim soustředění"
 
-#: data/ui/Menu.ui:139
+#: data/ui/Menu.ui:82
 msgid "Find and Replace"
-msgstr ""
+msgstr "Hledat a nahradit"
 
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+#: data/ui/Menu.ui:107 data/ui/Preferences.ui:19
 msgid "Preferences"
-msgstr ""
+msgstr "Předvolby"
 
-#: data/ui/Menu.ui:189
+#: data/ui/Menu.ui:132
 msgid "Open Tutorial"
-msgstr ""
+msgstr "Otevřít Průvodce"
 
-#: data/ui/Menu.ui:203
+#: data/ui/Menu.ui:146
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Klávesové zkratky"
 
-#: data/ui/Menu.ui:217
+#: data/ui/Menu.ui:160
 msgid "About Apostrophe"
-msgstr ""
+msgstr "O aplikaci Apostrophe"
 
 #: data/ui/Preferences.ui:49
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:35
 msgid "Check spelling while typing"
-msgstr ""
+msgstr "Kontrolovat pravopis při psaní"
 
 #: data/ui/Preferences.ui:73
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:49
 msgid "Input format"
-msgstr ""
+msgstr "Vstupní formát"
 
 #: data/ui/Preferences.ui:110
 msgid "Autohide header and statusbars while typing"
-msgstr ""
+msgstr "Automaticky skrývat záhlaví okna a stavový řádek během psaní"
 
 #: data/ui/Preferences.ui:112
 msgid "Autohide headerbar"
-msgstr ""
+msgstr "Automaticky skrývat záhlaví okna"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Obecné"
 
 #: data/ui/Shortcuts.ui:17
 msgctxt "shortcut window"
 msgid "New"
-msgstr ""
+msgstr "Nový"
 
 #: data/ui/Shortcuts.ui:24
 msgctxt "shortcut window"
 msgid "Open"
-msgstr ""
+msgstr "Otevřít"
 
 #: data/ui/Shortcuts.ui:31
 msgctxt "shortcut window"
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: data/ui/Shortcuts.ui:38
 msgctxt "shortcut window"
 msgid "Save as"
-msgstr ""
+msgstr "Uložit jako"
 
 #: data/ui/Shortcuts.ui:45
 msgctxt "shortcut window"
 msgid "Close document"
-msgstr ""
+msgstr "Zavřít dokument"
 
 #: data/ui/Shortcuts.ui:52
 msgctxt "shortcut window"
 msgid "Quit application"
-msgstr ""
+msgstr "Ukončit aplikaci"
 
 #: data/ui/Shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Modes"
-msgstr ""
+msgstr "Režimy"
 
 #: data/ui/Shortcuts.ui:65
 msgctxt "shortcut window"
 msgid "Focus mode"
-msgstr ""
+msgstr "Režim soustředění"
 
 #: data/ui/Shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Hemingway mode"
-msgstr ""
+msgstr "Hemingwayův režim"
 
 #: data/ui/Shortcuts.ui:79
 #, fuzzy
@@ -437,227 +438,283 @@ msgstr "Na celou obrazovku"
 #: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
 msgctxt "shortcut window"
 msgid "Find"
-msgstr ""
+msgstr "Najít"
 
 #: data/ui/Shortcuts.ui:106
 msgctxt "shortcut window"
 msgid "Find and replace"
-msgstr ""
+msgstr "Najít a nahradit"
 
 #: data/ui/Shortcuts.ui:115
 msgctxt "shortcut window"
 msgid "Markdown"
-msgstr ""
+msgstr "Markdown"
 
 #: data/ui/Shortcuts.ui:119
 msgctxt "shortcut window"
 msgid "Separator"
-msgstr ""
+msgstr "Oddělovač"
 
 #: data/ui/Shortcuts.ui:126
 msgctxt "shortcut window"
 msgid "List item"
-msgstr ""
+msgstr "Položka seznamu"
 
 #: data/ui/Shortcuts.ui:133
 msgctxt "shortcut window"
 msgid "Italic"
-msgstr ""
+msgstr "Kurzíva"
 
 #: data/ui/Shortcuts.ui:140
 msgctxt "shortcut window"
 msgid "Bold"
-msgstr ""
+msgstr "Tučné"
 
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
-msgstr ""
+msgstr "Přeškrtnuté"
 
 #: data/ui/Shortcuts.ui:156
 msgctxt "shortcut window"
 msgid "Copy and paste"
-msgstr ""
+msgstr "Kopírování a vkládání"
 
 #: data/ui/Shortcuts.ui:160
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "Kopírovat vybraný text do schránky"
 
 #: data/ui/Shortcuts.ui:167
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "Vyjmout vybraný text do schránky"
 
 #: data/ui/Shortcuts.ui:174
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
-msgstr ""
+msgstr "Vložit text ze schránky"
 
 #: data/ui/Shortcuts.ui:183
 msgctxt "shortcut window"
 msgid "Undo and redo"
-msgstr ""
+msgstr "Zpět a znovu"
 
 #: data/ui/Shortcuts.ui:187
 msgctxt "shortcut window"
 msgid "Undo previous command"
-msgstr ""
+msgstr "Vrátit zpět předchozí příkaz"
 
 #: data/ui/Shortcuts.ui:194
 msgctxt "shortcut window"
 msgid "Redo previous command"
-msgstr ""
+msgstr "Znovu provést předchozí vrácený příkaz"
 
 #: data/ui/Shortcuts.ui:203
 msgctxt "shortcut window"
 msgid "Selection"
-msgstr ""
+msgstr "Výběr"
 
 #: data/ui/Shortcuts.ui:207
 msgctxt "shortcut window"
 msgid "Select all text"
-msgstr ""
+msgstr "Vybrat všechen text"
 
 #: data/ui/Window.ui:107
 msgid "Show Statistics"
-msgstr ""
+msgstr "Zobrazit statistiku"
 
 #: data/ui/Window.ui:206
 msgid "Previous Match"
-msgstr ""
+msgstr "Najít předchozí shodu"
 
 #: data/ui/Window.ui:220
 msgid "Next Match"
-msgstr ""
+msgstr "Najít následující shodu"
 
 #: data/ui/Window.ui:249
 msgid "aA"
-msgstr ""
+msgstr "aA"
 
 #: data/ui/Window.ui:253
 msgid "Case Sensitive"
-msgstr ""
+msgstr "Rozlišování velikosti písmen"
 
 #: data/ui/Window.ui:263
 msgid "(.*)"
-msgstr ""
+msgstr "(.*)"
 
 #: data/ui/Window.ui:267
 msgid "Regular Expression"
-msgstr ""
+msgstr "Regulární výraz"
 
 #: data/ui/Window.ui:280 data/ui/Window.ui:358
 msgid "Replace"
-msgstr ""
+msgstr "Nahradit"
 
 #: data/ui/Window.ui:372
 msgid "Replace All"
-msgstr ""
+msgstr "Nahradit vše"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 msgid "Apostrophe"
-msgstr ""
+msgstr "Apostrophe"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
 msgid "An elegant, distraction-free markdown editor"
-msgstr ""
+msgstr "Elegantní Markdown editor bez rušivých elementů"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
-msgid ""
-"Apostrophe is a GTK based distraction free Markdown editor, originally "
-"created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc "
-"as backend for markdown parsing and offers a very clean and sleek user "
-"interface."
-msgstr ""
+#, fuzzy
+msgid "Focus on your writing with a clean, distraction-free markdown editor."
+msgstr "Elegantní Markdown editor bez rušivých elementů"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
-msgid "You can install the recommended TexLive extension with the command:"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
-msgid ""
-"flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+msgid "Features:"
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
-msgid "or from Gnome-Software"
+msgid "An UI tailored to comfortable writing"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:35
-msgid "Wolf V., Manuel G."
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
+#, fuzzy
+msgid "A distraction-free mode"
+msgstr "Elegantní Markdown editor bez rušivých elementů"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
+msgid "Dark, light and sepia themes"
 msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+msgid ""
+"Everything you expect from a text editor, such as spellchecking or document "
+"statistics"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
+msgid "Live preview of what you write"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
+msgid ""
+"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
+"slideshows"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
+msgid "Wolf V., Manuel G."
+msgstr "Wolf V., Manuel G."
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
-msgstr ""
+msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
-msgid "Apostrophe, a simple and distraction free Markdown Editor"
+#, fuzzy
+msgid "Apostrophe, an elegant, distraction-free markdown editor"
+msgstr "Elegantní Markdown editor bez rušivých elementů"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
+msgid "Color scheme"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
-msgid "Use dark mode"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
+msgid "Use the color scheme in the application's UI and in the text area."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
-msgid "Enable or disable the dark mode."
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
 msgid "Enable or disable spellchecking."
-msgstr ""
+msgstr "Povolit nebo zakázat kontrolu pravopisu."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:42
 msgid "Synchronize editor/preview scrolling"
-msgstr ""
+msgstr "Synchronizace posouvání editoru/náhledu"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
 msgid "Keep the editor and preview scroll positions in sync."
-msgstr ""
+msgstr "Udržovat synchronizované pozice editoru a náhledu."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
 msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr ""
+"Vstupní formát, který se použije při náhledu a exportu pomocí aplikace "
+"Pandoc."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:56
 msgid "Autohide Headerbar"
-msgstr ""
+msgstr "Automaticky skrývat záhlaví okna"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
 msgid "Hide the header and status bars when typing."
-msgstr ""
+msgstr "Při psaní skrýt záhlaví okna a stavový řádek."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
 msgid "Open file base path"
-msgstr ""
+msgstr "Základní cesta k otevřenému souboru"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
 msgid "Open file paths of the current session"
-msgstr ""
+msgstr "Cesty k otevřeným souborům aktuální relace"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:70
 msgid "Default statistic"
-msgstr ""
+msgstr "Výchozí statistika"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
 msgid "Which statistic is shown on the main window."
-msgstr ""
+msgstr "Která statistika se zobrazuje v hlavním okně."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:77
 msgid "Characters per line"
-msgstr ""
+msgstr "Znaků na řádku"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
 msgid "Maximum number of characters per line within the editor."
-msgstr ""
+msgstr "Maximální počet znaků na řádek v editoru."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:84
 msgid "Preview mode"
-msgstr ""
+msgstr "Režim náhledu"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
 msgid "How to display the preview."
-msgstr ""
+msgstr "Jak zobrazit náhled."
+
+#~ msgid ""
+#~ "Apostrophe is a GTK based distraction free Markdown editor, originally "
+#~ "created by Wolf Vollprecht and maintained by Manuel Genovés. It uses "
+#~ "pandoc as backend for markdown parsing and offers a very clean and sleek "
+#~ "user interface."
+#~ msgstr ""
+#~ "Apostrophe je Markdown editor bez rušivých elementů založený na GTK, "
+#~ "původně vytvořený Wolfem Vollprechtem a udržovaný Manuelem Genovésem. "
+#~ "Používá pandoc jako backend pro parsování Markdown a nabízí velmi čisté a "
+#~ "elegantní uživatelské rozhraní."
+
+#~ msgid "You can install the recommended TexLive extension with the command:"
+#~ msgstr "Doporučené rozšíření TexLive můžete nainstalovat pomocí příkazu:"
+
+#~ msgid ""
+#~ "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+#~ msgstr ""
+#~ "flatpak install flathub\n"
+#~ "org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+
+#~ msgid "or from Gnome-Software"
+#~ msgstr "nebo pomocí Gnome-Software"
+
+#~ msgid "Apostrophe, a simple and distraction free Markdown Editor"
+#~ msgstr "Apostrophe, jednoduchý Markdown editor bez rušivých elementů"
+
+#~ msgid "Use dark mode"
+#~ msgstr "Použít tmavý vzhled"
+
+#~ msgid "Enable or disable the dark mode."
+#~ msgstr "Povolit nebo zakázat tmavý vzhled"
+
+#~ msgid "Light mode isn’t available while using a dark global theme"
+#~ msgstr ""
+#~ "Světlý vzhled není k dispozici při použití globálního tmavého motivu"

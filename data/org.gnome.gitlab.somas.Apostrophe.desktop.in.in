@@ -2,9 +2,10 @@
 Name=Apostrophe
 # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=uberwriter;UberWriter;apostrophe;markdown;editor;
-Comment=Apostrophe, a simple and distraction free Markdown Editor
+Comment=Apostrophe, an elegant, distraction-free markdown editor
 Categories=GNOME;GTK;Office;
 Exec=apostrophe %U
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=@icon@
 Terminal=false
 Type=Application

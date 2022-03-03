@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-10 00:35+0100\n"
+"POT-Creation-Date: 2021-08-29 04:08+0200\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,8 +20,8 @@ msgid "Export to %s"
 msgstr ""
 
 #: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
-#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:356
-#: apostrophe/main_window.py:447 apostrophe/main_window.py:520
+#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:344
+#: apostrophe/main_window.py:435 apostrophe/main_window.py:508
 #: data/ui/Export.ui:47
 msgid "Cancel"
 msgstr "Hủy bỏ"
@@ -42,24 +42,20 @@ msgstr ""
 msgid "Select folder"
 msgstr ""
 
-#: apostrophe/headerbars.py:91
-msgid "Light mode isn’t available while using a dark global theme"
-msgstr ""
-
-#: apostrophe/headerbars.py:137 apostrophe/preview_renderer.py:133
+#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:132
 #: data/ui/PreviewLayoutSwitcherItem.ui:36
 msgid "Full-Width"
 msgstr ""
 
-#: apostrophe/headerbars.py:139 apostrophe/preview_renderer.py:135
+#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:134
 msgid "Half-Width"
 msgstr ""
 
-#: apostrophe/headerbars.py:141 apostrophe/preview_renderer.py:137
+#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:136
 msgid "Half-Height"
 msgstr ""
 
-#: apostrophe/headerbars.py:143 apostrophe/preview_renderer.py:139
+#: apostrophe/headerbars.py:132 apostrophe/preview_renderer.py:138
 msgid "Windowed"
 msgstr ""
 
@@ -95,52 +91,52 @@ msgstr ""
 msgid "adverb"
 msgstr ""
 
-#: apostrophe/main_window.py:352
+#: apostrophe/main_window.py:340
 msgid "Save your File"
 msgstr "Lưu tệp"
 
-#: apostrophe/main_window.py:355 data/ui/Headerbar.ui:225
+#: apostrophe/main_window.py:343 data/ui/Headerbar.ui:225
 msgid "Save"
 msgstr "Lưu"
 
-#: apostrophe/main_window.py:436
+#: apostrophe/main_window.py:424
 msgid "Markdown Files"
 msgstr ""
 
-#: apostrophe/main_window.py:440
+#: apostrophe/main_window.py:428
 msgid "Plain Text Files"
 msgstr ""
 
-#: apostrophe/main_window.py:443
+#: apostrophe/main_window.py:431
 msgid "Open a .md file"
 msgstr ""
 
-#: apostrophe/main_window.py:446 data/ui/Headerbar.ui:182
+#: apostrophe/main_window.py:434 data/ui/Headerbar.ui:182
 msgid "Open"
 msgstr "Mở"
 
-#: apostrophe/main_window.py:510
+#: apostrophe/main_window.py:498
 #, python-format
 msgid "Save changes to document “%s” before closing?"
 msgstr ""
 
-#: apostrophe/main_window.py:515
+#: apostrophe/main_window.py:503
 msgid "If you don’t save, all your changes will be permanently lost."
 msgstr ""
 
-#: apostrophe/main_window.py:518
+#: apostrophe/main_window.py:506
 msgid "Close without saving"
 msgstr ""
 
-#: apostrophe/main_window.py:521
+#: apostrophe/main_window.py:509
 msgid "Save now"
 msgstr "Lưu ngay"
 
-#: apostrophe/main_window.py:723
+#: apostrophe/main_window.py:711
 msgid "New File"
 msgstr ""
 
-#: apostrophe/preview_renderer.py:48 data/ui/Headerbar.ui:305
+#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
 msgid "Preview"
 msgstr "Xem trước"
 
@@ -326,41 +322,41 @@ msgstr ""
 msgid "Find"
 msgstr ""
 
-#: data/ui/Menu.ui:100
+#: data/ui/Menu.ui:43
 msgid "Hemingway Mode"
 msgstr ""
 
-#: data/ui/Menu.ui:114
+#: data/ui/Menu.ui:57
 msgid "Focus Mode"
 msgstr "Chế độ tập trung"
 
-#: data/ui/Menu.ui:139
+#: data/ui/Menu.ui:82
 msgid "Find and Replace"
 msgstr ""
 
-#: data/ui/Menu.ui:164 data/ui/Preferences.ui:19
+#: data/ui/Menu.ui:107 data/ui/Preferences.ui:19
 msgid "Preferences"
 msgstr "Tùy chọn"
 
-#: data/ui/Menu.ui:189
+#: data/ui/Menu.ui:132
 msgid "Open Tutorial"
 msgstr "Mở hướng dẫn"
 
-#: data/ui/Menu.ui:203
+#: data/ui/Menu.ui:146
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: data/ui/Menu.ui:217
+#: data/ui/Menu.ui:160
 msgid "About Apostrophe"
 msgstr ""
 
 #: data/ui/Preferences.ui:49
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:35
 msgid "Check spelling while typing"
 msgstr ""
 
 #: data/ui/Preferences.ui:73
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:49
 msgid "Input format"
 msgstr ""
 
@@ -563,27 +559,42 @@ msgid "An elegant, distraction-free markdown editor"
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
-msgid ""
-"Apostrophe is a GTK based distraction free Markdown editor, originally "
-"created by Wolf Vollprecht and maintained by Manuel Genovés. It uses pandoc "
-"as backend for markdown parsing and offers a very clean and sleek user "
-"interface."
+msgid "Focus on your writing with a clean, distraction-free markdown editor."
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
-msgid "You can install the recommended TexLive extension with the command:"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:10
-msgid ""
-"flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+msgid "Features:"
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
-msgid "or from Gnome-Software"
+msgid "An UI tailored to comfortable writing"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:35
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
+msgid "A distraction-free mode"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
+msgid "Dark, light and sepia themes"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+msgid ""
+"Everything you expect from a text editor, such as spellchecking or document "
+"statistics"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
+msgid "Live preview of what you write"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
+msgid ""
+"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
+"slideshows"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
 msgid "Wolf V., Manuel G."
 msgstr ""
 
@@ -593,69 +604,69 @@ msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
-msgid "Apostrophe, a simple and distraction free Markdown Editor"
+msgid "Apostrophe, an elegant, distraction-free markdown editor"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:23
-msgid "Use dark mode"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
+msgid "Color scheme"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:24
-msgid "Enable or disable the dark mode."
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
+msgid "Use the color scheme in the application's UI and in the text area."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:31
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
 msgid "Enable or disable spellchecking."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:42
 msgid "Synchronize editor/preview scrolling"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:38
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
 msgid "Keep the editor and preview scroll positions in sync."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:45
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
 msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:56
 msgid "Autohide Headerbar"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:52
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
 msgid "Hide the header and status bars when typing."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
 msgid "Open file base path"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:59
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
 msgid "Open file paths of the current session"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:70
 msgid "Default statistic"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:66
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
 msgid "Which statistic is shown on the main window."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:77
 msgid "Characters per line"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
 msgid "Maximum number of characters per line within the editor."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:84
 msgid "Preview mode"
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:80
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
 msgid "How to display the preview."
 msgstr ""
