@@ -402,7 +402,9 @@ class MainWindow(Handy.ApplicationWindow):
         """open the desired file
         """
 
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return
 
         markdown_filter = Gtk.FileFilter.new()
@@ -440,7 +442,9 @@ class MainWindow(Handy.ApplicationWindow):
         """Open File from command line or open / open recent etc."""
         LOGGER.info("trying to open %s", file.get_path())
 
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return
         self.current.gfile = file
 
@@ -522,7 +526,9 @@ class MainWindow(Handy.ApplicationWindow):
         """create new document
         """
 
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return
         self.text_view.clear()
 
@@ -633,7 +639,9 @@ class MainWindow(Handy.ApplicationWindow):
         """Called when the ApostropheWindow is closed.
         """
         LOGGER.info('delete called')
-        if self.check_change() == Gtk.ResponseType.CANCEL:
+        response = self.check_change()
+        if (response == Gtk.ResponseType.CANCEL or
+            response == Gtk.ResponseType.DELETE_EVENT):
             return True
 
         # save state if we're the last window
