@@ -11,7 +11,7 @@ makedepends=('python-setuptools')
 optdepends=('texlive-core' 'otf-fira-mono: Recommended font')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-source=('git+https://gitlab.gnome.org/somas/apostrophe')
+source=('git+https://gitlab.gnome.org/World/apostrophe')
 sha256sums=('SKIP')
 
 pkgver() {

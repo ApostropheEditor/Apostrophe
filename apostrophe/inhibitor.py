@@ -1,3 +1,4 @@
+# Copyright (C) 2022 Manuel Genovés <manuel.genoves@gmail.com>
 # Copyright (C) 2017 Jason Gray <jasonlevigray3@gmail.com>
 # Copyright (C) 2017 Franz Dietrich <dietrich@teilgedanken.de>
 # This program is free software: you can redistribute it and/or modify it
@@ -30,7 +31,7 @@ class Inhibitor:
         """
         if not self.__cookie:
             self.__cookie = App().inhibit(
-                App().window,
+                App().get_active_window(),
                 flags,
                 _("Unsaved documents"))
 

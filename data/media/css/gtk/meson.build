@@ -22,6 +22,20 @@ if sassc.found()
        'Adwaita.scss',
       ]),
     ),
+    custom_target('Stylesheet-adwaita-hc',
+      input: 'Adwaita-hc.scss',
+      output: 'Adwaita-hc.css',
+      command: [
+        sassc, sassc_opts, '@INPUT@', '@OUTPUT@',
+      ],
+      depend_files: files([
+       '_definitions.scss',
+       '_drawing.scss',
+       '_recoloring.scss',
+       '_base.scss',
+       'Adwaita-hc.scss',
+      ]),
+    ),
     custom_target('Stylesheet-adwaita-dark',
       input: 'Adwaita-dark.scss',
       output: 'Adwaita-dark.css',
@@ -36,6 +50,20 @@ if sassc.found()
        'Adwaita-dark.scss'
       ]),
     ),
+    custom_target('Stylesheet-adwaita-dark-hc',
+      input: 'Adwaita-dark-hc.scss',
+      output: 'Adwaita-dark-hc.css',
+      command: [
+        sassc, sassc_opts, '@INPUT@', '@OUTPUT@',
+      ],
+      depend_files: files([
+       '_definitions.scss',
+       '_drawing.scss',
+       '_recoloring.scss',
+       '_base.scss',
+       'Adwaita-dark-hc.scss'
+      ]),
+    ),
     custom_target('Stylesheet-adwaita-sepia',
       input: 'Adwaita-sepia.scss',
       output: 'Adwaita-sepia.css',
@@ -48,6 +76,20 @@ if sassc.found()
        '_recoloring.scss',
        '_base.scss',
        'Adwaita.scss'
+      ]),
+    ),
+    custom_target('Stylesheet-adwaita-sepia-hc',
+      input: 'Adwaita-sepia-hc.scss',
+      output: 'Adwaita-sepia-hc.css',
+      command: [
+        sassc, sassc_opts, '@INPUT@', '@OUTPUT@',
+      ],
+      depend_files: files([
+       '_definitions.scss',
+       '_drawing.scss',
+       '_recoloring.scss',
+       '_base.scss',
+       'Adwaita-hc.scss'
       ]),
     ),
   ]

@@ -51,6 +51,7 @@ body {
   word-wrap: break-word;
   max-width: 980px;
   margin: auto;
+  margin-top: 60px;
   padding: 4em;
 }
 

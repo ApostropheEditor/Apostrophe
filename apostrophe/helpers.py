@@ -1,6 +1,5 @@
-# -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# BEGIN LICENSE
-# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2022, Manuel Genovés <manuel.genoves@gmail.com>
+#               2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -103,39 +102,6 @@ def exist_executable(command):
     """
 
     return shutil.which(command) is not None
-
-
-def get_descendant(widget, child_name, level, doPrint=False):
-    if widget is not None:
-        if doPrint:
-            print("-" * level + str(Gtk.Buildable.get_name(widget)) +
-                  " :: " + widget.get_name())
-    else:
-        if doPrint:
-            print("-" * level + "None")
-        return None
-    # /*** If it is what we are looking for ***/
-    if Gtk.Buildable.get_name(widget) == child_name:  # not widget.get_name() !
-        return widget
-    # /*** If this widget has one child only search its child ***/
-    if (hasattr(widget, 'get_child') and
-            callable(getattr(widget, 'get_child')) and
-            child_name != ""):
-        child = widget.get_child()
-        if child is not None:
-            return get_descendant(child, child_name, level + 1, doPrint)
-    # /*** Ity might have many children, so search them ***/
-    elif (hasattr(widget, 'get_children') and
-          callable(getattr(widget, 'get_children')) and
-          child_name != ""):
-        children = widget.get_children()
-        # /*** For each child ***/
-        found = None
-        for child in children:
-            if child is not None:
-                found = get_descendant(child, child_name, level + 1, doPrint)
-                if found:
-                    return found
 
 
 def liststore_from_list(str_list: List[str]):

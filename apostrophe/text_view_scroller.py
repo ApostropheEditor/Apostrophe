@@ -1,3 +1,18 @@
+# Copyright (C) 2022, Manuel Genovés <manuel.genoves@gmail.com>
+#               2019, Gonçalo Silva
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 3, as published
+# by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranties of
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
+# PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+# END LICENSE
+
 class TextViewScroller:
     def __init__(self, text_view, scrolled_window):
         super().__init__()
@@ -70,7 +85,7 @@ class SmoothScroller:
         self.scrolled_window = scrolled_window
         self.source_pos = source_pos
         self.target_pos = target_pos
-        self.duration = max(100, (target_pos - source_pos) / 50) * 1000
+        self.duration = max(100, (target_pos - source_pos) / 50) * 4000
 
         self.is_started = False
         self.is_setup = False

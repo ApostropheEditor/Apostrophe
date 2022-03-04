@@ -1,6 +1,5 @@
-# -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# BEGIN LICENSE
-# Copyright (C) 2019, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2022, Manuel Genovés <manuel.genoves@gmail.com>
+#               2019, Wolf Vollprecht <w.vollprecht@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -22,98 +21,63 @@ import gi
 from apostrophe.helpers import user_action
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gdk
+from gi.repository import Gtk, GObject
 
-# from plugins import plugins
 
 LOGGER = logging.getLogger('apostrophe')
 
-
-class SearchAndReplace:
+@Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/SearchBar.ui')
+class ApostropheSearchBar(Gtk.SearchBar):
     """
     Adds (regex) search and replace functionality to
     apostrophe
     """
+    __gtype_name__ = "ApostropheSearchBar"
 
-    def __init__(self, parentwindow, textview, builder):
-        self.parentwindow = parentwindow
-        self.textview = textview
-        self.textbuffer = textview.get_buffer()
+    replace_mode_enabled = GObject.property(type=bool, default=False)
+    search_entry = Gtk.Template.Child()
+    regex = Gtk.Template.Child()
+    case_sensitive = Gtk.Template.Child()
+    replace_entry = Gtk.Template.Child()
 
-        self.box = builder.get_object("searchbar_placeholder")
-        self.box.set_reveal_child(False)
-        self.searchbar = builder.get_object("searchbar")
-        self.searchentry = builder.get_object("searchentrybox")
-        self.searchentry.connect('changed', self.search)
-        self.searchentry.connect('activate', self.scrolltonext)
-        self.searchentry.connect('key-press-event', self.key_pressed)
-
-        self.open_replace_button = builder.get_object("replace")
-        self.open_replace_button.connect("toggled", self.toggle_replace)
-
-        self.nextbutton = builder.get_object("next_result")
-        self.prevbutton = builder.get_object("previous_result")
-        self.regexbutton = builder.get_object("regex")
-        self.casesensitivebutton = builder.get_object("case_sensitive")
-
-        self.replacebox = builder.get_object("replace_placeholder")
-        self.replacebox.set_reveal_child(False)
-        self.replace_one_button = builder.get_object("replace_one")
-        self.replace_all_button = builder.get_object("replace_all")
-        self.replaceentry = builder.get_object("replaceentrybox")
-
-        self.replace_all_button.connect('clicked', self.replace_all)
-        self.replace_one_button.connect('clicked', self.replace_clicked)
-        self.replaceentry.connect('activate', self.replace_clicked)
-
-        self.nextbutton.connect('clicked', self.scrolltonext)
-        self.prevbutton.connect('clicked', self.scrolltoprev)
-        self.regexbutton.connect('toggled', self.search)
-        self.casesensitivebutton.connect('toggled', self.search)
-        self.highlight = self.textbuffer.create_tag('search_highlight',
-                                                    background="yellow")
-
-        self.textview.connect("focus-in-event", self.focused_texteditor)
+    def __init__(self):
+        
+        self.textbuffer = None
 
         self.matches = []
         self.active = 0
 
-    def toggle_replace(self, widget, _data=None):
-        """toggle the replace box
-        """
-        self.replacebox.set_reveal_child(widget.get_active())
+    def attach(self, textview):
+        self.textview = textview
+        self.textbuffer = textview.get_buffer()
+        self.highlight = self.textbuffer.create_tag('search_highlight',
+                                                    background="yellow")
 
-    def key_pressed(self, _widget, event, _data=None):
-        """hide the search and replace content box when ESC is pressed
-        """
-        if event.keyval == Gdk.KEY_Escape:
-            self.hide()
-
-    def focused_texteditor(self, _widget, _data=None):
-        """hide the search and replace content box
-        """
-        self.hide()
-
-    def toggle_search(self, replace=False):
-        """
-        toggle search box
-        """
-        search_hidden = self.textview.get_mapped() and (
-            self.box.get_reveal_child() is False or
-            self.searchbar.get_search_mode() is False)
-        replace_hidden = not self.open_replace_button.get_active()
-        if search_hidden or (replace and replace_hidden):
-            self.searchbar.set_search_mode(True)
-            self.box.set_reveal_child(True)
-            self.searchentry.grab_focus()
-            if replace:
-                self.open_replace_button.set_active(True)
+    @Gtk.Template.Callback()
+    def search_enabled(self, _widget, _data):
+        if self.get_search_mode():
+            self.textbuffer = self.textview.get_buffer()
+            if self.textbuffer.get_has_selection():
+                self.search_entry.set_text(self.textbuffer.get_slice(*self.textbuffer.get_selection_bounds(), False))
+            self.search_entry.grab_focus()
+            self.search()
         else:
-            self.hide()
-            self.open_replace_button.set_active(False)
+            self.textbuffer.remove_tag(self.highlight,
+                                   self.textbuffer.get_start_iter(),
+                                   self.textbuffer.get_end_iter())
+            self.matches = []
+            self.textview.grab_focus()
 
+    @Gtk.Template.Callback()
+    def replace_enabled(self, _widget, _data):
+        if not self.get_search_mode():
+            self.set_search_mode(True)
+
+    @Gtk.Template.Callback()
     def search(self, _widget=None, _data=None, scroll=True):
-        searchtext = self.searchentry.get_text()
+        if not self.textbuffer:
+            return
+        searchtext = self.search_entry.get_text()
         context_start = self.textbuffer.get_start_iter()
         context_end = self.textbuffer.get_end_iter()
         text = self.textbuffer.get_slice(context_start, context_end, False)
@@ -122,11 +86,11 @@ class SearchAndReplace:
 
         # case sensitive?
         flags = False
-        if not self.casesensitivebutton.get_active():
+        if not self.case_sensitive.get_active():
             flags = flags | re.I
 
-        # regex?
-        if not self.regexbutton.get_active():
+        ## regex?
+        if not self.regex.get_active():
             searchtext = re.escape(searchtext)
 
         matches = re.finditer(searchtext, text, flags)
@@ -142,9 +106,11 @@ class SearchAndReplace:
             self.scrollto(self.active)
         LOGGER.debug(searchtext)
 
+    @Gtk.Template.Callback()
     def scrolltonext(self, _widget, _data=None):
         self.scrollto(self.active + 1)
 
+    @Gtk.Template.Callback()
     def scrolltoprev(self, _widget, _data=None):
         self.scrollto(self.active - 1)
 
@@ -165,16 +131,15 @@ class SearchAndReplace:
         # select coincidence
         self.textbuffer.select_range(start_iter, end_iter)
 
-    def hide(self):
-        self.box.set_reveal_child(False)
-        self.textbuffer.remove_tag(self.highlight,
-                                   self.textbuffer.get_start_iter(),
-                                   self.textbuffer.get_end_iter())
-        self.textview.grab_focus()
+    @Gtk.Template.Callback()
+    def hide(self, *arg, **kwargs):
+        self.set_search_mode(False)
 
+    @Gtk.Template.Callback()
     def replace_clicked(self, _widget, _data=None):
         self.replace(self.active)
 
+    @Gtk.Template.Callback()
     def replace_all(self, _widget=None, _data=None):
         with user_action(self.textbuffer):
             for match in reversed(self.matches):
@@ -194,4 +159,10 @@ class SearchAndReplace:
         end_iter = self.textbuffer.get_iter_at_offset(match[1])
         self.textbuffer.delete(start_iter, end_iter)
         start_iter = self.textbuffer.get_iter_at_offset(match[0])
-        self.textbuffer.insert(start_iter, self.replaceentry.get_text())
+        self.textbuffer.insert(start_iter, self.replace_entry.get_text())
+
+    # Since the searchbar is overlayed to the textview we need to 
+    # update its margin when the searchbar appears
+    @Gtk.Template.Callback()
+    def update_textview_margin(self, _widget, allocation):
+        self.textview.update_vertical_margin(allocation.height)
