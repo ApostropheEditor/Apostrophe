@@ -20,11 +20,12 @@
   <schema path="/org/gnome/gitlab/somas/Apostrophe/" id="org.gnome.gitlab.somas.Apostrophe">
     <key name='color-scheme' type='s'>
       <choices>
+        <choice value="auto"/>
         <choice value="light"/>
         <choice value="dark"/>
         <choice value="sepia"/>
       </choices>
-      <default>"light"</default>
+      <default>"auto"</default>
       <summary>Color scheme</summary>
       <description>
         Use the color scheme in the application's UI and in the text area.
@@ -79,11 +80,32 @@
         Maximum number of characters per line within the editor.
       </description>
     </key>
+    <key name='hemingway-mode' type='b'>
+      <default>false</default>
+      <summary>Hemingway Mode</summary>
+      <description>
+        Whether the user can delete text or not.
+      </description>
+    </key>
     <key name='preview-mode' enum='org.gnome.gitlab.somas.Apostrophe.PreviewMode'>
       <default>"full-width"</default>
       <summary>Preview mode</summary>
       <description>
         How to display the preview.
+      </description>
+    </key>
+    <key name='preview-active' type='b'>
+      <default>false</default>
+      <summary>Preview active</summary>
+      <description>
+        Whether the preview show be active when launching a new window.
+      </description>
+    </key>
+    <key name='bigger-text' type='b'>
+      <default>false</default>
+      <summary>Text size</summary>
+      <description>
+        Prefered relative size for the text.
       </description>
     </key>
 

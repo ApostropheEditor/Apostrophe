@@ -20,7 +20,8 @@ Also several unofficial builds are available:
 
 ## Translation
 
-We're transitioning to Damned Lies. Hold on in the meantime
+If you want to help translating the project, please join us at [Damned Lies](https://l10n.gnome.org/module/apostrophe/).
+Any help is appreciated!
 
 ## Building
 
@@ -52,7 +53,7 @@ $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 Once all dependencies are installed you can build Apostrophe using the following commands:
 
 ```bash
-$ git clone https://gitlab.gnome.org/somas/apostrophe/
+$ git clone https://gitlab.gnome.org/World/apostrophe/
 $ cd apostrophe
 $ meson builddir --prefix=/usr -Dprofile=development
 $ sudo ninja -C builddir install

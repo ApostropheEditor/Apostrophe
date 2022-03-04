@@ -4,29 +4,6 @@
 
 /* Main window and text colors */
 
-// TODO: remove when porting to libhandy
-.apostrophe-window {
-  background: $base_color;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(ltr) scrollbar {
-  border-top-right-radius: 8px;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen):dir(rtl) scrollbar {
-  border-top-left-radius: 8px;
-}
-
-.apostrophe-window.focus:not(.tiled):not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right):not(.maximized):not(.fullscreen) progressbar {
-  margin-left: 4px;
-  margin-right: 4px;
-}
-
 #titlebar-revealer {
   padding: 0;
 }
@@ -34,7 +11,7 @@
 .apostrophe-editor {
   text-decoration-color: $error_color;
   font-family: 'Fira Mono', monospace;
-  font-size: 16px;
+  font-size: 1.091em;
 
   text{
     background: $base_color;
@@ -42,29 +19,37 @@
     caret-color: $fg_color;
   }
 
-  &.size14  {
-  font-size: 14px;
-  }
+    &.size14  {
+    font-size: 0.955em;
+    }
+  
+    &.size15  {
+    font-size: 1.023em;
+    }
+  
+    &.size16  {
+    font-size: 1.091em;
+    }
+  
+    &.size17  {
+    font-size: 1.159em;
+    }
+  
+    &.size18 {
+    font-size: 1.227em;
+    }
+  
+    &.size20  {
+    font-size: 1.364em;
+    }
+  
+    &.size22  {
+    font-size: 1.5em;
+    }
 
-  &.size15  {
-  font-size: 15px;
-  }
-
-  &.size16  {
-  font-size: 16px;
-  }
-
-  &.size17  {
-  font-size: 17px;
-  }
-
-  &.size18 {
-  font-size: 18px;
-  }
-}
-
-.recents-popover treeview{
-  padding: 4px;
+    &.size24  {
+    font-size: 1.636em;
+    }
 }
 
 .inline-button {
@@ -133,56 +118,124 @@
   }
 }
 
-.plain-listview {
-  background-color: $bg_color;
-}
-
 /* theme selector */
 
-.color-button {
-  padding: 12px;
-  border-radius: 999px;
-  -gtk-outline-radius: 999px;
-  outline-offset: 1px;
-  border: none;
-  -gtk-icon-shadow: none;
-  min-width: 0px;
-  min-height: 0px;
-  color: transparent;
-  transition: all 200ms ease-out;
-
-  &:disabled {
-    background: #929292;
-    box-shadow: inset 0 0 0 1px #2e3436;
+.themeswitcher {
+  $_light_bg: white;
+  $_light_fg: transparentize(black, .1);
+  $_dark_bg: #2d2d2d;
+  $_dark_fg: #eeeeec;
+  $_sepia_bg: #F0E8DD;
+  $_sepia_fg: #3b3228;
+  $_selected_color: #3584e4;
+  .check {
+    background: $_selected_color;
+    color: white;
+    padding: 2px;
+    border-radius: 17px;
+  }
+  /* Adapted from https://gitlab.gnome.org/GNOME/gnome-text-editor/-/blob/bf8c0c249f06a0be69e65aed3b786ba02a9f999e/src/TextEditor.css#L51 */
+  radiobutton {
+    -gtk-outline-radius: 100px;
+    outline-offset: 1px;
+    transition: none;
+    radio {
+      -gtk-icon-source: none;
+      background: none;
+      box-shadow: none;
+      padding: 12px;
+      min-height: 18px;
+      min-width: 18px;
+      border: none;
+      outline-color: currentColor;
+      transition: none;
+      @if $high_contrast {
+        @if $variant=='light' {
+          box-shadow: inset 0 0 0 1px transparentize(black, .3);
+        }
+        @else {
+          box-shadow: inset 0 0 0 1px transparentize(white, .7);
+        }
+      }
+      @else {
+        @if $variant=='light' {
+          box-shadow: inset 0 0 0 1px transparentize(black, .8);
+        }
+        @else {
+          box-shadow: 0 0 0 1px transparentize(black, .3);
+        }
+      }
+      &:checked {
+        box-shadow: inset 0 0 0 2px $_selected_color;
+      }
+    }
+    &.system radio {
+      color: $_light_fg;
+      background: linear-gradient(-45deg, $_dark_bg 49.99%, $_light_bg 50.01%);
+    }
+    &.light radio {
+      color: $_light_fg;
+      background-color: $_light_bg;
+    }
+    &.sepia radio {
+      color: $_sepia_fg;
+      background-color: $_sepia_bg;
+    }
+    &.dark radio {
+      color: $_dark_fg;
+      background-color: $_dark_bg;
+    }
   }
 }
 
-.color-light {
-  background: #ffffff;
-  box-shadow: inset 0 0 0 1px #2e3436;
-
-  &:checked {
-    color: #2e3436;
-    box-shadow: inset 0 0 0 2px $selected_bg_color;
-  }
+.preview_button_left:checked{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right-style: none;
 }
 
-.color-dark {
-  background: #2d2d2d;
-  box-shadow: inset 0 0 0 1px transparentize(black, .65);
-
-  &:checked {
-    color: #eeeeec;
-    box-shadow: inset 0 0 0 2px $selected_bg_color;
-  }
+.preview_button_right{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
-.color-sepia {
-  background: #F0E8DD;
-  box-shadow: inset 0 0 0 1px transparentize(black, .65);
+/* Recents */
+.open-popover {
+  contents {
+    padding: 0;
+  }
 
-  &:checked {
-    color: #3b3228;
-    box-shadow: inset 0 0 0 2px $selected_bg_color;
+  list {
+  background:none;
+    margin-bottom: 3px;
+  }
+
+  list label.placeholder {
+    min-height: 57px;
+  }
+
+  list row {
+    border-radius: 9px;
+    margin: 3px 6px;
+  }
+
+  list row:first-child {
+    margin-top: 6px;
+  }
+
+  list row button {
+    padding: 3px;
+    margin: 0;
+    min-height: 24px;
+    min-width: 24px;
+  }
+
+  list row:hover,
+  list row:focus {
+    background: transparentize($fg_color, .85);
+  }
+
+  separator {
+    margin-bottom: 0;
   }
 }

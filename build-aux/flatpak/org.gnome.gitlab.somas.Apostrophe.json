@@ -1,7 +1,7 @@
 {
     "app-id" : "org.gnome.gitlab.somas.Apostrophe",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "40",
+    "runtime-version" : "41",
     "sdk" : "org.gnome.Sdk",
     "command" : "apostrophe",
     "finish-args" : [
@@ -9,6 +9,7 @@
         "--socket=wayland",
         "--share=ipc",
         "--share=network",
+        "--device=dri",
         "--filesystem=home:ro",
         "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2018/bin/x86_64-linux/",
         "--metadata=X-DConf=migrate-path=/org/gnome/gitlab/somas/Apostrophe/"
@@ -24,34 +25,58 @@
     },
     "modules" : [
         {
-            "name": "libsass",
-            "cleanup": ["*"],
+            "name": "libhandy",
+            "buildsystem": "meson",
+            "builddir": true,
+            "config-opts": [
+                "-Dexamples=false",
+                "-Dtests=false"
+            ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/sass/libsass/archive/3.6.4.tar.gz",
-                    "sha256": "f9484d9a6df60576e791566eab2f757a97fd414fce01dd41fc0a693ea5db2889"
-                },
-                {
-                    "type": "script",
-                    "dest-filename": "autogen.sh",
-                    "commands": ["autoreconf -si"]
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git",
+                    "branch": "main"
                 }
             ]
         },
         {
-            "name": "sassc",
-            "cleanup": ["*"],
-            "sources": [
+            "name" : "libsass",
+            "cleanup" : [
+                "*"
+            ],
+            "sources" : [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/sass/sassc/archive/3.6.1.tar.gz",
-                    "sha256": "8cee391c49a102b4464f86fc40c4ceac3a2ada52a89c4c933d8348e3e4542a60"
+                    "type" : "archive",
+                    "url" : "https://github.com/sass/libsass/archive/3.6.4.tar.gz",
+                    "sha256" : "f9484d9a6df60576e791566eab2f757a97fd414fce01dd41fc0a693ea5db2889"
                 },
                 {
-                    "type": "script",
-                    "dest-filename": "autogen.sh",
-                    "commands": ["autoreconf -si"]
+                    "type" : "script",
+                    "dest-filename" : "autogen.sh",
+                    "commands" : [
+                        "autoreconf -si"
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "sassc",
+            "cleanup" : [
+                "*"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/sass/sassc/archive/3.6.1.tar.gz",
+                    "sha256" : "8cee391c49a102b4464f86fc40c4ceac3a2ada52a89c4c933d8348e3e4542a60"
+                },
+                {
+                    "type" : "script",
+                    "dest-filename" : "autogen.sh",
+                    "commands" : [
+                        "autoreconf -si"
+                    ]
                 }
             ]
         },
@@ -155,6 +180,7 @@
     ],
     "build-options" : {
         "env" : {
+            "" : null
         }
     }
 }

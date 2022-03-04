@@ -1,5 +1,4 @@
-# BEGIN LICENSE
-# Copyright 2020, Manuel Genovés <manuel.genoves@gmail.com>
+# Copyright 2022, Manuel Genovés <manuel.genoves@gmail.com>
 #                 Alexander Mikhaylenko
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
@@ -24,12 +23,15 @@ from gi.repository import GObject, Handy
 
 class Tweener(GObject.Object):
 
-    def __init__(self, widget, setter, value_from, value_to, duration, offset=0):
+    def __init__(self, widget, setter, value_from, value_to, duration, offset=0, setter_args = None, callback=None, callback_arg = None):
         self.widget = widget
         self.value_from = value_from
         self.value_to = value_to
         self.duration = duration
         self.offset = offset
+        self.setter_args = setter_args
+        self.callback = callback
+        self.callback_arg = callback_arg
 
         self.start_time = 0
         self.tick_cb_id = 0
@@ -43,6 +45,8 @@ class Tweener(GObject.Object):
 
             self.widget.remove_tick_callback(self.tick_cb_id)
             self.tick_cb_id = 0
+            if self.callback is not None:
+                self.callback(self.callback_arg)
 
     def start(self):
         if (not Handy.get_enable_animations(self.widget) or
@@ -55,7 +59,7 @@ class Tweener(GObject.Object):
             self.widget.remove_tick_callback(self.tick_cb_id)
             self.tick_cb_id = 0
 
-        self.setter(self.value_from)
+        self.setter(self.value_from, *self.setter_args)
 
         self.start_time = self.widget.get_frame_clock().get_frame_time() / 1000
         self.tick_cb_id = self.widget.add_tick_callback(self.__tick_cb)
@@ -69,7 +73,7 @@ class Tweener(GObject.Object):
             self.stop()
             self.tick_cb_id = 0
 
-            self.setter(self.current_value)
+            self.setter(self.current_value, *self.setter_args)
 
             return False
 
@@ -80,7 +84,7 @@ class Tweener(GObject.Object):
             + (self.value_to - self.value_from)\
             * Handy.ease_out_cubic(t)
 
-        self.setter(self.current_value)
+        self.setter(self.current_value, *self.setter_args)
         self.widget.queue_draw()
 
         return True

@@ -1,5 +1,4 @@
-# Copyright (C) 2022, Manuel Genovés <manuel.genoves@gmail.com>
-#               2019, Wolf Vollprecht <w.vollprecht@gmail.com>
+# Copyright (C) 2021, Manuel Genovés <manuel.genoves@gmail.com>
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
@@ -13,26 +12,19 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
-from gi.repository import Gio
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk, GObject, GLib, Gio, Handy
 
 
-class Settings(Gio.Settings):
+@Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/PreviewWindow.ui')
+class PreviewWindow(Handy.ApplicationWindow):
 
-    """
-        Apostrophe Settings
-    """
+    __gtype_name__ = "ApostrophePreviewWindow"
+
+    preview_box = Gtk.Template.Child()
 
     def __init__(self):
-        """
-            Init Settings
-        """
-        Gio.Settings.__init__(self)
-
-    @classmethod
-    def new(cls):
-        """
-            Return a new Settings object
-        """
-        settings = Gio.Settings.new("org.gnome.gitlab.somas.Apostrophe")
-        settings.__class__ = Settings
-        return settings
+        super().__init__(application=Gio.Application.get_default(),
+                         title="Preview")

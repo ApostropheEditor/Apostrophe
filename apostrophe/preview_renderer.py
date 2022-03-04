@@ -1,51 +1,65 @@
+# Copyright (C) 2022, Manuel Genovés <manuel.genoves@gmail.com>
+#               2019, Gonçalo Silva
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 3, as published
+# by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranties of
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
+# PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+# END LICENSE
+
 from gettext import gettext as _
 
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk, GLib, Handy, GObject
 
-from apostrophe import headerbars
 from apostrophe.settings import Settings
+from apostrophe.preview_layout_switcher import PreviewLayout
+from apostrophe.preview_window import PreviewWindow
+from .tweener import Tweener
 
-
-class PreviewRenderer:
+class PreviewRenderer(GObject.Object):
     """Renders the preview according to the user selected mode."""
 
-    # Must match the order/index defined in gschema.xml
-    FULL_WIDTH = 0
-    HALF_WIDTH = 1
-    HALF_HEIGHT = 2
-    WINDOWED = 3
+    __gtype_name__ = "PreviewRenderer"
+
+    preview_layout = GObject.Property(type=int, default=0)
 
     def __init__(
-            self, main_window, content, editor, text_view):
+            self, main_window, text_view, flap):
+        super().__init__()
         self.main_window = main_window
         self.main_window.connect("delete-event", self.on_window_closed)
-        self.content = content
-        self.editor = editor
         self.text_view = text_view
 
+        self.window_size_cache = None
+
         self.settings = Settings.new()
-        self.popover = None
         self.window = None
-        self.headerbar = None
+        self.preview_stack = self.main_window.preview_stack
 
-        self.mode = self.settings.get_enum("preview-mode")
-        self.update_mode()
+        # we may get the preview layout changed underneath us, so we store
+        # a cache for proper hidding the previous layout
+        self.preview_layout_cache = None
 
-    def show(self, web_view):
+        self.flap = flap
+
+        self.connect("notify::preview-layout", self.update_mode)
+
+    def show(self):
         """Show the preview, depending on the currently selected mode."""
 
         # Windowed preview: create a window and show the preview in it.
-        if self.mode == self.WINDOWED:
+        if self.preview_layout == PreviewLayout.WINDOWED and not self.window:
             # Create transient window of the main window.
-            self.window = Gtk.ApplicationWindow(
-                application=self.main_window.get_application())
+            self.window = PreviewWindow()
             self.window.connect("delete-event", self.on_window_closed)
 
-            # Create a custom header bar and move the mode button there.
-            headerbar = headerbars.PreviewHeaderbar()
-            self.headerbar = headerbar.hb
-            self.headerbar.set_title(_("Preview"))
-            self.window.set_titlebar(headerbar.hb_container)
+            self.window.preview_box.pack_start(self.preview_stack, False, True, 0)
 
             # Position it next to the main window.
             width, height = self.main_window.get_size()
@@ -55,86 +69,134 @@ class PreviewRenderer:
                 self.main_window.move(x, y)
                 self.window.move(x + width + 16, y)
 
-            # Add webview and show.
-            self.window.add(web_view)
             self.window.show()
 
+        elif self.preview_layout == PreviewLayout.HALF_WIDTH:
+            self.window_size_cache = self.main_window.get_size()
+            requested_width_tw = Tweener(self.flap,
+                                        self.flap.set_size_request,
+                                        self.text_view.get_min_width(),
+                                        self.text_view.get_min_width() * 2,
+                                        250, 
+                                        setter_args = [-1])
+            requested_width_tw.start()
+            self.flap.set_reveal_flap(True)
+
         else:
-            self.content.pack_start(web_view, True, True, 0)
+            # if it's the first time we open the preview, set
+            # the corresponding flap mode
+            if self.preview_layout_cache is None:
+                self.update_mode()
+            self.flap.set_reveal_flap(True)
 
-            # Full-width preview: swap editor with preview.
-            if self.mode == self.FULL_WIDTH:
-                self.content.remove(self.editor)
+    def load_webview(self, webview):
+        webview.show()
+        self.main_window.preview_stack.add(webview)
+        self.main_window.preview_stack.set_visible_child(webview)
 
-            # Half-width preview: set horizontal orientation & add the preview.
-            # Ask for a minimum width that respects the editor's minimum
-            # requirements.
-            elif self.mode == self.HALF_WIDTH:
-                self.content.set_orientation(Gtk.Orientation.HORIZONTAL)
-                self.content.set_size_request(
-                    self.text_view.get_min_width() * 2, -1)
-
-            # Half-height preview: set vertical orientation & add the preview.
-            # Ask for a minimum height that provides a comfortable experience.
-            elif self.mode == self.HALF_HEIGHT:
-                self.content.set_orientation(Gtk.Orientation.VERTICAL)
-                self.content.set_size_request(-1, 768)
-
-            else:
-                raise ValueError("Unknown preview mode {}".format(self.mode))
-
-        web_view.show()
-
-    def hide(self, web_view):
+    def hide(self):
         """Hide the preview, depending on the currently selected mode."""
+        self.flap.set_reveal_flap(False)
 
         # Windowed preview: remove preview and destroy window.
-        if self.mode == self.WINDOWED:
+        if self.preview_layout_cache == PreviewLayout.WINDOWED:
             self.main_window.present()
-            self.headerbar = None
-            self.window.remove(web_view)
+            self.window.preview_box.remove(self.preview_stack)
             self.window.destroy()
             self.window = None
-
         else:
-            self.content.remove(web_view)
-
-            # Full-width preview: swap preview with editor.
-            if self.mode == self.FULL_WIDTH:
-                self.content.add(self.editor)
-
             # Half-width/height previews: remove preview and reset size
             # requirements.
-            elif self.mode == self.HALF_WIDTH or self.mode == self.HALF_HEIGHT:
-                self.content.set_size_request(-1, -1)
+            if self.preview_layout_cache == PreviewLayout.HALF_WIDTH:
+                self.shrink_window()
+
+    def shrink_window(self):
+        self.flap.set_size_request(self.text_view.get_min_width(), -1)
+        resize_tw = Tweener(self.main_window,
+                            self.main_window.resize,
+                            self.main_window.get_size()[0],
+                            self.window_size_cache[0],
+                            250, 
+                            setter_args = [self.window_size_cache[1]])
+        resize_tw.start()
+
+    def update_mode(self, *args, web_view=None):
+        """Update preview mode
+        """
+
+        def set_flap_mode(*args, **kwargs):
+            # TODO: use structural pattern matching in python3.10
+            if c and self.flap.get_reveal_progress() != 0:
+                return
+
+            if c:
+                self.main_window.flap.disconnect(c)
+
+            if self.preview_layout == PreviewLayout.FULL_WIDTH:
+                if self.preview_layout_cache == PreviewLayout.HALF_WIDTH:
+                    self.shrink_window()
+                self.flap.set_fold_policy(Handy.FlapFoldPolicy.ALWAYS)
+                self.flap.set_orientation(Gtk.Orientation.HORIZONTAL)
+
+            elif self.preview_layout == PreviewLayout.HALF_WIDTH:
+                self.window_size_cache = self.main_window.get_size()
+                requested_width_tw = Tweener(self.flap,
+                                            self.flap.set_size_request,
+                                            self.text_view.get_min_width(),
+                                            self.text_view.get_min_width() * 2,
+                                            250, 
+                                            setter_args = [-1])
+                requested_width_tw.start()
+
+                self.flap.set_fold_policy(Handy.FlapFoldPolicy.NEVER)
+                self.flap.set_orientation(Gtk.Orientation.HORIZONTAL)
+
+            elif self.preview_layout == PreviewLayout.HALF_HEIGHT:
+                self.flap.set_fold_policy(Handy.FlapFoldPolicy.NEVER)
+                self.flap.set_orientation(Gtk.Orientation.VERTICAL)
 
             else:
-                raise ValueError("Unknown preview mode {}".format(self.mode))
+                raise ValueError("Unknown preview mode {}".format(self.preview_layout))
 
-    def update_mode(self, web_view=None):
-        """Update preview mode, adjusting the mode button
-        and the preview itself."""
+            # don't automatically show the preview when syncing the preview-layout property first time
+            if self.preview_layout_cache is not None:
+                self.show()
+            self.preview_layout_cache = self.preview_layout
 
-        mode = self.settings.get_enum("preview-mode")
-        if web_view and mode != self.mode:
-            self.hide(web_view)
-            self.mode = mode
-            self.show(web_view)
-        else:
-            self.mode = mode
+        def reatach_stack(*args, **kwargs):
+            if self.flap.get_reveal_progress() != 0:
+                return
+            self.main_window.flap.disconnect(d)
+            self.main_window.flap.remove(self.main_window.flap.get_flap())
+
+            self.preview_layout_cache = self.preview_layout
+            self.show()
+
+        # none -> paned
+        if (self.preview_layout in [PreviewLayout.FULL_WIDTH, PreviewLayout.HALF_WIDTH, PreviewLayout.HALF_HEIGHT] and
+            self.preview_layout_cache is None):
+            c = None
+            set_flap_mode()
+        # horizontal paned -> horizontal paned
+        elif (self.preview_layout in [PreviewLayout.FULL_WIDTH, PreviewLayout.HALF_WIDTH] and
+            self.preview_layout_cache in [PreviewLayout.FULL_WIDTH, PreviewLayout.HALF_WIDTH]):
+            c = None
+            set_flap_mode()
+        # window -> paned
+        elif (self.preview_layout_cache == PreviewLayout.WINDOWED and
+              self.preview_layout in [PreviewLayout.FULL_WIDTH, PreviewLayout.HALF_WIDTH, PreviewLayout.HALF_HEIGHT]):
+              self.hide()
+              self.main_window.flap.set_flap(self.preview_stack)
+              c = None
+              set_flap_mode()
+        # whatever -> paned
+        elif (self.preview_layout in [PreviewLayout.FULL_WIDTH, PreviewLayout.HALF_WIDTH, PreviewLayout.HALF_HEIGHT]):
+            self.hide()
+            c = self.main_window.flap.connect("notify::reveal-progress", set_flap_mode)
+        # paned -> windowed
+        elif self.preview_layout == PreviewLayout.WINDOWED:
+            self.hide()
+            d = self.main_window.flap.connect("notify::reveal-progress", reatach_stack)
 
     def on_window_closed(self, window, _event):
-        preview_action = window.get_application().lookup_action("preview")
-        preview_action.change_state(GLib.Variant.new_boolean(False))
-
-    def get_text_for_preview_mode(self, mode):
-        if mode == self.FULL_WIDTH:
-            return _("Full-Width")
-        elif mode == self.HALF_WIDTH:
-            return _("Half-Width")
-        elif mode == self.HALF_HEIGHT:
-            return _("Half-Height")
-        elif mode == self.WINDOWED:
-            return _("Windowed")
-        else:
-            raise ValueError("Unknown preview mode {}".format(mode))
+        self.main_window.lookup_action("preview").change_state(GLib.Variant.new_boolean(False))

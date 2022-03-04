@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <object class="GtkListBoxRow" id="switcherItem">
+  <requires lib="gtk+" version="3.24"/>
+  <template class="PreviewLayoutSwitcherItem" parent="GtkListBoxRow">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="action_name">app.preview_mode</property>
     <child>
       <object class="GtkBox">
+        <property name="halign">start</property>
+        <property name="spacing">6</property>
+        <property name="valign">center</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_top">4</property>
-        <property name="margin_bottom">4</property>
-        <property name="spacing">10</property>
         <child>
-          <object class="GtkImage" id="icon">
+          <object class="GtkBox">
+            <property name="halign">start</property>
+            <property name="spacing">12</property>
+            <property name="valign">center</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">12</property>
-            <property name="pixel_size">16</property>
-            <property name="icon_name">preview-layout-full-width-symbolic</property>
+            <child>
+              <object class="GtkImage" id="icon">
+                <property name="visible">True</property>
+                <style>
+                  <class name="list-icon"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="title">
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+              </object>
+            </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label">
+          <object class="GtkImage" id="checkmark">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="valign">center</property>
             <property name="halign">start</property>
-            <property name="margin_right">12</property>
-            <property name="label" translatable="yes">Full-Width</property>
+            <property name="opacity">0</property>
+            <property name="icon-name">emblem-ok-symbolic</property>
+            <style>
+              <class name="checkmark"/>
+            </style>
           </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>
