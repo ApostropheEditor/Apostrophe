@@ -1,4 +1,5 @@
 from gettext import gettext as _
+from gettext import ngettext as __
 
 from gi.repository import GLib, Gio, Gtk
 
@@ -71,13 +72,13 @@ class StatsHandler:
 
     def get_text_for_stat(self, stat):
         if stat == self.CHARACTERS:
-            return _("{:n} Characters").format(self.characters)
+            return __("{:n} Character", "{:n} Characters", self.characters).format(self.characters)
         elif stat == self.WORDS:
-            return _("{:n} Words").format(self.words)
+            return __("{:n} Word", "{:n} Words", self.words).format(self.words)
         elif stat == self.SENTENCES:
-            return _("{:n} Sentences").format(self.sentences)
+            return __("{:n} Sentence", "{:n} Sentences", self.sentences).format(self.sentences)
         elif stat == self.PARAGRAPHS:
-            return _("{:n} Paragraphs").format(self.paragraphs)
+            return __("{:n} Paragraph", "{:n} Paragraphs", self.paragraphs).format(self.paragraphs)
         elif stat == self.READ_TIME:
             return _("{:d}:{:02d}:{:02d} Read Time").format(*self.read_time)
         else:
