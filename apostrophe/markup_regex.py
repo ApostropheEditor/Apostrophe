@@ -35,7 +35,7 @@ CODE_BLOCK = re.compile(
 TABLE = re.compile(
     r"^[\-+]{5,}\n(?P<text>.+?)\n[\-+]{5,}\n", re.S)
 MATH = re.compile(
-    r"([$]{1,2})(?P<text>[^` ].+?[^`\\ ])\1")
+    r"([$]{1,2})(?P<text>[^`\\ ]{1,2}|[^` ].+?[^`\\ ])\1", re.S|re.M)
 FOOTNOTE_ID = re.compile(
     r"[^\s]+\[\^(?P<id>(?P<text>[^\s]+))\]")
 FOOTNOTE = re.compile(
