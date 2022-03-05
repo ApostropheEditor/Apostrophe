@@ -353,7 +353,7 @@
                   </object>
                   <packing>
                     <property name="name">FALSE</property>
-                    <property name="title" translatable="yes">page0</property>
+                    <property name="title" translatable="no">page0</property>
                   </packing>
                 </child>
                 <child>
@@ -361,7 +361,7 @@
                   </object>
                   <packing>
                     <property name="name">TRUE</property>
-                    <property name="title" translatable="yes">page1</property>
+                    <property name="title" translatable="no">page1</property>
                     <property name="position">1</property>
                   </packing>
                 </child>

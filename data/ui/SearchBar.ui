@@ -82,7 +82,7 @@
                 <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkToggleButton" id="case_sensitive">
-                    <property name="label" translatable="yes">aA</property>
+                    <property name="label" translatable="yes" comments="Translators: This indicates case sensitivity, so it should be the first vowel of the language in lowercase and uppercase">aA</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
@@ -92,7 +92,7 @@
                 </child>
                 <child>
                   <object class="GtkToggleButton" id="regex">
-                    <property name="label" translatable="yes">(.*)</property>
+                    <property name="label" translatable="no">(.*)</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
