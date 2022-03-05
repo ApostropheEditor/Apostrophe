@@ -3,15 +3,17 @@ data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in
 data/org.gnome.gitlab.somas.Apostrophe.gschema.xml
 data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in
 data/ui/About.ui.in
-data/ui/ExportPopover.ui
 data/ui/Export.ui
 data/ui/Headerbar.ui
-data/ui/Menu.ui
 data/ui/Preferences.ui
+data/ui/PreviewLayoutSwitcher.ui
 data/ui/PreviewLayoutSwitcherItem.ui
+data/ui/PreviewWindow.ui
 data/ui/Recents.ui
+data/ui/SearchBar.ui
 data/ui/Shortcuts.ui
 data/ui/TexliveWarning.ui
+data/ui/ThemeSwitcher.ui
 data/ui/Window.ui
 apostrophe/application.py
 apostrophe/export_dialog.py
@@ -26,6 +28,7 @@ apostrophe/markup_regex.py
 apostrophe/preferences_dialog.py
 apostrophe/preview_converter.py
 apostrophe/preview_handler.py
+apostrophe/preview_layout_switcher.py 
 apostrophe/preview_renderer.py
 apostrophe/preview_web_view.py
 apostrophe/search_and_replace.py
