@@ -11,7 +11,7 @@ BOLD_ITALIC = re.compile(
 STRIKETHROUGH = re.compile(
     r"~~(?P<text>.*?\S.*?)~~")
 CODE = re.compile(
-    r"`(?P<text>[^`].+?)`")
+    r"(?<!`)(?P<ticks>`+)(?!`)(?P<content>.+?)(?<!`)(?P=ticks)(?!`)")
 LINK = re.compile(
     r"\[(?P<text>.*)\]\((?P<url>.+?)(?: \"(?P<title>.+)\")?\)")
 LINK_ALT = re.compile(
