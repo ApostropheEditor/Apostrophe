@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-05 20:02+0000\n"
-"PO-Revision-Date: 2022-03-05 21:44+0000\n"
+"POT-Creation-Date: 2022-03-06 00:22+0000\n"
+"PO-Revision-Date: 2022-03-06 22:05+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "Apostrophe"
 msgstr "Apóstrofe"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr ""
@@ -141,8 +141,8 @@ msgid "Prefered relative size for the text."
 msgstr "Tamanho relativo preferido para o texto."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
-msgid "An elegant, distraction-free markdown editor"
-msgstr "Um editor markdown elegante e sem distração"
+msgid "Edit Markdown in style"
+msgstr "Editar Markdown em estilo"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
 msgid "Focus on your writing with a clean, distraction-free markdown editor."
@@ -185,8 +185,9 @@ msgstr ""
 "apresentações HTML"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
-msgid "Wolf V., Manuel G."
-msgstr "Wolf V., Manuel G."
+#| msgid "Copyright (C) 2022, Manuel G., Wolf V."
+msgid "Manuel G., Wolf V."
+msgstr "Manuel G., Wolf V."
 
 #: data/ui/About.ui.in:12
 msgid "Copyright (C) 2022, Manuel G., Wolf V."
@@ -295,14 +296,6 @@ msgstr "Marcadores incrementais"
 #: data/ui/Export.ui:329
 msgid "Show one bullet point after another in a slideshow"
 msgstr "Mostrar um marcador após o outro numa apresentação"
-
-#: data/ui/Export.ui:356
-msgid "page0"
-msgstr "página0"
-
-#: data/ui/Export.ui:364
-msgid "page1"
-msgstr "página1"
 
 #: data/ui/Headerbar.ui:57
 msgid "New"
@@ -426,6 +419,7 @@ msgstr "Ocorrência anterior"
 msgid "Next Match"
 msgstr "Ocorrência seguinte"
 
+#. Translators: This indicates case sensitivity, so it should be the first vowel of the language in lowercase and uppercase
 #: data/ui/SearchBar.ui:85
 msgid "aA"
 msgstr "aA"
@@ -433,10 +427,6 @@ msgstr "aA"
 #: data/ui/SearchBar.ui:89
 msgid "Case Sensitive"
 msgstr "Sensível a maiúsculas"
-
-#: data/ui/SearchBar.ui:95
-msgid "(.*)"
-msgstr "(.*)"
 
 #: data/ui/SearchBar.ui:99
 msgid "Regular Expression"
@@ -725,23 +715,7 @@ msgstr "Altura média"
 msgid "Windowed"
 msgstr "Em janela"
 
-#: apostrophe/stats_handler.py:74
-msgid "{:n} Characters"
-msgstr "{:n} Caracteres"
-
-#: apostrophe/stats_handler.py:76
-msgid "{:n} Words"
-msgstr "{:n} Palavras"
-
-#: apostrophe/stats_handler.py:78
-msgid "{:n} Sentences"
-msgstr "{:n} Sentenças"
-
-#: apostrophe/stats_handler.py:80
-msgid "{:n} Paragraphs"
-msgstr "{:n} Parágrafos"
-
-#: apostrophe/stats_handler.py:82
+#: apostrophe/stats_handler.py:83
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} Tempo de leitura"
 
@@ -769,6 +743,33 @@ msgstr "Item"
 #: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
 msgstr "Cabeçalho"
+
+#~ msgid "An elegant, distraction-free markdown editor"
+#~ msgstr "Um editor markdown elegante e sem distração"
+
+#~ msgid "Wolf V., Manuel G."
+#~ msgstr "Wolf V., Manuel G."
+
+#~ msgid "page0"
+#~ msgstr "página0"
+
+#~ msgid "page1"
+#~ msgstr "página1"
+
+#~ msgid "(.*)"
+#~ msgstr "(.*)"
+
+#~ msgid "{:n} Characters"
+#~ msgstr "{:n} Caracteres"
+
+#~ msgid "{:n} Words"
+#~ msgstr "{:n} Palavras"
+
+#~ msgid "{:n} Sentences"
+#~ msgstr "{:n} Sentenças"
+
+#~ msgid "{:n} Paragraphs"
+#~ msgstr "{:n} Parágrafos"
 
 #~ msgid "Poeditor"
 #~ msgstr "Poeditor"
