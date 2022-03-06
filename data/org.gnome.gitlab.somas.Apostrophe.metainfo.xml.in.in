@@ -3,7 +3,7 @@
   <id>@app-id@</id>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
   <name>Apostrophe</name>
-  <summary>An elegant, distraction-free markdown editor</summary>
+  <summary>Edit Markdown in style</summary>
   <description>
     <p>Focus on your writing with a clean, distraction-free markdown editor.</p>
     <p>Features:</p>
@@ -38,7 +38,7 @@
   <project_license>GPL-3.0+</project_license>
   <url type="homepage">https://world.pages.gitlab.gnome.org/apostrophe/</url>
   <content_rating type="oars-1.1"/>
-  <developer_name>Wolf V., Manuel G.</developer_name>
+  <developer_name>Manuel G., Wolf V.</developer_name>
   <url type="bugtracker">https://gitlab.gnome.org/World/apostrophe/-/issues</url>
   <url type="donation">https://www.paypal.me/manuelgenoves</url>
   <url type="help">https://gitlab.gnome.org/World/apostrophe/</url>

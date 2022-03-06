@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">Apostrophe</name>
-  <shortdesc xml:lang="en">An elegant, distraction-free markdown editor</shortdesc>
+  <shortdesc xml:lang="en">Edit Markdown in style</shortdesc>
   <homepage rdf:resource="https://gitlab.gnome.org/World/apostrophe" />
   <bug-database rdf:resource="https://gitlab.gnome.org/World/apostrophe/issues"/>
   <programming-language>Python</programming-language>

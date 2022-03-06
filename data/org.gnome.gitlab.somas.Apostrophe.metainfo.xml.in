@@ -2,10 +2,10 @@
 <component type="desktop-application">
   <id>@app-id@</id>
   <name>Apostrophe</name>
-  <summary>An elegant, distraction-free markdown editor</summary>
+  <summary>Edit Markdown in style</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <developer_name>Wolf V., Manuel G.</developer_name>
+  <developer_name>Manuel G., Wolf V.</developer_name>
   <description>
     <p>Focus on your writing with a clean, distraction-free markdown editor.</p>
     <p>Features:</p>
@@ -19,7 +19,7 @@
     </ul>
   </description>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
-  <url type="homepage">https://world.pages.gitlab.gnome.org/apostrophe/</url>
+  <url type="homepage">https://apps.gnome.org/app/org.gnome.gitlab.somas.Apostrophe/</url>
   <url type="bugtracker">https://gitlab.gnome.org/World/apostrophe/-/issues</url>
   <url type="help">https://gitlab.gnome.org/World/apostrophe/</url>
   <url type="donation">https://www.paypal.me/manuelgenoves</url>

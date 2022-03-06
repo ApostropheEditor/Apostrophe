@@ -72,7 +72,7 @@ install_data(
 ui_config = configuration_data()
 ui_config.set('app-id', application_id)
 ui_config.set('version', meson.project_version() + version_suffix)
-ui_config.set('package_url', 'https://apps.gnome.org/en/app/org.gnome.gitlab.somas.Apostrophe/')
+ui_config.set('package_url', 'https://apps.gnome.org/app/org.gnome.gitlab.somas.Apostrophe/')
 ui_preconfigured_files = files(
   'ui/About.ui.in'
 )
