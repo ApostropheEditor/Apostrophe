@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gettext import ngettext as __
+from gettext import ngettext
 
 from gi.repository import GLib, Gio, Gtk
 
@@ -72,13 +72,13 @@ class StatsHandler:
 
     def get_text_for_stat(self, stat):
         if stat == self.CHARACTERS:
-            return __("{:n} Character", "{:n} Characters", self.characters).format(self.characters)
+            return ngettext("{:n} Character", "{:n} Characters", self.characters).format(self.characters)
         elif stat == self.WORDS:
-            return __("{:n} Word", "{:n} Words", self.words).format(self.words)
+            return ngettext("{:n} Word", "{:n} Words", self.words).format(self.words)
         elif stat == self.SENTENCES:
-            return __("{:n} Sentence", "{:n} Sentences", self.sentences).format(self.sentences)
+            return ngettext("{:n} Sentence", "{:n} Sentences", self.sentences).format(self.sentences)
         elif stat == self.PARAGRAPHS:
-            return __("{:n} Paragraph", "{:n} Paragraphs", self.paragraphs).format(self.paragraphs)
+            return ngettext("{:n} Paragraph", "{:n} Paragraphs", self.paragraphs).format(self.paragraphs)
         elif stat == self.READ_TIME:
             return _("{:d}:{:02d}:{:02d} Read Time").format(*self.read_time)
         else:
