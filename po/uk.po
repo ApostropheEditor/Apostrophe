@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-06 00:22+0000\n"
-"PO-Revision-Date: 2022-03-06 10:46+0200\n"
+"POT-Creation-Date: 2022-03-07 19:03+0000\n"
+"PO-Revision-Date: 2022-03-07 22:21+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -25,11 +25,10 @@ msgstr "Апостроф"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
-#| msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr ""
-"uberwriter;UberWriter;apostrophe;markdown;editor;text;write;уберрайтер;апостроф;"
-"маркдаун;розмітка;редактор;текст;писати;"
+"uberwriter;UberWriter;apostrophe;markdown;editor;text;write;уберрайтер;"
+"апостроф;маркдаун;розмітка;редактор;текст;писати;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, an elegant, distraction-free markdown editor"
@@ -113,8 +112,7 @@ msgstr "Режим Гемінґвея"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:86
 msgid "Whether the user can delete text or not."
-msgstr ""
-"Визначає, чи може користувач вилучати текст.."
+msgstr "Визначає, чи може користувач вилучати текст.."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
 msgid "Preview mode"
@@ -125,27 +123,26 @@ msgid "How to display the preview."
 msgstr "Як показувати попередній перегляд."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
-#| msgid "Preview mode"
 msgid "Preview active"
 msgstr "Активний попередній перегляд"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
-msgid "Whether the preview show be active when launching a new window."
+#| msgid "Whether the preview show be active when launching a new window."
+msgid "Whether showing of preview is active when launching a new window."
 msgstr ""
-"Визначає, чи має бути увімкнено попередній перегляд одразу після відкриття нового вікна."
+"Визначає, чи має бути показано попередній перегляд одразу після відкриття "
+"нового вікна."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
 msgid "Text size"
-msgstr ""
-"Розмір шрифту"
+msgstr "Розмір шрифту"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
-msgid "Prefered relative size for the text."
-msgstr ""
-"Бажаний відносний розмір символів тексту."
+#| msgid "Prefered relative size for the text."
+msgid "Preferred relative size for the text."
+msgstr "Бажаний відносний розмір символів тексту."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
-#| msgid "Markdown Files"
 msgid "Edit Markdown in style"
 msgstr "Редагувати Markdown у стилі"
 
@@ -193,11 +190,9 @@ msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
 msgid "Manuel G., Wolf V."
-msgstr ""
-"Manuel G., Wolf V."
+msgstr "Manuel G., Wolf V."
 
 #: data/ui/About.ui.in:12
-#| msgid "Copyright (C) 2020, Wolf Vollprecht"
 msgid "Copyright (C) 2022, Manuel G., Wolf V."
 msgstr "© Manuel G., Wolf V., 2022"
 
@@ -225,8 +220,7 @@ msgstr "Допомога у перекладі:"
 
 #: data/ui/About.ui.in:114
 msgid "Damned Lies"
-msgstr ""
-"Damned Lies"
+msgstr "Damned Lies"
 
 #: data/ui/Export.ui:46 apostrophe/export_dialog.py:133
 #: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
@@ -329,7 +323,6 @@ msgid "Find"
 msgstr "Знайти"
 
 #: data/ui/Headerbar.ui:225
-#| msgid "Windowed"
 msgid "New Window"
 msgstr "Нове вікно"
 
@@ -379,8 +372,7 @@ msgstr "Автоматично ховати смужки заголовка і �
 
 #: data/ui/Preferences.ui:57
 msgid "Use bigger text"
-msgstr ""
-"Більше тексту"
+msgstr "Більше тексту"
 
 #: data/ui/Preferences.ui:58
 msgid "Reduce the margins width and increase the text size when possible"
@@ -388,24 +380,20 @@ msgstr ""
 "Зменшити ширину полів і збільшити розмір області тексту, якщо це можливо"
 
 #: data/ui/Preferences.ui:72
-#| msgid "Regular Expression"
 msgid "Restore session"
 msgstr "Відновлювати сеанс"
 
 #: data/ui/Preferences.ui:73
 msgid "Return to your previous session when Apostrophe is started"
-msgstr ""
-"Повертатися до попереднього сеансу після запуску «Апострофа»"
+msgstr "Повертатися до попереднього сеансу після запуску «Апострофа»"
 
 #: data/ui/Preferences.ui:91
 msgid "Flavor of markdown Apostrophe will use"
-msgstr ""
-"Тип мови розмітки, яку використовуватиме «Апостроф»"
+msgstr "Тип мови розмітки, яку використовуватиме «Апостроф»"
 
 #: data/ui/Preferences.ui:100
 msgid "Markdown flavor documentation"
-msgstr ""
-"Документація до варіанта Markdown"
+msgstr "Документація до варіанта Markdown"
 
 #: data/ui/PreviewLayoutSwitcher.ui:10 data/ui/PreviewWindow.ui:13
 msgid "Preview"
@@ -413,19 +401,15 @@ msgstr "Перегляд"
 
 #: data/ui/PreviewLayoutSwitcher.ui:32
 msgid "Screen Layout"
-msgstr ""
-"Компонування екрана"
+msgstr "Компонування екрана"
 
 #: data/ui/Recents.ui:60
-#| msgctxt "shortcut window"
-#| msgid "Close document"
 msgid "No Recent Documents"
 msgstr "Немає недавніх документів"
 
 #: data/ui/Recents.ui:88
 msgid "No Results Found"
-msgstr ""
-"Нічого не знайдено"
+msgstr "Нічого не знайдено"
 
 #: data/ui/SearchBar.ui:50
 msgid "Previous Match"
@@ -603,23 +587,19 @@ msgstr "Позначити увесь текст"
 
 #: data/ui/ThemeSwitcher.ui:22
 msgid "Use System Colors"
-msgstr ""
-"Використовувати кольори системи"
+msgstr "Використовувати кольори системи"
 
 #: data/ui/ThemeSwitcher.ui:51
 msgid "Use Light Colors"
-msgstr ""
-"Використовувати світлі кольори"
+msgstr "Використовувати світлі кольори"
 
 #: data/ui/ThemeSwitcher.ui:80
 msgid "Use Sepia Colors"
-msgstr ""
-"Кольори сепії"
+msgstr "Кольори сепії"
 
 #: data/ui/ThemeSwitcher.ui:109
 msgid "Use Dark Colors"
-msgstr ""
-"Використовувати темні кольори"
+msgstr "Використовувати темні кольори"
 
 #: data/ui/Window.ui:69
 msgid "Show Statistics"
@@ -734,6 +714,42 @@ msgstr "Пів висоти"
 msgid "Windowed"
 msgstr "У вікні"
 
+#: apostrophe/stats_handler.py:75
+#| msgid "{:n} Characters"
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "{:n} символ"
+msgstr[1] "{:n} символи"
+msgstr[2] "{:n} символів"
+msgstr[3] "{:n} символ"
+
+#: apostrophe/stats_handler.py:77
+#| msgid "{:n} Words"
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "{:n} слово"
+msgstr[1] "{:n} слова"
+msgstr[2] "{:n} слів"
+msgstr[3] "{:n} слово"
+
+#: apostrophe/stats_handler.py:79
+#| msgid "{:n} Sentences"
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "{:n} речення"
+msgstr[1] "{:n} речення"
+msgstr[2] "{:n} речень"
+msgstr[3] "{:n} речення"
+
+#: apostrophe/stats_handler.py:81
+#| msgid "{:n} Paragraphs"
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "{:n} абзац"
+msgstr[1] "{:n} абзаци"
+msgstr[2] "{:n} абзаців"
+msgstr[3] "{:n} абзац"
+
 #: apostrophe/stats_handler.py:83
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} часу читання"
@@ -786,15 +802,3 @@ msgstr "Верхній колонтитул"
 
 #~ msgid "(.*)"
 #~ msgstr "(.*)"
-
-#~ msgid "{:n} Characters"
-#~ msgstr "{:n} символів"
-
-#~ msgid "{:n} Words"
-#~ msgstr "{:n} слів"
-
-#~ msgid "{:n} Sentences"
-#~ msgstr "{:n} речень"
-
-#~ msgid "{:n} Paragraphs"
-#~ msgstr "{:n} абзаців"
