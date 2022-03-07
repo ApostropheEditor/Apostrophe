@@ -98,14 +98,14 @@
       <default>false</default>
       <summary>Preview active</summary>
       <description>
-        Whether the preview show be active when launching a new window.
+        Whether showing of preview is active when launching a new window.
       </description>
     </key>
     <key name='bigger-text' type='b'>
       <default>false</default>
       <summary>Text size</summary>
       <description>
-        Prefered relative size for the text.
+        Preferred relative size for the text.
       </description>
     </key>
 
