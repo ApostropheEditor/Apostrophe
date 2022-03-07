@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-06 00:22+0000\n"
+"POT-Creation-Date: 2022-03-07 19:03+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -10,6 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
@@ -114,9 +115,8 @@ msgstr "Hur förhandsgranskning visas."
 msgid "Preview active"
 msgstr "Förhandsgranskning aktiv"
 
-# TODO: preview show??
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
-msgid "Whether the preview show be active when launching a new window."
+msgid "Whether showing of preview is active when launching a new window."
 msgstr ""
 "Huruvida visning av förhandsgranskning är aktiv vid öppnande av ett nytt "
 "fönster."
@@ -125,9 +125,8 @@ msgstr ""
 msgid "Text size"
 msgstr "Textstorlek"
 
-# TODO: preferred
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
-msgid "Prefered relative size for the text."
+msgid "Preferred relative size for the text."
 msgstr "Föredragen relativ storlek för texten."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
@@ -176,7 +175,6 @@ msgstr ""
 "med HTML-bildspel"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
-#| msgid "Copyright (C) 2022, Manuel G., Wolf V."
 msgid "Manuel G., Wolf V."
 msgstr "Manuel G., Wolf V."
 
@@ -703,6 +701,30 @@ msgstr "Halv höjd"
 msgid "Windowed"
 msgstr "Fönsterläge"
 
+#: apostrophe/stats_handler.py:75
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "{:n} tecken"
+msgstr[1] "{:n} tecken"
+
+#: apostrophe/stats_handler.py:77
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "{:n} ord"
+msgstr[1] "{:n} ord"
+
+#: apostrophe/stats_handler.py:79
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "{:n} mening"
+msgstr[1] "{:n} meningar"
+
+#: apostrophe/stats_handler.py:81
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "{:n} stycke"
+msgstr[1] "{:n} stycken"
+
 #: apostrophe/stats_handler.py:83
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} lästid"
@@ -746,18 +768,6 @@ msgstr "Rubrik"
 
 #~ msgid "(.*)"
 #~ msgstr "(.*)"
-
-#~ msgid "{:n} Characters"
-#~ msgstr "{:n} tecken"
-
-#~ msgid "{:n} Words"
-#~ msgstr "{:n} ord"
-
-#~ msgid "{:n} Sentences"
-#~ msgstr "{:n} meningar"
-
-#~ msgid "{:n} Paragraphs"
-#~ msgstr "{:n} stycken"
 
 #~ msgid "Poeditor"
 #~ msgstr "Poeditor"
