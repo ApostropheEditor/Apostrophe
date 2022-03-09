@@ -6,14 +6,15 @@
 msgid ""
 msgstr "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-06 00:22+0000\n"
-"PO-Revision-Date: 2022-03-06 17:00+0100\n"
+"POT-Creation-Date: 2022-03-07 19:03+0000\n"
+"PO-Revision-Date: 2022-03-09 17:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -117,15 +118,15 @@ msgid "Preview active"
 msgstr "Aurrebista aktiboa"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
-msgid "Whether the preview show be active when launching a new window."
-msgstr "Leiho berria abiarazten denean aurrebistak aktiboa izan behar duen ala ez."
+msgid "Whether showing of preview is active when launching a new window."
+msgstr "Leiho berria abiarazten denean aurrebista erakustea aktibo dagoen ala ez."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
 msgid "Text size"
 msgstr "Testu-tamaina"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
-msgid "Prefered relative size for the text."
+msgid "Preferred relative size for the text."
 msgstr "Testuaren tamaina erlatibo hobetsia."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
@@ -690,6 +691,30 @@ msgstr "Altuera erdia"
 msgid "Windowed"
 msgstr "Leihoduna"
 
+#: apostrophe/stats_handler.py:75
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "Karaktere {:n}"
+msgstr[1] "{:n} karektere"
+
+#: apostrophe/stats_handler.py:77
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "Hitz {:n}"
+msgstr[1] "{:n} hitz"
+
+#: apostrophe/stats_handler.py:79
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "Esaldi {:n}"
+msgstr[1] "{:n} esaldi"
+
+#: apostrophe/stats_handler.py:81
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "Paragrafo {:n}"
+msgstr[1] "{:n} paragrafo"
+
 #: apostrophe/stats_handler.py:83
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} irakurtzeko dengbora"
@@ -736,15 +761,3 @@ msgstr "Goiburua"
 
 #~ msgid "(.*)"
 #~ msgstr "(.*)"
-
-#~ msgid "{:n} Characters"
-#~ msgstr "{:n} karektere"
-
-#~ msgid "{:n} Words"
-#~ msgstr "{:n} hitz"
-
-#~ msgid "{:n} Sentences"
-#~ msgstr "{:n} esaldi"
-
-#~ msgid "{:n} Paragraphs"
-#~ msgstr "{:n} paragrafo"
