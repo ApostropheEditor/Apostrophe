@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-06 00:22+0000\n"
-"PO-Revision-Date: 2022-03-05 22:03-0300\n"
+"POT-Creation-Date: 2022-03-07 19:03+0000\n"
+"PO-Revision-Date: 2022-03-11 19:15-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -133,15 +133,16 @@ msgid "Preview active"
 msgstr "Pré-visualização ativa"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
-msgid "Whether the preview show be active when launching a new window."
-msgstr "Se a pré-visualização estará ativa quando ao lançar uma nova janela."
+msgid "Whether showing of preview is active when launching a new window."
+msgstr ""
+"Se a exibição da pré-visualização está ativa ao lançar uma nova janela."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
 msgid "Text size"
 msgstr "Tamanho do texto"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
-msgid "Prefered relative size for the text."
+msgid "Preferred relative size for the text."
 msgstr "Tamanho relativo preferido para o texto."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
@@ -194,7 +195,6 @@ msgid "Manuel G., Wolf V."
 msgstr "Manuel G., Wolf V."
 
 #: data/ui/About.ui.in:12
-#| msgid "Copyright (C) 2020, Wolf Vollprecht"
 msgid "Copyright (C) 2022, Manuel G., Wolf V."
 msgstr "Copyright (C) 2022, Manuel G., Wolf V."
 
@@ -720,6 +720,30 @@ msgstr "Meia altura"
 msgid "Windowed"
 msgstr "Janelado"
 
+#: apostrophe/stats_handler.py:75
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "{:n} caractere"
+msgstr[1] "{:n} caracteres"
+
+#: apostrophe/stats_handler.py:77
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "{:n} palavra"
+msgstr[1] "{:n} palavras"
+
+#: apostrophe/stats_handler.py:79
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "{:n} sentença"
+msgstr[1] "{:n} sentenças"
+
+#: apostrophe/stats_handler.py:81
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "{:n} parágrafo"
+msgstr[1] "{:n} parágrafos"
+
 #: apostrophe/stats_handler.py:83
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} Tempo de leitura"
@@ -772,15 +796,3 @@ msgstr "Cabeçalho"
 
 #~ msgid "(.*)"
 #~ msgstr "(.*)"
-
-#~ msgid "{:n} Characters"
-#~ msgstr "{:n} Caracteres"
-
-#~ msgid "{:n} Words"
-#~ msgstr "{:n} Palavras"
-
-#~ msgid "{:n} Sentences"
-#~ msgstr "{:n} Sentenças"
-
-#~ msgid "{:n} Paragraphs"
-#~ msgstr "{:n} Parágrafos"
