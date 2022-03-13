@@ -43,6 +43,22 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release type="stable" version="2.6" date="2022-03-19T00:00:00Z">
+      <description>
+        <p>This release adds the following features:</p>
+        <ul>
+          <li>Implemented multiwindow support</li>
+          <li>Save window state on exit</li>
+          <li>Ported to libhandy</li>
+          <li>Improved the overall UI</li>
+          <li>New animations</li>
+          <li>Follow the Dark Mode global preference</li>
+          <li>Add an "automatic" color mode</li>
+          <li>Improve the High Contrast styles</li>
+          <li>Improve inline preview markup</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="2.5" date="2021-08-28T00:00:00Z">
       <description>
         <p>This release adds the following features:</p>
@@ -63,26 +79,6 @@
           <li>Improved start/end sentence detection in Focus Mode</li>
           <li>Small improvements in the headerbar title</li>
           <li>Cleaned a little bit the Shortcuts Window</li>
-        </ul>
-      </description>
-    </release>
-    <release type="stable" version="2.3" date="2021-03-01T00:00:00Z">
-      <description>
-        <p>This release adds the following features:</p>
-        <ul>
-          <li>New export dialog</li>
-          <li>Improved Reveal.js slideshow exports</li>
-          <li>Better input/output handling</li>
-          <li>Inhibit logout if the document is not saved</li>
-          <li>Migrate to xelatex</li>
-          <li>Better internal path handling</li>
-          <li>New animated progressbar on saving</li>
-          <li>Strict sandboxing support</li>
-        </ul>
-        <p>This release fixes the following bugs:</p>
-        <ul>
-          <li>Undo/redo improvements</li>
-          <li>Fixes for bad markdown parsing of unordered lists</li>
         </ul>
       </description>
     </release>

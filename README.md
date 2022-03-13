@@ -6,7 +6,7 @@
 
 ## About
 
-Apostrophe is a [GTK+](https://www.gtk.org) based distraction free Markdown editor, mainly developed by Wolf Vollprecht and Manuel Genovés. It uses pandoc as back-end for parsing Markdown and offers a very clean and sleek user interface.
+Apostrophe is a [GTK+](https://www.gtk.org) based distraction free Markdown editor, originally developed by Wolf Vollprecht and currently developed and maintained by Manuel Genovés. It uses pandoc as back-end for parsing Markdown and offers a very clean and sleek user interface.
 
 ## Install
 

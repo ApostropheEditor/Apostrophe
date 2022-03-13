@@ -18,25 +18,25 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/main.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/main.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/main-dark.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/main-dark.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/formula.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/formula.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/preview.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/preview.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/master/screenshots/focus.png</image>
+      <image type="source">https://gitlab.gnome.org/World/apostrophe/-/raw/main/screenshots/focus.png</image>
     </screenshot>
   </screenshots>
   
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <url type="homepage">https://world.pages.gitlab.gnome.org/apostrophe/</url>
+  <url type="homepage">https://apps.gnome.org/app/org.gnome.gitlab.somas.Apostrophe/</url>
   <content_rating type="oars-1.1"/>
   <developer_name>Manuel G., Wolf V.</developer_name>
   <url type="bugtracker">https://gitlab.gnome.org/World/apostrophe/-/issues</url>
