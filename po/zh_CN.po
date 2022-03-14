@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-06 00:22+0000\n"
-"PO-Revision-Date: 2022-03-06 19:00+0800\n"
+"POT-Creation-Date: 2022-03-09 11:07+0000\n"
+"PO-Revision-Date: 2022-03-11 19:50+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -23,7 +23,6 @@ msgstr "Apostrophe"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
-#| msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr ""
 "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;编辑器;文本;文字;"
@@ -117,12 +116,12 @@ msgid "How to display the preview."
 msgstr "如何显示预览"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
-#| msgid "Preview mode"
 msgid "Preview active"
 msgstr "预览激活"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
-msgid "Whether the preview show be active when launching a new window."
+#| msgid "Whether the preview show be active when launching a new window."
+msgid "Whether showing of preview is active when launching a new window."
 msgstr "启动新窗口时是否激活预览显示。"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
@@ -130,11 +129,11 @@ msgid "Text size"
 msgstr "文字大小"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
-msgid "Prefered relative size for the text."
+#| msgid "Prefered relative size for the text."
+msgid "Preferred relative size for the text."
 msgstr "文字首选的相对大小。"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
-#| msgid "Markdown Files"
 msgid "Edit Markdown in style"
 msgstr "在样式中编辑 Markdown"
 
@@ -179,7 +178,6 @@ msgid "Manuel G., Wolf V."
 msgstr "Manuel G., Wolf V."
 
 #: data/ui/About.ui.in:12
-#| msgid "Copyright (C) 2020, Wolf Vollprecht"
 msgid "Copyright (C) 2022, Manuel G., Wolf V."
 msgstr "Copyright (C) 2022, Manuel G., Wolf V."
 
@@ -308,7 +306,6 @@ msgid "Find"
 msgstr "查找"
 
 #: data/ui/Headerbar.ui:225
-#| msgid "Windowed"
 msgid "New Window"
 msgstr "新建窗口"
 
@@ -365,7 +362,6 @@ msgid "Reduce the margins width and increase the text size when possible"
 msgstr "如果可能则减小边界宽度并增大文字大小"
 
 #: data/ui/Preferences.ui:72
-#| msgid "Regular Expression"
 msgid "Restore session"
 msgstr "恢复会话"
 
@@ -390,8 +386,6 @@ msgid "Screen Layout"
 msgstr "屏幕布局"
 
 #: data/ui/Recents.ui:60
-#| msgctxt "shortcut window"
-#| msgid "Close document"
 msgid "No Recent Documents"
 msgstr "无最近文档"
 
@@ -702,6 +696,30 @@ msgstr "纵向显示"
 msgid "Windowed"
 msgstr "分窗口显示"
 
+#: apostrophe/stats_handler.py:75
+#| msgid "{:n} Characters"
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "{:n} 个字符"
+
+#: apostrophe/stats_handler.py:77
+#| msgid "{:n} Words"
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "{:n} 个词语"
+
+#: apostrophe/stats_handler.py:79
+#| msgid "{:n} Sentences"
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "{:n} 个句子"
+
+#: apostrophe/stats_handler.py:81
+#| msgid "{:n} Paragraphs"
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "{:n} 个段落"
+
 #: apostrophe/stats_handler.py:83
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} 阅读时间"
@@ -754,18 +772,6 @@ msgstr "标题"
 
 #~ msgid "(.*)"
 #~ msgstr "(.*)"
-
-#~ msgid "{:n} Characters"
-#~ msgstr "{:n} 个字符"
-
-#~ msgid "{:n} Words"
-#~ msgstr "{:n} 个词语"
-
-#~ msgid "{:n} Sentences"
-#~ msgstr "{:n} 个句子"
-
-#~ msgid "{:n} Paragraphs"
-#~ msgstr "{:n} 个段落"
 
 #~ msgid ""
 #~ "Apostrophe is a GTK based distraction free Markdown editor, originally "
