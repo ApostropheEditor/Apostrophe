@@ -43,6 +43,26 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release type="stable" version="2.6.1" date="2022-03-20T00:00:00Z">
+      <description>
+        <p>This release fixes the following bug:</p>
+        <ul>
+          <li>A small bug in 2.6 which didn't allow to save files</li>
+        </ul>
+        <p>This release adds the following features:</p>
+        <ul>
+          <li>Implemented multiwindow support</li>
+          <li>Save window state on exit</li>
+          <li>Ported to libhandy</li>
+          <li>Improved the overall UI</li>
+          <li>New animations</li>
+          <li>Follow the Dark Mode global preference</li>
+          <li>Add an "automatic" color mode</li>
+          <li>Improve the High Contrast styles</li>
+          <li>Improve inline preview markup</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="2.6" date="2022-03-19T00:00:00Z">
       <description>
         <p>This release adds the following features:</p>
@@ -66,19 +86,6 @@
           <li>Added Sepia Mode</li>
           <li>Improved exported HTML on small screens</li>
           <li>Updated metadata and runtime version</li>
-        </ul>
-      </description>
-    </release>
-    <release type="stable" version="2.4" date="2021-03-10T00:00:00Z">
-      <description>
-        <p>This release fixes the following bugs:</p>
-        <ul>
-          <li>Fixed a bug where the cursor could go over the bottom of the window</li>
-          <li>Fixed a bug where in certain circumstances the bottom line couldn't be clicked</li>
-          <li>Improved behaviour when dealing with unsaved files.</li>
-          <li>Improved start/end sentence detection in Focus Mode</li>
-          <li>Small improvements in the headerbar title</li>
-          <li>Cleaned a little bit the Shortcuts Window</li>
         </ul>
       </description>
     </release>
