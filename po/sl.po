@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-15 11:16+0000\n"
-"PO-Revision-Date: 2022-03-15 22:51+0100\n"
-"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
+"POT-Creation-Date: 2022-03-15 21:52+0000\n"
+"PO-Revision-Date: 2022-03-18 17:16+0100\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -129,7 +129,7 @@ msgstr "Predogledni način"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
 msgid "Whether showing of preview is active when launching a new window."
-msgstr ""
+msgstr "Ali je prikaz predogleda dejaven pri zagonu novega okna."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
 msgid "Text size"
@@ -137,7 +137,7 @@ msgstr "Velikost besedila"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
 msgid "Preferred relative size for the text."
-msgstr ""
+msgstr "Želena relativna velikost besedila."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
 msgid "Edit Markdown in style"
@@ -372,6 +372,7 @@ msgstr "Uporabi večje besedilo"
 #: data/ui/Preferences.ui:58
 msgid "Reduce the margins width and increase the text size when possible"
 msgstr ""
+"Zmanjšajte širino robov in povečajte velikost besedila, kadar je to mogoče"
 
 #: data/ui/Preferences.ui:72
 msgid "Restore session"
@@ -379,15 +380,15 @@ msgstr "Obnovi sejo"
 
 #: data/ui/Preferences.ui:73
 msgid "Return to your previous session when Apostrophe is started"
-msgstr ""
+msgstr "Ob zagonu naj se Apostrof vrne v prejšnjo sejo"
 
 #: data/ui/Preferences.ui:91
 msgid "Flavor of markdown Apostrophe will use"
-msgstr ""
+msgstr "Inačica zapisa markdown, ki naj jo uporablja Apostrophe"
 
 #: data/ui/Preferences.ui:100
 msgid "Markdown flavor documentation"
-msgstr ""
+msgstr "Dokumentacija o inačicah zapisa markdown"
 
 #: data/ui/PreviewLayoutSwitcher.ui:10 data/ui/PreviewWindow.ui:13
 msgid "Preview"
@@ -768,27 +769,3 @@ msgstr "Predmet"
 #: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
 msgstr "Glava"
-
-#~ msgid "An elegant, distraction-free markdown editor"
-#~ msgstr "Enostaven, a funkcijsko zmogljiv urejevalnik zapisa markdown."
-
-#~ msgid "Wolf V., Manuel G."
-#~ msgstr "Wolf V., Manuel G."
-
-#~ msgid "Poeditor"
-#~ msgstr "Poeditor"
-
-#~ msgid "page0"
-#~ msgstr "stran0"
-
-#~ msgid "page1"
-#~ msgstr "stran1"
-
-#~ msgid "Sync Views"
-#~ msgstr "Uskladi poglede"
-
-#~ msgid "Open Recent"
-#~ msgstr "Odpri nedavno"
-
-#~ msgid "(.*)"
-#~ msgstr "(.*)"
