@@ -23,13 +23,16 @@ from gi.repository import GObject, Handy
 
 class Tweener(GObject.Object):
 
-    def __init__(self, widget, setter, value_from, value_to, duration, offset=0, setter_args = None, callback=None, callback_arg = None):
+    def __init__(self, widget, setter, value_from, value_to, duration, offset=0, setter_args = None, callback = None, callback_arg = None):
         self.widget = widget
         self.value_from = value_from
         self.value_to = value_to
         self.duration = duration
         self.offset = offset
-        self.setter_args = setter_args
+        if setter_args is None:
+            self.setter_args = []
+        else:
+            self.setter_args = setter_args
         self.callback = callback
         self.callback_arg = callback_arg
 
