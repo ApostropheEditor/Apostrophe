@@ -28,12 +28,14 @@ class PreviewRenderer(GObject.Object):
     __gtype_name__ = "PreviewRenderer"
 
     preview_layout = GObject.Property(type=int, default=0)
+    preview_window_title = GObject.Property(type=str, default="")
 
     def __init__(
             self, main_window, text_view, flap):
         super().__init__()
         self.main_window = main_window
         self.main_window.connect("delete-event", self.on_window_closed)
+        self.main_window.connect("notify::title", self.on_window_title_changed)
         self.text_view = text_view
 
         self.window_size_cache = None
@@ -60,6 +62,8 @@ class PreviewRenderer(GObject.Object):
             self.window.connect("delete-event", self.on_window_closed)
 
             self.window.preview_box.pack_start(self.preview_stack, False, True, 0)
+
+            self.bind_property("preview_window_title", self.window, "title")
 
             # Position it next to the main window.
             width, height = self.main_window.get_size()
@@ -201,6 +205,9 @@ class PreviewRenderer(GObject.Object):
         else:
             self.main_window.flap.remove(self.main_window.flap.get_flap())
             self.preview_layout_cache = self.preview_layout
+
+    def on_window_title_changed(self, *args, **kwargs):
+        self.preview_window_title = self.main_window.get_title() + " - " + _("Preview")
 
     def on_window_closed(self, window, _event):
         self.main_window.lookup_action("preview").change_state(GLib.Variant.new_boolean(False))

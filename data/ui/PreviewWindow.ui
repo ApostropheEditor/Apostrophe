@@ -10,7 +10,7 @@
           <object class="HdyHeaderBar">
             <property name="visible">1</property>
             <property name="show-close-button">True</property>
-            <property name="title" translatable="yes">Preview</property>
+            <property name="title" bind-source="ApostrophePreviewWindow" bind-property="title"/>
           </object>
         </child>
       </object>

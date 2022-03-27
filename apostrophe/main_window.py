@@ -58,7 +58,6 @@ class MainWindow(Handy.ApplicationWindow):
     text_view = Gtk.Template.Child()
     editor = Gtk.Template.Child()
 
-    title = GObject.Property(type=str, default='Apostrophe')
     subtitle = GObject.Property(type=str)
     is_fullscreen = GObject.Property(type=bool, default=False)
     headerbar_visible = GObject.Property(type=bool, default=True)
@@ -625,7 +624,7 @@ class MainWindow(Handy.ApplicationWindow):
         else:
             subtitle = ""
 
-        self.title = title
+        self.set_title(title)
         self.subtitle = subtitle
         self.headerbar.set_tooltip_text(subtitle)
 
