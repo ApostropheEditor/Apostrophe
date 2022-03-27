@@ -644,8 +644,10 @@ class MainWindow(Handy.ApplicationWindow):
             response == Gtk.ResponseType.DELETE_EVENT):
             return True
 
-        # save state if we're the last window
-        if len(self.get_application().get_windows()) == 1:
+        # save state if we're the last window OR if only the preview window is left
+        n_windows = len(self.get_application().get_windows())
+        if n_windows == 1 or \
+           (n_windows == 2 and self.preview_handler.preview_renderer.window):
             self.save_state()
         return False
 

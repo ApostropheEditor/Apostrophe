@@ -194,9 +194,13 @@ class PreviewRenderer(GObject.Object):
             self.hide()
             c = self.main_window.flap.connect("notify::reveal-progress", set_flap_mode)
         # paned -> windowed
-        elif self.preview_layout == PreviewLayout.WINDOWED:
+        elif self.preview_layout == PreviewLayout.WINDOWED and  self.preview_layout_cache in [PreviewLayout.FULL_WIDTH, PreviewLayout.HALF_WIDTH, PreviewLayout.HALF_HEIGHT]:
             self.hide()
             d = self.main_window.flap.connect("notify::reveal-progress", reatach_stack)
+        # none -> windowed
+        else:
+            self.main_window.flap.remove(self.main_window.flap.get_flap())
+            self.preview_layout_cache = self.preview_layout
 
     def on_window_closed(self, window, _event):
         self.main_window.lookup_action("preview").change_state(GLib.Variant.new_boolean(False))
