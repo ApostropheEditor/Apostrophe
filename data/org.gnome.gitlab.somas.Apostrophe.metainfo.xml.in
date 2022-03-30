@@ -43,23 +43,24 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release type="stable" version="2.6.2" date="2022-03-31T00:00:00Z">
+      <description>
+        <p>This release fixes the following bug:</p>
+        <ul>
+          <li>Fix handling of windowed preview mode on some circumstances</li>
+        </ul>
+        <p>This release adds the following features:</p>
+        <ul>
+          <li>Add proper titles to the preview window</li>
+          <li>Update translations</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="2.6.1" date="2022-03-20T00:00:00Z">
       <description>
         <p>This release fixes the following bug:</p>
         <ul>
           <li>A small bug in 2.6 which didn't allow to save files</li>
-        </ul>
-        <p>This release adds the following features:</p>
-        <ul>
-          <li>Implemented multiwindow support</li>
-          <li>Save window state on exit</li>
-          <li>Ported to libhandy</li>
-          <li>Improved the overall UI</li>
-          <li>New animations</li>
-          <li>Follow the Dark Mode global preference</li>
-          <li>Add an "automatic" color mode</li>
-          <li>Improve the High Contrast styles</li>
-          <li>Improve inline preview markup</li>
         </ul>
       </description>
     </release>
@@ -76,16 +77,6 @@
           <li>Add an "automatic" color mode</li>
           <li>Improve the High Contrast styles</li>
           <li>Improve inline preview markup</li>
-        </ul>
-      </description>
-    </release>
-    <release type="stable" version="2.5" date="2021-08-28T00:00:00Z">
-      <description>
-        <p>This release adds the following features:</p>
-        <ul>
-          <li>Added Sepia Mode</li>
-          <li>Improved exported HTML on small screens</li>
-          <li>Updated metadata and runtime version</li>
         </ul>
       </description>
     </release>
