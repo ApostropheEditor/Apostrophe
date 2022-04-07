@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
 "POT-Creation-Date: 2022-03-07 19:03+0000\n"
-"PO-Revision-Date: 2022-03-07 19:03+0000\n"
+"PO-Revision-Date: 2022-04-07 19:03+0000\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
 "Language: ca\n"
@@ -168,7 +168,7 @@ msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
 msgid "Live preview of what you write"
-msgstr "Vista prèvia en viu del que escriviu"
+msgstr "Vista prèvia en viu d'allò que escriviu"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
 msgid ""
@@ -233,7 +233,7 @@ msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
-"Utilitza la capçalera i el peu per aincloure coses com fulls d'estil o "
+"Utilitza la capçalera i el peu per a incloure coses com fulls d'estil o "
 "metainformació"
 
 #: data/ui/Export.ui:170
@@ -749,7 +749,7 @@ msgstr "Text en negreta"
 
 #: apostrophe/text_view_format_inserter.py:24
 msgid "strikethrough text"
-msgstr "Tatxa el text"
+msgstr "Ratlla el text"
 
 #: apostrophe/text_view_format_inserter.py:50
 msgid "Item"
