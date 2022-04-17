@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
 "POT-Creation-Date: 2022-03-07 19:03+0000\n"
-"PO-Revision-Date: 2022-04-07 19:03+0000\n"
+"PO-Revision-Date: 2022-04-17 19:03+0000\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
 "Language: ca\n"
@@ -55,7 +55,7 @@ msgstr "Sincronitzar el desplaçament editor/previsualització"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
 msgid "Keep the editor and preview scroll positions in sync."
-msgstr "Mantenir la sincronització entre l'editor i la previsualització"
+msgstr "Mantenir la sincronització entre l'editor i la previsualització."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
 #: data/ui/Preferences.ui:90
@@ -338,7 +338,7 @@ msgstr "Dreceres del teclat"
 
 #: data/ui/Headerbar.ui:367
 msgid "About Apostrophe"
-msgstr "Sobre Apostrophe"
+msgstr "Quant a l'Apostrophe"
 
 #: data/ui/Headerbar.ui:395
 msgid "Save As…"
@@ -422,7 +422,7 @@ msgstr "Coincidència de majúscules i minúscules"
 
 #: data/ui/SearchBar.ui:99
 msgid "Regular Expression"
-msgstr "Expressió Regular"
+msgstr "Expressió regular"
 
 #: data/ui/SearchBar.ui:111 data/ui/SearchBar.ui:165
 msgid "Replace"
@@ -430,7 +430,7 @@ msgstr "Reemplaça"
 
 #: data/ui/SearchBar.ui:175
 msgid "Replace All"
-msgstr "Reemplaçar tot"
+msgstr "Reemplaça-ho tot"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -758,21 +758,3 @@ msgstr "Item"
 #: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
 msgstr "Capçalera"
-
-#~ msgid "Poeditor"
-#~ msgstr "Poeditor"
-
-#~ msgid "Sync Views"
-#~ msgstr "Sincronitza la visualització"
-
-#~ msgid "Open Recent"
-#~ msgstr "Obre un fitxer recent"
-
-#~ msgid "(.*)"
-#~ msgstr "(.*)"
-
-#~ msgid "An elegant, distraction-free markdown editor"
-#~ msgstr "Un editor de markdown elegant i sense distraccions"
-
-#~ msgid "Wolf V., Manuel G."
-#~ msgstr "Wolf V., Manuel G."
