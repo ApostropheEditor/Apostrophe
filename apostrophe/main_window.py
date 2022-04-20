@@ -29,6 +29,7 @@ from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
 from apostrophe.text_view import ApostropheTextView
 from apostrophe.search_and_replace import ApostropheSearchBar
+from apostrophe.insecure_file_warning import ApostropheInsecureFileWarning
 from apostrophe.settings import Settings
 from apostrophe.tweener import Tweener
 from apostrophe.helpers import App
@@ -661,6 +662,7 @@ class File():
         self.path = ""
         self.title = ""
         self.name = ""
+        self.trusted = False
 
     @property
     def gfile(self):

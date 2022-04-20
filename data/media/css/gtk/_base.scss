@@ -78,6 +78,9 @@
   background-color: mix($base_color, $bg_color, 0.5);
 }
 
+.pill-button {
+  border-radius: 100px;
+}
 
 .lexikon {
   font-family: serif;

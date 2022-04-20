@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+    <template class="ApostropheInsecureFileWarning" parent="HdyStatusPage">
+        <property name="name">warning</property>
+        <property name="visible">true</property>
+        <property name="title" translatable="yes">This file may be insecure</property>
+        <property name="description" translatable="yes">The file you're trying to preview seems to have embedded javascript. Previewing it might be dangerous, and only should be done if you trust the authors of the document.</property>
+        <property name="icon-name">dialog-warning-symbolic</property>
+        <child>
+            <object class="GtkBox">
+            <property name="visible">true</property>
+            <property name="orientation">vertical</property>
+            <property name="halign">center</property>
+            <property name="spacing">12</property>
+            <child>
+                <object class="GtkCheckButton" id="trust_authors_check">
+                <property name="visible">true</property>
+                <property name="label">I trust the authors of this file</property>
+                </object>
+            </child>
+            <child>
+                <object class="GtkButton">
+                <property name="visible">true</property>
+                <property name="sensitive" bind-source="trust_authors_check" bind-property="active" bind-flags="sync-create"/>
+                <property name="label" translatable="yes">Load preview</property>
+                <style>
+                    <class name="pill-button"/>
+                    <class name="destructive-action"/>
+                </style>
+                </object>
+            </child>
+            </object>
+        </child>
+    </template>
+</interface>

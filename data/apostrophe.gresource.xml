@@ -15,6 +15,7 @@
     <file compressed="true">media/css/gtk/bindings.css</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Export.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Headerbar.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/InsecureFileWarning.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/Preferences.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/PreviewLayoutSwitcher.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">ui/PreviewLayoutSwitcherItem.ui</file>

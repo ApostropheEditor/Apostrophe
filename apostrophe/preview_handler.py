@@ -15,6 +15,7 @@
 
 import math
 import webbrowser
+import requests
 from enum import auto, IntEnum
 
 import gi
@@ -51,7 +52,8 @@ class PreviewHandler:
         self.preview_renderer = PreviewRenderer(
             window, text_view, flap)
 
-        window.connect("style-updated", self.reload)
+        self.window = window
+        self.window.connect("style-updated", self.reload)
 
         self.text_changed_handler_id = None
 
@@ -83,8 +85,14 @@ class PreviewHandler:
             if not self.web_view:
                 self.web_view = PreviewWebView()
                 self.web_view.get_settings().set_allow_universal_access_from_file_urls(True)
+                self.web_view.get_settings().set_enable_javascript_markup(False)
                 #TODO: enable devtools on Devel profile
                 self.web_view.get_settings().set_enable_developer_extras(True)
+
+                # Allow mathjax
+                script = requests.get("https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js", allow_redirects=True).text
+                webkit_script = WebKit2.UserScript.new(script, WebKit2.UserContentInjectedFrames.TOP_FRAME, WebKit2.UserScriptInjectionTime.START, None, None)
+                #self.web_view.get_user_content_manager().add_script(webkit_script)
 
                 # Show preview once the load is finished
                 self.web_view.connect("load-changed", self.on_load_changed)
