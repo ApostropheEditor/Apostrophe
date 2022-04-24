@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-07 19:03+0000\n"
-"PO-Revision-Date: 2022-03-14 21:58+0200\n"
+"POT-Creation-Date: 2022-03-14 19:59+0000\n"
+"PO-Revision-Date: 2022-04-24 21:57+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -25,10 +25,9 @@ msgstr "Apostrophe"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
-#, fuzzy
 #| msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
-msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;muokkain;editori;"
+msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;muokkain;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, an elegant, distraction-free markdown editor"
@@ -134,10 +133,8 @@ msgid "Preferred relative size for the text."
 msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
-#, fuzzy
-#| msgid "Markdown Files"
 msgid "Edit Markdown in style"
-msgstr "Markdown-tiedostot"
+msgstr "Muokkaa Markdownia tyylillä"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
 msgid "Focus on your writing with a clean, distraction-free markdown editor."
@@ -369,6 +366,7 @@ msgstr "Käytä suurempaa tekstiä"
 #: data/ui/Preferences.ui:58
 msgid "Reduce the margins width and increase the text size when possible"
 msgstr ""
+"Pienennä marginaalin leveyttä ja suurenna tekstin kokoa kun mahdollista"
 
 #: data/ui/Preferences.ui:72
 msgid "Restore session"
@@ -380,11 +378,11 @@ msgstr "Palaa edelliseen istuntoon kun Apostrophe käynnistetään"
 
 #: data/ui/Preferences.ui:91
 msgid "Flavor of markdown Apostrophe will use"
-msgstr ""
+msgstr "Apostrophen käyttämä Markdown-murre"
 
 #: data/ui/Preferences.ui:100
 msgid "Markdown flavor documentation"
-msgstr ""
+msgstr "Markdown-murteiden dokumentaatio"
 
 #: data/ui/PreviewLayoutSwitcher.ui:10 data/ui/PreviewWindow.ui:13
 msgid "Preview"
