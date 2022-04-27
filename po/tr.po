@@ -1,196 +1,195 @@
+# Turkish translation for Apostrophe.
+# Copyright (C) 2022 Apostrophe's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Apostrophe package.
+#
+# Çağatay Yiğit Şahin <cyigitsahin@outlook.com>
+# Bünyamin Kırmızı <bunyamin.kirmizi@outlook.com>, 2022.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2022.
+# Sabri Ünal <libreajans@gmail.com>, 2022.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Apostrophe\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 04:08+0200\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
+"POT-Creation-Date: 2022-04-17 21:34+0000\n"
+"PO-Revision-Date: 2022-04-23 14:40+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: apostrophe/export_dialog.py:128 apostrophe/export_dialog.py:323
-#: apostrophe/export_dialog.py:327 data/ui/Export.ui:62
-msgid "Export"
-msgstr "Dışa Aktar"
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
+msgid "Apostrophe"
+msgstr "Apostrophe"
 
-#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
-#, python-format
-msgid "Export to %s"
-msgstr "Dışa aktar: %s"
-
-#: apostrophe/export_dialog.py:133 apostrophe/export_dialog.py:324
-#: apostrophe/export_dialog.py:329 apostrophe/main_window.py:344
-#: apostrophe/main_window.py:435 apostrophe/main_window.py:508
-#: data/ui/Export.ui:47
-msgid "Cancel"
-msgstr "İptal et"
-
-#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
-#, python-brace-format
-msgid ""
-"An error happened while trying to export:\n"
-"\n"
-"{err_msg}"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
+msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr ""
-"Dışarı aktarmaya çalışılırken hata oluştu:\n"
-"\n"
-"{err_msg}"
+"uberwriter;UberWriter;apostrophe;markdown;metin düzenleyici;düzenleyici;yazı;"
+"yaz;"
 
-#: apostrophe/export_dialog.py:234
-msgid "Export to {}"
-msgstr "Dışa aktar: {}"
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
+msgid "Apostrophe, an elegant, distraction-free markdown editor"
+msgstr "Apostrophe, zarif, dikkat dağıtmayan bir markdown düzenleyici"
 
-#: apostrophe/export_dialog.py:324
-msgid "Select folder"
-msgstr "Klasör seç"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
+msgid "Color scheme"
+msgstr "Renk şeması"
 
-#: apostrophe/headerbars.py:126 apostrophe/preview_renderer.py:132
-#: data/ui/PreviewLayoutSwitcherItem.ui:36
-msgid "Full-Width"
-msgstr "Tam Genişlik"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+msgid "Use the color scheme in the application's UI and in the text area."
+msgstr "Renk şemasını, uygulama arayüzünde ve metin alanında kullan."
 
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:134
-msgid "Half-Width"
-msgstr "Yarı Genişlik"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
+#: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
+msgid "Check spelling while typing"
+msgstr "Yazarken yazım denetimi yap"
 
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:136
-msgid "Half-Height"
-msgstr "Yarı Yükseklik"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+msgid "Enable or disable spellchecking."
+msgstr "Yazım denetimini etkinleştirin veya devre dışı bırakın."
 
-#: apostrophe/headerbars.py:132 apostrophe/preview_renderer.py:138
-msgid "Windowed"
-msgstr "Pencereli"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
+msgid "Synchronize editor/preview scrolling"
+msgstr "Düzenleyici/ön izleme kaydırmayı eşzamanla"
 
-#: apostrophe/helpers.py:90
-msgid "Error"
-msgstr "Hata"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr "Düzenleyici ve ön izleme kaydırma konumlarını senkronize tutun."
 
-#: apostrophe/inhibitor.py:35
-msgid "Unsaved documents"
-msgstr "Kaydedilmemiş belgeler"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
+#: data/ui/Preferences.ui:90
+msgid "Input format"
+msgstr "Girdi biçimi"
 
-#: apostrophe/inline_preview.py:201
-msgid "Formula looks incorrect:"
-msgstr "Formül hatalı görünüyor:"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr ""
+"Pandoc kullanarak ön izleme ve dışa aktarma sırasında kullanılacak giriş "
+"biçimi."
 
-#: apostrophe/inline_preview.py:240
-msgid "No matching footnote found"
-msgstr "Eşleşen dipnot bulunamadı"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
+msgid "Autohide Headerbar"
+msgstr "Üstbilgi çubuğunu kendiliğinden gizle"
 
-#: apostrophe/inline_preview.py:260
-msgid "noun"
-msgstr "isim"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+msgid "Hide the header and status bars when typing."
+msgstr "Yazarken başlığı ve durum çubuklarını gizleyin."
 
-#: apostrophe/inline_preview.py:262
-msgid "verb"
-msgstr "fiil"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
+msgid "Open file base path"
+msgstr "Dosya temel yolunu aç"
 
-#: apostrophe/inline_preview.py:264
-msgid "adjective"
-msgstr "sıfat"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+msgid "Open file paths of the current session"
+msgstr "Geçerli oturumun dosya yollarını aç"
 
-#: apostrophe/inline_preview.py:266
-msgid "adverb"
-msgstr "zarf"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
+msgid "Default statistic"
+msgstr "Öntanımlı istatistik"
 
-#: apostrophe/main_window.py:340
-msgid "Save your File"
-msgstr "Dosyanı Kaydet"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+msgid "Which statistic is shown on the main window."
+msgstr "Ana pencerede hangi istatistiğin gösterileceği."
 
-#: apostrophe/main_window.py:343 data/ui/Headerbar.ui:225
-msgid "Save"
-msgstr "Kaydet"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
+msgid "Characters per line"
+msgstr "Satır başına karakter sayısı"
 
-#: apostrophe/main_window.py:424
-msgid "Markdown Files"
-msgstr "Markdown Dosyaları"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+msgid "Maximum number of characters per line within the editor."
+msgstr "Düzenleyici içinde satır başına maksimum karakter sayısı."
 
-#: apostrophe/main_window.py:428
-msgid "Plain Text Files"
-msgstr "Düz Metin Dosyaları"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
+#: data/ui/Headerbar.ui:250
+msgid "Hemingway Mode"
+msgstr "Hemingway Kipi"
 
-#: apostrophe/main_window.py:431
-msgid "Open a .md file"
-msgstr "Bir .md dosyasını aç"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:86
+msgid "Whether the user can delete text or not."
+msgstr "Kullanıcının metni silip silemeyeceği."
 
-#: apostrophe/main_window.py:434 data/ui/Headerbar.ui:182
-msgid "Open"
-msgstr "Aç"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
+msgid "Preview mode"
+msgstr "Ön izleme kipi"
 
-#: apostrophe/main_window.py:498
-#, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr "Kapatmadan \"%s\" dokümanına yapılan değişiklikler kaydedilsin mi?"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
+msgid "How to display the preview."
+msgstr "Ön izleme nasıl görüntülenir."
 
-#: apostrophe/main_window.py:503
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "Kaydetmezseniz, bütün değişiklikleriniz temelli kaybolur."
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
+msgid "Preview active"
+msgstr "Ön izleme etkin"
 
-#: apostrophe/main_window.py:506
-msgid "Close without saving"
-msgstr "Kaydetmeden kapat"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
+msgid "Whether showing of preview is active when launching a new window."
+msgstr "Yeni pencere başlatılırken ön izlemenin etkin olup olmadığı."
 
-#: apostrophe/main_window.py:509
-msgid "Save now"
-msgstr "Şimdi kaydet"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
+msgid "Text size"
+msgstr "Metin boyutu"
 
-#: apostrophe/main_window.py:711
-msgid "New File"
-msgstr "Yeni Dosya"
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
+msgid "Preferred relative size for the text."
+msgstr "Metin için yeğlenen göreli boyut."
 
-#: apostrophe/preview_renderer.py:47 data/ui/Headerbar.ui:305
-msgid "Preview"
-msgstr "Ön İzleme"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
+msgid "Edit Markdown in style"
+msgstr "Markdown’ın tarzını düzenleyin"
 
-#: apostrophe/stats_handler.py:74
-msgid "{:n} Characters"
-msgstr "{:n} Karakter"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
+msgid "Focus on your writing with a clean, distraction-free markdown editor."
+msgstr "Temiz, dikkat dağıtmayan bir markdown editörü ile yazınıza odaklanın."
 
-#: apostrophe/stats_handler.py:76
-msgid "{:n} Words"
-msgstr "{:n} Kelime"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
+msgid "Features:"
+msgstr "Özellikler:"
 
-#: apostrophe/stats_handler.py:78
-msgid "{:n} Sentences"
-msgstr "{:n} Cümle"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
+msgid "An UI tailored to comfortable writing"
+msgstr "Rahat yazmaya uygun kullanıcı arayüzü"
 
-#: apostrophe/stats_handler.py:80
-msgid "{:n} Paragraphs"
-msgstr "{:n} Paragraf"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
+msgid "A distraction-free mode"
+msgstr "Dikkat dağıtmayan kip"
 
-#: apostrophe/stats_handler.py:82
-msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "{:d}:{:02d}:{:02d} Okuma Zamanı"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
+msgid "Dark, light and sepia themes"
+msgstr "Karanlık, aydınlık ve sepya temalar"
 
-#: apostrophe/text_view_drag_drop_handler.py:75
-#: apostrophe/text_view_drag_drop_handler.py:77
-msgid "web page"
-msgstr "web sayfası"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+msgid ""
+"Everything you expect from a text editor, such as spellchecking or document "
+"statistics"
+msgstr ""
+"Yazım denetimi veya belge istatistikleri gibi bir metin düzenleyiciden "
+"beklediğiniz her şey"
 
-#: apostrophe/text_view_format_inserter.py:14
-msgid "italic text"
-msgstr "eğik metin"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
+msgid "Live preview of what you write"
+msgstr "Yazdıklarınızın canlı ön izlemesi"
 
-#: apostrophe/text_view_format_inserter.py:19
-msgid "bold text"
-msgstr "kalın metin"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
+msgid ""
+"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
+"slideshows"
+msgstr ""
+"Her biçimde dışarıya aktarın: PDF, Word/Libreoffice, LaTeX ve hatta "
+"HTML slayt gösterileri"
 
-#: apostrophe/text_view_format_inserter.py:24
-msgid "strikethrough text"
-msgstr "üstü çizili metin"
-
-#: apostrophe/text_view_format_inserter.py:50
-msgid "Item"
-msgstr "Öge"
-
-#: apostrophe/text_view_format_inserter.py:98
-msgid "Header"
-msgstr "Başlık"
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
+msgid "Manuel G., Wolf V."
+msgstr "Manuel G., Wolf V."
 
 #: data/ui/About.ui.in:12
-msgid "Copyright (C) 2020, Wolf Vollprecht"
-msgstr "Telif Hakkı (C) 2020, Wolf Vollprecht"
+msgid "Copyright (C) 2022, Manuel G., Wolf V."
+msgstr "Telif hakkı (C) 2022, Manuel G., Wolf V."
 
 #: data/ui/About.ui.in:14
 msgid "Apostrophe website"
@@ -200,177 +199,246 @@ msgstr "Apostrophe web sitesi"
 #. Manuel Genovés <manuel.genoves@gmail.com>
 #: data/ui/About.ui.in:20
 msgid "translator-credits"
-msgstr "Çağatay Yiğit Şahin <cyigitsahin (at) outlook.com>"
+msgstr ""
+"Çağatay Yiğit Şahin <cyigitsahin@outlook.com>\n"
+"Bünyamin Kırmızı <bunyamin.kirmizi@outlook.com>\n"
+"Sabri Ünal <libreajans@gmail.com>\n"
+"Emin Tufan Çetin <etcetin@gmail.com>"
 
 #: data/ui/About.ui.in:65
 msgid "Donations:"
-msgstr "Bağış:"
+msgstr "Bağışlar:"
 
 #: data/ui/About.ui.in:74
 msgid "Paypal"
-msgstr "PayPal"
+msgstr "Paypal"
 
 #: data/ui/About.ui.in:105
 msgid "Help to translate:"
 msgstr "Çeviriye yardım et:"
 
 #: data/ui/About.ui.in:114
-msgid "Poeditor"
-msgstr "POEditor"
+msgid "Damned Lies"
+msgstr "Damned Lies"
 
-#: data/ui/Export.ui:154
+#: data/ui/Export.ui:46 apostrophe/export_dialog.py:133
+#: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
+#: apostrophe/main_window.py:330 apostrophe/main_window.py:423
+#: apostrophe/main_window.py:508
+msgid "Cancel"
+msgstr "İptal et"
+
+#: data/ui/Export.ui:61 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:323 apostrophe/export_dialog.py:327
+msgid "Export"
+msgstr "Dışa aktar"
+
+#: data/ui/Export.ui:153
 msgid "Standalone"
 msgstr "Bağımsız"
 
-#: data/ui/Export.ui:156
+#: data/ui/Export.ui:155
 msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
-"Biçem sayfası ve meta bilgileri gibi şeyleri dahil etmek için header ve "
-"footer kullanır"
+"Stil sayfaları ve meta bilgiler gibi şeyleri eklemek için bir üst bilgi ve "
+"alt bilgi kullanın"
 
-#: data/ui/Export.ui:171
+#: data/ui/Export.ui:170
 msgid "Table of Contents"
-msgstr "İçindekiler Tablosu"
+msgstr "İçindekiler"
 
-#: data/ui/Export.ui:187
+#: data/ui/Export.ui:186
 msgid "Number Sections"
 msgstr "Kısımları Numaralandır"
 
-#: data/ui/Export.ui:211 data/ui/Export.ui:217
+#: data/ui/Export.ui:210 data/ui/Export.ui:216
 msgid "Page Size"
 msgstr "Sayfa Boyutu"
 
-#: data/ui/Export.ui:236
+#: data/ui/Export.ui:235
 msgid "HTML Options"
 msgstr "HTML Seçenekleri"
 
-#: data/ui/Export.ui:242
+#: data/ui/Export.ui:241
 msgid "Self-contained"
 msgstr "Bağımsız"
 
-#: data/ui/Export.ui:244
+#: data/ui/Export.ui:243
 msgid "Produces an HTML file with no external dependencies"
-msgstr "Haricî bağımlılıkları olmayan bir HTML dosyası üretir"
+msgstr "Dış bağımlılıkları olmayan HTML dosyası üretir"
 
-#: data/ui/Export.ui:260
+#: data/ui/Export.ui:259
 msgid "CSS File"
 msgstr "CSS Dosyası"
 
-#: data/ui/Export.ui:265
+#: data/ui/Export.ui:264
 msgid "Select CSS file"
-msgstr "CSS dosyası seç"
+msgstr "CSS dosyasını seç"
 
-#: data/ui/Export.ui:286
+#: data/ui/Export.ui:285
 msgid "Syntax Highlighting"
-msgstr "Söz Dizimi Vurgulama"
+msgstr "Söz Dizimi Vurgulaması"
 
-#: data/ui/Export.ui:301
+#: data/ui/Export.ui:300
 msgid "Highlight style"
-msgstr "Vurgulama biçemi"
+msgstr "Vurgu stili"
 
-#: data/ui/Export.ui:322
+#: data/ui/Export.ui:321
 msgid "Presentation"
-msgstr "Sunu"
+msgstr "Sunum"
 
-#: data/ui/Export.ui:328
+#: data/ui/Export.ui:327
 msgid "Incremental bullets"
-msgstr "Kademeli madde işaretleri"
+msgstr "Artan sayılı madde işaretleri"
 
-#: data/ui/Export.ui:330
+#: data/ui/Export.ui:329
 msgid "Show one bullet point after another in a slideshow"
-msgstr "Sunumda maddeleri tek tek göster"
+msgstr "Slayt gösterisinde madde imlerini birbiri ardına gösterme"
 
-#: data/ui/Export.ui:357
-msgid "page0"
-msgstr "sayfa0"
-
-#: data/ui/Export.ui:365
-msgid "page1"
-msgstr "sayfa1"
-
-#: data/ui/ExportPopover.ui:19
-msgid "Save As…"
-msgstr "Farklı Kaydet…"
-
-#: data/ui/ExportPopover.ui:100
-msgid "Advanced Export…"
-msgstr "Gelişmiş Dışa Aktarma…"
-
-#: data/ui/ExportPopover.ui:125
-msgid "Copy HTML"
-msgstr "HTML kopyala"
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync Views"
-msgstr "Görüntüleri Eşitle"
-
-#: data/ui/Headerbar.ui:171
+#: data/ui/Headerbar.ui:57
 msgid "New"
 msgstr "Yeni"
 
-#: data/ui/Headerbar.ui:199
-msgid "Open Recent"
-msgstr "Son Kullanılan Aç"
+#: data/ui/Headerbar.ui:67 apostrophe/main_window.py:422
+msgid "Open"
+msgstr "Aç"
 
-#: data/ui/Headerbar.ui:242
+#: data/ui/Headerbar.ui:90 apostrophe/main_window.py:329
+msgid "Save"
+msgstr "Kaydet"
+
+#: data/ui/Headerbar.ui:102
 msgid "Save as…"
 msgstr "Farklı kaydet…"
 
-#: data/ui/Headerbar.ui:283
+#: data/ui/Headerbar.ui:140
 msgid "Menu"
 msgstr "Menü"
 
-#: data/ui/Headerbar.ui:378
+#: data/ui/Headerbar.ui:166
 msgid "Find"
 msgstr "Bul"
 
-#: data/ui/Menu.ui:43
-msgid "Hemingway Mode"
-msgstr "Hemingway Modu"
+#: data/ui/Headerbar.ui:225
+msgid "New Window"
+msgstr "Yeni Pencere"
 
-#: data/ui/Menu.ui:57
+#: data/ui/Headerbar.ui:264
 msgid "Focus Mode"
-msgstr "Odak Kipi"
+msgstr "Odaklanma Kipi"
 
-#: data/ui/Menu.ui:82
+#: data/ui/Headerbar.ui:289
 msgid "Find and Replace"
-msgstr "Bul ve değiştir"
+msgstr "Bul ve Değiştir"
 
-#: data/ui/Menu.ui:107 data/ui/Preferences.ui:19
+#: data/ui/Headerbar.ui:314
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: data/ui/Menu.ui:132
+#: data/ui/Headerbar.ui:339
 msgid "Open Tutorial"
-msgstr "Öğreticiyi Aç"
+msgstr "Eğitimi Aç"
 
-#: data/ui/Menu.ui:146
+#: data/ui/Headerbar.ui:353
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#: data/ui/Menu.ui:160
+#: data/ui/Headerbar.ui:367
 msgid "About Apostrophe"
 msgstr "Apostrophe Hakkında"
 
-#: data/ui/Preferences.ui:49
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:35
-msgid "Check spelling while typing"
-msgstr "Yazarken imlâyı denetle"
+#: data/ui/Headerbar.ui:395
+msgid "Save As…"
+msgstr "Farklı Kaydet…"
+
+#: data/ui/Headerbar.ui:476
+msgid "Advanced Export…"
+msgstr "Gelişmiş Dışa Aktarma…"
+
+#: data/ui/Headerbar.ui:501
+msgid "Copy HTML"
+msgstr "HTML'yi kopyala"
+
+#: data/ui/Preferences.ui:40
+msgid "Autohide headerbar"
+msgstr "Başlık çubuğunu kendiliğinden gizle"
+
+#: data/ui/Preferences.ui:41
+msgid "Autohide header and statusbars while typing"
+msgstr "Yazarken başlığı ve durum çubuklarını kendiliğinden gizle"
+
+#: data/ui/Preferences.ui:57
+msgid "Use bigger text"
+msgstr "Daha büyük metin kullan"
+
+#: data/ui/Preferences.ui:58
+msgid "Reduce the margins width and increase the text size when possible"
+msgstr ""
+"Kenar boşluklarının genişliğini azaltın ve metin boyutunu olabildiğince"
+"artırın"
+
+#: data/ui/Preferences.ui:72
+msgid "Restore session"
+msgstr "Oturumu geri yükle"
 
 #: data/ui/Preferences.ui:73
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:49
-msgid "Input format"
-msgstr "Girdi biçimi"
+msgid "Return to your previous session when Apostrophe is started"
+msgstr "Apostrophe başlatıldığında önceki oturumunuza dönün"
 
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr "Yazarken başlık ve statü çubuklarını otomatik sakla"
+#: data/ui/Preferences.ui:91
+msgid "Flavor of markdown Apostrophe will use"
+msgstr "Apostrophe’un kullanacağı markdown çeşidi"
 
-#: data/ui/Preferences.ui:112
-msgid "Autohide headerbar"
-msgstr "Başlangıç çubuğunu otomatik sakla"
+#: data/ui/Preferences.ui:100
+msgid "Markdown flavor documentation"
+msgstr "Markdown çeşidi belgeleri"
+
+#: data/ui/PreviewLayoutSwitcher.ui:10 apostrophe/preview_renderer.py:210
+msgid "Preview"
+msgstr "Ön izleme"
+
+#: data/ui/PreviewLayoutSwitcher.ui:32
+msgid "Screen Layout"
+msgstr "Ekran Düzeni"
+
+#: data/ui/Recents.ui:60
+msgid "No Recent Documents"
+msgstr "Son Belge Yok"
+
+#: data/ui/Recents.ui:88
+msgid "No Results Found"
+msgstr "Sonuç Bulunamadı"
+
+#: data/ui/SearchBar.ui:50
+msgid "Previous Match"
+msgstr "Önceki Eşleşen"
+
+#: data/ui/SearchBar.ui:63
+msgid "Next Match"
+msgstr "Sonraki Eşleşen"
+
+#. Translators: This indicates case sensitivity, so it should be the first vowel of the language in lowercase and uppercase
+#: data/ui/SearchBar.ui:85
+msgid "aA"
+msgstr "aA"
+
+#: data/ui/SearchBar.ui:89
+msgid "Case Sensitive"
+msgstr "Büyük veya Küçük Harfe Duyarlı"
+
+#: data/ui/SearchBar.ui:99
+msgid "Regular Expression"
+msgstr "Kurallı İfade"
+
+#: data/ui/SearchBar.ui:111 data/ui/SearchBar.ui:165
+msgid "Replace"
+msgstr "Değiştir"
+
+#: data/ui/SearchBar.ui:175
+msgid "Replace All"
+msgstr "Tümünü Değiştir"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -425,7 +493,7 @@ msgstr "Hemingway kipi"
 #: data/ui/Shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Preview"
-msgstr "Ön izleme"
+msgstr "Ön izle"
 
 #: data/ui/Shortcuts.ui:86
 msgctxt "shortcut window"
@@ -490,7 +558,7 @@ msgstr "Seçili metni panoya kes"
 #: data/ui/Shortcuts.ui:174
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
-msgstr "Seçili metni panodan yapıştır"
+msgstr "Panodan seçilen metni yapıştır"
 
 #: data/ui/Shortcuts.ui:183
 msgctxt "shortcut window"
@@ -517,199 +585,180 @@ msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Tüm metni seç"
 
-#: data/ui/Window.ui:107
+#: data/ui/ThemeSwitcher.ui:22
+msgid "Use System Colors"
+msgstr "Sistem Renklerini Kullan"
+
+#: data/ui/ThemeSwitcher.ui:51
+msgid "Use Light Colors"
+msgstr "Açık Renkler Kullan"
+
+#: data/ui/ThemeSwitcher.ui:80
+msgid "Use Sepia Colors"
+msgstr "Sepya Renkler Kullan"
+
+#: data/ui/ThemeSwitcher.ui:109
+msgid "Use Dark Colors"
+msgstr "Koyu Renkler Kullanın"
+
+#: data/ui/Window.ui:69
 msgid "Show Statistics"
 msgstr "İstatistikleri Göster"
 
-#: data/ui/Window.ui:206
-msgid "Previous Match"
-msgstr "Önceki Eşleşme"
+#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
+#, python-format
+msgid "Export to %s"
+msgstr "%s konumuna dışa aktar"
 
-#: data/ui/Window.ui:220
-msgid "Next Match"
-msgstr "Sonraki Eşleşme"
-
-#: data/ui/Window.ui:249
-msgid "aA"
-msgstr "aA"
-
-#: data/ui/Window.ui:253
-msgid "Case Sensitive"
-msgstr "Büyük/Küçük Harf Duyarlı"
-
-#: data/ui/Window.ui:263
-msgid "(.*)"
-msgstr "(.*)"
-
-#: data/ui/Window.ui:267
-msgid "Regular Expression"
-msgstr "Düzenli İfadeler"
-
-#: data/ui/Window.ui:280 data/ui/Window.ui:358
-msgid "Replace"
-msgstr "Değiştir"
-
-#: data/ui/Window.ui:372
-msgid "Replace All"
-msgstr "Hepsini değiştir"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
-#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
-msgid "Apostrophe"
-msgstr "Apostrophe"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
-msgid "An elegant, distraction-free markdown editor"
-msgstr "Zarif ve dikkat dağıtmayan bir markdown düzenleyici"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
-#, fuzzy
-msgid "Focus on your writing with a clean, distraction-free markdown editor."
-msgstr "Zarif ve dikkat dağıtmayan bir markdown düzenleyici"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
-msgid "Features:"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
-msgid "An UI tailored to comfortable writing"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
-#, fuzzy
-msgid "A distraction-free mode"
-msgstr "Zarif ve dikkat dağıtmayan bir markdown düzenleyici"
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
-msgid "Dark, light and sepia themes"
-msgstr ""
-
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
+#, python-brace-format
 msgid ""
-"Everything you expect from a text editor, such as spellchecking or document "
-"statistics"
+"An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
 msgstr ""
+"Dışa aktarmaya çalışırken hata oluştu:\n"
+"\n"
+"{err_msg}"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
-msgid "Live preview of what you write"
-msgstr ""
+#: apostrophe/export_dialog.py:234
+msgid "Export to {}"
+msgstr "Şuraya aktar: {}"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
-msgid ""
-"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
-"slideshows"
-msgstr ""
+#: apostrophe/export_dialog.py:324
+msgid "Select folder"
+msgstr "Klasör seç"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
-msgid "Wolf V., Manuel G."
-msgstr "Wolf V., Manuel G."
+#: apostrophe/helpers.py:89
+msgid "Error"
+msgstr "Hata"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
-msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
-msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;düzenleyici;"
+#: apostrophe/inhibitor.py:36
+msgid "Unsaved documents"
+msgstr "Kaydedilmemiş belgeler"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
-#, fuzzy
-msgid "Apostrophe, an elegant, distraction-free markdown editor"
-msgstr "Zarif ve dikkat dağıtmayan bir markdown düzenleyici"
+#: apostrophe/inline_preview.py:200
+msgid "Formula looks incorrect:"
+msgstr "Formül yanlış görünüyor:"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
-msgid "Color scheme"
-msgstr ""
+#: apostrophe/inline_preview.py:239
+msgid "No matching footnote found"
+msgstr "Eşleşen dipnot bulunamadı"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
-msgid "Use the color scheme in the application's UI and in the text area."
-msgstr ""
+#: apostrophe/inline_preview.py:259
+msgid "noun"
+msgstr "isim"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
-msgid "Enable or disable spellchecking."
-msgstr "Yazım denetimini etkinleştir veya devre dışı bırak."
+#: apostrophe/inline_preview.py:261
+msgid "verb"
+msgstr "fiil"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:42
-msgid "Synchronize editor/preview scrolling"
-msgstr "Düzenleyici/ön izleme kaydırmalarını eş zamanla"
+#: apostrophe/inline_preview.py:263
+msgid "adjective"
+msgstr "sıfat"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
-msgid "Keep the editor and preview scroll positions in sync."
-msgstr "Düzenleyici ve ön izleme kaydırmalarını eş zamanlı tut."
+#: apostrophe/inline_preview.py:265
+msgid "adverb"
+msgstr "zarf"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
-msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr ""
-"Pandoc’la ön izlerken ve dışa aktarılacakken kullanılacak girdi biçimi."
+#: apostrophe/main_window.py:326
+msgid "Save your File"
+msgstr "Dosyanızı kaydedin"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:56
-msgid "Autohide Headerbar"
-msgstr "Başlık Çubuğunu Otomatik Gizle"
+#: apostrophe/main_window.py:412
+msgid "Markdown Files"
+msgstr "Markdown Dosyaları"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
-msgid "Hide the header and status bars when typing."
-msgstr "Yazarken başlık ve statü çubuklarını gizle."
+#: apostrophe/main_window.py:416
+msgid "Plain Text Files"
+msgstr "Düz Metin Dosyaları"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
-msgid "Open file base path"
-msgstr "Dosya kök yolunu aç"
+#: apostrophe/main_window.py:419
+msgid "Open a .md file"
+msgstr "Bir .md dosyası aç"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
-msgid "Open file paths of the current session"
-msgstr "Mevcut oturumun dosya yollarını aç"
+#: apostrophe/main_window.py:498
+#, python-format
+msgid "Save changes to document “%s” before closing?"
+msgstr "Kapatmadan önce “%s” belgesindeki değişiklikler kaydedilsin mi?"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:70
-msgid "Default statistic"
-msgstr "Öntanımlı istatistik"
+#: apostrophe/main_window.py:503
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Kaydetmezseniz, tüm değişiklikleriniz tümüyle yitecek."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
-msgid "Which statistic is shown on the main window."
-msgstr "Ana pencerede hangi istatistiğin gösterildiği."
+#: apostrophe/main_window.py:506
+msgid "Close without saving"
+msgstr "Kaydetmeden kapat"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:77
-msgid "Characters per line"
-msgstr "Satır başına karakter"
+#: apostrophe/main_window.py:509
+msgid "Save now"
+msgstr "Şimdi kaydet"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
-msgid "Maximum number of characters per line within the editor."
-msgstr "Düzenleyicide satır başına maksimum karakter sayısı"
+#: apostrophe/main_window.py:686
+msgid "New File"
+msgstr "Yeni Dosya"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:84
-msgid "Preview mode"
-msgstr "Ön izleme kipi"
+#: apostrophe/preview_layout_switcher.py:38
+msgid "Full-Width"
+msgstr "Tam Genişlik"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
-msgid "How to display the preview."
-msgstr "Ön izlemenin nasıl gösterileceği."
+#: apostrophe/preview_layout_switcher.py:40
+msgid "Half-Width"
+msgstr "Yarı Genişlik"
 
-#~ msgid ""
-#~ "Apostrophe is a GTK based distraction free Markdown editor, originally "
-#~ "created by Wolf Vollprecht and maintained by Manuel Genovés. It uses "
-#~ "pandoc as backend for markdown parsing and offers a very clean and sleek "
-#~ "user interface."
-#~ msgstr ""
-#~ "Apostrophe, ilk olarak Wolf Vollprecht tarafından yaratılan ve Manuel "
-#~ "Genovés tarafından yürütülen, GTK tabanlı, dikkat dağıtmayan bir Markdown "
-#~ "düzenleyicidir. Markdown ayrıştırma için arka uç olarak pandoc kullanır "
-#~ "ve oldukça temiz, şık bir kullanıcı arayüzü sunar."
+#: apostrophe/preview_layout_switcher.py:42
+msgid "Half-Height"
+msgstr "Yarı Yükseklik"
 
-#~ msgid "You can install the recommended TexLive extension with the command:"
-#~ msgstr "Önerilen TexLive uzantısını şu komutla yükleyebilirsiniz:"
+#: apostrophe/preview_layout_switcher.py:44
+msgid "Windowed"
+msgstr "Pencereli"
 
-#~ msgid ""
-#~ "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
-#~ msgstr ""
-#~ "flatpak install flathub org.gnome.gitlab.somas.Apostrophe.Plugin.TexLive"
+#: apostrophe/stats_handler.py:75
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "{:n} Karakter"
 
-#~ msgid "or from Gnome-Software"
-#~ msgstr "veya GNOME Yazılımlar’dan"
+#: apostrophe/stats_handler.py:77
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "{:n} Sözcük"
 
-#~ msgid "Apostrophe, a simple and distraction free Markdown Editor"
-#~ msgstr "Apostrophe, basit ve dikkat dağıtmayan bir Markdown düzenleyici"
+#: apostrophe/stats_handler.py:79
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "{:n} Tümce"
 
-#~ msgid "Use dark mode"
-#~ msgstr "Karanlık kipi kullan"
+#: apostrophe/stats_handler.py:81
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "{:n} Paragraf"
 
-#~ msgid "Enable or disable the dark mode."
-#~ msgstr "Karanlık kipi etkinleştir veya devre dışı bırak."
+#: apostrophe/stats_handler.py:83
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} Okuma Süresi"
 
-#~ msgid "Light mode isn’t available while using a dark global theme"
-#~ msgstr ""
-#~ "Açık renkli kip, karanlık renkli sistem teması kullanılırken kullanılamaz"
+#: apostrophe/text_view_drag_drop_handler.py:75
+#: apostrophe/text_view_drag_drop_handler.py:77
+msgid "web page"
+msgstr "web sayfası"
+
+#: apostrophe/text_view_format_inserter.py:14
+msgid "italic text"
+msgstr "eğik metin"
+
+#: apostrophe/text_view_format_inserter.py:19
+msgid "bold text"
+msgstr "kalın yazı"
+
+#: apostrophe/text_view_format_inserter.py:24
+msgid "strikethrough text"
+msgstr "üstü çizili metin"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "Öge"
+
+#: apostrophe/text_view_format_inserter.py:98
+msgid "Header"
+msgstr "Başlık"
