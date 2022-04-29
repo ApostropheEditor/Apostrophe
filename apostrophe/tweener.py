@@ -55,7 +55,8 @@ class Tweener(GObject.Object):
         if (not Handy.get_enable_animations(self.widget) or
                 not self.widget.get_mapped() or
                 self.duration < 0):
-
+            self.setter(self.value_to, *self.setter_args)
+            self.widget.queue_draw()
             return
 
         if (self.tick_cb_id != 0):
