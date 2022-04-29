@@ -29,6 +29,8 @@
                 <property name="transition-type">slide</property>
                 <property name="fold-policy">never</property>
                 <property name="reveal-flap">false</property>
+                <property name="swipe-to-close">false</property>
+                <property name="swipe-to-open">false</property>
                 <child type="content">
                   <object class="GtkOverlay" id="editor">
                     <property name="visible">1</property>
