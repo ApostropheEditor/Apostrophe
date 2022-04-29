@@ -80,7 +80,7 @@ class PreviewRenderer(GObject.Object):
             requested_width_tw = Tweener(self.flap,
                                         self.flap.set_size_request,
                                         self.text_view.get_min_width(),
-                                        self.text_view.get_min_width() * 2,
+                                        self.text_view.get_min_width() * 2 + 2,
                                         250, 
                                         setter_args = [-1])
             requested_width_tw.start()
@@ -147,7 +147,7 @@ class PreviewRenderer(GObject.Object):
                 requested_width_tw = Tweener(self.flap,
                                             self.flap.set_size_request,
                                             self.text_view.get_min_width(),
-                                            self.text_view.get_min_width() * 2,
+                                            self.text_view.get_min_width() * 2 + 2,
                                             250, 
                                             setter_args = [-1])
                 requested_width_tw.start()
