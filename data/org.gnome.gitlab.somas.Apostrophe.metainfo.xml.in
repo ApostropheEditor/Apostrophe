@@ -43,6 +43,20 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release type="stable" version="2.6.3" date="2022-04-29T00:00:00Z">
+      <description>
+        <p>This release fixes the following bugs:</p>
+        <ul>
+          <li>Fix a bug where the preview wouldn't be shown when opening a file from Files or the CLI</li>
+          <li>Fix a bug where horizontal preview wouldn't request enough space at startup</li>
+          <li>Removed swipe gestures from the preview panel</li>
+        </ul>
+        <p>This release adds the following feature:</p>
+        <ul>
+          <li>Added Persian translations, updated Catalan, German , Finnish and Turkish ones</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="2.6.2" date="2022-03-31T00:00:00Z">
       <description>
         <p>This release fixes the following bug:</p>
@@ -61,22 +75,6 @@
         <p>This release fixes the following bug:</p>
         <ul>
           <li>A small bug in 2.6 which didn't allow to save files</li>
-        </ul>
-      </description>
-    </release>
-    <release type="stable" version="2.6" date="2022-03-19T00:00:00Z">
-      <description>
-        <p>This release adds the following features:</p>
-        <ul>
-          <li>Implemented multiwindow support</li>
-          <li>Save window state on exit</li>
-          <li>Ported to libhandy</li>
-          <li>Improved the overall UI</li>
-          <li>New animations</li>
-          <li>Follow the Dark Mode global preference</li>
-          <li>Add an "automatic" color mode</li>
-          <li>Improve the High Contrast styles</li>
-          <li>Improve inline preview markup</li>
         </ul>
       </description>
     </release>
