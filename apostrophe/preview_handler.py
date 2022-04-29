@@ -107,6 +107,8 @@ class PreviewHandler:
                 self.text_changed_handler_id = \
                     self.text_view.get_buffer().connect("changed", self.__show)
 
+                self.__show()
+
             GLib.idle_add(self.web_view.set_scroll_scale, self.text_view.scroll_scale)
 
             if self.settings.get_boolean("sync-scroll"):
