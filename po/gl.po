@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
 "POT-Creation-Date: 2022-03-07 19:03+0000\n"
-"PO-Revision-Date: 2022-05-05 11:41+0200\n"
+"PO-Revision-Date: 2022-05-05 11:44+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <Proxecto Trasno <proxecto@trasno.gal>>\n"
 "Language: gl\n"
@@ -391,11 +391,11 @@ msgstr "Restaurar sesión"
 
 #: data/ui/Preferences.ui:73
 msgid "Return to your previous session when Apostrophe is started"
-msgstr "Volver á súa anterior sesión cando Apostrophe inicie"
+msgstr "Volver á súa anterior sesión cando Apóstrofe inicie"
 
 #: data/ui/Preferences.ui:91
 msgid "Flavor of markdown Apostrophe will use"
-msgstr "Variedade da documentación que usará Apostrophe"
+msgstr "Variedade da documentación que usará Apóstrofe"
 
 #: data/ui/Preferences.ui:100
 msgid "Markdown flavor documentation"
