@@ -1,0 +1,827 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nepali Gnome Translation\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
+"POT-Creation-Date: 2022-06-07 04:09+0000\n"
+"PO-Revision-Date: 2022-06-15 16:19+0545\n"
+"Last-Translator: \n"
+"Language-Team: Nepali <chautari@gmail.com>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1\n"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
+#, fuzzy
+msgid "Apostrophe"
+msgstr "उद्धरण"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
+msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
+msgid "Apostrophe, an elegant, distraction-free markdown editor"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
+#, fuzzy
+msgid "Color scheme"
+msgstr "रङ योजना"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
+msgid "Use the color scheme in the application's UI and in the text area."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
+#: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
+#, fuzzy
+msgid "Check spelling while typing"
+msgstr "टाइप गर्दा हिज्जे जाँच गर्नुहोस्"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
+#, fuzzy
+msgid "Enable or disable spellchecking."
+msgstr "टाढाको लगइन सक्षम वा अक्षम पार्नुहोस्"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
+msgid "Synchronize editor/preview scrolling"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
+msgid "Keep the editor and preview scroll positions in sync."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
+#: data/ui/Preferences.ui:90
+#, fuzzy
+msgid "Input format"
+msgstr "ढाँचा…"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
+msgid "Input format to use when previewing and exporting using Pandoc."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
+#, fuzzy
+msgid "Autohide Headerbar"
+msgstr "स्वत: लुकाउनुहोस्"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
+msgid "Hide the header and status bars when typing."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
+#, fuzzy
+msgid "Open file base path"
+msgstr "फाइल [मार्ग]"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
+msgid "Open file paths of the current session"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
+#, fuzzy
+msgid "Default statistic"
+msgstr "पुर्वनिर्धारित "
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
+msgid "Which statistic is shown on the main window."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
+#, fuzzy
+msgid "Characters per line"
+msgstr "पङ्ति"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
+msgid "Maximum number of characters per line within the editor."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
+#: data/ui/Headerbar.ui:250
+#, fuzzy
+msgid "Hemingway Mode"
+msgstr "मोड स्विच: मोड %d"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:86
+#, fuzzy
+msgid "Whether the user can delete text or not."
+msgstr "जब प्रयोगकर्ताद्वारा पाठ संशोधन गर्सकिन्छ"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
+#, fuzzy
+msgid "Preview mode"
+msgstr "पूर्वावलोकन छैन"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
+#, fuzzy
+msgid "How to display the preview."
+msgstr "पूर्वावलोकन छैन"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
+#, fuzzy
+msgid "Preview active"
+msgstr "पुर्वदृष्य औजार सक्रिय"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
+msgid "Whether showing of preview is active when launching a new window."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
+#, fuzzy
+msgid "Text size"
+msgstr "फन्ट साइज बढाउनुहोस्"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
+#, fuzzy
+msgid "Preferred relative size for the text."
+msgstr "फन्ट साइज बढाउनुहोस्"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
+#, fuzzy
+msgid "Edit Markdown in style"
+msgstr "शैली:"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
+msgid "Focus on your writing with a clean, distraction-free markdown editor."
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
+msgid "Features:"
+msgstr "विशेषता:"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:11
+msgid "An UI tailored to comfortable writing"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:12
+#, fuzzy
+msgid "A distraction-free mode"
+msgstr "शैली"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:13
+msgid "Dark, light and sepia themes"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
+msgid ""
+"Everything you expect from a text editor, such as spellchecking or document "
+"statistics"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
+msgid "Live preview of what you write"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
+msgid ""
+"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
+"slideshows"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
+msgid "Manuel G., Wolf V."
+msgstr ""
+
+#: data/ui/About.ui.in:12
+msgid "Copyright (C) 2022, Manuel G., Wolf V."
+msgstr ""
+
+#: data/ui/About.ui.in:14
+#, fuzzy
+msgid "Apostrophe website"
+msgstr "उद्धरण"
+
+#. Put your name in here, like this:
+#. Manuel Genovés <manuel.genoves@gmail.com>
+#: data/ui/About.ui.in:20
+msgid "translator-credits"
+msgstr ""
+"translator-credits Pawan Chitrakar <chautari@gmail.com>,Jyotsna Shrestha "
+"<jyoshrestha@hotmail.com>, Nabin Gautam<nabingautam2001@yahoo.com>"
+
+#: data/ui/About.ui.in:65
+msgid "Donations:"
+msgstr ""
+
+#: data/ui/About.ui.in:74
+msgid "Paypal"
+msgstr ""
+
+#: data/ui/About.ui.in:105
+#, fuzzy
+msgid "Help to translate:"
+msgstr "मद्दत अनुवाद"
+
+#: data/ui/About.ui.in:114
+msgid "Damned Lies"
+msgstr ""
+
+#: data/ui/Export.ui:46 apostrophe/export_dialog.py:133
+#: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
+#: apostrophe/main_window.py:330 apostrophe/main_window.py:423
+#: apostrophe/main_window.py:508
+msgid "Cancel"
+msgstr "_रद्द"
+
+#: data/ui/Export.ui:61 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:323 apostrophe/export_dialog.py:327
+msgid "Export"
+msgstr "निर्यात गर्नुहोस्"
+
+#: data/ui/Export.ui:153
+#, fuzzy
+msgid "Standalone"
+msgstr "एक्लो हस्ताक्षर"
+
+#: data/ui/Export.ui:155
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+
+#: data/ui/Export.ui:170
+#, fuzzy
+msgid "Table of Contents"
+msgstr "विषयसूची"
+
+#: data/ui/Export.ui:186
+#, fuzzy
+msgid "Number Sections"
+msgstr "सङ्ख्या"
+
+#: data/ui/Export.ui:210 data/ui/Export.ui:216
+msgid "Page Size"
+msgstr "पन्नाको आकार"
+
+#: data/ui/Export.ui:235
+#, fuzzy
+msgid "HTML Options"
+msgstr "एचटीएमएल (HTML)"
+
+#: data/ui/Export.ui:241
+#, fuzzy
+msgid "Self-contained"
+msgstr "आफै"
+
+#: data/ui/Export.ui:243
+msgid "Produces an HTML file with no external dependencies"
+msgstr ""
+
+#: data/ui/Export.ui:259
+#, fuzzy
+msgid "CSS File"
+msgstr "वेबसाइटहरू आफ्नै CSS परिमार्जन गर्न अनुकूल CSS फाइल प्रयोग गर्नुहोस्।"
+
+#: data/ui/Export.ui:264
+#, fuzzy
+msgid "Select CSS file"
+msgstr "CSS"
+
+#: data/ui/Export.ui:285
+msgid "Syntax Highlighting"
+msgstr "विशेष चिन्हित वाक्य"
+
+#: data/ui/Export.ui:300
+#, fuzzy
+msgid "Highlight style"
+msgstr "हाइलाइट"
+
+#: data/ui/Export.ui:321
+msgid "Presentation"
+msgstr "प्रस्तुतिकरण"
+
+#: data/ui/Export.ui:327
+#, fuzzy
+msgid "Incremental bullets"
+msgstr "गोली चिन्ह"
+
+#: data/ui/Export.ui:329
+msgid "Show one bullet point after another in a slideshow"
+msgstr ""
+
+#: data/ui/Headerbar.ui:57
+msgid "New"
+msgstr "नयाँ"
+
+#: data/ui/Headerbar.ui:67 apostrophe/main_window.py:422
+msgid "Open"
+msgstr "खोल्नुहोस्:"
+
+#: data/ui/Headerbar.ui:90 apostrophe/main_window.py:329
+msgid "Save"
+msgstr "सङ्ग्रह गर्नुहोस्"
+
+#: data/ui/Headerbar.ui:102
+#, fuzzy
+msgid "Save as…"
+msgstr "...यस रुपमा बचत गर्नुहोस्"
+
+#: data/ui/Headerbar.ui:140
+msgid "Menu"
+msgstr "मेनु"
+
+#: data/ui/Headerbar.ui:166
+msgid "Find"
+msgstr "खोज्नुस्"
+
+#: data/ui/Headerbar.ui:225
+msgid "New Window"
+msgstr "नयाँ सञ्झ्याल"
+
+#: data/ui/Headerbar.ui:264
+#, fuzzy
+msgid "Focus Mode"
+msgstr "केन्द्रीयता मुद्रा"
+
+#: data/ui/Headerbar.ui:289
+msgid "Find and Replace"
+msgstr "फेला पार्नुहोस् र प्रतिस्थापन गर्नुहोस्"
+
+#: data/ui/Headerbar.ui:314
+msgid "Preferences"
+msgstr "प्राथमिकताहरू"
+
+#: data/ui/Headerbar.ui:339
+#, fuzzy
+msgid "Open Tutorial"
+msgstr "पाठ्य सन्देश बताउ ।"
+
+#: data/ui/Headerbar.ui:353
+msgid "Keyboard Shortcuts"
+msgstr "कुञ्जीपाटी सर्टकट"
+
+#: data/ui/Headerbar.ui:367
+#, fuzzy
+msgid "About Apostrophe"
+msgstr "उद्धरण"
+
+#: data/ui/Headerbar.ui:395
+msgid "Save As…"
+msgstr "...यस रुपमा बचत गर्नुहोस्"
+
+#: data/ui/Headerbar.ui:476
+#, fuzzy
+msgid "Advanced Export…"
+msgstr "निर्यात गर्नुहोस्…"
+
+#: data/ui/Headerbar.ui:501
+#, fuzzy
+msgid "Copy HTML"
+msgstr "HTML को रूपमा प्रतिलिपि बनाउनुहोस्"
+
+#: data/ui/Preferences.ui:40
+#, fuzzy
+msgid "Autohide headerbar"
+msgstr "स्वत: लुकाउनुहोस्"
+
+#: data/ui/Preferences.ui:41
+msgid "Autohide header and statusbars while typing"
+msgstr ""
+
+#: data/ui/Preferences.ui:57
+#, fuzzy
+msgid "Use bigger text"
+msgstr "पाठ सम्पादकमा प्रयोग गर्नका लागि कुञ्जी बाइन्डिङ ।"
+
+#: data/ui/Preferences.ui:58
+msgid "Reduce the margins width and increase the text size when possible"
+msgstr ""
+
+#: data/ui/Preferences.ui:72
+msgid "Restore session"
+msgstr "सत्र पूर्वावस्थामा ल्याउनुहोस्"
+
+#: data/ui/Preferences.ui:73
+#, fuzzy
+msgid "Return to your previous session when Apostrophe is started"
+msgstr "पाठ सम्पादक सुरु भएको बेलामा तपाईँको अघिल्लो सत्रमा फर्कनुहोस्"
+
+#: data/ui/Preferences.ui:91
+msgid "Flavor of markdown Apostrophe will use"
+msgstr ""
+
+#: data/ui/Preferences.ui:100
+#, fuzzy
+msgid "Markdown flavor documentation"
+msgstr "मिसिलिकरण"
+
+#: data/ui/PreviewLayoutSwitcher.ui:10 apostrophe/preview_renderer.py:210
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: data/ui/PreviewLayoutSwitcher.ui:32
+#, fuzzy
+msgid "Screen Layout"
+msgstr "ढाँचा"
+
+#: data/ui/Recents.ui:60
+msgid "No Recent Documents"
+msgstr "हालको कागजात छैन"
+
+#: data/ui/Recents.ui:88
+msgid "No Results Found"
+msgstr "नतिजा भेटिएन"
+
+#: data/ui/SearchBar.ui:50
+#, fuzzy
+msgid "Previous Match"
+msgstr "अघिल्लो फेला पार्नुहोस्"
+
+#: data/ui/SearchBar.ui:63
+#, fuzzy
+msgid "Next Match"
+msgstr "पछिल्लो जोडामा सार्नुहोस् (Ctrl+G)"
+
+#. Translators: This indicates case sensitivity, so it should be the first vowel of the language in lowercase and uppercase
+#: data/ui/SearchBar.ui:85
+#, fuzzy
+msgid "aA"
+msgstr "पाठबाट थम्बनेल प्रतिमा (पूर्वनिर्धारित Aa)"
+
+#: data/ui/SearchBar.ui:89
+#, fuzzy
+msgid "Case Sensitive"
+msgstr "केस संवेदनशिल"
+
+#: data/ui/SearchBar.ui:99
+#, fuzzy
+msgid "Regular Expression"
+msgstr "नियमित अभिव्यक्तिको रूपमा जोडा मिलाउनुहोस्"
+
+#: data/ui/SearchBar.ui:111 data/ui/SearchBar.ui:165
+msgid "Replace"
+msgstr "बदलनुहोस्"
+
+#: data/ui/SearchBar.ui:175
+msgid "Replace All"
+msgstr "सबै बदलनुहोस्"
+
+#: data/ui/Shortcuts.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "सामान्य"
+
+#: data/ui/Shortcuts.ui:17
+msgctxt "shortcut window"
+msgid "New"
+msgstr "नयाँ"
+
+#: data/ui/Shortcuts.ui:24
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "खोल्नुहोस्:"
+
+#: data/ui/Shortcuts.ui:31
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "सङ्ग्रह गर्नुहोस्"
+
+#: data/ui/Shortcuts.ui:38
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Save as"
+msgstr "...यस रुपमा बचत गर्नुहोस्"
+
+#: data/ui/Shortcuts.ui:45
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "कागजात बन्द गर्नुहोस्"
+
+#: data/ui/Shortcuts.ui:52
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Quit application"
+msgstr "अनुप्रयोग अन्त्य गर्नुहोस्"
+
+#: data/ui/Shortcuts.ui:61
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Modes"
+msgstr "कुनै पनि चयन गरियेका मोडहरु संभावित %s मोडहरु संग मिलेनन्"
+
+#: data/ui/Shortcuts.ui:65
+msgctxt "shortcut window"
+msgid "Focus mode"
+msgstr "केन्द्रीयता मुद्रा"
+
+#: data/ui/Shortcuts.ui:72
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Hemingway mode"
+msgstr "मोड स्विच: मोड %d"
+
+#: data/ui/Shortcuts.ui:79
+msgctxt "shortcut window"
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: data/ui/Shortcuts.ui:86
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "पूरा पर्दा"
+
+#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+msgctxt "shortcut window"
+msgid "Find"
+msgstr "खोज्नुस्"
+
+#: data/ui/Shortcuts.ui:106
+msgctxt "shortcut window"
+msgid "Find and replace"
+msgstr "फेला पार्नुहोस् र प्रतिस्थापन गर्नुहोस्"
+
+#: data/ui/Shortcuts.ui:115
+msgctxt "shortcut window"
+msgid "Markdown"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:119
+msgctxt "shortcut window"
+msgid "Separator"
+msgstr "विभाजक"
+
+#: data/ui/Shortcuts.ui:126
+#, fuzzy
+msgctxt "shortcut window"
+msgid "List item"
+msgstr "सुची सामाग्री"
+
+#: data/ui/Shortcuts.ui:133
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "छड्के"
+
+#: data/ui/Shortcuts.ui:140
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "बाक्लो"
+
+#: data/ui/Shortcuts.ui:147
+msgctxt "shortcut window"
+msgid "Strikeout"
+msgstr ""
+
+#: data/ui/Shortcuts.ui:156
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Copy and paste"
+msgstr "प्रतिलिपि बनाउनुहोस् र टाँस्नुहोस्"
+
+#: data/ui/Shortcuts.ui:160
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "चयन गरिएको पाठ क्लिपबोर्डमा प्रतिलिपि बनाउनुहोस्"
+
+#: data/ui/Shortcuts.ui:167
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "क्लिपबोर्डमा चयन गरिएको पाठ काट्नुहोस्"
+
+#: data/ui/Shortcuts.ui:174
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Paste selected text from clipboard"
+msgstr "क्लिपबोर्डबाट पाठ टाँस्नुहोस्"
+
+#: data/ui/Shortcuts.ui:183
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Undo and redo"
+msgstr "सम्पादन योग्यका लागि यदि यसलाई पुन: सुधार गर्नुहोस्/सक्षम पारियो भने"
+
+#: data/ui/Shortcuts.ui:187
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "अघिल्लो आदेश फर्किनुहोस्"
+
+#: data/ui/Shortcuts.ui:194
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "अघिल्लो आदेश फेरी गर्नुहोस्"
+
+#: data/ui/Shortcuts.ui:203
+msgctxt "shortcut window"
+msgid "Selection"
+msgstr "चयन"
+
+#: data/ui/Shortcuts.ui:207
+msgctxt "shortcut window"
+msgid "Select all text"
+msgstr "सबै पाठ चयन गर्नुहोस्"
+
+#: data/ui/ThemeSwitcher.ui:22
+msgid "Use System Colors"
+msgstr "प्रणाली रङ प्रयोग गर्नुहोस्"
+
+#: data/ui/ThemeSwitcher.ui:51
+msgid "Use Light Colors"
+msgstr "हल्का रङ प्रयोग गर्नुहोस्"
+
+#: data/ui/ThemeSwitcher.ui:80
+#, fuzzy
+msgid "Use Sepia Colors"
+msgstr "प्रणाली रङ प्रयोग गर्नुहोस्"
+
+#: data/ui/ThemeSwitcher.ui:109
+msgid "Use Dark Colors"
+msgstr "गाढा रङप्रयोग गर्नुहोस्"
+
+#: data/ui/Window.ui:71
+#, fuzzy
+msgid "Show Statistics"
+msgstr "खेल खेलिएको तथ्याङ्क देखाउनुहोस्"
+
+#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
+#, fuzzy, python-format
+msgid "Export to %s"
+msgstr "अज्ञात वा असमर्थित कागजात निर्यात ढाँचा '%s'।"
+
+#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
+#, python-brace-format
+msgid ""
+"An error happened while trying to export:\n"
+"\n"
+"{err_msg}"
+msgstr ""
+
+#: apostrophe/export_dialog.py:234
+#, fuzzy
+msgid "Export to {}"
+msgstr "निर्यात गर्नुहोस्…"
+
+#: apostrophe/export_dialog.py:324
+msgid "Select folder"
+msgstr "फोल्डर चयन गर्नुहोस्"
+
+#: apostrophe/helpers.py:89
+msgid "Error"
+msgstr "त्रुटी"
+
+#: apostrophe/inhibitor.py:36
+#, fuzzy
+msgid "Unsaved documents"
+msgstr "कागजातहरू"
+
+#: apostrophe/inline_preview.py:200
+#, fuzzy
+msgid "Formula looks incorrect:"
+msgstr "सूत्र छ ।"
+
+#: apostrophe/inline_preview.py:239
+#, fuzzy
+msgid "No matching footnote found"
+msgstr "कुनै मिल्दो मद्दत पृष्ठ फेला परेन।"
+
+#: apostrophe/inline_preview.py:259
+msgid "noun"
+msgstr ""
+
+#: apostrophe/inline_preview.py:261
+#, fuzzy
+msgid "verb"
+msgstr "(*क्रिया) पहिचान गरिएको छैन"
+
+#: apostrophe/inline_preview.py:263
+msgid "adjective"
+msgstr ""
+
+#: apostrophe/inline_preview.py:265
+msgid "adverb"
+msgstr ""
+
+#: apostrophe/main_window.py:326
+#, fuzzy
+msgid "Save your File"
+msgstr "यस रूपमा फाइल बचत गर्नुहोस्"
+
+#: apostrophe/main_window.py:412
+#, fuzzy
+msgid "Markdown Files"
+msgstr "फाइलहरू:"
+
+#: apostrophe/main_window.py:416
+#, fuzzy
+msgid "Plain Text Files"
+msgstr "सादा पाठ"
+
+#: apostrophe/main_window.py:419
+#, fuzzy
+msgid "Open a .md file"
+msgstr "एउटा फाइल खोल्नुहोस्"
+
+#: apostrophe/main_window.py:498
+#, fuzzy, python-format
+msgid "Save changes to document “%s” before closing?"
+msgstr "बन्द गर्नु भन्दा पहिले छवि \"%s\" मा परिवर्तनहरू बचत गर्नुहुन्छ?"
+
+#: apostrophe/main_window.py:503
+#, fuzzy
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "यदि तपाईँले बचत गर्नुभएन भने, तपाईँका परिवर्तनहरू हराउने छन् ।"
+
+#: apostrophe/main_window.py:506
+#, fuzzy
+msgid "Close without saving"
+msgstr "बचत नगरी बन्द गर्नुहोस्"
+
+#: apostrophe/main_window.py:509
+#, fuzzy
+msgid "Save now"
+msgstr "अहिले होईन"
+
+#: apostrophe/main_window.py:686
+msgid "New File"
+msgstr "नयाँ फाइल"
+
+#: apostrophe/preview_layout_switcher.py:38
+#, fuzzy
+msgid "Full-Width"
+msgstr "पूरा"
+
+#: apostrophe/preview_layout_switcher.py:40
+#, fuzzy
+msgid "Half-Width"
+msgstr "आधा"
+
+#: apostrophe/preview_layout_switcher.py:42
+#, fuzzy
+msgid "Half-Height"
+msgstr "आधा"
+
+#: apostrophe/preview_layout_switcher.py:44
+#, fuzzy
+msgid "Windowed"
+msgstr "पूरा स्क्रिन छोडेर सञ्झ्याल रूपमा जानहोस"
+
+#: apostrophe/stats_handler.py:75
+#, fuzzy
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "क्यारेक्टर"
+msgstr[1] "वर्ण"
+
+#: apostrophe/stats_handler.py:77
+#, fuzzy
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "शब्द"
+msgstr[1] "एन/ए"
+
+#: apostrophe/stats_handler.py:79
+#, fuzzy
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "वाक्य"
+msgstr[1] "एन/ए"
+
+#: apostrophe/stats_handler.py:81
+#, fuzzy
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "अनुच्छेद"
+msgstr[1] "अनुच्छेदहरू"
+
+#: apostrophe/stats_handler.py:83
+#, fuzzy
+msgid "{:d}:{:02d}:{:02d} Read Time"
+msgstr "%d:%02d:%02d"
+
+#: apostrophe/text_view_drag_drop_handler.py:75
+#: apostrophe/text_view_drag_drop_handler.py:77
+#, fuzzy
+msgid "web page"
+msgstr "वेब पृष्ठ"
+
+#: apostrophe/text_view_format_inserter.py:14
+#, fuzzy
+msgid "italic text"
+msgstr "छड्के"
+
+#: apostrophe/text_view_format_inserter.py:19
+#, fuzzy
+msgid "bold text"
+msgstr "बाक्लो पाठले सामान्य पाठमा समान रङ प्रयोग गर्नु पर्दछ या पर्दैन"
+
+#: apostrophe/text_view_format_inserter.py:24
+#, fuzzy
+msgid "strikethrough text"
+msgstr "अक्षरलाई बीचमा काटनु"
+
+#: apostrophe/text_view_format_inserter.py:50
+msgid "Item"
+msgstr "सामाग्री"
+
+#: apostrophe/text_view_format_inserter.py:98
+msgid "Header"
+msgstr "हेडर"
