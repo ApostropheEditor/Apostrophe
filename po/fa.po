@@ -7,32 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-04-07 17:52+0000\n"
-"PO-Revision-Date: 2022-04-21 19:52+0430\n"
-"Last-Translator: MohammadSaleh Kamyab <mskf1383@protonmail.com>\n"
+"POT-Creation-Date: 2022-05-05 09:44+0000\n"
+"PO-Revision-Date: 2022-06-28 15:44+0430\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
 msgid "Apostrophe"
-msgstr "آپوستروف"
+msgstr "آپاستروف"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr ""
 "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;اوبررایتر;اوبر "
-"رایتر;آپوستروف;اپوستروف;مارک‌دان;مارک‌داون;مارک‌دون;ویرایشگر;ادیتور;متن;نوشتن;"
+"رایتر;آپاستروف;آپوستروف;مارک‌دان;مارک‌داون;مارک‌دون;ویرایشگر;ادیتور;متن;نوشتن;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, an elegant, distraction-free markdown editor"
-msgstr "آپوستروف؛ یک ویرایشگر مارک‌دون شیک و بدون حواس‌پرتی"
+msgstr "آپاستروف؛ ویرایشگر مارک‌دونی شیک و بدون حواس‌پرتی"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
 msgid "Color scheme"
@@ -42,8 +42,8 @@ msgstr "شمای رنگی"
 msgid "Use the color scheme in the application's UI and in the text area."
 msgstr "استفاده از شمای رنگی در رابط کاربری برنامه و ناحیهٔ متن."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
-#: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36 data/ui/Preferences.ui:23
+#: data/ui/Preferences.ui:24
 msgid "Check spelling while typing"
 msgstr "بررسی املایی هنگام نوشتن"
 
@@ -59,8 +59,7 @@ msgstr "همگام‌سازی پیمایش ویرایشگر/پیش‌نمایش"
 msgid "Keep the editor and preview scroll positions in sync."
 msgstr "پیمایش ویرایشگر و پیش‌نمایش را همگام نگه می‌دارد."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
-#: data/ui/Preferences.ui:90
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50 data/ui/Preferences.ui:90
 msgid "Input format"
 msgstr "قالب ورودی"
 
@@ -100,8 +99,7 @@ msgstr "نویسه در خط"
 msgid "Maximum number of characters per line within the editor."
 msgstr "بیشینهٔ تعداد نویسه‌ها در هر خط در ویرایشگر."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
-#: data/ui/Headerbar.ui:250
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85 data/ui/Headerbar.ui:250
 msgid "Hemingway Mode"
 msgstr "حالت همینگ‌وی"
 
@@ -227,10 +225,8 @@ msgstr "تنها"
 
 #: data/ui/Export.ui:155
 msgid ""
-"Use a header and footer to include things like stylesheets and meta "
-"information"
-msgstr ""
-"استفاده از یک سرایند و پاورقی برای شمول چیزهایی مثل سبک‌برگ‌ها و فراداده‌ها"
+"Use a header and footer to include things like stylesheets and meta information"
+msgstr "استفاده از یک سرایند و پاورقی برای شمول چیزهایی مثل سبک‌برگ‌ها و فراداده‌ها"
 
 #: data/ui/Export.ui:170
 msgid "Table of Contents"
@@ -278,11 +274,11 @@ msgstr "ارائه"
 
 #: data/ui/Export.ui:327
 msgid "Incremental bullets"
-msgstr ""
+msgstr "گلوله‌های افزایشی"
 
 #: data/ui/Export.ui:329
 msgid "Show one bullet point after another in a slideshow"
-msgstr ""
+msgstr "نمایش گلوله‌ای پس از دیگری در نمایش اسلاید"
 
 #: data/ui/Headerbar.ui:57
 msgid "New"
@@ -586,7 +582,7 @@ msgstr "استفاده از رنگ‌های سوبیایی"
 msgid "Use Dark Colors"
 msgstr "استفاده از رنگ‌های تاریک"
 
-#: data/ui/Window.ui:69
+#: data/ui/Window.ui:71
 msgid "Show Statistics"
 msgstr "نمایش آمار"
 
