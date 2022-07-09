@@ -4,21 +4,22 @@
 # Christian Kirbach <christian.kirbach@gmail.com>, 2021.
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2022.
 # Tim Sabsch <tim@sabsch.com>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-15 21:52+0000\n"
-"PO-Revision-Date: 2022-03-22 10:59+0100\n"
-"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"POT-Creation-Date: 2022-06-28 11:15+0000\n"
+"PO-Revision-Date: 2022-07-08 19:56+0200\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German - Germany <christian.kirbach@gmail.com>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-DL-Team: de\n"
 "X-DL-Module: apostrophe\n"
 "X-DL-Branch: main\n"
@@ -33,7 +34,9 @@ msgstr "Apostrophe"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
-msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;schreiben;"
+msgstr ""
+"uberwriter;UberWriter;apostrophe;markdown;editor;text;write;schreiben;"
+"Markdown;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, an elegant, distraction-free markdown editor"
@@ -43,10 +46,9 @@ msgstr "Apostrophe, ein einfacher und ablenkungsfreier Markdown-Editor"
 msgid "Color scheme"
 msgstr "Farbschema"
 
-# „Textbereich“?
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
 msgid "Use the color scheme in the application's UI and in the text area."
-msgstr "Das Farbschema in der Benutzeroberfläche und im Textbereich verwenden."
+msgstr "Das Farbschema in der Benutzeroberfläche und im Editor verwenden."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
 #: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
@@ -72,7 +74,8 @@ msgstr "Eingabeformat"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
 msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr "Benutztes Eingabeformat für die Vorschau oder Export mittels Pandoc."
+msgstr ""
+"Benutztes Eingabeformat für die Vorschau oder den Export mittels Pandoc."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
 msgid "Autohide Headerbar"
@@ -141,7 +144,7 @@ msgstr "Bevorzugte relative Größe des Textes."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
 msgid "Edit Markdown in style"
-msgstr "Markdown mit Stil bearbeiten"
+msgstr "Bearbeiten Sie Markdown mit Stil"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
 msgid "Focus on your writing with a clean, distraction-free markdown editor."
@@ -206,7 +209,8 @@ msgstr ""
 "Marko Semet <marko10_000@gmx.de>\n"
 "Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
-"Tim Sabsch <tim@sabsch.com>"
+"Tim Sabsch <tim@sabsch.com>\n"
+"Jürgen Benvenuti <gastornis@posteo.org>"
 
 #: data/ui/About.ui.in:65
 msgid "Donations:"
@@ -218,7 +222,7 @@ msgstr "Paypal"
 
 #: data/ui/About.ui.in:105
 msgid "Help to translate:"
-msgstr "Hilf uns das Programm zu übersetzen:"
+msgstr "Helfen Sie uns, das Programm zu übersetzen:"
 
 #: data/ui/About.ui.in:114
 msgid "Damned Lies"
@@ -226,8 +230,8 @@ msgstr "Verdammte Lügen"
 
 #: data/ui/Export.ui:46 apostrophe/export_dialog.py:133
 #: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
-#: apostrophe/main_window.py:331 apostrophe/main_window.py:424
-#: apostrophe/main_window.py:509
+#: apostrophe/main_window.py:330 apostrophe/main_window.py:423
+#: apostrophe/main_window.py:508
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -294,27 +298,27 @@ msgstr "Präsentation"
 
 #: data/ui/Export.ui:327
 msgid "Incremental bullets"
-msgstr "Nummerierung"
+msgstr "Schrittweise Auflistung"
 
 #: data/ui/Export.ui:329
 msgid "Show one bullet point after another in a slideshow"
-msgstr "Listenpunkte nacheinander in einer Diashow anzeigen"
+msgstr "Listenpunkte nacheinander in einer Dia-Show anzeigen"
 
 #: data/ui/Headerbar.ui:57
 msgid "New"
 msgstr "Neu"
 
-#: data/ui/Headerbar.ui:67 apostrophe/main_window.py:423
+#: data/ui/Headerbar.ui:67 apostrophe/main_window.py:422
 msgid "Open"
 msgstr "Öffnen"
 
-#: data/ui/Headerbar.ui:90 apostrophe/main_window.py:330
+#: data/ui/Headerbar.ui:90 apostrophe/main_window.py:329
 msgid "Save"
 msgstr "Speichern"
 
 #: data/ui/Headerbar.ui:102
 msgid "Save as…"
-msgstr "Speichern unter …"
+msgstr "Speichern unter …"
 
 #: data/ui/Headerbar.ui:140
 msgid "Menu"
@@ -346,15 +350,15 @@ msgstr "Tutorial öffnen"
 
 #: data/ui/Headerbar.ui:353
 msgid "Keyboard Shortcuts"
-msgstr "Tastenkürzel"
+msgstr "Tastenkombinationen"
 
 #: data/ui/Headerbar.ui:367
 msgid "About Apostrophe"
-msgstr "Über Apostrophe"
+msgstr "Info zu Apostrophe"
 
 #: data/ui/Headerbar.ui:395
 msgid "Save As…"
-msgstr "Speichern unter …"
+msgstr "Speichern unter …"
 
 #: data/ui/Headerbar.ui:476
 msgid "Advanced Export…"
@@ -396,7 +400,7 @@ msgstr "Markdown-Variante, die Apostrophe nutzen wird"
 msgid "Markdown flavor documentation"
 msgstr "Dokumentation zur Markdown-Variante"
 
-#: data/ui/PreviewLayoutSwitcher.ui:10 data/ui/PreviewWindow.ui:13
+#: data/ui/PreviewLayoutSwitcher.ui:10 apostrophe/preview_renderer.py:210
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -549,12 +553,12 @@ msgstr "Kopieren und Einfügen"
 #: data/ui/Shortcuts.ui:160
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr "Ausgewählten Text kopieren"
+msgstr "Ausgewählten Text in die Zwischenablage kopieren"
 
 #: data/ui/Shortcuts.ui:167
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
-msgstr "Ausgewählten Text ausschneiden"
+msgstr "Ausgewählten Text in die Zwischenablage ausschneiden"
 
 #: data/ui/Shortcuts.ui:174
 msgctxt "shortcut window"
@@ -574,7 +578,7 @@ msgstr "Den letzten Befehl rückgängig machen"
 #: data/ui/Shortcuts.ui:194
 msgctxt "shortcut window"
 msgid "Redo previous command"
-msgstr "Letzten Befehl wiederholen"
+msgstr "Den letzten Befehl wiederholen"
 
 #: data/ui/Shortcuts.ui:203
 msgctxt "shortcut window"
@@ -602,7 +606,7 @@ msgstr "Sepia-Farben verwenden"
 msgid "Use Dark Colors"
 msgstr "Dunkle Farben verwenden"
 
-#: data/ui/Window.ui:69
+#: data/ui/Window.ui:71
 msgid "Show Statistics"
 msgstr "Statistik anzeigen"
 
@@ -640,7 +644,7 @@ msgstr "Nicht gespeicherte Dokumente"
 
 #: apostrophe/inline_preview.py:200
 msgid "Formula looks incorrect:"
-msgstr "Formel ist scheinbar falsch:"
+msgstr "Formel sieht falsch aus:"
 
 #: apostrophe/inline_preview.py:239
 msgid "No matching footnote found"
@@ -662,41 +666,41 @@ msgstr "Adjektiv"
 msgid "adverb"
 msgstr "Adverb"
 
-#: apostrophe/main_window.py:327
+#: apostrophe/main_window.py:326
 msgid "Save your File"
 msgstr "Datei speichern"
 
-#: apostrophe/main_window.py:413
+#: apostrophe/main_window.py:412
 msgid "Markdown Files"
 msgstr "Markdown-Dateien"
 
-#: apostrophe/main_window.py:417
+#: apostrophe/main_window.py:416
 msgid "Plain Text Files"
 msgstr "Einfache Textdateien"
 
-#: apostrophe/main_window.py:420
+#: apostrophe/main_window.py:419
 msgid "Open a .md file"
 msgstr "Eine ».md«-Datei öffnen"
 
-#: apostrophe/main_window.py:499
+#: apostrophe/main_window.py:498
 #, python-format
 msgid "Save changes to document “%s” before closing?"
 msgstr "Änderungen am Dokument »%s« vor dem Beenden speichern?"
 
-#: apostrophe/main_window.py:504
+#: apostrophe/main_window.py:503
 msgid "If you don’t save, all your changes will be permanently lost."
 msgstr ""
-"Wenn Sie nicht speichern, werden alle Veränderungen unwiderruflich verworfen."
+"Wenn Sie nicht speichern, werden alle Änderungen unwiderruflich verworfen."
 
-#: apostrophe/main_window.py:507
+#: apostrophe/main_window.py:506
 msgid "Close without saving"
 msgstr "Schließen ohne zu speichern"
 
-#: apostrophe/main_window.py:510
+#: apostrophe/main_window.py:509
 msgid "Save now"
 msgstr "Jetzt speichern"
 
-#: apostrophe/main_window.py:685
+#: apostrophe/main_window.py:686
 msgid "New File"
 msgstr "Neue Datei"
 
