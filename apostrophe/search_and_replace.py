@@ -20,14 +20,13 @@ import gi
 
 from apostrophe.helpers import user_action
 
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GObject
-
+gi.require_version('Gtk', '4.0')
+from gi.repository import Adw, GObject, Gtk
 
 LOGGER = logging.getLogger('apostrophe')
 
 @Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/SearchBar.ui')
-class ApostropheSearchBar(Gtk.SearchBar):
+class ApostropheSearchBar(Adw.Bin):
     """
     Adds (regex) search and replace functionality to
     apostrophe
@@ -35,27 +34,34 @@ class ApostropheSearchBar(Gtk.SearchBar):
     __gtype_name__ = "ApostropheSearchBar"
 
     replace_mode_enabled = GObject.property(type=bool, default=False)
+    search_mode_enabled = GObject.property(type=bool, default=False)
+    searchbar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
     regex = Gtk.Template.Child()
     case_sensitive = Gtk.Template.Child()
     replace_entry = Gtk.Template.Child()
 
     def __init__(self):
-        
         self.textbuffer = None
 
         self.matches = []
         self.active = 0
 
+        # contruct a paintable to check size changes
+        self.paintable = Gtk.WidgetPaintable.new(self)
+        self.paintable.connect("invalidate-size", self.update_textview_margin)
+
+        self.connect("notify::search-mode-enabled", self.search_enabled)
+        self.connect("notify::replace-mode-enabled", self.replace_enabled)
+
     def attach(self, textview):
         self.textview = textview
-        self.textbuffer = textview.get_buffer()
+        self.textbuffer = self.textview.get_buffer()
         self.highlight = self.textbuffer.create_tag('search_highlight',
                                                     background="yellow")
 
-    @Gtk.Template.Callback()
-    def search_enabled(self, _widget, _data):
-        if self.get_search_mode():
+    def search_enabled(self, *args, **kwargs):
+        if self.searchbar.get_search_mode():
             self.textbuffer = self.textview.get_buffer()
             if self.textbuffer.get_has_selection():
                 self.search_entry.set_text(self.textbuffer.get_slice(*self.textbuffer.get_selection_bounds(), False))
@@ -66,12 +72,12 @@ class ApostropheSearchBar(Gtk.SearchBar):
                                    self.textbuffer.get_start_iter(),
                                    self.textbuffer.get_end_iter())
             self.matches = []
+            self.replace_mode_enabled = False
             self.textview.grab_focus()
 
-    @Gtk.Template.Callback()
     def replace_enabled(self, _widget, _data):
-        if not self.get_search_mode():
-            self.set_search_mode(True)
+        if self.replace_mode_enabled and not self.search_mode_enabled:
+            self.search_mode_enabled = True
 
     @Gtk.Template.Callback()
     def search(self, _widget=None, _data=None, scroll=True):
@@ -126,7 +132,7 @@ class ApostropheSearchBar(Gtk.SearchBar):
 
         # create a mark at the start of the coincidence to scroll to it
         mark = self.textbuffer.create_mark(None, start_iter, False)
-        self.textview.scroller.scroll_to_mark(mark, center=True)
+        self.textview.scroller.smooth_scroll_to_mark(mark, center=True)
 
         # select coincidence
         self.textbuffer.select_range(start_iter, end_iter)
@@ -163,6 +169,5 @@ class ApostropheSearchBar(Gtk.SearchBar):
 
     # Since the searchbar is overlayed to the textview we need to 
     # update its margin when the searchbar appears
-    @Gtk.Template.Callback()
-    def update_textview_margin(self, _widget, allocation):
-        self.textview.update_vertical_margin(allocation.height)
+    def update_textview_margin(self, paintable):
+        self.textview.update_vertical_margin(self.paintable.get_intrinsic_height())

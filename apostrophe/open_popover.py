@@ -15,14 +15,16 @@
 """Open/recents popover
 """
 
+from gettext import gettext as _
 from os import close
+
 import gi
 
-from gettext import gettext as _
+gi.require_version('Gtk', '4.0')
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gio, GLib, GObject, Handy
 from .settings import Settings
+
 
 class RecentItem(GObject.Object):
     def __init__(self, name, path, uri, **kwargs):
@@ -57,19 +59,18 @@ class ApostropheOpenPopover(Gtk.Popover):
         self.recents_manager.connect("changed", self.on_manager_changed)
 
     def create_row(self, item, **args):
-        row = Handy.ActionRow.new()
+        row = Adw.ActionRow.new()
         row.item = item
         row.set_title(item.name)
         row.set_subtitle(item.path)
 
-        delete_button = Gtk.Button.new_from_icon_name("window-close-symbolic", Gtk.IconSize.BUTTON)
+        delete_button = Gtk.Button.new_from_icon_name("window-close-symbolic")
         delete_button.get_style_context().add_class("flat")
         delete_button.get_style_context().add_class("circular")
         delete_button.set_valign(Gtk.Align.CENTER)
-        delete_button.set_visible(True)
         delete_button.connect("clicked", self.on_delete_click, item)
 
-        row.add(delete_button)
+        row.add_suffix(delete_button)
         row.set_activatable(True)
         row.set_action_name("win.open_file")
         row.set_action_target_value(GLib.Variant.new_string(item.uri))

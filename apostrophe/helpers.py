@@ -18,21 +18,18 @@ import logging
 import os
 import shutil
 from contextlib import contextmanager
-
-from typing import List
-
 from gettext import gettext as _
+from typing import List
 
 import gi
 import pypandoc
 from gi.overrides.Pango import Pango
 
-gi.require_version('Gtk', '3.0')
-gi.require_version('Handy', '1')
-from gi.repository import Gtk, Gio, Handy  # pylint: disable=E0611
+gi.require_version('Gtk', '4.0')
+from gi.repository import Adw, Gio, Gtk  # pylint: disable=E0611
 
-from apostrophe.settings import Settings
 from apostrophe import config
+from apostrophe.settings import Settings
 
 __apostrophe_data_directory__ = '../data/'
 
@@ -82,14 +79,10 @@ def set_up_logging(level):
 
 
 def show_error(parent, message):
-    dialog = Gtk.MessageDialog(
-        parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-        Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, message)
-
-    dialog.set_title(_("Error"))
-    dialog.run()
-    dialog.destroy()
-
+    dialog = Adw.MessageDialog.new(parent, _("Error"), message)
+    dialog.add_response("close", _("Close"))
+    dialog.set_close_response("close")
+    dialog.show()
 
 def exist_executable(command):
     """return if a command can be executed in the SO
@@ -105,20 +98,20 @@ def exist_executable(command):
 
 
 def liststore_from_list(str_list: List[str]):
-    """return a Gtk.ListStore object of Handy.TypeValues
+    """return a Gtk.ListStore object of Gtk.StringObjects
        constructed after a list of strings
 
         Arguments:
             str_list {List[str]} -- a list of strings
 
         Returns:
-            {Gtk.ListStore} -- a ListStore of Handy.ValueObjects
+            {Gtk.ListStore} -- a ListStore of Gtk.StringObject
     """
 
-    list_store = Gio.ListStore.new(Handy.ValueObject)
+    list_store = Gio.ListStore.new(Gtk.StringObject)
 
     for element in str_list:
-        obj = Handy.ValueObject.new(element)
+        obj = Gtk.StringObject.new(element)
         list_store.append(obj)
 
     return list_store

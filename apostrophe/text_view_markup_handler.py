@@ -13,20 +13,20 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
-from gi.repository import Pango
-from gi.repository import Gtk, GLib
 import re
 from multiprocessing import Pipe, Process
 
 import gi
+from gi.repository import GLib, Gtk, Pango
 
 from apostrophe import helpers, markup_regex
-from apostrophe.markup_regex import STRIKETHROUGH, BOLD_ITALIC,\
-    BOLD, ITALIC_ASTERISK, ITALIC_UNDERSCORE, IMAGE, LINK, LINK_ALT,\
-    HORIZONTAL_RULE, LIST, ORDERED_LIST, BLOCK_QUOTE, HEADER, HEADER_UNDER,\
-    TABLE, MATH, CODE
+from apostrophe.markup_regex import (BLOCK_QUOTE, BOLD, BOLD_ITALIC, CODE,
+                                     HEADER, HEADER_UNDER, HORIZONTAL_RULE,
+                                     IMAGE, ITALIC_ASTERISK, ITALIC_UNDERSCORE,
+                                     LINK, LINK_ALT, LIST, MATH, ORDERED_LIST,
+                                     STRIKETHROUGH, TABLE)
 
-gi.require_version('Gtk', '3.0')
+gi.require_version('Gtk', '4.0')
 
 
 class MarkupHandler:
@@ -43,9 +43,9 @@ class MarkupHandler:
     TAG_NAME_UNFOCUSED_TEXT = 'unfocused_text'
     TAG_NAME_MARGIN_INDENT = 'margin_indent'
 
-    def __init__(self, text_view):
-        self.text_view = text_view
-        self.text_buffer = text_view.get_buffer()
+    def __init__(self, textview):
+        self.textview = textview
+        self.text_buffer = self.textview.get_buffer()
         self.marked_up_text = None
 
         # Tags.
@@ -140,7 +140,7 @@ class MarkupHandler:
             self.on_parsed)
 
     def on_style_updated(self, *_):
-        style_context = self.text_view.get_style_context()
+        style_context = self.textview.get_style_context()
         (found, color) = style_context.lookup_color('code_bg_color')
         if not found:
             (_, color) = style_context.lookup_color('background_color')
@@ -352,7 +352,7 @@ class MarkupHandler:
 
         # Apply focus mode tag (grey out before/after current sentence).
         buffer.remove_tag(self.tag_unfocused_text, start, end)
-        if self.text_view.focus_mode:
+        if self.textview.focus_mode:
             cursor_iter = buffer.get_iter_at_mark(buffer.get_insert())
             start_sentence = cursor_iter.copy()
             if not start_sentence.starts_sentence():
@@ -385,16 +385,16 @@ class MarkupHandler:
     def get_margin_indent(self, margin_level, indent_level,
                           baseline_margin=None, char_width=None):
         if baseline_margin is None:
-            baseline_margin = self.text_view.props.left_margin
+            baseline_margin = self.textview.get_left_margin()
         if char_width is None:
-            char_width = helpers.get_char_width(self.text_view)
+            char_width = helpers.get_char_width(self.textview)
         margin = max(baseline_margin + char_width * margin_level, 0)
         indent = char_width * indent_level
         return margin, indent
 
     def update_margins_indents(self):
-        baseline_margin = self.text_view.props.left_margin
-        char_width = helpers.get_char_width(self.text_view)
+        baseline_margin = self.textview.get_left_margin()
+        char_width = helpers.get_char_width(self.textview)
 
         # Bail out if neither the baseline margin nor character width change
         if baseline_margin == self.baseline_margin and char_width == self.char_width:
@@ -405,7 +405,7 @@ class MarkupHandler:
         # Adjust tab size
         tab_array = Pango.TabArray.new(1, True)
         tab_array.set_tab(0, Pango.TabAlign.LEFT, 4 * char_width)
-        self.text_view.set_tabs(tab_array)
+        self.textview.set_tabs(tab_array)
 
         # Adjust margins and indents
         for level, tag in self.tags_margins_indents.items():

@@ -1,170 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <requires lib="libhandy" version="3.22"/>
-  <object class="GtkImage" id="pan-down">
-    <property name="visible">1</property>
-    <property name="icon-name">pan-down-symbolic</property>
-    <property name="icon-size">2</property>
-  </object>
-  <template class="ApostropheWindow" parent="HdyApplicationWindow">
+  <requires lib="gtk" version="4.0" />
+  <requires lib="adw" version="1.0" />
+  <template class="ApostropheWindow" parent="AdwApplicationWindow">
     <property name="default-width">1000</property>
     <property name="default-height">600</property>
-    <signal name="delete-event" handler="on_delete_called"/>
-    <signal name="notify::is-fullscreen" handler="_on_fullscreen"/>
     <style>
-      <class name="apostrophe-window"/>
+      <class name="apostrophe-window" />
     </style>
     <child>
       <object class="GtkOverlay" id="AppOverlay">
         <property name="name">FullscreenOverlay</property>
-        <property name="visible">1</property>
-        <child>
-          <object class="GtkGrid" id="app_grid">
-            <property name="visible">1</property>
-            <child>
-              <object class="HdyFlap" id="flap">
-                <property name="visible">1</property>
-                <property name="flap-position">end</property>
-                <property name="transition-type">slide</property>
-                <property name="fold-policy">never</property>
-                <property name="reveal-flap">false</property>
-                <property name="swipe-to-close">false</property>
-                <property name="swipe-to-open">false</property>
-                <child type="content">
-                  <object class="GtkOverlay" id="editor">
-                    <property name="visible">1</property>
-                    <child>
+        <property name="child">
+          <object class="AdwFlap" id="flap">
+            <property name="flap-position">end</property>
+            <property name="transition-type">slide</property>
+            <property name="fold-policy">never</property>
+            <property name="reveal-flap">false</property>
+            <property name="swipe-to-close">false</property>
+            <property name="swipe-to-open">false</property>
+            <child type="content">
+              <object class="GtkOverlay" id="editor">
+                <property name="child">
+                  <object class="AdwToastOverlay" id="toast_overlay">
+                    <property name="child">
                       <object class="GtkScrolledWindow" id="editor_scrolledwindow">
-                        <property name="visible">1</property>
-                        <property name="can-focus">1</property>
+                        <property name="focusable">1</property>
                         <property name="receives-default">1</property>
                         <property name="hexpand">1</property>
                         <property name="vexpand">1</property>
                         <child>
-                          <object class="ApostropheTextView" id="text_view">
-                            <property name="visible">1</property>
-                            <signal name="focus-out-event" handler="reveal_headerbar_bottombar"/>
+                          <object class="ApostropheTextView" id="textview">
+                            <child>
+                              <object class="GtkEventControllerFocus">
+                                <signal name="leave" handler="reveal_headerbar_bottombar" swapped="no" />
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
-                      <packing>
-                        <property name="index">-1</property>
-                      </packing>
-                    </child>
-                    <child type="overlay">
-                      <object class="GtkRevealer" id="stats_revealer">
-                        <property name="visible">1</property>
-                        <property name="events">GDK_ENTER_NOTIFY_MASK | GDK_STRUCTURE_MASK</property>
-                        <property name="valign">end</property>
-                        <property name="halign">end</property>
-                        <property name="transition-type">crossfade</property>
-                        <property name="transition-duration">750</property>
-                        <property name="reveal-child">1</property>
-                        <signal name="enter_notify_event" handler="reveal_bottombar"/>
-                        <child>
-                          <object class="GtkButton" id="stats_button">
-                            <property name="label">0 Words</property>
-                            <property name="visible">1</property>
-                            <property name="can-focus">1</property>
-                            <property name="receives-default">1</property>
-                            <property name="tooltip-text" translatable="yes">Show Statistics</property>
-                            <property name="halign">end</property>
-                            <property name="image">pan-down</property>
-                            <property name="image-position">right</property>
-                            <property name="always-show-image">1</property>
-                            <style>
-                              <class name="inline-button"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    </property>
                   </object>
-                </child>
-                <child type="separator">
-                  <object class="GtkSeparator">
-                    <property name="visible">1</property>
-                    <style>
-                      <class name="sidebar"/>
-                    </style>
-                  </object>
-                </child>
-                <child type="flap">
-                  <object class="GtkStack" id="preview_stack">
-                    <property name="visible">true</property>
-                    <property name="hexpand">true</property>
+                </property>
+                <child type="overlay">
+                  <object class="GtkRevealer" id="stats_revealer">
+                    <property name="valign">end</property>
+                    <property name="halign">end</property>
                     <property name="transition-type">crossfade</property>
+                    <property name="transition-duration">750</property>
+                    <property name="reveal-child">1</property>
+                    <property name="child">
+                      <object class="GtkMenuButton" id="stats_button">
+                        <property name="always-show-arrow">True</property>
+                        <property name="tooltip-text" translatable="yes">Show Statistics</property>
+                        <property name="label" translatable="true">0 Words</property>
+                        <property name="halign">end</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-bottom">6</property>
+                        <style>
+                          <class name="stats-button" />
+                        </style>
+                      </object>
+                    </property>
                     <child>
-                      <object class="GtkSpinner" id="preview_spinner">
-                        <property name="visible">1</property>
-                        <property name="active">1</property>
-                        <property name="expand">1</property>
-                        </object>
+                      <object class="GtkEventControllerMotion">
+                        <signal name="enter" handler="reveal_bottombar" swapped="no" />
+                      </object>
                     </child>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
-              </packing>
+            </child>
+            <child type="separator">
+              <object class="GtkSeparator">
+                <style>
+                  <class name="sidebar" />
+                </style>
+              </object>
+            </child>
+            <child type="flap">
+              <object class="GtkStack" id="preview_stack">
+                <property name="hexpand">1</property>
+                <property name="transition-type">crossfade</property>
+                <child>
+                  <object class="GtkSpinner" id="preview_spinner">
+                    <property name="spinning">1</property>
+                    <property name="hexpand">1</property>
+                    <property name="vexpand">1</property>
+                  </object>
+                </child>
+              </object>
             </child>
           </object>
-          <packing>
-            <property name="index">-1</property>
-          </packing>
-        </child>
-        <child type="overlay">
-          <object class="GtkEventBox" id="FullscreenEventbox">
-            <property name="height-request">1</property>
-            <property name="valign">start</property>
-          </object>
-        </child>
+        </property>
         <child type="overlay">
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="orientation">vertical</property>
             <property name="valign">start</property>
             <child>
               <object class="BaseHeaderbar" id="headerbar">
-                <property name="visible">True</property>
                 <property name="transition-type">crossfade</property>
                 <property name="transition-duration">450</property>
                 <property name="reveal-child">True</property>
                 <property name="valign">start</property>
-                <property name="title" bind-source="ApostropheWindow" bind-property="title"/>
-                <property name="subtitle" bind-source="ApostropheWindow" bind-property="subtitle"/>
-                <property name="is-fullscreen" bind-source="ApostropheWindow" bind-property="is-fullscreen"/>
-                <signal name="notify::reveal-child" handler="headerbar_revealed_cb" swapped="no"/>
+                <property name="title" bind-source="ApostropheWindow" bind-property="title" />
+                <property name="subtitle" bind-source="ApostropheWindow" bind-property="subtitle" />
+                <property name="is-fullscreen" bind-source="ApostropheWindow" bind-property="is-fullscreen" />
+                <child>
+                  <object class="GtkEventControllerMotion">
+                    <signal name="enter" handler="reveal_headerbar_bottombar" swapped="no" />
+                  </object>
+                </child>
               </object>
             </child>
             <child>
               <object class="GtkProgressBar" id="save_progressbar">
+                <property name="visible">0</property>
                 <property name="valign">start</property>
                 <style>
-                  <class name="osd"/>
+                  <class name="osd" />
                 </style>
               </object>
             </child>
             <child>
-              <object class="ApostropheSearchBar" id="searchbar">
-                <property name="visible">True</property>
-              </object>
+              <object class="ApostropheSearchBar" id="searchbar"></object>
             </child>
           </object>
-        </child>
-        <child type="overlay">
-          <object class="GtkEventBox" id="headerbar_eventbox">
-            <property name="height-request">60</property>
-            <property name="valign">start</property>
-            <property name="visible-window">0</property>
-            <property name="above-child">1</property>
-            <signal name="enter_notify_event" handler="reveal_headerbar_bottombar"/>
-          </object>
-          <packing>
-            <property name="index">1</property>
-          </packing>
         </child>
       </object>
     </child>

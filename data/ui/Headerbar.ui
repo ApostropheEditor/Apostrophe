@@ -1,512 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <requires lib="libhandy" version="3.22"/>
-  <object class="GtkPopover">
-    <child>
-      <object class="GtkBox">
-        <property name="visible">1</property>
-        <child>
-          <object class="GtkButton">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
-            <property name="receives-default">1</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
-            <property name="receives-default">1</property>
-          </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkImage" id="exit_fs_icon">
-    <property name="visible">1</property>
-    <property name="icon-name">view-restore-symbolic</property>
-  </object>
-  <object class="GtkImage" id="new_icon">
-    <property name="visible">1</property>
-    <property name="icon-name">document-new-symbolic</property>
-  </object>
-  <object class="GtkImage" id="search_icon">
-    <property name="visible">1</property>
-    <property name="icon-name">system-search-symbolic</property>
-  </object>
-  <object class="GtkImage" id="pan_down_icon">
-    <property name="visible">1</property>
-    <property name="icon-name">pan-down-symbolic</property>
-  </object>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="adw" version="1.0"/>
   <template class="BaseHeaderbar" parent="GtkRevealer">
-    <signal name="notify::child-revealed" handler="on_show_hide"/>
     <child>
-      <object class="HdyHeaderBar" id="headerbar">
-      <property name="visible">True</property>
-      <property name="title" bind-source="BaseHeaderbar" bind-property="title"/>
-      <property name="subtitle" bind-source="BaseHeaderbar" bind-property="subtitle"/> 
-        <child>
+      <object class="AdwHeaderBar" id="headerbar">
+        <child type="start">
           <object class="GtkButton">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
-            <property name="receives-default">1</property>
             <property name="tooltip-text" translatable="yes">New</property>
-            <property name="action-name">win.new</property>
-            <property name="image">new_icon</property>
+            <property name="action-name">app.new_window</property>
+            <property name="icon_name">document-new-symbolic</property>
           </object>
         </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">1</property>
-            <child>
-              <object class="GtkMenuButton">
-                <property name="label" translatable="yes">Open</property>
-                <property name="visible">1</property>
-                <property name="can-focus">1</property>
-                <property name="receives-default">1</property>
-                <property name="always-show-image">True</property>
-                <property name="image-position">right</property>
-                <property name="popover">open_menu</property>
-                <property name="image">pan_down_icon</property>
-              </object>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
+        <child type="start">
+          <object class="GtkMenuButton">
+            <property name="label" translatable="yes">Open</property>
+            <property name="popover">open_menu</property>
           </object>
-          <packing>
-            <property name="position">1</property>
-          </packing>
         </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">1</property>
-            <child>
-              <object class="GtkButton">
-                <property name="label" translatable="yes">Save</property>
-                <property name="visible">1</property>
-                <property name="can-focus">1</property>
-                <property name="receives-default">1</property>
-                <property name="action-name">win.save</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="export_button">
-                <property name="visible">1</property>
-                <property name="can-focus">1</property>
-                <property name="receives-default">1</property>
-                <property name="tooltip-text" translatable="yes">Save as…</property>
-                <property name="popover">export_menu</property>
-              </object>
-              <packing>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
+        <child type="start">
+          <object class="AdwSplitButton">
+            <property name="label" translatable="yes">Save</property>
+            <property name="action-name">win.save</property>
+            <property name="menu-model">export_menu</property>
           </object>
-          <packing>
-            <property name="position">2</property>
-          </packing>
         </child>
-        <child>
+        <child type="end">
           <object class="GtkButton" id="exit_fs_button">
-            <property name="can-focus">1</property>
-            <property name="receives-default">1</property>
-            <property name="no-show-all">1</property>
             <property name="action-name">win.fullscreen</property>
-            <property name="image">exit_fs_icon</property>
-            <property name="visible" bind-source="BaseHeaderbar" bind-property="is_fullscreen"/>
+            <property name="visible" bind-source="BaseHeaderbar" bind-property="is_fullscreen" bind-flags="sync-create"/>
+            <property name="icon-name">view-restore-symbolic</property>
           </object>
-          <packing>
-            <property name="pack-type">end</property>
-            <property name="position">1</property>
-          </packing>
         </child>
-        <child>
+        <child type="end">
           <object class="GtkMenuButton" id="menu_button">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
-            <property name="receives-default">1</property>
-            <property name="popover">Menu</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">1</property>
-                <property name="tooltip-text" translatable="yes">Menu</property>
-                <property name="icon-name">open-menu-symbolic</property>
-              </object>
-            </child>
+            <property name="menu-model">Menu</property>
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="tooltip-text" translatable="yes">Menu</property>
             <style>
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
         </child>
-        <child>
-          <object class="PreviewLayoutSwitcher" id="preview_layout_switcher">
-          </object>
-          <packing>
-            <property name="pack-type">end</property>
-            <property name="position">3</property>
-          </packing>
+        <child type="end">
+          <object class="PreviewLayoutSwitcher" id="preview_layout_switcher"/>
         </child>
-        <child>
+        <child type="end">
           <object class="GtkToggleButton">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
-            <property name="receives-default">1</property>
             <property name="tooltip-text" translatable="yes">Find</property>
             <property name="action-name">win.find</property>
-            <property name="image">search_icon</property>
-            <property name="always-show-image">1</property>
+            <property name="icon-name">system-search-symbolic</property>
           </object>
-          <packing>
-            <property name="pack-type">end</property>
-            <property name="position">4</property>
-          </packing>
         </child>
         <style>
           <class name="titlebar"/>
-          <class name="flat"/>
         </style>
       </object>
     </child>
   </template>
+  <object class="ApostropheOpenPopover" id="open_menu"/>
 
-  <object class="ApostropheOpenPopover" id="open_menu">
-  </object>
-  <!-- Menu -->
-  <object class="GtkPopover" id="Menu">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">12</property>
-        <property name="margin_right">12</property>
-        <property name="margin_top">12</property>
-        <property name="margin_bottom">12</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="ThemeSwitcher" id="themeswitcher">
-            <property name="visible">True</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.new_window</property>
-            <property name="text" translatable="yes">New Window</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.hemingway_mode</property>
-            <property name="text" translatable="yes">Hemingway Mode</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.focus_mode</property>
-            <property name="text" translatable="yes">Focus Mode</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.find_replace</property>
-            <property name="text" translatable="yes">Find and Replace</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">7</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">8</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.preferences</property>
-            <property name="text" translatable="yes">Preferences</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">9</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">10</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="tutorial_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.open_file</property>
-            <property name="text" translatable="yes">Open Tutorial</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">11</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">12</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.about</property>
-            <property name="text" translatable="yes">About Apostrophe</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">13</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
+  <!-- Main Menu-->
 
-<!-- Export Menu -->
+  <menu id="Menu">
+    <section>
+      <item>
+        <attribute name="custom">themeswitcher</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Hemingway Mode</attribute>
+        <attribute name="action">win.hemingway_mode</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Focus Mode</attribute>
+        <attribute name="action">win.focus_mode</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Find and _Replace</attribute>
+        <attribute name="action">win.find_replace</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Open _Tutorial</attribute>
+        <attribute name="action">win.open_file</attribute>
+        <attribute name="target">resource:///org/gnome/gitlab/somas/Apostrophe/media/apostrophe_markdown.md</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">app.shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About Apostrophe</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
 
-  <object class="GtkPopover" id="export_menu">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin">12</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.save_as</property>
-            <property name="text" translatable="yes">Save As…</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.export</property>
-            <property name="action_target">"pdf"</property>
-            <property name="text" translatable="no">PDF</property>          
-            </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.export</property>
-            <property name="action_target">"html"</property>
-            <property name="text" translatable="no">HTML</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.export</property>
-            <property name="action_target">"odt"</property>
-            <property name="text" translatable="no">ODT</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.advanced_export</property>
-            <property name="text" translatable="yes">Advanced Export…</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">7</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">win.copy_html</property>
-            <property name="text" translatable="yes">Copy HTML</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">8</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
+  <!-- Export Menu -->
+
+  <menu id="export_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Save As...</attribute>
+        <attribute name="action">win.save_as</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="no">_PDF</attribute>
+        <attribute name="action">win.export</attribute>
+        <attribute name="target">&quot;pdf&quot;</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="no">_HTML</attribute>
+        <attribute name="action">win.export</attribute>
+        <attribute name="target">&quot;html&quot;</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="no">_ODT</attribute>
+        <attribute name="action">win.export</attribute>
+        <attribute name="target">&quot;odt&quot;</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Advanced _Export…</attribute>
+        <attribute name="action">win.advanced_export</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Copy HTML</attribute>
+        <attribute name="action">app.copy_html</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

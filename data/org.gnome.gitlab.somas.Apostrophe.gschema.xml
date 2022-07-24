@@ -87,6 +87,13 @@
         Whether the user can delete text or not.
       </description>
     </key>
+    <key name='hemingway-toast-count' type='i'>
+      <default>0</default>
+      <summary>Hemingway Toast Count</summary>
+      <description>
+        Number of times the Hemingway Toast has been shown
+      </description>
+    </key>
     <key name='preview-mode' enum='org.gnome.gitlab.somas.Apostrophe.PreviewMode'>
       <default>"full-width"</default>
       <summary>Preview mode</summary>

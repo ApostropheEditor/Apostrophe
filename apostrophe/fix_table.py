@@ -1,6 +1,6 @@
 import re
 import gi
-gi.require_version('Gtk', '3.0')
+gi.require_version('Gtk', '4.0')
 
 import logging
 logger = logging.getLogger('apostrophe')
