@@ -29,8 +29,7 @@ import json
 
 import gi
 gi.require_version('Gtk', '4.0')
-gi.require_version('Handy', '1')
-from gi.repository import Gtk, Gdk, Gio, GObject, Handy
+from gi.repository import Gtk, Gdk, Gio, GObject, Adw
 
 from apostrophe import helpers
 from apostrophe.theme_switcher import Theme
@@ -136,35 +135,35 @@ class ExportDialog:
             dialog_filter.set_name(self.formats[self.format]["name"])
             dialog_filter.add_mime_type(self.formats[self.format]["mimetype"])
             self.dialog.add_filter(dialog_filter)
-            self.dialog.set_do_overwrite_confirmation(True)
 
             self.dialog.set_current_name(
                 file.name + '.' + self.formats[self.format]["extension"])
 
     def export(self):
-        response = self.dialog.run()
 
-        if not self._show_texlive_warning:
-            file = self.dialog.get_file()
-            fmt = self.formats[self.format]["to"]
-            args = self.formats[self.format]["args"]
+        def on_response(dialog, response):
+            if not self._show_texlive_warning:
+                file = self.dialog.get_file()
+                fmt = self.formats[self.format]["to"]
+                args = self.formats[self.format]["args"]
 
-            if response == Gtk.ResponseType.ACCEPT:
-                try:
-                    export(self.text, file, fmt, args)
-                except (NotADirectoryError, RuntimeError) as e:
-                    helpers.show_error(
-                        None,
-                        _("An error happened while trying to export:\n\n"
-                          "{err_msg}")
-                        .format(err_msg=str(e).encode()
-                                .decode("unicode-escape")))
+                if response == Gtk.ResponseType.ACCEPT:
+                    try:
+                        export(self.text, file, fmt, args)
+                    except (NotADirectoryError, RuntimeError) as e:
+                        helpers.show_error(
+                            None,
+                            _("An error happened while trying to export:\n\n"
+                            "{err_msg}")
+                            .format(err_msg=str(e).encode()
+                                    .decode("unicode-escape")))
 
-        self.dialog.destroy()
+        self.dialog.connect("response", on_response)
+        self.dialog.show()
 
 
 @Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/Export.ui')
-class AdvancedExportDialog(Handy.Window):
+class AdvancedExportDialog(Adw.Window):
 
     __gtype_name__ = "AdvancedExportDialog"
 
@@ -220,18 +219,14 @@ class AdvancedExportDialog(Handy.Window):
         self.formats_list.select_row(self.formats_list.get_row_at_index(0))
 
         page_sizes_list = helpers.liststore_from_list(self.page_sizes)
-        self.cmb_page_size.bind_name_model(page_sizes_list,
-                                           self.get_hdy_name, None, None)
+        self.cmb_page_size.set_model(page_sizes_list)
 
         syntax_styles_list = helpers.liststore_from_list(self.syntax_styles)
-        self.cmb_syntax_highlighting.bind_name_model(syntax_styles_list,
-                                                     self.get_hdy_name,
-                                                     None, None)
+        self.cmb_syntax_highlighting.set_model(syntax_styles_list)
 
-    @GObject.Property(type=str)
-    def title(self):
+    def update_title(self):
         name = self.formats_list.get_selected_row().item.name
-        return _("Export to {}").format(name)
+        self.set_title(_("Export to {}").format(name))
 
     @GObject.Property(type=bool, default=False)
     def show_page_size_options(self):
@@ -274,7 +269,7 @@ class AdvancedExportDialog(Handy.Window):
         return self.formats_list.get_selected_row().item.to == "revealjs"
 
     def row_constructor(self, item, _user_data):
-        row = Handy.ActionRow.new()
+        row = Adw.ActionRow.new()
         row.item = item
         row.set_title(item.name)
 
@@ -308,7 +303,7 @@ class AdvancedExportDialog(Handy.Window):
         self.notify("show_presentation_options")
         self.notify("show_texlive_warning")
         self.notify("options_page_name")
-        self.notify("title")
+        self.update_title()
 
     @Gtk.Template.Callback()
     def on_destroy(self, _widget):
@@ -317,6 +312,30 @@ class AdvancedExportDialog(Handy.Window):
     @Gtk.Template.Callback()
     def export(self, widget):
         self.retrieve_args()
+
+        def on_response(dialog, response):
+            if self.exports_multiple_files:
+                folder = export_dialog.get_file()
+                with ZipFile(helpers.get_media_path("/media/reveal.js.zip"),
+                            "r") as zipObj:
+                    zipObj.extractall(folder.get_path())
+                export_file = folder.get_child(self.file.name + '.' +
+                                self.formats_list.get_selected_row().item.ext)
+            else:
+                export_file = export_dialog.get_file()
+
+            fmt = self.formats_list.get_selected_row().item.to
+            args = self.retrieve_args()
+
+            if response == Gtk.ResponseType.ACCEPT:
+                try:
+                    export(self.text, export_file, fmt, args)
+                except (NotADirectoryError, RuntimeError) as e:
+                    helpers.show_error(
+                        None,
+                        _("An error happened while trying to export:\n\n{err_msg}")
+                        .format(err_msg=str(e).encode().decode("unicode-escape")))
+            self.destroy()
 
         if self.exports_multiple_files:
             export_dialog = Gtk.FileChooserNative.new(
@@ -333,33 +352,8 @@ class AdvancedExportDialog(Handy.Window):
                 self.formats_list.get_selected_row().item.ext)
 
         export_dialog.set_transient_for(self)
-        export_dialog.set_do_overwrite_confirmation(True)
-
-        response = export_dialog.run()
-        if self.exports_multiple_files:
-            folder = export_dialog.get_file()
-            with ZipFile(helpers.get_media_path("/media/reveal.js.zip"),
-                         "r") as zipObj:
-                zipObj.extractall(folder.get_path())
-            export_file = folder.get_child(self.file.name + '.' +
-                              self.formats_list.get_selected_row().item.ext)
-        else:
-            export_file = export_dialog.get_file()
-
-        fmt = self.formats_list.get_selected_row().item.to
-        args = self.retrieve_args()
-
-        if response == Gtk.ResponseType.ACCEPT:
-            try:
-                export(self.text, export_file, fmt, args)
-            except (NotADirectoryError, RuntimeError) as e:
-                helpers.show_error(
-                    None,
-                    _("An error happened while trying to export:\n\n{err_msg}")
-                    .format(err_msg=str(e).encode().decode("unicode-escape")))
-
-        export_dialog.destroy()
-        self.destroy()
+        export_dialog.connect("response", on_response)
+        export_dialog.show()
 
     def retrieve_args(self):
         args = []
@@ -422,8 +416,8 @@ class TexliveWarning(Gtk.Stack):
 
     @Gtk.Template.Callback()
     def copy(self, _widget):
-        cb = Gtk.Clipboard.get_default(Gdk.Display.get_default())
-        cb.set_text(self.command.get_text(), -1)
+        clipboard = self.get_clipboard()
+        clipboard.set(self.command.get_text())
 
 
 def export(text, file, _format, args):

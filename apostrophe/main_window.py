@@ -25,7 +25,7 @@ gi.require_version('Gtk', '4.0')
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from apostrophe import helpers
-# from apostrophe.export_dialog import ExportDialog, AdvancedExportDialog
+from apostrophe.export_dialog import ExportDialog, AdvancedExportDialog
 from apostrophe.headerbars import BaseHeaderbar
 from apostrophe.helpers import App
 from apostrophe.search_and_replace import ApostropheSearchBar
@@ -54,7 +54,6 @@ class MainWindow(Adw.ApplicationWindow):
     # preview_stack = Gtk.Template.Child()
     toast_overlay = Gtk.Template.Child()
     textview = Gtk.Template.Child()
-    # editor = Gtk.Template.Child()
 
     subtitle = GObject.Property(type=str)
     is_fullscreen = GObject.Property(type=bool, default=False)
@@ -184,17 +183,17 @@ class MainWindow(Adw.ApplicationWindow):
         action.connect("activate", self.save_document_as)
         self.add_action(action)
 
-        # action = Gio.SimpleAction.new("export", GLib.VariantType("s"))
-        # action.connect("activate", self.open_export)
-        # self.add_action(action)
+        action = Gio.SimpleAction.new("export", GLib.VariantType("s"))
+        action.connect("activate", self.open_export)
+        self.add_action(action)
 
-        # action = Gio.SimpleAction.new("advanced_export", None)
-        # action.connect("activate", self.open_advanced_export)
-        # self.add_action(action)
+        action = Gio.SimpleAction.new("advanced_export", None)
+        action.connect("activate", self.open_advanced_export)
+        self.add_action(action)
 
-        # action = Gio.SimpleAction.new("copy_html", None)
-        # action.connect("activate", self.copy_html_to_clipboard)
-        # self.add_action(action)
+        action = Gio.SimpleAction.new("copy_html", None)
+        action.connect("activate", self.copy_html_to_clipboard)
+        self.add_action(action)
 
         scrollbar = self.editor_scrolledwindow.get_vscrollbar()
         scrollbar.set_margin_top(54)
@@ -423,9 +422,8 @@ class MainWindow(Adw.ApplicationWindow):
         """
 
         output = helpers.pandoc_convert(self.textview.get_text())
-        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        clipboard.set_text(output, -1)
-        clipboard.store()
+        clipboard = self.get_clipboard()
+        clipboard.set(output)
 
     def open_document(self, _action, _value):
         """open the desired file
@@ -581,7 +579,7 @@ class MainWindow(Adw.ApplicationWindow):
     def open_advanced_export(self, *args, **kwargs):
         """open the advanced export dialog
         """
-        text = bytes(self.text_view.get_text(), "utf-8")
+        text = bytes(self.textview.get_text(), "utf-8")
 
         export_dialog = AdvancedExportDialog(self.current, text)
         export_dialog.set_transient_for(self)
