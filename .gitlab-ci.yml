@@ -1,7 +1,7 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
 flatpak:
-    image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:41'
+    image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-41'
     variables:
         MANIFEST_PATH: "build-aux/flatpak/org.gnome.gitlab.somas.Apostrophe.json"
         MESON_ARGS: "-Dprofile=Devel"
