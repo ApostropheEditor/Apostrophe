@@ -30,7 +30,7 @@ from apostrophe.headerbars import BaseHeaderbar
 from apostrophe.helpers import App
 from apostrophe.search_and_replace import ApostropheSearchBar
 from apostrophe.settings import Settings
-# from apostrophe.preview_handler import PreviewHandler
+from apostrophe.preview_handler import PreviewHandler
 from apostrophe.stats_handler import StatsHandler
 from apostrophe.text_view import ApostropheTextView
 
@@ -49,9 +49,9 @@ class MainWindow(Adw.ApplicationWindow):
     searchbar = Gtk.Template.Child()
     stats_revealer = Gtk.Template.Child()
     stats_button = Gtk.Template.Child()
-    # flap = Gtk.Template.Child()
+    flap = Gtk.Template.Child()
     # # TODO ??
-    # preview_stack = Gtk.Template.Child()
+    preview_stack = Gtk.Template.Child()
     toast_overlay = Gtk.Template.Child()
     textview = Gtk.Template.Child()
 
@@ -111,7 +111,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.stats_handler = StatsHandler(self.stats_button, self.textview)
 
         # Setup preview
-        #self.preview_handler = PreviewHandler(self, self.textview, self.flap)
+        self.preview_handler = PreviewHandler(self, self.textview, self.flap)
 
         # Setting up spellcheck
         #self.settings.bind("spellcheck", self.textview,
@@ -160,7 +160,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         action = Gio.PropertyAction.new("preview", self, "preview")
         self.add_action(action)
-        #self.connect("notify::preview", self.toggle_preview)
+        self.connect("notify::preview", self.toggle_preview)
 
         # currently unused, we rather open a new window
         action = Gio.SimpleAction.new("new", None)
@@ -205,11 +205,11 @@ class MainWindow(Adw.ApplicationWindow):
         # not really necessary but we'll keep a preview_layout property on the window
         # and bind it both to the switcher and the renderer
         self.preview_layout = self.settings.get_enum("preview-mode")
-        # self.bind_property("preview_layout", self.headerbar.preview_layout_switcher, 
-        #                    "preview_layout", GObject.BindingFlags.BIDIRECTIONAL|GObject.BindingFlags.SYNC_CREATE)
+        self.bind_property("preview_layout", self.headerbar.preview_layout_switcher, 
+                           "preview_layout", GObject.BindingFlags.BIDIRECTIONAL|GObject.BindingFlags.SYNC_CREATE)
 
-        # self.bind_property("preview_layout", self.preview_handler.preview_renderer, 
-        #                    "preview_layout", GObject.BindingFlags.SYNC_CREATE)
+        self.bind_property("preview_layout", self.preview_handler.preview_renderer, 
+                           "preview_layout", GObject.BindingFlags.SYNC_CREATE)
 
         self.preview = self.settings.get_boolean("preview-active")
 

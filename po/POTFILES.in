@@ -42,4 +42,3 @@ apostrophe/text_view.py
 apostrophe/text_view_scroller.py
 apostrophe/text_view_undo_redo_handler.py
 apostrophe/theme_switcher.py
-apostrophe/tweener.py

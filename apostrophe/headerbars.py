@@ -39,7 +39,7 @@ class BaseHeaderbar(Gtk.Revealer):
     headerbar = Gtk.Template.Child()
     menu_button = Gtk.Template.Child()
     open_menu = Gtk.Template.Child()
-    #preview_layout_switcher = Gtk.Template.Child()
+    preview_layout_switcher = Gtk.Template.Child()
 
     is_fullscreen = GObject.property(type=bool, default=False)
     title = GObject.Property(type=str)

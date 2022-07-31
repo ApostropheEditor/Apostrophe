@@ -1,7 +1,7 @@
 {
     "app-id" : "org.gnome.gitlab.somas.Apostrophe",
-    "runtime" : "org.gnome.Platform",
-    "runtime-version" : "42",
+    "runtime" : "org.gnome.Sdk",
+    "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
     "command" : "apostrophe",
     "finish-args" : [

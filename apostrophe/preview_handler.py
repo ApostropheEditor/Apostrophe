@@ -22,7 +22,7 @@ import gi
 from apostrophe.preview_renderer import PreviewRenderer
 from apostrophe.settings import Settings
 
-gi.require_version('WebKit2', '4.0')
+gi.require_version('WebKit2', '5.0')
 from gi.repository import WebKit2, GLib, Gtk, GObject
 
 from apostrophe.preview_converter import PreviewConverter
@@ -51,7 +51,8 @@ class PreviewHandler:
         self.preview_renderer = PreviewRenderer(
             window, text_view, flap)
 
-        window.connect("style-updated", self.reload)
+        # TODO
+        # window.connect("style-updated", self.reload)
 
         self.text_changed_handler_id = None
 
@@ -81,6 +82,7 @@ class PreviewHandler:
             self.loading = True
 
             if not self.web_view:
+                return
                 self.web_view = PreviewWebView()
                 self.web_view.get_settings().set_allow_universal_access_from_file_urls(True)
                 #TODO: enable devtools on Devel profile
@@ -144,7 +146,9 @@ class PreviewHandler:
 
         if self.loading:
             self.loading = False
-
+            self.preview_renderer.hide()
+            # TODO:
+            return
             self.web_view.destroy()
             self.web_view = None
 

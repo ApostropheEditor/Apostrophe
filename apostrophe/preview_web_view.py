@@ -17,7 +17,7 @@ import webbrowser
 
 import gi
 
-gi.require_version('WebKit2', '4.0')
+gi.require_version('WebKit2', '5.0')
 from gi.repository import WebKit2, GLib, GObject
 
 
@@ -77,13 +77,14 @@ if (canScroll && isRendered) {{
     def __init__(self):
         super().__init__()
 
-        self.connect("size-allocate", self.on_size_allocate)
+        # TODO
+        #self.connect("size-allocate", self.on_size_allocate)
         self.connect("decide-policy", self.on_decide_policy)
         self.connect("load-changed", self.on_load_changed)
         self.connect("load-failed", self.on_load_failed)
         self.connect("destroy", self.on_destroy)
 
-        self.props.expand = True
+        #self.props.expand = True
 
         self.scroll_scale = -1
 

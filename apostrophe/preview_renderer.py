@@ -15,12 +15,11 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gtk, GLib, Handy, GObject
+from gi.repository import Gtk, GLib, Adw, GObject
 
 from apostrophe.settings import Settings
 from apostrophe.preview_layout_switcher import PreviewLayout
 from apostrophe.preview_window import PreviewWindow
-from .tweener import Tweener
 
 class PreviewRenderer(GObject.Object):
     """Renders the preview according to the user selected mode."""
@@ -34,11 +33,11 @@ class PreviewRenderer(GObject.Object):
             self, main_window, text_view, flap):
         super().__init__()
         self.main_window = main_window
-        self.main_window.connect("delete-event", self.on_window_closed)
+        self.main_window.connect("close-request", self.on_window_closed)
         self.main_window.connect("notify::title", self.on_window_title_changed)
         self.text_view = text_view
 
-        self.window_size_cache = None
+        self.window_size_cache = 0
 
         self.settings = Settings.new()
         self.window = None
@@ -49,6 +48,13 @@ class PreviewRenderer(GObject.Object):
         self.preview_layout_cache = None
 
         self.flap = flap
+
+        request_width_target = Adw.PropertyAnimationTarget.new(self.flap, "width-request")
+        self.requested_width_tw = Adw.TimedAnimation.new(self.flap, 
+                                                         self.text_view.get_min_width(),
+                                                         self.text_view.get_min_width() * 2 + 2,
+                                                         250, request_width_target)
+
 
         self.connect("notify::preview-layout", self.update_mode)
 
@@ -76,14 +82,8 @@ class PreviewRenderer(GObject.Object):
             self.window.show()
 
         elif self.preview_layout == PreviewLayout.HALF_WIDTH:
-            self.window_size_cache = self.main_window.get_size()
-            requested_width_tw = Tweener(self.flap,
-                                        self.flap.set_size_request,
-                                        self.text_view.get_min_width(),
-                                        self.text_view.get_min_width() * 2 + 2,
-                                        250, 
-                                        setter_args = [-1])
-            requested_width_tw.start()
+            self.window_size_cache = self.main_window.get_width()
+            self.requested_width_tw.play()
             self.flap.set_reveal_flap(True)
 
         else:
@@ -116,13 +116,13 @@ class PreviewRenderer(GObject.Object):
 
     def shrink_window(self):
         self.flap.set_size_request(self.text_view.get_min_width(), -1)
-        resize_tw = Tweener(self.main_window,
-                            self.main_window.resize,
-                            self.main_window.get_size()[0],
-                            self.window_size_cache[0],
-                            250, 
-                            setter_args = [self.window_size_cache[1]])
-        resize_tw.start()
+
+        resize_tw_target = Adw.PropertyAnimationTarget.new(self.main_window, "default-width")
+        resize_tw = Adw.TimedAnimation.new(self.main_window,
+                                                self.main_window.get_width(),
+                                                self.window_size_cache,
+                                                250, resize_tw_target)
+        resize_tw.play()
 
     def update_mode(self, *args, web_view=None):
         """Update preview mode
@@ -139,24 +139,18 @@ class PreviewRenderer(GObject.Object):
             if self.preview_layout == PreviewLayout.FULL_WIDTH:
                 if self.preview_layout_cache == PreviewLayout.HALF_WIDTH:
                     self.shrink_window()
-                self.flap.set_fold_policy(Handy.FlapFoldPolicy.ALWAYS)
+                self.flap.set_fold_policy(Adw.FlapFoldPolicy.ALWAYS)
                 self.flap.set_orientation(Gtk.Orientation.HORIZONTAL)
 
             elif self.preview_layout == PreviewLayout.HALF_WIDTH:
-                self.window_size_cache = self.main_window.get_size()
-                requested_width_tw = Tweener(self.flap,
-                                            self.flap.set_size_request,
-                                            self.text_view.get_min_width(),
-                                            self.text_view.get_min_width() * 2 + 2,
-                                            250, 
-                                            setter_args = [-1])
-                requested_width_tw.start()
+                self.window_size_cache = self.main_window.get_width()
+                self.requested_width_tw.play()
 
-                self.flap.set_fold_policy(Handy.FlapFoldPolicy.NEVER)
+                self.flap.set_fold_policy(Adw.FlapFoldPolicy.NEVER)
                 self.flap.set_orientation(Gtk.Orientation.HORIZONTAL)
 
             elif self.preview_layout == PreviewLayout.HALF_HEIGHT:
-                self.flap.set_fold_policy(Handy.FlapFoldPolicy.NEVER)
+                self.flap.set_fold_policy(Adw.FlapFoldPolicy.NEVER)
                 self.flap.set_orientation(Gtk.Orientation.VERTICAL)
 
             else:
