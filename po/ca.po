@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
 "POT-Creation-Date: 2022-03-07 19:03+0000\n"
-"PO-Revision-Date: 2022-04-17 19:03+0000\n"
-"Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
+"PO-Revision-Date: 2022-08-01 19:03+0000\n"
+"Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr "Obre el recorregut del fitxer de la sessió actual"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
 msgid "Default statistic"
-msgstr "estadística predeterminada"
+msgstr "Estadística predeterminada"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
 msgid "Which statistic is shown on the main window."
@@ -302,7 +302,7 @@ msgstr "Desa"
 
 #: data/ui/Headerbar.ui:102
 msgid "Save as…"
-msgstr "Anomena i desa..."
+msgstr "Anomena i desa…"
 
 #: data/ui/Headerbar.ui:140
 msgid "Menu"
@@ -530,7 +530,7 @@ msgstr "Negreta"
 #: data/ui/Shortcuts.ui:147
 msgctxt "shortcut window"
 msgid "Strikeout"
-msgstr "Tancar finestra"
+msgstr "Barrat"
 
 #: data/ui/Shortcuts.ui:156
 msgctxt "shortcut window"
@@ -575,7 +575,7 @@ msgstr "Selecció"
 #: data/ui/Shortcuts.ui:207
 msgctxt "shortcut window"
 msgid "Select all text"
-msgstr "Seleccionar tot el text"
+msgstr "Selecciona tot el text"
 
 #: data/ui/ThemeSwitcher.ui:22
 msgid "Use System Colors"
@@ -659,7 +659,7 @@ msgstr "Deseu el vostre fitxer"
 
 #: apostrophe/main_window.py:413
 msgid "Markdown Files"
-msgstr "Fitxer \"Markdown\""
+msgstr "Fitxers Markdown"
 
 #: apostrophe/main_window.py:417
 msgid "Plain Text Files"
@@ -676,11 +676,11 @@ msgstr "Voleu desar els canvis al document «%s» abans de tancar?"
 
 #: apostrophe/main_window.py:504
 msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "Si no deses tots els canvis es perdran de manera permanent."
+msgstr "Si no deseu tots els canvis, es perdran de manera permanent."
 
 #: apostrophe/main_window.py:507
 msgid "Close without saving"
-msgstr "Tancar sense desar"
+msgstr "Tanca sense desar"
 
 #: apostrophe/main_window.py:510
 msgid "Save now"
@@ -745,15 +745,15 @@ msgstr "Text en cursiva"
 
 #: apostrophe/text_view_format_inserter.py:19
 msgid "bold text"
-msgstr "Text en negreta"
+msgstr "text en negreta"
 
 #: apostrophe/text_view_format_inserter.py:24
 msgid "strikethrough text"
-msgstr "Ratlla el text"
+msgstr "ratlla el text"
 
 #: apostrophe/text_view_format_inserter.py:50
 msgid "Item"
-msgstr "Item"
+msgstr "Ítem"
 
 #: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
