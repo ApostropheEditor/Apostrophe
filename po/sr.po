@@ -1,116 +1,146 @@
 # Serbian translation for apostrophe.
 # Copyright (C) 2021 apostrophe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the apostrophe package.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2021.
+# Мирослав Николић <miroslavnikolić@rocketmail.com>, 2021–2022.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2021-09-29 14:40+0000\n"
-"PO-Revision-Date: 2021-10-07 20:22+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: српски <gnome-sr@googlegroups.org>\n"
+"POT-Creation-Date: 2022-07-09 09:46+0000\n"
+"PO-Revision-Date: 2022-08-06 16:37+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolić@rocketmail.com>\n"
+"Language-Team: Serbian <српски <gnome-sr@googlegroups.org>>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
 msgid "Apostrophe"
 msgstr "Апостроф"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
-msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
+#| msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
+msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr ""
-"подписац;апостроф;уређивач;uberwriter;UberWriter;apostrophe;markdown;editor;"
+"подписац;апостроф;уређивач;текст;писање;uberwriter;UberWriter;apostrophe;"
+"markdown;editor;text;write;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, an elegant, distraction-free markdown editor"
 msgstr "Апостроф, елегантан, уређивач обележавања који не одвлачи пажњу"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:28
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
 msgid "Color scheme"
 msgstr "Шема боја"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
 msgid "Use the color scheme in the application's UI and in the text area."
 msgstr "Користи шему боја у корисничком сучељу програма у области текста."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:35
-#: data/ui/Preferences.ui:49
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
+#: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
 msgid "Check spelling while typing"
 msgstr "Провера писања приликом куцања"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:37
 msgid "Enable or disable spellchecking."
 msgstr "Укључује или искључује проверу писања."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:42
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
 msgid "Synchronize editor/preview scrolling"
 msgstr "Усклађује премицање уређивача/претпрегледа"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:43
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:44
 msgid "Keep the editor and preview scroll positions in sync."
 msgstr "Задржава положаје премицања уређивача и претпрегледа у усклађивању."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:49
-#: data/ui/Preferences.ui:73
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
+#: data/ui/Preferences.ui:90
 msgid "Input format"
 msgstr "Формат улаза"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
 msgid "Input format to use when previewing and exporting using Pandoc."
 msgstr ""
 "Улазни формат за коришћење приликом претпрегледа и извоза коришћењем Пандока."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:56
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
 msgid "Autohide Headerbar"
 msgstr "Самоскривање траке заглавља"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
 msgid "Hide the header and status bars when typing."
 msgstr "Скрива траке заглавља и стања приликом куцања."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:63
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
 msgid "Open file base path"
 msgstr "Отвара основну путању датотеке"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:64
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:65
 msgid "Open file paths of the current session"
 msgstr "Отвара путање датотека текуће сесије"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:70
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
 msgid "Default statistic"
 msgstr "Основна статистика"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:71
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
 msgid "Which statistic is shown on the main window."
 msgstr "Која статистика се приказује у главном прозору."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:77
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
 msgid "Characters per line"
 msgstr "Знакова по реду"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:79
 msgid "Maximum number of characters per line within the editor."
 msgstr "Највећи број знакова у реду у уређивачу."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:84
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
+#: data/ui/Headerbar.ui:250
+msgid "Hemingway Mode"
+msgstr "Режим Хемингвеја"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:86
+msgid "Whether the user can delete text or not."
+msgstr "Да ли корисник може да обрише текст или не."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
 msgid "Preview mode"
 msgstr "Режим претпрегледа"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
 msgid "How to display the preview."
 msgstr "Како ће се приказивати претпреглед."
 
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
+#| msgid "Preview mode"
+msgid "Preview active"
+msgstr "Претпреглед је активан"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
+msgid "Whether showing of preview is active when launching a new window."
+msgstr "Да ли је приказ претпрегледа активан приликом покретања новог прозора."
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
+msgid "Text size"
+msgstr "Величина текста"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
+msgid "Preferred relative size for the text."
+msgstr "Жељена релативна величина за текст."
+
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:6
-msgid "An elegant, distraction-free markdown editor"
-msgstr "Елегантан, уређивач обележавања који не одвлачи пажњу"
+#| msgid "Markdown Files"
+msgid "Edit Markdown in style"
+msgstr "Уреди обележавање са стилом"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
 msgid "Focus on your writing with a clean, distraction-free markdown editor."
@@ -155,12 +185,13 @@ msgstr ""
 "покретне приказе"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
-msgid "Wolf V., Manuel G."
-msgstr "Волф В., Мануел Г."
+msgid "Manuel G., Wolf V."
+msgstr "Мануел Г., Волф В."
 
 #: data/ui/About.ui.in:12
-msgid "Copyright (C) 2020, Wolf Vollprecht"
-msgstr "Ауторска права © 2020, Волф Волпрехт"
+#| msgid "Copyright (C) 2020, Wolf Vollprecht"
+msgid "Copyright (C) 2022, Manuel G., Wolf V."
+msgstr "Ауторска права © 2022, Мануел Г., Волф В."
 
 #: data/ui/About.ui.in:14
 msgid "Apostrophe website"
@@ -187,38 +218,26 @@ msgid "Help to translate:"
 msgstr "Помозите у превођењу:"
 
 #: data/ui/About.ui.in:114
-msgid "Poeditor"
-msgstr "Поуређивач"
+msgid "Damned Lies"
+msgstr "Проклете лажи"
 
-#: data/ui/ExportPopover.ui:19
-msgid "Save As…"
-msgstr "Сачувај као…"
-
-#: data/ui/ExportPopover.ui:100
-msgid "Advanced Export…"
-msgstr "Напредни извоз…"
-
-#: data/ui/ExportPopover.ui:125
-msgid "Copy HTML"
-msgstr "Умножи ХТМЛ"
-
-#: data/ui/Export.ui:47 apostrophe/export_dialog.py:133
+#: data/ui/Export.ui:46 apostrophe/export_dialog.py:133
 #: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
-#: apostrophe/main_window.py:344 apostrophe/main_window.py:435
+#: apostrophe/main_window.py:330 apostrophe/main_window.py:423
 #: apostrophe/main_window.py:508
 msgid "Cancel"
 msgstr "Откажи"
 
-#: data/ui/Export.ui:62 apostrophe/export_dialog.py:128
+#: data/ui/Export.ui:61 apostrophe/export_dialog.py:128
 #: apostrophe/export_dialog.py:323 apostrophe/export_dialog.py:327
 msgid "Export"
 msgstr "Извези"
 
-#: data/ui/Export.ui:154
+#: data/ui/Export.ui:153
 msgid "Standalone"
 msgstr "Самостојећи"
 
-#: data/ui/Export.ui:156
+#: data/ui/Export.ui:155
 msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
@@ -226,142 +245,202 @@ msgstr ""
 "Користите заглавље и подножје да укључите ствари као што су стилски листови "
 "и мета информације"
 
-#: data/ui/Export.ui:171
+#: data/ui/Export.ui:170
 msgid "Table of Contents"
 msgstr "Табела садржаја"
 
-#: data/ui/Export.ui:187
+#: data/ui/Export.ui:186
 msgid "Number Sections"
 msgstr "Број одељака"
 
-#: data/ui/Export.ui:211 data/ui/Export.ui:217
+#: data/ui/Export.ui:210 data/ui/Export.ui:216
 msgid "Page Size"
 msgstr "Величина странице"
 
-#: data/ui/Export.ui:236
+#: data/ui/Export.ui:235
 msgid "HTML Options"
 msgstr "ХТМЛ опције"
 
-#: data/ui/Export.ui:242
+#: data/ui/Export.ui:241
 msgid "Self-contained"
 msgstr "Самосадржећи"
 
-#: data/ui/Export.ui:244
+#: data/ui/Export.ui:243
 msgid "Produces an HTML file with no external dependencies"
 msgstr "Произведите ХТМЛ датотеку без спољних зависности"
 
-#: data/ui/Export.ui:260
+#: data/ui/Export.ui:259
 msgid "CSS File"
 msgstr "ЦСС датотека"
 
-#: data/ui/Export.ui:265
+#: data/ui/Export.ui:264
 msgid "Select CSS file"
 msgstr "Изаберите ЦСС датотеку"
 
-#: data/ui/Export.ui:286
+#: data/ui/Export.ui:285
 msgid "Syntax Highlighting"
 msgstr "Истицање синтаксе"
 
-#: data/ui/Export.ui:301
+#: data/ui/Export.ui:300
 msgid "Highlight style"
 msgstr "Стил истицања"
 
-#: data/ui/Export.ui:322
+#: data/ui/Export.ui:321
 msgid "Presentation"
 msgstr "Представљање"
 
-#: data/ui/Export.ui:328
+#: data/ui/Export.ui:327
 msgid "Incremental bullets"
 msgstr "Повећавајући меци"
 
-#: data/ui/Export.ui:330
+#: data/ui/Export.ui:329
 msgid "Show one bullet point after another in a slideshow"
 msgstr "Прикажи тачку метка једну након друге у покретном приказу"
 
-#: data/ui/Export.ui:357
-msgid "page0"
-msgstr "стр.0"
-
-#: data/ui/Export.ui:365
-msgid "page1"
-msgstr "стр.1"
-
-#: data/ui/Headerbar.ui:130
-msgid "Sync Views"
-msgstr "Прегледи усклађивања"
-
-#: data/ui/Headerbar.ui:171
+#: data/ui/Headerbar.ui:57
 msgid "New"
 msgstr "Ново"
 
-#: data/ui/Headerbar.ui:182 apostrophe/main_window.py:434
+#: data/ui/Headerbar.ui:67 apostrophe/main_window.py:422
 msgid "Open"
 msgstr "Отвори"
 
-#: data/ui/Headerbar.ui:199
-msgid "Open Recent"
-msgstr "Отвори скорашње"
-
-#: data/ui/Headerbar.ui:225 apostrophe/main_window.py:343
+#: data/ui/Headerbar.ui:90 apostrophe/main_window.py:329
 msgid "Save"
 msgstr "Сачувај"
 
-#: data/ui/Headerbar.ui:242
+#: data/ui/Headerbar.ui:102
 msgid "Save as…"
 msgstr "Сачувај као…"
 
-#: data/ui/Headerbar.ui:283
+#: data/ui/Headerbar.ui:140
 msgid "Menu"
 msgstr "Изборник"
 
-#: data/ui/Headerbar.ui:305 apostrophe/preview_renderer.py:47
-msgid "Preview"
-msgstr "Претпреглед"
-
-#: data/ui/Headerbar.ui:378
+#: data/ui/Headerbar.ui:166
 msgid "Find"
 msgstr "Нађи"
 
-#: data/ui/Menu.ui:43
-msgid "Hemingway Mode"
-msgstr "Режим Хемингвеја"
+#: data/ui/Headerbar.ui:225
+#| msgid "Windowed"
+msgid "New Window"
+msgstr "Нови прозор"
 
-#: data/ui/Menu.ui:57
+#: data/ui/Headerbar.ui:264
 msgid "Focus Mode"
 msgstr "Режим фокуса"
 
-#: data/ui/Menu.ui:82
+#: data/ui/Headerbar.ui:289
 msgid "Find and Replace"
 msgstr "Нађи и замени"
 
-#: data/ui/Menu.ui:107 data/ui/Preferences.ui:19
+#: data/ui/Headerbar.ui:314
 msgid "Preferences"
 msgstr "Поставке"
 
-#: data/ui/Menu.ui:132
+#: data/ui/Headerbar.ui:339
 msgid "Open Tutorial"
 msgstr "Отвори упутство"
 
-#: data/ui/Menu.ui:146
+#: data/ui/Headerbar.ui:353
 msgid "Keyboard Shortcuts"
 msgstr "Пречице тастатуре"
 
-#: data/ui/Menu.ui:160
+#: data/ui/Headerbar.ui:367
 msgid "About Apostrophe"
 msgstr "О Апострофу"
 
-#: data/ui/Preferences.ui:110
-msgid "Autohide header and statusbars while typing"
-msgstr "Сам сакриј траке заглавља и стања приликом куцања"
+#: data/ui/Headerbar.ui:395
+msgid "Save As…"
+msgstr "Сачувај као…"
 
-#: data/ui/Preferences.ui:112
+#: data/ui/Headerbar.ui:476
+msgid "Advanced Export…"
+msgstr "Напредни извоз…"
+
+#: data/ui/Headerbar.ui:501
+msgid "Copy HTML"
+msgstr "Умножи ХТМЛ"
+
+#: data/ui/Preferences.ui:40
 msgid "Autohide headerbar"
 msgstr "Сам сакриј траку заглавља"
 
-#: data/ui/PreviewLayoutSwitcherItem.ui:36 apostrophe/headerbars.py:126
-#: apostrophe/preview_renderer.py:132
-msgid "Full-Width"
-msgstr "Пуна ширина"
+#: data/ui/Preferences.ui:41
+msgid "Autohide header and statusbars while typing"
+msgstr "Сам сакриј траке заглавља и стања приликом куцања"
+
+#: data/ui/Preferences.ui:57
+msgid "Use bigger text"
+msgstr "Користи већи текст"
+
+#: data/ui/Preferences.ui:58
+msgid "Reduce the margins width and increase the text size when possible"
+msgstr "Умањите ширину маргина и повећајте величину текста када је могуће"
+
+#: data/ui/Preferences.ui:72
+#| msgid "Regular Expression"
+msgid "Restore session"
+msgstr "Врати сесију"
+
+#: data/ui/Preferences.ui:73
+msgid "Return to your previous session when Apostrophe is started"
+msgstr "Вратите се на вашу претходну сесију када се покрене Апостроф"
+
+#: data/ui/Preferences.ui:91
+msgid "Flavor of markdown Apostrophe will use"
+msgstr "Врста обележавања коју ће користити Апостроф"
+
+#: data/ui/Preferences.ui:100
+msgid "Markdown flavor documentation"
+msgstr "Документација врсте обележавања"
+
+#: data/ui/PreviewLayoutSwitcher.ui:10 apostrophe/preview_renderer.py:210
+msgid "Preview"
+msgstr "Претпреглед"
+
+#: data/ui/PreviewLayoutSwitcher.ui:32
+msgid "Screen Layout"
+msgstr "Рапоред екрана"
+
+#: data/ui/Recents.ui:60
+#| msgctxt "shortcut window"
+#| msgid "Close document"
+msgid "No Recent Documents"
+msgstr "Нема скорашњих докумената"
+
+#: data/ui/Recents.ui:88
+msgid "No Results Found"
+msgstr "Нисам нашао резултате"
+
+#: data/ui/SearchBar.ui:50
+msgid "Previous Match"
+msgstr "Претходно поклапање"
+
+#: data/ui/SearchBar.ui:63
+msgid "Next Match"
+msgstr "Следеће поклапање"
+
+#. Translators: This indicates case sensitivity, so it should be the first vowel of the language in lowercase and uppercase
+#: data/ui/SearchBar.ui:85
+msgid "aA"
+msgstr "аА"
+
+#: data/ui/SearchBar.ui:89
+msgid "Case Sensitive"
+msgstr "Разликује величину слова"
+
+#: data/ui/SearchBar.ui:99
+msgid "Regular Expression"
+msgstr "Регуларни израз"
+
+#: data/ui/SearchBar.ui:111 data/ui/SearchBar.ui:165
+msgid "Replace"
+msgstr "Замени"
+
+#: data/ui/SearchBar.ui:175
+msgid "Replace All"
+msgstr "Замени све"
 
 #: data/ui/Shortcuts.ui:13
 msgctxt "shortcut window"
@@ -508,41 +587,25 @@ msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Изабери сав текст"
 
-#: data/ui/Window.ui:107
+#: data/ui/ThemeSwitcher.ui:22
+msgid "Use System Colors"
+msgstr "Користи боје система"
+
+#: data/ui/ThemeSwitcher.ui:51
+msgid "Use Light Colors"
+msgstr "Користи светле боје"
+
+#: data/ui/ThemeSwitcher.ui:80
+msgid "Use Sepia Colors"
+msgstr "Користи сиве боје"
+
+#: data/ui/ThemeSwitcher.ui:109
+msgid "Use Dark Colors"
+msgstr "Користи тамне боје"
+
+#: data/ui/Window.ui:71
 msgid "Show Statistics"
 msgstr "Прикажи статистику"
-
-#: data/ui/Window.ui:206
-msgid "Previous Match"
-msgstr "Претходно поклапање"
-
-#: data/ui/Window.ui:220
-msgid "Next Match"
-msgstr "Следеће поклапање"
-
-#: data/ui/Window.ui:249
-msgid "aA"
-msgstr "аА"
-
-#: data/ui/Window.ui:253
-msgid "Case Sensitive"
-msgstr "Разликује величину слова"
-
-#: data/ui/Window.ui:263
-msgid "(.*)"
-msgstr "(.*)"
-
-#: data/ui/Window.ui:267
-msgid "Regular Expression"
-msgstr "Регуларни израз"
-
-#: data/ui/Window.ui:280 data/ui/Window.ui:358
-msgid "Replace"
-msgstr "Замени"
-
-#: data/ui/Window.ui:372
-msgid "Replace All"
-msgstr "Замени све"
 
 #: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
 #, python-format
@@ -568,63 +631,51 @@ msgstr "Извези у „{}“"
 msgid "Select folder"
 msgstr "Изабери фасциклу"
 
-#: apostrophe/headerbars.py:128 apostrophe/preview_renderer.py:134
-msgid "Half-Width"
-msgstr "Пола ширине"
-
-#: apostrophe/headerbars.py:130 apostrophe/preview_renderer.py:136
-msgid "Half-Height"
-msgstr "Пола висине"
-
-#: apostrophe/headerbars.py:132 apostrophe/preview_renderer.py:138
-msgid "Windowed"
-msgstr "Упрозорено"
-
-#: apostrophe/helpers.py:90
+#: apostrophe/helpers.py:89
 msgid "Error"
 msgstr "Грешка"
 
-#: apostrophe/inhibitor.py:35
+#: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
 msgstr "Несачувана документа"
 
-#: apostrophe/inline_preview.py:201
+#: apostrophe/inline_preview.py:200
 msgid "Formula looks incorrect:"
 msgstr "Формула изгледа нетачно:"
 
-#: apostrophe/inline_preview.py:240
+#: apostrophe/inline_preview.py:239
 msgid "No matching footnote found"
 msgstr "Нисам нашао поклапајуће подножје"
 
-#: apostrophe/inline_preview.py:260
+#: apostrophe/inline_preview.py:259
 msgid "noun"
 msgstr "именица"
 
-#: apostrophe/inline_preview.py:262
+#: apostrophe/inline_preview.py:261
 msgid "verb"
 msgstr "глагол"
 
-#: apostrophe/inline_preview.py:264
+#: apostrophe/inline_preview.py:263
 msgid "adjective"
 msgstr "прилог"
 
-#: apostrophe/inline_preview.py:266
+#: apostrophe/inline_preview.py:265
 msgid "adverb"
 msgstr "придев"
 
-#: apostrophe/main_window.py:340
+#: apostrophe/main_window.py:326
 msgid "Save your File"
 msgstr "Сачувајте вашу датотеку"
 
-#: apostrophe/main_window.py:424
+#: apostrophe/main_window.py:412
 msgid "Markdown Files"
 msgstr "Датотеке обележавања"
 
-#: apostrophe/main_window.py:428
+#: apostrophe/main_window.py:416
 msgid "Plain Text Files"
 msgstr "Датотеке обичног текста"
 
-#: apostrophe/main_window.py:431
+#: apostrophe/main_window.py:419
 msgid "Open a .md file"
 msgstr "Отворите „.md“ датотеку"
 
@@ -645,27 +696,63 @@ msgstr "Затвори без чувања"
 msgid "Save now"
 msgstr "Сачувај сада"
 
-#: apostrophe/main_window.py:711
+#: apostrophe/main_window.py:686
 msgid "New File"
 msgstr "Нова датотека"
 
-#: apostrophe/stats_handler.py:74
-msgid "{:n} Characters"
-msgstr "{:n} знака"
+#: apostrophe/preview_layout_switcher.py:38
+msgid "Full-Width"
+msgstr "Пуна ширина"
 
-#: apostrophe/stats_handler.py:76
-msgid "{:n} Words"
-msgstr "{:n} речи"
+#: apostrophe/preview_layout_switcher.py:40
+msgid "Half-Width"
+msgstr "Пола ширине"
 
-#: apostrophe/stats_handler.py:78
-msgid "{:n} Sentences"
-msgstr "{:n} реченица"
+#: apostrophe/preview_layout_switcher.py:42
+msgid "Half-Height"
+msgstr "Пола висине"
 
-#: apostrophe/stats_handler.py:80
-msgid "{:n} Paragraphs"
-msgstr "{:n} пасуса"
+#: apostrophe/preview_layout_switcher.py:44
+msgid "Windowed"
+msgstr "Упрозорено"
 
-#: apostrophe/stats_handler.py:82
+#: apostrophe/stats_handler.py:75
+#| msgid "{:n} Characters"
+msgid "{:n} Character"
+msgid_plural "{:n} Characters"
+msgstr[0] "{:n} знак"
+msgstr[1] "{:n} знака"
+msgstr[2] "{:n} знака"
+msgstr[3] "један знак"
+
+#: apostrophe/stats_handler.py:77
+#| msgid "{:n} Words"
+msgid "{:n} Word"
+msgid_plural "{:n} Words"
+msgstr[0] "{:n} реч"
+msgstr[1] "{:n} речи"
+msgstr[2] "{:n} речи"
+msgstr[3] "једна реч"
+
+#: apostrophe/stats_handler.py:79
+#| msgid "{:n} Sentences"
+msgid "{:n} Sentence"
+msgid_plural "{:n} Sentences"
+msgstr[0] "{:n} реченица"
+msgstr[1] "{:n} реченице"
+msgstr[2] "{:n} реченица"
+msgstr[3] "једна реченица"
+
+#: apostrophe/stats_handler.py:81
+#| msgid "{:n} Paragraphs"
+msgid "{:n} Paragraph"
+msgid_plural "{:n} Paragraphs"
+msgstr[0] "{:n} пасус"
+msgstr[1] "{:n} пасуса"
+msgstr[2] "{:n} пасуса"
+msgstr[3] "један пасус"
+
+#: apostrophe/stats_handler.py:83
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} време читања"
 
@@ -693,3 +780,27 @@ msgstr "Ставка"
 #: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
 msgstr "Заглавље"
+
+#~ msgid "An elegant, distraction-free markdown editor"
+#~ msgstr "Елегантан, уређивач обележавања који не одвлачи пажњу"
+
+#~ msgid "Wolf V., Manuel G."
+#~ msgstr "Волф В., Мануел Г."
+
+#~ msgid "Poeditor"
+#~ msgstr "Поуређивач"
+
+#~ msgid "page0"
+#~ msgstr "стр.0"
+
+#~ msgid "page1"
+#~ msgstr "стр.1"
+
+#~ msgid "Sync Views"
+#~ msgstr "Прегледи усклађивања"
+
+#~ msgid "Open Recent"
+#~ msgstr "Отвори скорашње"
+
+#~ msgid "(.*)"
+#~ msgstr "(.*)"
