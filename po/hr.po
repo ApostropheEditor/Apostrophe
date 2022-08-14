@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-15 21:52+0000\n"
-"PO-Revision-Date: 2022-03-19 23:13+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2022-03-19 22:14+0000\n"
+"PO-Revision-Date: 2022-03-30 18:57+0200\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -39,8 +39,7 @@ msgstr "Shema boja"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:30
 msgid "Use the color scheme in the application's UI and in the text area."
-msgstr ""
-"Koristi shemu boja u korisničkom sučelju aplikacije i području teksta."
+msgstr "Koristi shemu boja u korisničkom sučelju aplikacije i području teksta."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
 #: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
@@ -197,7 +196,8 @@ msgstr "Apostrof web stranica"
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  gogo https://launchpad.net/~trebelnik-stefina"
+"  gogo https://launchpad.net/~trebelnik-stefina\n"
+"Milo Ivir <mail@milotype.de>, 2022."
 
 #: data/ui/About.ui.in:65
 msgid "Donations:"
@@ -285,11 +285,11 @@ msgstr "Prezentacija"
 
 #: data/ui/Export.ui:327
 msgid "Incremental bullets"
-msgstr ""
+msgstr "Pojedinačni prikaz točaka"
 
 #: data/ui/Export.ui:329
 msgid "Show one bullet point after another in a slideshow"
-msgstr ""
+msgstr "U prezentaciji prikaži točke prezentacije jednu za drugom"
 
 #: data/ui/Headerbar.ui:57
 msgid "New"
