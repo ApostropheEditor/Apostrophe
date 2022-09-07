@@ -19,6 +19,9 @@
             <property name="reveal-flap">false</property>
             <property name="swipe-to-close">false</property>
             <property name="swipe-to-open">false</property>
+            <style>
+              <class name="preview-flap" />
+            </style>
             <child type="content">
               <object class="GtkOverlay" id="editor">
                 <property name="child">
@@ -71,17 +74,14 @@
                 </child>
               </object>
             </child>
-            <child type="separator">
-              <object class="GtkSeparator">
-                <style>
-                  <class name="sidebar" />
-                </style>
-              </object>
-            </child>
             <child type="flap">
               <object class="GtkStack" id="preview_stack">
                 <property name="hexpand">1</property>
+                <property name="overflow">hidden</property>
                 <property name="transition-type">crossfade</property>
+                <style>
+                  <class name="preview-stack" />
+                </style>
                 <child>
                   <object class="GtkSpinner" id="preview_spinner">
                     <property name="spinning">1</property>

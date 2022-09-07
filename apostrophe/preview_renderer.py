@@ -61,30 +61,36 @@ class PreviewRenderer(GObject.Object):
     def show(self):
         """Show the preview, depending on the currently selected mode."""
 
+        self.preview_stack.remove_css_class("half-width")
+        self.preview_stack.remove_css_class("full-width")
+
         # Windowed preview: create a window and show the preview in it.
         if self.preview_layout == PreviewLayout.WINDOWED and not self.window:
             # Create transient window of the main window.
             self.window = PreviewWindow()
-            self.window.connect("delete-event", self.on_window_closed)
+            self.window.connect("close-request", self.on_window_closed)
 
-            self.window.preview_box.pack_start(self.preview_stack, False, True, 0)
+            self.main_window.flap.set_flap(None)
+            self.window.preview_box.append(self.preview_stack)
 
             self.bind_property("preview_window_title", self.window, "title")
 
-            # Position it next to the main window.
-            width, height = self.main_window.get_size()
-            self.window.resize(width, height)
-            x, y = self.main_window.get_position()
-            if x is not None and y is not None:
-                self.main_window.move(x, y)
-                self.window.move(x + width + 16, y)
+            width, height = self.main_window.get_default_size()
+            self.window.set_default_size(width, height)
 
             self.window.show()
+
+            self.preview_layout_cache = PreviewLayout.WINDOWED
 
         elif self.preview_layout == PreviewLayout.HALF_WIDTH:
             self.window_size_cache = self.main_window.get_width()
             self.requested_width_tw.play()
             self.flap.set_reveal_flap(True)
+            self.preview_stack.add_css_class("half-width")
+
+        elif self.preview_layout == PreviewLayout.FULL_WIDTH:
+            self.flap.set_reveal_flap(True)
+            self.preview_stack.add_css_class("full-width")
 
         else:
             # if it's the first time we open the preview, set
@@ -95,7 +101,7 @@ class PreviewRenderer(GObject.Object):
 
     def load_webview(self, webview):
         webview.show()
-        self.main_window.preview_stack.add(webview)
+        self.main_window.preview_stack.add_child(webview)
         self.main_window.preview_stack.set_visible_child(webview)
 
     def hide(self):
@@ -127,6 +133,9 @@ class PreviewRenderer(GObject.Object):
     def update_mode(self, *args, web_view=None):
         """Update preview mode
         """
+
+        if not self.main_window.preview:
+            return
 
         def set_flap_mode(*args, **kwargs):
             # TODO: use structural pattern matching in python3.10
@@ -165,7 +174,7 @@ class PreviewRenderer(GObject.Object):
             if self.flap.get_reveal_progress() != 0:
                 return
             self.main_window.flap.disconnect(d)
-            self.main_window.flap.remove(self.main_window.flap.get_flap())
+            self.main_window.flap.set_flap(None)
 
             self.preview_layout_cache = self.preview_layout
             self.show()
@@ -197,11 +206,11 @@ class PreviewRenderer(GObject.Object):
             d = self.main_window.flap.connect("notify::reveal-progress", reatach_stack)
         # none -> windowed
         else:
-            self.main_window.flap.remove(self.main_window.flap.get_flap())
+            self.main_window.flap.set_flap(None)
             self.preview_layout_cache = self.preview_layout
 
     def on_window_title_changed(self, *args, **kwargs):
         self.preview_window_title = self.main_window.get_title() + " - " + _("Preview")
 
-    def on_window_closed(self, window, _event):
+    def on_window_closed(self, *args):
         self.main_window.lookup_action("preview").change_state(GLib.Variant.new_boolean(False))

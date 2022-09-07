@@ -3,6 +3,7 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="adw" version="1.0"/>
   <template class="BaseHeaderbar" parent="GtkRevealer">
+    <property name="overflow">visible</property>
     <child>
       <object class="AdwHeaderBar" id="headerbar">
         <child type="start">

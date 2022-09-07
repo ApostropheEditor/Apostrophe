@@ -609,6 +609,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         if not self.headerbar.get_reveal_child():
             self.headerbar.set_reveal_child(True)
+            self.remove_css_class("no-headerbar")
 
     @Gtk.Template.Callback()
     def reveal_bottombar(self, *args):
@@ -623,6 +624,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         if self.headerbar.get_reveal_child():
             self.headerbar.set_reveal_child(False)
+            self.add_css_class("no-headerbar")
 
         if self.stats_revealer.get_reveal_child():
             self.stats_revealer.set_reveal_child(False)

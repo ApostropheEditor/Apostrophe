@@ -8,8 +8,9 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="AdwHeaderBar">
-            <property name="show-close-button">True</property>
-            <property name="title" bind-source="ApostrophePreviewWindow" bind-property="title"/>
+            <style>
+              <class name="flat" />
+            </style>
           </object>
         </child>
       </object>

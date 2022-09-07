@@ -6,6 +6,7 @@
 @define-color headerbar_bg_color  @view_bg_color;
 @define-color code_bg_color mix(@window_bg_color, @view_fg_color, 0.15);
 
+  /*first-child/last-child for buttons in rtl*/
 /* Main window and text colors */
 
 .apostrophe-window headerbar {
@@ -16,7 +17,7 @@
 }
 
 .apostrophe-window.scrolled headerbar {
-  box-shadow: inset 0 -1px @borders;
+  box-shadow: 0 1px @borders;
 }
 
 .apostrophe-window searchbar > revealer > box{
@@ -216,4 +217,37 @@
 
 .open-popover separator {
   margin-bottom: 0;
+}
+
+/* Preview */
+
+.preview-flap {
+  background-color: @view_bg_color;
+}
+
+.preview-stack{
+  border-color: @borders;
+  border-width: 1px;
+  border-top-style:solid;
+  transition: border-top-left-radius 0.3s ease-in-out, border-top-right-radius 0.3s ease-in-out;
+}
+
+.preview-stack.half-width,
+.preview-stack.full-width{
+  margin-top: 47px;
+}
+
+.preview-stack.half-width:dir(ltr){
+  border-left-style: solid;
+  border-top-left-radius: 16px;
+}
+
+.preview-stack.half-width:dir(rtl){
+  border-right-style: solid;
+  border-top-right-radius: 16px;
+}
+
+.apostrophe-window.scrolled:not(.no-headerbar) .preview-stack{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
