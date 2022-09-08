@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/gnome/gitlab/somas/Apostrophe/">
-    <file compressed="true" alias="icons/preview-layout-full-width-symbolic.svg">media/icons/preview-layout-full-width-symbolic.svg</file>
-    <file compressed="true" alias="icons/preview-layout-half-width-symbolic.svg">media/icons/preview-layout-half-width-symbolic.svg</file>
-    <file compressed="true" alias="icons/preview-layout-windowed-symbolic.svg">media/icons/preview-layout-windowed-symbolic.svg</file>
-    <file compressed="true" alias="icons/preview-layout-half-height-symbolic.svg">media/icons/preview-layout-half-height-symbolic.svg</file>
-    <file compressed="true" alias="icons/checkmark-symbolic.svg">media/icons/checkmark-symbolic.svg</file>
+    <file compressed="true" alias="icons/scalable/actions/preview-layout-full-width-symbolic.svg">media/icons/preview-layout-full-width-symbolic.svg</file>
+    <file compressed="true" alias="icons/scalable/actions/preview-layout-half-width-symbolic.svg">media/icons/preview-layout-half-width-symbolic.svg</file>
+    <file compressed="true" alias="icons/scalable/actions/preview-layout-windowed-symbolic.svg">media/icons/preview-layout-windowed-symbolic.svg</file>
+    <file compressed="true" alias="icons/scalable/actions/preview-layout-half-height-symbolic.svg">media/icons/preview-layout-half-height-symbolic.svg</file>
+    <file compressed="true" alias="icons/scalable/actions/checkmark-symbolic.svg">media/icons/checkmark-symbolic.svg</file>
     <file compressed="true" alias="style.css">media/css/gtk/style.css</file>
     <file compressed="true" alias="style-dark.css">media/css/gtk/style-dark.css</file>
     <file compressed="true" alias="style-sepia.css">media/css/gtk/style-sepia.css</file>
