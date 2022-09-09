@@ -26,10 +26,11 @@ import pypandoc
 from gi.overrides.Pango import Pango
 
 gi.require_version('Gtk', '4.0')
-from gi.repository import Adw, Gio, Gtk  # pylint: disable=E0611
+from gi.repository import Adw, Gio, Gtk, Gdk, Gsk, GLib  # pylint: disable=E0611
 
 from apostrophe import config
 from apostrophe.settings import Settings
+
 
 __apostrophe_data_directory__ = '../data/'
 
@@ -127,3 +128,40 @@ def pandoc_convert(text, to="html5", args=[], outputfile=None):
     # args.extend(["--quiet"])
     return pypandoc.convert_text(
         text, to, fr, extra_args=args, outputfile=outputfile)
+
+def get_debug_info():
+    flatpak = "yes" if os.path.isfile("/.flatpak-info") else "no"
+    os_name = GLib.get_os_info("NAME")
+    os_version = GLib.get_os_info("VERSION")
+    gtk_theme = os.getenv("GTK_THEME")
+
+    default_display = Gdk.Display.get_default()
+    display = type(default_display).__name__.strip("Gdk").strip("Display")
+    default_surface = Gdk.Surface.new_toplevel(default_display)
+    gsk_renderer = Gsk.Renderer.new_for_surface(default_surface)
+    renderer = type(gsk_renderer).__name__.strip("Renderer")
+    Gsk.Renderer.unrealize(gsk_renderer)
+
+    info = ""
+    info += f"Apostrophe {config.VERSION}\n"
+    info += "\n"
+    info += f"Flatpak: {flatpak}\n"
+    info += f"GTK: {Gtk.get_major_version()}.{Gtk.get_minor_version()}.{Gtk.get_micro_version()}\n"
+    info += f"GLib: {GLib.glib_version[0]}.{GLib.glib_version[1]}.{GLib.glib_version[2]}\n"
+    info += f"Libadwaita: {Adw.get_major_version()}.{Adw.get_minor_version()}.{Adw.get_micro_version()}\n"
+    info += f"Pandoc: {pypandoc.get_pandoc_version()}\n"
+    info += "\n"
+    info += f"OS: {os_name} {os_version}\n"
+    info += f"Display: {display}\n"
+    info += f"Renderer: {renderer}\n"
+    info += "\n"
+    info += f"gtk-theme-name: {Gtk.Settings.get_default().props.gtk_theme_name}\n"
+    info += f"GTK_THEME: {gtk_theme}\n"
+    info += "\n"
+
+    settings = Settings.new()
+    schema = settings.props.settings_schema
+    for key in schema.list_keys():
+        info +=f"{key}: {settings.get_value(key)}\n"
+
+    return info

@@ -16,9 +16,11 @@ import gi
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
+from gettext import gettext as _
+
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
-from apostrophe.helpers import set_up_logging
+from apostrophe.helpers import get_debug_info, set_up_logging
 # from apostrophe.preferences_dialog import ApostrophePreferencesDialog
 from apostrophe.inhibitor import Inhibitor
 from apostrophe.main_window import MainWindow
@@ -224,6 +226,10 @@ class Application(Adw.Application):
             "/org/gnome/gitlab/somas/Apostrophe/About.ui")
         about_dialog = builder.get_object("AboutDialog")
         about_dialog.set_transient_for(self.get_active_window())
+
+        about_dialog.set_debug_info(get_debug_info())
+        about_dialog.add_link(_("Donate"), "https://paypal.me/manuelgenoves")
+        about_dialog.add_link(_("Translations"), "https://l10n.gnome.org/module/apostrophe/")
 
         about_dialog.present()
 
