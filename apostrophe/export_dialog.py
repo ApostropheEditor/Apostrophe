@@ -275,16 +275,6 @@ class AdvancedExportDialog(Adw.Window):
 
         return row
 
-    def get_hdy_name(self, item, _user_data, _user_data_free):
-        return item.dup_string()
-
-    def get_hdy_comborow_name(self, hdy_cmbrow):
-        model = hdy_cmbrow.get_model()
-        index = hdy_cmbrow.get_selected_index()
-        item = model.get_item(index)
-
-        return item.dup_string()
-
     @Gtk.Template.Callback()
     def reveal_go_back(self, _widget, *args):
         self.notify("show_go_back_button")
@@ -389,8 +379,7 @@ class AdvancedExportDialog(Adw.Window):
 
         if self.show_syntax_options:
             if self.sw_syntax_highlighting.get_enable_expansion():
-                selected_style = self.get_hdy_comborow_name(
-                    self.cmb_syntax_highlighting)
+                selected_style = self.cmb_syntax_highlighting.get_selected_item().dup_string()
                 args.append("--highlight-style={}".format(selected_style))
 
         if self.show_presentation_options:
