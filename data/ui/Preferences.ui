@@ -1,103 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <object class="GtkImage" id="help">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">dialog-information-symbolic</property>
-  </object>
-  <template  class="ApostrophePreferencesDialog" parent="HdyPreferencesWindow">
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="adw" version="1.0"/>
+  <template class="ApostrophePreferencesDialog" parent="AdwPreferencesWindow">
     <property name="default-height">380</property>
     <property name="search-enabled">False</property>
     <child>
-      <object class="HdyPreferencesPage">
-        <property name="visible">True</property>
+      <object class="AdwPreferencesPage">
         <child>
-          <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
+          <object class="AdwPreferencesGroup">
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="tooltip-text" translatable="yes">Check spelling while typing</property>
-                <property name="title" translatable="yes">Check spelling while typing</property>
+              <object class="AdwActionRow">
+                <property name="visible">False</property>
+                <property name="tooltip-text" translatable="1">Check spelling while typing</property>
+                <property name="title" translatable="1">Check spelling while typing</property>
                 <property name="activatable-widget">spellcheck_switch</property>
                 <child>
                   <object class="GtkSwitch" id="spellcheck_switch">
                     <property name="name">spellcheck</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="title" translatable="yes">Autohide headerbar</property>
-                <property name="subtitle" translatable="yes">Autohide header and statusbars while typing</property>
+              <object class="AdwActionRow">
+                <property name="title" translatable="1">Autohide headerbar</property>
+                <property name="subtitle" translatable="1">Autohide header and statusbars while typing</property>
                 <property name="activatable-widget">autohide_headerbar_switch</property>
                 <child>
                   <object class="GtkSwitch" id="autohide_headerbar_switch">
                     <property name="name">autohide_headerbar</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    <property name="focusable">1</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="title" translatable="yes">Use bigger text</property>
-                <property name="subtitle" translatable="yes">Reduce the margins width and increase the text size when possible</property>
+              <object class="AdwActionRow">
+                <property name="title" translatable="1">Use bigger text</property>
+                <property name="subtitle" translatable="1">Reduce the margins width and increase the text size when possible</property>
                 <property name="activatable-widget">bigger_text_switch</property>
                 <child>
                   <object class="GtkSwitch" id="bigger_text_switch">
                     <property name="name">bigger_text</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
-                <property name="title" translatable="yes">Restore session</property>
-                <property name="subtitle" translatable="yes">Return to your previous session when Apostrophe is started</property>
+              <object class="AdwActionRow">
+                <property name="visible">False</property>
+                <property name="title" translatable="1">Restore session</property>
+                <property name="subtitle" translatable="1">Return to your previous session when Apostrophe is started</property>
                 <property name="activatable-widget">session_restore_switch</property>
                 <child>
                   <object class="GtkSwitch" id="session_restore_switch">
                     <property name="name">session_restore</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyComboRow" id="input_format_comborow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
+              <object class="AdwComboRow" id="input_format_comborow">
                 <property name="activatable">False</property>
-                <property name="title" translatable="yes">Input format</property>
-                <property name="subtitle" translatable="yes">Flavor of markdown Apostrophe will use</property>
+                <property name="title" translatable="1">Input format</property>
+                <property name="subtitle" translatable="1">Flavor of markdown Apostrophe will use</property>
+                <property name="expression">
+                  <lookup name="name" type="InputFormat"/>
+                </property>
                 <signal name="notify::selected-index" handler="on_input_format"/>
                 <child>
                   <object class="GtkButton">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
                     <property name="valign">center</property>
-                    <property name="image">help</property>
-                    <property name="tooltip-text" translatable="yes">Markdown flavor documentation</property>
+                    <property name="icon_name">dialog-information-symbolic</property>
+                    <property name="tooltip-text" translatable="1">Markdown flavor documentation</property>
                     <signal name="clicked" handler="on_input_format_help"/>
                     <style>
                       <class name="flat"/>

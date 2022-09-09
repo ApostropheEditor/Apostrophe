@@ -21,7 +21,7 @@ from gettext import gettext as _
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from apostrophe.helpers import get_debug_info, set_up_logging
-# from apostrophe.preferences_dialog import ApostrophePreferencesDialog
+from apostrophe.preferences_dialog import ApostrophePreferencesDialog
 from apostrophe.inhibitor import Inhibitor
 from apostrophe.main_window import MainWindow
 from apostrophe.settings import Settings
@@ -78,9 +78,9 @@ class Application(Adw.Application):
         action.connect("activate", self.on_new_window)
         self.add_action(action)
 
-        # action = Gio.SimpleAction.new("preferences", None)
-        # action.connect("activate", self.on_preferences)
-        # self.add_action(action)
+        action = Gio.SimpleAction.new("preferences", None)
+        action.connect("activate", self.on_preferences)
+        self.add_action(action)
 
         action = Gio.SimpleAction.new("shortcuts", None)
         action.connect("activate", self.on_shortcuts)
