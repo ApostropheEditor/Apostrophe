@@ -109,16 +109,18 @@ class Application(Adw.Application):
 
         self.set_accels_for_action("win.focus_mode", ["<Ctl>d"])
         self.set_accels_for_action("win.hemingway_mode", ["<Ctl>t"])
+        self.set_accels_for_action("win.preview", ["<Ctl>p"])
         self.set_accels_for_action("win.fullscreen", ["F11"])
         self.set_accels_for_action("win.find", ["<Ctl>f"])
         self.set_accels_for_action("win.find_replace", ["<Ctl>h"])
         self.set_accels_for_action("app.spellcheck", ["F7"])
 
-        self.set_accels_for_action("app.new", ["<Ctl>n"])
+        self.set_accels_for_action("app.new_window", ["<Ctl>n"])
         self.set_accels_for_action("win.open", ["<Ctl>o"])
         self.set_accels_for_action("win.save", ["<Ctl>s"])
         self.set_accels_for_action("win.save_as", ["<Ctl><shift>s"])
-        self.set_accels_for_action("app.quit", ["<Ctl>w", "<Ctl>q"])
+        self.set_accels_for_action("app.quit", ["<Ctl>q"])
+        self.set_accels_for_action("win.close", ["<Ctl>w"])
 
         # Inhibitor
         self.inhibitor = Inhibitor()

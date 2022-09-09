@@ -4,7 +4,6 @@
     <property name="modal">True</property>
     <child>
       <object class="GtkShortcutsSection" id="section1">
-        <property name="visible">True</property>
         <property name="section-name">shortcuts</property>
         <property name="max-height">10</property>
         <child>

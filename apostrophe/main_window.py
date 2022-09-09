@@ -195,6 +195,10 @@ class MainWindow(Adw.ApplicationWindow):
         action.connect("activate", self.copy_html_to_clipboard)
         self.add_action(action)
 
+        action = Gio.SimpleAction.new("close", None)
+        action.connect("activate", self.do_close_request)
+        self.add_action(action)
+
         scrollbar = self.editor_scrolledwindow.get_vscrollbar()
         scrollbar.set_margin_top(54)
         scrollbar.set_margin_bottom(48)
@@ -673,6 +677,7 @@ class MainWindow(Adw.ApplicationWindow):
         def callback(window):
             # save state if we're the last window group left
             n_windows = len(window.get_application().windows)
+
             if n_windows == 1:
                 window.save_state()
             window.close_anyway = True

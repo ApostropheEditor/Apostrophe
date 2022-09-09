@@ -312,8 +312,9 @@ class ApostropheTextView(Gtk.TextView):
 
     @Gtk.Template.Callback()
     def _on_spellcheck_update(self, *args, **kwargs):
-        self.gspell_view.set_inline_spell_checking(
-            self.spellcheck and not self.focus_mode)
+        pass
+        # self.gspell_view.set_inline_spell_checking(
+        #     self.spellcheck and not self.focus_mode)
 
     @Gtk.Template.Callback()
     def _on_text_changed(self, *_):
