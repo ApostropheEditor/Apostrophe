@@ -74,11 +74,6 @@ class PreviewHandler:
             # First step: convert text to HTML.
             buf = self.text_view.get_buffer()
 
-            #TODO: this seems to alliviate a bug where the webview crashes
-            # remove when it's fixed
-            test = WebKit2.WebView.new()
-            test.load_uri("https://www.google.es")
-
             self.preview_converter.convert(
                 buf.get_text(buf.get_start_iter(), buf.get_end_iter(), False),
                 self.__show, Step.LOAD_WEBVIEW)
