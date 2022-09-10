@@ -50,7 +50,6 @@ class MainWindow(Adw.ApplicationWindow):
     stats_revealer = Gtk.Template.Child()
     stats_button = Gtk.Template.Child()
     flap = Gtk.Template.Child()
-    # # TODO ??
     preview_stack = Gtk.Template.Child()
     toast_overlay = Gtk.Template.Child()
     textview = Gtk.Template.Child()

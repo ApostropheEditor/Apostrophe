@@ -51,9 +51,6 @@ class PreviewHandler:
         self.preview_renderer = PreviewRenderer(
             window, text_view, flap)
 
-        # TODO
-        # window.connect("style-updated", self.reload)
-
         self.text_changed_handler_id = None
 
         self.settings = Settings.new()

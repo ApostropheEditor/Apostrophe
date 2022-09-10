@@ -105,7 +105,6 @@ class Application(Adw.Application):
         
         # Shortcuts
 
-        # TODO: be aware that a couple of shortcuts are defined in base.css
 
         self.set_accels_for_action("win.focus_mode", ["<Ctl>d"])
         self.set_accels_for_action("win.hemingway_mode", ["<Ctl>t"])
@@ -192,14 +191,16 @@ class Application(Adw.Application):
             return
         if key == "color-scheme":
             self._set_color_scheme()
+            for group in self.windows:
+                 group.list_windows()[0].reload_preview()
         elif key == "input-format":
-            for group in self.windows():
+            for group in self.windows:
                  group.list_windows()[0].reload_preview()
         elif key == "sync-scroll":
-            for group in self.windows():
+            for group in self.windows:
                  group.list_windows()[0].reload_preview(reshow=True)
         elif key == "stat-default":
-            for group in self.windows():
+            for group in self.windows:
                  group.list_windows()[0].update_default_stat()
 
     def on_new_window(self, _action, _value):
