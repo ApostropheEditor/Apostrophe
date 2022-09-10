@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="adw" version="1.0" />
+  <object class="AdwMessageDialog" id="dialog">
+  <property name="heading" translatable="yes">Hemingway Mode</property>
+  <property name="body" translatable="yes">The Hemingway Mode mimics the experience of writing on a typewriter, not allowing you to delete any text or doing any kind of editing. 
+
+Only being able to move forward may be frustrating, but can be an interesting exercise for improving your writing skills, gaining focus or facing the task on hand with a different mindset.
+  </property>
+  <property name="close-response">cancel</property>
+  <responses>
+      <response id="cancel" translatable="yes">_Close</response>
+  </responses>
+  </object>
+</interface>

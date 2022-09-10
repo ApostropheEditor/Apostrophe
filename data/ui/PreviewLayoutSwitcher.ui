@@ -1,82 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24" />
+  <requires lib="gtk" version="4.0"/>
   <template class="PreviewLayoutSwitcher" parent="GtkBox">
-    <property name="visible">True</property>
     <child>
       <object class="GtkToggleButton" id="preview_switcher_toggle">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
         <property name="tooltip-text" translatable="yes">Preview</property>
         <property name="action-name">win.preview</property>
-        <property name="image">preview_icon</property>
-        <property name="always-show-image">1</property>
+        <property name="icon_name">view-dual-symbolic</property>
         <style>
-          <class name="preview_button_left" />
+          <class name="preview_button_left"/>
         </style>
       </object>
     </child>
     <child>
       <object class="GtkRevealer" id="preview_switcher_revealer">
-        <property name="visible">True</property>
         <property name="transition-type">slide-right</property>
-        <property name="reveal-child" bind-source="preview_switcher_toggle" bind-property="active" />
-        <child>
+        <property name="reveal-child" bind-source="preview_switcher_toggle" bind-property="active"/>
+        <property name="child">
           <object class="GtkMenuButton" id="preview_switcher_button">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="popover">layout_popover</property>
-            <signal name="notify::active" handler="on_menu_state_changed" />
-            <child internal-child="accessible">
-              <object class="AtkObject" id="a11y-display-discs">
-                <property name="accessible-name" translatable="yes">Screen Layout</property>
-              </object>
-            </child>
+            <property name="always-show-arrow">True</property>
+            <accessibility>
+              <property name="label" translatable="yes">Screen Layout</property>
+            </accessibility>
             <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="spacing">6</property>
-                <child>
-                  <object class="GtkImage" id="layout_image">
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon-name">pan-down-symbolic</property>
-                  </object>
-                </child>
-              </object>
+              <object class="GtkImage" id="layout_image"/>
             </child>
             <style>
-              <class name="preview_button_right" />
+              <class name="preview_button_right"/>
+              <class name="raised"/>
             </style>
           </object>
-        </child>
+        </property>
       </object>
-      <packing>
-        <property name="position">1</property>
-      </packing>
     </child>
   </template>
-  <object class="GtkImage" id="preview_icon">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">view-dual-symbolic</property>
-  </object>
   <object class="GtkPopover" id="layout_popover">
-    <property name="visible">False</property>
-    <signal name="show" handler="update_ui" />
-    <child>
+    <signal name="show" handler="update_ui"/>
+    <property name="child">
       <object class="GtkListBox" id="list_box">
-        <property name="visible">True</property>
         <property name="selection-mode">none</property>
-        <signal name="row-activated" handler="on_row_activated" />
+        <signal name="row-activated" handler="on_row_activated"/>
       </object>
-    </child>
+    </property>
     <style>
-      <class name="combo" />
+      <class name="menu"/>
     </style>
   </object>
 </interface>

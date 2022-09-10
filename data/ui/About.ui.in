@@ -1,144 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <object class="GtkAboutDialog" id="AboutDialog">
-    <property name="can_focus">False</property>
-    <property name="modal">True</property>
-    <property name="window_position">center</property>
-    <property name="type_hint">dialog</property>
-    <property name="program_name">Apostrophe</property>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="adw" version="1.0"/>
+  <object class="AdwAboutWindow" id="AboutDialog">
+    <property name="application_name">Apostrophe</property>
+    <property name="application_icon">@app-id@</property>
     <property name="version">@version@</property>
     <property name="copyright" translatable="yes">Copyright (C) 2022, Manuel G., Wolf V.</property>
     <property name="website">@package_url@</property>
-    <property name="website_label" translatable="yes">Apostrophe website</property>
-    <property name="authors">Wolf Vollprecht &lt;w.vollprecht@gmail.com&gt;
+    <property name="developer-name">Manuel Genovés</property>
+    <property name="developers">Wolf Vollprecht &lt;w.vollprecht@gmail.com&gt;
 Manuel Genovés &lt;manuel.genoves@gmail.com&gt;
 Gonçalo Silva &lt;goncalossilva@gmail.com&gt;
 Thomas Lavend &lt;lavendthomas@outlook.be&gt;
 Vova Kolobok </property>
     <property name="translator_credits" translatable="yes" comments="Put your name in here, like this:&#10;Manuel Genovés &lt;manuel.genoves@gmail.com&gt;">translator-credits</property>
     <property name="artists">Tobias Bernard &lt;hi@tobiasbernard.com&gt;</property>
-    <property name="logo_icon_name">@app-id@</property>
+    <property name="designers">Tobias Bernard &lt;hi@tobiasbernard.com&gt;
+Alexander Mikhaylenko;
+Zander Brown;
+Manuel Genovés &lt;manuel.genoves@gmail.com&gt;</property>
+    <property name="issue_url">https://gitlab.gnome.org/World/apostrophe/-/issues</property>
+    <property name="debug-info-filename">apostrophe-debug-info.txt</property>
     <property name="license_type">gpl-3-0</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="About_main">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="About_buttons">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox" id="About_links">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkGrid" id="About_links_donations">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-                <property name="column_homogeneous">True</property>
-                <child>
-                  <object class="GtkLabel" id="donations_label">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Donations:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLinkButton" id="donations_link">
-                    <property name="label" translatable="yes">Paypal</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="halign">start</property>
-                    <property name="relief">none</property>
-                    <property name="uri">https://paypal.me/manuelgenoves</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkGrid" id="About_links_translations">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-                <property name="column_homogeneous">True</property>
-                <child>
-                  <object class="GtkLabel" id="translations_label">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Help to translate:</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLinkButton" id="translations_link">
-                    <property name="label" translatable="yes">Damned Lies</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="halign">start</property>
-                    <property name="relief">none</property>
-                    <property name="uri">https://l10n.gnome.org/module/apostrophe/</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
+    
   </object>
 </interface>

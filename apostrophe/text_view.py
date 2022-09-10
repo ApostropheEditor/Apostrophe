@@ -13,22 +13,27 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
+import collections
+import mimetypes
+import urllib
+from datetime import datetime
+from gettext import gettext as _
+from os.path import basename
+
 import gi
 
 from apostrophe.helpers import user_action
 from apostrophe.inline_preview import InlinePreview
-from apostrophe.text_view_drag_drop_handler import DragDropHandler,\
-                                                   TARGET_URI, TARGET_TEXT
+from apostrophe.settings import Settings
 from apostrophe.text_view_format_inserter import FormatInserter
 from apostrophe.text_view_markup_handler import MarkupHandler
 from apostrophe.text_view_scroller import TextViewScroller
-from apostrophe.text_view_undo_redo_handler import UndoRedoHandler
 
-gi.require_version('Gtk', '3.0')
+gi.require_version('Gtk', '4.0')
 gi.require_version('Gspell', '1')
-from gi.repository import Gtk, Gdk, GObject, GLib, Gspell
-
 import logging
+
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 LOGGER = logging.getLogger('apostrophe')
 
@@ -43,7 +48,7 @@ class ApostropheTextView(Gtk.TextView):
     - Format shortcuts (via TextBufferShortcutInserter)
     - Markup (via TextBufferMarkupHandler)
     - Preview popover (via TextBufferMarkupHandler)
-    - Drag and drop (via TextViewDragDropHandler)
+    - Drag and drop
     - Scrolling (via TextViewScroller)
     - The various modes supported by Apostrophe (e. Focus Mode, Hemingway Mode)
     """
@@ -57,11 +62,8 @@ class ApostropheTextView(Gtk.TextView):
         'insert-listitem': (GObject.SignalFlags.ACTION, None, ()),
         'insert-header': (GObject.SignalFlags.ACTION, None, ()),
         'insert-strikethrough': (GObject.SignalFlags.ACTION, None, ()),
-        'undo': (GObject.SignalFlags.ACTION, None, ()),
-        'redo': (GObject.SignalFlags.ACTION, None, ()),
         'scroll-scale-changed': (GObject.SIGNAL_RUN_LAST, None, (float,)),
     }
-
 
     bigger_text = GObject.Property(type=bool, default=False)
     hemingway_mode = GObject.Property(type=bool, default=False)
@@ -74,6 +76,8 @@ class ApostropheTextView(Gtk.TextView):
 
     _scroll_scale = 0
 
+    hemingway_attempts = collections.deque(4*[datetime.min], 4)
+
     @GObject.Property(type=float, default=0)
     def scroll_scale(self):
         return self.scroller.get_scroll_scale() if self.scroller else 0
@@ -83,25 +87,15 @@ class ApostropheTextView(Gtk.TextView):
         if self.scroller:
             self.scroller.set_scroll_scale(scale)
 
+    gesture_controller = Gtk.Template.Child()
+
     def __init__(self):
         super().__init__()
 
+        self.settings = Settings.new()
         # Spell checking
-        self.gspell_view = Gspell.TextView.get_from_gtk_text_view(self)
-        self.gspell_view.basic_setup()
-
-        # Undo / redo
-        self.undo_redo = UndoRedoHandler()
-        self.get_buffer().connect('begin-user-action',
-                                  self.undo_redo.on_begin_user_action)
-        self.get_buffer().connect('end-user-action',
-                                  self.undo_redo.on_end_user_action)
-        self.get_buffer().connect('insert-text',
-                                  self.undo_redo.on_insert_text)
-        self.get_buffer().connect('delete-range',
-                                  self.undo_redo.on_delete_range)
-        self.connect('undo', self.undo_redo.undo)
-        self.connect('redo', self.undo_redo.redo)
+        # self.gspell_view = Gspell.TextView.get_from_gtk_text_view(self)
+        # self.gspell_view.basic_setup()
 
         # Format shortcuts
         self.shortcut = FormatInserter()
@@ -114,14 +108,15 @@ class ApostropheTextView(Gtk.TextView):
 
         # Markup
         self.markup = MarkupHandler(self)
-        self.connect('style-updated', self.markup.on_style_updated)
         self.connect('destroy', self.markup.stop)
 
         # Preview popover
-        self.preview_popover = InlinePreview(self)
+        # self.preview_popover = InlinePreview(self)
 
         # Drag and drop
-        self.drag_drop = DragDropHandler(self, TARGET_URI, TARGET_TEXT)
+        drop_target = Gtk.DropTarget.new(GObject.TYPE_STRING, Gdk.DragAction.COPY)
+        drop_target.connect('drop', self.on_drop)
+        self.add_controller(drop_target)
 
         # While resizing the TextView, there is unwanted scroll upwards
         # if a top margin is present.
@@ -130,6 +125,73 @@ class ApostropheTextView(Gtk.TextView):
 
         # TODO: Find a better way to handle unwanted scroll.
         self.frozen_scroll_scale = None
+
+        self.update_vertical_margin()
+
+    def on_drop(self, drop_target, content, _x, _y):
+        # check if a file was dropped
+        try:
+            GLib.Uri.is_valid(content, GLib.UriFlags.NONE)
+            uri = GLib.Uri.parse(content, GLib.UriFlags.NONE)
+
+            # we could try to use glib utils for handling uris but it's not that
+            # worth it
+
+            if content.startswith("file://"):
+                # remove trailing newlines
+                content = content.strip()
+
+                name = basename(urllib.parse.unquote_plus(content))
+                mime = Gio.content_type_guess(content)
+
+                # stripe "file://"
+                content = content[7:]
+
+                if mime[0] is not None and mime[0].startswith('image/'):
+                    basepath = self.settings.get_string("open-file-path")
+                    basepath = urllib.parse.quote(basepath)
+
+
+                    # for handling local URIs we need to substract the basepath
+                    # except when it is "/" (document not saved)
+                    # TODO: use g_uri_resolve_relative
+                    if content.startswith(basepath) and basepath != "/":
+                        content = content[len(basepath) + 1:]
+
+                    content = "![{}]({})".format(name, content)
+                    limit_left = 2
+                    limit_right = len(name)
+                else:
+                    content = "[{}]({})".format(name, content)
+                    limit_left = 1
+                    limit_right = len(name)
+            elif content.startswith(("https", "http")):
+                content = "[{}]({})".format(_("web page"), content)
+                limit_left = 1
+                limit_right = len(_("web page"))
+        # otherwise we just received text
+        except Exception as e:
+            # delete automatically added DnD text
+            insert_mark = self.get_buffer().get_insert()
+            cursor_iter_r = self.get_buffer().get_iter_at_mark(insert_mark)
+            cursor_iter_l = cursor_iter_r.copy()
+            cursor_iter_l.backward_chars(len(content))
+
+            self.get_buffer().delete(cursor_iter_l, cursor_iter_r)
+
+            limit_left = 0
+            limit_right = 0
+
+        self.get_buffer().place_cursor(self.get_buffer().get_iter_at_mark(
+            self.get_buffer().get_mark('gtk_drag_target')))
+        self.get_buffer().insert_at_cursor(content)
+        insert_mark = self.get_buffer().get_insert()
+        selection_bound = self.get_buffer().get_selection_bound()
+        cursor_iter = self.get_buffer().get_iter_at_mark(insert_mark)
+        cursor_iter.backward_chars(len(content) - limit_left)
+        self.get_buffer().move_mark(insert_mark, cursor_iter)
+        cursor_iter.forward_chars(limit_right)
+        self.get_buffer().move_mark(selection_bound, cursor_iter)
 
     def get_text(self):
         text_buffer = self.get_buffer()
@@ -141,23 +203,20 @@ class ApostropheTextView(Gtk.TextView):
         """Set text and clear undo history"""
 
         text_buffer = self.get_buffer()
+        text_buffer.begin_irreversible_action()
         with user_action(text_buffer):
             text_buffer.set_text(text)
-        self.undo_redo.clear()
+        text_buffer.end_irreversible_action()
 
     def update_vertical_margin(self, top_margin=0):
         if self.focus_mode:
             height = self.get_allocation().height + top_margin 
-            # The height/6 may seem strange. It's a workaround for a GTK bug
-            # If a top-margin is larger than a certain amount of
-            # the TextView height, jumps may occur when pressing enter.
 
-            # TODO: check again in GTK4
-            self.set_top_margin(height / 2 + top_margin - height/6)
+            self.set_top_margin(height / 2 + top_margin)
             self.set_bottom_margin(height / 2)
         else:
-            self.props.top_margin = 80 + top_margin
-            self.props.bottom_margin = 64
+            self.set_top_margin(80 + top_margin)
+            self.set_bottom_margin(64)
 
     def clear(self):
         """Clear text and undo history"""
@@ -177,9 +236,10 @@ class ApostropheTextView(Gtk.TextView):
                       mark, self.focus_mode)
 
     @Gtk.Template.Callback()
-    def _on_button_release_event(self, _widget, _event):
+    def _on_button_release_event(self, *args, **kwargs):
         if self.focus_mode:
             self.markup.apply()
+            self.smooth_scroll_to()
         return False
 
     @Gtk.Template.Callback()
@@ -191,38 +251,40 @@ class ApostropheTextView(Gtk.TextView):
         self.grab_focus()
 
     @Gtk.Template.Callback()
-    def _on_key_press_event(self, _widget, event):
+    def _on_key_press_event(self, _controller, keyval, _keycode, state):
         if self.hemingway_mode:
-            return event.keyval == Gdk.KEY_BackSpace or event.keyval == Gdk.KEY_Delete
+            if keyval == Gdk.KEY_BackSpace or keyval == Gdk.KEY_Delete or self.get_buffer().get_has_selection():
+                # log the time into a list with max length of 4
+                # then check if the time differences are small enough
+                # to show the help popover again
+                self.hemingway_attempts.appendleft(datetime.now())
+                if (self.hemingway_attempts[0] - self.hemingway_attempts[3]).seconds <= 70:
+                    self.settings.set_int("hemingway-toast-count", 0)
+                    self.activate_action("win.show_hemingway_toast")
 
-        if event.state & Gdk.ModifierType.SHIFT_MASK == Gdk.ModifierType.SHIFT_MASK \
-                and event.keyval == Gdk.KEY_ISO_Left_Tab:  # Capure Shift-Tab
+                spring_params = Adw.SpringParams.new(0.5, 0.5, 1000)
+                target = Adw.PropertyAnimationTarget.new(self, "left-margin")
+                hemingway_animation = Adw.SpringAnimation.new(self, self.get_left_margin(), self.get_left_margin(), spring_params, target)
+                hemingway_animation.set_initial_velocity(10)
+                hemingway_animation.play()
+
+                return True
+
+        if state == Gdk.ModifierType.SHIFT_MASK and keyval == Gdk.KEY_ISO_Left_Tab:  # Capure Shift-Tab
             self._on_shift_tab()
             return True
 
     @Gtk.Template.Callback()
     def _on_mark_set(self, _text_buffer, _location, mark, _data=None):
-        if mark.get_name() == 'selection_bound':
+        # only scroll if the cursor was moved by keyboard.
+        # otherwise check _on_button_release_event
+        if mark.get_name() == 'selection_bound' and not self.gesture_controller.is_active():
             self.markup.apply()
             if not self.get_buffer().get_has_selection():
                 self.smooth_scroll_to(mark)
         elif mark.get_name() == 'gtk_drag_target':
             self.smooth_scroll_to(mark)
         return True
-
-    # TODO: this seems a little backwards way to hook things up
-    @Gtk.Template.Callback()
-    def _on_parent_set(self, *_):
-        parent = self.get_parent()
-        if parent:
-            parent.set_size_request(self.get_min_width(), 500)
-            self.scroller = TextViewScroller(self, parent)
-            parent.get_vadjustment().connect("changed",
-                                             self._on_vadjustment_changed)
-            parent.get_vadjustment().connect("value-changed",
-                                             self._on_vadjustment_changed)
-        else:
-            self.scroller = None
 
     @Gtk.Template.Callback()
     def _on_paste_done(self, *_):
@@ -239,7 +301,6 @@ class ApostropheTextView(Gtk.TextView):
             with user_action(text_buffer):
                 text_buffer.delete(pen_iter, end_iter)
 
-    @Gtk.Template.Callback()
     def _on_size_allocate(self, *_):
         self._update_horizontal_margin()
         self.markup.update_margins_indents()
@@ -251,8 +312,9 @@ class ApostropheTextView(Gtk.TextView):
 
     @Gtk.Template.Callback()
     def _on_spellcheck_update(self, *args, **kwargs):
-        self.gspell_view.set_inline_spell_checking(
-            self.spellcheck and not self.focus_mode)
+        pass
+        # self.gspell_view.set_inline_spell_checking(
+        #     self.spellcheck and not self.focus_mode)
 
     @Gtk.Template.Callback()
     def _on_text_changed(self, *_):
@@ -277,10 +339,9 @@ class ApostropheTextView(Gtk.TextView):
             if width >= self.get_min_width(font_size):
                 if font_size != self.font_size:
                     self.font_size = font_size
-                    style_ctxt = self.get_style_context()
-                    for size_class in filter(lambda style_class: style_class.startswith("size"), style_ctxt.list_classes()):
-                        style_ctxt.remove_class(size_class)
-                    style_ctxt.add_class("size{}".format(font_size))
+                    for size_class in filter(lambda style_class: style_class.startswith("size"), self.get_css_classes()):
+                        self.remove_css_class(size_class)
+                    self.add_css_class("size{}".format(font_size))
                 break
         else:
             return
@@ -289,8 +350,8 @@ class ApostropheTextView(Gtk.TextView):
         line_width = (self.line_chars + 1) *\
             int(self._get_char_width(self.font_size)) - 1
         horizontal_margin = (width - line_width) / 2
-        self.props.left_margin = horizontal_margin
-        self.props.right_margin = horizontal_margin
+        self.set_left_margin(horizontal_margin)
+        self.set_right_margin(horizontal_margin)
 
     def _get_font_sizes(self):
         font_sizes_list = [20, 18, 17, 16, 15, 14]
@@ -330,3 +391,23 @@ class ApostropheTextView(Gtk.TextView):
         scale_factor = settings.props.gtk_xft_dpi / DEFAULT_DPI
 
         return scale_factor * font_size * 1 / 1.6
+
+    def do_size_allocate(self, width, height, baseline):
+        Gtk.TextView.do_size_allocate(self,width, height, baseline)
+        self._on_size_allocate()
+
+
+    # TODO: refactor TextViewScroller
+    def do_map(self, *args, **kwargs):
+        Gtk.TextView.do_map(self)
+
+        parent = self.get_parent()
+        if parent:
+            parent.set_size_request(self.get_min_width(), 500)
+            self.scroller = TextViewScroller(self, parent)
+            parent.get_vadjustment().connect("changed",
+                                             self._on_vadjustment_changed)
+            parent.get_vadjustment().connect("value-changed",
+                                             self._on_vadjustment_changed)
+        else:
+            self.scroller = None

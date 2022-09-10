@@ -15,16 +15,17 @@
 """Manage all the headerbars related stuff
 """
 
-import gi
-
 from gettext import gettext as _
 
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GLib, GObject, Handy
+import gi
+
+gi.require_version('Gtk', '4.0')
+from gi.repository import Adw, GLib, GObject, Gtk
+
+from .open_popover import ApostropheOpenPopover
+from .preview_layout_switcher import PreviewLayoutSwitcher
 from .settings import Settings
 from .theme_switcher import ThemeSwitcher
-from .preview_layout_switcher import PreviewLayoutSwitcher
-from .open_popover import ApostropheOpenPopover
 
 
 @Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/Headerbar.ui')
@@ -36,34 +37,25 @@ class BaseHeaderbar(Gtk.Revealer):
     """
 
     headerbar = Gtk.Template.Child()
-    tutorial_button = Gtk.Template.Child()
+    menu_button = Gtk.Template.Child()
+    open_menu = Gtk.Template.Child()
     preview_layout_switcher = Gtk.Template.Child()
 
     is_fullscreen = GObject.property(type=bool, default=False)
     title = GObject.Property(type=str)
     subtitle = GObject.Property(type=str)
 
-    @GObject.Property(type=int)
-    def allocated_height(self):
-        return self.get_allocated_height()
-
     def __init__(self, **kwargs):
 
         super().__init__(**kwargs)
 
-        self.bind_property("is-fullscreen", self.headerbar, "show-close-button", 6)
+        # TODO - move to ui file, check on start
+        self.bind_property("is-fullscreen", self.headerbar, "show-start-title-buttons", 6)
+        self.bind_property("is-fullscreen", self.headerbar, "show-end-title-buttons", 6)
 
-        tutorial = GLib.Variant.new_string("resource:///org/gnome/gitlab/somas/"
-                                           "Apostrophe/media/apostrophe_markdown.md")
-        self.tutorial_button.set_action_target_value(tutorial)
+        popover = self.menu_button.get_popover()
+        popover.add_child(ThemeSwitcher(), "themeswitcher")
 
         self.settings = Settings.new()
 
         #self.select_preview_layout_row()
-    @Gtk.Template.Callback()
-    def on_show_hide(self, widget, event):
-        ''' The crossfade animation doesn't hide the alocated space
-            for the headerbar. This prevents having an empty space there
-        '''
-        if not self.get_child_revealed():
-            self.set_visible(False)

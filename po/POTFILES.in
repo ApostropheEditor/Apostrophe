@@ -3,6 +3,7 @@ data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in
 data/org.gnome.gitlab.somas.Apostrophe.gschema.xml
 data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in
 data/ui/About.ui.in
+data/ui/AboutHemingway.ui
 data/ui/Export.ui
 data/ui/Headerbar.ui
 data/ui/Preferences.ui
@@ -35,11 +36,9 @@ apostrophe/search_and_replace.py
 apostrophe/settings.py
 apostrophe/stats_counter.py
 apostrophe/stats_handler.py
-apostrophe/text_view_drag_drop_handler.py
 apostrophe/text_view_format_inserter.py
 apostrophe/text_view_markup_handler.py
 apostrophe/text_view.py
 apostrophe/text_view_scroller.py
 apostrophe/text_view_undo_redo_handler.py
 apostrophe/theme_switcher.py
-apostrophe/tweener.py

@@ -1,26 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.20"/>
+  <requires lib="gtk" version="4.0" />
   <object class="GtkTextBuffer" id="buffer">
-    <signal name="mark-set" handler="_on_mark_set"/>
-    <signal name="paste-done" handler="_on_paste_done"/>
-    <signal name="changed" handler="_on_text_changed"/>
+    <signal name="mark-set" handler="_on_mark_set" />
+    <signal name="paste-done" handler="_on_paste_done" />
+    <signal name="changed" handler="_on_text_changed" />
   </object>
   <template class="ApostropheTextView" parent="GtkTextView">
     <property name="wrap-mode">word-char</property>
-    <property name="pixels-above-lines">4</property>
-    <property name="pixels-below-lines">4</property>
-    <property name="pixels-inside-wrap">8</property>
-    <property name="buffer">buffer</property>
-    <signal name="button-release-event" handler="_on_button_release_event"/>
-    <signal name="notify::focus-mode" handler="_on_focus_mode_update"/>
-    <signal name="key-press-event" handler="_on_key_press_event"/>
-    <signal name="parent-set" handler="_on_parent_set"/>
-    <signal name="size-allocate" handler="_on_size_allocate"/>
-    <signal name="notify::spellcheck" handler="_on_spellcheck_update"/>
-    <signal name="notify::bigger-text" handler="_update_horizontal_margin"/>
-    <style>
-      <class name="apostrophe-editor"/>
-    </style>
+            <property name="pixels-above-lines">4</property>
+            <property name="pixels-below-lines">4</property>
+            <property name="pixels-inside-wrap">8</property>
+            <property name="buffer">buffer</property>
+            <child>
+              <object class="GtkGestureClick" id="gesture_controller">
+                <signal name="released" handler="_on_button_release_event" swapped="no" />
+              </object>
+            </child>
+            <child>
+              <object class="GtkEventControllerKey">
+                <signal name="key-pressed" handler="_on_key_press_event" swapped="no" />
+              </object>
+            </child>
+            <child>
+              <object class='GtkShortcutController'>
+                <property name='scope'>managed</property>
+                <child>
+                  <object class='GtkShortcut'>
+                    <property name='trigger'>&lt;Control&gt;i</property>
+                    <property name='action'>signal(insert-italic)</property>
+                  </object>
+                </child>
+                <child>
+                  <object class='GtkShortcut'>
+                    <property name='trigger'>&lt;Control&gt;b</property>
+                    <property name='action'>signal(insert-bold)</property>
+                  </object>
+                </child>
+                <child>
+                  <object class='GtkShortcut'>
+                    <property name='trigger'>&lt;Control&gt;r</property>
+                    <property name='action'>signal(insert-hrule)</property>
+                  </object>
+                </child>
+                <child>
+                  <object class='GtkShortcut'>
+                    <property name='trigger'>&lt;Control&gt;u</property>
+                    <property name='action'>signal(insert-listitem)</property>
+                  </object>
+                </child>
+                <child>
+                  <object class='GtkShortcut'>
+                    <property name='trigger'>&lt;Control&gt;&lt;Shift&gt;d</property>
+                    <property name='action'>signal(insert-strikethrough)</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <style>
+              <class name="apostrophe-editor" />
+            </style>
+
+
+    <signal name="notify::focus-mode" handler="_on_focus_mode_update" />
+    <signal name="notify::spellcheck" handler="_on_spellcheck_update" />
+    <signal name="notify::bigger-text" handler="_update_horizontal_margin" />
+
   </template>
 </interface>

@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkImage" id="document-open-symbolic">
-    <property name="visible">1</property>
-    <property name="icon-name">document-open-symbolic</property>
-  </object>
+  <requires lib="gtk" version="4.0"/>
   <template class="ApostropheOpenPopover" parent="GtkPopover">
-    <property name="constrain-to">none</property>
     <style>
       <class name="open-popover"/>
     </style>
     <property name="halign">start</property>
     <property name="valign">end</property>
     <property name="width-request">350</property>
-    <child>
+    <property name="child">
       <object class="GtkBox" id="box">
-        <property name="visible">1</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">1</property>
-            <property name="orientation">horizontal</property>
             <property name="spacing">6</property>
             <property name="margin-top">6</property>
             <property name="margin-bottom">6</property>
@@ -27,8 +20,7 @@
             <property name="margin-end">6</property>
             <child>
               <object class="GtkSearchEntry" id="search_entry">
-                <property name="visible">1</property>
-                <property name="hexpand">True</property>
+                <property name="hexpand">1</property>
                 <signal name="search-changed" handler="on_search_entry_changed_cb"/>
                 <signal name="activate" handler="on_search_entry_activate_cb"/>
                 <signal name="stop-search" handler="on_search_entry_stop_cb"/>
@@ -36,27 +28,21 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="visible">1</property>
-                <property name="image">document-open-symbolic</property>
+                <property name="icon-name">document-open-symbolic</property>
                 <property name="action-name">win.open</property>
               </object>
             </child>
           </object>
         </child>
         <child>
-          <object class="GtkSeparator">
-            <property name="visible">1</property>
-            <property name="orientation">horizontal</property>
-          </object>
+          <object class="GtkSeparator"/>
         </child>
         <child>
           <object class="GtkStack" id="stack">
-            <property name="visible">1</property>
-            <property name="vhomogeneous">false</property>
-            <property name="hhomogeneous">false</property>
+            <property name="vhomogeneous">0</property>
+            <property name="hhomogeneous">0</property>
             <child>
               <object class="GtkLabel" id="empty">
-                <property name="visible">1</property>
                 <property name="label" translatable="yes">No Recent Documents</property>
                 <property name="margin-start">6</property>
                 <property name="margin-top">18</property>
@@ -66,25 +52,20 @@
             </child>
             <child>
               <object class="GtkScrolledWindow" id="recent">
-                <property name="visible">1</property>
-                <property name="hexpand">True</property>
+                <property name="hexpand">1</property>
                 <property name="hscrollbar-policy">never</property>
                 <property name="max-content-height">600</property>
                 <property name="max-content-width">250</property>
                 <property name="min-content-width">250</property>
-                <property name="propagate-natural-height">True</property>
-                <property name="vexpand">True</property>
-                <child>
+                <property name="propagate-natural-height">1</property>
+                <property name="vexpand">1</property>
+                <property name="child">
                   <object class="GtkViewport">
-                    <property name="visible">1</property>
-                    <child>
+                    <property name="child">
                       <object class="GtkListBox" id="list_box">
-                        <property name="visible">1</property>
-                        <property name="activate-on-single-click">True</property>
                         <property name="selection-mode">none</property>
                         <child type="placeholder">
                           <object class="GtkLabel">
-                            <property name="visible">1</property>
                             <property name="label" translatable="yes">No Results Found</property>
                             <style>
                               <class name="placeholder"/>
@@ -93,14 +74,14 @@
                           </object>
                         </child>
                       </object>
-                    </child>
+                    </property>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
           </object>
         </child>
       </object>
-    </child>
+    </property>
   </template>
 </interface>

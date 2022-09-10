@@ -13,18 +13,19 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 # END LICENSE
 
-import re
 import os
+import re
 import telnetlib
 from gettext import gettext as _
 from urllib.parse import unquote
 
 import gi
 
-gi.require_version("Gtk", "3.0")
-gi.require_version("WebKit2", "4.0")
-from gi.repository import Gtk, Gdk, GdkPixbuf, GLib
-from gi.repository import WebKit2
+gi.require_version("Gtk", "4.0")
+# gi.require_version("WebKit2", "4.0")
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk
+
+# from gi.repository import WebKit2
 from apostrophe import latex_to_PNG, markup_regex
 from apostrophe.settings import Settings
 
@@ -160,8 +161,8 @@ class InlinePreview:
         self.settings = Settings.new()
 
         self.text_view = text_view
-        self.text_view.connect("button-press-event",
-                               self.on_button_press_event)
+        self.text_view.gesture_controller.connect("pressed",
+                                                   self.on_button_press_event)
         self.text_buffer = text_view.get_buffer()
         self.cursor_mark = self.text_buffer.create_mark(
             "click",
@@ -218,6 +219,7 @@ class InlinePreview:
                                                    self.HEIGHT))
 
     def get_view_for_link(self, match):
+        return
         url = match.group("url")
         web_view = WebKit2.WebView(zoom_level=0.3125)  # ~1280x960
         web_view.set_size_request(self.WIDTH, self.HEIGHT)

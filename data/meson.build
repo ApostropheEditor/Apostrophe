@@ -94,7 +94,6 @@ install_subdir(
 	install_dir: pkgdatadir
 )
 
-subdir('media/css/gtk')
 install_subdir(
 	'media',
   # exclude_directories: 'css/gtk'
@@ -116,5 +115,5 @@ resources = gnome.compile_resources(
   gresource_bundle: true,
   install:true,
   install_dir: pkgdatadir,
-  dependencies: [ui_dependencies, style_deps]
+  dependencies: [ui_dependencies]
 )

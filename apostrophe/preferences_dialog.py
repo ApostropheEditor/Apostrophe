@@ -19,14 +19,22 @@ import webbrowser
 
 import gi
 
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Handy, Gio, GObject
+from apostrophe import helpers
+
+gi.require_version('Gtk', '4.0')
+from gi.repository import Gtk, Adw, Gio, GObject
 import logging
 logger = logging.getLogger('apostrophe')
 
 from apostrophe.settings import Settings
 
 class InputFormat(GObject.Object):
+    __gtype_name__ = "InputFormat"
+
+    name = GObject.Property(type=str)
+    format = GObject.Property(type=str)
+    help = GObject.Property(type=str)
+
     def __init__(self, name, format, help, **kwargs):
         super().__init__(**kwargs)
         self.name: str = name
@@ -34,7 +42,7 @@ class InputFormat(GObject.Object):
         self.help: str = help
 
 @Gtk.Template(resource_path='/org/gnome/gitlab/somas/Apostrophe/ui/Preferences.ui')
-class ApostrophePreferencesDialog(Handy.PreferencesWindow):
+class ApostrophePreferencesDialog(Adw.PreferencesWindow):
 
     __gtype_name__ = "ApostrophePreferencesDialog"
 
@@ -84,8 +92,7 @@ class ApostrophePreferencesDialog(Handy.PreferencesWindow):
             if (format["format"] == self.settings.get_string("input-format")):
                 current_format = i
 
-        self.input_format_comborow.bind_name_model(input_formats,
-                                                   lambda item, *args: item.name, None, None)
+        self.input_format_comborow.set_model(input_formats)
 
         if current_format:
             self.input_format_comborow.set_selected_index(current_format)
@@ -107,10 +114,10 @@ class ApostrophePreferencesDialog(Handy.PreferencesWindow):
 
     @Gtk.Template.Callback()
     def on_input_format(self, _widget, _index):
-        fmt = self.formats[self.input_format_comborow.get_selected_index()]
-        self.settings.set_string("input-format", fmt["format"])
+        fmt = self.input_format_comborow.get_selected_item()
+        self.settings.set_string("input-format", fmt.format)
 
     @Gtk.Template.Callback()
     def on_input_format_help(self, _):
-        fmt = self.formats[self.input_format_comborow.get_selected_index()]
-        webbrowser.open(fmt["help"])
+        fmt = self.input_format_comborow.get_selected_item()
+        webbrowser.open(fmt.help)

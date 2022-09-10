@@ -15,11 +15,14 @@
 # END LICENSE
 
 import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GObject, Gio, Handy
+
+gi.require_version('Gtk', '4.0')
+from gi.repository import Adw, Gio, GObject, Gtk
+
+from apostrophe.helpers import get_media_path
 
 from .settings import Settings
-from apostrophe.helpers import get_media_path
+
 
 class Theme:
     '''Abstracts getters for the current theme related
@@ -27,35 +30,23 @@ class Theme:
 
     settings = Settings.new()
 
-    def __init__(self, name, gtk_css, gtk_css_hc, web_css):
-        self.name = name
-        self.gtk_css    = gtk_css
-        self.gtk_css_hc = gtk_css_hc
-        self.web_css    = web_css
-
-    @classmethod
-    def get_for_name(cls, name, default=None):
-        current_theme = default or defaultThemes[0]
-        for theme in defaultThemes:
-            if name == theme.name:
-                current_theme = theme
-        return current_theme
+    def __init__(self, name, web_css):
+        self.name    = name
+        self.web_css = web_css
 
     @classmethod
     def get_current(cls):
+        current_theme = defaultThemes[0]
         color_scheme = cls.settings.get_string("color-scheme")
-        return cls.get_for_name(color_scheme)
+        for theme in defaultThemes:
+            if color_scheme == theme.name:
+                current_theme = theme
+        return current_theme
 
 defaultThemes = [
-    Theme('light', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita.css"),
-          Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-hc.css"),
-          get_media_path('/media/css/web/adwaita.css')),
-    Theme('dark', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-dark.css"),
-          Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-dark-hc.css"),
-          get_media_path('/media/css/web/adwaita.css')),
-    Theme('sepia', Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia.css"),
-          Gio.File.new_for_uri("resource:///org/gnome/gitlab/somas/Apostrophe/media/css/gtk/Adwaita-sepia-hc.css"),
-          get_media_path('/media/css/web/adwaita-sepia.css')),
+    Theme('light', get_media_path('/media/css/web/adwaita.css')),
+    Theme('dark',  get_media_path('/media/css/web/adwaita.css')),
+    Theme('sepia', get_media_path('/media/css/web/adwaita-sepia.css')),
 ]
 
 
@@ -87,21 +78,21 @@ class ThemeSwitcher(Gtk.Box):
 
         if color_scheme == "auto":
             self.system_selector.set_active(True)
-            self.style_manager.set_color_scheme(Handy.ColorScheme.PREFER_LIGHT)
+            self.style_manager.set_color_scheme(Adw.ColorScheme.PREFER_LIGHT)
         if color_scheme == "light":
             self.light_selector.set_active(True)
-            self.style_manager.set_color_scheme(Handy.ColorScheme.FORCE_LIGHT)
+            self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
         if color_scheme == "sepia":
             self.sepia_selector.set_active(True)
-            self.style_manager.set_color_scheme(Handy.ColorScheme.FORCE_LIGHT)
+            self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
         if color_scheme == "dark":
             self.dark_selector.set_active(True)
-            self.style_manager.set_color_scheme(Handy.ColorScheme.FORCE_DARK)
+            self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.style_manager = Handy.StyleManager.get_default()
+        self.style_manager = Adw.StyleManager.get_default()
 
         color_scheme = self.settings.get_string("color-scheme")
         self.color_scheme = color_scheme

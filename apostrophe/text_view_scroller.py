@@ -14,10 +14,10 @@
 # END LICENSE
 
 class TextViewScroller:
-    def __init__(self, text_view, scrolled_window):
+    def __init__(self, textview, scrolled_window):
         super().__init__()
 
-        self.text_view = text_view
+        self.textview = textview
         self.scrolled_window = scrolled_window
         self.smooth_scroller = None
 
@@ -59,12 +59,12 @@ class TextViewScroller:
     def get_target_pos_for_mark(self, mark, center):
         margin = 32
 
-        mark_iter = self.text_view.get_buffer().get_iter_at_mark(mark)
-        mark_rect = self.text_view.get_iter_location(mark_iter)
+        mark_iter = self.textview.get_buffer().get_iter_at_mark(mark)
+        mark_rect = self.textview.get_iter_location(mark_iter)
 
         vap = self.scrolled_window.get_vadjustment().props
 
-        pos_y = mark_rect.y + mark_rect.height + self.text_view.props.top_margin
+        pos_y = mark_rect.y + mark_rect.height + self.textview.props.top_margin
         pos_viewport_y = pos_y - vap.value
         target_pos = None
         if center:
