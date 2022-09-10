@@ -174,15 +174,24 @@
 }
 
 
-.preview_button_left:checked{
+.preview_button_left:dir(ltr):checked{
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   border-right-style: none;
 }
-
-.preview_button_right button{
+.preview_button_left:dir(rtl):checked{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  border-left-style: none;
+}
+
+.preview_button_right:dir(ltr) button{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.preview_button_right:dir(rtl) button{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 /* Recents */
