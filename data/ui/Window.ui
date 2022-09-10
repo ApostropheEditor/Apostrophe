@@ -85,6 +85,7 @@
                 <child>
                   <object class="GtkSpinner" id="preview_spinner">
                     <property name="spinning">1</property>
+                    <property name="halign">center</property>
                     <property name="hexpand">1</property>
                     <property name="vexpand">1</property>
                   </object>
