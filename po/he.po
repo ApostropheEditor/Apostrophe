@@ -2,22 +2,23 @@
 # Copyright (C) 2021 apostrophe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the apostrophe package.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2021.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-07 19:03+0000\n"
-"PO-Revision-Date: 2022-03-09 10:27+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <heb-bugzap@hamakor.org.il>\n"
+"POT-Creation-Date: 2022-09-14 15:40+0000\n"
+"PO-Revision-Date: 2022-09-18 02:30+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3);\n"
-"X-Generator: Poedit 3.0.1\n"
+"2 : 3)\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -44,7 +45,7 @@ msgid "Use the color scheme in the application's UI and in the text area."
 msgstr "להשתמש בערכת הצבעים במנשק המשתמש של היישום ובאזור הטקסט."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
-#: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
+#: data/ui/Preferences.ui:15 data/ui/Preferences.ui:16
 msgid "Check spelling while typing"
 msgstr "בדיקת איות בזמן ההקלדה"
 
@@ -61,7 +62,7 @@ msgid "Keep the editor and preview scroll positions in sync."
 msgstr "לשמור על מיקומי הגלילה של העורך ושל התצוגה המקדימה מסונכרנים."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
-#: data/ui/Preferences.ui:90
+#: data/ui/Preferences.ui:70
 msgid "Input format"
 msgstr "תצורת קלט"
 
@@ -102,7 +103,7 @@ msgid "Maximum number of characters per line within the editor."
 msgstr "מספר התווים המרבי לשורה בתוך העורך."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
-#: data/ui/Headerbar.ui:250
+#: data/ui/AboutHemingway.ui:6
 msgid "Hemingway Mode"
 msgstr "מצב המינגווי"
 
@@ -111,26 +112,35 @@ msgid "Whether the user can delete text or not."
 msgstr "האם המשתמש יוכל למחוק טקסט או לא."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
+#| msgid "Hemingway Mode"
+msgid "Hemingway Toast Count"
+msgstr "Hemingway Toast Count"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
+msgid "Number of times the Hemingway Toast has been shown"
+msgstr "Number of times the Hemingway Toast has been shown"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
 msgid "Preview mode"
 msgstr "מצב תצוגה מקדימה"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
 msgid "How to display the preview."
 msgstr "איך להציג את התצוגה המקדימה."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
 msgid "Preview active"
 msgstr "תצוגה מקדימה פעילה"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
 msgid "Whether showing of preview is active when launching a new window."
 msgstr "האם הצגת התצוגה המקדימה פעילה בעת הצגת חלון חדש."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:113
 msgid "Text size"
 msgstr "גודל הכתב"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:114
 msgid "Preferred relative size for the text."
 msgstr "גודל יחסי מועדף לטקסט."
 
@@ -179,54 +189,48 @@ msgstr ""
 msgid "Manuel G., Wolf V."
 msgstr "מנואל ג., וולף ו."
 
-#: data/ui/About.ui.in:12
-#| msgid "Copyright (C) 2020, Wolf Vollprecht"
+#: data/ui/About.ui.in:9
 msgid "Copyright (C) 2022, Manuel G., Wolf V."
 msgstr "כל הזכויות שמורות (C) 2022, מנואל ג., וולף ו."
 
-#: data/ui/About.ui.in:14
-msgid "Apostrophe website"
-msgstr "אתר אפוסטרוף"
-
 #. Put your name in here, like this:
 #. Manuel Genovés <manuel.genoves@gmail.com>
-#: data/ui/About.ui.in:20
+#: data/ui/About.ui.in:17
 msgid "translator-credits"
 msgstr "ירון שהרבני <sh.yaron@gmail.com>"
 
-#: data/ui/About.ui.in:65
-msgid "Donations:"
-msgstr "תרומות:"
+#: data/ui/AboutHemingway.ui:7
+msgid ""
+"The Hemingway Mode mimics the experience of writing on a typewriter, not "
+"allowing you to delete any text or doing any kind of editing. \n"
+"\n"
+"Only being able to move forward may be frustrating, but can be an "
+"interesting exercise for improving your writing skills, gaining focus or "
+"facing the task on hand with a different mindset.\n"
+"  "
+msgstr ""
 
-#: data/ui/About.ui.in:74
-msgid "Paypal"
-msgstr "פייפאל"
+#: data/ui/AboutHemingway.ui:13
+msgid "_Close"
+msgstr "_סגירה"
 
-#: data/ui/About.ui.in:105
-msgid "Help to translate:"
-msgstr "עזרה בתרגום:"
-
-#: data/ui/About.ui.in:114
-msgid "Damned Lies"
-msgstr "שקרים ארורים"
-
-#: data/ui/Export.ui:46 apostrophe/export_dialog.py:133
-#: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
-#: apostrophe/main_window.py:331 apostrophe/main_window.py:424
-#: apostrophe/main_window.py:509
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
+#: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
+#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
+#: apostrophe/main_window.py:531
 msgid "Cancel"
 msgstr "ביטול"
 
-#: data/ui/Export.ui:61 apostrophe/export_dialog.py:128
-#: apostrophe/export_dialog.py:323 apostrophe/export_dialog.py:327
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:127
+#: apostrophe/export_dialog.py:332 apostrophe/export_dialog.py:336
 msgid "Export"
 msgstr "ייצוא"
 
-#: data/ui/Export.ui:153
+#: data/ui/Export.ui:118
 msgid "Standalone"
 msgstr "עצמאי"
 
-#: data/ui/Export.ui:155
+#: data/ui/Export.ui:120
 msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
@@ -234,370 +238,385 @@ msgstr ""
 "להשתמש בכותרות עליונות ותחתונות כדי לכלול דברים כגון גיליונות סגנון ונתוני "
 "חוץ"
 
-#: data/ui/Export.ui:170
+#: data/ui/Export.ui:133
 msgid "Table of Contents"
 msgstr "תוכן העניינים"
 
-#: data/ui/Export.ui:186
+#: data/ui/Export.ui:147
 msgid "Number Sections"
 msgstr "מספור סעיפים"
 
-#: data/ui/Export.ui:210 data/ui/Export.ui:216
+#: data/ui/Export.ui:165 data/ui/Export.ui:170
 msgid "Page Size"
 msgstr "גודל עמוד"
 
-#: data/ui/Export.ui:235
+#: data/ui/Export.ui:182
 msgid "HTML Options"
 msgstr "אפשרויות HTML"
 
-#: data/ui/Export.ui:241
+#: data/ui/Export.ui:187
 msgid "Self-contained"
 msgstr "מוכל בעצמו"
 
-#: data/ui/Export.ui:243
+#: data/ui/Export.ui:189
 msgid "Produces an HTML file with no external dependencies"
 msgstr "מייצר קובץ HTML ללא תלויות חיצוניות"
 
-#: data/ui/Export.ui:259
-msgid "CSS File"
-msgstr "קובץ CSS"
-
-#: data/ui/Export.ui:264
-msgid "Select CSS file"
-msgstr "בחירת קובץ CSS"
-
-#: data/ui/Export.ui:285
+#: data/ui/Export.ui:205
 msgid "Syntax Highlighting"
 msgstr "הדגשת תחביר"
 
-#: data/ui/Export.ui:300
+#: data/ui/Export.ui:218
 msgid "Highlight style"
 msgstr "סגנון הדגשה"
 
-#: data/ui/Export.ui:321
+#: data/ui/Export.ui:232
 msgid "Presentation"
 msgstr "מצגת"
 
-#: data/ui/Export.ui:327
+#: data/ui/Export.ui:237
 msgid "Incremental bullets"
 msgstr "תבליטים מתווספים"
 
-#: data/ui/Export.ui:329
+#: data/ui/Export.ui:239
 msgid "Show one bullet point after another in a slideshow"
 msgstr "להציג נקודת תבליט אחת אחרי השנייה במצגת"
 
-#: data/ui/Headerbar.ui:57
+#: data/ui/Headerbar.ui:11
 msgid "New"
 msgstr "חדש"
 
-#: data/ui/Headerbar.ui:67 apostrophe/main_window.py:423
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
 msgid "Open"
 msgstr "פתיחה"
 
-#: data/ui/Headerbar.ui:90 apostrophe/main_window.py:330
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
+#: apostrophe/main_window.py:533
 msgid "Save"
 msgstr "שמירה"
 
-#: data/ui/Headerbar.ui:102
-msgid "Save as…"
-msgstr "שמירה בשם…"
-
-#: data/ui/Headerbar.ui:140
+#: data/ui/Headerbar.ui:40
 msgid "Menu"
 msgstr "תפריט"
 
-#: data/ui/Headerbar.ui:166
+#: data/ui/Headerbar.ui:51
 msgid "Find"
 msgstr "איתור"
 
-#: data/ui/Headerbar.ui:225
-msgid "New Window"
-msgstr "חלון חדש"
+#: data/ui/Headerbar.ui:74
+#| msgid "Hemingway Mode"
+msgid "_Hemingway Mode"
+msgstr "מצב ה_מינגווי"
 
-#: data/ui/Headerbar.ui:264
-msgid "Focus Mode"
-msgstr "מצב מיקוד"
+#: data/ui/Headerbar.ui:78
+#| msgid "Focus Mode"
+msgid "_Focus Mode"
+msgstr "מצב _מיקוד"
 
-#: data/ui/Headerbar.ui:289
-msgid "Find and Replace"
-msgstr "איתור והחלפה"
+#: data/ui/Headerbar.ui:84
+#| msgid "Find and Replace"
+msgid "Find and _Replace"
+msgstr "חיפוש וה_חלפה"
 
-#: data/ui/Headerbar.ui:314
-msgid "Preferences"
-msgstr "העדפות"
+#: data/ui/Headerbar.ui:90
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_העדפות"
 
-#: data/ui/Headerbar.ui:339
-msgid "Open Tutorial"
-msgstr "פתיחת מדריך"
+#: data/ui/Headerbar.ui:96
+#| msgid "Open Tutorial"
+msgid "Open _Tutorial"
+msgstr "פתיחת _מדריך"
 
-#: data/ui/Headerbar.ui:353
-msgid "Keyboard Shortcuts"
-msgstr "קיצורי מקלדת"
+#: data/ui/Headerbar.ui:101
+#| msgid "Keyboard Shortcuts"
+msgid "_Keyboard Shortcuts"
+msgstr "קיצורי _מקלדת"
 
-#: data/ui/Headerbar.ui:367
-msgid "About Apostrophe"
-msgstr "על אפוסטרוף"
+#: data/ui/Headerbar.ui:105
+#| msgid "About Apostrophe"
+msgid "_About Apostrophe"
+msgstr "על _אפוסטרוף"
 
-#: data/ui/Headerbar.ui:395
-msgid "Save As…"
-msgstr "שמירה בשם…"
+#: data/ui/Headerbar.ui:116
+#| msgid "Save As…"
+msgid "_Save As..."
+msgstr "שמירה _בשם…"
 
-#: data/ui/Headerbar.ui:476
-msgid "Advanced Export…"
-msgstr "ייצוא מתקדם…"
+#: data/ui/Headerbar.ui:139
+#| msgid "Advanced Export…"
+msgid "Advanced _Export…"
+msgstr "ייצוא _מתקדם…"
 
-#: data/ui/Headerbar.ui:501
-msgid "Copy HTML"
-msgstr "העתקת HTML"
+#: data/ui/Headerbar.ui:145
+#| msgid "Copy HTML"
+msgid "_Copy HTML"
+msgstr "הע_תקת HTML"
 
-#: data/ui/Preferences.ui:40
+#: data/ui/Preferences.ui:28
 msgid "Autohide headerbar"
 msgstr "הסתרת סרגל הכותרת אוטומטית"
 
-#: data/ui/Preferences.ui:41
+#: data/ui/Preferences.ui:29
 msgid "Autohide header and statusbars while typing"
 msgstr "הסתרת סרגלי הכותרת והמצב בזמן ההקלדה"
 
-#: data/ui/Preferences.ui:57
+#: data/ui/Preferences.ui:42
 msgid "Use bigger text"
 msgstr "להשתמש בכתב גדול יותר"
 
-#: data/ui/Preferences.ui:58
+#: data/ui/Preferences.ui:43
 msgid "Reduce the margins width and increase the text size when possible"
 msgstr "הקטנת עובי השוליים והגדלת הכתב כשניתן"
 
-#: data/ui/Preferences.ui:72
+#: data/ui/Preferences.ui:56
 msgid "Restore session"
 msgstr "שחזור הפעלה"
 
-#: data/ui/Preferences.ui:73
+#: data/ui/Preferences.ui:57
 msgid "Return to your previous session when Apostrophe is started"
 msgstr "חזרה להפעלה הקודמת שלך עם הפעלת אפוסטרוף"
 
-#: data/ui/Preferences.ui:91
+#: data/ui/Preferences.ui:71
 msgid "Flavor of markdown Apostrophe will use"
 msgstr "סוג ה־Markdown בו ייעשה שימוש באפוסטרוף"
 
-#: data/ui/Preferences.ui:100
+#: data/ui/Preferences.ui:80
 msgid "Markdown flavor documentation"
 msgstr "תיעוד תצורת ה־Markdown"
 
-#: data/ui/PreviewLayoutSwitcher.ui:10 data/ui/PreviewWindow.ui:13
+#: data/ui/PreviewLayoutSwitcher.ui:7 apostrophe/preview_renderer.py:208
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
-#: data/ui/PreviewLayoutSwitcher.ui:32
+#: data/ui/PreviewLayoutSwitcher.ui:24
 msgid "Screen Layout"
 msgstr "פריסת המסך"
 
-#: data/ui/Recents.ui:60
+#: data/ui/Recents.ui:46
 msgid "No Recent Documents"
 msgstr "אין מסמכים אחרונים"
 
-#: data/ui/Recents.ui:88
+#: data/ui/Recents.ui:69
 msgid "No Results Found"
 msgstr "לא נמצאו תוצאות"
 
-#: data/ui/SearchBar.ui:50
+#: data/ui/SearchBar.ui:28
 msgid "Previous Match"
 msgstr "תוצאה קודמת"
 
-#: data/ui/SearchBar.ui:63
+#: data/ui/SearchBar.ui:37
 msgid "Next Match"
 msgstr "התוצאה הבאה"
 
 #. Translators: This indicates case sensitivity, so it should be the first vowel of the language in lowercase and uppercase
-#: data/ui/SearchBar.ui:85
+#: data/ui/SearchBar.ui:52
 msgid "aA"
 msgstr "אב"
 
-#: data/ui/SearchBar.ui:89
+#: data/ui/SearchBar.ui:55
 msgid "Case Sensitive"
 msgstr "תלוי רישיות"
 
-#: data/ui/SearchBar.ui:99
+#: data/ui/SearchBar.ui:64
 msgid "Regular Expression"
 msgstr "ביטוי רגולרי"
 
-#: data/ui/SearchBar.ui:111 data/ui/SearchBar.ui:165
+#: data/ui/SearchBar.ui:72 data/ui/SearchBar.ui:110
 msgid "Replace"
 msgstr "החלפה"
 
-#: data/ui/SearchBar.ui:175
+#: data/ui/SearchBar.ui:118
 msgid "Replace All"
 msgstr "החלפה של הכול"
 
-#: data/ui/Shortcuts.ui:13
+#: data/ui/Shortcuts.ui:12
 msgctxt "shortcut window"
 msgid "General"
 msgstr "כללי"
 
-#: data/ui/Shortcuts.ui:17
+#: data/ui/Shortcuts.ui:16
 msgctxt "shortcut window"
 msgid "New"
 msgstr "חדש"
 
-#: data/ui/Shortcuts.ui:24
+#: data/ui/Shortcuts.ui:23
 msgctxt "shortcut window"
 msgid "Open"
 msgstr "פתיחה"
 
-#: data/ui/Shortcuts.ui:31
+#: data/ui/Shortcuts.ui:30
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "שמירה"
 
-#: data/ui/Shortcuts.ui:38
+#: data/ui/Shortcuts.ui:37
 msgctxt "shortcut window"
 msgid "Save as"
 msgstr "שמירה בשם"
 
-#: data/ui/Shortcuts.ui:45
+#: data/ui/Shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "סגירת מסמך"
 
-#: data/ui/Shortcuts.ui:52
+#: data/ui/Shortcuts.ui:51
 msgctxt "shortcut window"
 msgid "Quit application"
 msgstr "יציאה מהיישום"
 
-#: data/ui/Shortcuts.ui:61
+#: data/ui/Shortcuts.ui:60
 msgctxt "shortcut window"
 msgid "Modes"
 msgstr "מצבים"
 
-#: data/ui/Shortcuts.ui:65
+#: data/ui/Shortcuts.ui:64
 msgctxt "shortcut window"
 msgid "Focus mode"
 msgstr "מצב מיקוד"
 
-#: data/ui/Shortcuts.ui:72
+#: data/ui/Shortcuts.ui:71
 msgctxt "shortcut window"
 msgid "Hemingway mode"
 msgstr "מצב המינגווי"
 
-#: data/ui/Shortcuts.ui:79
+#: data/ui/Shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
-#: data/ui/Shortcuts.ui:86
+#: data/ui/Shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Fullscreen"
 msgstr "מסך מלא"
 
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+#: data/ui/Shortcuts.ui:94 data/ui/Shortcuts.ui:98
 msgctxt "shortcut window"
 msgid "Find"
 msgstr "איתור"
 
-#: data/ui/Shortcuts.ui:106
+#: data/ui/Shortcuts.ui:105
 msgctxt "shortcut window"
 msgid "Find and replace"
 msgstr "איתור והחלפה"
 
-#: data/ui/Shortcuts.ui:115
+#: data/ui/Shortcuts.ui:114
 msgctxt "shortcut window"
 msgid "Markdown"
 msgstr "‫Markdown"
 
-#: data/ui/Shortcuts.ui:119
+#: data/ui/Shortcuts.ui:118
 msgctxt "shortcut window"
 msgid "Separator"
 msgstr "מפריד"
 
-#: data/ui/Shortcuts.ui:126
+#: data/ui/Shortcuts.ui:125
 msgctxt "shortcut window"
 msgid "List item"
 msgstr "פריט ברשימה"
 
-#: data/ui/Shortcuts.ui:133
+#: data/ui/Shortcuts.ui:132
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "נטוי"
 
-#: data/ui/Shortcuts.ui:140
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "מודגש"
 
-#: data/ui/Shortcuts.ui:147
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "קו חוצה"
 
-#: data/ui/Shortcuts.ui:156
+#: data/ui/Shortcuts.ui:155
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "העתקה והדסקה"
 
-#: data/ui/Shortcuts.ui:160
+#: data/ui/Shortcuts.ui:159
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "העתקת הטקסט הנבחר ללוח הגזירים"
 
-#: data/ui/Shortcuts.ui:167
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "גזירת הטקסט הנבחר ללוח הגזירים"
 
-#: data/ui/Shortcuts.ui:174
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "הדבקת הטקסט הנבחר מלוח הגזירים"
 
-#: data/ui/Shortcuts.ui:183
+#: data/ui/Shortcuts.ui:182
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "ביטול וביצוע שוב"
 
-#: data/ui/Shortcuts.ui:187
+#: data/ui/Shortcuts.ui:186
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "ביטול הפקודה האחרונה"
 
-#: data/ui/Shortcuts.ui:194
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "ביצוע הפקודה האחרונה שוב"
 
-#: data/ui/Shortcuts.ui:203
+#: data/ui/Shortcuts.ui:202
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "בחירה"
 
-#: data/ui/Shortcuts.ui:207
+#: data/ui/Shortcuts.ui:206
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "לבחור את כל הטקסט"
 
-#: data/ui/ThemeSwitcher.ui:22
+#: data/ui/ThemeSwitcher.ui:17
 msgid "Use System Colors"
 msgstr "להשתמש בצבעי המערכת"
 
-#: data/ui/ThemeSwitcher.ui:51
+#: data/ui/ThemeSwitcher.ui:27
 msgid "Use Light Colors"
 msgstr "להשתמש בצבעים בהירים"
 
-#: data/ui/ThemeSwitcher.ui:80
+#: data/ui/ThemeSwitcher.ui:37
 msgid "Use Sepia Colors"
 msgstr "להשתמש בגווני חום"
 
-#: data/ui/ThemeSwitcher.ui:109
+#: data/ui/ThemeSwitcher.ui:47
 msgid "Use Dark Colors"
 msgstr "להשתמש בצבעים כהים"
 
-#: data/ui/Window.ui:69
+#: data/ui/Window.ui:58
 msgid "Show Statistics"
 msgstr "הצגת סטטיסטיקה"
 
-#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
+#: data/ui/Window.ui:59
+#| msgid "{:n} Word"
+#| msgid_plural "{:n} Words"
+msgid "0 Words"
+msgstr "0 מילים"
+
+#: apostrophe/application.py:234
+#| msgid "Donations:"
+msgid "Donate"
+msgstr "תרומה"
+
+#: apostrophe/application.py:235
+#| msgid "Donations:"
+msgid "Translations"
+msgstr "תרגומים"
+
+#: apostrophe/export_dialog.py:130 apostrophe/export_dialog.py:337
 #, python-format
 msgid "Export to %s"
 msgstr "ייצוא אל %s"
 
-#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
+#: apostrophe/export_dialog.py:156 apostrophe/export_dialog.py:326
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -608,100 +627,121 @@ msgstr ""
 "‬\n"
 "‏‫{err_msg}"
 
-#: apostrophe/export_dialog.py:234
+#: apostrophe/export_dialog.py:229
 msgid "Export to {}"
 msgstr "ייצוא אל {}"
 
-#: apostrophe/export_dialog.py:324
+#: apostrophe/export_dialog.py:333
 msgid "Select folder"
 msgstr "בחירת תיקייה"
 
-#: apostrophe/helpers.py:89
+#: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "שגיאה"
+
+#: apostrophe/helpers.py:84
+msgid "Close"
+msgstr "סגירה"
 
 #: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
 msgstr "מסמכים שלא נשמרו"
 
-#: apostrophe/inline_preview.py:200
+#: apostrophe/inline_preview.py:201
 msgid "Formula looks incorrect:"
 msgstr "הנוסחה נראית שגויה:"
 
-#: apostrophe/inline_preview.py:239
+#: apostrophe/inline_preview.py:241
 msgid "No matching footnote found"
 msgstr "לא נמצאה הערת שוליים מתאימה"
 
-#: apostrophe/inline_preview.py:259
+#: apostrophe/inline_preview.py:261
 msgid "noun"
 msgstr "שם עצם"
 
-#: apostrophe/inline_preview.py:261
+#: apostrophe/inline_preview.py:263
 msgid "verb"
 msgstr "פועל"
 
-#: apostrophe/inline_preview.py:263
+#: apostrophe/inline_preview.py:265
 msgid "adjective"
 msgstr "שם תואר"
 
-#: apostrophe/inline_preview.py:265
+#: apostrophe/inline_preview.py:267
 msgid "adverb"
 msgstr "תואר הפועל"
 
-#: apostrophe/main_window.py:327
+#. Hemingway Toast
+#: apostrophe/main_window.py:130
+msgid "Text can't be deleted while on Hemingway mode"
+msgstr "טקסט לא יכול להימחק כשנמצאים במצב המינגווי"
+
+#: apostrophe/main_window.py:133
+msgid "Tell me more"
+msgstr "לספר לי עוד"
+
+#: apostrophe/main_window.py:386
 msgid "Save your File"
 msgstr "שמירת הקובץ שלך"
 
-#: apostrophe/main_window.py:413
+#: apostrophe/main_window.py:447
 msgid "Markdown Files"
 msgstr "קובצי Markdown"
 
-#: apostrophe/main_window.py:417
+#: apostrophe/main_window.py:451
 msgid "Plain Text Files"
 msgstr "קובצי טקסט פשוט"
 
-#: apostrophe/main_window.py:420
+#: apostrophe/main_window.py:454
 msgid "Open a .md file"
 msgstr "פתיחת קובץ ‎.md"
 
-#: apostrophe/main_window.py:499
+#: apostrophe/main_window.py:525
+#| msgctxt "shortcut window"
+#| msgid "Save as"
+msgid "Save changes?"
+msgstr "שמירה השינויים?"
+
+#: apostrophe/main_window.py:526
 #, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr "לשמור את השינויים למסמך „%s” לפני הסגירה?"
+#| msgid "If you don’t save, all your changes will be permanently lost."
+msgid ""
+"“%s” contains unsaved changes. If you don’t save, all your changes will be "
+"permanently lost."
+msgstr "‏„%s” מכיל שינויים שלא נשמור. ללא שמירה, כל השינויים יאבדו לצמיתות."
 
-#: apostrophe/main_window.py:504
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "ללא שמירה, כל השינויים יאבדו לצמיתות."
+#: apostrophe/main_window.py:532
+msgid "Discard"
+msgstr "השלכה"
 
-#: apostrophe/main_window.py:507
-msgid "Close without saving"
-msgstr "לסגור בלי לשמור"
-
-#: apostrophe/main_window.py:510
-msgid "Save now"
-msgstr "לשמור כעת"
-
-#: apostrophe/main_window.py:685
+#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
 msgid "New File"
 msgstr "קובץ חדש"
 
-#: apostrophe/preview_layout_switcher.py:38
+#: apostrophe/preview_layout_switcher.py:40
 msgid "Full-Width"
 msgstr "רוחב מלא"
 
-#: apostrophe/preview_layout_switcher.py:40
+#: apostrophe/preview_layout_switcher.py:42
 msgid "Half-Width"
 msgstr "חצי רוחב"
 
-#: apostrophe/preview_layout_switcher.py:42
+#: apostrophe/preview_layout_switcher.py:44
 msgid "Half-Height"
 msgstr "חצי גובה"
 
-#: apostrophe/preview_layout_switcher.py:44
+#: apostrophe/preview_layout_switcher.py:46
 msgid "Windowed"
 msgstr "בחלון"
 
-#: apostrophe/stats_handler.py:75
+#: apostrophe/stats_handler.py:97 apostrophe/stats_handler.py:100
+#: apostrophe/stats_handler.py:103 apostrophe/stats_handler.py:106
+#| msgid "{:n} Word"
+#| msgid_plural "{:n} Words"
+msgid "{:n} of "
+msgstr "‏{:n} מתוך"
+
+#: apostrophe/stats_handler.py:98
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "תו אחד"
@@ -709,7 +749,7 @@ msgstr[1] "‫{:n} תווים"
 msgstr[2] "‫{:n} תווים"
 msgstr[3] "‫{:n} תווים"
 
-#: apostrophe/stats_handler.py:77
+#: apostrophe/stats_handler.py:101
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "מילה אחת"
@@ -717,7 +757,7 @@ msgstr[1] "‫{:n} מילים"
 msgstr[2] "‫{:n} מילים"
 msgstr[3] "‫{:n} מילים"
 
-#: apostrophe/stats_handler.py:79
+#: apostrophe/stats_handler.py:104
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "משפט אחד"
@@ -725,7 +765,7 @@ msgstr[1] "‫{:n} משפטים"
 msgstr[2] "‫{:n} משפטים"
 msgstr[3] "‫{:n} משפטים"
 
-#: apostrophe/stats_handler.py:81
+#: apostrophe/stats_handler.py:107
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "פסקה אחת"
@@ -733,14 +773,15 @@ msgstr[1] "‫{:n} פסקאות"
 msgstr[2] "‫{:n} פסקאות"
 msgstr[3] "‫{:n} פסקאות"
 
-#: apostrophe/stats_handler.py:83
+#: apostrophe/stats_handler.py:109
+#| msgid "{:d}:{:02d}:{:02d} Read Time"
+msgid "{:d}:{:02d}:{:02d} of "
+msgstr "מתוך {:d}:{:02d}:{:02d}"
+
+#: apostrophe/stats_handler.py:110
+#, fuzzy
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "זמן הקריאה {:d}:{:02d}:{:02d}"
-
-#: apostrophe/text_view_drag_drop_handler.py:75
-#: apostrophe/text_view_drag_drop_handler.py:77
-msgid "web page"
-msgstr "דף אינטרנט"
 
 #: apostrophe/text_view_format_inserter.py:14
 msgid "italic text"
@@ -761,6 +802,44 @@ msgstr "פריט"
 #: apostrophe/text_view_format_inserter.py:98
 msgid "Header"
 msgstr "כותרת"
+
+#: apostrophe/text_view.py:169 apostrophe/text_view.py:171
+msgid "web page"
+msgstr "דף אינטרנט"
+
+#~ msgid "Apostrophe website"
+#~ msgstr "אתר אפוסטרוף"
+
+#~ msgid "Paypal"
+#~ msgstr "פייפאל"
+
+#~ msgid "Help to translate:"
+#~ msgstr "עזרה בתרגום:"
+
+#~ msgid "Damned Lies"
+#~ msgstr "שקרים ארורים"
+
+#~ msgid "CSS File"
+#~ msgstr "קובץ CSS"
+
+#~ msgid "Select CSS file"
+#~ msgstr "בחירת קובץ CSS"
+
+#~ msgid "Save as…"
+#~ msgstr "שמירה בשם…"
+
+#~ msgid "New Window"
+#~ msgstr "חלון חדש"
+
+#, python-format
+#~ msgid "Save changes to document “%s” before closing?"
+#~ msgstr "לשמור את השינויים למסמך „%s” לפני הסגירה?"
+
+#~ msgid "Close without saving"
+#~ msgstr "לסגור בלי לשמור"
+
+#~ msgid "Save now"
+#~ msgstr "לשמור כעת"
 
 #~ msgid "An elegant, distraction-free markdown editor"
 #~ msgstr "עורך Markdown אלגנטי ונקי מהפרעות"
