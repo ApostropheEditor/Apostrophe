@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-14 15:40+0000\n"
-"PO-Revision-Date: 2022-09-15 00:40+0200\n"
+"POT-Creation-Date: 2022-09-18 12:23+0000\n"
+"PO-Revision-Date: 2022-09-18 23:52+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -730,44 +730,55 @@ msgstr "Pola širine"
 msgid "Windowed"
 msgstr "Zasebni prozori"
 
-#: apostrophe/stats_handler.py:97 apostrophe/stats_handler.py:100
-#: apostrophe/stats_handler.py:103 apostrophe/stats_handler.py:106
-msgid "{:n} of "
-msgstr "{:n} od "
-
 #: apostrophe/stats_handler.py:98
+msgid "{:n} of {:n} Characters"
+msgstr "{:n} od {:n} znaka"
+
+#: apostrophe/stats_handler.py:100
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "{:n} znak"
 msgstr[1] "{:n} znaka"
 msgstr[2] "{:n} znakova"
 
-#: apostrophe/stats_handler.py:101
+#: apostrophe/stats_handler.py:103
+msgid "{:n} of {:n} Words"
+msgstr "{:n} od {:n} riječi"
+
+#: apostrophe/stats_handler.py:105
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "{:n} riječ"
 msgstr[1] "{:n} riječi"
 msgstr[2] "{:n} riječi"
 
-#: apostrophe/stats_handler.py:104
+#: apostrophe/stats_handler.py:108
+msgid "{:n} of {:n} Sentences"
+msgstr "{:n} od {:n} rečenica"
+
+#: apostrophe/stats_handler.py:110
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "{:n} rečenica"
 msgstr[1] "{:n} rečenice"
 msgstr[2] "{:n} rečenica"
 
-#: apostrophe/stats_handler.py:107
+#: apostrophe/stats_handler.py:113
+msgid "{:n} of {:n} Paragraphs"
+msgstr "{:n} od {:n} odlomaka"
+
+#: apostrophe/stats_handler.py:115
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "{:n} odlomak"
 msgstr[1] "{:n} odlomka"
 msgstr[2] "{:n} odlomka"
 
-#: apostrophe/stats_handler.py:109
-msgid "{:d}:{:02d}:{:02d} of "
-msgstr "{:d}:{:02d}:{:02d} od "
+#: apostrophe/stats_handler.py:118
+msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} od {:d}:{:02d}:{:02d} vrijeme čitanja"
 
-#: apostrophe/stats_handler.py:110
+#: apostrophe/stats_handler.py:120
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} vrijeme čitanja"
 
@@ -794,6 +805,12 @@ msgstr "Zaglavlje"
 #: apostrophe/text_view.py:169 apostrophe/text_view.py:171
 msgid "web page"
 msgstr "web stranica"
+
+#~ msgid "{:n} of "
+#~ msgstr "{:n} od "
+
+#~ msgid "{:d}:{:02d}:{:02d} of "
+#~ msgstr "{:d}:{:02d}:{:02d} od "
 
 #~ msgid "Apostrophe website"
 #~ msgstr "Apostrof web stranica"
