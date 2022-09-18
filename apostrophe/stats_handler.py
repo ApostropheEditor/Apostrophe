@@ -94,20 +94,30 @@ class StatsHandler:
 
     def get_text_for_stat(self, stat):
         if stat == self.CHARACTERS:
-            selection_string = _("{:n} of ").format(self.selected_characters) if self.text_view.get_buffer().get_has_selection() else ""
-            return selection_string + ngettext("{:n} Character", "{:n} Characters", self.characters).format(self.characters)
+            if self.text_view.get_buffer().get_has_selection():
+                return _("{:n} of {:n} Characters").format(self.selected_characters, self.characters)
+            else:
+                return ngettext("{:n} Character", "{:n} Characters", self.characters).format(self.characters)
         elif stat == self.WORDS:
-            selection_string = _("{:n} of ").format(self.selected_words) if self.text_view.get_buffer().get_has_selection() else ""
-            return selection_string + ngettext("{:n} Word", "{:n} Words", self.words).format(self.words)
+            if self.text_view.get_buffer().get_has_selection():
+                return _("{:n} of {:n} Words").format(self.selected_words, self.words)
+            else:
+                return ngettext("{:n} Word", "{:n} Words", self.words).format(self.words)
         elif stat == self.SENTENCES:
-            selection_string = _("{:n} of ").format(self.selected_sentences) if self.text_view.get_buffer().get_has_selection() else ""
-            return selection_string + ngettext("{:n} Sentence", "{:n} Sentences", self.sentences).format(self.sentences)
+            if self.text_view.get_buffer().get_has_selection():
+                return _("{:n} of {:n} Sentences").format(self.selected_sentences, self.sentences)
+            else:
+                return ngettext("{:n} Sentence", "{:n} Sentences", self.sentences).format(self.sentences)
         elif stat == self.PARAGRAPHS:
-            selection_string = _("{:n} of ").format(self.selected_paragraphs) if self.text_view.get_buffer().get_has_selection() else ""
-            return selection_string + ngettext("{:n} Paragraph", "{:n} Paragraphs", self.paragraphs).format(self.paragraphs)
+            if self.text_view.get_buffer().get_has_selection():
+                return _("{:n} of {:n} Paragraphs").format(self.selected_paragraphs, self.paragraphs)
+            else:
+                return ngettext("{:n} Paragraph", "{:n} Paragraphs", self.paragraphs).format(self.paragraphs)
         elif stat == self.READ_TIME:
-            selection_string = _("{:d}:{:02d}:{:02d} of ").format(*self.selected_read_time) if self.text_view.get_buffer().get_has_selection() else ""
-            return selection_string + _("{:d}:{:02d}:{:02d} Read Time").format(*self.read_time)
+            if self.text_view.get_buffer().get_has_selection():
+                return _("{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time").format(*self.selected_read_time, *self.read_time)
+            else:
+                return _("{:d}:{:02d}:{:02d} Read Time").format(*self.read_time)
         else:
             raise ValueError("Unknown stat {}".format(stat))
 
