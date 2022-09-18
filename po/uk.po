@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-14 15:40+0000\n"
-"PO-Revision-Date: 2022-09-15 09:27+0300\n"
+"POT-Creation-Date: 2022-09-18 12:23+0000\n"
+"PO-Revision-Date: 2022-09-18 21:01+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -116,7 +116,6 @@ msgid "Whether the user can delete text or not."
 msgstr "Визначає, чи може користувач вилучати текст.."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
-#| msgid "Hemingway Mode"
 msgid "Hemingway Toast Count"
 msgstr "Кількість тостів Гемінґвея"
 
@@ -220,12 +219,12 @@ msgid ""
 "facing the task on hand with a different mindset.\n"
 "  "
 msgstr ""
-"Режим Гемінґвея відтворює роботу на друкарській машинці, не дозволяючи вам"
-" вилучати текст або виконувати будь-яке редагування. \n"
+"Режим Гемінґвея відтворює роботу на друкарській машинці, не дозволяючи вам "
+"вилучати текст або виконувати будь-яке редагування. \n"
 "\n"
-"Можливість рухатися лише вперед може дратувати, але це цікава вправа для"
-" удосконалення ваших навичок друку, концентрації та роботи над завданням із"
-" іншим настроєм.\n"
+"Можливість рухатися лише вперед може дратувати, але це цікава вправа для "
+"удосконалення ваших навичок друку, концентрації та роботи над завданням із "
+"іншим настроєм.\n"
 "  "
 
 #: data/ui/AboutHemingway.ui:13
@@ -322,52 +321,42 @@ msgid "Find"
 msgstr "Знайти"
 
 #: data/ui/Headerbar.ui:74
-#| msgid "Hemingway Mode"
 msgid "_Hemingway Mode"
 msgstr "Режим _Гемінґвея"
 
 #: data/ui/Headerbar.ui:78
-#| msgid "Focus Mode"
 msgid "_Focus Mode"
 msgstr "Режим з_осередженості"
 
 #: data/ui/Headerbar.ui:84
-#| msgid "Find and Replace"
 msgid "Find and _Replace"
 msgstr "Знайти й за_мінити"
 
 #: data/ui/Headerbar.ui:90
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Налаштування"
 
 #: data/ui/Headerbar.ui:96
-#| msgid "Open Tutorial"
 msgid "Open _Tutorial"
 msgstr "Відкрити під_ручник"
 
 #: data/ui/Headerbar.ui:101
-#| msgid "Keyboard Shortcuts"
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #: data/ui/Headerbar.ui:105
-#| msgid "About Apostrophe"
 msgid "_About Apostrophe"
 msgstr "_Про «Апостроф»"
 
 #: data/ui/Headerbar.ui:116
-#| msgid "Save As…"
 msgid "_Save As..."
 msgstr "Зберегти _як…"
 
 #: data/ui/Headerbar.ui:139
-#| msgid "Advanced Export…"
 msgid "Advanced _Export…"
 msgstr "Розширене _експортування…"
 
 #: data/ui/Headerbar.ui:145
-#| msgid "Copy HTML"
 msgid "_Copy HTML"
 msgstr "_Копіювати HTML"
 
@@ -615,18 +604,14 @@ msgid "Show Statistics"
 msgstr "Показати статистику"
 
 #: data/ui/Window.ui:59
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "0 Words"
 msgstr "0 слів"
 
 #: apostrophe/application.py:234
-#| msgid "Donations:"
 msgid "Donate"
 msgstr "Підтримати фінансово"
 
 #: apostrophe/application.py:235
-#| msgid "Donations:"
 msgid "Translations"
 msgstr "Переклади"
 
@@ -716,20 +701,17 @@ msgid "Open a .md file"
 msgstr "Відкрити файл .md"
 
 #: apostrophe/main_window.py:525
-#| msgctxt "shortcut window"
-#| msgid "Save as"
 msgid "Save changes?"
 msgstr "Зберегти зміни?"
 
 #: apostrophe/main_window.py:526
 #, python-format
-#| msgid "If you don’t save, all your changes will be permanently lost."
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
 "permanently lost."
 msgstr ""
-"У «%s» є незбережені зміни. Якщо ви їх не збережете, всі зміни будуть"
-" остаточно втрачені."
+"У «%s» є незбережені зміни. Якщо ви їх не збережете, всі зміни будуть "
+"остаточно втрачені."
 
 #: apostrophe/main_window.py:532
 msgid "Discard"
@@ -755,14 +737,13 @@ msgstr "Пів висоти"
 msgid "Windowed"
 msgstr "У вікні"
 
-#: apostrophe/stats_handler.py:97 apostrophe/stats_handler.py:100
-#: apostrophe/stats_handler.py:103 apostrophe/stats_handler.py:106
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
-msgid "{:n} of "
-msgstr "{:n} з "
-
 #: apostrophe/stats_handler.py:98
+#| msgid "{:n} Character"
+#| msgid_plural "{:n} Characters"
+msgid "{:n} of {:n} Characters"
+msgstr "{:n} з {:n} символів"
+
+#: apostrophe/stats_handler.py:100
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "{:n} символ"
@@ -770,7 +751,13 @@ msgstr[1] "{:n} символи"
 msgstr[2] "{:n} символів"
 msgstr[3] "{:n} символ"
 
-#: apostrophe/stats_handler.py:101
+#: apostrophe/stats_handler.py:103
+#| msgid "{:n} Word"
+#| msgid_plural "{:n} Words"
+msgid "{:n} of {:n} Words"
+msgstr "{:n} з {:n} слів"
+
+#: apostrophe/stats_handler.py:105
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "{:n} слово"
@@ -778,7 +765,13 @@ msgstr[1] "{:n} слова"
 msgstr[2] "{:n} слів"
 msgstr[3] "{:n} слово"
 
-#: apostrophe/stats_handler.py:104
+#: apostrophe/stats_handler.py:108
+#| msgid "{:n} Sentence"
+#| msgid_plural "{:n} Sentences"
+msgid "{:n} of {:n} Sentences"
+msgstr "{:n} з {:n} речень"
+
+#: apostrophe/stats_handler.py:110
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "{:n} речення"
@@ -786,7 +779,13 @@ msgstr[1] "{:n} речення"
 msgstr[2] "{:n} речень"
 msgstr[3] "{:n} речення"
 
-#: apostrophe/stats_handler.py:107
+#: apostrophe/stats_handler.py:113
+#| msgid "{:n} Paragraph"
+#| msgid_plural "{:n} Paragraphs"
+msgid "{:n} of {:n} Paragraphs"
+msgstr "{:n} з {:n} абзаців"
+
+#: apostrophe/stats_handler.py:115
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "{:n} абзац"
@@ -794,12 +793,12 @@ msgstr[1] "{:n} абзаци"
 msgstr[2] "{:n} абзаців"
 msgstr[3] "{:n} абзац"
 
-#: apostrophe/stats_handler.py:109
+#: apostrophe/stats_handler.py:118
 #| msgid "{:d}:{:02d}:{:02d} Read Time"
-msgid "{:d}:{:02d}:{:02d} of "
-msgstr "{:d}:{:02d}:{:02d} з "
+msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} з часу читання у {:d}:{:02d}:{:02d}"
 
-#: apostrophe/stats_handler.py:110
+#: apostrophe/stats_handler.py:120
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} часу читання"
 
@@ -826,6 +825,15 @@ msgstr "Верхній колонтитул"
 #: apostrophe/text_view.py:169 apostrophe/text_view.py:171
 msgid "web page"
 msgstr "вебсторінка"
+
+#~| msgid "{:n} Word"
+#~| msgid_plural "{:n} Words"
+#~ msgid "{:n} of "
+#~ msgstr "{:n} з "
+
+#~| msgid "{:d}:{:02d}:{:02d} Read Time"
+#~ msgid "{:d}:{:02d}:{:02d} of "
+#~ msgstr "{:d}:{:02d}:{:02d} з "
 
 #~ msgid "Apostrophe website"
 #~ msgstr "Сайт «Апострофа»"
