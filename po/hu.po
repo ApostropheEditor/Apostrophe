@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-14 15:40+0000\n"
-"PO-Revision-Date: 2022-09-18 07:52+0200\n"
+"POT-Creation-Date: 2022-09-18 12:23+0000\n"
+"PO-Revision-Date: 2022-09-18 16:31+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -113,7 +113,6 @@ msgid "Whether the user can delete text or not."
 msgstr "A felhasználó törölhessen-e szöveget vagy sem."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
-#| msgid "Hemingway Mode"
 msgid "Hemingway Toast Count"
 msgstr "Hemingway-koccintás darabszáma"
 
@@ -318,52 +317,42 @@ msgid "Find"
 msgstr "Keresés"
 
 #: data/ui/Headerbar.ui:74
-#| msgid "Hemingway Mode"
 msgid "_Hemingway Mode"
 msgstr "_Hemingway mód"
 
 #: data/ui/Headerbar.ui:78
-#| msgid "Focus Mode"
 msgid "_Focus Mode"
 msgstr "_Fókusz mód"
 
 #: data/ui/Headerbar.ui:84
-#| msgid "Find and Replace"
 msgid "Find and _Replace"
 msgstr "Keresés és _csere"
 
 #: data/ui/Headerbar.ui:90
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Beállítások"
 
 #: data/ui/Headerbar.ui:96
-#| msgid "Open Tutorial"
 msgid "Open _Tutorial"
 msgstr "_Oktatás megnyitása"
 
 #: data/ui/Headerbar.ui:101
-#| msgid "Keyboard Shortcuts"
 msgid "_Keyboard Shortcuts"
 msgstr "_Gyorsbillenytűk"
 
 #: data/ui/Headerbar.ui:105
-#| msgid "About Apostrophe"
 msgid "_About Apostrophe"
 msgstr "Az Apostrophe _névjegye"
 
 #: data/ui/Headerbar.ui:116
-#| msgid "Save As…"
 msgid "_Save As..."
 msgstr "_Mentés másként…"
 
 #: data/ui/Headerbar.ui:139
-#| msgid "Advanced Export…"
 msgid "Advanced _Export…"
 msgstr "Speciális _exportálás…"
 
 #: data/ui/Headerbar.ui:145
-#| msgid "Copy HTML"
 msgid "_Copy HTML"
 msgstr "HTML _másolása"
 
@@ -612,18 +601,14 @@ msgid "Show Statistics"
 msgstr "Statisztikák megjelenítése"
 
 #: data/ui/Window.ui:59
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "0 Words"
 msgstr "0 szó"
 
 #: apostrophe/application.py:234
-#| msgid "Donations:"
 msgid "Donate"
 msgstr "Adományozás"
 
 #: apostrophe/application.py:235
-#| msgid "Donations:"
 msgid "Translations"
 msgstr "Fordítások"
 
@@ -713,20 +698,17 @@ msgid "Open a .md file"
 msgstr "Egy .md fájl megnyitása"
 
 #: apostrophe/main_window.py:525
-#| msgctxt "shortcut window"
-#| msgid "Save as"
 msgid "Save changes?"
 msgstr "Menti a változtatásokat?"
 
 #: apostrophe/main_window.py:526
 #, python-format
-#| msgid "If you don’t save, all your changes will be permanently lost."
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
 "permanently lost."
 msgstr ""
-"A(z) „%s” mentetlen változtatásokat tartalmaz. Ha nem menti, akkor minden"
-" változtatás véglegesen elvész."
+"A(z) „%s” mentetlen változtatásokat tartalmaz. Ha nem menti, akkor minden "
+"változtatás véglegesen elvész."
 
 #: apostrophe/main_window.py:532
 msgid "Discard"
@@ -752,43 +734,60 @@ msgstr "Félhosszú"
 msgid "Windowed"
 msgstr "Ablak mód"
 
-#: apostrophe/stats_handler.py:97 apostrophe/stats_handler.py:100
-#: apostrophe/stats_handler.py:103 apostrophe/stats_handler.py:106
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
-msgid "{:n} of "
-msgstr "{:n} / "
-
 #: apostrophe/stats_handler.py:98
+#| msgid "{:n} Character"
+#| msgid_plural "{:n} Characters"
+msgid "{:n} of {:n} Characters"
+msgstr "{:n} / {:n} karakter"
+
+#: apostrophe/stats_handler.py:100
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "{:n} karakter"
 msgstr[1] "{:n} karakter"
 
-#: apostrophe/stats_handler.py:101
+#: apostrophe/stats_handler.py:103
+#| msgid "{:n} Word"
+#| msgid_plural "{:n} Words"
+msgid "{:n} of {:n} Words"
+msgstr "{:n} / {:n} szó"
+
+#: apostrophe/stats_handler.py:105
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "{:n} szó"
 msgstr[1] "{:n} szó"
 
-#: apostrophe/stats_handler.py:104
+#: apostrophe/stats_handler.py:108
+#| msgid "{:n} Sentence"
+#| msgid_plural "{:n} Sentences"
+msgid "{:n} of {:n} Sentences"
+msgstr "{:n} / {:n} mondat"
+
+#: apostrophe/stats_handler.py:110
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "{:n} mondat"
 msgstr[1] "{:n} mondat"
 
-#: apostrophe/stats_handler.py:107
+#: apostrophe/stats_handler.py:113
+#| msgid "{:n} Paragraph"
+#| msgid_plural "{:n} Paragraphs"
+msgid "{:n} of {:n} Paragraphs"
+msgstr "{:n} / {:n} bekezdés"
+
+#: apostrophe/stats_handler.py:115
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "{:n} bekezdés"
 msgstr[1] "{:n} bekezdés"
 
-#: apostrophe/stats_handler.py:109
+#: apostrophe/stats_handler.py:118
 #| msgid "{:d}:{:02d}:{:02d} Read Time"
-msgid "{:d}:{:02d}:{:02d} of "
-msgstr "{:d}:{:02d}:{:02d} / "
+msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} / {:d}:{:02d}:{:02d} olvasási idő"
 
-#: apostrophe/stats_handler.py:110
+#: apostrophe/stats_handler.py:120
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} olvasási idő"
 
