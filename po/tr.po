@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-18 05:56+0000\n"
-"PO-Revision-Date: 2022-09-18 14:02+0300\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"POT-Creation-Date: 2022-09-18 12:23+0000\n"
+"PO-Revision-Date: 2022-09-19 10:06+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
 msgid "Autohide Headerbar"
-msgstr "Üstbilgi çubuğunu kendiliğinden gizle"
+msgstr "Üst bilgi çubuğunu kendiliğinden gizle"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:58
 msgid "Hide the header and status bars when typing."
@@ -121,7 +121,7 @@ msgstr "Hemingway Bildirim Sayısı"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
 msgid "Number of times the Hemingway Toast has been shown"
-msgstr "Hemingway Bildirimi'nin gösterilme sayısı"
+msgstr "Hemingway Bildirimi’nin gösterilme sayısı"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
 msgid "Preview mode"
@@ -153,7 +153,8 @@ msgstr "Markdown’ın tarzını düzenleyin"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:8
 msgid "Focus on your writing with a clean, distraction-free markdown editor."
-msgstr "Temiz, dikkat dağıtmayan bir markdown editörü ile yazınıza odaklanın."
+msgstr ""
+"Temiz, dikkat dağıtmayan bir markdown düzenleyiciyle yazınıza odaklanın."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:9
 msgid "Features:"
@@ -219,11 +220,11 @@ msgid ""
 "facing the task on hand with a different mindset.\n"
 "  "
 msgstr ""
-"Hemingway kipi, daktiloda yazma deneyimini taklit eder, herhangi bir metni "
+"Hemingway kipi, daktiloda yazma deneyimine öykünür, herhangi bir metni "
 "silmenize veya düzenlemenize izin vermez.\n"
 "\n"
-"Yalnızca ilerlemek sinir bozucu olabilir, ancak yazma becerilerinizi "
-"geliştirmek, odaklanmak veya eldeki görevle farklı bir anlayışla yüzleşmek "
+"Yalnızca ilerlemek sinir bozucu olabilir; ancak yazma becerilerinizi "
+"geliştirmek, odaklanmak veya eldeki görevle başka bir anlayışla yüzleşmek "
 "için ilginç bir alıştırma olabilir."
 
 #: data/ui/AboutHemingway.ui:13
@@ -251,8 +252,8 @@ msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
-"Stil sayfaları ve meta bilgiler gibi şeyleri eklemek için bir üst bilgi ve "
-"alt bilgi kullanın"
+"Stil sayfası ve meta bilgi gibi şeyleri eklemek için üst bilgi ve alt bilgi "
+"kullan"
 
 #: data/ui/Export.ui:133
 msgid "Table of Contents"
@@ -260,7 +261,7 @@ msgstr "İçindekiler"
 
 #: data/ui/Export.ui:147
 msgid "Number Sections"
-msgstr "Kısımları Numaralandır"
+msgstr "Bölümleri Numaralandır"
 
 #: data/ui/Export.ui:165 data/ui/Export.ui:170
 msgid "Page Size"
@@ -284,7 +285,7 @@ msgstr "Söz Dizimi Vurgulaması"
 
 #: data/ui/Export.ui:218
 msgid "Highlight style"
-msgstr "Vurgu stili"
+msgstr "Vurgu biçimi"
 
 #: data/ui/Export.ui:232
 msgid "Presentation"
@@ -357,7 +358,7 @@ msgstr "Gelişmiş _Dışa Aktarma…"
 
 #: data/ui/Headerbar.ui:145
 msgid "_Copy HTML"
-msgstr "HTML'yi _Kopyala"
+msgstr "HTML’yi _Kopyala"
 
 #: data/ui/Preferences.ui:28
 msgid "Autohide headerbar"
@@ -737,36 +738,47 @@ msgstr "Yarı Yükseklik"
 msgid "Windowed"
 msgstr "Pencereli"
 
-#: apostrophe/stats_handler.py:97 apostrophe/stats_handler.py:100
-#: apostrophe/stats_handler.py:103 apostrophe/stats_handler.py:106
-msgid "{:n} of "
-msgstr "{:n} / "
-
 #: apostrophe/stats_handler.py:98
+msgid "{:n} of {:n} Characters"
+msgstr "{:n} / {:n} Karakter"
+
+#: apostrophe/stats_handler.py:100
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "{:n} Karakter"
 
-#: apostrophe/stats_handler.py:101
+#: apostrophe/stats_handler.py:103
+msgid "{:n} of {:n} Words"
+msgstr "{:n} / {:n} Sözcük"
+
+#: apostrophe/stats_handler.py:105
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "{:n} Sözcük"
 
-#: apostrophe/stats_handler.py:104
+#: apostrophe/stats_handler.py:108
+msgid "{:n} of {:n} Sentences"
+msgstr "{:n} / {:n} Tümce"
+
+#: apostrophe/stats_handler.py:110
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "{:n} Tümce"
 
-#: apostrophe/stats_handler.py:107
+#: apostrophe/stats_handler.py:113
+msgid "{:n} of {:n} Paragraphs"
+msgstr "{:n} / {:n} Paragraf"
+
+#: apostrophe/stats_handler.py:115
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "{:n} Paragraf"
 
-#: apostrophe/stats_handler.py:109
-msgid "{:d}:{:02d}:{:02d} of "
-msgstr "{:d}:{:02d}:{:02d} / "
+#: apostrophe/stats_handler.py:118
+msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} / {:d}:{:02d}:{:02d} Okuma Süresi"
 
-#: apostrophe/stats_handler.py:110
+#: apostrophe/stats_handler.py:120
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} Okuma Süresi"
 
@@ -793,3 +805,9 @@ msgstr "Başlık"
 #: apostrophe/text_view.py:169 apostrophe/text_view.py:171
 msgid "web page"
 msgstr "web sayfası"
+
+#~ msgid "{:n} of "
+#~ msgstr "{:n} / "
+
+#~ msgid "{:d}:{:02d}:{:02d} of "
+#~ msgstr "{:d}:{:02d}:{:02d} / "
