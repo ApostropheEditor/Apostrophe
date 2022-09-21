@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-14 15:40+0000\n"
-"PO-Revision-Date: 2022-09-18 02:30+0300\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2022-09-18 12:23+0000\n"
+"PO-Revision-Date: 2022-09-21 11:31+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3)\n"
-"X-Generator: Gtranslator 40.0\n"
+"2 : 3);\n"
+"X-Generator: Poedit 3.1\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -112,7 +112,6 @@ msgid "Whether the user can delete text or not."
 msgstr "האם המשתמש יוכל למחוק טקסט או לא."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
-#| msgid "Hemingway Mode"
 msgid "Hemingway Toast Count"
 msgstr "Hemingway Toast Count"
 
@@ -209,6 +208,13 @@ msgid ""
 "facing the task on hand with a different mindset.\n"
 "  "
 msgstr ""
+"מצב המינגווי מחקה את חוויית הכתיבה על מכונת כתיבה, מבלי אפשרות למחוק טקסט "
+"או לבצע עריכה מכל סוג.\n"
+"\n"
+"אפשרות להתקדם קדימה בלבד יכולה להיות מתסכלת אך זה גם תרגול מעניין לשיפור "
+"מיומנויות הכתיבה שלך, שיפור ההתמקדות או התמודדות עם המשימה הנדרשת בראש "
+"אחר.\n"
+" "
 
 #: data/ui/AboutHemingway.ui:13
 msgid "_Close"
@@ -304,52 +310,42 @@ msgid "Find"
 msgstr "איתור"
 
 #: data/ui/Headerbar.ui:74
-#| msgid "Hemingway Mode"
 msgid "_Hemingway Mode"
 msgstr "מצב ה_מינגווי"
 
 #: data/ui/Headerbar.ui:78
-#| msgid "Focus Mode"
 msgid "_Focus Mode"
 msgstr "מצב _מיקוד"
 
 #: data/ui/Headerbar.ui:84
-#| msgid "Find and Replace"
 msgid "Find and _Replace"
 msgstr "חיפוש וה_חלפה"
 
 #: data/ui/Headerbar.ui:90
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_העדפות"
 
 #: data/ui/Headerbar.ui:96
-#| msgid "Open Tutorial"
 msgid "Open _Tutorial"
 msgstr "פתיחת _מדריך"
 
 #: data/ui/Headerbar.ui:101
-#| msgid "Keyboard Shortcuts"
 msgid "_Keyboard Shortcuts"
 msgstr "קיצורי _מקלדת"
 
 #: data/ui/Headerbar.ui:105
-#| msgid "About Apostrophe"
 msgid "_About Apostrophe"
 msgstr "על _אפוסטרוף"
 
 #: data/ui/Headerbar.ui:116
-#| msgid "Save As…"
 msgid "_Save As..."
 msgstr "שמירה _בשם…"
 
 #: data/ui/Headerbar.ui:139
-#| msgid "Advanced Export…"
 msgid "Advanced _Export…"
 msgstr "ייצוא _מתקדם…"
 
 #: data/ui/Headerbar.ui:145
-#| msgid "Copy HTML"
 msgid "_Copy HTML"
 msgstr "הע_תקת HTML"
 
@@ -596,18 +592,14 @@ msgid "Show Statistics"
 msgstr "הצגת סטטיסטיקה"
 
 #: data/ui/Window.ui:59
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "0 Words"
 msgstr "0 מילים"
 
 #: apostrophe/application.py:234
-#| msgid "Donations:"
 msgid "Donate"
 msgstr "תרומה"
 
 #: apostrophe/application.py:235
-#| msgid "Donations:"
 msgid "Translations"
 msgstr "תרגומים"
 
@@ -697,14 +689,11 @@ msgid "Open a .md file"
 msgstr "פתיחת קובץ ‎.md"
 
 #: apostrophe/main_window.py:525
-#| msgctxt "shortcut window"
-#| msgid "Save as"
 msgid "Save changes?"
 msgstr "שמירה השינויים?"
 
 #: apostrophe/main_window.py:526
 #, python-format
-#| msgid "If you don’t save, all your changes will be permanently lost."
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
 "permanently lost."
@@ -734,14 +723,13 @@ msgstr "חצי גובה"
 msgid "Windowed"
 msgstr "בחלון"
 
-#: apostrophe/stats_handler.py:97 apostrophe/stats_handler.py:100
-#: apostrophe/stats_handler.py:103 apostrophe/stats_handler.py:106
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
-msgid "{:n} of "
-msgstr "‏{:n} מתוך"
-
 #: apostrophe/stats_handler.py:98
+#| msgid "{:n} Character"
+#| msgid_plural "{:n} Characters"
+msgid "{:n} of {:n} Characters"
+msgstr "{:n} מתוך {:n} תווים"
+
+#: apostrophe/stats_handler.py:100
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "תו אחד"
@@ -749,7 +737,13 @@ msgstr[1] "‫{:n} תווים"
 msgstr[2] "‫{:n} תווים"
 msgstr[3] "‫{:n} תווים"
 
-#: apostrophe/stats_handler.py:101
+#: apostrophe/stats_handler.py:103
+#| msgid "{:n} Word"
+#| msgid_plural "{:n} Words"
+msgid "{:n} of {:n} Words"
+msgstr "{:n} מתוך {:n} מילים"
+
+#: apostrophe/stats_handler.py:105
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "מילה אחת"
@@ -757,7 +751,13 @@ msgstr[1] "‫{:n} מילים"
 msgstr[2] "‫{:n} מילים"
 msgstr[3] "‫{:n} מילים"
 
-#: apostrophe/stats_handler.py:104
+#: apostrophe/stats_handler.py:108
+#| msgid "{:n} Sentence"
+#| msgid_plural "{:n} Sentences"
+msgid "{:n} of {:n} Sentences"
+msgstr "{:n} מתוך {:n} משפטים"
+
+#: apostrophe/stats_handler.py:110
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "משפט אחד"
@@ -765,7 +765,13 @@ msgstr[1] "‫{:n} משפטים"
 msgstr[2] "‫{:n} משפטים"
 msgstr[3] "‫{:n} משפטים"
 
-#: apostrophe/stats_handler.py:107
+#: apostrophe/stats_handler.py:113
+#| msgid "{:n} Paragraph"
+#| msgid_plural "{:n} Paragraphs"
+msgid "{:n} of {:n} Paragraphs"
+msgstr "{:n} מתוך {:n} פסקאות"
+
+#: apostrophe/stats_handler.py:115
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "פסקה אחת"
@@ -773,15 +779,13 @@ msgstr[1] "‫{:n} פסקאות"
 msgstr[2] "‫{:n} פסקאות"
 msgstr[3] "‫{:n} פסקאות"
 
-#: apostrophe/stats_handler.py:109
-#| msgid "{:d}:{:02d}:{:02d} Read Time"
-msgid "{:d}:{:02d}:{:02d} of "
-msgstr "מתוך {:d}:{:02d}:{:02d}"
+#: apostrophe/stats_handler.py:118
+msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} מתוך {:d}:{:02d}:{:02d} זמן קריאה"
 
-#: apostrophe/stats_handler.py:110
-#, fuzzy
+#: apostrophe/stats_handler.py:120
 msgid "{:d}:{:02d}:{:02d} Read Time"
-msgstr "זמן הקריאה {:d}:{:02d}:{:02d}"
+msgstr "{:d}:{:02d}:{:02d} זמן קריאה"
 
 #: apostrophe/text_view_format_inserter.py:14
 msgid "italic text"
@@ -806,6 +810,15 @@ msgstr "כותרת"
 #: apostrophe/text_view.py:169 apostrophe/text_view.py:171
 msgid "web page"
 msgstr "דף אינטרנט"
+
+#~| msgid "{:n} Word"
+#~| msgid_plural "{:n} Words"
+#~ msgid "{:n} of "
+#~ msgstr "‏{:n} מתוך"
+
+#~| msgid "{:d}:{:02d}:{:02d} Read Time"
+#~ msgid "{:d}:{:02d}:{:02d} of "
+#~ msgstr "מתוך {:d}:{:02d}:{:02d}"
 
 #~ msgid "Apostrophe website"
 #~ msgstr "אתר אפוסטרוף"
