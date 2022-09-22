@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-18 12:23+0000\n"
-"PO-Revision-Date: 2022-09-18 21:01+0300\n"
+"POT-Creation-Date: 2022-09-22 15:49+0000\n"
+"PO-Revision-Date: 2022-09-22 19:51+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -233,8 +233,8 @@ msgstr "З_акрити"
 
 #: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
 #: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
-#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
-#: apostrophe/main_window.py:531
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -303,12 +303,12 @@ msgstr "Показувати одну позначку пункту за інш�
 msgid "New"
 msgstr "Створити"
 
-#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "Відкрити"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
-#: apostrophe/main_window.py:533
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Зберегти"
 
@@ -607,6 +607,18 @@ msgstr "Показати статистику"
 msgid "0 Words"
 msgstr "0 слів"
 
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "Файл змінено на диску"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "Сторонньою програмою було внесено зміни до файла."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "Від_кинути зміни і перезавантажити"
+
 #: apostrophe/application.py:234
 msgid "Donate"
 msgstr "Підтримати фінансово"
@@ -676,35 +688,35 @@ msgid "adverb"
 msgstr "прислівник"
 
 #. Hemingway Toast
-#: apostrophe/main_window.py:130
+#: apostrophe/main_window.py:131
 msgid "Text can't be deleted while on Hemingway mode"
 msgstr "У режимі Гемінґвея текст не можна вилучати"
 
-#: apostrophe/main_window.py:133
+#: apostrophe/main_window.py:134
 msgid "Tell me more"
 msgstr "Докладніше"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "Зберегти ваш файл"
 
-#: apostrophe/main_window.py:447
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "Файли Markdown"
 
-#: apostrophe/main_window.py:451
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "Звичайні текстові файли"
 
-#: apostrophe/main_window.py:454
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "Відкрити файл .md"
 
-#: apostrophe/main_window.py:525
+#: apostrophe/main_window.py:555
 msgid "Save changes?"
 msgstr "Зберегти зміни?"
 
-#: apostrophe/main_window.py:526
+#: apostrophe/main_window.py:556
 #, python-format
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
@@ -713,11 +725,11 @@ msgstr ""
 "У «%s» є незбережені зміни. Якщо ви їх не збережете, всі зміни будуть "
 "остаточно втрачені."
 
-#: apostrophe/main_window.py:532
+#: apostrophe/main_window.py:562
 msgid "Discard"
 msgstr "Відкинути"
 
-#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "Новий файл"
 
@@ -738,8 +750,6 @@ msgid "Windowed"
 msgstr "У вікні"
 
 #: apostrophe/stats_handler.py:98
-#| msgid "{:n} Character"
-#| msgid_plural "{:n} Characters"
 msgid "{:n} of {:n} Characters"
 msgstr "{:n} з {:n} символів"
 
@@ -752,8 +762,6 @@ msgstr[2] "{:n} символів"
 msgstr[3] "{:n} символ"
 
 #: apostrophe/stats_handler.py:103
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "{:n} of {:n} Words"
 msgstr "{:n} з {:n} слів"
 
@@ -766,8 +774,6 @@ msgstr[2] "{:n} слів"
 msgstr[3] "{:n} слово"
 
 #: apostrophe/stats_handler.py:108
-#| msgid "{:n} Sentence"
-#| msgid_plural "{:n} Sentences"
 msgid "{:n} of {:n} Sentences"
 msgstr "{:n} з {:n} речень"
 
@@ -780,8 +786,6 @@ msgstr[2] "{:n} речень"
 msgstr[3] "{:n} речення"
 
 #: apostrophe/stats_handler.py:113
-#| msgid "{:n} Paragraph"
-#| msgid_plural "{:n} Paragraphs"
 msgid "{:n} of {:n} Paragraphs"
 msgstr "{:n} з {:n} абзаців"
 
@@ -794,7 +798,6 @@ msgstr[2] "{:n} абзаців"
 msgstr[3] "{:n} абзац"
 
 #: apostrophe/stats_handler.py:118
-#| msgid "{:d}:{:02d}:{:02d} Read Time"
 msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} з часу читання у {:d}:{:02d}:{:02d}"
 
