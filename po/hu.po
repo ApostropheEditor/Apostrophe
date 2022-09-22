@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-18 12:23+0000\n"
-"PO-Revision-Date: 2022-09-18 16:31+0200\n"
+"POT-Creation-Date: 2022-09-22 15:49+0000\n"
+"PO-Revision-Date: 2022-09-23 00:03+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -229,8 +229,8 @@ msgstr "_Bezárás"
 
 #: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
 #: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
-#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
-#: apostrophe/main_window.py:531
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -299,12 +299,12 @@ msgstr "Felsorolás elemeinek megjelenítése egymás után a diavetítéskor"
 msgid "New"
 msgstr "Új"
 
-#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "Megnyitás"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
-#: apostrophe/main_window.py:533
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Mentés"
 
@@ -604,6 +604,18 @@ msgstr "Statisztikák megjelenítése"
 msgid "0 Words"
 msgstr "0 szó"
 
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "A fájl megváltozott a lemezen"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "A fájlt egy másik program megváltoztatta."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "Változtatások _elvetése és újratöltés"
+
 #: apostrophe/application.py:234
 msgid "Donate"
 msgstr "Adományozás"
@@ -673,35 +685,35 @@ msgid "adverb"
 msgstr "határozószó"
 
 #. Hemingway Toast
-#: apostrophe/main_window.py:130
+#: apostrophe/main_window.py:131
 msgid "Text can't be deleted while on Hemingway mode"
 msgstr "A szöveg nem törölhető Hemingway módban"
 
-#: apostrophe/main_window.py:133
+#: apostrophe/main_window.py:134
 msgid "Tell me more"
 msgstr "Mutass többet"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "Fájl mentése"
 
-#: apostrophe/main_window.py:447
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "Markdown fájlok"
 
-#: apostrophe/main_window.py:451
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "Egyszerű szöveges fájlok"
 
-#: apostrophe/main_window.py:454
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "Egy .md fájl megnyitása"
 
-#: apostrophe/main_window.py:525
+#: apostrophe/main_window.py:555
 msgid "Save changes?"
 msgstr "Menti a változtatásokat?"
 
-#: apostrophe/main_window.py:526
+#: apostrophe/main_window.py:556
 #, python-format
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
@@ -710,11 +722,11 @@ msgstr ""
 "A(z) „%s” mentetlen változtatásokat tartalmaz. Ha nem menti, akkor minden "
 "változtatás véglegesen elvész."
 
-#: apostrophe/main_window.py:532
+#: apostrophe/main_window.py:562
 msgid "Discard"
 msgstr "Elvetés"
 
-#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "Új fájl"
 
@@ -735,8 +747,6 @@ msgid "Windowed"
 msgstr "Ablak mód"
 
 #: apostrophe/stats_handler.py:98
-#| msgid "{:n} Character"
-#| msgid_plural "{:n} Characters"
 msgid "{:n} of {:n} Characters"
 msgstr "{:n} / {:n} karakter"
 
@@ -747,8 +757,6 @@ msgstr[0] "{:n} karakter"
 msgstr[1] "{:n} karakter"
 
 #: apostrophe/stats_handler.py:103
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "{:n} of {:n} Words"
 msgstr "{:n} / {:n} szó"
 
@@ -759,8 +767,6 @@ msgstr[0] "{:n} szó"
 msgstr[1] "{:n} szó"
 
 #: apostrophe/stats_handler.py:108
-#| msgid "{:n} Sentence"
-#| msgid_plural "{:n} Sentences"
 msgid "{:n} of {:n} Sentences"
 msgstr "{:n} / {:n} mondat"
 
@@ -771,8 +777,6 @@ msgstr[0] "{:n} mondat"
 msgstr[1] "{:n} mondat"
 
 #: apostrophe/stats_handler.py:113
-#| msgid "{:n} Paragraph"
-#| msgid_plural "{:n} Paragraphs"
 msgid "{:n} of {:n} Paragraphs"
 msgstr "{:n} / {:n} bekezdés"
 
@@ -783,7 +787,6 @@ msgstr[0] "{:n} bekezdés"
 msgstr[1] "{:n} bekezdés"
 
 #: apostrophe/stats_handler.py:118
-#| msgid "{:d}:{:02d}:{:02d} Read Time"
 msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} / {:d}:{:02d}:{:02d} olvasási idő"
 
