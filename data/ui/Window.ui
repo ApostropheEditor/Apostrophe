@@ -115,6 +115,43 @@
               </object>
             </child>
             <child>
+              <object class="GtkInfoBar" id="discard_infobar">
+                <property name="message-type">warning</property>
+                <property name="show-close-button">True</property>
+                <property name="revealed">False</property>
+                <signal name="response" handler="dismiss_discard_infobar"/>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel" id="title">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">File Has Changed on Disk</property>
+                        <property name="wrap">True</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="subtitle">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">The file has been changed by another program.</property>
+                        <property name="wrap">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="action">
+                  <object class="GtkButton" id="discard">
+                    <property name="label" translatable="yes">_Discard Changes and Reload</property>
+                    <property name="use-underline">True</property>
+                    <signal name="clicked" handler="reload_file"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="GtkProgressBar" id="save_progressbar">
                 <property name="visible">0</property>
                 <property name="valign">start</property>

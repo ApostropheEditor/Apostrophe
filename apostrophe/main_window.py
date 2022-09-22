@@ -53,6 +53,7 @@ class MainWindow(Adw.ApplicationWindow):
     preview_stack = Gtk.Template.Child()
     toast_overlay = Gtk.Template.Child()
     textview = Gtk.Template.Child()
+    discard_infobar = Gtk.Template.Child()
 
     subtitle = GObject.Property(type=str)
     is_fullscreen = GObject.Property(type=bool, default=False)
@@ -284,6 +285,10 @@ class MainWindow(Adw.ApplicationWindow):
         if self.current.gfile:
             LOGGER.info("saving")
 
+            # cancel any file monitor that is active
+            self.file_monitor.cancel()
+            self.discard_infobar.set_revealed(False)
+
             # We try to encode the file with the given encoding
             # if that doesn't work, we try with UTF-8
             # if that fails as well, we return False
@@ -318,6 +323,7 @@ class MainWindow(Adw.ApplicationWindow):
                         LOGGER.warning(str(error.message))
                         self.did_change = True
                         self.progressbar_fade_out.play()
+                        self._set_file_monitor()
                         helpers.show_error(self, str(error.message))
                         return False
 
@@ -327,11 +333,13 @@ class MainWindow(Adw.ApplicationWindow):
 
                         self.update_headerbar_title()
                         self.did_change = False
+                        self._set_file_monitor()
                         return True
 
                     else:
                         self.progressbar_fade_out.play()
                         self.did_change = True
+                        self._set_file_monitor()
                         return False
 
                 else:
@@ -409,6 +417,7 @@ class MainWindow(Adw.ApplicationWindow):
             LOGGER.warning(str(error.message))
             self.did_change = True
             self.progressbar_fade_out.play()
+            self._set_file_monitor()
             helpers.show_error(self, str(error.message))
             return False
 
@@ -418,9 +427,11 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.update_headerbar_title()
             self.did_change = False
+            self._set_file_monitor()
         else:
             self.progressbar_fade_out.play()
             self.did_change = True
+            self._set_file_monitor()
 
         return success
 
@@ -479,6 +490,25 @@ class MainWindow(Adw.ApplicationWindow):
 
         self.current.gfile.load_contents_async(None,
                                                self._load_contents_cb, None)
+        self._set_file_monitor()
+
+    @Gtk.Template.Callback()
+    def reload_file(self, *args):
+        self.discard_infobar.set_revealed(False)
+        self.load_file(self.current.gfile)
+
+    def _set_file_monitor(self):
+        if self.current.gfile:
+            self.file_monitor = self.current.gfile.monitor_file(Gio.FileMonitorFlags.NONE, None)
+            self.file_monitor.connect("changed", self._on_file_changed)
+
+    @Gtk.Template.Callback()
+    def dismiss_discard_infobar(self, dialog, response):
+        if response == Gtk.ResponseType.CLOSE:
+            self.discard_infobar.set_revealed(False)
+
+    def _on_file_changed(self, file, other_file, event, *args):
+        self.discard_infobar.set_revealed(True)
 
     def _load_contents_cb(self, gfile, result, user_data=None):
         try:
@@ -626,7 +656,8 @@ class MainWindow(Adw.ApplicationWindow):
             self.stats_revealer.queue_resize()
 
     def hide_headerbar_bottombar(self):
-        if self.searchbar.search_mode_enabled:
+        if self.searchbar.search_mode_enabled or\
+           self.discard_infobar.get_revealed():
             return
 
         if self.headerbar.get_reveal_child():
