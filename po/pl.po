@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-18 12:23+0000\n"
-"PO-Revision-Date: 2022-09-18 17:02+0200\n"
+"POT-Creation-Date: 2022-09-22 15:49+0000\n"
+"PO-Revision-Date: 2022-09-25 16:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -230,8 +230,8 @@ msgstr "Za_mknij"
 
 #: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
 #: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
-#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
-#: apostrophe/main_window.py:531
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -300,12 +300,12 @@ msgstr "Pokazuje jeden punkt po drugim w pokazie slajdów"
 msgid "New"
 msgstr "Nowy"
 
-#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "Otwórz"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
-#: apostrophe/main_window.py:533
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Zapisz"
 
@@ -605,6 +605,18 @@ msgstr "Wyświetla statystyki"
 msgid "0 Words"
 msgstr "0 słów"
 
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "Plik na dysku został zmieniony"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "Plik został zmieniony przez inny program."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "_Odrzuć zmiany i wczytaj ponownie"
+
 #: apostrophe/application.py:234
 msgid "Donate"
 msgstr "Przekaż datek"
@@ -674,35 +686,35 @@ msgid "adverb"
 msgstr "przysłówek"
 
 #. Hemingway Toast
-#: apostrophe/main_window.py:130
+#: apostrophe/main_window.py:131
 msgid "Text can't be deleted while on Hemingway mode"
 msgstr "W trybie Hemingwaya nie można usuwać tekstu"
 
-#: apostrophe/main_window.py:133
+#: apostrophe/main_window.py:134
 msgid "Tell me more"
 msgstr "Więcej informacji"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "Zapis pliku"
 
-#: apostrophe/main_window.py:447
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "Pliki Markdown"
 
-#: apostrophe/main_window.py:451
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "Zwykły tekst"
 
-#: apostrophe/main_window.py:454
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "Otwarcie pliku .md"
 
-#: apostrophe/main_window.py:525
+#: apostrophe/main_window.py:555
 msgid "Save changes?"
 msgstr "Zapisać zmiany?"
 
-#: apostrophe/main_window.py:526
+#: apostrophe/main_window.py:556
 #, python-format
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
@@ -711,11 +723,11 @@ msgstr ""
 "Dokument „%s” zawiera niezapisane zmiany. Jeżeli dokument nie zostanie "
 "zapisany, wszystkie zmiany zostaną bezpowrotnie utracone."
 
-#: apostrophe/main_window.py:532
+#: apostrophe/main_window.py:562
 msgid "Discard"
 msgstr "Odrzuć"
 
-#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "Nowy plik"
 
