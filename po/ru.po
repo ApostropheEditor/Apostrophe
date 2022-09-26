@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-19 07:25+0000\n"
+"POT-Creation-Date: 2022-09-22 15:49+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: \n"
@@ -230,8 +230,8 @@ msgstr "_Закрыть"
 
 #: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
 #: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
-#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
-#: apostrophe/main_window.py:531
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Отменить"
 
@@ -300,12 +300,12 @@ msgstr "Показывать элементы маркированного сп�
 msgid "New"
 msgstr "Новый"
 
-#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "Открыть"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
-#: apostrophe/main_window.py:533
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Сохранить"
 
@@ -603,6 +603,18 @@ msgstr "Показать статистику"
 msgid "0 Words"
 msgstr "0 слов"
 
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "Файл на диске был изменен"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "Этот файл был изменен другой программой."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "_Отказаться от изменений и перезагрузить"
+
 #: apostrophe/application.py:234
 msgid "Donate"
 msgstr "Пожертвовать"
@@ -672,35 +684,35 @@ msgid "adverb"
 msgstr "наречие"
 
 #. Hemingway Toast
-#: apostrophe/main_window.py:130
+#: apostrophe/main_window.py:131
 msgid "Text can't be deleted while on Hemingway mode"
 msgstr "Нельзя удалять текст в режиме Хемингуэя"
 
-#: apostrophe/main_window.py:133
+#: apostrophe/main_window.py:134
 msgid "Tell me more"
 msgstr "Подробнее"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "Сохранить ваш файл"
 
-#: apostrophe/main_window.py:447
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "Файлы Markdown"
 
-#: apostrophe/main_window.py:451
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "Текстовые файлы"
 
-#: apostrophe/main_window.py:454
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "Открыть .md файл"
 
-#: apostrophe/main_window.py:525
+#: apostrophe/main_window.py:555
 msgid "Save changes?"
 msgstr "Сохранить изменения?"
 
-#: apostrophe/main_window.py:526
+#: apostrophe/main_window.py:556
 #, python-format
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
@@ -709,11 +721,11 @@ msgstr ""
 "«%s» содержит несохраненные изменения. Если не сохранить изменения, они "
 "будут безвозвратно утеряны."
 
-#: apostrophe/main_window.py:532
+#: apostrophe/main_window.py:562
 msgid "Discard"
 msgstr "Не сохранять"
 
-#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "Новый файл"
 
@@ -734,8 +746,6 @@ msgid "Windowed"
 msgstr "В отдельном окне"
 
 #: apostrophe/stats_handler.py:98
-#| msgid "{:n} Character"
-#| msgid_plural "{:n} Characters"
 msgid "{:n} of {:n} Characters"
 msgstr "{:n} из {:n} символов"
 
@@ -747,8 +757,6 @@ msgstr[1] "{:n} символа"
 msgstr[2] "{:n} символов"
 
 #: apostrophe/stats_handler.py:103
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "{:n} of {:n} Words"
 msgstr "{:n} из {:n} слов"
 
@@ -760,8 +768,6 @@ msgstr[1] "{:n} слова"
 msgstr[2] "{:n} слов"
 
 #: apostrophe/stats_handler.py:108
-#| msgid "{:n} Sentence"
-#| msgid_plural "{:n} Sentences"
 msgid "{:n} of {:n} Sentences"
 msgstr "{:n} из {:n} предложения"
 
@@ -773,8 +779,6 @@ msgstr[1] "{:n} предложения"
 msgstr[2] "{:n} предложений"
 
 #: apostrophe/stats_handler.py:113
-#| msgid "{:n} Paragraph"
-#| msgid_plural "{:n} Paragraphs"
 msgid "{:n} of {:n} Paragraphs"
 msgstr "{:n} из {:n} параграфов"
 
@@ -786,7 +790,6 @@ msgstr[1] "{:n} параграфа"
 msgstr[2] "{:n} параграфов"
 
 #: apostrophe/stats_handler.py:118
-#| msgid "{:d}:{:02d}:{:02d} Read Time"
 msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} из {:d}:{:02d}:{:02d} общего времени чтения"
 
