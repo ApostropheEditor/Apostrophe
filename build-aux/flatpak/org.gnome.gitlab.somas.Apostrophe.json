@@ -1,7 +1,7 @@
 {
     "app-id": "org.gnome.gitlab.somas.Apostrophe",
-    "runtime": "org.gnome.Sdk",
-    "runtime-version": "master",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "43",
     "sdk": "org.gnome.Sdk",
     "command": "apostrophe",
     "finish-args": [
@@ -23,61 +23,7 @@
         }
     },
     "modules": [
-        {
-            "name": "libadwaita",
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dexamples=false",
-                "-Dtests=false"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libadwaita.git",
-                    "tag": "1.2.alpha"
-                }
-            ],
-            "modules": [
-                {
-                    "name": "libsass",
-                    "buildsystem": "meson",
-                    "cleanup": [
-                        "*"
-                    ],
-                    "sources": [
-                        {
-                            "type": "git",
-                            "url": "https://github.com/lazka/libsass.git",
-                            "branch": "meson"
-                        }
-                    ]
-                },
-                {
-                    "name": "sassc",
-                    "buildsystem": "meson",
-                    "cleanup": [
-                        "*"
-                    ],
-                    "sources": [
-                        {
-                            "type": "git",
-                            "url": "https://github.com/lazka/sassc.git",
-                            "branch": "meson"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "gspell",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/gspell/1.8/gspell-1.8.3.tar.xz",
-                    "sha256": "5ae514dd0216be069176accf6d0049d6a01cfa6a50df4bc06be85f7080b62de8"
-                }
-            ]
-        },
+
         {
             "name": "pandoc",
             "only-arches": [
@@ -85,13 +31,14 @@
             ],
             "buildsystem": "simple",
             "build-commands": [
+                "mkdir /app/bin",
                 "cp bin/pandoc /app/bin/pandoc"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-linux-amd64.tar.gz",
-                    "sha256": "848fd7e6ccfe8a8d5a9ff81ea9b6a3024e8d0e8da6365d304584d93b87da8996"
+                    "url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-linux-amd64.tar.gz",
+                    "sha256": "9d55c7afb6a244e8a615451ed9cb02e6a6f187ad4d169c6d5a123fa74adb4830"
                 }
             ]
         },
@@ -104,33 +51,38 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/75/28/521c6dc7fef23a68368efefdcd682f5b3d1d58c2b90b06dc1d0b805b51ae/wheel-0.34.2.tar.gz",
-                    "sha256": "8788e9155fe14f54164c1b9eb0a319d98ef02c160725587ad60f14ddc57b6f96"
+                    "url": "https://files.pythonhosted.org/packages/c0/6c/9f840c2e55b67b90745af06a540964b73589256cb10cc10057c87ac78fc2/wheel-0.37.1.tar.gz",
+                    "sha256": "e9a504e793efbca1b8e0e9cb979a249cf4a0a7b5b8c9e8b65a5e39d49529c1c4"
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/8e/76/66066b7bc71817238924c7e4b448abdb17eb0c92d645769c223f9ace478f/pip-20.0.2.tar.gz",
-                    "sha256": "7db0c8ea4c7ea51c8049640e8e6e7fde949de672bfa4949920675563a5a6967f"
+                    "url": "https://files.pythonhosted.org/packages/4b/30/e15b806597e67057e07a5acdc135216ccbf76a5f1681a324533b61066b0b/pip-22.2.2.tar.gz",
+                    "sha256": "3fd1929db052f056d7a998439176d3333fa1b3f6c1ad881de1885c0717608a4b"
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/71/81/00184643e5a10a456b4118fc12c96780823adb8ed974eb2289f29703b29b/pypandoc-1.4.tar.gz",
-                    "sha256": "e914e6d5f84a76764887e4d909b09d63308725f0cbb5293872c2c92f07c11a5b"
+                    "url": "https://files.pythonhosted.org/packages/cf/14/35d1a15f8b9b7cdc982c2322b89d43eebeab8f7eec431ff9846768a9d34b/pypandoc-1.9.tar.gz",
+                    "sha256": "dbd6208ff1ff923072f53307926e8c40c71a9c8ba84e1b665e6cd011bebd4c07"
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/e8/76/8ac7f467617b9cfbafcef3c76df6f22b15de654a62bea719792b00a83195/regex-2020.2.20.tar.gz",
-                    "sha256": "9e9624440d754733eddbcd4614378c18713d2d9d0dc647cf9c72f64e39671be5"
+                    "url": "https://files.pythonhosted.org/packages/f8/43/b85d103acc0bfb54939f801908bf83354085579e8422eeaa22c017950c02/regex-2022.9.13.tar.gz",
+                    "sha256": "f07373b6e56a6f3a0df3d75b651a278ca7bd357a796078a26a958ea1ce0588fd"
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/14/4b/6f7a3f2bb1e2fa4d3007126578cae0b9910ff46c4957bef5bd4b92733011/pyenchant-3.0.1.tar.gz",
-                    "sha256": "1bd26a644abf80196a9de3f2d820ebafb7e7f78385e392ce77cb1552f164d559"
+                    "url": "https://files.pythonhosted.org/packages/b1/a3/86763b6350727ca81c8fcc5bb5bccee416e902e0085dc7a902c81233717e/pyenchant-3.2.2.tar.gz",
+                    "sha256": "1cf830c6614362a78aab78d50eaf7c6c93831369c52e1bb64ffae1df0341e637"
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ee/2d/9cdc2b527e127b4c9db64b86647d567985940ac3698eeabc7ffaccb4ea61/chardet-4.0.0.tar.gz",
-                    "sha256": "0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"
+                    "url": "https://files.pythonhosted.org/packages/27/ba/611a561ef300abdae81a576445334fb7a41e62c295b050338a4f54fa76d4/poetry-core-1.2.0.tar.gz",
+                    "sha256": "ceccec95487e46c63a41761fbac5211b809bca22658e25a049f4c7da96269f71"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/31/a2/12c090713b3d0e141f367236d3a8bdc3e5fca0d83ff3647af4892c16c205/chardet-5.0.0.tar.gz",
+                    "sha256": "0368df2bfd78b5fc20572bb4e9bb7fb53e2c094f60ae9993339e8671d0afb8aa"
                 }
             ]
         },

@@ -86,7 +86,8 @@ class ExportDialog:
             "extension": "html",
             "to": "html5",
             "mimetype": "text/html",
-            "args": ["--self-contained",
+            "args": ["--embed-resources",
+                     "--standalone",
                      "--css=%s" % Theme.get_current().web_css,
                      "--mathjax",
                      "--lua-filter=%s"
@@ -375,7 +376,8 @@ class AdvancedExportDialog(Adw.Window):
             args.append("--lua-filter=%s" % helpers.get_media_path(
                 '/lua/task-list.lua'))
             if self.sw_self_contained.get_active():
-                args.append("--self-contained")
+                args.append("--embed-resources")
+                args.append("--standalone")
 
         if self.show_syntax_options:
             if self.sw_syntax_highlighting.get_enable_expansion():
