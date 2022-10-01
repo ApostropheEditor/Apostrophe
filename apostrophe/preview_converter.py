@@ -40,7 +40,8 @@ class PreviewConverter:
                 if self.queue.empty():
                     break
 
-            args = ['--standalone',
+            args = ['--metadata=pagetitle:""',
+                    '--standalone',
                     '--mathjax',
                     '--css=' + Theme.get_current().web_css,
                     '--lua-filter=' +
