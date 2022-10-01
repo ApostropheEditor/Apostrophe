@@ -242,36 +242,6 @@ class MarkupHandler:
                     (), match.start("symbols"),
                     match.end("symbols")))
 
-            # Find "* list" (offset).
-            matches = re.finditer(LIST, text)
-            for match in matches:
-                # Lists use character+space (eg. "* ").
-                length = 2
-                nest = len(match.group("indent").replace("    ", "\t"))
-                margin = -length - 2 * nest
-                indent = -length - 2 * length * nest
-                result.append((
-                    self.TAG_NAME_MARGIN_INDENT,
-                    (margin, indent),
-                    match.start("content"),
-                    match.end("content")
-                ))
-
-            # Find "1. ordered list" (offset).
-            matches = re.finditer(ORDERED_LIST, text)
-            for match in matches:
-                # Ordered lists use numbers/letters+dot/parens+space
-                # (eg. "123. ").
-                length = len(match.group("prefix")) + 1
-                nest = len(match.group("indent").replace("    ", "\t"))
-                margin = -length - 2 * nest
-                indent = -length - 2 * length * nest
-                result.append((
-                    self.TAG_NAME_MARGIN_INDENT,
-                    (margin, indent),
-                    match.start("content"),
-                    match.end("content")
-                ))
 
             # Find "> blockquote" (offset).
             matches = re.finditer(BLOCK_QUOTE, text)
@@ -353,13 +323,7 @@ class MarkupHandler:
         # Apply focus mode tag (grey out before/after current sentence).
         buffer.remove_tag(self.tag_unfocused_text, start, end)
         if self.textview.focus_mode:
-            cursor_iter = buffer.get_iter_at_mark(buffer.get_insert())
-            start_sentence = cursor_iter.copy()
-            if not start_sentence.starts_sentence():
-                start_sentence.backward_sentence_start()
-            end_sentence = cursor_iter.copy()
-            if not end_sentence.ends_sentence():
-                end_sentence.forward_sentence_end()
+            start_sentence, end_sentence = buffer.get_current_sentence_bounds()
             buffer.apply_tag(self.tag_unfocused_text, start, start_sentence)
             buffer.apply_tag(self.tag_unfocused_text, end_sentence, end)
 
