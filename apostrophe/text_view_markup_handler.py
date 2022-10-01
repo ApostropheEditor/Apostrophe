@@ -279,7 +279,6 @@ class MarkupHandler:
         """Reads the parsing result from the pipe
         and triggers any pending apply."""
 
-        self.parsing = False
         if self.apply_pending:
             self.apply()  # self.apply clears the apply pending flag.
 
@@ -289,6 +288,9 @@ class MarkupHandler:
             return True
         except EOFError:
             return False
+        finally:
+            self.parsing = False
+
 
     def do_apply(self, original_text, result=[]):
         """Applies the result of parsing if the current text
