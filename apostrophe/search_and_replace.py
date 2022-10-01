@@ -66,6 +66,7 @@ class ApostropheSearchBar(Adw.Bin):
             if self.textbuffer.get_has_selection():
                 self.search_entry.set_text(self.textbuffer.get_slice(*self.textbuffer.get_selection_bounds(), False))
             self.search_entry.grab_focus()
+            self.search_entry.select_region(0, -1)
             self.search()
         else:
             self.textbuffer.remove_tag(self.highlight,
