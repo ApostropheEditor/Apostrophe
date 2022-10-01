@@ -3,7 +3,7 @@ import re
 ITALIC_ASTERISK = re.compile(
     r"(?<!\\)\*[^\s\*](?P<text>.*?\S?.*?)(?<!\\)\*")
 ITALIC_UNDERSCORE = re.compile(
-    r"(?<!(\\|\S))_[^\s_](?P<text>.*?\S?.*?)(?<!\\)_(?=\s)")
+    r"(?<!(\\|\S))_[^\s_](?P<text>.*?\S?.*?)(?<!\\)_")
 BOLD = re.compile(
     r"(\*\*|__)[^\s*](?P<text>.*?\S.*?)\1")
 BOLD_ITALIC = re.compile(
