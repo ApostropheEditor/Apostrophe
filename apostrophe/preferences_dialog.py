@@ -95,7 +95,7 @@ class ApostrophePreferencesDialog(Adw.PreferencesWindow):
         self.input_format_comborow.set_model(input_formats)
 
         if current_format:
-            self.input_format_comborow.set_selected_index(current_format)
+            self.input_format_comborow.set_selected(current_format)
 
         self.settings.bind("autohide-headerbar",
                            self.autohide_headerbar_switch,

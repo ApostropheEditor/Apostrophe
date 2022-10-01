@@ -72,7 +72,7 @@
                 <property name="expression">
                   <lookup name="name" type="InputFormat"/>
                 </property>
-                <signal name="notify::selected-index" handler="on_input_format"/>
+                <signal name="notify::selected" handler="on_input_format"/>
                 <child>
                   <object class="GtkButton">
                     <property name="valign">center</property>

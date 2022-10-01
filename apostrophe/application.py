@@ -192,16 +192,24 @@ class Application(Adw.Application):
         if key == "color-scheme":
             self._set_color_scheme()
             for group in self.windows:
-                 group.list_windows()[0].reload_preview()
+                for window in group.list_windows():
+                    if isinstance(window, MainWindow):
+                        window.reload_preview()
         elif key == "input-format":
             for group in self.windows:
-                 group.list_windows()[0].reload_preview()
+                for window in group.list_windows():
+                    if isinstance(window, MainWindow):
+                        window.reload_preview()
         elif key == "sync-scroll":
             for group in self.windows:
-                 group.list_windows()[0].reload_preview(reshow=True)
+                for window in group.list_windows():
+                    if isinstance(window, MainWindow):
+                        window.reload_preview(reshow=True)
         elif key == "stat-default":
             for group in self.windows:
-                 group.list_windows()[0].update_default_stat()
+                for window in group.list_windows():
+                    if isinstance(window, MainWindow):
+                        window.update_default_stat()
 
     def on_new_window(self, _action, _value):
         window = MainWindow(self)
