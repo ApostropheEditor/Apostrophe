@@ -6,12 +6,12 @@
     "command": "apostrophe",
     "finish-args": [
         "--socket=wayland",
+        "--socket=fallback-x11",
         "--share=ipc",
         "--share=network",
         "--device=dri",
         "--filesystem=home:ro",
-        "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2018/bin/x86_64-linux/",
-        "--metadata=X-DConf=migrate-path=/org/gnome/gitlab/somas/Apostrophe/"
+        "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2018/bin/x86_64-linux/"
     ],
     "add-extensions": {
         "org.gnome.gitlab.somas.Apostrophe.Plugin": {
@@ -117,8 +117,5 @@
                 "install -d /app/extensions"
             ]
         }
-    ],
-    "build-options": {
-        "env": {}
-    }
+    ]
 }
