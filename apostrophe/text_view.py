@@ -28,9 +28,10 @@ from apostrophe.settings import Settings
 from apostrophe.text_view_format_inserter import FormatInserter
 from apostrophe.text_view_markup_handler import MarkupHandler
 from apostrophe.text_view_scroller import TextViewScroller
+from apostrophe.text_buffer import ApostropheTextBuffer
 
 gi.require_version('Gtk', '4.0')
-gi.require_version('Gspell', '1')
+#gi.require_version('Gspell', '1')
 import logging
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
@@ -56,6 +57,7 @@ class ApostropheTextView(Gtk.TextView):
     __gtype_name__ = "ApostropheTextView"
 
     __gsignals__ = {
+        'unindent': (GObject.SignalFlags.ACTION, None, ()),
         'insert-italic': (GObject.SignalFlags.ACTION, None, ()),
         'insert-bold': (GObject.SignalFlags.ACTION, None, ()),
         'insert-hrule': (GObject.SignalFlags.ACTION, None, ()),
@@ -93,18 +95,24 @@ class ApostropheTextView(Gtk.TextView):
         super().__init__()
 
         self.settings = Settings.new()
+
+        self.buffer = self.get_buffer()
         # Spell checking
         # self.gspell_view = Gspell.TextView.get_from_gtk_text_view(self)
         # self.gspell_view.basic_setup()
 
         # Format shortcuts
         self.shortcut = FormatInserter()
+        self.connect('unindent', self.buffer._unindent)
         self.connect('insert-italic', self.shortcut.insert_italic)
         self.connect('insert-bold', self.shortcut.insert_bold)
         self.connect('insert-strikethrough', self.shortcut.insert_strikethrough)
         self.connect('insert-hrule', self.shortcut.insert_horizontal_rule)
         self.connect('insert-listitem', self.shortcut.insert_list_item)
         self.connect('insert-header', self.shortcut.insert_header)
+
+        # Hemingway
+        self.buffer.connect('attempted-hemingway', self.on_attempted_hemingway)
 
         # Markup
         self.markup = MarkupHandler(self)
@@ -172,41 +180,39 @@ class ApostropheTextView(Gtk.TextView):
         # otherwise we just received text
         except Exception as e:
             # delete automatically added DnD text
-            insert_mark = self.get_buffer().get_insert()
-            cursor_iter_r = self.get_buffer().get_iter_at_mark(insert_mark)
+            insert_mark = self.buffer.get_insert()
+            cursor_iter_r = self.buffer.get_iter_at_mark(insert_mark)
             cursor_iter_l = cursor_iter_r.copy()
             cursor_iter_l.backward_chars(len(content))
 
-            self.get_buffer().delete(cursor_iter_l, cursor_iter_r)
+            self.buffer.delete(cursor_iter_l, cursor_iter_r)
 
             limit_left = 0
             limit_right = 0
 
-        self.get_buffer().place_cursor(self.get_buffer().get_iter_at_mark(
-            self.get_buffer().get_mark('gtk_drag_target')))
-        self.get_buffer().insert_at_cursor(content)
-        insert_mark = self.get_buffer().get_insert()
-        selection_bound = self.get_buffer().get_selection_bound()
-        cursor_iter = self.get_buffer().get_iter_at_mark(insert_mark)
+        self.buffer.place_cursor(self.buffer.get_iter_at_mark(
+            self.buffer.get_mark('gtk_drag_target')))
+        self.buffer.insert_at_cursor(content)
+        insert_mark = self.buffer.get_insert()
+        selection_bound = self.buffer.get_selection_bound()
+        cursor_iter = self.buffer.get_iter_at_mark(insert_mark)
         cursor_iter.backward_chars(len(content) - limit_left)
-        self.get_buffer().move_mark(insert_mark, cursor_iter)
+        self.buffer.move_mark(insert_mark, cursor_iter)
         cursor_iter.forward_chars(limit_right)
-        self.get_buffer().move_mark(selection_bound, cursor_iter)
+        self.buffer.move_mark(selection_bound, cursor_iter)
 
     def get_text(self):
-        text_buffer = self.get_buffer()
-        start_iter = text_buffer.get_start_iter()
-        end_iter = text_buffer.get_end_iter()
-        return text_buffer.get_text(start_iter, end_iter, False)
+        start_iter = self.buffer.get_start_iter()
+        end_iter = self.buffer.get_end_iter()
+        return self.buffer.get_text(start_iter, end_iter, False)
 
     def set_text(self, text):
         """Set text and clear undo history"""
 
-        text_buffer = self.get_buffer()
-        text_buffer.begin_irreversible_action()
-        with user_action(text_buffer):
-            text_buffer.set_text(text)
-        text_buffer.end_irreversible_action()
+        self.buffer.begin_irreversible_action()
+        with user_action(self.buffer):
+            self.buffer.set_text(text)
+        self.buffer.end_irreversible_action()
 
     def update_vertical_margin(self, top_margin=0):
         if self.focus_mode:
@@ -231,7 +237,7 @@ class ApostropheTextView(Gtk.TextView):
         if self.scroller is None:
             return
         if mark is None:
-            mark = self.get_buffer().get_insert()
+            mark = self.buffer.get_insert()
         GLib.idle_add(self.scroller.smooth_scroll_to_mark,
                       mark, self.focus_mode)
 
@@ -250,29 +256,20 @@ class ApostropheTextView(Gtk.TextView):
         self._on_spellcheck_update()
         self.grab_focus()
 
-    @Gtk.Template.Callback()
-    def _on_key_press_event(self, _controller, keyval, _keycode, state):
-        if self.hemingway_mode:
-            if keyval == Gdk.KEY_BackSpace or keyval == Gdk.KEY_Delete or self.get_buffer().get_has_selection():
-                # log the time into a list with max length of 4
-                # then check if the time differences are small enough
-                # to show the help popover again
-                self.hemingway_attempts.appendleft(datetime.now())
-                if (self.hemingway_attempts[0] - self.hemingway_attempts[3]).seconds <= 70:
-                    self.settings.set_int("hemingway-toast-count", 0)
-                    self.activate_action("win.show_hemingway_toast")
+    def on_attempted_hemingway(self, *args):
+            # log the time into a list with max length of 4
+            # then check if the time differences are small enough
+            # to show the help popover again
+            self.hemingway_attempts.appendleft(datetime.now())
+            if (self.hemingway_attempts[0] - self.hemingway_attempts[3]).seconds <= 70:
+                self.settings.set_int("hemingway-toast-count", 0)
+                self.activate_action("win.show_hemingway_toast")
 
-                spring_params = Adw.SpringParams.new(0.5, 0.5, 1000)
-                target = Adw.PropertyAnimationTarget.new(self, "left-margin")
-                hemingway_animation = Adw.SpringAnimation.new(self, self.get_left_margin(), self.get_left_margin(), spring_params, target)
-                hemingway_animation.set_initial_velocity(10)
-                hemingway_animation.play()
-
-                return True
-
-        if state == Gdk.ModifierType.SHIFT_MASK and keyval == Gdk.KEY_ISO_Left_Tab:  # Capure Shift-Tab
-            self._on_shift_tab()
-            return True
+            spring_params = Adw.SpringParams.new(0.5, 0.5, 1000)
+            target = Adw.PropertyAnimationTarget.new(self, "left-margin")
+            hemingway_animation = Adw.SpringAnimation.new(self, self.get_left_margin(), self.get_left_margin(), spring_params, target)
+            hemingway_animation.set_initial_velocity(10)
+            hemingway_animation.play()
 
     @Gtk.Template.Callback()
     def _on_mark_set(self, _text_buffer, _location, mark, _data=None):
@@ -280,7 +277,7 @@ class ApostropheTextView(Gtk.TextView):
         # otherwise check _on_button_release_event
         if mark.get_name() == 'selection_bound' and not self.gesture_controller.is_active():
             self.markup.apply()
-            if not self.get_buffer().get_has_selection():
+            if not self.buffer.get_has_selection():
                 self.smooth_scroll_to(mark)
         elif mark.get_name() == 'gtk_drag_target':
             self.smooth_scroll_to(mark)
@@ -289,17 +286,6 @@ class ApostropheTextView(Gtk.TextView):
     @Gtk.Template.Callback()
     def _on_paste_done(self, *_):
         self.smooth_scroll_to()
-
-    def _on_shift_tab(self):
-        """Delete last character if it is a tab"""
-        text_buffer = self.get_buffer()
-        pen_iter = text_buffer.get_end_iter()
-        pen_iter.backward_char()
-        end_iter = text_buffer.get_end_iter()
-
-        if pen_iter.get_char() == "\t":
-            with user_action(text_buffer):
-                text_buffer.delete(pen_iter, end_iter)
 
     def _on_size_allocate(self, *_):
         self._update_horizontal_margin()

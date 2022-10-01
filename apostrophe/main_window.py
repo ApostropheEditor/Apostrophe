@@ -143,7 +143,7 @@ class MainWindow(Adw.ApplicationWindow):
         action = Gio.PropertyAction.new("focus_mode", self.textview, "focus-mode")
         self.add_action(action)
 
-        action = Gio.PropertyAction.new("hemingway_mode", self.textview, "hemingway-mode")
+        action = Gio.PropertyAction.new("hemingway_mode", self.textview.buffer, "hemingway-mode")
         self.add_action(action)
         self.textview.connect("notify::hemingway-mode", self.show_hemingway_toast)
 
@@ -209,7 +209,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         self.preview = self.settings.get_boolean("preview-active")
 
-        self.textview.hemingway_mode = self.settings.get_boolean("hemingway-mode")
+        self.textview.buffer.hemingway_mode = self.settings.get_boolean("hemingway-mode")
 
         self.new_document()
 
@@ -623,7 +623,7 @@ class MainWindow(Adw.ApplicationWindow):
         export_dialog.show()
 
     def show_hemingway_toast(self, *args):
-        if self.textview.hemingway_mode:
+        if self.textview.buffer.hemingway_mode:
             # Only show the first three times
             count = self.settings.get_int("hemingway-toast-count")
             if count >= 3:
@@ -697,7 +697,7 @@ class MainWindow(Adw.ApplicationWindow):
     def save_state(self):
         self.settings.set_enum("preview-mode", self.preview_layout)
         self.settings.set_boolean("preview-active", self.preview)
-        self.settings.set_boolean("hemingway-mode", self.textview.hemingway_mode)
+        self.settings.set_boolean("hemingway-mode", self.textview.buffer.hemingway_mode)
 
     def do_close_request(self, *args):
         LOGGER.info('close request called')
