@@ -113,15 +113,10 @@ class ExportDialog:
                                       not helpers.exist_executable("pdftex"))
 
         if (self._show_texlive_warning):
-            self.dialog = Gtk.MessageDialog(
-                None,
-                Gtk.DialogFlags.MODAL |
-                Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                Gtk.MessageType.ERROR,
-                Gtk.ButtonsType.CLOSE
-            )
-
-            self.dialog.get_message_area().add(TexliveWarning())
+            self.dialog = Adw.MessageDialog.new(None, None, None)
+            self.dialog.set_extra_child(TexliveWarning())
+            self.dialog.add_response("close", _("Close"))
+            self.dialog.set_close_response("close")
 
         else:
             self.dialog = Gtk.FileChooserNative.new(
@@ -360,7 +355,7 @@ class AdvancedExportDialog(Adw.Window):
             args.append("--number-sections")
 
         if (self.show_page_size_options and
-           self.cmb_page_size.get_selected_index() == 0):
+           self.cmb_page_size.get_selected() == 0):
             if ((fmt := self.formats_list.get_selected_row().item.to) in
                {"pdf", "latex", "context"}):
                 args.append("--variable=papersize:a4")

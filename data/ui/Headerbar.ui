@@ -121,17 +121,17 @@
       <item>
         <attribute name="label" translatable="no">_PDF</attribute>
         <attribute name="action">win.export</attribute>
-        <attribute name="target">&quot;pdf&quot;</attribute>
+        <attribute name="target">pdf</attribute>
       </item>
       <item>
         <attribute name="label" translatable="no">_HTML</attribute>
         <attribute name="action">win.export</attribute>
-        <attribute name="target">&quot;html&quot;</attribute>
+        <attribute name="target">html</attribute>
       </item>
       <item>
         <attribute name="label" translatable="no">_ODT</attribute>
         <attribute name="action">win.export</attribute>
-        <attribute name="target">&quot;odt&quot;</attribute>
+        <attribute name="target">odt</attribute>
       </item>
     </section>
     <section>
