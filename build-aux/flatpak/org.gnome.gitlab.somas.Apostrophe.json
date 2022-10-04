@@ -10,7 +10,7 @@
         "--share=ipc",
         "--share=network",
         "--device=dri",
-        "--filesystem=home:ro",
+        "--filesystem=host",
         "--env=PATH=/app/bin:/usr/bin:/app/extensions/TexLive/2018/bin/x86_64-linux/"
     ],
     "add-extensions": {
@@ -91,7 +91,10 @@
             "buildsystem": "simple",
             "build-commands": [
                 "mkdir -p /app/share/fonts/",
-                "cp ttf/* /app/share/fonts/"
+                "install -D ttf/FiraMono-Regular.ttf /app/share/fonts/",
+                "install -D ttf/FiraMono-Bold.ttf /app/share/fonts/",
+                "install -D ttf/FiraMono-Medium.ttf /app/share/fonts/",
+                "fc-cache -f -v"
             ],
             "sources": [
                 {
