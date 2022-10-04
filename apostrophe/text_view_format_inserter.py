@@ -85,9 +85,8 @@ class FormatInserter:
         # TODO: implement ordered lists
         pass
 
-    def insert_header(self, text_view, _data=None):
+    def insert_header(self, text_view, level=1):
         """Insert header or mark a selection as a list header"""
-
         text_buffer = text_view.get_buffer()
         with user_action(text_buffer):
             if text_buffer.get_has_selection():
@@ -97,7 +96,7 @@ class FormatInserter:
             else:
                 text = _("Header")
 
-            text_buffer.insert_at_cursor("#" + " " + text)
+            text_buffer.insert_at_cursor("#"*level + " " + text)
 
         self.__select_text(text_view, 0, len(text))
 

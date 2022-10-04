@@ -62,7 +62,7 @@ class ApostropheTextView(Gtk.TextView):
         'insert-bold': (GObject.SignalFlags.ACTION, None, ()),
         'insert-hrule': (GObject.SignalFlags.ACTION, None, ()),
         'insert-listitem': (GObject.SignalFlags.ACTION, None, ()),
-        'insert-header': (GObject.SignalFlags.ACTION, None, ()),
+        'insert-header': (GObject.SignalFlags.ACTION, None, (int,)),
         'insert-strikethrough': (GObject.SignalFlags.ACTION, None, ()),
         'scroll-scale-changed': (GObject.SIGNAL_RUN_LAST, None, (float,)),
     }

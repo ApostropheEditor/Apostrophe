@@ -55,6 +55,34 @@
             <property name='action'>signal(insert-strikethrough)</property>
           </object>
         </child>
+        <child>
+          <object class='GtkShortcut'>
+            <property name='trigger'>&lt;Control&gt;1</property>
+            <property name='action'>signal(insert-header)</property>
+            <property name='arguments'>(1,)</property>
+          </object>
+        </child>
+        <child>
+          <object class='GtkShortcut'>
+            <property name='trigger'>&lt;Control&gt;2</property>
+            <property name='action'>signal(insert-header)</property>
+            <property name='arguments'>(2,)</property>
+          </object>
+        </child>
+        <child>
+          <object class='GtkShortcut'>
+            <property name='trigger'>&lt;Control&gt;3</property>
+            <property name='action'>signal(insert-header)</property>
+            <property name='arguments'>(3,)</property>
+          </object>
+        </child>
+        <child>
+          <object class='GtkShortcut'>
+            <property name='trigger'>&lt;Control&gt;4</property>
+            <property name='action'>signal(insert-header)</property>
+            <property name='arguments'>(4,)</property>
+          </object>
+        </child>
       </object>
     </child>
     <style>

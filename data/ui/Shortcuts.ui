@@ -122,19 +122,26 @@
             <child>
               <object class="GtkShortcutsShortcut" id="s2-2">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes" context="shortcut window">Header</property>
+                <property name="accelerator">&lt;Primary&gt;1 4</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut" id="s2-3">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="shortcut window">List item</property>
                 <property name="accelerator">&lt;Primary&gt;u</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut" id="s2-3">
+              <object class="GtkShortcutsShortcut" id="s2-4">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="shortcut window">Italic</property>
                 <property name="accelerator">&lt;Primary&gt;i</property>
               </object>
             </child>
             <child>
-              <object class="GtkShortcutsShortcut" id="s2-4">
+              <object class="GtkShortcutsShortcut" id="s2-5">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="shortcut window">Bold</property>
                 <property name="accelerator">&lt;Primary&gt;b</property>
