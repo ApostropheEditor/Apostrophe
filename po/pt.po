@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-22 15:49+0000\n"
-"PO-Revision-Date: 2022-09-28 14:34+0100\n"
+"POT-Creation-Date: 2022-10-04 22:46+0000\n"
+"PO-Revision-Date: 2022-10-05 17:06+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -218,9 +218,8 @@ msgid ""
 "facing the task on hand with a different mindset.\n"
 "  "
 msgstr ""
-"O Modo Hemingway imita a experiência de escrever em uma máquina de "
-"escrever, não permitindo que elimine qualquer texto ou faça qualquer tipo "
-"de edição. \n"
+"O Modo Hemingway imita a experiência de escrever em uma máquina de escrever, "
+"não permitindo que elimine qualquer texto ou faça qualquer tipo de edição. \n"
 "\n"
 "Apenas ser capaz de seguir em frente pode ser frustrante, mas pode ser um "
 "exercício interessante para melhorar suas habilidades de escrita, ganhar "
@@ -231,15 +230,15 @@ msgstr ""
 msgid "_Close"
 msgstr "_Fechar"
 
-#: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
-#: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:329 apostrophe/export_dialog.py:334
 #: apostrophe/main_window.py:398 apostrophe/main_window.py:469
 #: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: data/ui/Export.ui:44 apostrophe/export_dialog.py:127
-#: apostrophe/export_dialog.py:332 apostrophe/export_dialog.py:336
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:123
+#: apostrophe/export_dialog.py:328 apostrophe/export_dialog.py:332
 msgid "Export"
 msgstr "Exportar"
 
@@ -521,65 +520,70 @@ msgstr "Separador"
 
 #: data/ui/Shortcuts.ui:125
 msgctxt "shortcut window"
+msgid "Header"
+msgstr "Cabeçalho"
+
+#: data/ui/Shortcuts.ui:132
+msgctxt "shortcut window"
 msgid "List item"
 msgstr "Item de lista"
 
-#: data/ui/Shortcuts.ui:132
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Itálico"
 
-#: data/ui/Shortcuts.ui:139
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Negrito"
 
-#: data/ui/Shortcuts.ui:146
+#: data/ui/Shortcuts.ui:153
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Rasurado"
 
-#: data/ui/Shortcuts.ui:155
+#: data/ui/Shortcuts.ui:162
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "Copiar e colar"
 
-#: data/ui/Shortcuts.ui:159
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Copiar o texto selecionado para a área de transferência"
 
-#: data/ui/Shortcuts.ui:166
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Cortar o texto selecionado para a área de transferência"
 
-#: data/ui/Shortcuts.ui:173
+#: data/ui/Shortcuts.ui:180
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "Colar o texto selecionado da área de transferência"
 
-#: data/ui/Shortcuts.ui:182
+#: data/ui/Shortcuts.ui:189
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "Desfazer e refazer"
 
-#: data/ui/Shortcuts.ui:186
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Desfazer o último comando"
 
-#: data/ui/Shortcuts.ui:193
+#: data/ui/Shortcuts.ui:200
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Refazer o comando anterior"
 
-#: data/ui/Shortcuts.ui:202
+#: data/ui/Shortcuts.ui:209
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "Seleção"
 
-#: data/ui/Shortcuts.ui:206
+#: data/ui/Shortcuts.ui:213
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Selecionar todo o texto"
@@ -605,8 +609,6 @@ msgid "Show Statistics"
 msgstr "Mostrar estatísticas"
 
 #: data/ui/Window.ui:59
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "0 Words"
 msgstr "0 Palavras"
 
@@ -622,20 +624,24 @@ msgstr "O ficheiro foi alterado por outro programa."
 msgid "_Discard Changes and Reload"
 msgstr "_Descartar alterações e recarregar"
 
-#: apostrophe/application.py:234
+#: apostrophe/application.py:242
 msgid "Donate"
 msgstr "Doar"
 
-#: apostrophe/application.py:235
+#: apostrophe/application.py:243
 msgid "Translations"
 msgstr "Traduções"
 
-#: apostrophe/export_dialog.py:130 apostrophe/export_dialog.py:337
+#: apostrophe/export_dialog.py:118 apostrophe/helpers.py:84
+msgid "Close"
+msgstr "Fechar"
+
+#: apostrophe/export_dialog.py:126 apostrophe/export_dialog.py:333
 #, python-format
 msgid "Export to %s"
 msgstr "Exportar para %s"
 
-#: apostrophe/export_dialog.py:156 apostrophe/export_dialog.py:326
+#: apostrophe/export_dialog.py:152 apostrophe/export_dialog.py:322
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -646,21 +652,17 @@ msgstr ""
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:229
+#: apostrophe/export_dialog.py:225
 msgid "Export to {}"
 msgstr "Exportar para {}"
 
-#: apostrophe/export_dialog.py:333
+#: apostrophe/export_dialog.py:329
 msgid "Select folder"
 msgstr "Selecionar a pasta"
 
 #: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "Erro"
-
-#: apostrophe/helpers.py:84
-msgid "Close"
-msgstr "Fechar"
 
 #: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
@@ -753,8 +755,6 @@ msgid "Windowed"
 msgstr "Em janela"
 
 #: apostrophe/stats_handler.py:98
-#| msgid "{:n} Character"
-#| msgid_plural "{:n} Characters"
 msgid "{:n} of {:n} Characters"
 msgstr "{:n} de {:n} Caracteres"
 
@@ -765,8 +765,6 @@ msgstr[0] "{:n} Carácter"
 msgstr[1] "{:n} Caracteres"
 
 #: apostrophe/stats_handler.py:103
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "{:n} of {:n} Words"
 msgstr "{:n} de {:n} Palavras"
 
@@ -777,8 +775,6 @@ msgstr[0] "{:n} Palavra"
 msgstr[1] "{:n} Palavras"
 
 #: apostrophe/stats_handler.py:108
-#| msgid "{:n} Sentence"
-#| msgid_plural "{:n} Sentences"
 msgid "{:n} of {:n} Sentences"
 msgstr "{:n} de {:n} Frases"
 
@@ -789,8 +785,6 @@ msgstr[0] "{:n} Frase"
 msgstr[1] "{:n} Frases"
 
 #: apostrophe/stats_handler.py:113
-#| msgid "{:n} Paragraph"
-#| msgid_plural "{:n} Paragraphs"
 msgid "{:n} of {:n} Paragraphs"
 msgstr "{:n} de {:n} Parágrafos"
 
@@ -801,7 +795,6 @@ msgstr[0] "{:n} Parágrafo"
 msgstr[1] "{:n} Parágrafos"
 
 #: apostrophe/stats_handler.py:118
-#| msgid "{:d}:{:02d}:{:02d} Read Time"
 msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} de {:d}:{:02d}:{:02d} Tempo de leitura"
 
@@ -825,11 +818,11 @@ msgstr "texto rasurado"
 msgid "Item"
 msgstr "Item"
 
-#: apostrophe/text_view_format_inserter.py:98
+#: apostrophe/text_view_format_inserter.py:97
 msgid "Header"
 msgstr "Cabeçalho"
 
-#: apostrophe/text_view.py:169 apostrophe/text_view.py:171
+#: apostrophe/text_view.py:177 apostrophe/text_view.py:179
 msgid "web page"
 msgstr "página web"
 
