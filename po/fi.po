@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-03-14 19:59+0000\n"
-"PO-Revision-Date: 2022-04-24 21:57+0300\n"
+"POT-Creation-Date: 2022-10-04 22:46+0000\n"
+"PO-Revision-Date: 2022-10-06 11:25+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -25,7 +25,6 @@ msgstr "Apostrophe"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! Do NOT translate "uberwriter" or "apostrophe"! The list MUST also end with a semicolon!
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
-#| msgid "uberwriter;UberWriter;apostrophe;markdown;editor;"
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;muokkain;"
 
@@ -42,7 +41,7 @@ msgid "Use the color scheme in the application's UI and in the text area."
 msgstr "Sovelluksen käyttöliittymässä ja tekstialueella käytettävä väriteema."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
-#: data/ui/Preferences.ui:23 data/ui/Preferences.ui:24
+#: data/ui/Preferences.ui:15 data/ui/Preferences.ui:16
 msgid "Check spelling while typing"
 msgstr "Tarkista oikeinkirjoitus kirjoitettaessa"
 
@@ -59,7 +58,7 @@ msgid "Keep the editor and preview scroll positions in sync."
 msgstr "Pidä muokkaimen ja esikatselun vierityksen sijainnit synkronoituna."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
-#: data/ui/Preferences.ui:90
+#: data/ui/Preferences.ui:70
 msgid "Input format"
 msgstr "Syötemuoto"
 
@@ -100,7 +99,7 @@ msgid "Maximum number of characters per line within the editor."
 msgstr "Muokkaimessa rivikohtaisten merkkien enimmäismäärä."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
-#: data/ui/Headerbar.ui:250
+#: data/ui/AboutHemingway.ui:6
 msgid "Hemingway Mode"
 msgstr "Hemingway-tila"
 
@@ -109,26 +108,36 @@ msgid "Whether the user can delete text or not."
 msgstr "Voiko käyttäjä poistaa tekstiä vai ei."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
+#, fuzzy
+#| msgid "Hemingway Mode"
+msgid "Hemingway Toast Count"
+msgstr "Hemingway-tila"
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
+msgid "Number of times the Hemingway Toast has been shown"
+msgstr ""
+
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
 msgid "Preview mode"
 msgstr "Esikatselutila"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:93
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
 msgid "How to display the preview."
 msgstr "Miten esikatselu näytetään."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:99
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
 msgid "Preview active"
 msgstr "Esikatselu aktiivisena"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:100
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
 msgid "Whether showing of preview is active when launching a new window."
 msgstr ""
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:106
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:113
 msgid "Text size"
 msgstr "Tekstin koko"
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:107
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:114
 msgid "Preferred relative size for the text."
 msgstr ""
 
@@ -182,424 +191,449 @@ msgstr ""
 msgid "Manuel G., Wolf V."
 msgstr "Manuel G., Wolf V."
 
-#: data/ui/About.ui.in:12
+#: data/ui/About.ui.in:9
 msgid "Copyright (C) 2022, Manuel G., Wolf V."
 msgstr "Tekijänoikeus (C) 2022, Manuel G., Wolf V."
 
-#: data/ui/About.ui.in:14
-msgid "Apostrophe website"
-msgstr "Apostrophen verkkosivusto"
-
 #. Put your name in here, like this:
 #. Manuel Genovés <manuel.genoves@gmail.com>
-#: data/ui/About.ui.in:20
+#: data/ui/About.ui.in:17
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
 
-#: data/ui/About.ui.in:65
-msgid "Donations:"
-msgstr "Lahjoitukset:"
+#: data/ui/AboutHemingway.ui:7
+msgid ""
+"The Hemingway Mode mimics the experience of writing on a typewriter, not "
+"allowing you to delete any text or doing any kind of editing. \n"
+"\n"
+"Only being able to move forward may be frustrating, but can be an "
+"interesting exercise for improving your writing skills, gaining focus or "
+"facing the task on hand with a different mindset.\n"
+"  "
+msgstr ""
+"Hemingway-tila mukailee kirjoituskokemusta kirjoituskoneella, eikä se salli "
+"muokkausta tai tekstin poistoa. \n"
+"\n"
+"Vain eteenpäin siirtyminen voi tuntua turhauttavalta, mutta voi toisaalta "
+"olla mielenkiintoinen harjoitus parantaen kirjoitustaitoa tai keskittymistä "
+"tehtävään erilaisella ajattelutavalla.\n"
+"  "
 
-#: data/ui/About.ui.in:74
-msgid "Paypal"
-msgstr "Paypal"
+#: data/ui/AboutHemingway.ui:13
+msgid "_Close"
+msgstr "_Sulje"
 
-#: data/ui/About.ui.in:105
-msgid "Help to translate:"
-msgstr "Auta kääntämään:"
-
-#: data/ui/About.ui.in:114
-msgid "Damned Lies"
-msgstr "Damned Lies"
-
-#: data/ui/Export.ui:46 apostrophe/export_dialog.py:133
-#: apostrophe/export_dialog.py:324 apostrophe/export_dialog.py:329
-#: apostrophe/main_window.py:331 apostrophe/main_window.py:424
-#: apostrophe/main_window.py:509
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:329 apostrophe/export_dialog.py:334
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Peru"
 
-#: data/ui/Export.ui:61 apostrophe/export_dialog.py:128
-#: apostrophe/export_dialog.py:323 apostrophe/export_dialog.py:327
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:123
+#: apostrophe/export_dialog.py:328 apostrophe/export_dialog.py:332
 msgid "Export"
 msgstr "Vie"
 
-#: data/ui/Export.ui:153
+#: data/ui/Export.ui:118
 msgid "Standalone"
 msgstr "Itsenäinen"
 
-#: data/ui/Export.ui:155
+#: data/ui/Export.ui:120
 msgid ""
 "Use a header and footer to include things like stylesheets and meta "
 "information"
 msgstr ""
 "Käytä ylä- ja alatunnistetta sisällyttääksesi tyyliarkkeja ja metatietoa"
 
-#: data/ui/Export.ui:170
+#: data/ui/Export.ui:133
 msgid "Table of Contents"
 msgstr "Sisällysluettelo"
 
-#: data/ui/Export.ui:186
+#: data/ui/Export.ui:147
 msgid "Number Sections"
 msgstr "Numeroidut osiot"
 
-#: data/ui/Export.ui:210 data/ui/Export.ui:216
+#: data/ui/Export.ui:165 data/ui/Export.ui:170
 msgid "Page Size"
 msgstr "Sivun koko"
 
-#: data/ui/Export.ui:235
+#: data/ui/Export.ui:182
 msgid "HTML Options"
 msgstr "HTML-valinnat"
 
-#: data/ui/Export.ui:241
+#: data/ui/Export.ui:187
 msgid "Self-contained"
 msgstr "Itsenäinen"
 
-#: data/ui/Export.ui:243
+#: data/ui/Export.ui:189
 msgid "Produces an HTML file with no external dependencies"
 msgstr "Tuottaa HTML-tiedoston ilman ulkoisia riippuvuuksia"
 
-#: data/ui/Export.ui:259
-msgid "CSS File"
-msgstr "CSS-tiedosto"
-
-#: data/ui/Export.ui:264
-msgid "Select CSS file"
-msgstr "Valitse CSS-tiedosto"
-
-#: data/ui/Export.ui:285
+#: data/ui/Export.ui:205
 msgid "Syntax Highlighting"
 msgstr "Syntaksin korostus"
 
-#: data/ui/Export.ui:300
+#: data/ui/Export.ui:218
 msgid "Highlight style"
 msgstr "Korostuksen tyyli"
 
-#: data/ui/Export.ui:321
+#: data/ui/Export.ui:232
 msgid "Presentation"
 msgstr "Esitys"
 
-#: data/ui/Export.ui:327
+#: data/ui/Export.ui:237
 msgid "Incremental bullets"
 msgstr "Inkrementaaliset luettelomerkit"
 
-#: data/ui/Export.ui:329
+#: data/ui/Export.ui:239
 msgid "Show one bullet point after another in a slideshow"
 msgstr "Näytä yksi luettelomerkki toisensa jälkeen diaesityksessä"
 
-#: data/ui/Headerbar.ui:57
+#: data/ui/Headerbar.ui:11
 msgid "New"
 msgstr "Uusi"
 
-#: data/ui/Headerbar.ui:67 apostrophe/main_window.py:423
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "Avaa"
 
-#: data/ui/Headerbar.ui:90 apostrophe/main_window.py:330
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Tallenna"
 
-#: data/ui/Headerbar.ui:102
-msgid "Save as…"
-msgstr "Tallenna nimellä…"
-
-#: data/ui/Headerbar.ui:140
+#: data/ui/Headerbar.ui:40
 msgid "Menu"
 msgstr "Valikko"
 
-#: data/ui/Headerbar.ui:166
+#: data/ui/Headerbar.ui:51
 msgid "Find"
 msgstr "Etsi"
 
-#: data/ui/Headerbar.ui:225
-msgid "New Window"
-msgstr "Uusi ikkuna"
+#: data/ui/Headerbar.ui:74
+msgid "_Hemingway Mode"
+msgstr "_Hemingway-tila"
 
-#: data/ui/Headerbar.ui:264
-msgid "Focus Mode"
-msgstr "Keskittymistila"
+#: data/ui/Headerbar.ui:78
+msgid "_Focus Mode"
+msgstr "_Keskittymistila"
 
-#: data/ui/Headerbar.ui:289
-msgid "Find and Replace"
-msgstr "Etsi ja korvaa"
+#: data/ui/Headerbar.ui:84
+msgid "Find and _Replace"
+msgstr "Etsi ja _korvaa"
 
-#: data/ui/Headerbar.ui:314
-msgid "Preferences"
-msgstr "Asetukset"
+#: data/ui/Headerbar.ui:90
+msgid "_Preferences"
+msgstr "_Asetukset"
 
-#: data/ui/Headerbar.ui:339
-msgid "Open Tutorial"
-msgstr "Avaa opas"
+#: data/ui/Headerbar.ui:96
+msgid "Open _Tutorial"
+msgstr "Avaa _opas"
 
-#: data/ui/Headerbar.ui:353
-msgid "Keyboard Shortcuts"
-msgstr "Pikanäppäimet"
+#: data/ui/Headerbar.ui:101
+msgid "_Keyboard Shortcuts"
+msgstr "_Pikanäppäimet"
 
-#: data/ui/Headerbar.ui:367
-msgid "About Apostrophe"
-msgstr "Tietoja - Apostrophe"
+#: data/ui/Headerbar.ui:105
+msgid "_About Apostrophe"
+msgstr "_Tietoja - Apostrophe"
 
-#: data/ui/Headerbar.ui:395
-msgid "Save As…"
-msgstr "Tallenna nimellä…"
+#: data/ui/Headerbar.ui:116
+#| msgid "Save As…"
+msgid "_Save As..."
+msgstr "_Tallenna nimellä..."
 
-#: data/ui/Headerbar.ui:476
-msgid "Advanced Export…"
-msgstr "Edistynyt vienti…"
+#: data/ui/Headerbar.ui:139
+msgid "Advanced _Export…"
+msgstr "_Edistynyt vienti…"
 
-#: data/ui/Headerbar.ui:501
-msgid "Copy HTML"
-msgstr "Kopioi HTML:nä"
+#: data/ui/Headerbar.ui:145
+msgid "_Copy HTML"
+msgstr "_Kopioi HTML:nä"
 
-#: data/ui/Preferences.ui:40
+#: data/ui/Preferences.ui:28
 msgid "Autohide headerbar"
 msgstr "Piilota otsakepalkki automaattisesti"
 
-#: data/ui/Preferences.ui:41
+#: data/ui/Preferences.ui:29
 msgid "Autohide header and statusbars while typing"
 msgstr "Piilota otsakepalkki ja tilapalkit automaattisesti kirjoittaessa"
 
-#: data/ui/Preferences.ui:57
+#: data/ui/Preferences.ui:42
 msgid "Use bigger text"
 msgstr "Käytä suurempaa tekstiä"
 
-#: data/ui/Preferences.ui:58
+#: data/ui/Preferences.ui:43
 msgid "Reduce the margins width and increase the text size when possible"
 msgstr ""
 "Pienennä marginaalin leveyttä ja suurenna tekstin kokoa kun mahdollista"
 
-#: data/ui/Preferences.ui:72
+#: data/ui/Preferences.ui:56
 msgid "Restore session"
 msgstr "Palauta istunto"
 
-#: data/ui/Preferences.ui:73
+#: data/ui/Preferences.ui:57
 msgid "Return to your previous session when Apostrophe is started"
 msgstr "Palaa edelliseen istuntoon kun Apostrophe käynnistetään"
 
-#: data/ui/Preferences.ui:91
+#: data/ui/Preferences.ui:71
 msgid "Flavor of markdown Apostrophe will use"
 msgstr "Apostrophen käyttämä Markdown-murre"
 
-#: data/ui/Preferences.ui:100
+#: data/ui/Preferences.ui:80
 msgid "Markdown flavor documentation"
 msgstr "Markdown-murteiden dokumentaatio"
 
-#: data/ui/PreviewLayoutSwitcher.ui:10 data/ui/PreviewWindow.ui:13
+#: data/ui/PreviewLayoutSwitcher.ui:7 apostrophe/preview_renderer.py:208
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: data/ui/PreviewLayoutSwitcher.ui:32
+#: data/ui/PreviewLayoutSwitcher.ui:24
 msgid "Screen Layout"
 msgstr "Näytön asettelu"
 
-#: data/ui/Recents.ui:60
+#: data/ui/Recents.ui:46
 msgid "No Recent Documents"
 msgstr "Ei viimeisimpiä asiakirjoja"
 
-#: data/ui/Recents.ui:88
+#: data/ui/Recents.ui:69
 msgid "No Results Found"
 msgstr "Tuloksia ei löytynyt"
 
-#: data/ui/SearchBar.ui:50
+#: data/ui/SearchBar.ui:28
 msgid "Previous Match"
 msgstr "Edellinen osuma"
 
-#: data/ui/SearchBar.ui:63
+#: data/ui/SearchBar.ui:37
 msgid "Next Match"
 msgstr "Seuraava osuma"
 
 #. Translators: This indicates case sensitivity, so it should be the first vowel of the language in lowercase and uppercase
-#: data/ui/SearchBar.ui:85
+#: data/ui/SearchBar.ui:52
 msgid "aA"
 msgstr "aA"
 
-#: data/ui/SearchBar.ui:89
+#: data/ui/SearchBar.ui:55
 msgid "Case Sensitive"
 msgstr "Huomioi kirjainkoko"
 
-#: data/ui/SearchBar.ui:99
+#: data/ui/SearchBar.ui:64
 msgid "Regular Expression"
 msgstr "Säännöllinen lauseke"
 
-#: data/ui/SearchBar.ui:111 data/ui/SearchBar.ui:165
+#: data/ui/SearchBar.ui:72 data/ui/SearchBar.ui:110
 msgid "Replace"
 msgstr "Korvaa"
 
-#: data/ui/SearchBar.ui:175
+#: data/ui/SearchBar.ui:118
 msgid "Replace All"
 msgstr "Korvaa kaikki"
 
-#: data/ui/Shortcuts.ui:13
+#: data/ui/Shortcuts.ui:12
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Yleiset"
 
-#: data/ui/Shortcuts.ui:17
+#: data/ui/Shortcuts.ui:16
 msgctxt "shortcut window"
 msgid "New"
 msgstr "Uusi"
 
-#: data/ui/Shortcuts.ui:24
+#: data/ui/Shortcuts.ui:23
 msgctxt "shortcut window"
 msgid "Open"
 msgstr "Avaa"
 
-#: data/ui/Shortcuts.ui:31
+#: data/ui/Shortcuts.ui:30
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Tallenna"
 
-#: data/ui/Shortcuts.ui:38
+#: data/ui/Shortcuts.ui:37
 msgctxt "shortcut window"
 msgid "Save as"
 msgstr "Tallenna nimellä"
 
-#: data/ui/Shortcuts.ui:45
+#: data/ui/Shortcuts.ui:44
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Sulje asiakirja"
 
-#: data/ui/Shortcuts.ui:52
+#: data/ui/Shortcuts.ui:51
 msgctxt "shortcut window"
 msgid "Quit application"
 msgstr "Lopeta sovellus"
 
-#: data/ui/Shortcuts.ui:61
+#: data/ui/Shortcuts.ui:60
 msgctxt "shortcut window"
 msgid "Modes"
 msgstr "Tilat"
 
-#: data/ui/Shortcuts.ui:65
+#: data/ui/Shortcuts.ui:64
 msgctxt "shortcut window"
 msgid "Focus mode"
 msgstr "Keskittymistila"
 
-#: data/ui/Shortcuts.ui:72
+#: data/ui/Shortcuts.ui:71
 msgctxt "shortcut window"
 msgid "Hemingway mode"
 msgstr "Hemingway-tila"
 
-#: data/ui/Shortcuts.ui:79
+#: data/ui/Shortcuts.ui:78
 msgctxt "shortcut window"
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: data/ui/Shortcuts.ui:86
+#: data/ui/Shortcuts.ui:85
 msgctxt "shortcut window"
 msgid "Fullscreen"
 msgstr "Koko näyttö"
 
-#: data/ui/Shortcuts.ui:95 data/ui/Shortcuts.ui:99
+#: data/ui/Shortcuts.ui:94 data/ui/Shortcuts.ui:98
 msgctxt "shortcut window"
 msgid "Find"
 msgstr "Haku"
 
-#: data/ui/Shortcuts.ui:106
+#: data/ui/Shortcuts.ui:105
 msgctxt "shortcut window"
 msgid "Find and replace"
 msgstr "Etsi ja korvaa"
 
-#: data/ui/Shortcuts.ui:115
+#: data/ui/Shortcuts.ui:114
 msgctxt "shortcut window"
 msgid "Markdown"
 msgstr "Markdown"
 
-#: data/ui/Shortcuts.ui:119
+#: data/ui/Shortcuts.ui:118
 msgctxt "shortcut window"
 msgid "Separator"
 msgstr "Erotin"
 
-#: data/ui/Shortcuts.ui:126
+#: data/ui/Shortcuts.ui:125
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Ylätunniste"
+
+#: data/ui/Shortcuts.ui:132
 msgctxt "shortcut window"
 msgid "List item"
 msgstr "Luettelokohta"
 
-#: data/ui/Shortcuts.ui:133
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursivoi"
 
-#: data/ui/Shortcuts.ui:140
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Lihavoi"
 
-#: data/ui/Shortcuts.ui:147
+#: data/ui/Shortcuts.ui:153
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Yliviivaa"
 
-#: data/ui/Shortcuts.ui:156
+#: data/ui/Shortcuts.ui:162
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "Kopiointi ja liittäminen"
 
-#: data/ui/Shortcuts.ui:160
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Kopioi valittu teksti leikepöydälle"
 
-#: data/ui/Shortcuts.ui:167
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Leikkaa valittu teksti leikepöydälle"
 
-#: data/ui/Shortcuts.ui:174
+#: data/ui/Shortcuts.ui:180
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "Liitä teksti leikepöydältä"
 
-#: data/ui/Shortcuts.ui:183
+#: data/ui/Shortcuts.ui:189
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "Kumoaminen ja uudelleentekeminen"
 
-#: data/ui/Shortcuts.ui:187
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Kumoa edellinen komento"
 
-#: data/ui/Shortcuts.ui:194
+#: data/ui/Shortcuts.ui:200
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Tee uudelleen edellinen komento"
 
-#: data/ui/Shortcuts.ui:203
+#: data/ui/Shortcuts.ui:209
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "Valinta"
 
-#: data/ui/Shortcuts.ui:207
+#: data/ui/Shortcuts.ui:213
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Valitse kaikki teksti"
 
-#: data/ui/ThemeSwitcher.ui:22
+#: data/ui/ThemeSwitcher.ui:17
 msgid "Use System Colors"
 msgstr "Käytä järjestelmän värejä"
 
-#: data/ui/ThemeSwitcher.ui:51
+#: data/ui/ThemeSwitcher.ui:27
 msgid "Use Light Colors"
 msgstr "Käytä vaaleita värejä"
 
-#: data/ui/ThemeSwitcher.ui:80
+#: data/ui/ThemeSwitcher.ui:37
 msgid "Use Sepia Colors"
 msgstr "Käytä seepiavärejä"
 
-#: data/ui/ThemeSwitcher.ui:109
+#: data/ui/ThemeSwitcher.ui:47
 msgid "Use Dark Colors"
 msgstr "Käytä tummia värejä"
 
-#: data/ui/Window.ui:69
+#: data/ui/Window.ui:58
 msgid "Show Statistics"
 msgstr "Näytä tilastot"
 
-#: apostrophe/export_dialog.py:131 apostrophe/export_dialog.py:328
+#: data/ui/Window.ui:59
+msgid "0 Words"
+msgstr "0 sanaa"
+
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "Tiedosto on muuttunut levyllä"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "Tiedostoa on muutettu toisessa ohjelmassa."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "_Hylkää muutokset ja lataa uudelleen"
+
+#: apostrophe/application.py:242
+msgid "Donate"
+msgstr "Lahjoita"
+
+#: apostrophe/application.py:243
+msgid "Translations"
+msgstr "Kielikäännökset"
+
+#: apostrophe/export_dialog.py:118 apostrophe/helpers.py:84
+msgid "Close"
+msgstr "Sulje"
+
+#: apostrophe/export_dialog.py:126 apostrophe/export_dialog.py:333
 #, python-format
 msgid "Export to %s"
 msgstr "Vie muotoon %s"
 
-#: apostrophe/export_dialog.py:158 apostrophe/export_dialog.py:358
+#: apostrophe/export_dialog.py:152 apostrophe/export_dialog.py:322
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -610,15 +644,15 @@ msgstr ""
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:234
+#: apostrophe/export_dialog.py:225
 msgid "Export to {}"
 msgstr "Vie muotoon {}"
 
-#: apostrophe/export_dialog.py:324
+#: apostrophe/export_dialog.py:329
 msgid "Select folder"
 msgstr "Valitse kansio"
 
-#: apostrophe/helpers.py:89
+#: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "Virhe"
 
@@ -626,115 +660,149 @@ msgstr "Virhe"
 msgid "Unsaved documents"
 msgstr "Tallentamattomia asiakirjoja"
 
-#: apostrophe/inline_preview.py:200
+#: apostrophe/inline_preview.py:201
 msgid "Formula looks incorrect:"
 msgstr "Kaava vaikuttaa virheelliseltä:"
 
-#: apostrophe/inline_preview.py:239
+#: apostrophe/inline_preview.py:241
 msgid "No matching footnote found"
 msgstr "Vastaavaa alaviitettä ei löydy"
 
-#: apostrophe/inline_preview.py:259
+#: apostrophe/inline_preview.py:261
 msgid "noun"
 msgstr "substantiivi"
 
-#: apostrophe/inline_preview.py:261
+#: apostrophe/inline_preview.py:263
 msgid "verb"
 msgstr "verbi"
 
-#: apostrophe/inline_preview.py:263
+#: apostrophe/inline_preview.py:265
 msgid "adjective"
 msgstr "adjektiivi"
 
-#: apostrophe/inline_preview.py:265
+#: apostrophe/inline_preview.py:267
 msgid "adverb"
 msgstr "adverbi"
 
-#: apostrophe/main_window.py:327
+#. Hemingway Toast
+#: apostrophe/main_window.py:131
+msgid "Text can't be deleted while on Hemingway mode"
+msgstr "Tekstiä ei voi poistaa Hemingway-tilassa"
+
+#: apostrophe/main_window.py:134
+msgid "Tell me more"
+msgstr "Kerro lisää"
+
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "Tallenna tiedostosi"
 
-#: apostrophe/main_window.py:413
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "Markdown-tiedostot"
 
-#: apostrophe/main_window.py:417
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "Raakatekstitiedostot"
 
-#: apostrophe/main_window.py:420
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "Avaa .md-tiedosto"
 
-#: apostrophe/main_window.py:499
+#: apostrophe/main_window.py:555
+msgid "Save changes?"
+msgstr "Tallennetaanko muutokset?"
+
+#: apostrophe/main_window.py:556
 #, python-format
-msgid "Save changes to document “%s” before closing?"
-msgstr "Tallennetaanko muutokset asiakirjaan “%s” ennen sulkemista?"
+#| msgid "If you don’t save, all your changes will be permanently lost."
+msgid ""
+"“%s” contains unsaved changes. If you don’t save, all your changes will be "
+"permanently lost."
+msgstr ""
+"“%s” sisältää tallentamattomia muutoksia. Jos et tallenna, kaikki muutokset "
+"häviävät pysyvästi."
 
-#: apostrophe/main_window.py:504
-msgid "If you don’t save, all your changes will be permanently lost."
-msgstr "Jos et tallenna, kaikki tekemäsi muutokset katoavat lopullisesti."
+#: apostrophe/main_window.py:562
+msgid "Discard"
+msgstr "Hylkää"
 
-#: apostrophe/main_window.py:507
-msgid "Close without saving"
-msgstr "Sulje tallentamatta"
-
-#: apostrophe/main_window.py:510
-msgid "Save now"
-msgstr "Tallenna nyt"
-
-#: apostrophe/main_window.py:685
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "Uusi tiedosto"
 
-#: apostrophe/preview_layout_switcher.py:38
+#: apostrophe/preview_layout_switcher.py:40
 msgid "Full-Width"
 msgstr "Täysleveys"
 
-#: apostrophe/preview_layout_switcher.py:40
+#: apostrophe/preview_layout_switcher.py:42
 msgid "Half-Width"
 msgstr "Puolitettu leveys"
 
-#: apostrophe/preview_layout_switcher.py:42
+#: apostrophe/preview_layout_switcher.py:44
 msgid "Half-Height"
 msgstr "Puolitettu korkeus"
 
-#: apostrophe/preview_layout_switcher.py:44
+#: apostrophe/preview_layout_switcher.py:46
 msgid "Windowed"
 msgstr "Ikkunoitu"
 
-#: apostrophe/stats_handler.py:75
+#: apostrophe/stats_handler.py:98
+#| msgid "{:n} Character"
+#| msgid_plural "{:n} Characters"
+msgid "{:n} of {:n} Characters"
+msgstr "{:n}/{:n} merkistä"
+
+#: apostrophe/stats_handler.py:100
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "Merkkejä {:n}"
 msgstr[1] "Merkkejä {:n}"
 
-#: apostrophe/stats_handler.py:77
+#: apostrophe/stats_handler.py:103
+#| msgid "{:n} Word"
+#| msgid_plural "{:n} Words"
+msgid "{:n} of {:n} Words"
+msgstr "{:n}/{:n} sanasta"
+
+#: apostrophe/stats_handler.py:105
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "Sanoja {:n}"
 msgstr[1] "Sanoja {:n}"
 
-#: apostrophe/stats_handler.py:79
+#: apostrophe/stats_handler.py:108
+#| msgid "{:n} Sentence"
+#| msgid_plural "{:n} Sentences"
+msgid "{:n} of {:n} Sentences"
+msgstr "{:n}/{:n} lauseesta"
+
+#: apostrophe/stats_handler.py:110
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "Lauseita {:n}"
 msgstr[1] "Lauseita {:n}"
 
-#: apostrophe/stats_handler.py:81
+#: apostrophe/stats_handler.py:113
+#| msgid "{:n} Paragraph"
+#| msgid_plural "{:n} Paragraphs"
+msgid "{:n} of {:n} Paragraphs"
+msgstr "{:n}/{:n} kappaleesta"
+
+#: apostrophe/stats_handler.py:115
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "Kappaleita {:n}"
 msgstr[1] "Kappaleita {:n}"
 
-#: apostrophe/stats_handler.py:83
+#: apostrophe/stats_handler.py:118
+#| msgid "{:d}:{:02d}:{:02d} Read Time"
+msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d}/{:d}:{:02d}:{:02d} lukuaika"
+
+#: apostrophe/stats_handler.py:120
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "Lukuaika {:d}:{:02d}:{:02d}"
-
-#: apostrophe/text_view_drag_drop_handler.py:75
-#: apostrophe/text_view_drag_drop_handler.py:77
-msgid "web page"
-msgstr "verkkosivu"
 
 #: apostrophe/text_view_format_inserter.py:14
 msgid "italic text"
@@ -752,9 +820,47 @@ msgstr "yliviivattu teksti"
 msgid "Item"
 msgstr "Tietue"
 
-#: apostrophe/text_view_format_inserter.py:98
+#: apostrophe/text_view_format_inserter.py:97
 msgid "Header"
 msgstr "Ylätunniste"
+
+#: apostrophe/text_view.py:177 apostrophe/text_view.py:179
+msgid "web page"
+msgstr "verkkosivu"
+
+#~ msgid "Apostrophe website"
+#~ msgstr "Apostrophen verkkosivusto"
+
+#~ msgid "Paypal"
+#~ msgstr "Paypal"
+
+#~ msgid "Help to translate:"
+#~ msgstr "Auta kääntämään:"
+
+#~ msgid "Damned Lies"
+#~ msgstr "Damned Lies"
+
+#~ msgid "CSS File"
+#~ msgstr "CSS-tiedosto"
+
+#~ msgid "Select CSS file"
+#~ msgstr "Valitse CSS-tiedosto"
+
+#~ msgid "Save as…"
+#~ msgstr "Tallenna nimellä…"
+
+#~ msgid "New Window"
+#~ msgstr "Uusi ikkuna"
+
+#, python-format
+#~ msgid "Save changes to document “%s” before closing?"
+#~ msgstr "Tallennetaanko muutokset asiakirjaan “%s” ennen sulkemista?"
+
+#~ msgid "Close without saving"
+#~ msgstr "Sulje tallentamatta"
+
+#~ msgid "Save now"
+#~ msgstr "Tallenna nyt"
 
 #~ msgid "An elegant, distraction-free markdown editor"
 #~ msgstr "Tyylikäs ja häiriötekijät minimoiva markdown-muokkain"
