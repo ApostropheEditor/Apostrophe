@@ -17,8 +17,6 @@ Vova Kolobok </property>
     <property name="translator_credits" translatable="yes" comments="Put your name in here, like this:&#10;Manuel Genovés &lt;manuel.genoves@gmail.com&gt;">translator-credits</property>
     <property name="artists">Tobias Bernard &lt;hi@tobiasbernard.com&gt;</property>
     <property name="designers">Tobias Bernard &lt;hi@tobiasbernard.com&gt;
-Alexander Mikhaylenko;
-Zander Brown;
 Manuel Genovés &lt;manuel.genoves@gmail.com&gt;</property>
     <property name="issue_url">https://gitlab.gnome.org/World/apostrophe/-/issues</property>
     <property name="debug-info-filename">apostrophe-debug-info.txt</property>
