@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-22 15:49+0000\n"
+"POT-Creation-Date: 2022-10-04 22:46+0000\n"
 "PO-Revision-Date: 2022-09-25 16:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
@@ -228,15 +228,15 @@ msgstr ""
 msgid "_Close"
 msgstr "Za_mknij"
 
-#: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
-#: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:329 apostrophe/export_dialog.py:334
 #: apostrophe/main_window.py:398 apostrophe/main_window.py:469
 #: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: data/ui/Export.ui:44 apostrophe/export_dialog.py:127
-#: apostrophe/export_dialog.py:332 apostrophe/export_dialog.py:336
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:123
+#: apostrophe/export_dialog.py:328 apostrophe/export_dialog.py:332
 msgid "Export"
 msgstr "Wyeksportuj"
 
@@ -518,65 +518,70 @@ msgstr "Separator"
 
 #: data/ui/Shortcuts.ui:125
 msgctxt "shortcut window"
+msgid "Header"
+msgstr "Nagłówek"
+
+#: data/ui/Shortcuts.ui:132
+msgctxt "shortcut window"
 msgid "List item"
 msgstr "Element listy"
 
-#: data/ui/Shortcuts.ui:132
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Pochylenie"
 
-#: data/ui/Shortcuts.ui:139
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Pogrubienie"
 
-#: data/ui/Shortcuts.ui:146
+#: data/ui/Shortcuts.ui:153
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Przekreślenie"
 
-#: data/ui/Shortcuts.ui:155
+#: data/ui/Shortcuts.ui:162
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "Kopiowanie i wklejanie"
 
-#: data/ui/Shortcuts.ui:159
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Skopiowanie zaznaczonego tekstu do schowka"
 
-#: data/ui/Shortcuts.ui:166
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Wycięcie zaznaczonego tekstu do schowka"
 
-#: data/ui/Shortcuts.ui:173
+#: data/ui/Shortcuts.ui:180
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "Wklejenie zaznaczonego tekstu ze schowka"
 
-#: data/ui/Shortcuts.ui:182
+#: data/ui/Shortcuts.ui:189
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "Cofanie i ponawianie"
 
-#: data/ui/Shortcuts.ui:186
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Cofnięcie poprzedniego polecenia"
 
-#: data/ui/Shortcuts.ui:193
+#: data/ui/Shortcuts.ui:200
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Ponowienie poprzedniego polecenia"
 
-#: data/ui/Shortcuts.ui:202
+#: data/ui/Shortcuts.ui:209
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "Zaznaczanie"
 
-#: data/ui/Shortcuts.ui:206
+#: data/ui/Shortcuts.ui:213
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Zaznaczenie całego tekstu"
@@ -617,20 +622,24 @@ msgstr "Plik został zmieniony przez inny program."
 msgid "_Discard Changes and Reload"
 msgstr "_Odrzuć zmiany i wczytaj ponownie"
 
-#: apostrophe/application.py:234
+#: apostrophe/application.py:242
 msgid "Donate"
 msgstr "Przekaż datek"
 
-#: apostrophe/application.py:235
+#: apostrophe/application.py:243
 msgid "Translations"
 msgstr "Tłumaczenia"
 
-#: apostrophe/export_dialog.py:130 apostrophe/export_dialog.py:337
+#: apostrophe/export_dialog.py:118 apostrophe/helpers.py:84
+msgid "Close"
+msgstr "Zamknij"
+
+#: apostrophe/export_dialog.py:126 apostrophe/export_dialog.py:333
 #, python-format
 msgid "Export to %s"
 msgstr "Wyeksportuj do %s"
 
-#: apostrophe/export_dialog.py:156 apostrophe/export_dialog.py:326
+#: apostrophe/export_dialog.py:152 apostrophe/export_dialog.py:322
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -641,21 +650,17 @@ msgstr ""
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:229
+#: apostrophe/export_dialog.py:225
 msgid "Export to {}"
 msgstr "Wyeksportuj do {}"
 
-#: apostrophe/export_dialog.py:333
+#: apostrophe/export_dialog.py:329
 msgid "Select folder"
 msgstr "Wybierz katalog"
 
 #: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "Błąd"
-
-#: apostrophe/helpers.py:84
-msgid "Close"
-msgstr "Zamknij"
 
 #: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
@@ -815,10 +820,10 @@ msgstr "przekreślony tekst"
 msgid "Item"
 msgstr "Element"
 
-#: apostrophe/text_view_format_inserter.py:98
+#: apostrophe/text_view_format_inserter.py:97
 msgid "Header"
 msgstr "Nagłówek"
 
-#: apostrophe/text_view.py:169 apostrophe/text_view.py:171
+#: apostrophe/text_view.py:177 apostrophe/text_view.py:179
 msgid "web page"
 msgstr "strona WWW"
