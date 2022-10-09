@@ -9,17 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-22 22:04+0000\n"
-"PO-Revision-Date: 2022-09-23 20:36+0200\n"
-"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
+"POT-Creation-Date: 2022-10-04 22:46+0000\n"
+"PO-Revision-Date: 2022-10-09 10:10+0200\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -30,12 +31,13 @@ msgstr "Apostrof"
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:5
 msgid "uberwriter;UberWriter;apostrophe;markdown;editor;text;write;"
 msgstr ""
-"uberwriter;UberWriter;apostrophe;markdown;editor;urejevalnik;apostrof;opuščaj;oblikovanje;"
-"nadurejevalnik;nad-urejevalnik;gedit;notepadqq;notepad++;"
+"uberwriter;UberWriter;apostrophe;markdown;editor;urejevalnik;apostrof;"
+"opuščaj;oblikovanje;nadurejevalnik;nad-urejevalnik;gedit;notepadqq;notepad++;"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:6
 msgid "Apostrophe, an elegant, distraction-free markdown editor"
-msgstr "Apostrof, enostaven, a funkcijsko zmogljiv urejevalnik zapisa markdown."
+msgstr ""
+"Apostrof, enostaven, a funkcijsko zmogljiv urejevalnik zapisa markdown."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:29
 msgid "Color scheme"
@@ -45,8 +47,8 @@ msgstr "Barvna shema"
 msgid "Use the color scheme in the application's UI and in the text area."
 msgstr "Uporabi barvno shemo v vmesniku programa in polju za vnos besedila."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36 data/ui/Preferences.ui:15
-#: data/ui/Preferences.ui:16
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:36
+#: data/ui/Preferences.ui:15 data/ui/Preferences.ui:16
 msgid "Check spelling while typing"
 msgstr "Preverjaj črkovanje med vpisovanjem"
 
@@ -62,13 +64,15 @@ msgstr "Uskladi drsenje urejevalnika/pregledovalnika"
 msgid "Keep the editor and preview scroll positions in sync."
 msgstr "Samodejno usklajuje položaj drsnika urejevalnika in pregledovalnika."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50 data/ui/Preferences.ui:70
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:50
+#: data/ui/Preferences.ui:70
 msgid "Input format"
 msgstr "Vhodni zapis"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:51
 msgid "Input format to use when previewing and exporting using Pandoc."
-msgstr "Vhodni zapis, ki je uporabljen pri predogledu in izvažanju z uporabo Pandoc."
+msgstr ""
+"Vhodni zapis, ki je uporabljen pri predogledu in izvažanju z uporabo Pandoc."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:57
 msgid "Autohide Headerbar"
@@ -92,7 +96,8 @@ msgstr "Privzeta statistika"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:72
 msgid "Which statistic is shown on the main window."
-msgstr "Kateri podatki statistike dokumenta naj bodo prikazani na glavnem oknu."
+msgstr ""
+"Kateri podatki statistike dokumenta naj bodo prikazani na glavnem oknu."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:78
 msgid "Characters per line"
@@ -102,7 +107,8 @@ msgstr "Znaki na vrstico"
 msgid "Maximum number of characters per line within the editor."
 msgstr "Največje število znakov na vrstico v polju besedila urejevalnika."
 
-#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85 data/ui/AboutHemingway.ui:6
+#: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:85
+#: data/ui/AboutHemingway.ui:6
 msgid "Hemingway Mode"
 msgstr "Hemingwayev način"
 
@@ -167,16 +173,24 @@ msgid "Dark, light and sepia themes"
 msgstr "Temna, svetla in starinska tema"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:14
-msgid "Everything you expect from a text editor, such as spellchecking or document statistics"
-msgstr "Vse, kar pričakujete od urejevalnika besedil, od črkovanja do statistike dokumenta"
+msgid ""
+"Everything you expect from a text editor, such as spellchecking or document "
+"statistics"
+msgstr ""
+"Vse, kar pričakujete od urejevalnika besedil, od črkovanja do statistike "
+"dokumenta"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:15
 msgid "Live preview of what you write"
 msgstr "Sprotni predogled vnesenega besedila"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:16
-msgid "Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML slideshows"
-msgstr "Izvoz v številne zapise: PDF, Word/Libreoffice, LaTeX, ali celo predstavitve HTML"
+msgid ""
+"Export to all kind of formats: PDF, Word/Libreoffice, LaTeX, or even HTML "
+"slideshows"
+msgstr ""
+"Izvoz v številne zapise: PDF, Word/Libreoffice, LaTeX, ali celo predstavitve "
+"HTML"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:41
 msgid "Manuel G., Wolf V."
@@ -196,34 +210,35 @@ msgstr ""
 
 #: data/ui/AboutHemingway.ui:7
 msgid ""
-"The Hemingway Mode mimics the experience of writing on a typewriter, not allowing you to delete "
-"any text or doing any kind of editing. \n"
+"The Hemingway Mode mimics the experience of writing on a typewriter, not "
+"allowing you to delete any text or doing any kind of editing. \n"
 "\n"
-"Only being able to move forward may be frustrating, but can be an interesting exercise for "
-"improving your writing skills, gaining focus or facing the task on hand with a different "
-"mindset.\n"
+"Only being able to move forward may be frustrating, but can be an "
+"interesting exercise for improving your writing skills, gaining focus or "
+"facing the task on hand with a different mindset.\n"
 "  "
 msgstr ""
-"Hemingwayjev način posnema izkušnjo pisanja na pisalnem stroju, ki ne podpira brisanja besedila "
-"ali urejanja.\n"
+"Hemingwayjev način posnema izkušnjo pisanja na pisalnem stroju, ki ne "
+"podpira brisanja besedila ali urejanja.\n"
 "\n"
-"To, da se lahko premaknete zgolj naprej, je lahko frustrirajoče, vendar je lahko zanimiva vaja "
-"za izboljšanje vaših spretnosti pisanja, osredotočanja ali soočanja z dano nalogo na drugačen "
-"način.\n"
+"To, da se lahko premaknete zgolj naprej, je lahko frustrirajoče, vendar je "
+"lahko zanimiva vaja za izboljšanje vaših spretnosti pisanja, osredotočanja "
+"ali soočanja z dano nalogo na drugačen način.\n"
 "  "
 
 #: data/ui/AboutHemingway.ui:13
 msgid "_Close"
 msgstr "_Zapri"
 
-#: data/ui/Export.ui:33 apostrophe/export_dialog.py:132 apostrophe/export_dialog.py:333
-#: apostrophe/export_dialog.py:338 apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:329 apostrophe/export_dialog.py:334
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
 #: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: data/ui/Export.ui:44 apostrophe/export_dialog.py:127 apostrophe/export_dialog.py:332
-#: apostrophe/export_dialog.py:336
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:123
+#: apostrophe/export_dialog.py:328 apostrophe/export_dialog.py:332
 msgid "Export"
 msgstr "Izvozi"
 
@@ -232,8 +247,12 @@ msgid "Standalone"
 msgstr "Samostojno"
 
 #: data/ui/Export.ui:120
-msgid "Use a header and footer to include things like stylesheets and meta information"
-msgstr "Uporabi glavo in nogo za vključevanje podatkov kot so metapodatki ali slogovne predloge"
+msgid ""
+"Use a header and footer to include things like stylesheets and meta "
+"information"
+msgstr ""
+"Uporabi glavo in nogo za vključevanje podatkov kot so metapodatki ali "
+"slogovne predloge"
 
 #: data/ui/Export.ui:133
 msgid "Table of Contents"
@@ -287,7 +306,8 @@ msgstr "Nov dokument"
 msgid "Open"
 msgstr "Odpri"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397 apostrophe/main_window.py:563
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Shrani"
 
@@ -353,7 +373,8 @@ msgstr "Uporabi večje besedilo"
 
 #: data/ui/Preferences.ui:43
 msgid "Reduce the margins width and increase the text size when possible"
-msgstr "Zmanjšajte širino robov in povečajte velikost besedila, kadar je to mogoče"
+msgstr ""
+"Zmanjšajte širino robov in povečajte velikost besedila, kadar je to mogoče"
 
 #: data/ui/Preferences.ui:56
 msgid "Restore session"
@@ -498,65 +519,70 @@ msgstr "Ločilnik"
 
 #: data/ui/Shortcuts.ui:125
 msgctxt "shortcut window"
+msgid "Header"
+msgstr "Glava"
+
+#: data/ui/Shortcuts.ui:132
+msgctxt "shortcut window"
 msgid "List item"
 msgstr "Ustvari predmet seznama"
 
-#: data/ui/Shortcuts.ui:132
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Oblikuje pisavo ležeče"
 
-#: data/ui/Shortcuts.ui:139
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Oblikuje pisavo krepko"
 
-#: data/ui/Shortcuts.ui:146
+#: data/ui/Shortcuts.ui:153
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Oblikuje pisavo prečrtano"
 
-#: data/ui/Shortcuts.ui:155
+#: data/ui/Shortcuts.ui:162
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "Kopiranje in prilepljenje"
 
-#: data/ui/Shortcuts.ui:159
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Kopira izbrano besedilo na odložišče"
 
-#: data/ui/Shortcuts.ui:166
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Izreže izbrano besedilo v odložišče"
 
-#: data/ui/Shortcuts.ui:173
+#: data/ui/Shortcuts.ui:180
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "Prilepi izbrano besedilo iz odložišča"
 
-#: data/ui/Shortcuts.ui:182
+#: data/ui/Shortcuts.ui:189
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "Razveljavi in ponovno uveljavi"
 
-#: data/ui/Shortcuts.ui:186
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Razveljavi predhodni ukaz"
 
-#: data/ui/Shortcuts.ui:193
+#: data/ui/Shortcuts.ui:200
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Ponovno uveljavi predhodni ukaz"
 
-#: data/ui/Shortcuts.ui:202
+#: data/ui/Shortcuts.ui:209
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "Izbor"
 
-#: data/ui/Shortcuts.ui:206
+#: data/ui/Shortcuts.ui:213
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Izbere celotno besedilo"
@@ -597,20 +623,24 @@ msgstr "Datoteka je bila spremenjena v drugem programu."
 msgid "_Discard Changes and Reload"
 msgstr "_Opusti spremembe in ponovno naloži"
 
-#: apostrophe/application.py:234
+#: apostrophe/application.py:242
 msgid "Donate"
 msgstr "Donirajte"
 
-#: apostrophe/application.py:235
+#: apostrophe/application.py:243
 msgid "Translations"
 msgstr "Prevodi"
 
-#: apostrophe/export_dialog.py:130 apostrophe/export_dialog.py:337
+#: apostrophe/export_dialog.py:118 apostrophe/helpers.py:84
+msgid "Close"
+msgstr "Zapri"
+
+#: apostrophe/export_dialog.py:126 apostrophe/export_dialog.py:333
 #, python-format
 msgid "Export to %s"
 msgstr "Izvozi v %s"
 
-#: apostrophe/export_dialog.py:156 apostrophe/export_dialog.py:326
+#: apostrophe/export_dialog.py:152 apostrophe/export_dialog.py:322
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -621,21 +651,17 @@ msgstr ""
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:229
+#: apostrophe/export_dialog.py:225
 msgid "Export to {}"
 msgstr "Izvozi v {}"
 
-#: apostrophe/export_dialog.py:333
+#: apostrophe/export_dialog.py:329
 msgid "Select folder"
 msgstr "Izbor mape"
 
 #: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "Napaka"
-
-#: apostrophe/helpers.py:84
-msgid "Close"
-msgstr "Zapri"
 
 #: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
@@ -697,8 +723,11 @@ msgstr "Ali želite shraniti spremembe?"
 #: apostrophe/main_window.py:556
 #, python-format
 msgid ""
-"“%s” contains unsaved changes. If you don’t save, all your changes will be permanently lost."
-msgstr "»%s« vsebuje neshranjene spremembe. Če ne shranite, bodo vse spremembe trajno izgubljene."
+"“%s” contains unsaved changes. If you don’t save, all your changes will be "
+"permanently lost."
+msgstr ""
+"»%s« vsebuje neshranjene spremembe. Če ne shranite, bodo vse spremembe "
+"trajno izgubljene."
 
 #: apostrophe/main_window.py:562
 msgid "Discard"
@@ -796,68 +825,10 @@ msgstr "prečrtano besedilo"
 msgid "Item"
 msgstr "Predmet"
 
-#: apostrophe/text_view_format_inserter.py:98
+#: apostrophe/text_view_format_inserter.py:97
 msgid "Header"
 msgstr "Glava"
 
-#: apostrophe/text_view.py:169 apostrophe/text_view.py:171
+#: apostrophe/text_view.py:177 apostrophe/text_view.py:179
 msgid "web page"
 msgstr "spletna stran"
-
-#~ msgid "Apostrophe website"
-#~ msgstr "Spletna stran programa"
-
-#~ msgid "Paypal"
-#~ msgstr "Paypal"
-
-#~ msgid "Help to translate:"
-#~ msgstr "Sodelujte pri prevajanju:"
-
-#~ msgid "Damned Lies"
-#~ msgstr "Presnete laži"
-
-#~ msgid "CSS File"
-#~ msgstr "Datoteka CSS"
-
-#~ msgid "Select CSS file"
-#~ msgstr "Izbor datoteke CSS"
-
-#~ msgid "Save as…"
-#~ msgstr "Shrani kot …"
-
-#~ msgid "New Window"
-#~ msgstr "Novo okno"
-
-#, python-format
-#~ msgid "Save changes to document “%s” before closing?"
-#~ msgstr "Ali želite shraniti spremembe v dokumentu »%s« pred zapiranjem?"
-
-#~ msgid "Close without saving"
-#~ msgstr "Zapri brez shranjevanja"
-
-#~ msgid "Save now"
-#~ msgstr "Shrani zdaj"
-
-#~ msgid "An elegant, distraction-free markdown editor"
-#~ msgstr "Enostaven, a funkcijsko zmogljiv urejevalnik zapisa markdown."
-
-#~ msgid "Wolf V., Manuel G."
-#~ msgstr "Wolf V., Manuel G."
-
-#~ msgid "Poeditor"
-#~ msgstr "Poeditor"
-
-#~ msgid "page0"
-#~ msgstr "stran0"
-
-#~ msgid "page1"
-#~ msgstr "stran1"
-
-#~ msgid "Sync Views"
-#~ msgstr "Uskladi poglede"
-
-#~ msgid "Open Recent"
-#~ msgstr "Odpri nedavno"
-
-#~ msgid "(.*)"
-#~ msgstr "(.*)"
