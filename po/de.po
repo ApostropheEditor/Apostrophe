@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-14 15:40+0000\n"
-"PO-Revision-Date: 2022-09-15 20:50+0200\n"
+"POT-Creation-Date: 2022-09-28 16:10+0000\n"
+"PO-Revision-Date: 2022-09-30 12:56+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: Germany <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -239,8 +239,8 @@ msgstr "S_chließen"
 
 #: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
 #: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
-#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
-#: apostrophe/main_window.py:531
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -309,12 +309,12 @@ msgstr "Listenpunkte nacheinander in einer Dia-Show anzeigen"
 msgid "New"
 msgstr "Neu"
 
-#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "Öffnen"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
-#: apostrophe/main_window.py:533
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Speichern"
 
@@ -612,6 +612,18 @@ msgstr "Statistik anzeigen"
 msgid "0 Words"
 msgstr "0 Wörter"
 
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "Datei wurde auf dem Datenträger geändert"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "Die Datei wurde durch ein anderes Programm geändert."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "Änderungen verwerfen und _neu laden"
+
 #: apostrophe/application.py:234
 msgid "Donate"
 msgstr "Spenden"
@@ -681,36 +693,36 @@ msgid "adverb"
 msgstr "Adverb"
 
 #. Hemingway Toast
-#: apostrophe/main_window.py:130
+#: apostrophe/main_window.py:131
 msgid "Text can't be deleted while on Hemingway mode"
 msgstr ""
 "Während Sie sich im Hemingway-Modus befinden, kann Text nicht gelöscht werden"
 
-#: apostrophe/main_window.py:133
+#: apostrophe/main_window.py:134
 msgid "Tell me more"
 msgstr "Mehr erfahren"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "Datei speichern"
 
-#: apostrophe/main_window.py:447
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "Markdown-Dateien"
 
-#: apostrophe/main_window.py:451
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "Einfache Textdateien"
 
-#: apostrophe/main_window.py:454
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "Eine ».md«-Datei öffnen"
 
-#: apostrophe/main_window.py:525
+#: apostrophe/main_window.py:555
 msgid "Save changes?"
 msgstr "Änderungen speichern?"
 
-#: apostrophe/main_window.py:526
+#: apostrophe/main_window.py:556
 #, python-format
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
@@ -719,11 +731,11 @@ msgstr ""
 "»%s« enthält ungespeicherte Änderungen. Wenn Sie nicht speichern, gehen alle "
 "Änderungen unwiderruflich verloren."
 
-#: apostrophe/main_window.py:532
+#: apostrophe/main_window.py:562
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "Neue Datei"
 
@@ -743,40 +755,51 @@ msgstr "Halbe Höhe"
 msgid "Windowed"
 msgstr "Im Fenster"
 
-#: apostrophe/stats_handler.py:97 apostrophe/stats_handler.py:100
-#: apostrophe/stats_handler.py:103 apostrophe/stats_handler.py:106
-msgid "{:n} of "
-msgstr "{:n} von "
-
 #: apostrophe/stats_handler.py:98
+msgid "{:n} of {:n} Characters"
+msgstr "{:n} von {:n} Zeichen"
+
+#: apostrophe/stats_handler.py:100
 msgid "{:n} Character"
 msgid_plural "{:n} Characters"
 msgstr[0] "{:n} Zeichen"
 msgstr[1] "{:n} Zeichen"
 
-#: apostrophe/stats_handler.py:101
+#: apostrophe/stats_handler.py:103
+msgid "{:n} of {:n} Words"
+msgstr "{:n} von {:n} Wörter"
+
+#: apostrophe/stats_handler.py:105
 msgid "{:n} Word"
 msgid_plural "{:n} Words"
 msgstr[0] "{:n} Wort"
 msgstr[1] "{:n} Wörter"
 
-#: apostrophe/stats_handler.py:104
+#: apostrophe/stats_handler.py:108
+msgid "{:n} of {:n} Sentences"
+msgstr "{:n} von {:n} Sätze"
+
+#: apostrophe/stats_handler.py:110
 msgid "{:n} Sentence"
 msgid_plural "{:n} Sentences"
 msgstr[0] "{:n} Satz"
 msgstr[1] "{:n} Sätze"
 
-#: apostrophe/stats_handler.py:107
+#: apostrophe/stats_handler.py:113
+msgid "{:n} of {:n} Paragraphs"
+msgstr "{:n} von {:n} Absätze"
+
+#: apostrophe/stats_handler.py:115
 msgid "{:n} Paragraph"
 msgid_plural "{:n} Paragraphs"
 msgstr[0] "{:n} Absatz"
 msgstr[1] "{:n} Absätze"
 
-#: apostrophe/stats_handler.py:109
-msgid "{:d}:{:02d}:{:02d} of "
-msgstr "{:d}:{:02d}:{:02d} von "
+#: apostrophe/stats_handler.py:118
+msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
+msgstr "{:d}:{:02d}:{:02d} von {:d}:{:02d}:{:02d} Lesezeit"
 
-#: apostrophe/stats_handler.py:110
+#: apostrophe/stats_handler.py:120
 msgid "{:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} Lesezeit"
 
@@ -803,6 +826,12 @@ msgstr "Überschrift"
 #: apostrophe/text_view.py:169 apostrophe/text_view.py:171
 msgid "web page"
 msgstr "Webseite"
+
+#~ msgid "{:n} of "
+#~ msgstr "{:n} von "
+
+#~ msgid "{:d}:{:02d}:{:02d} of "
+#~ msgstr "{:d}:{:02d}:{:02d} von "
 
 #~ msgid "Apostrophe website"
 #~ msgstr "Apostrophe Webseite"
