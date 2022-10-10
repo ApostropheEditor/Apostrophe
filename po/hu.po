@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apostrophe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-22 15:49+0000\n"
-"PO-Revision-Date: 2022-09-23 00:03+0200\n"
+"POT-Creation-Date: 2022-10-04 22:46+0000\n"
+"PO-Revision-Date: 2022-10-10 23:44+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -227,15 +227,15 @@ msgstr ""
 msgid "_Close"
 msgstr "_Bezárás"
 
-#: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
-#: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:329 apostrophe/export_dialog.py:334
 #: apostrophe/main_window.py:398 apostrophe/main_window.py:469
 #: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Mégse"
 
-#: data/ui/Export.ui:44 apostrophe/export_dialog.py:127
-#: apostrophe/export_dialog.py:332 apostrophe/export_dialog.py:336
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:123
+#: apostrophe/export_dialog.py:328 apostrophe/export_dialog.py:332
 msgid "Export"
 msgstr "Exportálás"
 
@@ -516,66 +516,72 @@ msgid "Separator"
 msgstr "Elválasztó"
 
 #: data/ui/Shortcuts.ui:125
+#| msgid "Header"
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Fejléc"
+
+#: data/ui/Shortcuts.ui:132
 msgctxt "shortcut window"
 msgid "List item"
 msgstr "Listaelem"
 
-#: data/ui/Shortcuts.ui:132
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Dőlt"
 
-#: data/ui/Shortcuts.ui:139
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Félkövér"
 
-#: data/ui/Shortcuts.ui:146
+#: data/ui/Shortcuts.ui:153
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Áthúzott"
 
-#: data/ui/Shortcuts.ui:155
+#: data/ui/Shortcuts.ui:162
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "Másolás és beillesztés"
 
-#: data/ui/Shortcuts.ui:159
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "A kijelölt szöveg másolása a vágólapra"
 
-#: data/ui/Shortcuts.ui:166
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "A kijelölt szöveg kivágása a vágólapra"
 
-#: data/ui/Shortcuts.ui:173
+#: data/ui/Shortcuts.ui:180
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "A kijelölt szöveg beillesztése a vágólapról"
 
-#: data/ui/Shortcuts.ui:182
+#: data/ui/Shortcuts.ui:189
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "Visszavonás és ismétlés"
 
-#: data/ui/Shortcuts.ui:186
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Előző parancs visszavonása"
 
-#: data/ui/Shortcuts.ui:193
+#: data/ui/Shortcuts.ui:200
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Előző parancs ismétlése"
 
-#: data/ui/Shortcuts.ui:202
+#: data/ui/Shortcuts.ui:209
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "Kiválasztás"
 
-#: data/ui/Shortcuts.ui:206
+#: data/ui/Shortcuts.ui:213
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Összes szöveg kijelölése"
@@ -616,20 +622,24 @@ msgstr "A fájlt egy másik program megváltoztatta."
 msgid "_Discard Changes and Reload"
 msgstr "Változtatások _elvetése és újratöltés"
 
-#: apostrophe/application.py:234
+#: apostrophe/application.py:242
 msgid "Donate"
 msgstr "Adományozás"
 
-#: apostrophe/application.py:235
+#: apostrophe/application.py:243
 msgid "Translations"
 msgstr "Fordítások"
 
-#: apostrophe/export_dialog.py:130 apostrophe/export_dialog.py:337
+#: apostrophe/export_dialog.py:118 apostrophe/helpers.py:84
+msgid "Close"
+msgstr "Bezárás"
+
+#: apostrophe/export_dialog.py:126 apostrophe/export_dialog.py:333
 #, python-format
 msgid "Export to %s"
 msgstr "Exportálás ide: %s"
 
-#: apostrophe/export_dialog.py:156 apostrophe/export_dialog.py:326
+#: apostrophe/export_dialog.py:152 apostrophe/export_dialog.py:322
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -640,21 +650,17 @@ msgstr ""
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:229
+#: apostrophe/export_dialog.py:225
 msgid "Export to {}"
 msgstr "Exportálás ide: {}"
 
-#: apostrophe/export_dialog.py:333
+#: apostrophe/export_dialog.py:329
 msgid "Select folder"
 msgstr "Mappa kiválasztása"
 
 #: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "Hiba"
-
-#: apostrophe/helpers.py:84
-msgid "Close"
-msgstr "Bezárás"
 
 #: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
@@ -810,10 +816,10 @@ msgstr "áthúzott szöveg"
 msgid "Item"
 msgstr "Elem"
 
-#: apostrophe/text_view_format_inserter.py:98
+#: apostrophe/text_view_format_inserter.py:97
 msgid "Header"
 msgstr "Fejléc"
 
-#: apostrophe/text_view.py:169 apostrophe/text_view.py:171
+#: apostrophe/text_view.py:177 apostrophe/text_view.py:179
 msgid "web page"
 msgstr "weboldal"
