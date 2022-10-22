@@ -126,6 +126,8 @@ def get_char_width(widget):
 def pandoc_convert(text, to="html5", args=[], outputfile=None):
     fr = Settings.new().get_value('input-format').get_string() or "markdown"
     # args.extend(["--quiet"])
+    if to=="html5":
+        args.extend(["--wrap=none"])
     return pypandoc.convert_text(
         text, to, fr, extra_args=args, outputfile=outputfile)
 
