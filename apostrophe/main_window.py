@@ -64,6 +64,7 @@ class MainWindow(Adw.ApplicationWindow):
     did_change = GObject.Property(type=bool, default=False)
 
     close_anyway = False
+    file_monitor = None
 
     def __init__(self, app):
         """Set up the main window"""
@@ -286,7 +287,8 @@ class MainWindow(Adw.ApplicationWindow):
             LOGGER.info("saving")
 
             # cancel any file monitor that is active
-            self.file_monitor.cancel()
+            if self.file_monitor:
+                self.file_monitor.cancel()
             self.discard_infobar.set_revealed(False)
 
             # We try to encode the file with the given encoding
