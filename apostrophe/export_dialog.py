@@ -376,7 +376,7 @@ class AdvancedExportDialog(Adw.Window):
 
         if self.show_syntax_options:
             if self.sw_syntax_highlighting.get_enable_expansion():
-                selected_style = self.cmb_syntax_highlighting.get_selected_item().dup_string()
+                selected_style = self.cmb_syntax_highlighting.get_selected_item().get_string()
                 args.append("--highlight-style={}".format(selected_style))
 
         if self.show_presentation_options:
