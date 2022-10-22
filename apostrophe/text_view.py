@@ -257,19 +257,19 @@ class ApostropheTextView(Gtk.TextView):
         self.grab_focus()
 
     def on_attempted_hemingway(self, *args):
-            # log the time into a list with max length of 4
-            # then check if the time differences are small enough
-            # to show the help popover again
-            self.hemingway_attempts.appendleft(datetime.now())
-            if (self.hemingway_attempts[0] - self.hemingway_attempts[3]).seconds <= 70:
-                self.settings.set_int("hemingway-toast-count", 0)
-                self.activate_action("win.show_hemingway_toast")
+        # log the time into a list with max length of 4
+        # then check if the time differences are small enough
+        # to show the help popover again
+        self.hemingway_attempts.appendleft(datetime.now())
+        if (self.hemingway_attempts[0] - self.hemingway_attempts[3]).seconds <= 70:
+            self.settings.set_int("hemingway-toast-count", 0)
+            self.activate_action("win.show_hemingway_toast")
 
-            spring_params = Adw.SpringParams.new(0.5, 0.5, 1000)
-            target = Adw.PropertyAnimationTarget.new(self, "left-margin")
-            hemingway_animation = Adw.SpringAnimation.new(self, self.get_left_margin(), self.get_left_margin(), spring_params, target)
-            hemingway_animation.set_initial_velocity(10)
-            hemingway_animation.play()
+        spring_params = Adw.SpringParams.new(0.5, 0.5, 1000)
+        target = Adw.PropertyAnimationTarget.new(self, "left-margin")
+        hemingway_animation = Adw.SpringAnimation.new(self, self.get_left_margin(), self.get_left_margin(), spring_params, target)
+        hemingway_animation.set_initial_velocity(10)
+        hemingway_animation.play()
 
     @Gtk.Template.Callback()
     def _on_mark_set(self, _text_buffer, _location, mark, _data=None):
