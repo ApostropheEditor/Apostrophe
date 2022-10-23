@@ -1,15 +1,16 @@
 # Serbian translation for apostrophe.
-# Copyright (C) 2021 apostrophe's COPYRIGHT HOLDER
+# Copyright © 2021 apostrophe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the apostrophe package.
-# Мирослав Николић <miroslavnikolić@rocketmail.com>, 2021–2022.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2021–2022.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-18 12:23+0000\n"
-"PO-Revision-Date: 2022-09-21 10:34+0200\n"
-"Last-Translator: Miroslav Nikolic <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: Serbian\n"
+"POT-Creation-Date: 2022-10-04 22:46+0000\n"
+"PO-Revision-Date: 2022-10-10 09:42+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: Serbian <српски <gnome-sr@googlegroups.org>>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +111,6 @@ msgid "Whether the user can delete text or not."
 msgstr "Да ли корисник може да обрише текст или не."
 
 #: data/org.gnome.gitlab.somas.Apostrophe.gschema.xml:92
-#| msgid "Hemingway Mode"
 msgid "Hemingway Toast Count"
 msgstr "Укупност Хемингвеј тоста"
 
@@ -225,15 +225,15 @@ msgstr ""
 msgid "_Close"
 msgstr "_Затвори"
 
-#: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
-#: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
-#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
-#: apostrophe/main_window.py:531
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:329 apostrophe/export_dialog.py:334
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "Откажи"
 
-#: data/ui/Export.ui:44 apostrophe/export_dialog.py:127
-#: apostrophe/export_dialog.py:332 apostrophe/export_dialog.py:336
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:123
+#: apostrophe/export_dialog.py:328 apostrophe/export_dialog.py:332
 msgid "Export"
 msgstr "Извези"
 
@@ -297,12 +297,12 @@ msgstr "Прикажи тачку метка једну након друге у
 msgid "New"
 msgstr "Ново"
 
-#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "Отвори"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
-#: apostrophe/main_window.py:533
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "Сачувај"
 
@@ -315,52 +315,42 @@ msgid "Find"
 msgstr "Нађи"
 
 #: data/ui/Headerbar.ui:74
-#| msgid "Hemingway Mode"
 msgid "_Hemingway Mode"
 msgstr "Режим _Хемингвеја"
 
 #: data/ui/Headerbar.ui:78
-#| msgid "Focus Mode"
 msgid "_Focus Mode"
 msgstr "Режим _фокуса"
 
 #: data/ui/Headerbar.ui:84
-#| msgid "Find and Replace"
 msgid "Find and _Replace"
 msgstr "Нађи и _замени"
 
 #: data/ui/Headerbar.ui:90
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Поставке"
 
 #: data/ui/Headerbar.ui:96
-#| msgid "Open Tutorial"
 msgid "Open _Tutorial"
 msgstr "Отвори _упутство"
 
 #: data/ui/Headerbar.ui:101
-#| msgid "Keyboard Shortcuts"
 msgid "_Keyboard Shortcuts"
 msgstr "Пречице _тастатуре"
 
 #: data/ui/Headerbar.ui:105
-#| msgid "About Apostrophe"
 msgid "_About Apostrophe"
 msgstr "О _Апострофу"
 
 #: data/ui/Headerbar.ui:116
-#| msgid "Save As…"
 msgid "_Save As..."
 msgstr "Сачувај _као…"
 
 #: data/ui/Headerbar.ui:139
-#| msgid "Advanced Export…"
 msgid "Advanced _Export…"
 msgstr "Напредни _извоз…"
 
 #: data/ui/Headerbar.ui:145
-#| msgid "Copy HTML"
 msgid "_Copy HTML"
 msgstr "Умножи _ХТМЛ"
 
@@ -522,66 +512,72 @@ msgid "Separator"
 msgstr "Раздвојник"
 
 #: data/ui/Shortcuts.ui:125
+#| msgid "Header"
+msgctxt "shortcut window"
+msgid "Header"
+msgstr "Заглавље"
+
+#: data/ui/Shortcuts.ui:132
 msgctxt "shortcut window"
 msgid "List item"
 msgstr "Списак ставки"
 
-#: data/ui/Shortcuts.ui:132
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Искошено"
 
-#: data/ui/Shortcuts.ui:139
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Подебљано"
 
-#: data/ui/Shortcuts.ui:146
+#: data/ui/Shortcuts.ui:153
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "Прецртано"
 
-#: data/ui/Shortcuts.ui:155
+#: data/ui/Shortcuts.ui:162
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "Умножи и убаци"
 
-#: data/ui/Shortcuts.ui:159
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Умножи изабран текст у оставу"
 
-#: data/ui/Shortcuts.ui:166
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Исеци изабран текст у оставу"
 
-#: data/ui/Shortcuts.ui:173
+#: data/ui/Shortcuts.ui:180
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "Убаци изабран текст из оставе"
 
-#: data/ui/Shortcuts.ui:182
+#: data/ui/Shortcuts.ui:189
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "Опозови и понови"
 
-#: data/ui/Shortcuts.ui:186
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Опозови претходну наредбу"
 
-#: data/ui/Shortcuts.ui:193
+#: data/ui/Shortcuts.ui:200
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Понови претходну наредбу"
 
-#: data/ui/Shortcuts.ui:202
+#: data/ui/Shortcuts.ui:209
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "Избор"
 
-#: data/ui/Shortcuts.ui:206
+#: data/ui/Shortcuts.ui:213
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "Изабери сав текст"
@@ -607,27 +603,39 @@ msgid "Show Statistics"
 msgstr "Прикажи статистику"
 
 #: data/ui/Window.ui:59
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "0 Words"
 msgstr "0 речи"
 
-#: apostrophe/application.py:234
-#| msgid "Donations:"
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "Датотека је измењена на диску"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "Датотека је измењена другим програмом."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "_Одбаци измене и учитај поново"
+
+#: apostrophe/application.py:242
 msgid "Donate"
 msgstr "Донације"
 
-#: apostrophe/application.py:235
-#| msgid "Donations:"
+#: apostrophe/application.py:243
 msgid "Translations"
 msgstr "Преводи"
 
-#: apostrophe/export_dialog.py:130 apostrophe/export_dialog.py:337
+#: apostrophe/export_dialog.py:118 apostrophe/helpers.py:84
+msgid "Close"
+msgstr "Затвори"
+
+#: apostrophe/export_dialog.py:126 apostrophe/export_dialog.py:333
 #, python-format
 msgid "Export to %s"
 msgstr "Извези у „%s“"
 
-#: apostrophe/export_dialog.py:156 apostrophe/export_dialog.py:326
+#: apostrophe/export_dialog.py:152 apostrophe/export_dialog.py:322
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -638,21 +646,17 @@ msgstr ""
 "\n"
 "{err_msg}"
 
-#: apostrophe/export_dialog.py:229
+#: apostrophe/export_dialog.py:225
 msgid "Export to {}"
 msgstr "Извези у „{}“"
 
-#: apostrophe/export_dialog.py:333
+#: apostrophe/export_dialog.py:329
 msgid "Select folder"
 msgstr "Изабери фасциклу"
 
 #: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "Грешка"
-
-#: apostrophe/helpers.py:84
-msgid "Close"
-msgstr "Затвори"
 
 #: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
@@ -683,39 +687,36 @@ msgid "adverb"
 msgstr "придев"
 
 #. Hemingway Toast
-#: apostrophe/main_window.py:130
+#: apostrophe/main_window.py:131
 msgid "Text can't be deleted while on Hemingway mode"
 msgstr "Текст се не може обрисати док је у Хемингвеј режиму"
 
-#: apostrophe/main_window.py:133
+#: apostrophe/main_window.py:134
 msgid "Tell me more"
 msgstr "Реци ми још нешто"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "Сачувајте вашу датотеку"
 
-#: apostrophe/main_window.py:447
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "Датотеке обележавања"
 
-#: apostrophe/main_window.py:451
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "Датотеке обичног текста"
 
-#: apostrophe/main_window.py:454
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "Отворите „.md“ датотеку"
 
-#: apostrophe/main_window.py:525
-#| msgctxt "shortcut window"
-#| msgid "Save as"
+#: apostrophe/main_window.py:555
 msgid "Save changes?"
 msgstr "Да сачувам измене?"
 
-#: apostrophe/main_window.py:526
+#: apostrophe/main_window.py:556
 #, python-format
-#| msgid "If you don’t save, all your changes will be permanently lost."
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
 "permanently lost."
@@ -723,11 +724,11 @@ msgstr ""
 "„%s“ садржи несачуване измене. Ако не сачувате, све ваше измене биће трајно "
 "изгубљене."
 
-#: apostrophe/main_window.py:532
+#: apostrophe/main_window.py:562
 msgid "Discard"
 msgstr "Одбаци"
 
-#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "Нова датотека"
 
@@ -748,8 +749,6 @@ msgid "Windowed"
 msgstr "Упрозорено"
 
 #: apostrophe/stats_handler.py:98
-#| msgid "{:n} Character"
-#| msgid_plural "{:n} Characters"
 msgid "{:n} of {:n} Characters"
 msgstr "{:n} од {:n} знакоа"
 
@@ -762,8 +761,6 @@ msgstr[2] "{:n} знака"
 msgstr[3] "један знак"
 
 #: apostrophe/stats_handler.py:103
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "{:n} of {:n} Words"
 msgstr "{:n} од {:n} речи"
 
@@ -776,8 +773,6 @@ msgstr[2] "{:n} речи"
 msgstr[3] "једна реч"
 
 #: apostrophe/stats_handler.py:108
-#| msgid "{:n} Sentence"
-#| msgid_plural "{:n} Sentences"
 msgid "{:n} of {:n} Sentences"
 msgstr "{:n} од {:n} реченица"
 
@@ -790,8 +785,6 @@ msgstr[2] "{:n} реченица"
 msgstr[3] "једна реченица"
 
 #: apostrophe/stats_handler.py:113
-#| msgid "{:n} Paragraph"
-#| msgid_plural "{:n} Paragraphs"
 msgid "{:n} of {:n} Paragraphs"
 msgstr "{:n} од {:n} пасуса"
 
@@ -804,7 +797,6 @@ msgstr[2] "{:n} пасуса"
 msgstr[3] "један пасус"
 
 #: apostrophe/stats_handler.py:118
-#| msgid "{:d}:{:02d}:{:02d} Read Time"
 msgid "{:d}:{:02d}:{:02d} of {:d}:{:02d}:{:02d} Read Time"
 msgstr "{:d}:{:02d}:{:02d} од {:d}:{:02d}:{:02d} времена читања"
 
@@ -828,11 +820,11 @@ msgstr "прецртани текст"
 msgid "Item"
 msgstr "Ставка"
 
-#: apostrophe/text_view_format_inserter.py:98
+#: apostrophe/text_view_format_inserter.py:97
 msgid "Header"
 msgstr "Заглавље"
 
-#: apostrophe/text_view.py:169 apostrophe/text_view.py:171
+#: apostrophe/text_view.py:177 apostrophe/text_view.py:179
 msgid "web page"
 msgstr "веб страница"
 
@@ -861,7 +853,6 @@ msgstr "веб страница"
 #~ msgid "New Window"
 #~ msgstr "Нови прозор"
 
-#, python-format
 #~ msgid "Save changes to document “%s” before closing?"
 #~ msgstr "Да сачувам измене у документу „%s“ пре затварања?"
 
