@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apostrophe main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/apostrophe/issues\n"
-"POT-Creation-Date: 2022-09-18 12:23+0000\n"
-"PO-Revision-Date: 2022-09-21 11:31+0300\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"POT-Creation-Date: 2022-10-04 22:46+0000\n"
+"PO-Revision-Date: 2022-10-23 20:12+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3);\n"
-"X-Generator: Poedit 3.1\n"
+"2 : 3)\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/org.gnome.gitlab.somas.Apostrophe.desktop.in.in:3
 #: data/org.gnome.gitlab.somas.Apostrophe.metainfo.xml.in.in:5
@@ -196,7 +196,9 @@ msgstr "כל הזכויות שמורות (C) 2022, מנואל ג., וולף ו."
 #. Manuel Genovés <manuel.genoves@gmail.com>
 #: data/ui/About.ui.in:17
 msgid "translator-credits"
-msgstr "ירון שהרבני <sh.yaron@gmail.com>"
+msgstr ""
+"ירון שהרבני <sh.yaron@gmail.com>\n"
+"מיזם תרגום GNOME לעברית https://l10n.gnome.org/teams/he/"
 
 #: data/ui/AboutHemingway.ui:7
 msgid ""
@@ -208,27 +210,26 @@ msgid ""
 "facing the task on hand with a different mindset.\n"
 "  "
 msgstr ""
-"מצב המינגווי מחקה את חוויית הכתיבה על מכונת כתיבה, מבלי אפשרות למחוק טקסט "
-"או לבצע עריכה מכל סוג.\n"
+"מצב המינגווי מחקה את חוויית הכתיבה על מכונת כתיבה, מבלי אפשרות למחוק טקסט או "
+"לבצע עריכה מכל סוג.\n"
 "\n"
 "אפשרות להתקדם קדימה בלבד יכולה להיות מתסכלת אך זה גם תרגול מעניין לשיפור "
-"מיומנויות הכתיבה שלך, שיפור ההתמקדות או התמודדות עם המשימה הנדרשת בראש "
-"אחר.\n"
+"מיומנויות הכתיבה שלך, שיפור ההתמקדות או התמודדות עם המשימה הנדרשת בראש אחר.\n"
 " "
 
 #: data/ui/AboutHemingway.ui:13
 msgid "_Close"
 msgstr "_סגירה"
 
-#: data/ui/Export.ui:33 apostrophe/export_dialog.py:132
-#: apostrophe/export_dialog.py:333 apostrophe/export_dialog.py:338
-#: apostrophe/main_window.py:390 apostrophe/main_window.py:458
-#: apostrophe/main_window.py:531
+#: data/ui/Export.ui:33 apostrophe/export_dialog.py:128
+#: apostrophe/export_dialog.py:329 apostrophe/export_dialog.py:334
+#: apostrophe/main_window.py:398 apostrophe/main_window.py:469
+#: apostrophe/main_window.py:561
 msgid "Cancel"
 msgstr "ביטול"
 
-#: data/ui/Export.ui:44 apostrophe/export_dialog.py:127
-#: apostrophe/export_dialog.py:332 apostrophe/export_dialog.py:336
+#: data/ui/Export.ui:44 apostrophe/export_dialog.py:123
+#: apostrophe/export_dialog.py:328 apostrophe/export_dialog.py:332
 msgid "Export"
 msgstr "ייצוא"
 
@@ -292,12 +293,12 @@ msgstr "להציג נקודת תבליט אחת אחרי השנייה במצגת
 msgid "New"
 msgstr "חדש"
 
-#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:457
+#: data/ui/Headerbar.ui:18 apostrophe/main_window.py:468
 msgid "Open"
 msgstr "פתיחה"
 
-#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:389
-#: apostrophe/main_window.py:533
+#: data/ui/Headerbar.ui:24 apostrophe/main_window.py:397
+#: apostrophe/main_window.py:563
 msgid "Save"
 msgstr "שמירה"
 
@@ -508,65 +509,70 @@ msgstr "מפריד"
 
 #: data/ui/Shortcuts.ui:125
 msgctxt "shortcut window"
+msgid "Header"
+msgstr "כותרת"
+
+#: data/ui/Shortcuts.ui:132
+msgctxt "shortcut window"
 msgid "List item"
 msgstr "פריט ברשימה"
 
-#: data/ui/Shortcuts.ui:132
+#: data/ui/Shortcuts.ui:139
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "נטוי"
 
-#: data/ui/Shortcuts.ui:139
+#: data/ui/Shortcuts.ui:146
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "מודגש"
 
-#: data/ui/Shortcuts.ui:146
+#: data/ui/Shortcuts.ui:153
 msgctxt "shortcut window"
 msgid "Strikeout"
 msgstr "קו חוצה"
 
-#: data/ui/Shortcuts.ui:155
+#: data/ui/Shortcuts.ui:162
 msgctxt "shortcut window"
 msgid "Copy and paste"
 msgstr "העתקה והדסקה"
 
-#: data/ui/Shortcuts.ui:159
+#: data/ui/Shortcuts.ui:166
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "העתקת הטקסט הנבחר ללוח הגזירים"
 
-#: data/ui/Shortcuts.ui:166
+#: data/ui/Shortcuts.ui:173
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "גזירת הטקסט הנבחר ללוח הגזירים"
 
-#: data/ui/Shortcuts.ui:173
+#: data/ui/Shortcuts.ui:180
 msgctxt "shortcut window"
 msgid "Paste selected text from clipboard"
 msgstr "הדבקת הטקסט הנבחר מלוח הגזירים"
 
-#: data/ui/Shortcuts.ui:182
+#: data/ui/Shortcuts.ui:189
 msgctxt "shortcut window"
 msgid "Undo and redo"
 msgstr "ביטול וביצוע שוב"
 
-#: data/ui/Shortcuts.ui:186
+#: data/ui/Shortcuts.ui:193
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "ביטול הפקודה האחרונה"
 
-#: data/ui/Shortcuts.ui:193
+#: data/ui/Shortcuts.ui:200
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "ביצוע הפקודה האחרונה שוב"
 
-#: data/ui/Shortcuts.ui:202
+#: data/ui/Shortcuts.ui:209
 msgctxt "shortcut window"
 msgid "Selection"
 msgstr "בחירה"
 
-#: data/ui/Shortcuts.ui:206
+#: data/ui/Shortcuts.ui:213
 msgctxt "shortcut window"
 msgid "Select all text"
 msgstr "לבחור את כל הטקסט"
@@ -595,20 +601,36 @@ msgstr "הצגת סטטיסטיקה"
 msgid "0 Words"
 msgstr "0 מילים"
 
-#: apostrophe/application.py:234
+#: data/ui/Window.ui:129
+msgid "File Has Changed on Disk"
+msgstr "הקובץ שונה בכונן"
+
+#: data/ui/Window.ui:139
+msgid "The file has been changed by another program."
+msgstr "הקובץ שונה על ידי תכנה אחרת."
+
+#: data/ui/Window.ui:147
+msgid "_Discard Changes and Reload"
+msgstr "_ביטול שינויים וטעינה מחדש"
+
+#: apostrophe/application.py:242
 msgid "Donate"
 msgstr "תרומה"
 
-#: apostrophe/application.py:235
+#: apostrophe/application.py:243
 msgid "Translations"
 msgstr "תרגומים"
 
-#: apostrophe/export_dialog.py:130 apostrophe/export_dialog.py:337
+#: apostrophe/export_dialog.py:118 apostrophe/helpers.py:84
+msgid "Close"
+msgstr "סגירה"
+
+#: apostrophe/export_dialog.py:126 apostrophe/export_dialog.py:333
 #, python-format
 msgid "Export to %s"
 msgstr "ייצוא אל %s"
 
-#: apostrophe/export_dialog.py:156 apostrophe/export_dialog.py:326
+#: apostrophe/export_dialog.py:152 apostrophe/export_dialog.py:322
 #, python-brace-format
 msgid ""
 "An error happened while trying to export:\n"
@@ -619,21 +641,17 @@ msgstr ""
 "‬\n"
 "‏‫{err_msg}"
 
-#: apostrophe/export_dialog.py:229
+#: apostrophe/export_dialog.py:225
 msgid "Export to {}"
 msgstr "ייצוא אל {}"
 
-#: apostrophe/export_dialog.py:333
+#: apostrophe/export_dialog.py:329
 msgid "Select folder"
 msgstr "בחירת תיקייה"
 
 #: apostrophe/helpers.py:83
 msgid "Error"
 msgstr "שגיאה"
-
-#: apostrophe/helpers.py:84
-msgid "Close"
-msgstr "סגירה"
 
 #: apostrophe/inhibitor.py:36
 msgid "Unsaved documents"
@@ -664,46 +682,46 @@ msgid "adverb"
 msgstr "תואר הפועל"
 
 #. Hemingway Toast
-#: apostrophe/main_window.py:130
+#: apostrophe/main_window.py:131
 msgid "Text can't be deleted while on Hemingway mode"
 msgstr "טקסט לא יכול להימחק כשנמצאים במצב המינגווי"
 
-#: apostrophe/main_window.py:133
+#: apostrophe/main_window.py:134
 msgid "Tell me more"
 msgstr "לספר לי עוד"
 
-#: apostrophe/main_window.py:386
+#: apostrophe/main_window.py:394
 msgid "Save your File"
 msgstr "שמירת הקובץ שלך"
 
-#: apostrophe/main_window.py:447
+#: apostrophe/main_window.py:458
 msgid "Markdown Files"
 msgstr "קובצי Markdown"
 
-#: apostrophe/main_window.py:451
+#: apostrophe/main_window.py:462
 msgid "Plain Text Files"
 msgstr "קובצי טקסט פשוט"
 
-#: apostrophe/main_window.py:454
+#: apostrophe/main_window.py:465
 msgid "Open a .md file"
 msgstr "פתיחת קובץ ‎.md"
 
-#: apostrophe/main_window.py:525
+#: apostrophe/main_window.py:555
 msgid "Save changes?"
 msgstr "שמירה השינויים?"
 
-#: apostrophe/main_window.py:526
+#: apostrophe/main_window.py:556
 #, python-format
 msgid ""
 "“%s” contains unsaved changes. If you don’t save, all your changes will be "
 "permanently lost."
 msgstr "‏„%s” מכיל שינויים שלא נשמור. ללא שמירה, כל השינויים יאבדו לצמיתות."
 
-#: apostrophe/main_window.py:532
+#: apostrophe/main_window.py:562
 msgid "Discard"
 msgstr "השלכה"
 
-#: apostrophe/main_window.py:701 apostrophe/main_window.py:725
+#: apostrophe/main_window.py:732 apostrophe/main_window.py:756
 msgid "New File"
 msgstr "קובץ חדש"
 
@@ -724,8 +742,6 @@ msgid "Windowed"
 msgstr "בחלון"
 
 #: apostrophe/stats_handler.py:98
-#| msgid "{:n} Character"
-#| msgid_plural "{:n} Characters"
 msgid "{:n} of {:n} Characters"
 msgstr "{:n} מתוך {:n} תווים"
 
@@ -738,8 +754,6 @@ msgstr[2] "‫{:n} תווים"
 msgstr[3] "‫{:n} תווים"
 
 #: apostrophe/stats_handler.py:103
-#| msgid "{:n} Word"
-#| msgid_plural "{:n} Words"
 msgid "{:n} of {:n} Words"
 msgstr "{:n} מתוך {:n} מילים"
 
@@ -752,8 +766,6 @@ msgstr[2] "‫{:n} מילים"
 msgstr[3] "‫{:n} מילים"
 
 #: apostrophe/stats_handler.py:108
-#| msgid "{:n} Sentence"
-#| msgid_plural "{:n} Sentences"
 msgid "{:n} of {:n} Sentences"
 msgstr "{:n} מתוך {:n} משפטים"
 
@@ -766,8 +778,6 @@ msgstr[2] "‫{:n} משפטים"
 msgstr[3] "‫{:n} משפטים"
 
 #: apostrophe/stats_handler.py:113
-#| msgid "{:n} Paragraph"
-#| msgid_plural "{:n} Paragraphs"
 msgid "{:n} of {:n} Paragraphs"
 msgstr "{:n} מתוך {:n} פסקאות"
 
@@ -803,11 +813,11 @@ msgstr "טקסט עם קו חוצה"
 msgid "Item"
 msgstr "פריט"
 
-#: apostrophe/text_view_format_inserter.py:98
+#: apostrophe/text_view_format_inserter.py:97
 msgid "Header"
 msgstr "כותרת"
 
-#: apostrophe/text_view.py:169 apostrophe/text_view.py:171
+#: apostrophe/text_view.py:177 apostrophe/text_view.py:179
 msgid "web page"
 msgstr "דף אינטרנט"
 
